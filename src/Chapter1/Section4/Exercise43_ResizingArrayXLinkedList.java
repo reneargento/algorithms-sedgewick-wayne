@@ -119,8 +119,8 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
         }
     }
 
-    // 2^19 = 524288
-    private final int INITIAL_NUMBER_OF_OPERATIONS = 524288;
+    private final int INITIAL_NUMBER_OF_OPERATIONS = 524288; // 2^19 = 524288
+    private final int FINAL_NUMBER_OF_OPERATIONS = 67108864; // 2^26 = 67108864
 
     public static void main(String[] args) {
         Exercise43_ResizingArrayXLinkedList<Integer> resizingArrayXLinkedList = new Exercise43_ResizingArrayXLinkedList<>();
@@ -149,8 +149,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
 
         List<Double> runningTimes = new LinkedList<>();
 
-        // 2^26 = 67108864
-        for(int n=INITIAL_NUMBER_OF_OPERATIONS; n <= 67108864; n += n) {
+        for(int n=INITIAL_NUMBER_OF_OPERATIONS; n <= FINAL_NUMBER_OF_OPERATIONS; n += n) {
             double runningTime = timeTrial(n, stack);
             runningTimes.add(runningTime);
         }
