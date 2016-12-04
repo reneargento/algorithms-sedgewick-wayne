@@ -4,8 +4,8 @@ package Chapter1.Section5;
  * Created by rene on 04/12/16.
  */
 // The change in WeightedQuickFind will slightly improve performance.
-    // Find() will still be O(1) and union() operation will still be O(N), but there will be less parent updates in the
-    // union operation (at most N / 2).
+    // Find() will still be O(1) and union() operation will still be O(n), but there will be less parent updates in the
+    // union operation (at most n / 2).
 public class Exercise11 {
 
     private class WeightedQuickFind {
@@ -35,10 +35,12 @@ public class Exercise11 {
             return find(site1) == find(site2);
         }
 
+        //O(1)
         public int find(int site) {
             return id[site];
         }
 
+        //O(n)
         public void union(int site1, int site2) {
             int parentId1 = find(site1);
             int parentId2 = find(site2);

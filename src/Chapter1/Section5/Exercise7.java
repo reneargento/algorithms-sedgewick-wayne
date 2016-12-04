@@ -70,7 +70,7 @@ public class Exercise7 {
             return count;
         }
 
-        //O(lg n)
+        //O(n)
         public int find(int site) {
             while(site != id[site]) {
                 site = id[site];
@@ -84,7 +84,7 @@ public class Exercise7 {
             return find(site1) == find(site2);
         }
 
-        //O(lg n)
+        //O(n)
         public void union(int site1, int site2) {
             int leaderId1 = find(site1);
             int leaderId2 = find(site2);
