@@ -18,9 +18,6 @@ public class Exercise13_WeightedQUPathCompression {
 
             for(int i=0; i < id.length; i++) {
                 id[i] = i;
-            }
-
-            for(int i=0; i < size.length; i++) {
                 size[i] = 1;
             }
         }
@@ -33,6 +30,7 @@ public class Exercise13_WeightedQUPathCompression {
             return find(site1) == find(site2);
         }
 
+        //O(lg n)
         public int find(int site) {
             if(site == id[site]) {
                 return site;
@@ -41,6 +39,7 @@ public class Exercise13_WeightedQUPathCompression {
             return id[site] = find(id[site]);
         }
 
+        //O(lg n)
         public void union(int site1, int site2) {
             int parentId1 = find(site1);
             int parentId2 = find(site2);
@@ -101,7 +100,7 @@ public class Exercise13_WeightedQUPathCompression {
         weightedQuickUnionPathCompression.union(10, 18);
         weightedQuickUnionPathCompression.union(0, 10);
 
-        System.out.println("Components: " + weightedQuickUnionPathCompression.count + " Expected: 3");
+        System.out.println("Components: " + weightedQuickUnionPathCompression.count() + " Expected: 3");
     }
 
 }
