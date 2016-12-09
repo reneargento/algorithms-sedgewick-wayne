@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise18_RandomGridGenerator {
 
-    private class Connection {
+    public class Connection {
         int p;
         int q;
 
@@ -29,7 +29,7 @@ public class Exercise18_RandomGridGenerator {
         }
     }
 
-    private Connection[] generate(int numberOfSites){
+    public Connection[] generate(int numberOfSites){
         Exercise34_RandomBag<Connection> randomBag = new Exercise34_RandomBag<>();
 
         //Considering the NxN grid as

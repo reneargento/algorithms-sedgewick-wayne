@@ -11,17 +11,17 @@ public class Exercise17_RandomConnections {
     public static void main(String[] args) {
         int numberOfSites = Integer.parseInt(args[0]);
 
-        int numberOfConnections = erdosRenyi(numberOfSites);
+        int numberOfConnections = erdosRenyi(numberOfSites, true);
 
         StdOut.println();
-        StdOut.println("Number of connections: " + numberOfConnections);
+        StdOut.println("Number of connections generated: " + numberOfConnections);
     }
 
-    private static int erdosRenyi(int numberOfSites) {
-        return count(numberOfSites);
+    public static int erdosRenyi(int numberOfSites, boolean verbose) {
+        return count(numberOfSites, verbose);
     }
 
-    private static int count(int numberOfSites) {
+    private static int count(int numberOfSites, boolean verbose) {
         int connectionsGenerated = 0;
 
         UnionFind unionFind = new UnionFind(numberOfSites);
@@ -31,11 +31,14 @@ public class Exercise17_RandomConnections {
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
 
+            connectionsGenerated++;
+
+            if(verbose) {
+                StdOut.println("Connection generated: " + randomSite1 + " - " + randomSite2);
+            }
+
             if(!unionFind.connected(randomSite1, randomSite2)) {
                 unionFind.union(randomSite1, randomSite2);
-
-                connectionsGenerated++;
-                StdOut.println("Connections generated: " + connectionsGenerated);
             }
         }
 
