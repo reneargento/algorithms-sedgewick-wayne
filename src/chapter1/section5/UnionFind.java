@@ -3,7 +3,7 @@ package chapter1.section5;
 /**
  * Created by rene on 08/12/16.
  */
-public class UnionFind {
+public class UnionFind implements UF {
 
     private int[] leaders;
     private int[] ranks;

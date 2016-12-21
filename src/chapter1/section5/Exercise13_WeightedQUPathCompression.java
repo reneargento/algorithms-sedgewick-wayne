@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise13_WeightedQUPathCompression {
 
-    private class WeightedQuickUnionPathCompression {
+    private class WeightedQuickUnionPathCompression implements UF {
 
         int id[];
         int size[];
