@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 20/12/16.
+ * Created by rene on 21/12/16.
  */
-public class Exercise23_CompareQFandQUErdosRenyi {
+public class Exercise24_FastAlgorithmsErdosRenyi {
 
     private class Experiment {
 
@@ -26,34 +26,35 @@ public class Exercise23_CompareQFandQUErdosRenyi {
     public static void main(String[] args) {
         int numberOfExperiments = Integer.parseInt(args[0]);
 
-        Exercise23_CompareQFandQUErdosRenyi compareTestErdosRenyi = new Exercise23_CompareQFandQUErdosRenyi();
+        Exercise24_FastAlgorithmsErdosRenyi compareTestErdosRenyi = new Exercise24_FastAlgorithmsErdosRenyi();
         compareTestErdosRenyi.doExperiments(numberOfExperiments);
     }
 
     private void doExperiments(int numberOfExperiments) {
 
-        List<Exercise23_CompareQFandQUErdosRenyi.Experiment> experiments = new ArrayList<>();
+        List<Exercise24_FastAlgorithmsErdosRenyi.Experiment> experiments = new ArrayList<>();
 
         int numberOfSites = 512;
 
         for(int i=0; i < numberOfExperiments; i++) {
 
-            //QuickUnion
-            UF quickUnion = new QuickUnion(numberOfSites);
+            //Weighted QuickUnion
+            UF weightedQuickUnion = new WeightedQuickUnion(numberOfSites);
 
             Stopwatch timer = new Stopwatch();
             List<Exercise18_RandomGridGenerator.Connection> connectionsGenerated =
-                    erdosRenyiGeneratingConnections(numberOfSites, quickUnion);
-            double runningTimeQuickUnion = timer.elapsedTime();
+                    erdosRenyiGeneratingConnections(numberOfSites, weightedQuickUnion);
+            double runningTimeWeightedQuickUnion = timer.elapsedTime();
 
-            //QuickFind
-            UF quickFind = new QuickUnion(numberOfSites);
+            //Weighted QuickUnion with path compression
+            UF weightedQuickUnionPathCompression = new Exercise13_WeightedQUPathCompression()
+                    .new WeightedQuickUnionPathCompression(numberOfSites);
 
             timer = new Stopwatch();
-            erdosRenyiUsingConnections(quickFind, connectionsGenerated);
-            double runningTimeQuickFind = timer.elapsedTime();
+            erdosRenyiUsingConnections(weightedQuickUnionPathCompression, connectionsGenerated);
+            double runningTimeWeightedQuickUnionPathCompression = timer.elapsedTime();
 
-            Experiment experiment = new Experiment(numberOfSites, runningTimeQuickFind / runningTimeQuickUnion);
+            Experiment experiment = new Experiment(numberOfSites, runningTimeWeightedQuickUnionPathCompression / runningTimeWeightedQuickUnion);
             experiments.add(experiment);
 
             numberOfSites *= 2;
@@ -99,9 +100,9 @@ public class Exercise23_CompareQFandQUErdosRenyi {
         }
     }
 
-    private void printResults(List<Exercise23_CompareQFandQUErdosRenyi.Experiment> experiments) {
+    private void printResults(List<Exercise24_FastAlgorithmsErdosRenyi.Experiment> experiments) {
         StdOut.printf("%12s %17s %23s\n", "Experiment |", "Number of Sites |",
-               "Ratio of Running Time |");
+                "Ratio of Running Time |");
 
         int experimentId = 1;
 
