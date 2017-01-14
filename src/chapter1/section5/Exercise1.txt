@@ -1,0 +1,43 @@
+1.5.1
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 3 4 5 6 7 8 9
+
+9-0
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 3 4 5 6 7 8 0
+Array accesses: 13 (2 in 2x find() + 10 for checking parents + 1 for updating parents)
+
+3-4
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 4 4 5 6 7 8 0
+Array accesses: 13 (2 in 2x find() + 10 for checking parents + 1 for updating parents)
+
+5-8
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 4 4 8 6 7 8 0
+Array accesses: 13 (2 in 2x find() + 10 for checking parents + 1 for updating parents)
+
+7-2
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 4 4 8 6 2 8 0
+Array accesses: 13 (2 in 2x find() + 10 for checking parents + 1 for updating parents)
+
+2-1
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 1 4 4 8 6 1 8 0
+Array accesses: 14 (2 in 2x find() + 10 for checking parents + 2 for updating parents)
+
+5-7
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 1 4 4 1 6 1 1 0
+Array accesses: 14 (2 in 2x find() + 10 for checking parents + 2 for updating parents)
+
+0-3
+        0 1 2 3 4 5 6 7 8 9
+array = 4 1 1 4 4 1 6 1 1 4
+Array accesses: 14 (2 in 2x find() + 10 for checking parents + 2 for updating parents)
+
+4-2
+        0 1 2 3 4 5 6 7 8 9
+array = 1 1 1 1 1 1 6 1 1 1
+Array accesses: 16 (2 in 2x find() + 10 for checking parents + 4 for updating parents)

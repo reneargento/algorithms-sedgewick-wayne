@@ -1,0 +1,22 @@
+1.5.15 - Binomial trees
+
+In the worst-case tree in weighted quick-union, a union between two trees of the same size always occurs.
+
+Example of the result of a union between two trees of size 4:
+
+       X
+    X  X X
+   X X X
+   X
+
+The number of nodes at each level will always be a binomial coefficient because the tree includes the trees resulted from
+a union between two other trees of size N/2.
+Therefore the number of nodes will be 1, 2, 4, 8, 16, 32 and so on, as the level increases.
+
+Average depth of a node in a worst-case tree with N = 2^n nodes:
+
+There are exactly (k) nodes at depth i for i = 0, 1, ..., k
+                  (i)
+
+O(lg N) comparisons are made to reach each node (starting at the root), which gives a total of O(N lg N) for the tree.
+The average depth of a node is 1/N * O(N lg N) = O(lg N)

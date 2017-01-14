@@ -1,0 +1,43 @@
+1.5.24 - Fast algorithms for Erdos-Renyi model
+
+(The ratio of running time is based on weighted quick-union with path compression / weighted quick-union)
+
+Test that generates connections while using weighted quick-union and later uses the same connections with 
+weighted quick-union with path compression:
+
+Experiment | Number of Sites | Ratio of Running Time |
+      1           512                     0.7
+      2          1024                     0.5
+      3          2048                     0.7
+      4          4096                     0.4
+      5          8192                     0.3
+      6         16384                     0.4
+      7         32768                     0.2
+      8         65536                     0.2
+      9        131072                     0.2
+     10        262144                     0.2
+     11        524288                     0.2
+     12       1048576                     0.1
+     13       2097152                     0.1
+     14       4194304                     0.1
+
+Test that generates connections while using weighted quick-union with path compression and later uses the same 
+connections with weighted quick-union:
+
+Experiment | Number of Sites | Ratio of Running Time |
+      1           512                     0.3
+      2          1024                     0.5
+      3          2048                     0.5
+      4          4096                     0.5
+      5          8192                     0.4
+      6         16384                     0.6
+      7         32768                     0.5
+      8         65536                     0.6
+      9        131072                     0.5
+     10        262144                     0.7
+     11        524288                     0.6
+     12       1048576                     0.2
+     13       2097152                     0.4
+     14       4194304                     0.2
+
+Weighted quick-union with path compression runs much faster than weighted quick-union, especially for large inputs.

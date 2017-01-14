@@ -1,0 +1,23 @@
+1.5.6
+
+10^9 sites
+10^6 input pairs
+Computer can execute 10^9 instructions per second
+
+The object initialization makes ~10^9 instructions (1 for initializing the count variable, 1 for creating the parents array, 10^9 for initializing each parent, 1 for creating the size array, 10^9 for initializing each size)
+Each find operation makes on the worst case lg(10^9) ~ 30 instructions
+Each union operation makes on the worst case ~65 instructions (30 for each find(), 1 for comparing parents of the components being united, 1 for comparing sizes, 1 for updating one of the parents, 1 for increasing one of the sizes and 1 for reducing the count of components)
+
+For 10^6 input pairs, the total number of instructions required (I) is:
+I = M x IU
+
+Where M is the number of input pairs and IU is the number of instructions in the union operation.
+
+I = 10^6 x 65
+I = 65,000,000
+
+Seconds needed = 65 x 10^6 / 10^9
+Seconds needed = 65 x 10^-3
+Seconds needed = 0.065
+
+0.065 seconds = 0.001 minutes = 0.00001 hours = 0.00000075 days

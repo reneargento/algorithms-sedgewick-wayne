@@ -1,0 +1,79 @@
+1.5.3
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 3 4 5 6 7 8 9
+
+9-0
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 3 4 5 6 7 8 0
+Array accesses: 3 (1 for find(9), 1 for find(0) and 1 for updating parent)
+
+Forest:
+0 1 2 3 4 5 6 7 8 
+9
+
+3-4
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 4 4 5 6 7 8 0
+Array accesses: 3 (1 for find(3), 1 for find(4) and 1 for updating parent)
+
+Forest:
+0 1 2 4 5 6 7 8 
+9     3
+
+5-8
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 4 4 8 6 7 8 0
+Array accesses: 3 (1 for find(5), 1 for find(8) and 1 for updating parent)
+
+Forest:
+0 1 2 4 6 7 8 
+9     3     5
+
+7-2
+        0 1 2 3 4 5 6 7 8 9
+array = 0 1 2 4 4 8 6 2 8 0
+Array accesses: 3 (1 for find(7), 1 for find(2) and 1 for updating parent)
+
+Forest:
+0 1 2 4 6 8 
+9   7 3   5
+
+2-1
+        0 1 2 3 4 5 6 7 8 9
+array = 0 2 2 4 4 8 6 2 8 0
+Array accesses: 3 (1 for find(2), 1 for find(1) and 1 for updating parent)
+
+Forest:
+0  2  4 6 8 
+9 1 7 3   5
+
+5-7
+        0 1 2 3 4 5 6 7 8 9
+array = 0 2 8 4 4 8 6 2 8 0
+Array accesses: 5 (2 for find(5), 2 for find(7) and 1 for updating parent)
+
+Forest:
+0 4 6   8 
+9 3    5 2
+        1 7
+
+0-3
+        0 1 2 3 4 5 6 7 8 9
+array = 4 2 8 4 4 8 6 2 8 0
+Array accesses: 4 (1 for find(0), 2 for find(3) and 1 for updating parent)
+
+Forest:
+ 4  6  8 
+0 3   5 2
+9      1 7
+
+4-2
+        0 1 2 3 4 5 6 7 8 9
+array = 4 2 8 4 8 8 6 2 8 0
+Array accesses: 4 (1 for find(4), 2 for find(2) and 1 for updating parent)
+
+Forest:
+6   8 
+  4 5  2
+ 0 3  1 7
+ 9 

@@ -1,0 +1,15 @@
+1.5.21 - Erdos-Renyi model
+
+Experiment | Number of Sites |   Pairs Generated | Expected | Accuracy |
+      1            16                  24             22         1.1
+      2            32                  62             55         1.1
+      3            64                 174            133         1.3
+      4           128                 337            310         1.1
+      5           256                 954            709         1.3
+      6           512                3141           1597         2.0
+      7          1024                4091           3548         1.2
+      8          2048                7251           7807         0.9
+      9          4096               19839          17034         1.2
+     10          8192               38425          36908         1.0
+
+The experiments comprove the hypothesis that the number of pairs generated to get one component is ~1/2N ln N

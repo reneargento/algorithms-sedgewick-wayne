@@ -1,0 +1,38 @@
+1.5.22 - Doubling test for Erdos-Renyi model
+
+Quick Find
+Experiment | Number of Sites |   AVG Pairs Generated | Ratio of Running Time |
+      1           512                  1631                     0.7
+      2          1024                  3262                     2.5
+      3          2048                  8247                     0.6
+      4          4096                 18357                     3.3
+      5          8192                 40024                     3.7
+      6         16384                 86154                     4.1
+      7         32768                198386                     4.3
+      8         65536                424480                     4.3
+
+Quick Union
+Experiment | Number of Sites |   AVG Pairs Generated | Ratio of Running Time |
+      1           512                  1556                     1.0
+      2          1024                  4042                     2.0
+      3          2048                  9644                     3.5
+      4          4096                 16554                     2.9
+      5          8192                 49690                     6.6
+      6         16384                101410                    10.0
+      7         32768                166000                     4.5
+      8         65536                323411                     4.5
+
+Weighted Quick Union
+Experiment | Number of Sites |   AVG Pairs Generated | Ratio of Running Time |
+      1           512                  1435                     NaN
+      2          1024                  3424                Infinity
+      3          2048                 10711                     1.0
+      4          4096                 15561                     1.0
+      5          8192                 33930                     2.0
+      6         16384                100568                     2.5
+      7         32768                194703                     1.6
+      8         65536                389436                     2.0
+
+The experiments validate the hypothesis that the running times for quick-find and quick-union are quadratic
+(the time quadruples when the input size doubles) and that the running time for weighted quick-union is
+near-linear (it almost doubles when the input size doubles).

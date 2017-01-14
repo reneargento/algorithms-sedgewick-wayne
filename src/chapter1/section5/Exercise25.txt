@@ -1,0 +1,58 @@
+1.5.25 - Doubling test for random grids
+
+First test with 5 experiments:
+
+Quick Find
+Experiment | Number of Sites |   AVG Pairs Generated | Ratio of Running Time |
+      1           512                  2349                     0.6
+      2          1024                  3481                     4.4
+      3          2048                  7028                     3.9
+      4          4096                 16466                    15.7
+      5          8192                 41423                     4.3
+
+Quick Union
+Experiment | Number of Sites |   AVG Pairs Generated | Ratio of Running Time |
+      1           512                  1413                     5.0
+      2          1024                  2838                     4.2
+      3          2048                  6796                    21.4
+      4          4096                 19293                     2.1
+      5          8192                 40504                    11.9
+
+Weighted Quick Union
+Experiment | Number of Sites |   AVG Pairs Generated | Ratio of Running Time |
+      1           512                  2330                     5.5
+      2          1024                  3854                     4.1
+      3          2048                 10783                     7.2
+      4          4096                 17909                     6.0
+      5          8192                 40445                    14.8
+
+
+Second test with 5 experiments:
+
+Quick Find
+Experiment | Number of Sites |   AVG Pairs Generated | Ratio of Running Time |
+      1           512                  1556                     1.0
+      2          1024                  4442                     2.9
+      3          2048                  7783                     4.0
+      4          4096                 21954                    15.2
+      5          8192                 36459                     6.3
+
+Quick Union
+Experiment | Number of Sites |   AVG Pairs Generated | Ratio of Running Time |
+      1           512                  2363                     5.5
+      2          1024                  3648                     3.7
+      3          2048                  7626                    20.6
+      4          4096                 23439                     2.2
+      5          8192                 47659                    10.9
+
+Weighted Quick Union
+Experiment | Number of Sites |   AVG Pairs Generated | Ratio of Running Time |
+      1           512                  1729                     4.5
+      2          1024                  4151                     4.4
+      3          2048                  8381                     8.0
+      4          4096                 27100                     5.9
+      5          8192                 31788                    15.0
+
+
+The experiments do not validate the hypothesis that the running times for quick-find and quick-union are quadratic
+(the time does not always quadruples or increases 16 times when the input size doubles) and do not validate the hypothesis that the running time for weighted quick-union is near-linear (it does not almost double or increase 4 times when the input size doubles).

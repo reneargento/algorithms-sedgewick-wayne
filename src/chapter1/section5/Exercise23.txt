@@ -1,0 +1,15 @@
+1.5.23 - Compare quick-find with quick-union for Erdos-Renyi model
+
+(The ratio of running time is based on quick-find / quick-union)
+
+Experiment | Number of Sites | Ratio of Running Time |
+      1           512                     0.3
+      2          1024                     0.3
+      3          2048                     0.7
+      4          4096                     0.9
+      5          8192                     0.9
+      6         16384                     1.0
+      7         32768                     1.0
+      8         65536                     1.0
+
+The running times of quick-find and quick-union become more similar as the number of sites grows.

@@ -1,0 +1,4 @@
+1.5.10
+
+Yes, but that would increase the maximum possible height of the trees to N, which would decrease find()'s
+worst case performance from lg (N) to N and, consequently, decrease union()'s worst case performance to N.
