@@ -1,0 +1,29 @@
+1.4.45 - Coupon collector problem
+
+         N | Numbers Generated Before All Values | Result Expected by Hypothesis | Accuracy
+         4                   7                                 8                      0.9
+         8                  23                                22                      1.0
+        16                  20                                54                      0.4
+        32                  99                               130                      0.8
+        64                 262                               304                      0.9
+       128                 742                               695                      1.1
+       256                2175                              1568                      1.4
+       512                3516                              3490                      1.0
+      1024                5817                              7689                      0.8
+      2048               16349                             16798                      1.0
+      4096               34327                             36434                      0.9
+      8192               74343                             78547                      0.9
+     16384              244287                            168449                      1.5
+     32768              380640                            359609                      1.1
+     65536              648869                            764637                      0.8
+    131072             1684281                           1620061                      1.0
+    262144             3883625                           3421321                      1.1
+    524288             9042936                           7202154                      1.3
+   1048576            14375464                          15103357                      1.0
+   2097152            30648489                          32303864                      0.9
+   4194304            71538965                          64607728                      1.1
+
+The experiments comprove the hypothesis that the number of integers generated before all possible values
+are generated is ~NHn
+
+Good reference on the coupon collector problem: https://www.quora.com/What-is-the-Coupon-Collectors-problem

@@ -1,0 +1,10 @@
+1.4.4
+
+Statement in Block    Time in seconds         Frequency           Total time
+        D                   t0           x(depends on input)           t0x
+        C                   t1                N^2/2 - N/2          t2(N^2/2 - N/2)
+        B                   t2                    N                    t2N
+        A                   t3                    1                     t3
+Grand total: t2(N^2/2 - N/2) + t2N + t3 + t0x
+Tilde approximation: ~N^2
+Order of growth: N^2

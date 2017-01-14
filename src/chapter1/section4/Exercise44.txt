@@ -1,0 +1,35 @@
+1.4.44 - Birthday problem
+
+         N | Numbers Generated Before Repeat | Result Expected by Hypothesis | Accuracy
+         4               2                             3                          0.7
+         8               4                             4                          1.0
+        16               3                             5                          0.6
+        32              11                             7                          1.6
+        64               4                            10                          0.4
+       128              16                            14                          1.1
+       256               8                            20                          0.4
+       512              44                            28                          1.6
+      1024              47                            40                          1.2
+      2048              38                            57                          0.7
+      4096              13                            80                          0.2
+      8192             285                           113                          2.5
+     16384             142                           160                          0.9
+     32768             116                           227                          0.5
+     65536             191                           321                          0.6
+    131072             504                           454                          1.1
+    262144             598                           642                          0.9
+    524288             843                           907                          0.9
+   1048576            1565                          1283                          1.2
+   2097152             860                          1815                          0.5
+   4194304            1694                          2567                          0.7
+   8388608            2462                          3630                          0.7
+  16777216            9081                          5134                          1.8
+  33554432            7291                          7260                          1.0
+  67108864            1477                         10267                          0.1
+ 134217728           11813                         14520                          0.8
+ 268435456           25542                         20534                          1.2
+
+Overall the results were close to the expected results by the hypothesis (except for some outliers).
+We can consider that the number of integers generated before the first repeated value is found is ~SQRT(PI * N/2)
+
+Good reference on the birthday problem: https://en.wikipedia.org/wiki/Birthday_problem

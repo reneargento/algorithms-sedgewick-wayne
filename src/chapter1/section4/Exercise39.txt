@@ -1,0 +1,24 @@
+1.4.39 - Improved accuracy for doubling test
+
+10 trials
+ Items    Mean StdDeviation
+   125    0.00 0.00083
+   250    0.00 0.00117
+   500    0.01 0.00183
+  1000    0.06 0.00849
+
+100 trials
+ Items    Mean StdDeviation
+   125    0.00 0.00068
+   250    0.00 0.00035
+   500    0.01 0.00106
+  1000    0.06 0.00381
+
+1000 trials
+ Items    Mean StdDeviation
+   125    0.00 0.00039
+   250    0.00 0.00034
+   500    0.01 0.00109
+  1000    0.06 0.00447
+
+Overall, the precision of the results improve with more trials (has a lower standard deviation).

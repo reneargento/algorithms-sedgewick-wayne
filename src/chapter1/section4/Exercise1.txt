@@ -1,0 +1,13 @@
+1.4.1
+
+Counting argument:
+When choosing the first element there are N possibilities. 
+When choosing the second element there are N - 1 possibilities.
+When choosing the third element there are N - 2 possibilities.
+
+This is a total of N(N - 1)(N - 2). If the order of items mattered, this would be the result.
+However, the order of items does not matter. For 3 items there is a total of 3! possible orderings.
+3! = 6
+
+So, the number of triples that can be chosen from N items is equal to:
+N(N - 1)(N - 2) / 6

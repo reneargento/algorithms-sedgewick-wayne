@@ -1,0 +1,54 @@
+1.4.37 - Autoboxing performance penalty
+
+Results from experiment:
+
+Fixed-capacity stack of primitive ints
+   250     0.0   NaN
+   500     0.0   NaN
+  1000     0.0   NaN
+  2000     0.0   NaN
+  4000     0.0   NaN
+  8000     0.0 Infinity
+ 16000     0.0   1.0
+ 32000     0.0   2.0
+ 64000     0.0   0.5
+128000     0.0   2.0
+256000     0.0   0.5
+512000     0.0   1.0
+1024000     0.0   0.0
+2048000     0.0 Infinity
+4096000     0.0   2.0
+8192000     0.0   1.5
+16384000     0.0   2.0
+32768000     0.0   2.0
+65536000     0.1   2.3
+131072000     0.1   1.8
+262144000     0.2   1.9
+524288000     0.4   2.2
+
+Fixed-capacity stack of ints with boxing/unboxing to Integer
+   250     0.0 Infinity
+   500     0.0   0.0
+  1000     0.0   NaN
+  2000     0.0 Infinity
+  4000     0.0   0.0
+  8000     0.0 Infinity
+ 16000     0.0   2.0
+ 32000     0.0   1.5
+ 64000     0.0   0.3
+128000     0.0   1.0
+256000     0.0   3.0
+512000     0.0   2.0
+1024000     0.0   1.8
+2048000     0.0   2.0
+4096000     0.0   0.9
+8192000     0.0   1.8
+16384000     0.1   2.9
+32768000     0.2   2.3
+65536000     0.4   1.8
+131072000     0.6   1.5
+262144000     1.2   2.0
+524288000     2.5   2.0
+
+The fixed-capacity stack of primitive ints has a better performance than the fixed-capacity stack 
+of ints with boxing/unboxing to Integer.

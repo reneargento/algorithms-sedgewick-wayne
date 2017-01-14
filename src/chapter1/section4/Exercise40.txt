@@ -1,0 +1,26 @@
+1.4.40 - 3-Sum for random values
+
+Hypotheses: 
+1- Every time we double N, the number of triples is multiplied by 8
+2- The number of triples is given by N^3/16M (where M is not small)
+
+Validation: 
+
+     N Triples  Ratio
+   250      1 Infinity
+   500     10  10.0
+  1000     78   7.8
+  2000    506   6.5
+  4000   3930   7.8
+  8000  31844   8.1
+ 16000 256831   8.1
+
+Mathematical model:
+The count of T triples in a set of N random integers (Tn) I where I = (I1, I2, ..., In) which range from [-M,M] and where t is a subset of 3 distinct numbers from above set I, such that Eiet Ai = 0 is given by N^3/16M (where M is not small).
+
+Tn = N^3/16M (where M is not small)
+
+or
+
+Base case: If N <= 250, Tn = 1
+Tn = (Tn/2) * 8

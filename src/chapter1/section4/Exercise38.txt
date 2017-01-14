@@ -1,0 +1,10 @@
+1.4.38 - Naive 3-sum implementation
+
+Number of items and ratio (naiver implementation / naive implementation)
+    250   3.6
+    500   5.8
+   1000  31.3
+   2000  30.6
+   4000  31.3
+
+The naive implementation takes about 30 times less time than the naiver implementation.

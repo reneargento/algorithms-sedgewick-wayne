@@ -1,0 +1,16 @@
+1.4.9
+
+Example:
+
+T(16) = ?
+T(2) = T(1) * 2^b
+T(4) = T(2) * 2^b
+T(8) = T(4) * 2^b
+etc
+
+so, we have that
+T(16) = T(1) * 2^b * 2^b * 2^b * 2^b
+which is equal to:
+T(16) = T(1) * 2^b^lgN
+
+T(N) = N0 * 2^b^lgN

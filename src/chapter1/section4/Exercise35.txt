@@ -1,0 +1,17 @@
+1.4.35 - Time costs for pushdown stacks
+
+** Linked list
+  * int
+     2N data references - N references of the nodes for the enclosing class and N references for the next Node (including a reference to the first node in the stack)
+     N objects created - the N nodes created
+  * Integer
+     3N data references - N references of the nodes for the enclosing class, N references for the next Node (including a reference to the first node in the stack) and N references for the Integer object
+     2N objects created - N nodes created, each containing an Integer
+
+** Resizing array
+  * int
+     ~5N data references - each of the array entries has a reference to the previous item (except the first) and the next item (except the last). If the array were composed of N items that would be 3N. Since it is a resizing array there may be entries unfilled (but never more than 2 times N), so summing all the references we have approximately 5N. Also, the stack has a reference to the array. [This needs to be confirmed, but it was the only logical way I could come up with 5N]
+     lgN objects created - every time the array is resized, a new array object is created. When the array is resized (due to pushes), it doubles its size. Therefore, at capacity 1, 2, 4, 8, 16, etc, a new object will be created. Hence, lgN objects.
+  * Integer
+     ~5N data references - each of the array entries has a reference to the previous item (except the first) and the next item (except the last). If the array were composed of N items that would be 3N. Since it is a resizing array there may be entries unfilled (but never more than 2 times N), so summing all the references we have approximately 5N. Also, the stack has a reference to the array. [This needs to be confirmed, but it was the only logical way I could come up with 5N]
+     ~N objects created - the N Integer objects created plus lg N objects created due to the resize operations. Therefore, ~N.

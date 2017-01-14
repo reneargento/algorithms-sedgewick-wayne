@@ -1,0 +1,15 @@
+1.4.43 - Resizing arrays versus Linked lists
+
+Every experiment executed N pushes and N pops
+
+ N operations   Array   List     Ratio
+       524288     0.0    0.0      1.1
+      1048576     0.0    0.0      1.2
+      2097152     0.0    0.3      0.1
+      4194304     0.1    0.1      1.0
+      8388608     1.1    0.7      1.7
+     16777216     0.9    3.4      0.3
+     33554432     3.9   16.2      0.2
+     67108864    12.2   53.4      0.2
+
+Resizing arrays are faster than linked lists for stacks.
