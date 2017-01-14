@@ -1,0 +1,5 @@
+1.3.2       it was - the best - of times - - - it was - the - -
+The output printed is:
+
+was best times of the was the it 
+(1 left on stack)
