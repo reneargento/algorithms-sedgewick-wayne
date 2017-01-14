@@ -1,0 +1,2 @@
+1.1.17
+The function never stops because it keeps calling itself on the first line, until a StackOverflowError occurs.

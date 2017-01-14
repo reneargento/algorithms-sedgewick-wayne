@@ -1,0 +1,4 @@
+1.1.8
+a) b -> converts the char "b" to String and prints it
+b) 197 -> sums the char codes of "b" and "c", converts to String and prints it
+c) e -> sums the char code of "a" with 4, converts it to char and prints it

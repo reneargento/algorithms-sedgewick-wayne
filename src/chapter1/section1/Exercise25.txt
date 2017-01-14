@@ -1,0 +1,14 @@
+1.1.25
+
+For all N E NaturalNumbers and for all nonnegative integers a <= N and b <= N, the Euclidean algorithm computes the greatest common divisor of a and b.
+
+Proving that gcd(a, b) = gcd(b, a % b)
+
+gcd(20,5) = gcd(5,0)
+
+gcd(20,5) is 5
+gcd(5,0) is also 5
+
+http://math.stackexchange.com/questions/1274515/prove-that-euclids-algorithm-computes-the-gcd-of-any-pair-of-nonnegative-intege
+
+https://www.whitman.edu/mathematics/higher_math_online/section03.03.html

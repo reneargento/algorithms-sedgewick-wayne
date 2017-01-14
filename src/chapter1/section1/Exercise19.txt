@@ -1,0 +1,3 @@
+1.1.19
+
+The largest value of N that takes less than 1 hour to compute is 51.

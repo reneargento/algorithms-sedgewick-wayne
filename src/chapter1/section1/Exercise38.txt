@@ -1,0 +1,15 @@
+1.1.38
+
+largeW.txt results:
+
+Bruteforce: 40684
+Duration: 6699876 nanoseconds.
+BinarySearch (after sort): 760274
+Duration: 72083 nanoseconds.
+
+largeT.txt results:
+
+Bruteforce: 9982680
+Duration: 14369858 nanoseconds.
+BinarySearch (after sort): 7328279
+Duration: 92238 nanoseconds.

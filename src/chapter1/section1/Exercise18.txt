@@ -1,0 +1,9 @@
+1.1.18
+
+mystery(2,25) is equal to 50
+mystery(3,11) is equal to 33
+mystery(a,b) computes a * b
+
+mystery2(2,25) is equal to 33554432
+mystery2(3,11) is equal to 177147
+mystery2(a,b) computes a^b
