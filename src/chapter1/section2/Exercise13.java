@@ -28,7 +28,7 @@ public class Exercise13 {
 	}
 	
 	public String toString() {
-		return who() + " spent " + amount + " on " + when();
+		return who() + " spent " + amount() + " on " + when();
 	}
 	
 	public static void main (String[] args) {

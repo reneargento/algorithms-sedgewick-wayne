@@ -23,7 +23,7 @@ public class Exercise16 {
 	}
 	
 	public static void main(String[] args) {
-		String dateFilePath = "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/datesFile.txt";
+		String dateFilePath = args[0];
 		Date[] dates = readAllDates(dateFilePath);
 		
 		for (Date date : dates) {

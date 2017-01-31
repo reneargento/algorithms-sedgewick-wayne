@@ -10,20 +10,23 @@ public class Exercise17 {
 	public static Transaction[] readAllTransactions(String fileName) {
 		In in = new In(fileName);
 		Queue<Transaction> queue = new Queue<>();
+
 		while(!in.isEmpty()) {
 			queue.enqueue(new Transaction(in.readLine()));
 		}
-		int n = queue.size();
-		Transaction[] transactions = new Transaction[n];
+
+		int queueSize = queue.size();
+		Transaction[] transactions = new Transaction[queueSize];
 		
-		for (int i = 0; i< n; i++) {
+		for (int i = 0; i < queueSize; i++) {
 			transactions[i] = queue.dequeue();
 		}
+
 		return transactions;
 	}
 	
 	public static void main(String[] args) {
-		String transactionFilePath = "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/transactionsFile.txt";
+		String transactionFilePath = args[0];
 		Transaction[] transactions = readAllTransactions(transactionFilePath);
 		
 		for (Transaction transaction : transactions) {
