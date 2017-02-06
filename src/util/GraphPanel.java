@@ -27,7 +27,8 @@ public class GraphPanel extends JPanel {
     private Color pointColor = new Color(100, 100, 100, 180);
     private Color gridColor = new Color(200, 200, 200, 200);
     private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
-    private static List<Integer> values;
+    private static List<Double> values;
+    private static List<Integer> valuesInteger;
     private static final String ARIAL_FONT = "Arial";
 
     private static String xAxisLabel;
@@ -35,7 +36,22 @@ public class GraphPanel extends JPanel {
     private static String windowTitle;
     private static String graphTitle;
 
-    public GraphPanel(String graphTitle, String windowTitle, String xAxisLabel, String yAxisLabel, List<Integer> values) {
+    public GraphPanel(String graphTitle, String windowTitle, String xAxisLabel, String yAxisLabel, List<Integer> valuesInteger) {
+        GraphPanel.graphTitle = graphTitle;
+        GraphPanel.windowTitle = windowTitle;
+        GraphPanel.xAxisLabel = xAxisLabel;
+        GraphPanel.yAxisLabel = yAxisLabel;
+        GraphPanel.valuesInteger = valuesInteger;
+
+        values = new ArrayList<>();
+
+        for(Integer value : valuesInteger) {
+            values.add((double) value);
+        }
+    }
+
+    //extraUnusedParameter is only used to overload the constructor with a List<Double>
+    public GraphPanel(String graphTitle, String windowTitle, String xAxisLabel, String yAxisLabel, List<Double> values, int extraUnusedParameter) {
         GraphPanel.graphTitle = graphTitle;
         GraphPanel.windowTitle = windowTitle;
         GraphPanel.xAxisLabel = xAxisLabel;
@@ -147,19 +163,19 @@ public class GraphPanel extends JPanel {
 
     private double getMaxScore() {
         double maxScore = Double.MIN_VALUE;
-        for (Integer score : values) {
+        for (Double score : values) {
             maxScore = Math.max(maxScore, score);
         }
         return maxScore;
     }
 
-    public void setValues(List<Integer> values) {
-        this.values = values;
+    public void setValues(List<Double> values) {
+        GraphPanel.values = values;
         invalidate();
         this.repaint();
     }
 
-    public List<Integer> getValues() {
+    public List<Double> getValues() {
         return values;
     }
 
@@ -186,7 +202,7 @@ public class GraphPanel extends JPanel {
             title.setFont(new Font(ARIAL_FONT, Font.BOLD, 25));
             title.setHorizontalAlignment(JLabel.CENTER);
 
-            JPanel graphPanel = new GraphPanel(graphTitle, windowTitle, xAxisLabel, yAxisLabel, values);
+            JPanel graphPanel = new GraphPanel(graphTitle, windowTitle, xAxisLabel, yAxisLabel, values, 0);
 
             VerticalPanel verticalPanel = new VerticalPanel();
 

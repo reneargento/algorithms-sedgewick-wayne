@@ -9,10 +9,6 @@ import edu.princeton.cs.algs4.StdRandom;
 @SuppressWarnings("unchecked")
 public class Exercise17_Animation {
 
-    private enum SortType {
-        SELECTION_SORT, INSERTION_SORT, SHELL_SORT;
-    }
-
     public static void main(String[] args) {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
@@ -42,7 +38,7 @@ public class Exercise17_Animation {
                 }
             }
 
-            draw(array, i, minIndex, -1, SortType.SELECTION_SORT);
+            draw(array, i, minIndex, -1, SortTypes.SELECTION);
 
             Comparable temp = array[i];
             array[i] = array[minIndex];
@@ -59,7 +55,7 @@ public class Exercise17_Animation {
                 array[j] = array[j-1];
                 array[j-1] = temp;
             }
-            draw(array, i, j, -1, SortType.INSERTION_SORT);
+            draw(array, i, j, -1, SortTypes.INSERTION);
         }
     }
 
@@ -81,14 +77,14 @@ public class Exercise17_Animation {
                     array[j] = array[j - incrementSequence];
                     array[j - incrementSequence] = temp;
                 }
-                draw(array, i, j, incrementSequence, SortType.SHELL_SORT);
+                draw(array, i, j, incrementSequence, SortTypes.SHELL);
             }
 
             incrementSequence /= 3;
         }
     }
 
-    private static void draw(Comparable[] array, int ith, int jth, int shellSortIncrement, SortType sortType) {
+    private static void draw(Comparable[] array, int ith, int jth, int shellSortIncrement, SortTypes sortType) {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -99,7 +95,7 @@ public class Exercise17_Animation {
         for (int i = 0; i < array.length; i++) {
 
             switch (sortType) {
-                case SELECTION_SORT:
+                case SELECTION:
                     if (i == jth) {
                         StdDraw.setPenColor(StdDraw.BOOK_RED);
                     } else if (i < ith) {
@@ -108,7 +104,7 @@ public class Exercise17_Animation {
                         StdDraw.setPenColor(StdDraw.BLACK);
                     }
                     break;
-                case INSERTION_SORT:
+                case INSERTION:
                     if (i == jth) {
                         StdDraw.setPenColor(StdDraw.BOOK_RED);
                     } else if (i > ith || i < jth) {
@@ -117,7 +113,7 @@ public class Exercise17_Animation {
                         StdDraw.setPenColor(StdDraw.BLACK);
                     }
                     break;
-                case SHELL_SORT:
+                case SHELL:
                     if (i == jth) {
                         StdDraw.setPenColor(StdDraw.BOOK_RED);
                     } else if (i > ith || i < jth) {

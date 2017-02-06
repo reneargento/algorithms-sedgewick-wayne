@@ -9,10 +9,6 @@ import edu.princeton.cs.algs4.Stopwatch;
  */
 public class Exercise28_EqualKeys {
 
-    private enum SortType {
-        SELECTION, INSERTION;
-    }
-
     public static void main(String[] args) {
         sortCompare();
     }
@@ -42,14 +38,14 @@ public class Exercise28_EqualKeys {
         int numberOfExperiments = 11;
 
         StdOut.printf("Selection Sort\n");
-        double timeSelectionSort = timeRandomInput(SortType.SELECTION, arrayLength, numberOfExperiments);
+        double timeSelectionSort = timeRandomInput(SortTypes.SELECTION, arrayLength, numberOfExperiments);
         StdOut.printf("Insertion Sort\n");
-        double timeInsertionSort = timeRandomInput(SortType.INSERTION, arrayLength, numberOfExperiments);
+        double timeInsertionSort = timeRandomInput(SortTypes.INSERTION, arrayLength, numberOfExperiments);
 
         StdOut.printf("For only 2 values, Insertion Sort is %.1f times faster than Selection Sort", timeSelectionSort / timeInsertionSort);
     }
 
-    private static double timeRandomInput(SortType sortType, int initialLength, int numberOfExperiments) {
+    private static double timeRandomInput(SortTypes sortType, int initialLength, int numberOfExperiments) {
         double total = 0;
         int length = initialLength;
 
@@ -73,12 +69,12 @@ public class Exercise28_EqualKeys {
         return total;
     }
 
-    public static double time(SortType sortType, Comparable[] array) {
+    public static double time(SortTypes sortType, Comparable[] array) {
         Stopwatch timer = new Stopwatch();
 
-        if(sortType == SortType.SELECTION) {
+        if(sortType == SortTypes.SELECTION) {
             SelectionSort.selectionSort(array);
-        } else if (sortType == SortType.INSERTION) {
+        } else if (sortType == SortTypes.INSERTION) {
             InsertionSort.insertionSort(array);
         }
 
