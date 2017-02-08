@@ -1,0 +1,13 @@
+2.1.30 - Geometric increments
+
+Best 1 tValue: 2 
+Best 1 sequence:
+524288 262144 131072 65536 32768 16384 8192 4096 2048 1024 512 256 128 64 32 16 8 4 2 1 
+
+Best 2 tValue: 4 
+Best 2 sequence:
+262144 65536 16384 4096 1024 256 64 16 4 1 
+
+Best 3 tValue: 6 
+Best 3 sequence:
+279936 46656 7776 1296 216 36 6 1 

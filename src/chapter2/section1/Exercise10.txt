@@ -1,0 +1,3 @@
+2.1.10
+Insertion sort is faster than selection sort for h-sorting because as "h" decreases, the array becomes partially sorted.
+Insertion sort makes less comparisons in partially sorted arrays than selection sort.

@@ -1,0 +1,9 @@
+2.1.13 - Deck sort
+I would use shellsort twice.
+For each shellsort I  would use an increment sequence starting at the closest multiple of N/3 + 1 to the deck size.
+The increment would be divided by 3 at the end of every iteration.
+
+The first shellsort would sort the deck by suit.
+The second shellsort would sort the deck by rank within each suit.
+
+Alternatively, quick sort or merge sort could be used, sorting by suit and rank.

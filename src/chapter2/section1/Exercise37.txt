@@ -1,0 +1,77 @@
+2.1.37 - Partially sorted
+
+Hypotheses:
+Selection sort will run with similar speed in all inputs.
+Insertion sort will run faster than selection sort for all inputs because the arrays are partially sorted.
+Shell sort will run faster than selection sort and in a similar speed to insertion sort for all inputs.
+
+After testing the hypotheses:
+Selection sort was slightly slower for the "sorted except for 5 percent of entries randomly dispersed" input.
+Insertion sort was faster than selection sort for all inputs because the arrays are partially sorted.
+Shell sort was faster than selection sort for all inputs. Shell sort had a similar speed to insertion sort for the
+"all entries within 10 positions of their final place" input and was faster than insertion sort for the other inputs.
+
+      Sort Type      Array Length     Time
+95% sorted and last percent random
+      SELECTION             10000     0.06
+      INSERTION             10000     0.01
+          SHELL             10000     0.00
+      SELECTION             20000     0.36
+      INSERTION             20000     0.00
+          SHELL             20000     0.00
+      SELECTION             40000     1.23
+      INSERTION             40000     0.00
+          SHELL             40000     0.00
+      SELECTION             80000     4.54
+      INSERTION             80000     0.01
+          SHELL             80000     0.00
+      SELECTION            160000    18.07
+      INSERTION            160000     0.05
+          SHELL            160000     0.01
+      SELECTION            320000    81.44
+      INSERTION            320000     0.23
+          SHELL            320000     0.01
+
+
+All entries within 10 positions of their final place
+      SELECTION             10000     0.17
+      INSERTION             10000     0.00
+          SHELL             10000     0.00
+      SELECTION             20000     0.69
+      INSERTION             20000     0.00
+          SHELL             20000     0.00
+      SELECTION             40000     3.18
+      INSERTION             40000     0.00
+          SHELL             40000     0.01
+      SELECTION             80000    18.64
+      INSERTION             80000     0.00
+          SHELL             80000     0.01
+      SELECTION            160000    74.81
+      INSERTION            160000     0.00
+          SHELL            160000     0.01
+      SELECTION            320000    77.50
+      INSERTION            320000     0.00
+          SHELL            320000     0.01
+
+
+Sorted except for 5% of entries randomly dispersed
+      SELECTION             10000     0.07
+      INSERTION             10000     0.01
+          SHELL             10000     0.00
+      SELECTION             20000     0.30
+      INSERTION             20000     0.02
+          SHELL             20000     0.00
+      SELECTION             40000     1.44
+      INSERTION             40000     0.11
+          SHELL             40000     0.01
+      SELECTION             80000     7.19
+      INSERTION             80000     0.42
+          SHELL             80000     0.02
+      SELECTION            160000    23.65
+      INSERTION            160000     1.52
+          SHELL            160000     0.03
+      SELECTION            320000   102.50
+      INSERTION            320000     5.74
+          SHELL            320000     0.07
+
+

@@ -1,0 +1,93 @@
+2.1.34 - Corner cases
+
+As expected:
+For ordered arrays insertion sort runs in linear time, and is faster than selection sort.
+For reverse ordered arrays insertion sort runs much slower because it has to swap all values until the beginning of the array.
+For same keys, just like with ordered arrays, insertion sort runs in linear time.
+For 2 distinct values, insertion sort has to do less swaps, running faster than selection sort.
+For size 1 and size 0 arrays all sorts run fast.
+Shell sort is faster than selection sort and insertion sort in all cases. 
+
+      Sort Type      Array Length     Time
+ORDERED ARRAY
+      SELECTION             10000     0.05
+      INSERTION             10000     0.00
+          SHELL             10000     0.00
+      SELECTION             20000     0.18
+      INSERTION             20000     0.00
+          SHELL             20000     0.00
+      SELECTION             40000     0.81
+      INSERTION             40000     0.00
+          SHELL             40000     0.00
+      SELECTION             80000     2.99
+      INSERTION             80000     0.00
+          SHELL             80000     0.00
+      SELECTION            160000    12.04
+      INSERTION            160000     0.00
+          SHELL            160000     0.00
+
+
+REVERSE ORDERED ARRAY
+      SELECTION             10000     0.10
+      INSERTION             10000     0.25
+          SHELL             10000     0.00
+      SELECTION             20000     0.33
+      INSERTION             20000     0.62
+          SHELL             20000     0.00
+      SELECTION             40000     1.15
+      INSERTION             40000     2.45
+          SHELL             40000     0.00
+      SELECTION             80000     4.85
+      INSERTION             80000    10.65
+          SHELL             80000     0.01
+      SELECTION            160000    17.66
+      INSERTION            160000    42.76
+          SHELL            160000     0.01
+
+
+SAME KEYS ARRAY
+      SELECTION             10000     0.09
+      INSERTION             10000     0.00
+          SHELL             10000     0.00
+      SELECTION             20000     0.29
+      INSERTION             20000     0.00
+          SHELL             20000     0.00
+      SELECTION             40000     1.16
+      INSERTION             40000     0.00
+          SHELL             40000     0.00
+      SELECTION             80000     4.64
+      INSERTION             80000     0.00
+          SHELL             80000     0.00
+      SELECTION            160000    17.01
+      INSERTION            160000     0.00
+          SHELL            160000     0.00
+
+
+TWO VALUES ARRAY
+      SELECTION             10000     0.07
+      INSERTION             10000     0.04
+          SHELL             10000     0.00
+      SELECTION             20000     0.29
+      INSERTION             20000     0.17
+          SHELL             20000     0.00
+      SELECTION             40000     1.07
+      INSERTION             40000     0.65
+          SHELL             40000     0.00
+      SELECTION             80000     4.68
+      INSERTION             80000     2.66
+          SHELL             80000     0.00
+      SELECTION            160000    18.59
+      INSERTION            160000    10.46
+          SHELL            160000     0.00
+
+
+SIZE 1 ARRAY
+      SELECTION                 1     0.00
+      INSERTION                 1     0.00
+          SHELL                 1     0.00
+
+
+SIZE 0 ARRAY
+      SELECTION                 0     0.00
+      INSERTION                 0     0.00
+          SHELL                 0     0.00

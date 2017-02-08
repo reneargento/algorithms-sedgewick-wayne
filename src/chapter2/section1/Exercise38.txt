@@ -1,0 +1,56 @@
+2.1.38 - Various types of items
+
+Hypotheses:
+Selection sort and insertion sort will run with similar speed in all inputs.
+Shell sort will run faster than selection sort and insertion sort for all inputs.
+
+After testing the hypotheses:
+
+Insertion sort was twice faster than selection sort.
+Shell sort ran a lot faster than selection sort and insertion sort for all inputs.
+
+      Sort Type      Array Length     Time
+String key, one double value
+      SELECTION             10000     3.51
+      INSERTION             10000     1.95
+          SHELL             10000     0.03
+      SELECTION             20000    16.09
+      INSERTION             20000     9.59
+          SHELL             20000     0.07
+      SELECTION             40000    88.28
+      INSERTION             40000    55.96
+          SHELL             40000     0.18
+      SELECTION             80000   425.34
+      INSERTION             80000   344.35
+          SHELL             80000     0.48
+
+
+Double key, ten String values
+      SELECTION             10000     6.37
+      INSERTION             10000     3.56
+          SHELL             10000     0.04
+      SELECTION             20000    36.88
+      INSERTION             20000    18.92
+          SHELL             20000     0.09
+      SELECTION             40000   180.18
+      INSERTION             40000   100.65
+          SHELL             40000     0.28
+      SELECTION             80000   920.19
+      INSERTION             80000   496.67
+          SHELL             80000     0.65
+
+
+Int key, int array value
+      SELECTION             10000     7.15
+      INSERTION             10000     3.46
+          SHELL             10000     0.04
+      SELECTION             20000    34.09
+      INSERTION             20000    16.68
+          SHELL             20000     0.10
+      SELECTION             40000   153.63
+      INSERTION             40000    83.25
+          SHELL             40000     0.24
+      SELECTION             80000   631.74
+      INSERTION             80000   448.88
+          SHELL             80000     0.61
+

@@ -1,0 +1,6 @@
+2.1.25 - Insertion sort without exchanges
+
+For 100000 random doubles
+ Insertion Sort default is 0.7 times faster than Insertion Sort without exchanges
+
+Insertion Sort without exchanges is faster than Insertion Sort default.

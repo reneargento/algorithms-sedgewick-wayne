@@ -1,0 +1,4 @@
+2.1.8
+
+Quadratic. Insertion sort's running time is linear when the array is already sorted or all elements are equal.
+With three possible values the running time quadratic.

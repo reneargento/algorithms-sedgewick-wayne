@@ -1,0 +1,4 @@
+2.1.23 - Deck sort
+
+They separate all cards by suit, and then, in each suit, sort the cards by rank using selection sort.
+Some of them move the unsorted smaller ranks near to the front while searching for the next smallest rank.

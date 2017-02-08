@@ -1,0 +1,66 @@
+2.1.36 - Nonuniform data
+
+Hypotheses:
+Selection sort will run with similar speed in all inputs.
+Insertion sort will run faster than selection sort for half 0 and half 1 values input. And it will run slightly faster than selection sort for the half 0 and half remainder 1s, half remainder 2s, etc input; and for the half 0, half random int values input.
+Shell sort will run faster than selection sort and insertion sort for all inputs.
+
+After testing the hypotheses:
+
+Selection sort ran with similar speed in all inputs.
+Insertion sort ran faster than selection sort for half 0 and half 1 values input and for the half 0, half random int values input. It ran in linear time, and much faster than selection sort for the half 0 and half remainder 1s, half remainder 2s, etc input; because the array was already sorted. 
+Shell sort ran faster than selection sort and insertion sort for all inputs, except for the half 0 and half remainder 1s, half remainder 2s, etc input; in which it had the same speed as insertion sort.
+
+      Sort Type      Array Length     Time
+Half 0s and half 1s
+      SELECTION             10000     0.10
+      INSERTION             10000     0.06
+          SHELL             10000     0.00
+      SELECTION             20000     0.33
+      INSERTION             20000     0.21
+          SHELL             20000     0.00
+      SELECTION             40000     1.15
+      INSERTION             40000     0.62
+          SHELL             40000     0.00
+      SELECTION             80000     5.03
+      INSERTION             80000     2.57
+          SHELL             80000     0.00
+      SELECTION            160000    20.86
+      INSERTION            160000    10.43
+          SHELL            160000     0.00
+
+
+Half 0s, half remainder 1s, half remainder 2s, ...
+      SELECTION             10000     0.08
+      INSERTION             10000     0.00
+          SHELL             10000     0.00
+      SELECTION             20000     0.32
+      INSERTION             20000     0.00
+          SHELL             20000     0.00
+      SELECTION             40000     1.34
+      INSERTION             40000     0.00
+          SHELL             40000     0.00
+      SELECTION             80000     5.29
+      INSERTION             80000     0.00
+          SHELL             80000     0.00
+      SELECTION            160000    17.10
+      INSERTION            160000     0.00
+          SHELL            160000     0.00
+
+
+Half 0s and half random integers
+      SELECTION             10000     0.08
+      INSERTION             10000     0.02
+          SHELL             10000     0.00
+      SELECTION             20000     0.31
+      INSERTION             20000     0.09
+          SHELL             20000     0.00
+      SELECTION             40000     1.30
+      INSERTION             40000     0.37
+          SHELL             40000     0.00
+      SELECTION             80000     4.91
+      INSERTION             80000     1.61
+          SHELL             80000     0.01
+      SELECTION            160000    22.03
+      INSERTION            160000     6.92
+          SHELL            160000     0.02

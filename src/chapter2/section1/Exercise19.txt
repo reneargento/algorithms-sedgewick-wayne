@@ -1,0 +1,6 @@
+2.1.19 - Shellsort worst case
+
+Just like insertion sort, shellsort's worst case occurs when the array is in reverse sorted order.
+This causes every element to be compared with all previous elements in the increment sequence.
+The array would then have the values: 100, 99, 98, ..., 3, 2, 1
+In this case the time complexity is O(N^3/2)

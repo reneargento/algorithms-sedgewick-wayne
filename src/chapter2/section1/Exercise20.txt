@@ -1,0 +1,8 @@
+2.1.20 - Shellsort best case
+
+Just like insertion sort, the best case for shellsort is when the array is already ordered. This causes every element to 
+be compared only once in each iteration. 
+The time complexity in this case is O(n log n).
+
+Good explanation: https://www.toptal.com/developers/sorting-algorithms/shell-sort
+http://www.codingeek.com/algorithms/shell-sort-algorithm-explanation-implementation-and-complexity/

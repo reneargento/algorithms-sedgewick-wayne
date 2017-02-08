@@ -1,0 +1,6 @@
+2.1.27 - Shellsort is subquadratic
+
+For a total of 11 experiments with 128, 256, ..., 262,144 values
+
+Shell Sort is 343.0 times faster than Selection Sort
+Shell Sort is 338.8 times faster than Insertion Sort

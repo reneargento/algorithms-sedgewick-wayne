@@ -1,0 +1,4 @@
+2.1.15 - Expensive exchange
+
+The clerk should use selection sort. Since the cost of compares is low, the N^2 complexity won't be a problem.
+And it guarantees a cost of at most N exchanges.

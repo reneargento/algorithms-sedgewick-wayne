@@ -1,0 +1,83 @@
+2.1.35 - Nonuniform distributions
+
+Hypotheses:
+Selection sort will run with the same speed in all distributions.
+Insertion sort will run faster than selection sort for Gaussian and Discrete distributions, but with a similar speed for Poisson and Geometric distributions.
+Shell sort will run faster than selection sort and insertion sort for all distributions.
+
+After testing the hypotheses:
+Selection sort ran faster for Gaussian and Discrete distributions than for Poisson and Geometric distributions.
+Insertion sort ran faster than selection sort for all distributions.
+Shell sort ran faster than selection sort and insertion sort for all distributions.
+
+      Sort Type      Array Length     Time
+GAUSSIAN DISTRIBUTION
+      SELECTION             10000     0.13
+      INSERTION             10000     0.10
+          SHELL             10000     0.01
+      SELECTION             20000     0.49
+      INSERTION             20000     0.38
+          SHELL             20000     0.01
+      SELECTION             40000     2.04
+      INSERTION             40000     1.86
+          SHELL             40000     0.01
+      SELECTION             80000     8.53
+      INSERTION             80000     8.37
+          SHELL             80000     0.02
+      SELECTION            160000    39.54
+      INSERTION            160000    35.89
+          SHELL            160000     0.06
+
+
+POISSON DISTRIBUTION
+      SELECTION             10000     0.28
+      INSERTION             10000     0.16
+          SHELL             10000     0.00
+      SELECTION             20000     1.24
+      INSERTION             20000     0.59
+          SHELL             20000     0.00
+      SELECTION             40000     4.67
+      INSERTION             40000     2.44
+          SHELL             40000     0.00
+      SELECTION             80000    19.11
+      INSERTION             80000     9.71
+          SHELL             80000     0.01
+      SELECTION            160000    67.54
+      INSERTION            160000    39.29
+          SHELL            160000     0.01
+
+
+GEOMETRIC DISTRIBUTION
+      SELECTION             10000     0.26
+      INSERTION             10000     0.16
+          SHELL             10000     0.00
+      SELECTION             20000     1.06
+      INSERTION             20000     0.63
+          SHELL             20000     0.00
+      SELECTION             40000     4.33
+      INSERTION             40000     1.41
+          SHELL             40000     0.00
+      SELECTION             80000    15.51
+      INSERTION             80000     5.32
+          SHELL             80000     0.01
+      SELECTION            160000    69.14
+      INSERTION            160000    20.67
+          SHELL            160000     0.02
+
+
+DISCRETE DISTRIBUTION
+      SELECTION             10000     0.09
+      INSERTION             10000     0.06
+          SHELL             10000     0.00
+      SELECTION             20000     0.35
+      INSERTION             20000     0.22
+          SHELL             20000     0.00
+      SELECTION             40000     1.37
+      INSERTION             40000     0.88
+          SHELL             40000     0.00
+      SELECTION             80000     5.58
+      INSERTION             80000     3.47
+          SHELL             80000     0.00
+      SELECTION            160000    22.31
+      INSERTION            160000    14.13
+          SHELL            160000     0.00

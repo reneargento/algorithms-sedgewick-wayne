@@ -1,0 +1,45 @@
+2.1.29 - Shellsort increments
+
+Sedgewicks's sequence is faster than the 3N + 1 sequence.
+
+Experiments:
+
+For an array of size 32768: 
+3N + 1 sequence: 0.0 
+Sedgewicks's sequence: 0.0 
+
+For an array of size 65536: 
+3N + 1 sequence: 0.0 
+Sedgewicks's sequence: 0.0 
+
+For an array of size 131072: 
+3N + 1 sequence: 0.1 
+Sedgewicks's sequence: 0.0 
+
+For an array of size 262144: 
+3N + 1 sequence: 0.1 
+Sedgewicks's sequence: 0.1 
+
+For an array of size 524288: 
+3N + 1 sequence: 0.3 
+Sedgewicks's sequence: 0.3 
+
+For an array of size 1048576: 
+3N + 1 sequence: 1.0 
+Sedgewicks's sequence: 0.7 
+
+For an array of size 2097152: 
+3N + 1 sequence: 2.5 
+Sedgewicks's sequence: 1.8 
+
+For an array of size 4194304: 
+3N + 1 sequence: 7.2 
+Sedgewicks's sequence: 4.5 
+
+For an array of size 8388608: 
+3N + 1 sequence: 18.4 
+Sedgewicks's sequence: 11.2 
+
+For an array of size 16777216: 
+3N + 1 sequence: 46.0 
+Sedgewicks's sequence: 26.6 

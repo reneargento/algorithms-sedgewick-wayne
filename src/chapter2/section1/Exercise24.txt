@@ -1,0 +1,6 @@
+2.1.24 - Insertion sort with sentinel
+
+For 100000 random doubles
+ Insertion Sort default is 1.1 times faster than Insertion Sort with a sentinel
+
+Insertion Sort default is slightly faster than Insertion Sort with a sentinel.
