@@ -20,7 +20,7 @@ public class BottomUpMergeSort {
     }
 
     @SuppressWarnings("unchecked")
-    private static void merge (Comparable[] array, Comparable[] aux, int low, int middle, int high) {
+    public static void merge (Comparable[] array, Comparable[] aux, int low, int middle, int high) {
         for(int i=low; i <= high; i++) {
             aux[i] = array[i];
         }
