@@ -23,7 +23,7 @@ public class Exercise10_FasterMerge {
         return array;
     }
 
-    private static void topDownMergeSort(Comparable[] array) {
+    public static void topDownMergeSort(Comparable[] array) {
         Comparable[] aux = new Comparable[array.length];
 
         topDownMergeSort(array, aux, 0, array.length - 1);
