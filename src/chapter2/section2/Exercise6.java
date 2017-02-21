@@ -3,6 +3,9 @@ package chapter2.section2;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by rene on 11/02/17.
  */
@@ -16,26 +19,34 @@ public class Exercise6 {
 
     public static void main(String[] args) {
 
+        int initialArraySize = 1;
+        int numberOfExperiments = 512;
+
+        Map<Integer, Comparable[]> allInputArrays = generateAllArrays(initialArraySize, numberOfExperiments);
+
         StdOut.printf("%6s %15s %11s\n", "N", "Array Accesses", "Upper Bound");
         StdOut.println();
 
         StdOut.printf("Top-Down MergeSort");
         StdOut.println();
-        doExperiments(SortType.TOP_DOWN_MERGESORT, 1, 512);
+        doExperiments(SortType.TOP_DOWN_MERGESORT, 1, 512, allInputArrays);
 
         StdOut.println();
         StdOut.printf("Bottom-Up MergeSort");
         StdOut.println();
-        doExperiments(SortType.BOTTOM_UP_MERGESORT, 1, 512);
+        doExperiments(SortType.BOTTOM_UP_MERGESORT, 1, 512, allInputArrays);
     }
 
-    private static void doExperiments(SortType sortType, int arrayLength, int numberOfExperiments) {
+    private static void doExperiments(SortType sortType, int arrayLength, int numberOfExperiments,
+                                      Map<Integer, Comparable[]> allInputArrays) {
 
         for(int i=0; i < numberOfExperiments; i++) {
 
             numberOfArrayAccesses = 0;
 
-            Comparable[] array = generateRandomArray(arrayLength);
+            Comparable[] originalArray = allInputArrays.get(i);
+            Comparable[] array = new Comparable[originalArray.length];
+            System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
             if(sortType == SortType.TOP_DOWN_MERGESORT) {
                 topDownMergeSort(array);
@@ -47,6 +58,22 @@ public class Exercise6 {
 
             arrayLength++;
         }
+    }
+
+    private static Map<Integer, Comparable[]> generateAllArrays(int initialArraySize, int numberOfExperiments) {
+
+        Map<Integer, Comparable[]> allArrays = new HashMap<>();
+
+        int arraySize = initialArraySize;
+
+        for(int i=0; i < numberOfExperiments; i++) {
+            Comparable[] array = generateRandomArray(arraySize);
+            allArrays.put(i, array);
+
+            arraySize++;
+        }
+
+        return allArrays;
     }
 
     private static Comparable[] generateRandomArray(int arrayLength) {

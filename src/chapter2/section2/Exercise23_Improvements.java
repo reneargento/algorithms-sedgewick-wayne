@@ -4,6 +4,9 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by rene on 19/02/17.
  */
@@ -17,31 +20,34 @@ public class Exercise23_Improvements {
         int numberOfExperiments = Integer.parseInt(args[0]); // 8
         int initialArraySize = Integer.parseInt(args[1]); // 131072
 
+        Map<Integer, Comparable[]> allInputArrays = generateAllArrays(numberOfExperiments, initialArraySize);
+
         StdOut.println("BASELINE - TOP DOWN MERGESORT");
-        doExperiment(numberOfExperiments, initialArraySize, TEST_TYPE.BASELINE_MERGESORT);
+        doExperiment(numberOfExperiments, initialArraySize, allInputArrays, TEST_TYPE.BASELINE_MERGESORT);
 
         StdOut.println();
 
         StdOut.println("IMPROVEMENT #1 - CUTOFF FOR SMALL SUBARRAYS");
-        testCutoffImprovement(numberOfExperiments, initialArraySize);
+        testCutoffImprovement(numberOfExperiments, initialArraySize, allInputArrays);
 
         StdOut.println();
 
         StdOut.println("IMPROVEMENT #2 - TEST IF ARRAY IS ALREADY SORTED TO AVOID MERGE");
-        doExperiment(numberOfExperiments, initialArraySize, TEST_TYPE.IMPROVEMENT_SKIP_SORTED);
+        doExperiment(numberOfExperiments, initialArraySize, allInputArrays, TEST_TYPE.IMPROVEMENT_SKIP_SORTED);
 
         StdOut.println();
 
         StdOut.println("IMPROVEMENT #3 - AVOID ARRAY COPY BY SWITCHING ARGUMENTS");
-        doExperiment(numberOfExperiments, initialArraySize, TEST_TYPE.IMPROVEMENT_AVOID_COPY);
+        doExperiment(numberOfExperiments, initialArraySize, allInputArrays, TEST_TYPE.IMPROVEMENT_AVOID_COPY);
 
         StdOut.println();
 
         StdOut.println("COPY SECOND HALF OF SUBARRAY IN DECREASING ORDER DURING MERGE");
-        doExperiment(numberOfExperiments, initialArraySize, TEST_TYPE.FASTER_MERGE);
+        doExperiment(numberOfExperiments, initialArraySize, allInputArrays, TEST_TYPE.FASTER_MERGE);
     }
 
-    private static void doExperiment(int numberOfExperiments, int initialArraySize, TEST_TYPE testType) {
+    private static void doExperiment(int numberOfExperiments, int initialArraySize,
+                                     Map<Integer, Comparable[]> allInputArrays, TEST_TYPE testType) {
 
         StdOut.printf("%13s %12s\n", "Array Size | ", "Running Time");
 
@@ -49,7 +55,9 @@ public class Exercise23_Improvements {
 
         for(int i=0; i < numberOfExperiments; i++) {
 
-            Comparable[] array = generateArray(arraySize);
+            Comparable[] originalArray = allInputArrays.get(i);
+            Comparable[] array = new Comparable[originalArray.length];
+            System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
             Stopwatch timer = new Stopwatch();
 
@@ -71,7 +79,8 @@ public class Exercise23_Improvements {
         }
     }
 
-    private static void testCutoffImprovement(int numberOfExperiments, int initialArraySize) {
+    private static void testCutoffImprovement(int numberOfExperiments, int initialArraySize,
+                                              Map<Integer, Comparable[]> allInputArrays) {
 
         StdOut.printf("%10s %13s %12s\n", "Cutoff | ", "Array Size | ", "Running Time");
 
@@ -81,7 +90,9 @@ public class Exercise23_Improvements {
 
             for(int i=0; i < numberOfExperiments; i++) {
 
-                Comparable[] array = generateArray(arraySize);
+                Comparable[] originalArray = allInputArrays.get(i);
+                Comparable[] array = new Comparable[originalArray.length];
+                System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
                 Stopwatch timer = new Stopwatch();
 
@@ -93,6 +104,22 @@ public class Exercise23_Improvements {
                 arraySize *= 2;
             }
         }
+    }
+
+    private static Map<Integer, Comparable[]> generateAllArrays(int numberOfExperiments, int initialArraySize) {
+
+        Map<Integer, Comparable[]> allArrays = new HashMap<>();
+
+        int arraySize = initialArraySize;
+
+        for(int i=0; i < numberOfExperiments; i++) {
+            Comparable[] array = generateArray(arraySize);
+            allArrays.put(i, array);
+
+            arraySize *= 2;
+        }
+
+        return allArrays;
     }
 
     private static Comparable[] generateArray(int length) {
