@@ -26,7 +26,7 @@ public class RandomArrayGenerator {
         return allArrays;
     }
 
-    private static Comparable[] generateArray(int length) {
+    public static Comparable[] generateArray(int length) {
         Comparable[] array = new Comparable[length];
 
         for(int i=0; i < length; i++) {
