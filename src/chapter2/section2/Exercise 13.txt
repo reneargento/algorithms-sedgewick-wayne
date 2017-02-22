@@ -1,0 +1,21 @@
+2.2.13 - Lower bound for average case
+
+Based on: https://www.cs.cmu.edu/~avrim/451f11/lectures/lect0913.pdf
+
+Theorem: For any deterministic comparison-based sorting algorithm A, the average-case number of comparisons (the number of comparisons on average on a randomly chosen permutation of n distinct elements) is at least log2(n!) rounded up.
+
+Based on the Stirlings approximation, log2(n!) -> ~ N log2(N)
+
+Proof: Let S be the set of all n! possible orderings of n distinct elements. 
+These each require a different permutation to be produced as output. 
+Let's now build out the entire decision tree for algorithm A on S: the tree we get by looking at all the different question/answer paths we get by running algorithm A on the inputs in S.
+This tree has n! leaves, where the depth of a leaf is the number of comparisons performed by the sorting algorithm on that input. 
+Our goal is to show that the average depth of the leaves must be at least log2(n!) rounded up (for the worst-case, we only care about the maximum depth).
+
+If the tree is completely balanced, then each leaf is at depth log2(n!) (rounded up or rounded down) and we are done. 
+To prove the theorem, we just need to show that out of all binary trees on a given number of leaves, the one that minimizes their average depth is a completely balanced tree. 
+This is not too hard to see: given some unbalanced tree, we take two sibling leaves at largest depth and move them to be children of the leaf of smallest depth. 
+Since the difference between the largest depth and the smallest depth is at least 2 (otherwise the tree would be balanced), this operation reduces the average depth of the leaves. 
+Specifically, if the smaller depth is "d" and the larger depth is "D", we have removed two leaves of depth "D" and one of depth "d", and we have added two leaves of depth "d + 1" and one of depth "D - 1".
+Since any unbalanced tree can be modified to have a smaller average depth, such a tree cannot be one that minimizes average depth, and therefore the tree of smallest average depth must in fact be balanced.
+ 

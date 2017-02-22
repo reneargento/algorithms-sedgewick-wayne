@@ -1,0 +1,15 @@
+2.2.29 - Natural mergesort
+
+Experiments:
+Number of passes needed for an array of 1000 random Long keys: 504 
+Number of passes needed for an array of 2000 random Long keys: 994 
+Number of passes needed for an array of 3000 random Long keys: 1495
+
+According to the experiments:
+For 10^3 approximately 10^3 / 2 passes are needed. The results were similar (N / 2) for 2000 and 3000 random Long keys as well.
+
+With these results we can estimate that:
+For 10^6 approximately 10^6 / 2 passes are needed.
+For 10^9 approximately 10^9 / 2 passes are needed.
+
+ 

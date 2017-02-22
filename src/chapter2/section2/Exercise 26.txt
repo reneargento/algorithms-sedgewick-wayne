@@ -1,0 +1,4 @@
+2.2.26 - Array creation
+
+For 4 experiments with random double arrays of sizes from 131072 to 2097152
+ creating aux[] in Sort is 1254.3 times faster than creating aux[] in Merge. 

@@ -1,0 +1,5 @@
+2.2.4
+
+Yes. The merge phase uses two pointers that move comparing both subarray values. 
+Once it finds that one value is smaller than the other, it selects this value for the output without checking the other elements.
+If one or more of the input subarrays are not sorted then some values would be considered in the wrong position during this comparison, leading to an incorrect output. 

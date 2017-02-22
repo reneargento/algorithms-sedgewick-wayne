@@ -1,0 +1,106 @@
+2.2.25 - Multiway mergesort
+
+Hypothesis: The best value of k is 2, which is probably why the 2-way mergesort is the standard implementation of the algorithm.
+
+Validation:
+
+2-WAY MERGESORT
+Array Size |  Running Time
+    131072             0.1
+    262144             1.6
+    524288             0.3
+   1048576             1.6
+   2097152             2.0
+   4194304             3.3
+   8388608             8.4
+  16777216            13.2
+
+3-WAY MERGESORT
+Array Size |  Running Time
+    131072             0.7
+    262144             0.1
+    524288             0.2
+   1048576             0.5
+   2097152             0.9
+   4194304             2.8
+   8388608             5.6
+  16777216            18.6
+
+4-WAY MERGESORT
+Array Size |  Running Time
+    131072             0.0
+    262144             0.1
+    524288             0.2
+   1048576             0.4
+   2097152             1.0
+   4194304             2.1
+   8388608             4.8
+  16777216             9.7
+
+5-WAY MERGESORT
+Array Size |  Running Time
+    131072             0.0
+    262144             0.1
+    524288             0.2
+   1048576             0.5
+   2097152             0.9
+   4194304             2.2
+   8388608             4.5
+  16777216             9.8
+
+6-WAY MERGESORT
+Array Size |  Running Time
+    131072             0.0
+    262144             0.1
+    524288             0.2
+   1048576             0.4
+   2097152             1.0
+   4194304             2.1
+   8388608             4.4
+  16777216            10.5
+
+7-WAY MERGESORT
+Array Size |  Running Time
+    131072             0.0
+    262144             0.1
+    524288             0.2
+   1048576             0.5
+   2097152             1.0
+   4194304             2.1
+   8388608             4.8
+  16777216            10.3
+
+8-WAY MERGESORT
+Array Size |  Running Time
+    131072             0.0
+    262144             0.1
+    524288             0.2
+   1048576             0.5
+   2097152             1.0
+   4194304             2.5
+   8388608             5.0
+  16777216            10.9
+
+9-WAY MERGESORT
+Array Size |  Running Time
+    131072             0.1
+    262144             0.1
+    524288             0.2
+   1048576             0.6
+   2097152             1.2
+   4194304             2.5
+   8388608             5.5
+  16777216            11.1
+
+10-WAY MERGESORT
+Array Size |  Running Time
+    131072             0.1
+    262144             0.1
+    524288             0.2
+   1048576             0.5
+   2097152             1.2
+   4194304             2.4
+   8388608             4.9
+  16777216            11.7
+
+Result: According to the experiments, the best value of k is 4.

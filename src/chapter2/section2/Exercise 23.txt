@@ -1,0 +1,110 @@
+2.2.23 - Improvements
+
+All of the improvements had better performance than the baseline mergesort, except for the improvement of testing if the array is already sorted, which had a similar performance. 
+The best results were achieved for the implementations in the following order:
+
+1- Improvement #3 - Avoid array copy by switching arguments
+2- Improvement #1 - Cutoff for small subarrays
+3- Copy second half of subarray in decreasing order during merge
+4- Improvement #2 - Test if array is already sorted to avoid merge
+4- Baseline top down mergesort
+
+The best value of the parameter that decides when to switch to insertion sort for small subarrays found in the experiments is 30.
+
+Experiments:
+
+BASELINE - TOP DOWN MERGESORT
+Array Size |  Running Time
+  131072            0.0
+  262144            0.1
+  524288            0.1
+ 1048576            1.1
+ 2097152            0.7
+ 4194304            1.6
+ 8388608            3.4
+16777216            8.0
+
+IMPROVEMENT #1 - CUTOFF FOR SMALL SUBARRAYS
+ Cutoff |  Array Size |  Running Time
+       5        131072             0.0
+       5        262144             0.1
+       5        524288             0.1
+       5       1048576             0.3
+       5       2097152             0.7
+       5       4194304             1.5
+       5       8388608             3.4
+       5      16777216             7.7
+      10        131072             0.0
+      10        262144             0.1
+      10        524288             0.1
+      10       1048576             0.3
+      10       2097152             1.5
+      10       4194304             1.5
+      10       8388608             3.3
+      10      16777216             7.6
+      15        131072             0.0
+      15        262144             0.1
+      15        524288             0.9
+      15       1048576             0.3
+      15       2097152             0.7
+      15       4194304             1.4
+      15       8388608             3.4
+      15      16777216             7.7
+      20        131072             0.0
+      20        262144             0.1
+      20        524288             0.1
+      20       1048576             0.3
+      20       2097152             0.6
+      20       4194304             1.4
+      20       8388608             3.4
+      20      16777216             7.5
+      25        131072             0.0
+      25        262144             0.1
+      25        524288             0.1
+      25       1048576             0.3
+      25       2097152             0.6
+      25       4194304             1.4
+      25       8388608             4.1
+      25      16777216             7.6
+      30        131072             0.0
+      30        262144             0.1
+      30        524288             0.1
+      30       1048576             0.3
+      30       2097152             0.7
+      30       4194304             1.5
+      30       8388608             4.2
+      30      16777216             7.3
+
+IMPROVEMENT #2 - TEST IF ARRAY IS ALREADY SORTED TO AVOID MERGE
+Array Size |  Running Time
+  131072            0.0
+  262144            0.1
+  524288            0.1
+ 1048576            0.3
+ 2097152            0.7
+ 4194304            1.5
+ 8388608            4.2
+16777216            8.0
+
+IMPROVEMENT #3 - AVOID ARRAY COPY BY SWITCHING ARGUMENTS
+Array Size |  Running Time
+  131072            0.0
+  262144            0.1
+  524288            0.1
+ 1048576            0.3
+ 2097152            0.6
+ 4194304            1.5
+ 8388608            3.9
+16777216            7.1
+
+COPY SECOND HALF OF SUBARRAY IN DECREASING ORDER DURING MERGE
+Array Size |  Running Time
+  131072            0.0
+  262144            0.1
+  524288            0.1
+ 1048576            0.3
+ 2097152            0.6
+ 4194304            1.5
+ 8388608            4.1
+16777216            7.6
+ 

@@ -1,0 +1,30 @@
+2.2.24 - Sort-test improvement
+
+Hypothesis: The average number of times the test (whether the array is sorted) succeeds, as a function of the array size for the sort is between 20% and 30%.
+
+Validation:
+
+BASELINE - TOP DOWN MERGESORT
+Array Size |  Running Time
+    131072             0.0
+    262144             0.1
+    524288             0.2
+   1048576             0.3
+   2097152             0.7
+   4194304             1.5
+   8388608             3.4
+  16777216             7.7
+
+IMPROVEMENT - TEST IF ARRAY IS ALREADY SORTED TO AVOID MERGE
+Array Size |  Running Time |  AVG NUMBER OF TIMES THE TEST SUCCEEDED (%)
+    131072             0.0                    29.3
+    262144             0.1                    29.2
+    524288             0.1                    29.3
+   1048576             0.3                    29.3
+   2097152             0.7                    29.4
+   4194304             1.5                    29.3
+   8388608             3.3                    29.3
+  16777216             7.6                    29.3
+
+Result:
+The average number of times the test (whether the array is sorted) succeeds, as a function of the array size for the sort is approximately 30%. 
