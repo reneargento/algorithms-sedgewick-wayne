@@ -36,4 +36,24 @@ public class RandomArrayGenerator {
         return array;
     }
 
+    public static Comparable[] generateRandomArrayWith2Values(int length) {
+        Comparable[] array = new Comparable[length];
+
+        for(int i=0; i < length; i++) {
+            array[i] = StdRandom.uniform(2);
+        }
+
+        return array;
+    }
+
+    public static Comparable[] generateRandomArrayWith3Values(int length) {
+        Comparable[] array = new Comparable[length];
+
+        for(int i=0; i < length; i++) {
+            array[i] = StdRandom.uniform(3);
+        }
+
+        return array;
+    }
+
 }

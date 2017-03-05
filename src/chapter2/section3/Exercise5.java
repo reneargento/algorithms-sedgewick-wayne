@@ -2,6 +2,7 @@ package chapter2.section3;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import util.RandomArrayGenerator;
 
 /**
  * Created by rene on 04/03/17.
@@ -11,7 +12,7 @@ public class Exercise5 {
     public static void main(String[] args) {
 
         int arrayLength = Integer.parseInt(args[0]);
-        Comparable array[] = generateRandomArrayWith2Values(arrayLength);
+        Comparable array[] = RandomArrayGenerator.generateRandomArrayWith2Values(arrayLength);
 
         sort3WayPartitioning(array);
 
@@ -20,16 +21,6 @@ public class Exercise5 {
         }
 
         StdOut.println();
-    }
-
-    private static Comparable[] generateRandomArrayWith2Values(int length) {
-        Comparable[] array = new Comparable[length];
-
-        for(int i=0; i < length; i++) {
-            array[i] = StdRandom.uniform(2);
-        }
-
-        return array;
     }
 
     @SuppressWarnings("unchecked")
