@@ -3,16 +3,35 @@ package chapter1.section1;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdStats;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Exercise32_Histogram {
 
 	public static void main(String[] args) {
 		
-		int n = 4;
-		double l = 2.5;
-		double r = 9.3;
-		double[] numbers = {2, 2.5, 4.3, 5.5, 6.6, 6.7, 6.8, 8.3, 10};
-		
-		histogram(n, l, r, numbers);
+		int n = Integer.parseInt(args[0]); //4
+		double l = Double.parseDouble(args[1]); //2.5
+		double r = Double.parseDouble(args[2]); //9.3
+
+		List<Double> numbers = new ArrayList<>();
+		int numberIndex = 3;
+		try {
+			while (args[numberIndex] != null) {
+				numbers.add(Double.parseDouble(args[numberIndex])); //{2, 2.5, 4.3, 5.5, 6.6, 6.7, 6.8, 8.3, 10};
+				numberIndex++;
+			}
+		} catch (ArrayIndexOutOfBoundsException exception) {
+			//We read all the input
+		}
+
+		double[] numbersArray = new double[numbers.size()];
+		for(int i=0; i < numbers.size(); i++) {
+			numbersArray[i] = numbers.get(i);
+		}
+
+		histogram(n, l, r, numbersArray);
 	}
 
 	private static void histogram(int n, double l, double r, double[] numbers) {
@@ -46,7 +65,7 @@ public class Exercise32_Histogram {
 		double interval = r - l;
 		double intervalOfNumbers = interval / n;
 
-		int indexOfInterval = 0;
+		int indexOfInterval;
 		
 		for (int i=0; i< numbers.length; i++) {
 			indexOfInterval = 0;
