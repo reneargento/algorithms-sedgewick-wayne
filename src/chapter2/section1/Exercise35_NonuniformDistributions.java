@@ -90,7 +90,7 @@ public class Exercise35_NonuniformDistributions {
         printExperiment(SortTypes.SHELL, arrayCopy2.length, timeShell);
     }
 
-    private static Comparable[] generateGaussianDistributionArray(int arrayLength) {
+    public static Comparable[] generateGaussianDistributionArray(int arrayLength) {
 
         Comparable[] array = new Comparable[arrayLength];
 
@@ -101,7 +101,7 @@ public class Exercise35_NonuniformDistributions {
         return array;
     }
 
-    private static Comparable[] generatePoissonDistributionArray(int arrayLength) {
+    public static Comparable[] generatePoissonDistributionArray(int arrayLength) {
 
         Comparable[] array = new Comparable[arrayLength];
 
@@ -112,7 +112,7 @@ public class Exercise35_NonuniformDistributions {
         return array;
     }
 
-    private static Comparable[] generateGeometricDistributionArray(int arrayLength) {
+    public static Comparable[] generateGeometricDistributionArray(int arrayLength) {
 
         Comparable[] array = new Comparable[arrayLength];
 
@@ -123,7 +123,7 @@ public class Exercise35_NonuniformDistributions {
         return array;
     }
 
-    private static Comparable[] generateDiscreteDistributionArray(int arrayLength) {
+    public static Comparable[] generateDiscreteDistributionArray(int arrayLength) {
 
         Comparable[] array = new Comparable[arrayLength];
 

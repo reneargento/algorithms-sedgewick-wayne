@@ -42,7 +42,7 @@ public class Exercise36_NonuniformData {
 
         for(int experiment = 0; experiment < experiments; experiment++) {
 
-            Comparable[] halfDecrementedValuesArray = generateHalfDecrementedValuesArray(arrayLength);
+            Comparable[] halfDecrementedValuesArray = generateHalfIncrementingValuesArray(arrayLength);
             runExperiments(halfDecrementedValuesArray);
             arrayLength *= 2;
         }
@@ -76,7 +76,7 @@ public class Exercise36_NonuniformData {
         printExperiment(SortTypes.SHELL, arrayCopy2.length, timeShell);
     }
 
-    private static Comparable[] generateHalfZeroHalfOneValuesArray(int arrayLength) {
+    public static Comparable[] generateHalfZeroHalfOneValuesArray(int arrayLength) {
 
         Comparable[] array = new Comparable[arrayLength];
 
@@ -87,16 +87,16 @@ public class Exercise36_NonuniformData {
         return array;
     }
 
-    private static Comparable[] generateHalfDecrementedValuesArray(int arrayLength) {
+    public static Comparable[] generateHalfIncrementingValuesArray(int arrayLength) {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        generateHalfDecrementedValuesArray(array, 0, 0);
+        generateHalfIncrementingValuesArray(array, 0, 0);
 
         return array;
     }
 
-    private static void generateHalfDecrementedValuesArray(Comparable[] array, int startIndex, int value) {
+    private static void generateHalfIncrementingValuesArray(Comparable[] array, int startIndex, int value) {
 
         if(startIndex == array.length) {
             return;
@@ -108,10 +108,10 @@ public class Exercise36_NonuniformData {
             array[i] = value;
         }
 
-        generateHalfDecrementedValuesArray(array, endIndex+1, value + 1);
+        generateHalfIncrementingValuesArray(array, endIndex+1, value + 1);
     }
 
-    private static Comparable[] generateHalfZeroHalfRandomValuesArray(int arrayLength) {
+    public static Comparable[] generateHalfZeroHalfRandomValuesArray(int arrayLength) {
 
         Comparable[] array = new Comparable[arrayLength];
 

@@ -36,6 +36,18 @@ public class RandomArrayGenerator {
         return array;
     }
 
+    public static Comparable[] generateDistinctValuesShuffledArray(int length) {
+        Comparable[] array = new Comparable[length];
+
+        for(int i=0; i < length; i++) {
+            array[i] = i;
+        }
+
+        StdRandom.shuffle(array);
+
+        return array;
+    }
+
     public static Comparable[] generateRandomArrayWith2Values(int length) {
         Comparable[] array = new Comparable[length];
 
