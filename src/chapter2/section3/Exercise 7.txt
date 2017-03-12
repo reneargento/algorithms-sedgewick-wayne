@@ -1,0 +1,14 @@
+2.3.7
+
+Array Size |  SubArrays Size 0 |  SubArrays Size 1 |   SubArrays Size 2
+      1000                 181                 168                  253
+      2000                 342                 328                  500
+      4000                 672                 670                  969
+      8000                1300                1354                 2023
+     16000                2677                2625                 3944
+
+Hypothesis: 
+The expected number of subarrays of size 0, 1 and 2 when quicksort is used to sort an array of N items with distinct keys is:
+Subarray size 0: 0.17 N
+Subarray size 1: 0.17 N
+Subarray size 2: 0.25 N

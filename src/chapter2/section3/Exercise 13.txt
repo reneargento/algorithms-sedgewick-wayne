@@ -1,0 +1,5 @@
+2.3.13
+
+Recursive depth in the best case: logarithmic 
+Recursive depth in the worst case: linear
+Recursive depth in the average case: logarithmic (if the pivot is chosen at random or if the array is shuffled before the sort begins).

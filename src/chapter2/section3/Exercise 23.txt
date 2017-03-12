@@ -1,0 +1,14 @@
+2.3.23 - Tukey's ninther
+ 
+The default 3-way partitioning QuickSort had a better running time than both the Bentley-McIlroy 3-way partitioning QuickSort and the Bentley-McIlroy 3-way partitioning QuickSort + Turkey Ninther.
+The Bentley-McIlroy 3-way partitioning QuickSort + Turkey Ninther had a better running time than the Bentley-McIlroy 3-way partitioning QuickSort.
+
+Array Size |  QuickSort 3-Way | QuickSort with fast 3-way partitioning |  QuickSort w/ fast 3-way partitioning + Tukey Ninther
+   1048576                0.1                                      0.1                                                     0.1
+   2097152                0.1                                      0.1                                                     0.1
+   4194304                0.2                                      0.2                                                     0.2
+   8388608                0.5                                      0.5                                                     0.6
+  16777216                1.1                                      1.2                                                     1.2
+  33554432                2.4                                      2.6                                                     2.6
+  67108864                5.3                                      5.5                                                     5.6
+ 134217728               11.6                                     12.7                                                    12.1

@@ -1,0 +1,10 @@
+2.3.10
+
+The number of compares used by quicksort for N = 1 million is around 26 million, which is much less than 100 billion. 
+
+Array Size |   Compares
+   1000000     27053401
+   1000000     25482965
+   1000000     26411245
+   1000000     25411808
+   1000000     25027730

@@ -1,0 +1,13 @@
+2.3.27 - Ignore small subarrays
+
+QuickSort with a cutoff for small sub arrays has a better runtime than QuickSort that ignores small sub arrays and uses an Insertion sort at the end.
+
+Array Size |  QuickSort W/ Cutoff Running Time |  QuickSort Ignoring Small SubArrays
+    131072                                 0.1                                   0.1
+    262144                                 0.1                                   0.1
+    524288                                 0.2                                   0.2
+   1048576                                 0.4                                   0.4
+   2097152                                 0.9                                   1.0
+   4194304                                 2.1                                   2.3
+   8388608                                 5.0                                   5.5
+  16777216                                10.8                                  11.8

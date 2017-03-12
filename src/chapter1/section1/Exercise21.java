@@ -5,17 +5,18 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise21 {
 
 	public static void main(String[] args) {
-		
-		String lines = "Rene 2 1 " +
-				"Bacon 4 3 " +
-				"Abcdef 6 2 ";
-		
-		formattedPrint(lines);
+
+		StdOut.printf("%8s %7s %7s %7s","Names","Number1","Number2","Result\n");
+
+		String[] allLines = args[0].split("\n"); //"Rene 2 1 \nBacon 4 3 \nAbcdef 6 2"
+
+		for(String line: allLines) {
+			String formattedString = line.replace("\\n", "");
+			formattedPrint(formattedString);
+		}
 	}
 	
 	private static void formattedPrint(String lines) {
-		
-		StdOut.printf("%8s %7s %7s %7s","Names","Number1","Number2","Result\n");
 		
 		String[] splittedValues = lines.split(" ");
 		

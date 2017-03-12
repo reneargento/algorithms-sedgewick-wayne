@@ -34,10 +34,10 @@ public class Exercise9 {
 		
 		return operands.pop();
 	}
-	
+
 	public static void main (String args[]) {
-		String input = "1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )";
-		
+		String input = args[0]; // "1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )"
+
 		StdOut.println(getInfixExpression(input));
 	}
 

@@ -8,9 +8,9 @@ import edu.princeton.cs.algs4.StdRandom;
 public class Exercise39_RandomMatches {
 
 	public static void main(String[] args) {
-		
-		int t = 10;
-		
+
+		int t = Integer.parseInt(args[0]); // 10
+
 		int n1 = (int) Math.pow(10, 3);
 		int n2 = (int) Math.pow(10, 4);
 		int n3 = (int) Math.pow(10, 5);

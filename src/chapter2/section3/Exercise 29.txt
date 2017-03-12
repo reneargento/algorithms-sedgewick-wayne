@@ -1,0 +1,17 @@
+2.3.29 - Randomization
+
+QuickSort with a random pivot has a better running time than QuickSort using a randomized array.
+
+Cutoff Size |  Array Size |  QuickSort W/ Randomized Array Running Time | QuickSort W/ Random Pivot
+         10          1000                                           0.0                         0.0
+         10         10000                                           0.0                         0.0
+         10        100000                                           0.1                         0.0
+         10       1000000                                           0.2                         0.2
+         20          1000                                           0.0                         0.0
+         20         10000                                           0.0                         0.0
+         20        100000                                           0.0                         0.0
+         20       1000000                                           0.2                         0.2
+         50          1000                                           0.0                         0.0
+         50         10000                                           0.0                         0.0
+         50        100000                                           0.0                         0.0
+         50       1000000                                           0.3                         0.2

@@ -7,14 +7,21 @@ public class Exercise24 {
 	public static void main(String[] args) {
 		int gcd = gcd(105, 24);
 				
-		StdOut.print("GDC: " + gcd);
+		StdOut.println("GDC 1: " + gcd);
 		
 		StdOut.println();
+
+		int argument1 = Integer.parseInt(args[0]); //90
+		int argument2 = Integer.parseInt(args[1]); //20
+
+		int gc2 = gcd(argument1, argument2);
+		StdOut.println("GDC 2: " + gc2);
+
 		StdOut.println();
 		
-		int gcd2 = gcd(1111111, 1234567);
+		int gcd3 = gcd(1111111, 1234567);
 		
-		StdOut.print("GDC: " + gcd2);
+		StdOut.println("GDC 3: " + gcd3);
 	}
 	
 	private static int gcd(int p, int q) {

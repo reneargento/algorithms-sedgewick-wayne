@@ -7,9 +7,9 @@ import edu.princeton.cs.algs4.StdRandom;
 public class Exercise2 {
 
 	public static void main(String[] args){
-		
-		int n = 3;
-		
+
+		int n = Integer.parseInt(args[0]); // 3
+
 		Interval1D[] intervals = new Interval1D[n];
 		
 		getIntervals(intervals);

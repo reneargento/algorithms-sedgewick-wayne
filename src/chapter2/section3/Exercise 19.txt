@@ -1,0 +1,14 @@
+2.3.19 - Median-of-5 partitioning
+
+QuickSort with median-of-three partitioning runs faster than both the default QuickSort implementation and QuickSort with median-of-five partitioning.
+QuickSort with median-of-five partitioning runs slower than both the default QuickSort implementation and QuickSort with median-of-three partitioning.
+
+Array Size |  QuickSort Running Time | QuickSort with median-of-three |   QuickSort with median-of-five
+    131072                       0.1                              0.1                               0.9
+    262144                       0.1                              0.1                               0.1
+    524288                       0.2                              0.2                               0.2
+   1048576                       0.4                              0.4                               1.2
+   2097152                       0.8                              0.8                               1.7
+   4194304                       2.2                              2.0                               3.2
+   8388608                       5.1                              4.7                               7.2
+  16777216                      12.3                             11.0                              13.0

@@ -11,14 +11,14 @@ import edu.princeton.cs.algs4.StdRandom;
 
 public class Exercise3 {
 	
-	static Map<Interval2D, Interval1D[]> intervalMap = new HashMap<>();
+	private static Map<Interval2D, Interval1D[]> intervalMap = new HashMap<>();
 
 	public static void main(String[] args){
+
+		int n = Integer.parseInt(args[0]); // 6
 		
-		int n = StdRandom.uniform(2, 10);
-		
-		double min = StdRandom.uniform(0, 10);
-		double max = StdRandom.uniform(0, 10);
+		double min = Double.parseDouble(args[1]); //3.5
+		double max = Double.parseDouble(args[2]); //7.2
 		
 		if(min > max){
 			double temp = min;

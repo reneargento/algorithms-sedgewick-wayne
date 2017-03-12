@@ -1,0 +1,13 @@
+2.3.18 - Median-of-3 partitioning
+
+QuickSort with median-of-three partitioning runs faster than the default QuickSort implementation.
+
+Array Size |  QuickSort Running Time | QuickSort with median-of-three
+    131072                       0.1                              0.1
+    262144                       0.1                              0.1
+    524288                       0.2                              0.2
+   1048576                       0.4                              0.4
+   2097152                       0.9                              0.8
+   4194304                       2.1                              2.0
+   8388608                       4.9                              4.7
+  16777216                      12.0                             11.4

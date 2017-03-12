@@ -5,8 +5,11 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise3 {
 
 	public static void main(String[] args) {
-		isEqual(1, 2, 3);
-		isEqual(2, 2, 2);
+		int integer1 = Integer.parseInt(args[0]);
+		int integer2 = Integer.parseInt(args[1]);
+		int integer3 = Integer.parseInt(args[2]);
+
+		isEqual(integer1, integer2, integer3);
 	}
 	
 	private static void isEqual(int num1, int num2, int num3) {

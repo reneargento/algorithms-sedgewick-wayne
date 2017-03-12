@@ -43,7 +43,7 @@ public class Exercise11 {
 	}
 
 	public static void main(String[] args) {
-		String postfixExpression = "( ( 4 2 + ) 3 / )";
+		String postfixExpression = args[0]; // "( ( 4 2 + ) 3 / )"
 		
 		StdOut.println("Result: " + evaluatePostfix(postfixExpression));
 	}

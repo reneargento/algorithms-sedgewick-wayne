@@ -1,0 +1,4 @@
+2.3.3
+
+The maximum number of times during the execution of Quick.sort() that the largest item can be exchanged, for an
+array of length N is N - 1.

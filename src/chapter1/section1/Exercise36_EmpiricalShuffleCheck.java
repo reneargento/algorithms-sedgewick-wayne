@@ -6,9 +6,9 @@ import edu.princeton.cs.algs4.StdRandom;
 public class Exercise36_EmpiricalShuffleCheck {
 
 	public static void main(String[] args) {
-		
-		int n = 200000;
-		int m = 5;
+
+		int n = Integer.parseInt(args[0]); // 200000
+		int m = Integer.parseInt(args[1]); // 5
 		
 		int[][] positions = new int[m][m];
 		

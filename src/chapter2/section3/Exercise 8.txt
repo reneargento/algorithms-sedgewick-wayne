@@ -1,0 +1,4 @@
+2.3.8
+
+When sorting an array of N items that are all equal, Quick.sort() will make approximately N lg N compares.
+Each partition will divide the array in half, plus or minus one.

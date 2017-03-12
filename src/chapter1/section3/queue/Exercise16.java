@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Exercise16 {
 
-	public static Date[] readAllDates(String fileName) {
+	private static Date[] readAllDates(String fileName) {
 		In in = new In(fileName);
 		Queue<Date> queue = new Queue<>();
 		while(!in.isEmpty()) {

@@ -19,7 +19,7 @@ public class Exercise6 {
 	
 	//One liner solution - does not safe check for null values
 	private static boolean isCircularShift(String s, String t) {
-		return s.length() == t.length() && (s+s).indexOf(t) != -1;
+		return s.length() == t.length() && (s+s).contains(t);
 	}
 	
 }

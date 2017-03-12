@@ -1,0 +1,7 @@
+2.3.9
+
+When Quick.sort() is run on an array having items with just two distinct keys it only calls the partition subroutine once.
+When Quick.sort() is run on an array having items with just three distinct keys it only calls the partition subroutine twice.
+In the case of just three distinct keys, using quicksort with 3-way partitioning, only one call to the partition subroutine is needed. 
+
+Based on: https://www.quora.com/Algorithms-An-array-of-n-elements-contains-only-two-distinct-values-How-many-calls-to-the-Partition-subroutine-are-needed-to-completely-sort-this-array-Select-ONE-answer-A-O-l-B-O-log-n-C-O-n-D-O-n-log-n

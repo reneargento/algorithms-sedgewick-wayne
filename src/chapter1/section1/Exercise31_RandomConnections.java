@@ -6,9 +6,9 @@ import edu.princeton.cs.algs4.StdRandom;
 public class Exercise31_RandomConnections {
 
 	public static void main(String[] args) {
-		int n = 5;
-		double p = 0.66;
-		
+		int n = Integer.parseInt(args[0]); //5
+		double p = Double.parseDouble(args[1]); //0.66
+
 		draw(n, p);
 	}
 	

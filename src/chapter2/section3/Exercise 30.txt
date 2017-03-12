@@ -1,0 +1,13 @@
+2.3.30 - Corner cases
+
+Shuffling makes the performance worse for these arrays.
+This may happen because these distributions generate arrays that can be more evenly partitioned by using the lowest index as the pivot than by shuffling them before selecting the pivot. 
+
+Array Size |                    Type |  QuickSort W/ Random Shuffle |   QuickSort W/O Random Shuffle
+  10000000      GaussianDistribution                            6.9                              4.0
+  10000000       PoissonDistribution                            1.9                              1.4
+  10000000     GeometricDistribution                            1.8                              1.3
+  10000000      DiscreteDistribution                            1.6                              1.1
+  10000000     HalfZeroHalfOneValues                            1.6                              1.0
+  10000000    HalfIncrementingValues                            1.7                              1.3
+  10000000  HalfZeroHalfRandomValues                            4.0                              2.7

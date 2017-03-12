@@ -1,0 +1,14 @@
+2.3.17 - Sentinels
+
+The default implementation of QuickSort runs slightly faster than the QuickSort implementation with no sentinels.
+One reason for this may be the time spent searching for the maximum element to place on the right end of the array. 
+
+Array Size |  QuickSort Running Time |  QuickSort W/ No Sentinels Running Time
+    131072                       0.1                                       0.1
+    262144                       0.1                                       0.1
+    524288                       0.2                                       0.2
+   1048576                       0.4                                       0.5
+   2097152                       0.9                                       1.0
+   4194304                       2.3                                       2.3
+   8388608                       5.4                                       5.2
+  16777216                      11.8                                      12.3

@@ -1,0 +1,13 @@
+2.3.22 - Fast 3-way partitioning
+
+The default 3-way partitioning QuickSort had a better running time than the Bentley-McIlroy 3-way partitioning QuickSort.
+
+Array Size |  QuickSort 3-Way | QuickSort with fast 3-way partitioning
+   1048576                0.1                                      0.1
+   2097152                0.1                                      0.1
+   4194304                0.2                                      0.3
+   8388608                0.5                                      0.6
+  16777216                1.1                                      1.2
+  33554432                2.5                                      2.8
+  67108864                5.5                                      6.0
+ 134217728               11.8                                     12.5

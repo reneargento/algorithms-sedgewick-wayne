@@ -18,15 +18,16 @@ public class Exercise15 {
 	}
 
 	public static void main (String[] args) {
+		int k = Integer.parseInt(args[0]); // 3
+
+		String input = args[1]; // A B C D E F
+		String[] stringsInput = input.split(" ");
+
 		Queue<String> queue = new Queue<>();
-		queue.enqueue("A");
-		queue.enqueue("B");
-		queue.enqueue("C");
-		queue.enqueue("D");
-		queue.enqueue("E");
-		queue.enqueue("F");
-		
-		int k = 3;
+
+		for(String string : stringsInput) {
+			queue.enqueue(string);
+		}
 		
 		printItems(queue, k);
 	}

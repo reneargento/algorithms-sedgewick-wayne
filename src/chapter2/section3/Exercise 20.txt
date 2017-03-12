@@ -1,0 +1,13 @@
+2.3.20 - Nonrecursive QuickSort
+
+The recursive implementation has a better running time than the non recursive implementation.
+
+Array Size |  QuickSort Running Time | Nonrecursive QuickSort
+    131072                       0.1                      0.1
+    262144                       0.1                      0.8
+    524288                       0.2                      0.2
+   1048576                       0.4                      0.4
+   2097152                       0.9                      1.7
+   4194304                       2.3                      3.0
+   8388608                       5.5                      6.1
+  16777216                      11.6                     12.3
