@@ -3,7 +3,7 @@ package chapter2.section3;
 import chapter2.section1.InsertionSort;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 import util.RandomArrayGenerator;
 
 import java.util.HashMap;
@@ -94,13 +94,13 @@ public class Exercise28_RecursionDepth {
         int j = high + 1;
 
         while(true) {
-            while (ArraySortUtil.less(array[++i], pivot)) {
+            while (ArrayUtil.less(array[++i], pivot)) {
                 if(i == high) {
                     break;
                 }
             }
 
-            while(ArraySortUtil.less(pivot, array[--j])) {
+            while(ArrayUtil.less(pivot, array[--j])) {
                 if(j == low) {
                     break;
                 }
@@ -110,11 +110,11 @@ public class Exercise28_RecursionDepth {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Place pivot in the right place
-        ArraySortUtil.exchange(array, low, j);
+        ArrayUtil.exchange(array, low, j);
         return j;
     }
 

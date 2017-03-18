@@ -3,7 +3,7 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 import util.RandomArrayGenerator;
 
 /**
@@ -83,11 +83,11 @@ public class Exercise11 {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Place pivot in the right place
-        ArraySortUtil.exchange(array, low, j);
+        ArrayUtil.exchange(array, low, j);
         return j;
     }
 

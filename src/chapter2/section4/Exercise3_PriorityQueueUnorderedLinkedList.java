@@ -1,7 +1,7 @@
 package chapter2.section4;
 
 import edu.princeton.cs.algs4.StdOut;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 
 /**
  * Created by rene on 16/03/17.
@@ -52,7 +52,7 @@ public class Exercise3_PriorityQueueUnorderedLinkedList {
 
             //Find out max value
             while (currentNode != null) {
-                if(ArraySortUtil.less(maxValue, currentNode.key)) {
+                if(ArrayUtil.less(maxValue, currentNode.key)) {
                     maxValue = currentNode.key;
                 }
 

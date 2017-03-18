@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 import util.RandomArrayGenerator;
 
 import java.util.Map;
@@ -116,13 +116,13 @@ public class Exercise20_NonrecursiveQuicksort {
         int j = high + 1;
 
         while(true) {
-            while (ArraySortUtil.less(array[++i], pivot)) {
+            while (ArrayUtil.less(array[++i], pivot)) {
                 if(i == high) {
                     break;
                 }
             }
 
-            while(ArraySortUtil.less(pivot, array[--j])) {
+            while(ArrayUtil.less(pivot, array[--j])) {
                 if(j == low) {
                     break;
                 }
@@ -132,11 +132,11 @@ public class Exercise20_NonrecursiveQuicksort {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Place pivot in the right place
-        ArraySortUtil.exchange(array, low, j);
+        ArrayUtil.exchange(array, low, j);
         return j;
     }
 

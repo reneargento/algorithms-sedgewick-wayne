@@ -4,7 +4,7 @@ import chapter2.section1.InsertionSort;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 import util.RandomArrayGenerator;
 
 import java.util.HashMap;
@@ -103,25 +103,25 @@ public class Exercise23_TukeysNinther {
         int q = high + 1;
 
         int pivotIndex = getPivotIndex(array, low, high);
-        ArraySortUtil.exchange(array, low, pivotIndex);
+        ArrayUtil.exchange(array, low, pivotIndex);
         Comparable pivot = array[low];
 
         while (true) {
 
             if(i > low && array[i].compareTo(pivot) == 0) {
-                ArraySortUtil.exchange(array, ++p, i);
+                ArrayUtil.exchange(array, ++p, i);
             }
             if(j <= high && array[j].compareTo(pivot) == 0) {
-                ArraySortUtil.exchange(array, --q, j);
+                ArrayUtil.exchange(array, --q, j);
             }
 
-            while (ArraySortUtil.less(array[++i], pivot)) {
+            while (ArrayUtil.less(array[++i], pivot)) {
                 if(i == high) {
                     break;
                 }
             }
 
-            while (ArraySortUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if(j == low) {
                     break;
                 }
@@ -129,13 +129,13 @@ public class Exercise23_TukeysNinther {
 
             //pointers cross
             if(i == j && array[i].compareTo(pivot) == 0) {
-                ArraySortUtil.exchange(array, ++p, i);
+                ArrayUtil.exchange(array, ++p, i);
             }
             if(i >= j) {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Currently:
@@ -147,10 +147,10 @@ public class Exercise23_TukeysNinther {
         i = j + 1;
 
         for(int k = low; k <= p; k++) {
-            ArraySortUtil.exchange(array, k, j--);
+            ArrayUtil.exchange(array, k, j--);
         }
         for(int k = high; k >= q; k--) {
-            ArraySortUtil.exchange(array, k, i++);
+            ArrayUtil.exchange(array, k, i++);
         }
 
         //Now:
@@ -177,10 +177,10 @@ public class Exercise23_TukeysNinther {
     }
 
     private static int getMedianIndex(Comparable[] array, int index1, int index2, int index3) {
-        return ArraySortUtil.less(array[index1], array[index2]) ?
-                (ArraySortUtil.less(array[index2], array[index3]) ? index2 : ArraySortUtil.less(array[index1], array[index3])
+        return ArrayUtil.less(array[index1], array[index2]) ?
+                (ArrayUtil.less(array[index2], array[index3]) ? index2 : ArrayUtil.less(array[index1], array[index3])
                         ? index3 : index1) :
-                (ArraySortUtil.less(index1, index3) ? index1 : ArraySortUtil.less(index2, index3) ? index3 : index2);
+                (ArrayUtil.less(index1, index3) ? index1 : ArrayUtil.less(index2, index3) ? index3 : index2);
     }
 
     private static void printResults(int arraySize, double quickSort3WayRunningTime, double quickSortWithFast3WayPartitioningRunningTime,

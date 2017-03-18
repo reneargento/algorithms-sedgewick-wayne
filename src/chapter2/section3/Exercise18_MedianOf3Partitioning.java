@@ -3,7 +3,7 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 import util.RandomArrayGenerator;
 
 import java.util.Map;
@@ -75,37 +75,37 @@ public class Exercise18_MedianOf3Partitioning {
 
         //Place items in order: Low < Middle < HighArraySortUtil.exchange(array, middle, low);
 
-        if(ArraySortUtil.less(array[middle], array[low])) {
-            ArraySortUtil.exchange(array, middle, low);
+        if(ArrayUtil.less(array[middle], array[low])) {
+            ArrayUtil.exchange(array, middle, low);
         }
-        if(ArraySortUtil.less(array[high], array[low])) {
-            ArraySortUtil.exchange(array, high, low);
+        if(ArrayUtil.less(array[high], array[low])) {
+            ArrayUtil.exchange(array, high, low);
         }
-        if(ArraySortUtil.less(array[high], array[middle])) {
-            ArraySortUtil.exchange(array, high, middle);
+        if(ArrayUtil.less(array[high], array[middle])) {
+            ArrayUtil.exchange(array, high, middle);
         }
 
         //Swap median with low
-        ArraySortUtil.exchange(array, middle, low);
+        ArrayUtil.exchange(array, middle, low);
         Comparable pivot = array[low];
 
         int i = low;
         int j = high + 1;
 
         while(true) {
-            while (ArraySortUtil.less(array[++i], pivot));
+            while (ArrayUtil.less(array[++i], pivot));
 
-            while(ArraySortUtil.less(pivot, array[--j]));
+            while(ArrayUtil.less(pivot, array[--j]));
 
             if(i >= j) {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Place pivot in the right place
-        ArraySortUtil.exchange(array, low, j);
+        ArrayUtil.exchange(array, low, j);
         return j;
     }
 

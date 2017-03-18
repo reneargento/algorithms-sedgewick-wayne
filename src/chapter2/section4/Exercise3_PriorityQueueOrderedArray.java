@@ -1,7 +1,7 @@
 package chapter2.section4;
 
 import edu.princeton.cs.algs4.StdOut;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 
 /**
  * Created by rene on 16/03/17.
@@ -34,7 +34,7 @@ public class Exercise3_PriorityQueueOrderedArray {
 
             int i = size - 1;
 
-            while (i >= 0 && ArraySortUtil.less(key, priorityQueue[i])) {
+            while (i >= 0 && ArrayUtil.less(key, priorityQueue[i])) {
                 priorityQueue[i + 1] = priorityQueue[i];
                 i--;
             }

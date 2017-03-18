@@ -1,7 +1,7 @@
 package chapter2.section4;
 
 import edu.princeton.cs.algs4.StdOut;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 
 /**
  * Created by rene on 16/03/17.
@@ -33,7 +33,7 @@ public class Exercise3_PriorityQueueOrderedLinkedList {
         public void insert(Key key) {
 
             //0 or 1 elements in the list
-            if(size == 0 || ArraySortUtil.less(key, priorityQueue.key)) {
+            if(size == 0 || ArrayUtil.less(key, priorityQueue.key)) {
                 Node oldFirst = priorityQueue;
 
                 priorityQueue = new Node();
@@ -50,7 +50,7 @@ public class Exercise3_PriorityQueueOrderedLinkedList {
             } else {
                 Node current = priorityQueue;
 
-                while (current.next != null && ArraySortUtil.less(current.next.key, key)) {
+                while (current.next != null && ArrayUtil.less(current.next.key, key)) {
                     current = current.next;
                 }
 

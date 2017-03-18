@@ -1,6 +1,6 @@
 package chapter2.section1;
 
-import util.ArraySortUtil;
+import util.ArrayUtil;
 
 /**
  * Created by rene on 02/02/17.
@@ -21,7 +21,7 @@ public class InsertionSort {
 
     public static void insertionSort(Comparable[] array, int low, int high) {
         for(int i=low; i <= high; i++) {
-            for(int j = i; j > 0 && ArraySortUtil.more(array[j - 1], array[j]); j--) {
+            for(int j = i; j > 0 && ArrayUtil.more(array[j - 1], array[j]); j--) {
                 Comparable temp = array[j];
                 array[j] = array[j - 1];
                 array[j - 1] = temp;

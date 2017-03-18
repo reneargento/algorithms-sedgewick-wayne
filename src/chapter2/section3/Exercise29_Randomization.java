@@ -4,7 +4,7 @@ import chapter2.section1.InsertionSort;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 import util.RandomArrayGenerator;
 
 import java.util.HashMap;
@@ -89,20 +89,20 @@ public class Exercise29_Randomization {
     private static int partition(Comparable[] array, int low, int high) {
 
         int randomPivotIndex = StdRandom.uniform(low, high + 1);
-        ArraySortUtil.exchange(array, low, randomPivotIndex);
+        ArrayUtil.exchange(array, low, randomPivotIndex);
         Comparable pivot = array[low];
 
         int i = low;
         int j = high + 1;
 
         while(true) {
-            while (ArraySortUtil.less(array[++i], pivot)) {
+            while (ArrayUtil.less(array[++i], pivot)) {
                 if(i == high) {
                     break;
                 }
             }
 
-            while(ArraySortUtil.less(pivot, array[--j])) {
+            while(ArrayUtil.less(pivot, array[--j])) {
                 if(j == low) {
                     break;
                 }
@@ -112,11 +112,11 @@ public class Exercise29_Randomization {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Place pivot in the right place
-        ArraySortUtil.exchange(array, low, j);
+        ArrayUtil.exchange(array, low, j);
         return j;
     }
 

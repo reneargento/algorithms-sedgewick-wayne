@@ -4,7 +4,7 @@ package util;
  * Created by rene on 04/03/17.
  */
 @SuppressWarnings("unchecked")
-public class ArraySortUtil {
+public class ArrayUtil {
 
     public static boolean less(Comparable value1, Comparable value2) {
         if(value1.compareTo(value2) < 0) {

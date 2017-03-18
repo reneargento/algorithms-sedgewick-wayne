@@ -3,7 +3,7 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 import util.RandomArrayGenerator;
 
 import java.util.HashMap;
@@ -88,19 +88,19 @@ public class Exercise22_Fast3WayPartitioning {
         while (true) {
 
             if(i > low && array[i].compareTo(pivot) == 0) {
-                ArraySortUtil.exchange(array, ++p, i);
+                ArrayUtil.exchange(array, ++p, i);
             }
             if(j <= high && array[j].compareTo(pivot) == 0) {
-                ArraySortUtil.exchange(array, --q, j);
+                ArrayUtil.exchange(array, --q, j);
             }
 
-            while (ArraySortUtil.less(array[++i], pivot)) {
+            while (ArrayUtil.less(array[++i], pivot)) {
                 if(i == high) {
                     break;
                 }
             }
 
-            while (ArraySortUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if(j == low) {
                     break;
                 }
@@ -108,13 +108,13 @@ public class Exercise22_Fast3WayPartitioning {
 
             //pointers cross
             if(i == j && array[i].compareTo(pivot) == 0) {
-                ArraySortUtil.exchange(array, ++p, i);
+                ArrayUtil.exchange(array, ++p, i);
             }
             if(i >= j) {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Currently:
@@ -126,10 +126,10 @@ public class Exercise22_Fast3WayPartitioning {
         i = j + 1;
 
         for(int k = low; k <= p; k++) {
-            ArraySortUtil.exchange(array, k, j--);
+            ArrayUtil.exchange(array, k, j--);
         }
         for(int k = high; k >= q; k--) {
-            ArraySortUtil.exchange(array, k, i++);
+            ArrayUtil.exchange(array, k, i++);
         }
 
         //Now:

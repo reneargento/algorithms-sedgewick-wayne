@@ -4,7 +4,7 @@ import chapter2.section1.Exercise35_NonuniformDistributions;
 import chapter2.section1.Exercise36_NonuniformData;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -121,13 +121,13 @@ public class Exercise30_CornerCases {
         int j = high + 1;
 
         while(true) {
-            while (ArraySortUtil.less(array[++i], pivot)) {
+            while (ArrayUtil.less(array[++i], pivot)) {
                 if(i == high) {
                     break;
                 }
             }
 
-            while(ArraySortUtil.less(pivot, array[--j])) {
+            while(ArrayUtil.less(pivot, array[--j])) {
                 if(j == low) {
                     break;
                 }
@@ -137,11 +137,11 @@ public class Exercise30_CornerCases {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Place pivot in the right place
-        ArraySortUtil.exchange(array, low, j);
+        ArrayUtil.exchange(array, low, j);
         return j;
     }
 

@@ -3,7 +3,7 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 import util.RandomArrayGenerator;
 
 import java.util.Map;
@@ -61,13 +61,13 @@ public class Exercise17_Sentinels {
         Comparable maxValue = array[0];
         int maxValueIndex = 0;
         for(int i=1; i < array.length; i++) {
-            if(ArraySortUtil.less(maxValue, array[i])) {
+            if(ArrayUtil.less(maxValue, array[i])) {
                 maxValue = array[i];
                 maxValueIndex = i;
             }
         }
 
-        ArraySortUtil.exchange(array, maxValueIndex, array.length - 1);
+        ArrayUtil.exchange(array, maxValueIndex, array.length - 1);
 
         quickSort(array, 0, array.length - 1);
     }
@@ -90,19 +90,19 @@ public class Exercise17_Sentinels {
         int j = high + 1;
 
         while(true) {
-            while (ArraySortUtil.less(array[++i], pivot));
+            while (ArrayUtil.less(array[++i], pivot));
 
-            while(ArraySortUtil.less(pivot, array[--j]));
+            while(ArrayUtil.less(pivot, array[--j]));
 
             if(i >= j) {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Place pivot in the right place
-        ArraySortUtil.exchange(array, low, j);
+        ArrayUtil.exchange(array, low, j);
         return j;
     }
 

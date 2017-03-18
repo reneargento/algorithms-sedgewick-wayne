@@ -3,7 +3,7 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 import util.RandomArrayGenerator;
 
 import java.util.HashMap;
@@ -95,7 +95,7 @@ public class Exercise19_MedianOf5Partitioning {
         int j = high + 1;
 
         while(true) {
-            while (ArraySortUtil.less(array[++i], pivot)) {
+            while (ArrayUtil.less(array[++i], pivot)) {
                 //Since we are using a random sample, we cannot guarantee that we will always have a higher element than the pivot
                 // on the right end.
                 //So this check is necessary
@@ -104,17 +104,17 @@ public class Exercise19_MedianOf5Partitioning {
                 }
             }
 
-            while(ArraySortUtil.less(pivot, array[--j]));
+            while(ArrayUtil.less(pivot, array[--j]));
 
             if(i >= j) {
                 break;
             }
 
-            ArraySortUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, i, j);
         }
 
         //Place pivot in the right place
-        ArraySortUtil.exchange(array, low, j);
+        ArrayUtil.exchange(array, low, j);
         return j;
     }
 
@@ -159,31 +159,31 @@ public class Exercise19_MedianOf5Partitioning {
          */
 
         //1st compare
-        if (!ArraySortUtil.less(medianOf5Array[0], medianOf5Array[1])) {
-            ArraySortUtil.exchange(medianOf5Array, 0, 1);
+        if (!ArrayUtil.less(medianOf5Array[0], medianOf5Array[1])) {
+            ArrayUtil.exchange(medianOf5Array, 0, 1);
         }
         //2nd compare
-        if (!ArraySortUtil.less(medianOf5Array[3], medianOf5Array[4])) {
-            ArraySortUtil.exchange(medianOf5Array, 3, 4);
+        if (!ArrayUtil.less(medianOf5Array[3], medianOf5Array[4])) {
+            ArrayUtil.exchange(medianOf5Array, 3, 4);
         }
         //3rd compare
-        if (!ArraySortUtil.less(medianOf5Array[0], medianOf5Array[3])) {
-            ArraySortUtil.exchange(medianOf5Array, 0, 3);
+        if (!ArrayUtil.less(medianOf5Array[0], medianOf5Array[3])) {
+            ArrayUtil.exchange(medianOf5Array, 0, 3);
         }
 
         //4th compare
-        if (ArraySortUtil.less(medianOf5Array[1], medianOf5Array[2])) {
+        if (ArrayUtil.less(medianOf5Array[1], medianOf5Array[2])) {
             //5th compare
-            if (ArraySortUtil.less(medianOf5Array[1], medianOf5Array[3])) {
+            if (ArrayUtil.less(medianOf5Array[1], medianOf5Array[3])) {
                 //6th compare
-                if (ArraySortUtil.less(medianOf5Array[2], medianOf5Array[3])) {
+                if (ArrayUtil.less(medianOf5Array[2], medianOf5Array[3])) {
                     median = medianOf5Array[2];
                 } else {
                     median = medianOf5Array[3];
                 }
             } else {
                 //6th compare
-                if (ArraySortUtil.less(medianOf5Array[1], medianOf5Array[4])) {
+                if (ArrayUtil.less(medianOf5Array[1], medianOf5Array[4])) {
                     median = medianOf5Array[1];
                 } else {
                     median = medianOf5Array[4];
@@ -191,16 +191,16 @@ public class Exercise19_MedianOf5Partitioning {
             }
         } else {
             //5th compare
-            if (ArraySortUtil.less(medianOf5Array[3], medianOf5Array[2])) {
+            if (ArrayUtil.less(medianOf5Array[3], medianOf5Array[2])) {
                 //6th compare
-                if (ArraySortUtil.less(medianOf5Array[2], medianOf5Array[4])) {
+                if (ArrayUtil.less(medianOf5Array[2], medianOf5Array[4])) {
                     median = medianOf5Array[2];
                 } else {
                     median = medianOf5Array[4];
                 }
             } else {
                 //6th compare
-                if (ArraySortUtil.less(medianOf5Array[1], medianOf5Array[3])) {
+                if (ArrayUtil.less(medianOf5Array[1], medianOf5Array[3])) {
                     median = medianOf5Array[1];
                 } else {
                     median = medianOf5Array[3];
@@ -211,7 +211,7 @@ public class Exercise19_MedianOf5Partitioning {
         int originalMedianIndex = originalIndexes.get(median);
 
         //Swap median with low
-        ArraySortUtil.exchange(array, originalMedianIndex, low);
+        ArrayUtil.exchange(array, originalMedianIndex, low);
     }
 
     private static void printResults(int arraySize, double defaultQuickSortRunningTime, double quickSortWithMedianOfThree, double quickSortWithMedianOfFive) {

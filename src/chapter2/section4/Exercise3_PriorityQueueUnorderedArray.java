@@ -1,7 +1,7 @@
 package chapter2.section4;
 
 import edu.princeton.cs.algs4.StdOut;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 
 /**
  * Created by rene on 15/03/17.
@@ -45,12 +45,12 @@ public class Exercise3_PriorityQueueUnorderedArray {
             int maxValueIndex = 0;
 
             for(int i=1; i < size; i++) {
-                if(ArraySortUtil.less(priorityQueue[maxValueIndex], priorityQueue[i])) {
+                if(ArrayUtil.less(priorityQueue[maxValueIndex], priorityQueue[i])) {
                     maxValueIndex = i;
                 }
             }
 
-            ArraySortUtil.exchange(priorityQueue, maxValueIndex, size - 1);
+            ArrayUtil.exchange(priorityQueue, maxValueIndex, size - 1);
 
             Key maxValue = priorityQueue[size - 1];
 

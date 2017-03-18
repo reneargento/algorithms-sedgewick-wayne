@@ -1,7 +1,7 @@
 package chapter2.section3;
 
 import edu.princeton.cs.algs4.StdRandom;
-import util.ArraySortUtil;
+import util.ArrayUtil;
 
 /**
  * Created by rene on 09/03/17.
@@ -29,11 +29,11 @@ public class QuickSort3Way {
             int compare = array[i].compareTo(pivot);
 
             if(compare < 0) {
-                ArraySortUtil.exchange(array, lt, i);
+                ArrayUtil.exchange(array, lt, i);
                 lt++;
                 i++;
             } else if(compare > 0) {
-                ArraySortUtil.exchange(array, i, gt);
+                ArrayUtil.exchange(array, i, gt);
                 gt--;
             } else {
                 i++;
