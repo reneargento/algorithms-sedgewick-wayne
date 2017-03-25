@@ -8,11 +8,17 @@ import util.ArrayUtil;
 @SuppressWarnings("unchecked")
 public class PriorityQueue<Key extends Comparable<Key>> {
 
+    enum Orientation {
+        MAX, MIN;
+    }
+
     private Key[] priorityQueue; // heap-ordered complete binary tree
     private int size = 0; // in priorityQueue[1..n] with pq[0] unused
+    private Orientation orientation;
 
-    public PriorityQueue(int size) {
-        priorityQueue = (Key[]) new Comparable[size];
+    public PriorityQueue(int size, Orientation orientation) {
+        priorityQueue = (Key[]) new Comparable[size + 1];
+        this.orientation = orientation;
     }
 
     public boolean isEmpty() {
@@ -32,25 +38,26 @@ public class PriorityQueue<Key extends Comparable<Key>> {
         }
     }
 
-    public Key deleteMax() {
+    public Key deleteMaxOrMin() {
         if(size == 0) {
             throw new RuntimeException("Priority queue underflow");
         }
 
         size--;
 
-        Key max = priorityQueue[1];
+        Key topElement = priorityQueue[1];
         ArrayUtil.exchange(priorityQueue, 1, size + 1);
 
         priorityQueue[size + 1] = null;
         sink(1);
 
-        return max;
+        return topElement;
     }
 
     private void swim(int index) {
         while(index / 2 >= 1) {
-            if(ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index])) {
+            if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))
+                    || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))) {
                 ArrayUtil.exchange(priorityQueue, index / 2, index);
             }
 
@@ -60,19 +67,25 @@ public class PriorityQueue<Key extends Comparable<Key>> {
 
     private void sink(int index) {
         while (index * 2 <= size) {
-            int highestChildIndex = index * 2;
+            int selectedChildIndex = index * 2;
 
-            if(index * 2 + 1 <= size && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1])) {
-                highestChildIndex = index * 2 + 1;
+            if(index * 2 + 1 <= size &&
+                    (
+                    (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
+                    || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
+                    )
+                    ){
+                selectedChildIndex = index * 2 + 1;
             }
 
-            if(ArrayUtil.less(priorityQueue[highestChildIndex], priorityQueue[index])) {
+            if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))
+                || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))) {
                 break;
             } else {
-                ArrayUtil.exchange(priorityQueue, index, highestChildIndex);
+                ArrayUtil.exchange(priorityQueue, index, selectedChildIndex);
             }
 
-            index = highestChildIndex;
+            index = selectedChildIndex;
         }
     }
 
