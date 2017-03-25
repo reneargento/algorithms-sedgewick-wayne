@@ -38,7 +38,7 @@ public class PriorityQueue<Key extends Comparable<Key>> {
         }
     }
 
-    public Key deleteMaxOrMin() {
+    public Key deleteTop() {
         if(size == 0) {
             throw new RuntimeException("Priority queue underflow");
         }

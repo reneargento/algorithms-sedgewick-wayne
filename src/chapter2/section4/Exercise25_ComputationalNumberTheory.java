@@ -31,7 +31,7 @@ public class Exercise25_ComputationalNumberTheory {
 
         Exercise25_ComputationalNumberTheory computationalNumberTheory = new Exercise25_ComputationalNumberTheory();
 
-        int n = 300;//1000000;
+        int n = 1000;//1000000;
         PriorityQueue<ValueForComputation> priorityQueue = new PriorityQueue<>(n, PriorityQueue.Orientation.MIN);
 
         computationalNumberTheory.initPriorityQueue(priorityQueue, n);
@@ -55,7 +55,7 @@ public class Exercise25_ComputationalNumberTheory {
         Map<BigInteger, List<ValueForComputation>> valuesMap = new HashMap<>();
 
         while (!priorityQueue.isEmpty()) {
-            ValueForComputation smallestValue = priorityQueue.deleteMaxOrMin();
+            ValueForComputation smallestValue = priorityQueue.deleteTop();
 
             StdOut.println("Smallest Item: " + smallestValue.value);
 
