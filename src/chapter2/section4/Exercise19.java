@@ -37,10 +37,10 @@ public class Exercise19 {
                     indexOfBiggestChild = indexOfBiggestChild + 1;
                 }
 
-                if(priorityQueue[index].compareTo(priorityQueue[indexOfBiggestChild]) > 0) {
-                    break;
-                } else {
+                if(priorityQueue[index].compareTo(priorityQueue[indexOfBiggestChild]) < 0) {
                     ArrayUtil.exchange(priorityQueue, index, indexOfBiggestChild);
+                } else {
+                    break;
                 }
 
                 index = indexOfBiggestChild;

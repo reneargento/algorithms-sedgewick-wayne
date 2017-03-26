@@ -57,7 +57,7 @@ public class PriorityQueue<Key extends Comparable<Key>> {
     private void swim(int index) {
         while(index / 2 >= 1) {
             if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))
-                    || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))) {
+                    || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index / 2], priorityQueue[index]))) {
                 ArrayUtil.exchange(priorityQueue, index / 2, index);
             } else {
                 break;
@@ -74,17 +74,17 @@ public class PriorityQueue<Key extends Comparable<Key>> {
             if(index * 2 + 1 <= size &&
                     (
                     (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
-                    || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
+                    || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
                     )
                     ){
                 selectedChildIndex = index * 2 + 1;
             }
 
-            if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))
-                || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))) {
-                break;
-            } else {
+            if((orientation == Orientation.MAX && ArrayUtil.more(priorityQueue[selectedChildIndex], priorityQueue[index]))
+                || (orientation == Orientation.MIN && ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))) {
                 ArrayUtil.exchange(priorityQueue, index, selectedChildIndex);
+            } else {
+                break;
             }
 
             index = selectedChildIndex;

@@ -150,7 +150,7 @@ public class Exercise29_MinMaxPriorityQueue  {
         private void swim(PQNode[] priorityQueue, int index, Orientation orientation) {
             while(index / 2 >= 1) {
                 if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))
-                        || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))) {
+                        || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index / 2], priorityQueue[index]))) {
                     ArrayUtil.exchange(priorityQueue, index / 2, index);
 
                     if(orientation == Orientation.MIN) {
@@ -182,16 +182,14 @@ public class Exercise29_MinMaxPriorityQueue  {
                 if(index * 2 + 1 <= size &&
                         (
                          (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
-                              || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
+                              || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
                         )
                         ){
                     selectedChildIndex = index * 2 + 1;
                 }
 
-                if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))
-                        || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))) {
-                    break;
-                } else {
+                if((orientation == Orientation.MAX && ArrayUtil.more(priorityQueue[selectedChildIndex], priorityQueue[index]))
+                        || (orientation == Orientation.MIN && ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))) {
                     ArrayUtil.exchange(priorityQueue, index, selectedChildIndex);
 
                     if(orientation == Orientation.MIN) {
@@ -201,6 +199,8 @@ public class Exercise29_MinMaxPriorityQueue  {
                         priorityQueue[index].maxHeapIndex = index;
                         priorityQueue[selectedChildIndex].maxHeapIndex = selectedChildIndex;
                     }
+                } else {
+                    break;
                 }
 
                 index = selectedChildIndex;

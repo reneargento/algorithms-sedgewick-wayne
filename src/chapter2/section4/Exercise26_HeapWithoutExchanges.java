@@ -64,7 +64,7 @@ public class Exercise26_HeapWithoutExchanges {
 
             while(index / 2 >= 1) {
                 if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], aux))
-                        || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[index / 2], aux))) {
+                        || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index / 2], aux))) {
                     priorityQueue[index] = priorityQueue[index / 2];
                     exchangeRequired = true;
                 } else {
@@ -89,17 +89,17 @@ public class Exercise26_HeapWithoutExchanges {
                 if(index * 2 + 1 <= size &&
                         (
                          (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
-                               || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
+                               || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
                         )
                         ){
                     selectedChildIndex = index * 2 + 1;
                 }
 
-                if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[selectedChildIndex], aux))
-                        || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[selectedChildIndex], aux))) {
-                    break;
-                } else {
+                if((orientation == Orientation.MAX && ArrayUtil.more(priorityQueue[selectedChildIndex], aux))
+                        || (orientation == Orientation.MIN && ArrayUtil.less(priorityQueue[selectedChildIndex], aux))) {
                     priorityQueue[index] = priorityQueue[selectedChildIndex];
+                } else {
+                    break;
                 }
 
                 index = selectedChildIndex;
@@ -123,10 +123,10 @@ public class Exercise26_HeapWithoutExchanges {
         StdOut.println("Size: " + priorityQueue.size());
         StdOut.println("isEmpty: " + priorityQueue.isEmpty());
 
-        StdOut.println("Item removed: " + priorityQueue.deleteTop());
-        StdOut.println("Item removed: " + priorityQueue.deleteTop());
-        StdOut.println("Item removed: " + priorityQueue.deleteTop());
-        StdOut.println("Item removed: " + priorityQueue.deleteTop());
+        StdOut.println("Item removed: " + priorityQueue.deleteTop() + " Expected: 20");
+        StdOut.println("Item removed: " + priorityQueue.deleteTop() + " Expected: 10");
+        StdOut.println("Item removed: " + priorityQueue.deleteTop() + " Expected: 7");
+        StdOut.println("Item removed: " + priorityQueue.deleteTop() + " Expected: 2");
     }
 
 }

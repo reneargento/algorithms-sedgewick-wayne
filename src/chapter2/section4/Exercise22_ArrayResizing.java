@@ -110,12 +110,12 @@ public class Exercise22_ArrayResizing {
 
                 totalArrayAccesses += 2;
                 totalArrayAccessesForRemoveMaximum += 2;
-                if(ArrayUtil.less(priorityQueue[highestChildIndex], priorityQueue[index])) {
-                    break;
-                } else {
+                if(ArrayUtil.more(priorityQueue[highestChildIndex], priorityQueue[index])) {
                     ArrayUtil.exchange(priorityQueue, index, highestChildIndex);
                     totalArrayAccesses += 4;
                     totalArrayAccessesForRemoveMaximum += 4;
+                } else {
+                    break;
                 }
 
                 index = highestChildIndex;

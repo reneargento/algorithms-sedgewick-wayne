@@ -77,10 +77,10 @@ public class Exercise27_FindTheMinimum {
                     selectedChildIndex = index * 2 + 1;
                 }
 
-                if(ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index])) {
-                    break;
-                } else {
+                if(ArrayUtil.more(priorityQueue[selectedChildIndex], priorityQueue[index])) {
                     ArrayUtil.exchange(priorityQueue, index, selectedChildIndex);
+                } else {
+                    break;
                 }
 
                 index = selectedChildIndex;
