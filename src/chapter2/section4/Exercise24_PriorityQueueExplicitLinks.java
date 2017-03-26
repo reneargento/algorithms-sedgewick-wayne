@@ -96,17 +96,13 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
         //O(lg N)
         private void swim(PQNode node) {
 
-            while (node.parent.value != null) {
-                if(ArrayUtil.less(node.parent.value, node.value)) {
-                    // Swap node values
-                    Key temp = node.value;
-                    node.value = node.parent.value;
-                    node.parent.value = temp;
+            while (node.parent.value != null && ArrayUtil.less(node.parent.value, node.value)) {
+                // Swap node values
+                Key temp = node.value;
+                node.value = node.parent.value;
+                node.parent.value = temp;
 
-                    node = node.parent;
-                } else {
-                    break;
-                }
+                node = node.parent;
             }
         }
 

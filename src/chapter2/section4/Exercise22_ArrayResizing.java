@@ -90,6 +90,8 @@ public class Exercise22_ArrayResizing {
                     ArrayUtil.exchange(priorityQueue, index / 2, index);
                     totalArrayAccesses += 4;
                     totalArrayAccessesForInsert += 4;
+                } else {
+                    break;
                 }
 
                 index = index / 2;

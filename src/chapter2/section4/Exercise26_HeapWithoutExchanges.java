@@ -67,6 +67,8 @@ public class Exercise26_HeapWithoutExchanges {
                         || (orientation == Orientation.MIN && !ArrayUtil.less(priorityQueue[index / 2], aux))) {
                     priorityQueue[index] = priorityQueue[index / 2];
                     exchangeRequired = true;
+                } else {
+                    break;
                 }
 
                 index = index / 2;
