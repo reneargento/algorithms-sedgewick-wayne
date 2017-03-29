@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 import util.ArrayUtil;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.Map;
 
@@ -17,7 +17,7 @@ public class Exercise18_MedianOf3Partitioning {
         int numberOfExperiments = Integer.parseInt(args[0]); // 8
         int initialArraySize = Integer.parseInt(args[1]); // 131072
 
-        Map<Integer, Comparable[]> allInputArrays = RandomArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize);
+        Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
 
         doExperiment(numberOfExperiments, initialArraySize, allInputArrays);
     }

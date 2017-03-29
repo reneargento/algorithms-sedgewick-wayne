@@ -3,7 +3,7 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import util.ArrayUtil;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.Map;
 
@@ -18,7 +18,7 @@ public class Exercise7 {
 
     public static void main(String[] args) {
 
-        Map<Integer, Comparable[]> allInputArrays = RandomArrayGenerator.generateAllArrays(5, 1000);
+        Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(5, 1000, 2);
 
         StdOut.printf("%13s %17s %17s %17s\n", "Array Size | ", "SubArrays Size 0 | ", "SubArrays Size 1 | ", "SubArrays Size 2");
 

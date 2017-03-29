@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 import util.ArrayUtil;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Exercise26_SubarraySizes {
     public static void main(String[] args) {
         int arraySize = 100000;
 
-        Comparable[] array = RandomArrayGenerator.generateArray(arraySize);
+        Comparable[] array = ArrayGenerator.generateRandomArray(arraySize);
 
         doExperiment(array);
     }

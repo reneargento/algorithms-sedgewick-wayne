@@ -2,7 +2,7 @@ package chapter2.section2;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public class Exercise26_ArrayCreation {
 
     private static void sortCompare(int numberOfExperiments, int initialArraySize) {
 
-        Map<Integer, Comparable[]> allInputArrays = RandomArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize);
+        Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
 
         double timeCreateAuxInSort = timeRandomInput(MergeSortType.CREATE_AUX_IN_SORT, allInputArrays, numberOfExperiments);
         double timeCreateAuxInMerge = timeRandomInput(MergeSortType.CREATE_AUX_IN_MERGE, allInputArrays, numberOfExperiments);

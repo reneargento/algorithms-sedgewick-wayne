@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 import util.ArrayUtil;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 /**
  * Created by rene on 05/03/17.
@@ -17,7 +17,7 @@ public class Exercise11 {
 
         int arraySize = 8000;
 
-        Comparable[] initialArray = RandomArrayGenerator.generateRandomArrayWith3Values(arraySize / 2);
+        Comparable[] initialArray = ArrayGenerator.generateRandomArrayWith3Values(arraySize / 2);
         Stopwatch initialTimer = new Stopwatch();
 
         quickSort(initialArray);
@@ -26,7 +26,7 @@ public class Exercise11 {
 
         for(int i=0; i < 6; i++) {
 
-            Comparable[] array = RandomArrayGenerator.generateRandomArrayWith3Values(arraySize);
+            Comparable[] array = ArrayGenerator.generateRandomArrayWith3Values(arraySize);
 
             Stopwatch timer = new Stopwatch();
 

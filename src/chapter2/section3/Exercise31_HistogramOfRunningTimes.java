@@ -3,7 +3,7 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public class Exercise31_HistogramOfRunningTimes {
         Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
 
         for(int i=0; i < NUMBER_OF_ARRAYS; i++) {
-            Comparable[] array = RandomArrayGenerator.generateArray(realArraySize);
+            Comparable[] array = ArrayGenerator.generateRandomArray(realArraySize);
             allInputArrays.put(i, array);
 
             realArraySize *= 10;

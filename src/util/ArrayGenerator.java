@@ -8,29 +8,59 @@ import java.util.Map;
 /**
  * Created by rene on 20/02/17.
  */
-public class RandomArrayGenerator {
+public class ArrayGenerator {
 
-    public static Map<Integer, Comparable[]> generateAllArrays(int numberOfExperiments, int initialArraySize) {
+    public static Map<Integer, Comparable[]> generateAllArrays(int numberOfExperiments, int initialArraySize, int multiplier) {
 
         Map<Integer, Comparable[]> allArrays = new HashMap<>();
 
         int arraySize = initialArraySize;
 
         for(int i=0; i < numberOfExperiments; i++) {
-            Comparable[] array = generateArray(arraySize);
+            Comparable[] array = generateRandomArray(arraySize);
             allArrays.put(i, array);
 
-            arraySize *= 2;
+            arraySize *= multiplier;
         }
 
         return allArrays;
     }
 
-    public static Comparable[] generateArray(int length) {
+    public static Comparable[] generateRandomArray(int length) {
         Comparable[] array = new Comparable[length];
 
         for(int i=0; i < length; i++) {
             array[i] = StdRandom.uniform();
+        }
+
+        return array;
+    }
+
+    public static Comparable[] generateOrderedArray(int length) {
+        Comparable[] array = new Comparable[length];
+
+        for(int i=0; i < length; i++) {
+            array[i] = i;
+        }
+
+        return array;
+    }
+
+    public static Comparable[] generateReverseOrderedArray(int length) {
+        Comparable[] array = new Comparable[length];
+
+        for(int i=0; i < length; i++) {
+            array[i] = length - 1 - i;
+        }
+
+        return array;
+    }
+
+    public static Comparable[] generateArrayWithAllKeysEqual(int length) {
+        Comparable[] array = new Comparable[length];
+
+        for(int i=0; i < length; i++) {
+            array[i] = 0;
         }
 
         return array;

@@ -2,7 +2,7 @@ package chapter2.section3;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ public class Exercise25_CutoffToInsertionSort {
         int arraySize = 1000;
 
         for(int i=0; i < NUMBER_OF_EXPERIMENTS; i++) {
-            Comparable[] array = RandomArrayGenerator.generateArray(arraySize);
+            Comparable[] array = ArrayGenerator.generateRandomArray(arraySize);
             allInputArrays.put(i, array);
 
             arraySize *= 10;

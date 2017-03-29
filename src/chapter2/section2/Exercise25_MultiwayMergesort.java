@@ -2,7 +2,7 @@ package chapter2.section2;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Exercise25_MultiwayMergesort {
 
         Exercise25_MultiwayMergesort multiwayMergesort = new Exercise25_MultiwayMergesort();
 
-        Map<Integer, Comparable[]> allInputArrays = RandomArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize);
+        Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
 
         for(int k=2; k<= 10; k++) {
             String text = k + "-WAY MERGESORT";

@@ -2,7 +2,7 @@ package chapter2.section2;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +18,10 @@ public class Exercise28_TopDownVSBottomUp {
 
     public static void main(String[] args) {
         List<Comparable[]> arrays = new ArrayList<>(4);
-        Comparable[] array1 = RandomArrayGenerator.generateArray(1000);
-        Comparable[] array2 = RandomArrayGenerator.generateArray(10000);
-        Comparable[] array3 = RandomArrayGenerator.generateArray(100000);
-        Comparable[] array4 = RandomArrayGenerator.generateArray(1000000);
+        Comparable[] array1 = ArrayGenerator.generateRandomArray(1000);
+        Comparable[] array2 = ArrayGenerator.generateRandomArray(10000);
+        Comparable[] array3 = ArrayGenerator.generateRandomArray(100000);
+        Comparable[] array4 = ArrayGenerator.generateRandomArray(1000000);
 
         arrays.add(array1);
         arrays.add(array2);

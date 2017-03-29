@@ -2,7 +2,7 @@ package chapter2.section2;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public class Exercise24_SortTestImprovement {
 
         Exercise24_SortTestImprovement sortTestImprovement = new Exercise24_SortTestImprovement();
 
-        Map<Integer, Comparable[]> allInputArrays = RandomArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize);
+        Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
 
         StdOut.println("BASELINE - TOP DOWN MERGESORT");
         StdOut.printf("%13s %12s\n", "Array Size | ", "Running Time");

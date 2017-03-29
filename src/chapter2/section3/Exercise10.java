@@ -3,7 +3,7 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import util.ArrayUtil;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 /**
  * Created by rene on 04/03/17.
@@ -19,7 +19,7 @@ public class Exercise10 {
 
         for(int i=0; i < 5; i++) {
 
-            Comparable array[] = RandomArrayGenerator.generateArray(ARRAY_SIZE);
+            Comparable array[] = ArrayGenerator.generateRandomArray(ARRAY_SIZE);
             quickSort(array);
 
             printResults(ARRAY_SIZE, numberOfCompares);

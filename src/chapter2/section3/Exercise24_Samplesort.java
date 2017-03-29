@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 import util.ArrayUtil;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.Map;
 
@@ -21,7 +21,7 @@ public class Exercise24_Samplesort {
         int k = Integer.parseInt(args[2]); // 5
         int sampleSize = (int) Math.pow(2, k) - 1;
 
-        Map<Integer, Comparable[]> allInputArrays = RandomArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize);
+        Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
 
         doExperiment(numberOfExperiments, initialArraySize, sampleSize, allInputArrays);
     }

@@ -4,7 +4,7 @@ import chapter2.section1.InsertionSort;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import util.ArrayUtil;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class Exercise28_RecursionDepth {
         int arraySize = 1000;
 
         for(int i=0; i < NUMBER_OF_EXPERIMENTS; i++) {
-            Comparable[] array = RandomArrayGenerator.generateDistinctValuesShuffledArray(arraySize);
+            Comparable[] array = ArrayGenerator.generateDistinctValuesShuffledArray(arraySize);
             allInputArrays.put(i, array);
 
             arraySize *= 10;

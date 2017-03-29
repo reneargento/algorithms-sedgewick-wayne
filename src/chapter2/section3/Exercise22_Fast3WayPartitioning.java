@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 import util.ArrayUtil;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ public class Exercise22_Fast3WayPartitioning {
         int arraySize = initialArraySize;
 
         for(int i=0; i < numberOfExperiments; i++) {
-            Comparable[] array = RandomArrayGenerator.generateRandomArrayWith3Values(arraySize);
+            Comparable[] array = ArrayGenerator.generateRandomArrayWith3Values(arraySize);
             allInputArrays.put(i, array);
 
             arraySize *= 2;

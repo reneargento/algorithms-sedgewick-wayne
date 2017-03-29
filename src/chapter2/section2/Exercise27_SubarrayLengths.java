@@ -1,7 +1,7 @@
 package chapter2.section2;
 
 import edu.princeton.cs.algs4.StdOut;
-import util.RandomArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.Map;
 
@@ -19,7 +19,7 @@ public class Exercise27_SubarrayLengths {
 
         Exercise27_SubarrayLengths subarrayLengths = new Exercise27_SubarrayLengths();
 
-        Map<Integer, Comparable[]> allInputArrays = RandomArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize);
+        Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
         subarrayLengths.doExperiment(numberOfExperiments, initialArraySize, allInputArrays);
     }
 
