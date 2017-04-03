@@ -1,0 +1,51 @@
+2.4.5 
+
+1- E
+
+2- E
+  A
+
+3- S
+  A E
+
+4- Y
+  S E
+ A
+
+5-  Y
+  S  E
+ A Q  
+
+6-   Y
+  S    U
+ A Q  E
+
+7-   Y
+  S    U
+ A Q  E E
+
+8-   Y
+  S    U
+ S Q  E E
+A
+
+9-    Y
+   T      U
+ S   Q   E E
+A S
+
+10-    Y
+    T      U
+ S    Q   E E
+A S  I
+
+11-    Y
+    T      U
+ S    Q   E E
+A S  I O
+
+12-     Y
+    T       U
+ S    Q    N E
+A S  I O  E
+

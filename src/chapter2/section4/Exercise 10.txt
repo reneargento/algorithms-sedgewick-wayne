@@ -1,0 +1,7 @@
+2.4.10
+
+Parent of pq[k]: pq[ (k - 1) / 2] (Rounded down)
+
+Children of pq[k]:
+Left: pq[k * 2 + 1]
+Right: pq[k * 2 + 2]

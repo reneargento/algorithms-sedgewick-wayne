@@ -1,0 +1,60 @@
+2.4.17
+
+After building a minimum-oriented priority queue of size k, every replace-the-minimum operation inserts a new item and removes the smallest item. 
+
+In a replace-the-minimum operation one item is inserted and another item is removed, leaving the size of the priority queue always the same. The kth largest item in a minimum-oriented priority queue of size k will always be on the top of the heap (it will be the minimum value item). 
+
+The item inserted in a replace-the-minimum operation can be either bigger, have the same value or be smaller than the smallest item.
+
+If a bigger item is inserted, the minimum value item will no longer be the kth largest item (the next largest item will be the kth largest item). Therefore the kth largest item will remain on the priority queue after the minimum item is removed.
+
+If an item with the same value is inserted, it will be moved to the second level of the priority queue in the swim operation. Once the minimum item is removed, it will be moved to the top of the priority queue. Therefore the kth largest item will remain on the priority queue.
+
+If a smaller item is inserted, it will be moved to the top of the priority queue in the swim operation, and then will be removed. This will not affect the kth largest item, which will remain on the priority queue.
+
+Example using a heap of size 6 (k = 6) and 5 replace the minimum operations:
+
+Heap:
+               1
+          2        3
+         4  5     6        
+
+After 1st replace the minimum operation: Insert 10 (a bigger item than the minimum value item) and remove 1:
+
+                2
+           4        3
+         10  5     6
+
+The k (6th) largest of the N items (2) is in the priority queue. N Items: [1, 2, 3, 4, 5, 6, 10]
+
+After 2nd replace the minimum operation: Insert 7 (a bigger item than the minimum value item) and remove 2:
+
+                3
+           4        6
+         10  5     7 
+
+The k (6th) largest of the N items (3) is in the priority queue. N Items: [1, 2, 3, 4, 5, 6, 7, 10]
+
+After 3rd replace the minimum operation: Insert 12 (a bigger item than the minimum value item) and remove 3:
+
+                4
+           5        6
+         10  12    7 
+
+The k (6th) largest of the N items (4) is in the priority queue. N Items: [1, 2, 3, 4, 5, 6, 7, 10, 12]
+
+After 4th replace the minimum operation: Insert -1 (a smaller item than the minimum value item) and remove -1:
+
+                4
+           5        6
+         10  12    7  
+
+The k (6th) largest of the N items (4) is in the priority queue. N Items: [-1, 1, 2, 3, 4, 5, 6, 7, 10, 12]
+
+After 5th replace the minimum operation: Insert 4 (an item with the same value as the minimum value item) and remove 4:
+
+                4
+           5        6
+         10  12    7  
+
+The k (6th) largest of the N items (4) is in the priority queue. N Items: [-1, 1, 2, 3, 4, 4, 5, 6, 7, 10, 12]

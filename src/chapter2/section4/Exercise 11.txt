@@ -1,0 +1,5 @@
+2.4.11
+
+The most effective implementation would be an unordered array.
+This is because the worst case bound for inserting in an unordered array is O(1), while it is O(log n) for a heap and O(n) for an ordered array.
+

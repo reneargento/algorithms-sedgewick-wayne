@@ -1,0 +1,50 @@
+2.4.18
+
+In MaxPQ, inserting an item that is larger than all items in the queue and then immediately calling delMax() results in a heap identical to the heap as it was before these operations.
+
+Example:
+
+Initial heap:
+              10
+          9        8
+         7  6     5 
+
+After inserting item with value 20:
+              20
+          9        10
+         7  6     5  8
+
+After calling delMax():
+              10
+          9        8
+         7  6     5  
+
+For two insert() operations (the first with a key larger than all keys in the queue and the second with a key larger than that one) followed by two delMax() operations the resulting heap is also identical to the heap before the operations.
+
+Example:
+
+Initial heap:
+              10
+          9        8
+         7  6     5 
+
+After inserting item with value 20:
+              20
+          9        10
+         7  6     5  8
+
+After inserting item with value 30:
+              30
+         20        10
+        9  6     5  8
+       7
+
+After calling delMax() for the first time:
+              20
+         9        10
+        7  6     5  8
+       
+After calling delMax() for the second time:
+              10
+         9        8
+        7  6     5  

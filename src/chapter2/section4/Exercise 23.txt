@@ -1,0 +1,28 @@
+2.4.23 - Multiway heaps
+
+t-ary heaps make O(log t n) comparisons in a swim() operation and O(t log t n) comparisons in a sink() operation. This allows t-ary heaps to be more efficient in algorithms where decrease priority operations are more common than delete max operations. Examples: Dijkstra's algorithm for a single source shortest path and Prim's algorithm for minimum spanning tree.
+
+Heapsort uses N/2 sink() operations to build the heap and N sink() operations in the sortdown phase.
+This means that heapsort makes 1.5 N * (t log t n) comparisons in a straightforward generalization of sink() and 1.5 N * ((t log t n) - 1) comparisons with Floyd's method.
+
+Therefore, the number of comparisons for different t while sorting an array of size 100 is:
+
+Straightforward generalization of sink():
+Binary heap: 150 * 2 * log 2 100 ~ 1992 compares
+3-ary heap: 150 * 3 * log 3 100 ~ 1885 compares
+4-ary heap: 150 * 4 * log 4 100 ~ 1992 compares
+5-ary heap: 150 * 5 * log 5 100 ~ 2145 compares
+6-ary heap: 150 * 6 * log 6 100 ~ 2313 compares
+7-ary heap: 150 * 7 * log 7 100 ~ 2478 compares
+
+Using Floyd's method:
+Binary heap: 150 * (2 * log 2 100 - 1) ~ 1842 compares
+3-ary heap: 150 * (3 * log 3 100 - 1) ~ 1735 compares
+4-ary heap: 150 * (4 * log 4 100 - 1) ~ 1842 compares
+5-ary heap: 150 * (5 * log 5 100 - 1) ~ 1995 compares
+6-ary heap: 150 * (6 * log 6 100 - 1) ~ 2163 compares
+7-ary heap: 150 * (7 * log 7 100 - 1) ~ 2328 compares
+
+For both a straightforward generalization of sink() and for Floyd's method the value of t that minimizes the coefficient of N lg N in the compare count when a t-ary heap is used in heapsort is 3.
+
+Reference: http://www.geeksforgeeks.org/k-ary-heap/

@@ -1,0 +1,25 @@
+2.1.14
+
+The minimum number of items that must be exchanged during a remove the maximum operation in a heap of size N with no duplicate keys is 2.
+
+Heap:
+                  100
+          99               98
+      9       10      97        96
+     5 6     7  8   95  94    93  92
+ 
+For two successive remove the maximum operations the minimum number of exchanges is 5.
+
+Heap:
+                  100
+          99               98
+      9       10      94        97
+     5 6     7  8   90  91    93  92
+
+For three successive remove the maximum operations the minimum number of exchanges is 8.
+
+Heap:
+                  100
+          99               98
+      9       10      94        97
+     5 6     7  8   90  91    93  92

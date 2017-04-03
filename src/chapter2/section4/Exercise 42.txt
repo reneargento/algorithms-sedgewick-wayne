@@ -1,0 +1,9 @@
+2.4.42 - Preorder heaps
+
+Representing the heap-ordered tree in preorder makes the sink operation run in linear time and require N compares.
+With a heap-ordered tree in level order it is possible to make only 2 log N compares per sink operation.
+
+Array Size |  Number of Compares Level Order |  Number of Compares Pre Order
+      1000                             16792                          747787
+    100000                           3019976                      7494803823
+   1000000                          36793966                    749738055662

@@ -1,0 +1,3 @@
+2.4.4
+
+Yes, an array that is sorted in decreasing order is a max-oriented heap.

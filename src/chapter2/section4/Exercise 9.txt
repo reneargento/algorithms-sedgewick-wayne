@@ -1,0 +1,45 @@
+2.4.9
+
+Using A,B,C,D,E keys
+
+1-   E
+   D  C
+  B A
+
+2-   E
+   D  C
+  A B
+
+3-   E
+   C  D
+  B A
+
+4-   E
+   C  D
+  A B
+
+5-   E
+   D  A
+  C B
+
+6-   E
+   D  A
+  B C
+
+7-   E
+   D  B
+  C A
+
+8-   E
+   D  B
+  A C
+
+Using A,A,A,B,B keys
+
+1-   B
+   B  A
+  A A
+ 
+2-   B
+   A  B
+  A A

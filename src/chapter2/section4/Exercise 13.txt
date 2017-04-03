@@ -1,0 +1,29 @@
+2.4.13
+
+Changing the line: 
+while (2*k <= N)
+
+To:
+while (2*k < N)
+
+Would guarantee that all indices (2*k + 1) are <= N and with that, the j < N verification would not be necessary.
+
+However, an additional verification would be necessary for the last level of the heap if the node being compared in level n-1 only has a left child.
+
+private void sink(int k) {
+    while (2*k < N) {
+        int j = 2*k;
+        if (less(j, j+1)) j++;
+        if (!less(k, j)) break;
+        exch(k, j);
+        k = j;
+    }
+
+    //If we reached the n-1 level of the heap and it only has 1 child (the left child), we need one more verification
+    if(2 * k == N) {
+        //If the current element is smaller than its child, exchange them
+        if(less(k, 2 * k)) {
+            exch(k, 2 * k);
+        }
+    }
+}

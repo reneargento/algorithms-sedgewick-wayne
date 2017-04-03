@@ -1,0 +1,11 @@
+2.4.41 - Multiway heaps
+
+The best results were achieved in the following order:
+1- 3-Ary heap
+2- Standard implementation (binary heap)
+4- 4-Ary heap
+
+Array Size |  Number of Compares Std Impl |  Number of Compares 3-Ary Heap |  Number of Compares 4-Ary Heap
+      1000                          16888                            16394                            17612
+   1000000                       36793591                         35290487                         37550855
+ 100000000                     5012889883                       4791857538                       5070066273

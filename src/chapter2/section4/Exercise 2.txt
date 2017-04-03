@@ -1,0 +1,3 @@
+2.4.2
+
+This idea would not work because it only keeps track of the current maximum. After a remove-the-maximum operation it would not be possible to know which is the next maximum in constant time, requiring a linear operation to find the new maximum.

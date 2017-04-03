@@ -1,0 +1,11 @@
+2.4.36 - Performance driver I
+
+Array Size |  Average Running Time
+        10                     0.0
+       100                     0.0
+      1000                     0.0
+     10000                     0.0
+    100000                     0.1
+   1000000                     1.1
+  10000000                    23.7
+

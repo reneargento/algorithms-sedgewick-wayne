@@ -1,0 +1,9 @@
+2.4.40 - Floyd's method
+
+Floyd's sink-to-the-bottom-and-then-swim idea reduces the number of compares by approximately half.
+
+Array Size |  Number of Compares Std Impl |  Number of Compares Floyd Enhancement
+      1000                          16838                                   10505
+   1000000                       36792300                                20525893
+ 100000000                     5012875958                              2719452014
+

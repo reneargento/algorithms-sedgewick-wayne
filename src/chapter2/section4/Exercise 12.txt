@@ -1,0 +1,6 @@
+2.4.12
+
+The most effective implementations would be an ordered array or a heap.
+This is because the worst case bound for the find the maximum operation in an ordered array and in a heap is O(1).
+In an unordered array it is O(n).
+

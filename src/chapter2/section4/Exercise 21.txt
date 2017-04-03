@@ -1,0 +1,19 @@
+2.4.21 - Elementary data structures
+
+These data structures can be implemented with the use of an index priority queue.
+
+Stack - 
+Push() - Keep track of the index of the elements and insert new items and associate them with the next index position. If the stack is using all the positions in the array, resize it. Increment the size counter.
+Use an integer auxiliary variable to keep track of the index of the last element added.
+Pop() - Check if the size of the stack is higher than 0. If it is, get the item value of the item on the last index position using the keyOf() method, remove it and decrement the auxiliary variable with the index of the last element added to support consecutive pop() operations. Decrement the size counter and return the item value. If the stack has less than 1/4 elements of the array size, resize it by deallocating half of the array memory.
+
+Queue - 
+Enqueue() - Keep track of the index of the elements and insert new items and associate them with the next index position. If the queue is using all the positions in the array, resize it. Increment the size counter.
+Dequeue() - Check if the size of the queue is higher than 0. If it is, get and remove the item value in the index of position 0 and move all the other items one position to the left. Decrement the size counter and return the removed item value. If the queue has less than 1/4 elements of the array size, resize it by deallocating half of the array memory.
+
+Randomized queue - 
+IsEmpty() - Check if the size of the queue is zero. If it is, return true, otherwise return false.
+Enqueue() - Keep track of the index of the elements and insert new items and associate them with the next index position. If the queue is using all the positions in the array, resize it. Increment the size counter.
+Dequeue() - Check if the size of the queue is higher than 0. If it is, generate a random number between 0 and the size of the queue - 1. Swap the element in the generated index with the last element of the queue. Decrement the size counter, remove the item in the last position and return its value. Decrement the size counter. If the queue has less than 1/4 elements of the array size, resize it by deallocating half of the array memory.
+Sample() - Check if the size of the queue is higher than 0. If it is, generate a random number between 0 and the size of the queue - 1. Return this item value using the keyOf() method.
+

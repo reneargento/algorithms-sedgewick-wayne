@@ -1,0 +1,7 @@
+2.4.32 - Lower bound
+
+As seen on exercise 2.4.31, it is possible to develop a compare-based implementation of the MinPQ API such that insert guarantees to use ~log log N compares, by using binary search on parent pointers to find the ancestor in swim().
+However, it is not possible to develop a compare-based implementation of delete the minimum that guarantees to use ~log log N compares because in every level of sink() the algorithm needs to check which child (left or right) is smaller. This means that a binary search would not be possible and it requires 2 compares per level (one to find the smallest child and another to check if a swap with the parent is necessary), leading to a lower bound of ~2 log N compares.
+
+Another answer (based on http://algs4.cs.princeton.edu/24pq/)
+Such implementation would yield an N log log N compare-based sorting algorithm (insert the N items, then repeatedly remove the minimum), violating the proposition that N log N is the smaller bound for comparison-based sorting algorithms.

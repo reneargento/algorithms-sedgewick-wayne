@@ -11,8 +11,7 @@ import java.util.Map;
  * Created by rene on 30/03/17.
  */
 //Use the VM Option of -Xmx20g to create a 10^9 size array
-    //This implementation uses array sizes of 10^3, 10^6 and 10^8 for the experiments
-@SuppressWarnings("unchecked")
+//This implementation uses array sizes of 10^3, 10^6 and 10^8 for the experiments
 public class Exercise40_FloydsMethod {
 
     private static long numberOfCompares;

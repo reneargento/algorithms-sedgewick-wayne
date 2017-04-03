@@ -1,0 +1,7 @@
+2.4.39 - Cost of construction
+
+Array Size |  % of Time Spent on Construction
+      1000                               66.7
+   1000000                                4.8
+ 100000000                                1.4
+

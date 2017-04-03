@@ -1,0 +1,30 @@
+2.4.28 - Selection filter
+
+Running time for N = 100000 and M = 10000: 0.053
+Running time for N = 1000000 and M = 10000: 0.365
+Running time for N = 10000000 and M = 10000: 3.362
+
+N = 10^5 to N^6 increased the running time by 6.9 times. 
+N = 10^6 to N^7 increased the running time by 9.21 times.
+Estimated increase from N^7 to N^8: 12.29 times the running time of N^7. 
+
+Estimated running time for N = 10^8 and M = 10^4 = 41.32 seconds
+
+Sample input
+
+10 20 10
+1 2 3
+90 91 92
+10 11 10
+3 3 4
+-1 -4 0
+20 10 13
+100 102 999
+1001 98 10
+
+Sample output
+x = 1.0 y = 2.0 z = 3.0
+x = -1.0 y = -4.0 z = 0.0
+x = 3.0 y = 3.0 z = 4.0
+x = 10.0 y = 11.0 z = 10.0
+x = 10.0 y = 20.0 z = 10.0
