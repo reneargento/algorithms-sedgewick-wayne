@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by rene on 31/03/17.
  */
 //Use the VM Option of -Xmx20g to create a 10^9 size array
-//This implementation uses array sizes of 10^3, 10^5 and 10^6 for the experiments
+//This implementation uses array sizes of 10^3, 10^6 and 10^8 for the experiments
 public class Exercise42_PreorderHeaps {
 
     private enum HeapType {
@@ -22,7 +22,7 @@ public class Exercise42_PreorderHeaps {
     private int preorderTraversalIndicesIndex;
 
     public static void main(String[] args) {
-        int[] arraySizes = {1000, 100000, 1000000};
+        int[] arraySizes = {1000, 1000000, 100000000};
 
         Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
         for(int i=0; i < 3; i++) {
@@ -50,9 +50,9 @@ public class Exercise42_PreorderHeaps {
             long numberOfComparesStandardImpl = numberOfCompares;
 
             numberOfCompares = 0;
-            preorderTraversalIndicesIndex = 0;
+            preorderTraversalIndicesIndex = 1;
             //Using a heap-ordered tree in preorder
-            int[] preorderTraversalIndices = new int[array.length - 1];
+            int[] preorderTraversalIndices = new int[array.length];
             generatePreorderTraversalIndices(preorderTraversalIndices, 1, array.length);
             heapSort(array, preorderTraversalIndices, HeapType.PRE_ORDER);
 
@@ -73,14 +73,7 @@ public class Exercise42_PreorderHeaps {
     //Standard implementation - heap-ordered tree in level order
     private void constructHeapLevelOrder(Comparable[] array) {
         for(int i = array.length / 2; i >= 1; i--) {
-            sink(array, i, array.length - 1);
-        }
-    }
-
-    //Heap-ordered tree in preorder
-    private void constructHeapPreOrder(Comparable[] array, int[] preorderTraversalIndices) {
-        for(int i = preorderTraversalIndices.length - 2; i >= 0; i--) {
-            sinkHeapPreOrder(array, preorderTraversalIndices[i], i + 1, preorderTraversalIndices, preorderTraversalIndices.length - 1);
+            sinkLevelOrder(array, i, array.length - 1);
         }
     }
 
@@ -90,29 +83,11 @@ public class Exercise42_PreorderHeaps {
         while (endIndex > 1) {
             ArrayUtil.exchange(array, 1, endIndex);
             endIndex--;
-            sink(array, 1, endIndex);
+            sinkLevelOrder(array, 1, endIndex);
         }
     }
 
-    private void sortdownPreorder(Comparable[] array, int[] preorderTraversalIndices) {
-        int endIndex = preorderTraversalIndices.length - 1;
-
-        //If we use an in-place sort in this case, the array will end up pre-ordered instead of in-ordered
-        Comparable[] orderedArray = new Comparable[array.length];
-        int orderedArrayIndex = orderedArray.length - 1;
-
-        while (endIndex >= 0) {
-            ArrayUtil.exchange(array, 1, preorderTraversalIndices[endIndex]);
-            orderedArray[orderedArrayIndex--] = array[preorderTraversalIndices[endIndex]];
-            endIndex--;
-            sinkHeapPreOrder(array, 1, 1, preorderTraversalIndices, endIndex);
-        }
-
-        //Array is now sorted in preorder, but we need an array sorted inorder
-        System.arraycopy(orderedArray, 0, array, 0, orderedArray.length);
-    }
-
-    private void sink(Comparable[] array, int index, int endIndex) {
+    private void sinkLevelOrder(Comparable[] array, int index, int endIndex) {
         while (index * 2 <= endIndex) {
             int biggestChildIndex = index * 2;
 
@@ -134,16 +109,53 @@ public class Exercise42_PreorderHeaps {
         }
     }
 
+    //Heap-ordered tree in preorder
+    private void constructHeapPreOrder(Comparable[] array, int[] preorderTraversalIndices) {
+        for(int i = preorderTraversalIndices.length / 2; i >= 1; i--) {
+            sinkHeapPreOrder(array, preorderTraversalIndices[i], i, preorderTraversalIndices, preorderTraversalIndices.length - 1);
+        }
+    }
+
+    private void sortdownPreorder(Comparable[] array, int[] preorderTraversalIndices) {
+        int endIndex = preorderTraversalIndices.length - 1;
+
+        //If we use an in-place sort in this case, the array will end up pre-ordered instead of in-ordered
+        Comparable[] orderedArray = new Comparable[array.length];
+        int orderedArrayIndex = orderedArray.length - 1;
+
+        while (endIndex >= 1) {
+            ArrayUtil.exchange(array, 1, preorderTraversalIndices[endIndex]);
+            orderedArray[orderedArrayIndex--] = array[preorderTraversalIndices[endIndex]];
+            endIndex--;
+            sinkHeapPreOrder(array, 1, 1, preorderTraversalIndices, endIndex);
+        }
+
+        //Array is now sorted in preorder, but we need an array sorted inorder
+        System.arraycopy(orderedArray, 0, array, 0, orderedArray.length);
+    }
+
     private void sinkHeapPreOrder(Comparable[] array, int currentIndex, int startTraversalIndex,
-                                         int[] preorderTraversalIndices, int endIndex) {
-        for(int i = startTraversalIndex; i <= endIndex; i++) {
-            numberOfCompares++;
-            if(ArrayUtil.less(array[currentIndex], array[preorderTraversalIndices[i]])) {
-                ArrayUtil.exchange(array, currentIndex, preorderTraversalIndices[i]);
-                currentIndex = preorderTraversalIndices[i];
-            } else {
-                return;
+                                  int[] preorderTraversalIndices, int endIndex) {
+
+        while (startTraversalIndex * 2 <= endIndex) {
+            int biggestChildIndex = startTraversalIndex * 2;
+
+            if(startTraversalIndex * 2 + 1 <= endIndex) {
+                numberOfCompares++;
+                if(ArrayUtil.more(array[preorderTraversalIndices[startTraversalIndex * 2 + 1]], array[preorderTraversalIndices[startTraversalIndex * 2]])) {
+                    biggestChildIndex = startTraversalIndex * 2 + 1;
+                }
             }
+
+            numberOfCompares++;
+            if(ArrayUtil.less(array[currentIndex], array[preorderTraversalIndices[biggestChildIndex]])) {
+                ArrayUtil.exchange(array, currentIndex, preorderTraversalIndices[biggestChildIndex]);
+            } else {
+                break;
+            }
+
+            currentIndex = preorderTraversalIndices[biggestChildIndex];
+            startTraversalIndex = biggestChildIndex;
         }
     }
 
