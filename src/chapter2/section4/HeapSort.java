@@ -7,7 +7,7 @@ import util.ArrayUtil;
  */
 public class HeapSort {
 
-    public void heapSort(Comparable[] array) {
+    public static void heapSort(Comparable[] array) {
         constructHeap(array);
         sortdown(array);
     }
