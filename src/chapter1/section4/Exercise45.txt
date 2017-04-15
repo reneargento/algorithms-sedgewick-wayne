@@ -23,7 +23,7 @@
    2097152            30648489                          32303864                      0.9
    4194304            71538965                          64607728                      1.1
 
-The experiments comprove the hypothesis that the number of integers generated before all possible values1d
+The experiments comprove the hypothesis that the number of integers generated before all possible values
 are generated is ~NHn
 
 Good reference on the coupon collector problem: https://www.quora.com/What-is-the-Coupon-Collectors-problem

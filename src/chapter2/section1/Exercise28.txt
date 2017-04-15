@@ -1,106 +1,106 @@
 2.1.28 - Equal keys
 
 Hypothesis: 
-1- Selection sort will take the same time for both arrays with different values1d and arrays with only 2 possible values1d.
-2- Insertion sort will be faster for arrays with only 2 possible values1d than for arrays with different values1d.
+1- Selection sort will take the same time for both arrays with different values and arrays with only 2 possible values.
+2- Insertion sort will be faster for arrays with only 2 possible values than for arrays with different values.
 
 Validation:
 
 Selection Sort
 For an array of size 128: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 256: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 512: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 1024: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 2048: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 4096: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 8192: 
-Time for an array with any values1d: 0.1
-Time for an array with 2 values1d: 0.1
+Time for an array with any values: 0.1
+Time for an array with 2 values: 0.1
 
 For an array of size 16384: 
-Time for an array with any values1d: 0.2
-Time for an array with 2 values1d: 0.2
+Time for an array with any values: 0.2
+Time for an array with 2 values: 0.2
 
 For an array of size 32768: 
-Time for an array with any values1d: 1.0
-Time for an array with 2 values1d: 0.7
+Time for an array with any values: 1.0
+Time for an array with 2 values: 0.7
 
 For an array of size 65536: 
-Time for an array with any values1d: 4.4
-Time for an array with 2 values1d: 3.0
+Time for an array with any values: 4.4
+Time for an array with 2 values: 3.0
 
 For an array of size 131072: 
-Time for an array with any values1d: 20.9
-Time for an array with 2 values1d: 11.7
+Time for an array with any values: 20.9
+Time for an array with 2 values: 11.7
 
 Insertion Sort
 For an array of size 128: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 256: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 512: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 1024: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 2048: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 4096: 
-Time for an array with any values1d: 0.0
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.0
+Time for an array with 2 values: 0.0
 
 For an array of size 8192: 
-Time for an array with any values1d: 0.1
-Time for an array with 2 values1d: 0.0
+Time for an array with any values: 0.1
+Time for an array with 2 values: 0.0
 
 For an array of size 16384: 
-Time for an array with any values1d: 0.2
-Time for an array with 2 values1d: 0.1
+Time for an array with any values: 0.2
+Time for an array with 2 values: 0.1
 
 For an array of size 32768: 
-Time for an array with any values1d: 1.0
-Time for an array with 2 values1d: 0.4
+Time for an array with any values: 1.0
+Time for an array with 2 values: 0.4
 
 For an array of size 65536: 
-Time for an array with any values1d: 4.3
-Time for an array with 2 values1d: 1.5
+Time for an array with any values: 4.3
+Time for an array with 2 values: 1.5
 
 For an array of size 131072: 
-Time for an array with any values1d: 18.9
-Time for an array with 2 values1d: 6.3
+Time for an array with any values: 18.9
+Time for an array with 2 values: 6.3
 
-For only 2 values1d, Insertion Sort is 15837.0 times faster than Selection Sort
+For only 2 values, Insertion Sort is 15837.0 times faster than Selection Sort
 
 --------
 Result:
-1- Selection sort is faster for arrays with only 2 possible values1d than for arrays with different values1d.
-2- Insertion sort is a lot faster for arrays with only 2 possible values1d than for arrays with different values1d.
+1- Selection sort is faster for arrays with only 2 possible values than for arrays with different values.
+2- Insertion sort is a lot faster for arrays with only 2 possible values than for arrays with different values.
 
-Insertion sort is faster than selection sort for sorting arrays with only 2 possible values1d.
+Insertion sort is faster than selection sort for sorting arrays with only 2 possible values.

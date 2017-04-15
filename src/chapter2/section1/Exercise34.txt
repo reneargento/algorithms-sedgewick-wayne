@@ -2,9 +2,9 @@
 
 As expected:
 For ordered arrays insertion sort runs in linear time, and is faster than selection sort.
-For reverse ordered arrays insertion sort runs much slower because it has to swap all values1d until the beginning of the array.
+For reverse ordered arrays insertion sort runs much slower because it has to swap all values until the beginning of the array.
 For same keys, just like with ordered arrays, insertion sort runs in linear time.
-For 2 distinct values1d, insertion sort has to do less swaps, running faster than selection sort.
+For 2 distinct values, insertion sort has to do less swaps, running faster than selection sort.
 For size 1 and size 0 arrays all sorts run fast.
 Shell sort is faster than selection sort and insertion sort in all cases. 
 

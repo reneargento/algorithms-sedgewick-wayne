@@ -25,7 +25,7 @@ String key, one double value
           SHELL             80000     0.48
 
 
-Double key, ten String values1d
+Double key, ten String values
       SELECTION             10000     6.37
       INSERTION             10000     3.56
           SHELL             10000     0.04

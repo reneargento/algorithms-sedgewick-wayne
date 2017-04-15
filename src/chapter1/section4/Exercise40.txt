@@ -1,4 +1,4 @@
-1.4.40 - 3-Sum for random values1d
+1.4.40 - 3-Sum for random values
 
 Hypotheses: 
 1- Every time we double N, the number of triples is multiplied by 8
