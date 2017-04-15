@@ -8,7 +8,7 @@ import util.ArrayUtil;
 @SuppressWarnings("unchecked")
 public class PriorityQueueResize<Key extends Comparable<Key>> {
 
-    enum Orientation {
+    public enum Orientation {
         MAX, MIN;
     }
 
@@ -16,7 +16,7 @@ public class PriorityQueueResize<Key extends Comparable<Key>> {
     private int size = 0; // in priorityQueue[1..n] with pq[0] unused
     private Orientation orientation;
 
-    PriorityQueueResize(Orientation orientation) {
+    public PriorityQueueResize(Orientation orientation) {
         priorityQueue = (Key[]) new Comparable[2];
         this.orientation = orientation;
     }

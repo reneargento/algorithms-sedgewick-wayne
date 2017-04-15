@@ -11,7 +11,7 @@ For simplicity, assume that the binary heap is perfect (i.e., a binary tree in w
   1     1     1       1     1      1       1    1
  0 0   0 0   0 0     0 0   0 0    0 0     0 0  0 0
 
-The values are the height of the subtrees rooted in each node.
+The values1d are the height of the subtrees rooted in each node.
 
 We define the height of a node in a tree to be the height of the subtree rooted at that node. A key at height k can be exchanged with at most k keys beneath it when it is sunk down.
 Since there are 2^h-k nodes at height k, the total number of exchanges is at most:

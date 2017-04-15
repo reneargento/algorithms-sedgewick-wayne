@@ -1,7 +1,7 @@
 1.5.8
 
 In the loop, id[p] will eventually be set to id[q], losing the reference to the original parent.
-This will make the next elements with id[i] == id[p] to not have their values updated.
+This will make the next elements with id[i] == id[p] to not have their values1d updated.
 
 Counterexample:
 

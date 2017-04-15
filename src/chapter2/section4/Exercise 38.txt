@@ -1,10 +1,10 @@
 2.4.38 - Exercise driver
 
-The input types with ordered keys and reverse ordered keys had a higher running time than the input types with all keys the same and with keys having only two distinct values.
+The input types with ordered keys and reverse ordered keys had a higher running time than the input types with all keys the same and with keys having only two distinct values1d.
 Ordered keys will always require lg n operations for the insert and the delete max methods.
 Reverse ordered keys can perform insert operations in constant time since swim() is not required (the inserted element is always smaller than all the others) but requires lg n operations on the delete max operation.
 The input with all keys the same had the lowest running time from all inputs. Its insert and delete operations run in constant time because there is no need to move any keys on swim() or sink().
-The input with keys with only 2 values require on average (lg n) / 2 operations for the insert and the delete max methods. 
+The input with keys with only 2 values1d require on average (lg n) / 2 operations for the insert and the delete max methods.
 
                Input Type |  Array Size |  Running Time
                   Ordered       1000000             0.2

@@ -1,9 +1,9 @@
 2.3.21 - Lower bound for sorting with equal keys
 
 Proposition M says that no compare-based sorting algorithm can guarantee to sort N items with fewer than NH - N compares,
-where H is the Shannon entropy, defined from the frequencies of key values.
+where H is the Shannon entropy, defined from the frequencies of key values1d.
 
-First part of the proof: There are N! / f1! f2! ... fk! different ways to arrange keys with k different values, where the ith value appears with frequency fi, with f1 + ... + fk = N.
+First part of the proof: There are N! / f1! f2! ... fk! different ways to arrange keys with k different values1d, where the ith value appears with frequency fi, with f1 + ... + fk = N.
 
 Using a ternary tree we can describe the sequence of compares. Each node in the tree is either a leaf i0 i1 i2 ... in-1 that indicates that the sort is complete and has discovered that the original inputs were in the order a[i0], a[i1], ... a[in-1], or an internal node i:j that corresponds to a compare operation between a[i] and a[j], with a left subtree corresponding to the sequence of compares in the case that a[i] is less than a[j], a central subtree corresponding to the sequence of compares in the case that a[i] is equal to a[j] and a right subtree corresponding to what happens if a[i] is greater than a[j]. Each path from the root to a leaf corresponds to the sequence of compares that the algorithm uses to establish the ordering given in the leaf.
 
@@ -18,4 +18,4 @@ Combining the previous two observations, we have shown that any compare-based so
 N! / f1! f2! ... fk! <= number of leaves <= 3^h
 
 The value of h is precisely the worst-case number of compares, so we can take the logarithm (base 2) of both sides of this equation and conclude that the number of compares used by any algorithm must be at least lg N! / f1! f2! ... fk!
-The approximation lg N! ~ N lg N follows immediately from Stirling's approximation to the factorial function, which means that the number of compares used by any algorithm must be at least N lg N / f1! f2! ... fk! when there are k different values.
+The approximation lg N! ~ N lg N follows immediately from Stirling's approximation to the factorial function, which means that the number of compares used by any algorithm must be at least N lg N / f1! f2! ... fk! when there are k different values1d.

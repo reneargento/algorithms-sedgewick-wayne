@@ -2,13 +2,13 @@
 
 Hypotheses:
 Selection sort will run with similar speed in all inputs.
-Insertion sort will run faster than selection sort for half 0 and half 1 values input. And it will run slightly faster than selection sort for the half 0 and half remainder 1s, half remainder 2s, etc input; and for the half 0, half random int values input.
+Insertion sort will run faster than selection sort for half 0 and half 1 values1d input. And it will run slightly faster than selection sort for the half 0 and half remainder 1s, half remainder 2s, etc input; and for the half 0, half random int values1d input.
 Shell sort will run faster than selection sort and insertion sort for all inputs.
 
 After testing the hypotheses:
 
 Selection sort ran with similar speed in all inputs.
-Insertion sort ran faster than selection sort for half 0 and half 1 values input and for the half 0, half random int values input. It ran in linear time, and much faster than selection sort for the half 0 and half remainder 1s, half remainder 2s, etc input; because the array was already sorted. 
+Insertion sort ran faster than selection sort for half 0 and half 1 values1d input and for the half 0, half random int values1d input. It ran in linear time, and much faster than selection sort for the half 0 and half remainder 1s, half remainder 2s, etc input; because the array was already sorted.
 Shell sort ran faster than selection sort and insertion sort for all inputs, except for the half 0 and half remainder 1s, half remainder 2s, etc input; in which it had the same speed as insertion sort.
 
       Sort Type      Array Length     Time
