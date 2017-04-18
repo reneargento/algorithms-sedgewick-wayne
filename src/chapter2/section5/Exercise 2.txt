@@ -1,0 +1,9 @@
+2.5.2
+
+The compareTo() is a flawed implementation of the Comparable interface because it violates the Comparable contract.
+It is possible that a.compareTo(b) and b.compareTo(c) are both 0, but a.compareTo(c) is positive (or negative).
+To fix this problem both "amount" variables should be compared directly:
+
+if(this.amount < that.amount) return -1;
+if(this.amount > that.amount) return +1;
+return 0;

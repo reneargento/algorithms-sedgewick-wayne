@@ -1,0 +1,5 @@
+2.5.23 - Sampling for selection
+
+Sampling improves selection in cases where the element searched is one of the smallest or highest values in the array.
+For example, when searching for the 2nd smallest element in an array of size 10^9, selecting one of the smallest elements as the pivot in the initial steps will yield better performance than always choosing the median. 
+This can discard 75%+ of the array, improving selection performance.

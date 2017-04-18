@@ -1,0 +1,10 @@
+2.5.5
+
+Selection sort is not stable because it exchanges nonadjacent elements.
+On the example below, the first B gets swapped to the right of the second B.
+
+i  min   0   1   2
+0    2  B1  B2   A
+1    1   A  B2  B1
+2    2   A  B2  B1
+         A  B2  B1

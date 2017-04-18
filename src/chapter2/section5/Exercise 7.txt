@@ -1,0 +1,4 @@
+2.5.7
+
+On the average, to find the smallest of N items using select(), it is required 2N + 2N * ln + (2N - 2) * ln(N / (N - 1)) compares.
+This follows from proposition U in the book that says that the average number of compares to find the kth item in a shuffled array is ~2N + 2k * ln(N / k) + 2(N - k) * ln(N / (N - k)) and replacing k for 1.

@@ -1,0 +1,19 @@
+2.5.30 - Boerner's theorem
+
+True.
+Assume that we have a matrix with all columns sorted.
+
+A00 A01
+A10 A11
+
+There are two possible scenarios:
+
+1- A01 < A00
+In this case, swap both values. Since A00 was smaller (or equal) than A10, A01 will also be smaller than A10.
+A problem could arise if A00 were bigger than A11. However, we know that A00 is smaller (or equal) than A10 (due to the original configuration of the sorted columns). If A11 is smaller than A10, they will be swapped, maintaining the sort.
+A11 will only remain on the same place if it is bigger than A10, which means it will also be bigger than A00.
+
+2- A01 > A00
+The values will not be swapped. Also, the values A10 and A11 will only be swapped in A11 is smaller than A10.
+However, we know that A10 is smaller than A00. Therefore, if a swap occurs, A11 will also be smaller than A00.
+Also, if a swap occurs, A10 will be bigger than A11, and, consequently, also bigger than A01.

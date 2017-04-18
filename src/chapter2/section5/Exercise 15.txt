@@ -1,0 +1,4 @@
+2.5.15 - Spam campaign
+
+I would sort the email list by the reverse domain.
+Then I would choose emails among the same domain to serve as sender and receiver and repeat this process for each domain.

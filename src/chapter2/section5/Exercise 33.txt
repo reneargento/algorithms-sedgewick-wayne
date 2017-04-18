@@ -1,0 +1,21 @@
+2.5.33 - Random transactions
+
+Overall, QuickSort and MergeSort had a better performance than HeapSort, which had a better performance than ShellSort.
+
+Number of Transactions |  Sort Method |     Time Spent
+                  1000      ShellSort             0.00
+                  1000      MergeSort             0.00
+                  1000      QuickSort             0.00
+                  1000       HeapSort             0.00
+                 10000      ShellSort             0.01
+                 10000      MergeSort             0.01
+                 10000      QuickSort             0.01
+                 10000       HeapSort             0.01
+                100000      ShellSort             0.09
+                100000      MergeSort             0.10
+                100000      QuickSort             0.03
+                100000       HeapSort             0.05
+               1000000      ShellSort             1.40
+               1000000      MergeSort             0.41
+               1000000      QuickSort             0.49
+               1000000       HeapSort             0.84

@@ -1,0 +1,3 @@
+2.5.1
+
+The third line helps with efficiency by checking if the two objects being compared are the same (when both references point to the same object). This verification helps to avoid iterating through all characters on both Strings in the case that both objects are the same.

@@ -1,7 +1,6 @@
 package chapter2.section1;
 
 import edu.princeton.cs.algs4.Date;
-import edu.princeton.cs.algs4.StdOut;
 
 /**
  * Created by rene on 30/01/17.
