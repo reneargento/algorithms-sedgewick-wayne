@@ -26,6 +26,10 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
     }
 
     public Value get(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Argument to get() cannot be null");
+        }
+
         if(isEmpty()) {
             return null;
         }
@@ -39,6 +43,10 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
     }
 
     public int rank(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
         int low = 0;
         int high = size - 1;
 
@@ -59,6 +67,19 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
     }
 
     public void put(Key key, Value value) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        if(value == null) {
+            delete(key);
+            return;
+        }
+
+        if(size == keys.length) {
+            resize(size * 2);
+        }
+
         int rank = rank(key);
 
         if(rank < size && keys[rank].compareTo(key) == 0) {
@@ -76,16 +97,17 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
     }
 
     public boolean contains(Key key) {
-        int rank = rank(key);
-
-        if(rank < size && keys[rank].compareTo(key) == 0) {
-            return true;
-        } else {
-            return false;
+        if (key == null) {
+            throw new IllegalArgumentException("Argument to contains() cannot be null");
         }
+        return get(key) != null;
     }
 
     public void delete(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Argument to delete() cannot be null");
+        }
+
         //Exercise 3.1.16
     }
 
@@ -128,7 +150,33 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
         return null;
     }
 
+    public void deleteMin() {
+        delete(min());
+    }
+
+    public void deleteMax() {
+        delete(max());
+    }
+
+    public int size(Key low, Key high) {
+        if (low == null || high == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        if(high.compareTo(low) < 0) {
+            return 0;
+        } else if(contains(high)) {
+            return rank(high) - rank(low) + 1;
+        } else {
+            return rank(high) - rank(low);
+        }
+    }
+
     public Iterable<Key> keys(Key low, Key high) {
+        if (low == null || high == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
         Queue<Key> queue = new Queue<>();
 
         for(int i = rank(low); i < rank(high); i++) {
@@ -140,5 +188,20 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
         }
 
         return queue;
+    }
+
+    public Iterable<Key> keys() {
+        return keys(min(), max());
+    }
+
+    private void resize(int newSize) {
+        Key[] tempKeys = (Key[]) new Comparable[newSize];
+        Value[] tempValues = (Value[]) new Object[newSize];
+
+        System.arraycopy(keys, 0, tempKeys, 0, size);
+        System.arraycopy(values, 0, tempValues, 0, size);
+
+        keys = tempKeys;
+        values = tempValues;
     }
 }

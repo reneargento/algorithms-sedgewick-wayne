@@ -12,7 +12,7 @@ import java.util.Map;
 public class Exercise1 {
 
     public static void main(String[] args) {
-        Map<String, Double> scoresMap = new HashMap<>();
+        BinarySearchSymbolTable<String, Double> scoresMap = new BinarySearchSymbolTable<>(2);
         scoresMap.put("A+", 4.33);
         scoresMap.put("A", 4.00);
         scoresMap.put("A-", 3.67);
@@ -30,7 +30,7 @@ public class Exercise1 {
         StdOut.printf("GPA: %.2f", gpa);
     }
 
-    private double computeGPA(Map<String, Double> scoresMap, String[] grades) {
+    private double computeGPA(BinarySearchSymbolTable<String, Double> scoresMap, String[] grades) {
 
         double totalGrades = 0;
 
