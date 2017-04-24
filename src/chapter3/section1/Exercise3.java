@@ -3,6 +3,8 @@ package chapter3.section1;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.NoSuchElementException;
+
 /**
  * Created by rene on 23/04/17.
  */
@@ -132,13 +134,17 @@ public class Exercise3 {
 
         public Key min() {
             if(isEmpty()) {
-                return null;
+                throw new NoSuchElementException("Empty symbol table");
             }
 
             return first.key;
         }
 
         public Key max() {
+            if(isEmpty()) {
+                throw new NoSuchElementException("Empty symbol table");
+            }
+
             for(Node node = first; node != null; node = node.next) {
                 if(node.next == null) {
                     return node.key;
@@ -216,7 +222,7 @@ public class Exercise3 {
 
         public Key select(int rank) {
             if(rank < 0 || rank >= size) {
-                return null;
+                throw new IllegalArgumentException("Invalid argument: " + rank);
             }
 
             int currentRank = 0;
@@ -233,10 +239,18 @@ public class Exercise3 {
         }
 
         public void deleteMin() {
+            if (isEmpty()) {
+                throw new NoSuchElementException("Symbol table underflow error");
+            }
+
             delete(min());
         }
 
         public void deleteMax() {
+            if (isEmpty()) {
+                throw new NoSuchElementException("Symbol table underflow error");
+            }
+
             delete(max());
         }
 

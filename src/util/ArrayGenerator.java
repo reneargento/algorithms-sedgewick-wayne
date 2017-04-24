@@ -36,6 +36,16 @@ public class ArrayGenerator {
         return array;
     }
 
+    public static int[] generateRandomIntegerArray(int length, int upperBoundExclusive) {
+        int[] array = new int[length];
+
+        for(int i=0; i < length; i++) {
+            array[i] = StdRandom.uniform(upperBoundExclusive);
+        }
+
+        return array;
+    }
+
     public static Comparable[] generateOrderedArray(int length) {
         Comparable[] array = new Comparable[length];
 

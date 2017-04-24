@@ -38,15 +38,15 @@ public class Exercise2 {
                 return;
             }
 
-            if(size == keys.length) {
-                resize(size * 2);
-            }
-
             for(int i=0; i < size; i++) {
                 if(keys[i].equals(key)) {
                     values[i] = value;
                     return;
                 }
+            }
+
+            if(size == keys.length) {
+                resize(keys.length * 2);
             }
 
             keys[size] = key;

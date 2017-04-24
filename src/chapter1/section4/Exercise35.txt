@@ -10,8 +10,8 @@
 
 ** Resizing array
   * int
-     ~5N data references - each of the array entries has a reference to the previous item (except the first) and the next item (except the last). If the array were composed of N items that would be 3N. Since it is a resizing array there may be entries unfilled (but never more than 2 times N), so summing all the references we have approximately 5N. Also, the stack has a reference to the array. [This needs to be confirmed, but it was the only logical way I could come up with 5N]
+     ~5N data references - each of the array entries has a reference to an int value. Due to resizing, the array can be 25% to 100% full, meaning the total number of references can go up to ~4N. Also, the stack has a reference to the array.
      lgN objects created - every time the array is resized, a new array object is created. When the array is resized (due to pushes), it doubles its size. Therefore, at capacity 1, 2, 4, 8, 16, etc, a new object will be created. Hence, lgN objects.
   * Integer
-     ~5N data references - each of the array entries has a reference to the previous item (except the first) and the next item (except the last). If the array were composed of N items that would be 3N. Since it is a resizing array there may be entries unfilled (but never more than 2 times N), so summing all the references we have approximately 5N. Also, the stack has a reference to the array. [This needs to be confirmed, but it was the only logical way I could come up with 5N]
+     ~5N data references - each of the array entries has a reference to an int value. Due to resizing, the array can be 25% to 100% full, meaning the total number of references can go up to ~4N. Also, the stack has a reference to the array.
      ~N objects created - the N Integer objects created plus lg N objects created due to the resize operations. Therefore, ~N.

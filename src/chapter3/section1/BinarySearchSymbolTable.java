@@ -2,6 +2,8 @@ package chapter3.section1;
 
 import edu.princeton.cs.algs4.Queue;
 
+import java.util.NoSuchElementException;
+
 /**
  * Created by rene on 22/04/17.
  */
@@ -11,6 +13,13 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
     private Key[] keys;
     private Value[] values;
     private int size;
+
+    private static final int DEFAULT_INITIAL_CAPACITY = 2;
+
+    public BinarySearchSymbolTable() {
+        keys = (Key[]) new Comparable[DEFAULT_INITIAL_CAPACITY];
+        values = (Value[]) new Object[DEFAULT_INITIAL_CAPACITY];
+    }
 
     public BinarySearchSymbolTable(int capacity) {
         keys = (Key[]) new Comparable[capacity];
@@ -35,7 +44,7 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
         }
 
         int rank = rank(key);
-        if( rank < size && keys[rank].compareTo(key) == 0) {
+        if(rank < size && keys[rank].compareTo(key) == 0) {
             return values[rank];
         } else {
             return null;
@@ -76,15 +85,15 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
             return;
         }
 
-        if(size == keys.length) {
-            resize(size * 2);
-        }
-
         int rank = rank(key);
 
         if(rank < size && keys[rank].compareTo(key) == 0) {
             values[rank] = value;
             return;
+        }
+
+        if(size == keys.length) {
+            resize(keys.length * 2);
         }
 
         for(int i = size; i > rank; i--) {
@@ -108,12 +117,28 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
             throw new IllegalArgumentException("Argument to delete() cannot be null");
         }
 
-        //Exercise 3.1.16
+        if(isEmpty() || !contains(key)) {
+            return;
+        }
+
+        int rank = rank(key);
+        for(int i = rank; i < size - 1; i++) {
+            keys[i] = keys[i + 1];
+            values[i] = values[i + 1];
+        }
+
+        keys[size - 1] = null;
+        values[size - 1] = null;
+        size--;
+
+        if(size > 0 && size == keys.length / 4) {
+            resize(keys.length / 2);
+        }
     }
 
     public Key min() {
         if(isEmpty()) {
-            return null;
+            throw new NoSuchElementException("Empty symbol table");
         }
 
         return keys[0];
@@ -121,7 +146,7 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
 
     public Key max() {
         if(isEmpty()) {
-            return null;
+            throw new NoSuchElementException("Empty symbol table");
         }
 
         return keys[size - 1];
@@ -129,7 +154,7 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
 
     public Key select(int k) {
         if(isEmpty() || k >= size) {
-            return null;
+            throw new IllegalArgumentException("Invalid argument: " + k);
         }
 
         return keys[k];
@@ -139,22 +164,39 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
         int rank = rank(key);
 
         if(rank == size) {
-            return keys[rank - 1];
+            return null;
         }
 
         return keys[rank];
     }
 
     public Key floor(Key key) {
-        //Exercise 3.1.17
-        return null;
+        if(contains(key)) {
+            return key;
+        }
+
+        int rank = rank(key);
+
+        if(rank == 0) {
+            return null;
+        }
+
+        return keys[rank - 1];
     }
 
     public void deleteMin() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Symbol table underflow error");
+        }
+
         delete(min());
     }
 
     public void deleteMax() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Symbol table underflow error");
+        }
+
         delete(max());
     }
 
