@@ -3,6 +3,9 @@ package chapter2.section2;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by rene on 11/02/17.
  */
@@ -13,41 +16,36 @@ public class Exercise7 {
 
     public static void main(String[] args) {
 
-        boolean isMonotonicallyIncreasing = doExperiments(1, 512);
+        boolean isMonotonicallyIncreasing = doExperiments(512);
         StdOut.println("Is Monotonically Increasing: " + isMonotonicallyIncreasing);
     }
 
-    private static boolean doExperiments(int arrayLength, int numberOfExperiments) {
+    private static boolean doExperiments(int numberOfExperiments) {
 
         int previousNumberOfCompares = -1;
 
+        List<Double> values = new ArrayList<>();
+
         for(int i=0; i < numberOfExperiments; i++) {
+
+            double randomValue = StdRandom.uniform();
+            values.add(randomValue);
+
+            Comparable[] array = new Comparable[values.size()];
+            values.toArray(array);
 
             numberOfCompares = 0;
 
-            Comparable[] array = generateRandomArray(arrayLength);
             topDownMergeSort(array);
 
-            if(numberOfCompares < previousNumberOfCompares) {
+            if(numberOfCompares <= previousNumberOfCompares) {
                 return false;
             } else {
                 previousNumberOfCompares = numberOfCompares;
             }
-
-            arrayLength++;
         }
 
         return true;
-    }
-
-    private static Comparable[] generateRandomArray(int arrayLength) {
-        Comparable[] array = new Comparable[arrayLength];
-
-        for(int i=0; i < arrayLength; i++) {
-            array[i] = StdRandom.uniform();
-        }
-
-        return array;
     }
 
     private static void topDownMergeSort(Comparable[] array) {

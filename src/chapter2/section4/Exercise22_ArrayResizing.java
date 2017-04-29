@@ -193,8 +193,8 @@ public class Exercise22_ArrayResizing {
                 + " N = " + (priorityQueue.size() + 1));
 
         //Amortized analysis
-        int lgInsertedItems = (int) (Math.log(priorityQueue.totalItemsInserted) / Math.log(2));
-        int lgRemovedItems = (int) (Math.log(priorityQueue.totalItemsRemoved) / Math.log(2));
+        int lgInsertedItems = (int) (Math.log10(priorityQueue.totalItemsInserted) / Math.log10(2));
+        int lgRemovedItems = (int) (Math.log10(priorityQueue.totalItemsRemoved) / Math.log10(2));
 
         double twoPowerLgArrayAccessesForInsertMinus1 = Math.ceil(Math.pow(2, Math.log(priorityQueue.totalArrayAccessesForInsert) / Math.log(2) - 1));
         double twoPowerLgArrayAccessesForRemoveMaximumMinus1 = Math.ceil(Math.pow(2, Math.log(priorityQueue.totalArrayAccessesForRemoveMaximum) / Math.log(2) - 1));

@@ -151,7 +151,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
 
         //O(lg N)
         private int[] generatePathToNode(int nodeIndex) {
-            int pathSize = (int) Math.ceil(Math.log(nodeIndex) / Math.log(2)) + 1;
+            int pathSize = (int) Math.ceil(Math.log10(nodeIndex) / Math.log10(2)) + 1;
 
             if(pathSize <= 0) {
                 return new int[0];
@@ -159,7 +159,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
 
             int[] pathToNode = new int[pathSize];
 
-            for(int i=pathSize - 1; i >= 0; i--) {
+            for(int i = pathSize - 1; i >= 0; i--) {
                 pathToNode[i] = nodeIndex;
 
                 nodeIndex /= 2;
@@ -195,15 +195,15 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
         Exercise24_PriorityQueueExplicitLinks<Integer>.PriorityQueueExplicitLinks priorityQueueExplicitLinks =
                 new Exercise24_PriorityQueueExplicitLinks().new PriorityQueueExplicitLinks();
 
-        StdOut.println("isEmpty: " + priorityQueueExplicitLinks.isEmpty());
+        StdOut.println("isEmpty: " + priorityQueueExplicitLinks.isEmpty() + " Expected: true");
 
         priorityQueueExplicitLinks.insert(10);
         priorityQueueExplicitLinks.insert(2);
         priorityQueueExplicitLinks.insert(7);
         priorityQueueExplicitLinks.insert(20);
 
-        StdOut.println("Size: " + priorityQueueExplicitLinks.size());
-        StdOut.println("isEmpty: " + priorityQueueExplicitLinks.isEmpty());
+        StdOut.println("Size: " + priorityQueueExplicitLinks.size() + " Expected: 4");
+        StdOut.println("isEmpty: " + priorityQueueExplicitLinks.isEmpty() + " Expected: false");
 
         StdOut.println("Item removed: " + priorityQueueExplicitLinks.deleteMax());
         StdOut.println("Item removed: " + priorityQueueExplicitLinks.deleteMax());

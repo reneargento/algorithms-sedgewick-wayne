@@ -25,9 +25,9 @@ public class Exercise6 {
             Comparable array[] = ArrayGenerator.generateRandomArray(arraySize);
             quickSort(array);
 
-            double ln = Math.log(arraySize) / Math.log(10);
+            double lnN = Math.log(arraySize);
             //2N ln N
-            double numberOfExpectedCompares = 2 * arraySize * ln;
+            double numberOfExpectedCompares = 2 * arraySize * lnN;
 
             printResults(arraySize, numberOfCompares, numberOfExpectedCompares);
 

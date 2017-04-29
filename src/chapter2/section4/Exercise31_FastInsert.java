@@ -41,8 +41,8 @@ public class Exercise31_FastInsert {
 
             swim(size);
 
-            double lgN = Math.log(size) / Math.log(2);
-            int lgLgN = lgN != 0 ? (int) (Math.log(lgN) / Math.log(2)) : 0;
+            double lgN = Math.log10(size) / Math.log10(2);
+            int lgLgN = lgN != 0 ? (int) (Math.log10(lgN) / Math.log10(2)) : 0;
 
             StdOut.println("Number of compares: " + numberOfCompares + " Expected: ~" + lgLgN);
         }
@@ -68,7 +68,7 @@ public class Exercise31_FastInsert {
                 resize(priorityQueue.length / 2);
             }
 
-            int lgN = (int) (Math.log(size) / Math.log(2));
+            int lgN = (int) (Math.log10(size) / Math.log10(2));
             StdOut.println("Number of compares: " + numberOfCompares + " Expected: ~" + (2 * lgN));
 
             return min;
@@ -91,7 +91,7 @@ public class Exercise31_FastInsert {
 
         private int binarySearchToGetTargetAncestor(int index) {
             //Generate parents array
-            int parentsArraySize = (int) (Math.log(size) / Math.log(2));
+            int parentsArraySize = (int) (Math.log10(size) / Math.log10(2));
             int[] parentsIndex = new int[parentsArraySize];
 
             int parentsArrayIndex = parentsIndex.length - 1;

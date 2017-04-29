@@ -46,6 +46,22 @@ public class ArrayGenerator {
         return array;
     }
 
+    public static String[] generateRandomStringArray(int length, int minStringLength, int maxStringLength) {
+        String[] array = new String[length];
+
+        for(int i=0; i < length; i++) {
+            int stringSize = StdRandom.uniform(minStringLength, maxStringLength + 1);
+            array[i] = new String();
+
+            for(int j = 0; j < stringSize; j++) {
+                char randomChar = (char) StdRandom.uniform(65, 122 + 1);
+                array[i] = array[i].concat(String.valueOf(randomChar));
+            }
+        }
+
+        return array;
+    }
+
     public static Comparable[] generateOrderedArray(int length) {
         Comparable[] array = new Comparable[length];
 

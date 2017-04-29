@@ -156,9 +156,9 @@ public class Exercise6 {
     }
 
     private static void printExperiment(int arrayLength) {
-        int upperBound = 6 * arrayLength * (int) (Math.log(arrayLength) / Math.log(2));
+        double upperBound = 6 * arrayLength * (Math.log10(arrayLength) / Math.log10(2));
 
-        StdOut.printf("%6d %15d %11d\n", arrayLength, numberOfArrayAccesses, upperBound);
+        StdOut.printf("%6d %15d %11.0f\n", arrayLength, numberOfArrayAccesses, upperBound);
     }
 
 }
