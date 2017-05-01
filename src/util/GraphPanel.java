@@ -28,7 +28,6 @@ public class GraphPanel extends JPanel {
     private Color gridColor = new Color(200, 200, 200, 200);
     private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
     private static List<Double> values;
-    private static List<Integer> valuesInteger;
     private static final String ARIAL_FONT = "Arial";
 
     private static String xAxisLabel;
@@ -41,7 +40,6 @@ public class GraphPanel extends JPanel {
         GraphPanel.windowTitle = windowTitle;
         GraphPanel.xAxisLabel = xAxisLabel;
         GraphPanel.yAxisLabel = yAxisLabel;
-        GraphPanel.valuesInteger = valuesInteger;
 
         values = new ArrayList<>();
 
