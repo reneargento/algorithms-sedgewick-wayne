@@ -14,7 +14,7 @@ import java.util.List;
 public class FileUtil {
 
     public static String[] getAllStringsFromFile(String filePath) {
-        List<String> lines = null;
+        List<String> lines;
 
         try {
             lines = Files.readAllLines(Paths.get(filePath));
