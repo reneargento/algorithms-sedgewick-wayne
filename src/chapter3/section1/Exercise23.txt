@@ -1,0 +1,16 @@
+3.1.23 - Analysis of binary search
+
+As the book and exercise 3.1.20 have proven, the maximum number of compares used for a binary search in a table of size N is lg N + 1.
+
+A number N has exactly lg N + 1 bits. This is because shifting 1 bit to the right reduces the number by half (rounded down).
+
+For example:
+
+N   Bit representation   Number of bits   lg N + 1
+1                    1                1          1
+2                   10                2          2
+4                  100                3          3
+5                  101                3          3
+9                 1001                4          4
+
+Therefore, the maximum number of compares used for a binary search in a table of size N is precisely the number of bits in the binary representation of N.

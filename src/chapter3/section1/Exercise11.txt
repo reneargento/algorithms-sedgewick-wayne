@@ -1,0 +1,19 @@
+3.1.11
+
+			keys[]				            vals[]
+key  value    0  1  2  3  4  5  6  7  8  9    N   0  1  2  3  4  5  6  7  8  9
+ E     0      E                               1   0                               0 compares
+ A     1      A  E                            2   1  0                            2 compares
+ S     2      A  E  S                         3   1  0  2                         2 compares
+ Y     3      A  E  S  Y                      4   1  0  2  3                      2 compares
+ Q     4      A  E  Q  S  Y                   5   1  0  4  2  3                   3 compares
+ U     5      A  E  Q  S  U  Y                6   1  0  4  2  5  3                4 compares
+ E     6      A  E  Q  S  U  Y                6   1  6  4  2  5  3                4 compares
+ S     7      A  E  Q  S  U  Y                6   1  6  4  7  5  3                4 compares
+ T     8      A  E  Q  S  T  U  Y             6   1  6  4  7  8  5  3             4 compares
+ I     9      A  E  I  Q  S  T  U  Y          6   1  6  9  4  7  8  5  3          4 compares
+ O    10      A  E  I  O  Q  S  T  U  Y       6   1  6  9  10 4  7  8  5  3       4 compares
+ N    11      A  E  I  N  O  Q  S  T  U  Y    6   1  6  9  11 10 4  7  8  5  3    5 compares
+              A  E  I  N  O  Q  S  T  U  Y        1  6  9  11 10 4  7  8  5  3
+
+Total: 38 compares

@@ -1,0 +1,17 @@
+3.1.10
+
+key  value  first
+ E     0      E0                                         0 compares
+ A     1      E0  A1                                     1 compare
+ S     2      E0  A1  S2                                 2 compares
+ Y     3      E0  A1  S2  Y3                             3 compares
+ Q     4      E0  A1  S2  Y3  Q4                         4 compares
+ U     5      E0  A1  S2  Y3  Q4  U5                     5 compares
+ E     6      E6  A1  S2  Y3  Q4  U5                     1 compare
+ S     7      E6  A1  S7  Y3  Q4  U5                     3 compares
+ T     8      E6  A1  S7  Y3  Q4  U5  T8                 6 compares
+ I     9      E6  A1  S7  Y3  Q4  U5  T8  I9             7 compares
+ O    10      E6  A1  S7  Y3  Q4  U5  T8  I9  O10        8 compares
+ N    11      E6  A1  S7  Y3  Q4  U5  T8  I9  O10  N11   9 compares
+
+Total: 49 compares

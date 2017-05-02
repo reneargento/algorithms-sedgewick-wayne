@@ -150,12 +150,12 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
             } else {
                 numberOfNodeAccesses = sequentialSearchSymbolTable.put(word, sequentialSearchSymbolTable.get(word) + 1);
             }
-            visualAccumulator.addDataValue(numberOfNodeAccesses);
+            visualAccumulator.addDataValue(numberOfNodeAccesses, true);
         }
 
         String max = "";
         int numberOfNodeAccesses = sequentialSearchSymbolTable.put(max, 0);
-        visualAccumulator.addDataValue(numberOfNodeAccesses);
+        visualAccumulator.addDataValue(numberOfNodeAccesses, true);
 
         for(String word : sequentialSearchSymbolTable.keys()) {
             if(sequentialSearchSymbolTable.get(word) > sequentialSearchSymbolTable.get(max)) {

@@ -1,0 +1,6 @@
+3.1.9
+
+Length cutoff Last word inserted  Words processed
+            1            known."           135937
+            8          faltering           135905
+           10      disfigurement           135890

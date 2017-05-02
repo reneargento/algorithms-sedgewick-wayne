@@ -1,0 +1,33 @@
+3.1.21 - Memory usage
+
+* BinarySearchST
+   object overhead -> 16 bytes
+   Key[] reference (keys) -> 8 bytes
+   Value[] reference (values) -> 8 bytes
+   int value (size) -> 4 bytes
+   padding -> 4 bytes
+   Key[]
+      object overhead -> 16 bytes
+      int value (length) -> 4 bytes
+      padding -> 4 bytes
+      N Key references -> between 8N and 32N bytes (the resizing array may be 25% to 100% full)
+   Value[]
+      object overhead -> 16 bytes
+      int value (length) -> 4 bytes
+      padding -> 4 bytes
+      N Value references -> between 8N and 32N bytes (the resizing array may be 25% to 100% full)
+Amount of memory needed: 16 + 8 + 8 + 4 + 4 + 16 + 4 + 4 + (8N to 32N) + 16 + 4 + 4 + (8N to 32N) = (16N to 64N) + 88 bytes
+
+* SequentialSearchST
+   object overhead -> 16 bytes
+   Node reference (first) -> 8 bytes
+   Node
+      object overhead -> 16 bytes
+      extra overhead for reference to the enclosing instance -> 8 bytes
+      Key reference (key) -> 8 bytes
+      Value reference (value) -> 8 bytes
+      Node reference (next) -> 8 bytes
+            (N Node references -> 48N bytes)
+   int value (size) -> 4 bytes
+   padding -> 4 bytes
+Amount of memory needed: 16 + 8 + (16 + 8 + 8 + 8 + 8)N + 4 + 4 = 48N + 32 bytes

@@ -1,0 +1,4 @@
+3.1.13
+
+For an application that does 10^3 put() operations and 10^6 get() operations I would use a binary search symbol table implementation.
+The application does a lot more get() than put() operations and a binary search symbol table implementation has a O(log(n)) runtime complexity for the get() operation, which is better than the O(n) runtime complexity of the sequential search symbol table implementation.

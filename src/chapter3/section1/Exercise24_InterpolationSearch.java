@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 //Worst case: O(n)
 public class Exercise24_InterpolationSearch {
 
-    private class BinarySearchSymbolTable<Value> {
+    public class BinarySearchSymbolTable<Value> {
 
         private Integer[] keys;
         private Value[] values;

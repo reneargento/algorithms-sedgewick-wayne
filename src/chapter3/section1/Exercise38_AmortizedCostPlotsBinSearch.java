@@ -322,12 +322,12 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
             } else {
                 numberOfArrayAccesses = binarySearchSymbolTable.put(word, binarySearchSymbolTable.get(word) + 1);
             }
-            visualAccumulator.addDataValue(numberOfArrayAccesses);
+            visualAccumulator.addDataValue(numberOfArrayAccesses, true);
         }
 
         String max = "";
         int numberOfArrayAccesses = binarySearchSymbolTable.put(max, 0);
-        visualAccumulator.addDataValue(numberOfArrayAccesses);
+        visualAccumulator.addDataValue(numberOfArrayAccesses, true);
 
         for(String word : binarySearchSymbolTable.keys()) {
             if(binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {

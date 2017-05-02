@@ -12,6 +12,7 @@ public class VisualAccumulator {
     private static final String HELVETICA_FONT = "Helvetica";
     private double total;
     private int size;
+    private double lastComputedValue;
 
     public VisualAccumulator(int originValue, double maxX, double maxY, String title, String xAxisLabel, String yAxisLabel) {
         StdDraw.setXscale(-(maxX * 0.05), maxX + (maxX * 0.05));
@@ -47,15 +48,19 @@ public class VisualAccumulator {
         StdDraw.text(maxX - (maxX * 0.06), xAxisLabelHeight, String.valueOf((int) maxX));
     }
 
-    public void addDataValue(double value) {
+    public void addDataValue(double value, boolean drawMean) {
         size++;
         total += value;
 
         StdDraw.setPenColor(StdDraw.DARK_GRAY);
         StdDraw.point(size, value);
 
-        StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.point(size, mean());
+        if(drawMean) {
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.point(size, mean());
+        }
+
+        lastComputedValue = value;
     }
 
     private double mean() {
@@ -65,6 +70,11 @@ public class VisualAccumulator {
     public void writeFinalMean() {
         StdDraw.setPenColor(StdDraw.RED);
         StdDraw.text(size + (size * 0.04), mean(), String.valueOf((int) mean()));
+    }
+
+    public void writeLastComputedValue() {
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.text(size + (size * 0.04), lastComputedValue, String.valueOf((int) lastComputedValue));
     }
 
     public String toString() {

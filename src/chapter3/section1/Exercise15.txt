@@ -1,0 +1,6 @@
+3.1.15
+
+     Searches Percentage of total time spent on insertions
+         1000                                        0.00%
+      1000000                                        2.20%
+   1000000000                                        5.92%

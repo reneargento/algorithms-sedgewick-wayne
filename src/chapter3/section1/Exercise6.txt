@@ -1,0 +1,6 @@
+3.1.6
+
+Calls to put() as a function of words: 1.00
+Calls to put() as a function of distinct words: 1.23
+Calls to get() as a function of words: 1.81
+Calls to get() as a function of distinct words: 2.23

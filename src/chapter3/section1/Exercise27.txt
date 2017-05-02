@@ -1,0 +1,11 @@
+3.1.27 - Small tables
+
+Building the binary search symbol table requires N calls to put().
+Every put() operation makes a call to rank() and does a search, an operation with order of growth O(lg N).
+Assuming that we can choose the order of the keys to insert, we can create the table in a sorted order, starting with the smallest element and ending with the highest element.
+By doing this, every element will be inserted at the end of the keys[] and values[] array, making the put() operation use O(lg N) for the rank() operation and O(1) for the insert (there will be no need to move keys and values to the right since the new element is the rightmost element). N inserts will have an order of growth of O(N lg N).
+
+Therefore, the order of growth of S should be O(N lg N), making the cost of building the table the same as the cost of all searches.
+
+If the items are inserted in random order, the put operation has an order of growth O(N): O(lg N) for the rank operation and O(N) for inserting an element. N inserts will have an order of growth of O(N^2).
+In this case, the order of growth of S should be O(N^2).

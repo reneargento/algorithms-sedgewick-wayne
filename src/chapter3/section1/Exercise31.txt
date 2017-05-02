@@ -1,0 +1,8 @@
+3.1.31 - Performance driver
+
+Number of Experiments |  Array Size |  AVG Time Taken
+                    1        100000             12.32
+                    2        100000             12.13
+                    3        100000             12.15
+                    4        100000             14.73
+                    5        100000             19.76

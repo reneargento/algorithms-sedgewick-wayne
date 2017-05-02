@@ -1,0 +1,55 @@
+3.1.20
+
+Proposition B. Binary search in an ordered array with N keys uses no more than lg N + 1 compares for a search (successful or unsuccessful). 
+
+Proof: Let C(N) be the number of compares to search for a key in a symbol table of size N.
+We have C(0) = 0, C(1) = 1, and for N > 0 we can write a recurrence relationship that directly mirrors the recursive method:
+C(N) <= C(FLOOR(N / 2)) + 1
+
+Whether the search goes to the left or to the right, the size of the subarray is no more than FLOOR(N / 2), and we can use one compare to check for equality and to choose whether to go left or right.
+
+C(N) is monotonic: C(N) <= C(N + 1) for all N > 0.
+
+For a general N, we have that:
+
+C(N) <= C(N / 2) + 1 (one comparison to check equality or decide which way of the subarray to go)
+C(N / 2) <= C(N / 4) + 1
+
+Putting the value of C(N / 2) in the first equation:
+C(N) <= C(N / 4) + 1 + 1
+
+And adding all values to the first equation until C = 1:
+C(N) <= C(N / 8) + 1 + 1 + 1
+C(N) <= C(N / 16) + 1 + 1 + 1 + 1
+C(N) <= C(N / 2^k) + 1 + 1 + 1 + 1 + ... + 1
+
+until we get to
+C(N) <= 1 + 1 + 1 + 1 + 1 + ... + 1 (even if N is not divisible by 2 there is still a compare operation)
+C(N) <= k + 1
+
+In this case, 2^k = N
+k <= lg N + 1
+
+We can also prove it using the Master theorem:
+
+Binary search recurrence relation:
+T(N) = T(N/2) + O(1)
+
+Master theorem:
+T(N) = aT(N/b) + f(N)
+
+Here, a = 1, b = 2 and f(n) is O(1) (constant)
+
+c = log(a base b) = log(1 base 2) = 0
+
+We can see that this is the case 2 of the Master theorem by taking k = 0 in this equation:
+O(n^c * (log n)^k)
+O(n^0 * (log n)^0) = O(1) = f(n) -> This means we are in case 2 of the Master theorem
+
+From the Case 2 of the Master Theorem we know that:
+T(n) = O(n^(log a base b) * (log n)^(k + 1))
+T(n) = O(n^0 * log(n)^1) = O(log n)
+
+With binary search, we achieve a logarithmic-time search guarantee.
+
+Reference: https://en.wikipedia.org/wiki/Master_theorem

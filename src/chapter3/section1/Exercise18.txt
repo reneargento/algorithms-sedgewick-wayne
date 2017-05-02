@@ -1,0 +1,22 @@
+3.1.18
+
+The rank() method in BinarySearchST always starts the search in the middle of the array if it has an odd number of elements.
+If the array has an even number of elements, the rank() method starts the search on the left of the two middle elements.
+After comparing the middle element with the search key, if it is smaller, the search continues on the right side of the array.
+If it is bigger, the search continues on the left side of the array.
+If they have the same value, the current element's index is the rank we are looking for.
+
+This guarantees that if an element exists in the symbol table its rank will be found in the rank() method.
+
+When the element does not exist the value of the "low" variable will have passed the value of the "high" variable, pointing to the correct rank of where the key should be. This only happens when both the element on the left of the final rank has been checked and the element on the current (final) rank has been checked. After these checks, low will be pointing to the correct rank location.
+
+Example:
+
+Symbol Table: 0 1 2 3 5 6
+Rank of key 4 (non-existent)
+
+1- The initial search range is [0..5]. The rank() method checks the left of the middle elements on index 2 -> value 2
+2- 2 is less than 4, so the new range to search is [3..5]. The rank() method checks the middle element on index 4 -> value 5
+3- 5 is more than 4, so the new range to search is [3..3]. The rank() method checks the only element left (index 3) -> value 3
+4- 3 is less than 4, so the new range to search is [4..3]. Now the "low" variable is bigger than the "high" variable.
+5- The rank() method returns the value of the "low" variable, 4. This is the correct rank for key 4.

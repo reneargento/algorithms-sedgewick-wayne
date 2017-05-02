@@ -1,0 +1,7 @@
+3.1.33 - Driver for self-organizing search
+
+Array Size |  Self-Organizing Search Time |  Default Binary Search Time
+      1000                           0.01                          0.01
+     10000                           0.05                          0.01
+    100000                           4.46                          0.10
+   1000000                         576.02                          0.87

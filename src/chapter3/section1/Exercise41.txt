@@ -1,0 +1,20 @@
+3.1.41 - Crossover to interpolation search
+
+Analysis:
+Considering that binary search has a complexity of O(lg (n)) and interpolation search has a complexity of O(lg(lg (n))) when the elements are uniformly distributed (and it is O(n) otherwise). 
+Assuming an array with elements uniformly distributed:
+
+N = 1: Both binary search and interpolation search would be able to finish their search instantly with N = 1.
+Interpolation search and binary search are just as fast for N = 1.
+
+N = 4: Binary search does 2 operations (in the worst case) and interpolation search does 1 operation (in the worst case).
+Interpolation search is 2 times faster than binary search for N = 4.
+
+N = 490000000000000000 (49 * 10^16): Binary search does 58.76 operations (in the worst case) and interpolation search does 5.876 operations (in the worst case).
+Interpolation search is 10 times faster than binary search for N = 49 * 10^16.
+
+Experimental results:
+
+Value of N for which interpolation search becomes the same speed as binary search: 1
+Value of N for which interpolation search becomes 2 times faster than binary search: 21
+Value of N for which interpolation search becomes 10 times faster than binary search: 1033

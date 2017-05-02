@@ -1,0 +1,19 @@
+3.1.40 - Crossover to binary search
+
+Analysis:
+Considering that sequential search has a complexity of O(n) and binary search has a complexity of O(lg (n)):
+
+N = 58: While sequential search does 58 operations (in the worst case), binary search does ~5.8 operations (in the worst case).
+Binary search is ~10 times faster than sequential search for N = 58.
+
+N = 996: While sequential search does 996 operations (in the worst case), binary search does ~9.96 operations (in the worst case).
+Binary search is ~100 times faster than sequential search for N = 996.
+
+N = 13746: While sequential search does 13,746 operations (in the worst case), binary search does ~13.746 operations (in the worst case).
+Binary search is ~1000 times faster than sequential search for N = 13,746.
+
+Experimental results:
+
+Value of N for which binary search becomes 10 times faster than sequential search: 120
+Value of N for which binary search becomes 100 times faster than sequential search: 1463
+Value of N for which binary search becomes 1000 times faster than sequential search: 22461

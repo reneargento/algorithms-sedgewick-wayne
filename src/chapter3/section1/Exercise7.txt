@@ -1,0 +1,8 @@
+3.1.7
+
+Number of distinct keys among 10 random nonnegative integers less than 1000: 10
+Number of distinct keys among 100 random nonnegative integers less than 1000: 97
+Number of distinct keys among 1000 random nonnegative integers less than 1000: 635
+Number of distinct keys among 10000 random nonnegative integers less than 1000: 999
+Number of distinct keys among 100000 random nonnegative integers less than 1000: 1000
+Number of distinct keys among 1000000 random nonnegative integers less than 1000: 1000

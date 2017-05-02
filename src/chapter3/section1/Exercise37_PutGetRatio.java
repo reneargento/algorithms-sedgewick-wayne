@@ -28,14 +28,14 @@ public class Exercise37_PutGetRatio {
             int higherBoundValue = 0;
 
             if(numberOfBits[i] == 10) {
-                lowerBoundValue = (int) Math.pow(2, 10);
-                higherBoundValue = (int) Math.pow(2, 11) - 1;
+                lowerBoundValue = (int) Math.pow(2, 9);
+                higherBoundValue = (int) Math.pow(2, 10) - 1;
             } else if(numberOfBits[i] == 20) {
-                lowerBoundValue = (int) Math.pow(2, 20);
-                higherBoundValue = (int) Math.pow(2, 21) - 1;
+                lowerBoundValue = (int) Math.pow(2, 19);
+                higherBoundValue = (int) Math.pow(2, 20) - 1;
             } else if(numberOfBits[i] == 30) {
-                lowerBoundValue = (int) Math.pow(2, 30);
-                higherBoundValue = (int) Math.pow(2, 31) - 1;
+                lowerBoundValue = (int) Math.pow(2, 29);
+                higherBoundValue = (int) Math.pow(2, 30) - 1;
             }
 
             int[] randomValues = ArrayGenerator.generateRandomIntegerArray(1000000, lowerBoundValue, higherBoundValue);

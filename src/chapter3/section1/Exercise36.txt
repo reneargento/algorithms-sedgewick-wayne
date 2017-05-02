@@ -1,0 +1,6 @@
+3.1.36 - Performance validation II
+
+The performance of BinarySearchST and SequentialSearchST for FrequencyCounter is even better than predicted by analysis because of the details of the FrequencyCounter application. 
+FrequencyCounter does not add all the words in the symbol table (only the words with a length higher than a specified minLength parameter). Also, there are many repeated words in the Tale of Two Cities book, which was used as benchmark. Out of 135,938 words, only 561 are distinct. 
+With more search hits than search misses, a sequential search does not have to check all the N words in the symbol table (its worst case) as often. The same applies to a binary search, that does not have to do lg N compares as often than if there were many search misses.
+These details of the application make the performance of the symbol tables better than predicted.

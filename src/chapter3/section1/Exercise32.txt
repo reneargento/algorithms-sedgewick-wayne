@@ -1,0 +1,15 @@
+3.1.32 - Exercise driver
+
+               Input Type |  Array Size |  Running Time
+                  Ordered        100000             6.8
+                  Ordered        200000            37.7
+                  Ordered        400000           142.9
+          Reverse Ordered        100000            24.1
+          Reverse Ordered        200000           102.2
+          Reverse Ordered        400000           469.6
+                Same Keys        100000             0.0
+                Same Keys        200000             0.0
+                Same Keys        400000             0.0
+  Keys with only 2 Values        100000             0.0
+  Keys with only 2 Values        200000             0.0
+  Keys with only 2 Values        400000             0.0
