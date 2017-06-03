@@ -9,14 +9,14 @@ import java.util.NoSuchElementException;
  */
 public class BinarySearchTree<Key extends Comparable<Key>, Value>{
 
-    private class Node {
-        private Key key;
-        private Value value;
+    protected class Node {
+        protected Key key;
+        protected Value value;
 
-        private Node left;
-        private Node right;
+        protected Node left;
+        protected Node right;
 
-        private int size; //# of nodes in subtree rooted here
+        protected int size; //# of nodes in subtree rooted here
 
         public Node(Key key, Value value, int size) {
             this.key = key;
@@ -25,13 +25,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>{
         }
     }
 
-    private Node root;
+    protected Node root;
 
     public int size() {
         return size(root);
     }
 
-    private int size(Node node) {
+    protected int size(Node node) {
         if(node == null) {
             return 0;
         }
