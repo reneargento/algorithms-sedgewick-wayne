@@ -1,5 +1,6 @@
 package chapter3.section2;
 
+import chapter3.section1.SymbolTable;
 import edu.princeton.cs.algs4.Queue;
 
 import java.util.NoSuchElementException;
@@ -7,7 +8,7 @@ import java.util.NoSuchElementException;
 /**
  * Created by rene on 09/05/17.
  */
-public class BinarySearchTree<Key extends Comparable<Key>, Value>{
+public class BinarySearchTree<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 
     protected class Node {
         protected Key key;
@@ -56,6 +57,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>{
         } else {
             return node.value;
         }
+    }
+
+    public boolean contains(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Argument to contains() cannot be null");
+        }
+        return get(key) != null;
     }
 
     public void put(Key key, Value value) {

@@ -61,13 +61,21 @@ public class Exercise37_PutGetRatio {
 
         for(Integer value : values) {
 
-            if(!binarySearchSymbolTable.contains(value)) {
+            timer = new Stopwatch();
+            boolean containsValue = binarySearchSymbolTable.contains(value); //contains() uses get() internally
+            totalTimeSpentInGet += timer.elapsedTime();
+
+            if(!containsValue) {
                 timer = new Stopwatch();
                 binarySearchSymbolTable.put(value, 1);
                 totalTimeSpentInPut += timer.elapsedTime();
             } else {
                 timer = new Stopwatch();
-                binarySearchSymbolTable.put(value, binarySearchSymbolTable.get(value) + 1);
+                int currentFrequency = binarySearchSymbolTable.get(value);
+                totalTimeSpentInGet += timer.elapsedTime();
+
+                timer = new Stopwatch();
+                binarySearchSymbolTable.put(value, currentFrequency + 1);
                 totalTimeSpentInPut += timer.elapsedTime();
             }
         }
@@ -114,7 +122,11 @@ public class Exercise37_PutGetRatio {
                 totalTimeSpentInPut += timer.elapsedTime();
             } else {
                 timer = new Stopwatch();
-                binarySearchSymbolTable.put(word, binarySearchSymbolTable.get(word) + 1);
+                int currentFrequency = binarySearchSymbolTable.get(word);
+                totalTimeSpentInGet += timer.elapsedTime();
+
+                timer = new Stopwatch();
+                binarySearchSymbolTable.put(word, currentFrequency + 1);
                 totalTimeSpentInPut += timer.elapsedTime();
             }
         }

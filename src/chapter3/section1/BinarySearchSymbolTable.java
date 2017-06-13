@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * Created by rene on 22/04/17.
  */
 @SuppressWarnings("unchecked")
-public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
+public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value>{
 
     private Key[] keys;
     private Value[] values;

@@ -1,9 +1,10 @@
 3.1.37 - Put/get ratio
 
-The amount of time that BinarySearchST spends on put() operations is much higher than the amount of time it spends on get() operations in all scenarios (counting the frequency of 10, 20 and 30-bit values and the frequency of the words in the book Tale of Two Cities).
+For a symbol table with 10-bit int values the amount of time that BinarySearchST spent on put() was lower than the amount of time it spent on get().
+However, for all the other scenarios (counting the frequency of 20 and 30-bit values and the frequency of the words in the book Tale of Two Cities) the amount of time that BinarySearchST spends on put() operations is much higher than the amount of time it spends on get().
 
              Input |   Running Time Put |   Running Time Get |     Ratio
- 10-bit int values                 0.20                 0.00      204.00
- 20-bit int values               235.14                 0.00    Infinity
- 30-bit int values              1632.21                 0.00    Infinity
-Tale of Two Cities                 0.40                 0.00    Infinity
+ 10-bit int values                 0.11                 0.29        0.39
+ 20-bit int values               216.62                 0.78      279.51
+ 30-bit int values              1303.54                 0.81     1613.29
+Tale of Two Cities                 0.33                 0.03       12.37

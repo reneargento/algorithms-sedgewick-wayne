@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Queue;
 /**
  * Created by rene on 22/04/17.
  */
-public class SequentialSearchSymbolTable<Key, Value> {
+public class SequentialSearchSymbolTable<Key, Value> implements SymbolTable<Key, Value>{
 
     private class Node {
         Key key;

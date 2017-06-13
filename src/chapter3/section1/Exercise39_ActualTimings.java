@@ -5,21 +5,32 @@ import util.FileUtil;
 import util.VisualAccumulator;
 
 /**
- * Created by rene on 01/05/17.
+ * Created by rene on 12/06/17.
  */
-public class Exercise39_ActualTimingsSeqSearch {
+public class Exercise39_ActualTimings {
 
     private static final String TALE_FILE_PATH = "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/tale_of_two_cities.txt";
 
     public static void main(String[] args) {
         String[] wordsInTale = FileUtil.getAllStringsFromFile(TALE_FILE_PATH);
         int minLength = 8; //Same as the book analysis
-        new Exercise39_ActualTimingsSeqSearch().frequencyCounter(wordsInTale, minLength);
+
+        Exercise39_ActualTimings actualTimings = new Exercise39_ActualTimings();
+        String title;
+
+        //Sequential search symbol table
+//        SequentialSearchSymbolTable<String, Integer> sequentialSearchSymbolTable = new SequentialSearchSymbolTable<>();
+//        title = "SequentialSearchST running time calling get() or put() in FrequencyCounter";
+//        actualTimings.frequencyCounter(sequentialSearchSymbolTable, wordsInTale, minLength, title);
+
+        //Binary search symbol table
+        BinarySearchSymbolTable<String, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
+        title = "BinarySearchST running time calling get() or put() in FrequencyCounter";
+        actualTimings.frequencyCounter(binarySearchSymbolTable, wordsInTale, minLength, title);
     }
 
-    private String frequencyCounter(String[] words, int minLength) {
+    private String frequencyCounter(SymbolTable<String, Integer> symbolTable, String[] words, int minLength, String title) {
 
-        String title = "SequentialSearchST running time calling get() or put() in FrequencyCounter";
         String xAxisLabel = "calls to get() or put()";
         String yAxisLabel = "running time";
         double maxNumberOfOperations = 45000;
@@ -28,7 +39,6 @@ public class Exercise39_ActualTimingsSeqSearch {
 
         VisualAccumulator visualAccumulator = new VisualAccumulator(originValue, maxNumberOfOperations, maxRunningTime, title,
                 xAxisLabel, yAxisLabel);
-        SequentialSearchSymbolTable<String, Integer> sequentialSearchSymbolTable = new SequentialSearchSymbolTable<>();
 
         double totalRunningTime = 0;
         Stopwatch timer;
@@ -39,19 +49,19 @@ public class Exercise39_ActualTimingsSeqSearch {
                 continue;
             }
 
-            if(!sequentialSearchSymbolTable.contains(word)) {
+            if(!symbolTable.contains(word)) {
                 timer = new Stopwatch();
-                sequentialSearchSymbolTable.put(word, 1);
+                symbolTable.put(word, 1);
                 totalRunningTime += timer.elapsedTime() * 1000;
                 visualAccumulator.addDataValue(totalRunningTime, false);
             } else {
                 timer = new Stopwatch();
-                int wordFrequency = sequentialSearchSymbolTable.get(word);
+                int wordFrequency = symbolTable.get(word);
                 totalRunningTime += timer.elapsedTime() * 1000;
                 visualAccumulator.addDataValue(totalRunningTime, false);
 
                 timer = new Stopwatch();
-                sequentialSearchSymbolTable.put(word, wordFrequency + 1);
+                symbolTable.put(word, wordFrequency + 1);
                 totalRunningTime += timer.elapsedTime() * 1000;
                 visualAccumulator.addDataValue(totalRunningTime, false);
             }
@@ -59,18 +69,18 @@ public class Exercise39_ActualTimingsSeqSearch {
 
         String max = "";
         timer = new Stopwatch();
-        sequentialSearchSymbolTable.put(max, 0);
+        symbolTable.put(max, 0);
         totalRunningTime += timer.elapsedTime() * 1000;
         visualAccumulator.addDataValue(totalRunningTime, false);
 
-        for(String word : sequentialSearchSymbolTable.keys()) {
+        for(String word : symbolTable.keys()) {
             timer = new Stopwatch();
-            int wordFrequency = sequentialSearchSymbolTable.get(word);
+            int wordFrequency = symbolTable.get(word);
             totalRunningTime += timer.elapsedTime() * 1000;
             visualAccumulator.addDataValue(totalRunningTime, false);
 
             timer = new Stopwatch();
-            int maxWordFrequency = sequentialSearchSymbolTable.get(max);
+            int maxWordFrequency = symbolTable.get(max);
             totalRunningTime += timer.elapsedTime() * 1000;
             visualAccumulator.addDataValue(totalRunningTime, false);
 
@@ -80,7 +90,7 @@ public class Exercise39_ActualTimingsSeqSearch {
         }
 
         timer = new Stopwatch();
-        int maxFrequency = sequentialSearchSymbolTable.get(max);
+        int maxFrequency = symbolTable.get(max);
         totalRunningTime += timer.elapsedTime() * 1000;
         visualAccumulator.addDataValue(totalRunningTime, false);
 
