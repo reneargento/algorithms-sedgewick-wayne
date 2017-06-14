@@ -21,13 +21,11 @@ public class Exercise40_CrossoverToBinarySearch {
         boolean aThousandTimesFasterNFound = false;
 
         int maxKey = 100000;
-        int maxValue = 10;
 
         for(int i = 1; i <= maxKey; i++) {
-            int randomValue = StdRandom.uniform(maxValue);
 
-            sequentialSearchSymbolTable.put(i, randomValue);
-            binarySearchSymbolTable.put(i, randomValue);
+            sequentialSearchSymbolTable.put(i, i);
+            binarySearchSymbolTable.put(i, i);
 
             int searchKeyNotFound = maxKey + 1;
 
