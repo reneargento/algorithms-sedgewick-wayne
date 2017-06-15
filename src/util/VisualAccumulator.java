@@ -63,6 +63,11 @@ public class VisualAccumulator {
         lastComputedValue = value;
     }
 
+    public void drawDataValue(double xCoordinate, double yCoordinate, Color color) {
+        StdDraw.setPenColor(color);
+        StdDraw.point(xCoordinate, yCoordinate);
+    }
+
     private double mean() {
         return total / size;
     }
@@ -70,6 +75,11 @@ public class VisualAccumulator {
     public void writeFinalMean() {
         StdDraw.setPenColor(StdDraw.RED);
         StdDraw.text(size + (size * 0.04), mean(), String.valueOf((int) mean()));
+    }
+
+    public void writeText(String text, double xCoordinate, double yCoordinate, Color color) {
+        StdDraw.setPenColor(color);
+        StdDraw.text(xCoordinate, yCoordinate, text);
     }
 
     public void writeLastComputedValue() {
