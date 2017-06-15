@@ -1,0 +1,15 @@
+3.2.16
+
+Proposition: The difference between the external and internal path lengths in any binary tree with N nodes is 2N.
+
+Proof: Suppose we replace one of the external nodes of a binary search tree of N nodes by an internal node, that is, we add an element to the tree. Let the path length to that (old) external node be e. Then the internal path length I increases by an amount e and the external path length E increases by an amount e + 2.
+The external path length increases by an amount e + 2 because the new node has e + 1 nodes on the path from the root to each of its null links. There are 2 null links, so 2 * (e + 1) = 2e + 2. We add this amount and reduce the amount of the path from the root to the old external node, which was e. So we have: 2e + 2 - e = e + 2.
+So the change in E is given by the change in I plus twice the change in N, the number of internal nodes, keeping the difference between the external and internal path lengths as 2N.
+
+Examples:
+N nodes  internal path length  external path length  difference between E and I
+      1                     0                     2                           2 = 2N                  
+      2                     1                     5                           4 = 2N 
+      3                     2                     8                           6 = 2N 
+
+Reference: https://www.cs.rutgers.edu/~kaplan/503/binsearch.html

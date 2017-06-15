@@ -1,0 +1,6 @@
+3.2.43 - Put/get ratio
+
+The BST spends approximately half the time on put() operations than it spends on get() operations when FrequencyCounter is used to find the frequency of occurrence of values in 1 million randomly-generated integers.
+
+Number of Keys |   Running Time Put |   Running Time Get |     Ratio
+       1000000                 0.54                 1.09        0.50

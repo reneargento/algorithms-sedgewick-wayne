@@ -1,0 +1,4 @@
+3.2.4
+
+The sequence that cannot be the sequence of keys examined is:
+d. 2, 7, 3, 8, 4, 5

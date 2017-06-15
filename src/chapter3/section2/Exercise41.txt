@@ -1,0 +1,11 @@
+3.2.41 - Array representation
+
+Overall, the standard BST with pointers to the left and right children is faster than the BST using an array representation.
+
+Experiment results for N = 1000000
+Array representation BST insert time = 1.318
+Array representation BST search time = 0.979
+Array representation BST delete time = 1.507
+Standard BST insert time = 0.805
+Standard BST search time = 0.775
+Standard BST delete time = 0.97

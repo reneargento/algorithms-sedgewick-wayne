@@ -1,0 +1,9 @@
+3.2.36 - Iterator
+
+Yes, it is possible to write a nonrecursive version of keys() that uses space proportional to the tree height (independent of the number of keys in the range).
+
+This can be done using a stack. 
+1- Add the root of the tree and all of its left children on the stack (as long as they are in the searched range).
+2- If the stack is not empty: Pop the top element, print it, set the current element as the printed element's right child (if it is not null -if it is, repeat this step).
+3- Add the right child (if it is in the searched range) and all of its left children (as long as they are in the searched range) on the stack.
+4- Repeat steps 2 and 3 until the stack is empty or all the range has been printed.

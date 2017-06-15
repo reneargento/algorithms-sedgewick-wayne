@@ -1,0 +1,15 @@
+3.2.40 - Height
+
+The average BST height is similar, but slightly smaller than the estimated average BST height.
+
+Experiments with N = 10000
+Average BST height: 30.24
+Expected average BST height: 39.73
+
+Experiments with N = 100000
+Average BST height: 39.57
+Expected average BST height: 49.66
+
+Experiments with N = 1000000
+Average BST height: 48.69
+Expected average BST height: 59.60

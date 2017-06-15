@@ -1,0 +1,15 @@
+3.2.22
+
+Proposition: If a node in a BST has two children, its successor has no left child and its predecessor has no right child.
+
+Proof: For any node, its successor will be the leftmost element of its right child. Therefore, its successor cannot have any left child since it is the leftmost element of its right child.
+For any node, its predecessor will be the rightmost element of its left child. Therefore, its predecessor cannot have any right child since it is the rightmost element of its left child.
+
+As an example, consider the node with key 10:
+
+      10
+   5     15
+    9   13
+       12 14
+
+Its successor (the node with key 12) has no left child and its predecessor (the node with key 9) has no right child.

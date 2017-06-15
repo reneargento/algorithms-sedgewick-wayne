@@ -1,0 +1,4 @@
+3.2.5
+
+The keys should be inserted into the tree in decreasing order of likely frequency of access. This will make the keys with high frequency of access stay above in the tree than keys with a low frequency of access, requiring less compares to be found.
+Since these keys are the most frequently accessed keys, requiring less compares to find them improves the overall search performance. And since keys with a low frequency of access will not be accessed often, it is not such a big problem to require more compares to search and find them.

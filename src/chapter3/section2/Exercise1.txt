@@ -1,0 +1,72 @@
+3.2.1
+
+key value
+ E    0      E
+0 compares
+
+ A    1      E
+           A
+1 compare
+
+ S    2      E
+           A   S
+1 compare
+
+ Y    3      E
+           A   S
+                 Y
+2 compares
+
+ Q    4       E
+           A     S
+               Q   Y
+2 compares
+
+ U    5       E
+           A      S
+               Q     Y
+                    U
+3 compares
+
+ E    6       E         //Changed value: E = 6
+           A      S
+               Q     Y
+                    U
+1 compare
+
+ S    7       E             
+           A      S     //Changed value: S = 7
+               Q     Y
+                    U
+1 compare
+
+ T    8       E
+           A      S
+               Q     Y
+                    U
+                   T
+4 compares
+
+ I    9       E
+           A      S
+               Q     Y
+              I     U
+                   T
+3 compares
+
+ O   10       E
+           A      S
+               Q     Y
+              I     U
+               O   T
+4 compares
+
+ N   11       E
+           A      S
+               Q     Y
+              I     U
+               O   T
+              N
+5 compares
+
+Total number of compares to build the tree: 27

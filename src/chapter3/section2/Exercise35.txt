@@ -1,0 +1,38 @@
+3.2.35 - Refined analysis
+
+Proposition: The average number of compares for a successful search in a tree built from N random keys approaches the limit 2ln N + 2y - 3 ~= 1.39 lg N - 1.85 as N increases, where y = .57721... is Euler's constant.
+
+Proof:  
+The number of compares used for a search hit ending at a given node is 1 plus the depth. Adding the depths of all nodes, we get a quantity known as the internal path length of the tree. Thus, the desired quantity is 1 plus the average internal path length of the BST, which we can analyze as follows:
+Let Cn be the internal path length of a BST built from inserting N randomly ordered distinct keys, so that the average cost of a search hit is 1 + Cn / N.
+We have C0 = C1 = 0 and for N > 1 we can write a recurrence relationship that directly mirrors the recursive BST structure:
+Cn = N - 1 + (C0 + Cn-1) / N + (C1 + Cn-2) / N + ... + (Cn-1 + C0) / N
+The N - 1 term takes into account that the root contributes 1 to the path length of each of the other N - 1 nodes in the tree; the rest of the expression accounts for the subtrees, which are equally likely to be any of the N sizes. 
+
+Multiplying by N and collecting terms transforms this equation into:
+NCn = N(N - 1) + 2(C0 + C1 + ... + Cn-2 + Cn-1)
+Subtracting the same equation for N - 1 from this equation gives
+NCn - (N - 1)Cn-1 = 2N - 2 + 2Cn-1
+Rearranging terms and dividing by N(N + 1) leaves
+Cn / (N + 1) = Cn-1 / N + 2 / (N + 1) - 2 / (N (N + 1))
+which telescopes to give the result
+Cn ~ 2(N + 1) * (1/3 + 1/4 + ... + 1/(N + 1) - 2)
+
+The parenthesized quantity is the discrete estimate of the area under the curve 1/x from 3 to N + 1. By integration, 1/x approaches ln N + y.
+So we have:
+Cn ~ 2(N + 1) * (ln N + y - 2)
+Cn ~ (2N + 2) * (ln N + y - 2)
+Cn ~ 2N ln N + 2N y - 4N + 2ln N + 2y - 4
+
+As mentioned before, the average cost of a search hit is:
+AVG Cost of Search Hit = 1 + Cn / N
+
+Replacing Cn with 2N ln N + 2N y - 4N + 2ln N + 2y - 4 we have:
+AVG Cost of Search Hit = 1 + (2N ln N + 2N y - 4N + 2ln N + 2y - 4) / N
+AVG Cost of Search Hit = 1 + 2 ln N + 2y + 2y/N - 4 - 4/N
+
+Since 2 ln N ~ 1.39 lg N this gives the following approximation as N increases
+AVG Cost of Search Hit ~ 1.39 lg N + 2y - 3
+Replacing y with .57721
+AVG Cost of Search Hit ~ 1.39 lg N + 1.154 - 3
+AVG Cost of Search Hit ~ 1.39 lg N - 1.85

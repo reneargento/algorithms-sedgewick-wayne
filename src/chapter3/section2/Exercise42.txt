@@ -1,0 +1,9 @@
+3.2.42 - Hibbard deletion degradation
+
+The process of continuously deleting and inserting random values in a BST increases its average path length to approximately half of the square root of its size if the node promoted in the deletion is always the successor.
+When using a delete() method that makes a random choice whether to promote the predecessor or successor node, the average path length of the tree remains small. 
+
+Tree Size |  Square Root of Size |  AVG Path Length W/ Standard Delete |  AVG Path Length W/ Delete Random Promotion
+      100                  10.00                                  7.00                                          6.00
+     1000                  31.62                                 14.00                                         10.00
+    10000                 100.00                                 35.00                                         15.00

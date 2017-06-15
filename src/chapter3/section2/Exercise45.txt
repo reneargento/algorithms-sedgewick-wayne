@@ -1,0 +1,4 @@
+3.2.45 - Actual timings
+
+BST total running time is much smaller than BinarySearchST total running time, which in turn is much smaller than SequentialSearchST total running time.
+BST total running time for all the calls to get() and put() was 35 milliseconds while BinarySearchST total running time was 179 milliseconds and SequentialSearchST total running time was 2413 milliseconds.

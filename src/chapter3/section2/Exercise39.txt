@@ -1,0 +1,24 @@
+3.2.39 - Average case
+
+The results are very similar to the result of the formula for the expected average number of compares.
+
+Experiments with N = 10000
+Average number of compares for search hits: 16.60
+Average number of compares for search misses: 17.72
+Expected average number of compares for both search hits and misses: 16.62
+Standard deviation of compares for search hits: 3.76
+Standard deviation of compares for search misses: 40.98
+
+Experiments with N = 100000
+Average number of compares for search hits: 21.52
+Average number of compares for search misses: 21.96
+Expected average number of compares for both search hits and misses: 21.24
+Standard deviation of compares for search hits: 14.94
+Standard deviation of compares for search misses: 39.44
+
+Experiments with N = 1000000
+Average number of compares for search hits: 24.88
+Average number of compares for search misses: 25.78
+Expected average number of compares for both search hits and misses: 25.85
+Standard deviation of compares for search hits: 35.39
+Standard deviation of compares for search misses: 26.24

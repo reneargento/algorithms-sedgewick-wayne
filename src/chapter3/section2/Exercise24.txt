@@ -1,0 +1,6 @@
+3.2.24
+
+Proposition: No compare-based algorithm can build a BST using fewer than lg(N!) ~ N lg N compares.
+
+In the best case, once built the tree will become a balanced search tree, where each insert using a compare-based algorithm takes lg N time.
+Since we are building a tree with N elements, in the best case, each insert will make ~ lg N compares and the total number of compares for N inserts will be ~ N lg N in the best case.

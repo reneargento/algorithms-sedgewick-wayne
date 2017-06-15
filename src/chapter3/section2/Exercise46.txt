@@ -1,0 +1,21 @@
+3.2.46 - Crossover to binary search trees
+
+Analysis:
+Each put() operation in a BST has a complexity of O(n) and to build a symbol table there are N put() operations, leading to a complexity of O(n^2). However, since we are inserting random values, the expected average complexity for each put() is O(lg n), leading to a complexity of O(n lg n) to build the symbol table.
+
+Each put() operation in a binary search symbol table has a complexity of O(n) and to build a symbol table there are N put() operations, leading to a complexity of O(n^2).
+
+N = 58: While BST does 336 operations to build the symbol table, the binary search symbol table does 3,364 operations.
+BST builds the symbol table 10 times faster than binary search for N = 58.
+
+N = 996: While BST does 9,920.16 operations to build the symbol table, the binary search symbol table does 992,016 operations.
+BST builds the symbol table 100 times faster than binary search for N = 996.
+
+N = 13746: While BST does 188,952.516 operations to build the symbol table, the binary search symbol table does 188,952,516 operations.
+BST builds the symbol table 1000 times faster than binary search for N = 13746.
+
+Experimental results:
+
+Value of N for which building a symbol table using a BST becomes 10 times faster than building a symbol table using a binary search symbol table: 1537
+Value of N for which building a symbol table using a BST becomes 100 times faster than building a symbol table using a binary search symbol table: 16938
+Value of N for which building a symbol table using a BST becomes 1000 times faster than building a symbol table using a binary search symbol table: 31193

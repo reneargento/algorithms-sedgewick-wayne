@@ -1,0 +1,12 @@
+3.2.3
+
+H C S A E R X
+H C A E S R X
+H C E A S R X
+H S R X C A E
+H S X R C A E
+
+Best-case tree:
+     H
+  C    S
+ A E  R  X

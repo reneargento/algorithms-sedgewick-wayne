@@ -1,0 +1,11 @@
+3.2.20
+
+Proposition: The running time of the two-argument keys() in a BST is at most proportional to the tree height plus the number of keys in the range.
+
+Proof: The two-argument keys() method in a BST works in the following way:
+1- It searches the tree until it finds the element which is equal or higher than the lower bound.
+2- It adds the element to the queue and also adds all its right children that are inside the search range.
+3- It adds all the other elements which are inside the search range by doing an in-order search in the tree (but cutting branches once it finds elements outside the range).
+
+Step 1, searching the element which is equal or higher than the lower bound is a regular search in a BST and takes O(lg N) time, which is equal, in the worst case, to the tree height. Steps 2 and 3 combined take R operations, where R is the number of elements in the range searched. There may be a constant number of other compares, which are the cases where the method finds an element outside the range and stops the search on the current branch of the tree.
+Combining all the steps the two-argument keys() in a BST is at most proportional to the tree height plus the number of keys in the range.

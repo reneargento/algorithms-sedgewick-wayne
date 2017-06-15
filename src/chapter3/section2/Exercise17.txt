@@ -1,0 +1,64 @@
+3.2.17
+
+Initial tree
+              E
+           A      S
+               Q     Y
+              I     U
+               O   T
+              N
+
+Delete E
+              I
+           A      S
+               Q     Y
+              O     U
+             N     T
+              
+Delete A
+              I
+                  S
+               Q     Y
+              O     U
+             N     T
+
+Delete S
+              I
+                  T
+               Q     Y
+              O     U
+             N 
+
+Delete Y
+              I
+                  T
+               Q     U
+              O     
+             N      
+
+Delete Q
+              I
+                  T
+               O     U
+              N     
+
+Delete U
+              I
+                  T
+               O     
+              N 
+
+Delete T
+                I
+                  O
+                 N   
+ 
+Delete I
+                O
+               N
+
+Delete O
+                N
+ 
+Delete N
+                

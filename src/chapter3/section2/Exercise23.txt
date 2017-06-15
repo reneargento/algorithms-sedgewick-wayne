@@ -1,0 +1,24 @@
+3.2.23
+
+No, delete() is not commutative.
+
+Counterexample: 
+Tree:
+    A
+  B   D
+     C  
+
+1- Delete A, then B
+    C
+  B   D 
+
+    C
+      D
+
+2- Delete B, then A
+    A
+      D
+     C  
+
+    D
+     C 

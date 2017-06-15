@@ -1,0 +1,8 @@
+3.2.15
+
+a. floor("Q") - E Q
+b. select(5) - E Q
+c. ceiling("Q") - E Q
+d. rank("J") - E Q J
+e. size("D", "T") - E D Q J M T S
+f. keys("D", "T") - E D Q J M T S

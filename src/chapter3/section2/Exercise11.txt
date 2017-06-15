@@ -1,0 +1,12 @@
+3.2.11
+
+There are 6 binary tree shapes of N nodes with height N.
+There are 6 different ways to insert N distinct keys into an initially empty BST that result in a tree of height N.
+1- From the lowest to the highest value, ex: 1 2 3 4
+2- From the highest to the lowest value, ex: 4 3 2 1
+3- Alternating from the lowest to the highest value, then from the second lowest to the second highest, and so on, 
+ex: 1 4 2 3
+4- Alternating from the highest to the lowest value, then from the second highest to the second lowest, and so on, 
+ex: 4 1 3 2
+5- Alternating from the lowest to the highest value, then from the second lowest to the second highest, and so on, but swapping the last two elements ex: 1 4 3 2
+6- Alternating from the highest to the lowest value, then from the second highest to the second lowest, and so on, but swapping the last two elements, ex: 4 1 2 3
