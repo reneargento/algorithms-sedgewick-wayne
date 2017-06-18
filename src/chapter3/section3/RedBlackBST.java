@@ -1,32 +1,35 @@
-package chapter3.section2;
+package chapter3.section3;
 
-import chapter3.section1.SymbolTable;
 import edu.princeton.cs.algs4.Queue;
 
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 09/05/17.
+ * Created by rene on 18/06/17.
  */
-public class BinarySearchTree<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
+public class RedBlackBST<Key extends Comparable<Key>, Value> {
 
-    protected class Node {
-        protected Key key;
-        protected Value value;
+    private static final boolean RED = true;
+    private static final boolean BLACK = false;
 
-        protected Node left;
-        protected Node right;
+    private class Node {
+        Key key;
+        Value value;
+        Node left, right;
 
-        protected int size; //# of nodes in subtree rooted here
+        boolean color;
+        int size;
 
-        public Node(Key key, Value value, int size) {
+        Node(Key key, Value value, int size, boolean color) {
             this.key = key;
             this.value = value;
+
             this.size = size;
+            this.color = color;
         }
     }
 
-    protected Node root;
+    private Node root;
 
     public int size() {
         return size(root);
@@ -38,6 +41,100 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
 
         return node.size;
+    }
+
+    private boolean isRed(Node node) {
+        if(node == null) {
+            return false;
+        }
+
+        return node.color == RED;
+    }
+
+    private Node rotateLeft(Node node) {
+        if(node == null || node.right == null) {
+            return node;
+        }
+
+        Node newRoot = node.right;
+
+        node.right = newRoot.left;
+        newRoot.left = node;
+
+        newRoot.color = node.color;
+        node.color = RED;
+
+        newRoot.size = node.size;
+        node.size = size(node.left) + 1 + size(node.right);
+
+        return newRoot;
+    }
+
+    private Node rotateRight(Node node) {
+        if(node == null || node.left == null) {
+            return node;
+        }
+
+        Node newRoot = node.left;
+
+        node.left = newRoot.right;
+        newRoot.right = node;
+
+        newRoot.color = node.color;
+        node.color = RED;
+
+        newRoot.size = node.size;
+        node.size = size(node.left) + 1 + size(node.right);
+
+        return newRoot;
+    }
+
+    private void flipColors(Node node) {
+        if(node == null || node.left == null || node.right == null) {
+            return;
+        }
+
+        node.color = RED;
+        node.left.color = BLACK;
+        node.right.color = BLACK;
+    }
+
+    private void put(Key key, Value value) {
+        if(key == null) {
+            return;
+        }
+
+        root = put(root, key, value);
+        root.color = BLACK;
+    }
+
+    private Node put(Node node, Key key, Value value) {
+        if(node == null) {
+            return new Node(key, value, 1, RED);
+        }
+
+        int compare = key.compareTo(node.key);
+
+        if(compare < 0) {
+            node.left = put(node.left, key, value);
+        } else if(compare > 0) {
+            node.right = put(node.right, key, value);
+        } else {
+            node.value = value;
+        }
+
+        if(isRed(node.right) && !isRed(node.left)) {
+            node = rotateLeft(node);
+        }
+        if(isRed(node.left) && isRed(node.left.left)) {
+            node = rotateRight(node);
+        }
+        if(isRed(node.left) && isRed(node.right)) {
+            flipColors(node);
+        }
+
+        node.size = size(node.left) + 1 + size(node.right);
+        return node;
     }
 
     public Value get(Key key) {
@@ -68,33 +165,6 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
             throw new IllegalArgumentException("Argument to contains() cannot be null");
         }
         return get(key) != null;
-    }
-
-    public void put(Key key, Value value) {
-        if(key == null) {
-            return;
-        }
-
-        root = put(root, key, value);
-    }
-
-    private Node put(Node node, Key key, Value value) {
-        if(node == null) {
-            return new Node(key, value, 1);
-        }
-
-        int compare = key.compareTo(node.key);
-
-        if(compare < 0) {
-            node.left = put(node.left, key, value);
-        } else if(compare > 0) {
-            node.right = put(node.right, key, value);
-        } else {
-            node.value = value;
-        }
-
-        node.size = size(node.left) + 1 + size(node.right);
-        return node;
     }
 
     public Key min() {
@@ -227,73 +297,6 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         } else {
             return size(node.left);
         }
-    }
-
-    public void deleteMin() {
-        root = deleteMin(root);
-    }
-
-    private Node deleteMin(Node node) {
-        if(node == null) {
-            return null;
-        }
-
-        if(node.left == null) {
-            return node.right;
-        }
-
-        node.left = deleteMin(node.left);
-        node.size = size(node.left) + 1 + size(node.right);
-        return node;
-    }
-
-    public void deleteMax() {
-        root = deleteMax(root);
-    }
-
-    private Node deleteMax(Node node) {
-        if(node == null) {
-            return null;
-        }
-
-        if(node.right == null) {
-            return node.left;
-        }
-
-        node.right = deleteMax(node.right);
-        node.size = size(node.left) + 1 + size(node.right);
-        return node;
-    }
-
-    public void delete(Key key) {
-        root = delete(root, key);
-    }
-
-    private Node delete(Node node, Key key) {
-        if(node == null) {
-            return null;
-        }
-
-        int compare = key.compareTo(node.key);
-        if(compare < 0) {
-            node.left = delete(node.left, key);
-        } else if(compare > 0) {
-            node.right = delete(node.right, key);
-        } else {
-            if(node.left == null) {
-                return node.right;
-            } else if (node.right == null) {
-                return node.left;
-            } else {
-                Node aux = node;
-                node = min(aux.right);
-                node.right = deleteMin(aux.right);
-                node.left = aux.left;
-            }
-        }
-
-        node.size = size(node.left) + 1 + size(node.right);
-        return node;
     }
 
     public Iterable<Key> keys() {
