@@ -9,10 +9,10 @@ import java.util.NoSuchElementException;
  */
 public class RedBlackBST<Key extends Comparable<Key>, Value> {
 
-    private static final boolean RED = true;
-    private static final boolean BLACK = false;
+    protected static final boolean RED = true;
+    protected static final boolean BLACK = false;
 
-    private class Node {
+    protected class Node {
         Key key;
         Value value;
         Node left, right;
@@ -43,7 +43,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return node.size;
     }
 
-    private boolean isRed(Node node) {
+    protected boolean isRed(Node node) {
         if(node == null) {
             return false;
         }
@@ -51,7 +51,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return node.color == RED;
     }
 
-    private Node rotateLeft(Node node) {
+    protected Node rotateLeft(Node node) {
         if(node == null || node.right == null) {
             return node;
         }
@@ -70,7 +70,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return newRoot;
     }
 
-    private Node rotateRight(Node node) {
+    protected Node rotateRight(Node node) {
         if(node == null || node.left == null) {
             return node;
         }
@@ -89,7 +89,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return newRoot;
     }
 
-    private void flipColors(Node node) {
+    protected void flipColors(Node node) {
         if(node == null || node.left == null || node.right == null) {
             return;
         }

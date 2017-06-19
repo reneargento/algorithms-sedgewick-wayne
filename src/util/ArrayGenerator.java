@@ -3,7 +3,9 @@ package util;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by rene on 20/02/17.
@@ -70,6 +72,26 @@ public class ArrayGenerator {
         }
 
         return array;
+    }
+
+    public static char[] generateRandomUniqueUppercaseChars(int numberOfChars) {
+        char[] chars = new char[numberOfChars];
+        int charsIndex = 0;
+
+        Set<Character> generatedChars = new HashSet<>();
+
+        while (charsIndex < chars.length) {
+            int randomUppercaseCharIntValue = StdRandom.uniform(65, 91);
+
+            char generatedChar = ((char) randomUppercaseCharIntValue);
+
+            if(!generatedChars.contains(generatedChar)) {
+                chars[charsIndex++] = generatedChar;
+                generatedChars.add(generatedChar);
+            }
+        }
+
+        return chars;
     }
 
     public static Comparable[] generateOrderedArray(int length) {

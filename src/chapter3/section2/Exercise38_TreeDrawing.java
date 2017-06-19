@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdDraw;
 @SuppressWarnings("unchecked")
 public class Exercise38_TreeDrawing {
 
-    private class BinarySearchTreeDrawable<Key extends Comparable<Key>, Value> extends BinarySearchTree<Key, Value> {
+    public class BinarySearchTreeDrawable<Key extends Comparable<Key>, Value> extends BinarySearchTree<Key, Value> {
         private class Node  {
             private Key key;
             private Value value;
