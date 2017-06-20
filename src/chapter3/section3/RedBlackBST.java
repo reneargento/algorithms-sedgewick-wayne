@@ -29,7 +29,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         }
     }
 
-    private Node root;
+    protected Node root;
 
     public int size() {
         return size(root);
@@ -41,6 +41,10 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         }
 
         return node.size;
+    }
+
+    public boolean isEmpty() {
+        return size(root) != 0;
     }
 
     protected boolean isRed(Node node) {
@@ -89,7 +93,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return newRoot;
     }
 
-    protected void flipColors(Node node) {
+    private void flipColors(Node node) {
         if(node == null || node.left == null || node.right == null) {
             return;
         }
@@ -99,7 +103,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         node.right.color = BLACK;
     }
 
-    private void put(Key key, Value value) {
+    public void put(Key key, Value value) {
         if(key == null) {
             return;
         }
