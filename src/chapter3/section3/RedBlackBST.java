@@ -44,7 +44,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     }
 
     public boolean isEmpty() {
-        return size(root) != 0;
+        return size(root) == 0;
     }
 
     protected boolean isRed(Node node) {
