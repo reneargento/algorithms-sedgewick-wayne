@@ -93,14 +93,19 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return newRoot;
     }
 
-    private void flipColors(Node node) {
-        if(node == null || node.left == null || node.right == null) {
-            return;
+    private Node flipColors(Node node) {
+        if(node != null) {
+            node.color = !node.color;
+
+            if(node.left != null) {
+                node.left.color = !node.left.color;
+            }
+            if(node.right != null) {
+                node.right.color = !node.right.color;
+            }
         }
 
-        node.color = RED;
-        node.left.color = BLACK;
-        node.right.color = BLACK;
+        return node;
     }
 
     public void put(Key key, Value value) {
@@ -179,7 +184,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return min(root).key;
     }
 
-    private Node min(Node node) {
+    protected Node min(Node node) {
         if(node.left == null) {
             return node;
         }
@@ -301,6 +306,172 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         } else {
             return size(node.left);
         }
+    }
+
+    public void deleteMin() {
+        if(isEmpty()) {
+            return;
+        }
+
+        if(!isRed(root.left) && !isRed(root.right)) {
+            root.color = RED;
+        }
+
+        root = deleteMin(root);
+
+        if(!isEmpty()) {
+            root.color = BLACK;
+        }
+    }
+
+    protected Node deleteMin(Node node) {
+        if(node.left == null) {
+            return null;
+        }
+
+        if(!isRed(node.left) && !isRed(node.left.left)) {
+            node = moveRedLeft(node);
+        }
+
+        node.left = deleteMin(node.left);
+        return balance(node);
+    }
+
+    private Node moveRedLeft(Node node) {
+        //Assuming that node is red and both node.left and node.left.left are black,
+        // make node.left or one of its children red
+        flipColors(node);
+
+        if(node.right != null && isRed(node.right.left)) {
+            node.right = rotateRight(node.right);
+            node = rotateLeft(node);
+        }
+
+        return node;
+    }
+
+    private Node balance(Node node) {
+        if(node == null) {
+            return null;
+        }
+
+        if(isRed(node.right)) {
+            node = rotateLeft(node);
+        }
+
+        if(isRed(node.left) && node.left != null && isRed(node.left.left)) {
+            node = rotateRight(node);
+        }
+
+        if(isRed(node.left) && isRed(node.right)) {
+            flipColors(node);
+        }
+
+        node.size = size(node.left) + 1 + size(node.right);
+
+        return node;
+    }
+
+    public void deleteMax() {
+        if(isEmpty()) {
+            return;
+        }
+
+        if(!isRed(root.left) && !isRed(root.right)) {
+            root.color = RED;
+        }
+
+        root = deleteMax(root);
+
+        if(!isEmpty()) {
+            root.color = BLACK;
+        }
+    }
+
+    private Node deleteMax(Node node) {
+        if(isRed(node.left)) {
+            node = rotateRight(node);
+        }
+
+        if(node.right == null) {
+            return null;
+        }
+
+        if(!isRed(node.right) && !isRed(node.right.left)) {
+            node = moveRedRight(node);
+        }
+
+        node.right = deleteMax(node.right);
+        return balance(node);
+    }
+
+    private Node moveRedRight(Node node) {
+        //Assuming that node is red and both node.right and node.right.left are black,
+        // make node.right or one of its children red
+        flipColors(node);
+
+        if(node.left != null && isRed(node.left.left)) {
+            node = rotateRight(node);
+        }
+
+        return node;
+    }
+
+    public void delete(Key key) {
+        if(isEmpty()) {
+            return;
+        }
+
+        if(!contains(key)) {
+            return;
+        }
+
+        if(!isRed(root.left) && !isRed(root.right)) {
+            root.color = RED;
+        }
+
+        root = delete(root, key);
+
+        if(!isEmpty()) {
+            root.color = BLACK;
+        }
+    }
+
+    private Node delete(Node node, Key key) {
+        if(node == null) {
+            return null;
+        }
+
+        if(key.compareTo(node.key) < 0) {
+            if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+                node = moveRedLeft(node);
+            }
+
+            node.left = delete(node.left, key);
+        } else {
+            if(isRed(node.left)) {
+                node = rotateRight(node);
+            }
+
+            if(key.compareTo(node.key) == 0 && node.right == null) {
+                return null;
+            }
+
+            if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+                node = moveRedRight(node);
+            }
+
+            if(key.compareTo(node.key) == 0) {
+                Node aux = min(node.right);
+                node.key = aux.key;
+                node.value = aux.value;
+                node.right = deleteMin(node.right);
+            } else {
+                node.right = delete(node.right, key);
+            }
+        }
+
+        return balance(node);
     }
 
     public Iterable<Key> keys() {
