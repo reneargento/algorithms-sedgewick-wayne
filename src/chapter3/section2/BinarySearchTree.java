@@ -75,6 +75,11 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
             return;
         }
 
+        if(value == null) {
+            delete(key);
+            return;
+        }
+
         root = put(root, key, value);
     }
 
@@ -129,6 +134,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return max(node.right);
     }
 
+    //Returns the highest key in the symbol table smaller than or equal to key.
     public Key floor(Key key) {
         Node node = floor(root, key);
         if(node == null) {
@@ -159,6 +165,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    //Returns the smallest key in the symbol table greater than or equal to key.
     public Key ceiling(Key key) {
         Node node = ceiling(root, key);
         if(node == null) {
@@ -301,6 +308,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
     }
 
     public Iterable<Key> keys(Key low, Key high) {
+        if (low == null)  {
+            throw new IllegalArgumentException("First argument to keys() cannot be null");
+        }
+        if (high == null) {
+            throw new IllegalArgumentException("Second argument to keys() cannot be null");
+        }
+
         Queue<Key> queue = new Queue<>();
         keys(root, queue, low, high);
         return queue;
@@ -324,6 +338,25 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
 
         if(compareHigh > 0) {
             keys(node.right, queue, low, high);
+        }
+    }
+
+    public int size(Key low, Key high) {
+        if (low == null)  {
+            throw new IllegalArgumentException("First argument to keys() cannot be null");
+        }
+        if (high == null) {
+            throw new IllegalArgumentException("Second argument to keys() cannot be null");
+        }
+
+        if (low.compareTo(high) > 0) {
+            return 0;
+        }
+
+        if (contains(high)) {
+            return rank(high) - rank(low) + 1;
+        } else {
+            return rank(high) - rank(low);
         }
     }
 
