@@ -467,7 +467,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
             node = rotateLeft(node);
         }
 
-        if(isRed(node.left) && node.left != null && isRed(node.left.left)) {
+        if(isRed(node.left) && isRed(node.left.left)) {
             node = rotateRight(node);
         }
 
