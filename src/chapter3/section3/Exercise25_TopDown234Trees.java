@@ -544,6 +544,14 @@ public class Exercise25_TopDown234Trees {
     }
 
     public static void main(String[] args) {
+        //Expected 2-3-4 tree
+        //
+        //               (B)5
+        //         (R)1         (B)99
+        //   (B)-1     (B)2   (R)9
+        //(R)-2  (R)0
+        //
+
         Exercise25_TopDown234Trees topDown234Trees = new Exercise25_TopDown234Trees();
         RedBlackTopDown234BST<Integer, Integer> redBlackTopDown234BST = topDown234Trees.new RedBlackTopDown234BST<>();
         redBlackTopDown234BST.put(5, 5);
