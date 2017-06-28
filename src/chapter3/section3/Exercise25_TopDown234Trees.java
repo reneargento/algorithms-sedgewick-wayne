@@ -10,12 +10,12 @@ import java.util.NoSuchElementException;
  */
 public class Exercise25_TopDown234Trees {
 
-    private class RedBlackTopDown234BST<Key extends Comparable<Key>, Value> {
+    static class RedBlackTopDown234BST<Key extends Comparable<Key>, Value> {
 
-        private static final boolean RED = true;
-        private static final boolean BLACK = false;
+        static final boolean RED = true;
+        static final boolean BLACK = false;
 
-        private class Node {
+        class Node {
             Key key;
             Value value;
             Node left, right;
@@ -32,7 +32,7 @@ public class Exercise25_TopDown234Trees {
             }
         }
 
-        private Node root;
+        Node root;
 
         public int size() {
             return size(root);
@@ -50,7 +50,7 @@ public class Exercise25_TopDown234Trees {
             return size(root) == 0;
         }
 
-        private boolean isRed(Node node) {
+        boolean isRed(Node node) {
             if(node == null) {
                 return false;
             }
@@ -58,7 +58,7 @@ public class Exercise25_TopDown234Trees {
             return node.color == RED;
         }
 
-        private Node rotateLeft(Node node) {
+        Node rotateLeft(Node node) {
             if(node == null || node.right == null) {
                 return node;
             }
@@ -77,7 +77,7 @@ public class Exercise25_TopDown234Trees {
             return newRoot;
         }
 
-        private Node rotateRight(Node node) {
+        Node rotateRight(Node node) {
             if(node == null || node.left == null) {
                 return node;
             }
@@ -96,7 +96,7 @@ public class Exercise25_TopDown234Trees {
             return newRoot;
         }
 
-        private void flipColors(Node node) {
+        void flipColors(Node node) {
             if(node == null || node.left == null || node.right == null) {
                 return;
             }
@@ -192,7 +192,7 @@ public class Exercise25_TopDown234Trees {
             return min(root).key;
         }
 
-        private Node min(Node node) {
+        Node min(Node node) {
             if(node.left == null) {
                 return node;
             }
@@ -334,7 +334,7 @@ public class Exercise25_TopDown234Trees {
             }
         }
 
-        private Node deleteMin(Node node) {
+        Node deleteMin(Node node) {
             if(node.left == null) {
                 return null;
             }
@@ -364,7 +364,7 @@ public class Exercise25_TopDown234Trees {
         }
 
         private Node deleteMax(Node node) {
-            if(isRed(node.left)) {
+            if(isRed(node.left) && !isRed(node.right)) {
                 node = rotateRight(node);
             }
 
@@ -372,7 +372,7 @@ public class Exercise25_TopDown234Trees {
                 return null;
             }
 
-            if(!isRed(node.right) && !isRed(node.right.left)) {
+            if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                 node = moveRedRight(node);
             }
 
@@ -412,7 +412,8 @@ public class Exercise25_TopDown234Trees {
 
                 node.left = delete(node.left, key);
             } else {
-                if(isRed(node.left)) {
+                //For 2-3-4 trees we only rotate right if the right node is black
+                if(isRed(node.left) && !isRed(node.right)) {
                     node = rotateRight(node);
                 }
 
@@ -541,6 +542,77 @@ public class Exercise25_TopDown234Trees {
             }
         }
 
+        public boolean isBST() {
+            return isBST(root);
+        }
+
+        private boolean isBST(Node node) {
+            if(node == null) {
+                return true;
+            }
+
+            if(node.left != null && node.left.key.compareTo(node.key) > 0) {
+                return false;
+            }
+            if(node.right != null && node.right.key.compareTo(node.key) < 0) {
+                return false;
+            }
+
+            return isBST(node.left) && isBST(node.right);
+        }
+
+        public boolean isSubtreeCountConsistent() {
+            return isSubtreeCountConsistent(root);
+        }
+
+        private boolean isSubtreeCountConsistent(Node node) {
+            if(node == null) {
+                return true;
+            }
+
+            int totalSubtreeCount = 0;
+            if(node.left != null) {
+                totalSubtreeCount += node.left.size;
+            }
+            if(node.right != null) {
+                totalSubtreeCount += node.right.size;
+            }
+
+            if(node.size != totalSubtreeCount + 1) {
+                return false;
+            }
+
+            return isSubtreeCountConsistent(node.left) && isSubtreeCountConsistent(node.right);
+        }
+
+        public boolean isValid234Tree() {
+            return isValid234Tree(root);
+        }
+
+        private boolean isValid234Tree(Node node) {
+            if(node == null) {
+                return true;
+            }
+
+            if(!isRed(node.left) && isRed(node.right)) {
+                return false;
+            }
+            if(isRed(node.left) && isRed(node.left.left)) {
+                return false;
+            }
+            if(isRed(node.left) && isRed(node.left.right)) {
+                return false;
+            }
+            if(isRed(node.right) && isRed(node.right.right)) {
+                return false;
+            }
+            if(isRed(node.right) && isRed(node.right.left)) {
+                return false;
+            }
+
+            return isValid234Tree(node.left) && isValid234Tree(node.right);
+        }
+
     }
 
     public static void main(String[] args) {
@@ -552,26 +624,49 @@ public class Exercise25_TopDown234Trees {
         //(R)-2  (R)0
         //
 
-        Exercise25_TopDown234Trees topDown234Trees = new Exercise25_TopDown234Trees();
-        RedBlackTopDown234BST<Integer, Integer> redBlackTopDown234BST = topDown234Trees.new RedBlackTopDown234BST<>();
+        RedBlackTopDown234BST<Integer, Integer> redBlackTopDown234BST = new Exercise25_TopDown234Trees.RedBlackTopDown234BST<>();
         redBlackTopDown234BST.put(5, 5);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
         redBlackTopDown234BST.put(1, 1);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
         redBlackTopDown234BST.put(9, 9);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
         redBlackTopDown234BST.put(2, 2);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
         redBlackTopDown234BST.put(0, 0);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
         redBlackTopDown234BST.put(99, 99);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
         redBlackTopDown234BST.put(-1, -1);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
         redBlackTopDown234BST.put(-2, -2);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
+        redBlackTopDown234BST.put(3, 3);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
+        redBlackTopDown234BST.put(-5, -5);
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true\n");
+
+        StdOut.println("Size consistent: " + redBlackTopDown234BST.isSubtreeCountConsistent() + " Expected: true\n");
 
         StdOut.println("Keys() test");
 
         for(Integer key : redBlackTopDown234BST.keys()) {
             StdOut.println("Key " + key + ": " + redBlackTopDown234BST.get(key));
         }
-        StdOut.println("Expected: -2 -1 0 1 2 5 9 99\n");
+        StdOut.println("Expected: -5 -2 -1 0 1 2 3 5 9 99\n");
 
         //Test min()
-        StdOut.println("Min key: " + redBlackTopDown234BST.min() + " Expected: -2");
+        StdOut.println("Min key: " + redBlackTopDown234BST.min() + " Expected: -5");
 
         //Test max()
         StdOut.println("Max key: " + redBlackTopDown234BST.max() + " Expected: 99");
@@ -585,11 +680,11 @@ public class Exercise25_TopDown234Trees {
         StdOut.println("Ceiling of 15: " + redBlackTopDown234BST.ceiling(15) + " Expected: 99");
 
         //Test select()
-        StdOut.println("Select key of rank 4: " + redBlackTopDown234BST.select(4) + " Expected: 2");
+        StdOut.println("Select key of rank 4: " + redBlackTopDown234BST.select(4) + " Expected: 1");
 
         //Test rank()
-        StdOut.println("Rank of key 9: " + redBlackTopDown234BST.rank(9) + " Expected: 6");
-        StdOut.println("Rank of key 10: " + redBlackTopDown234BST.rank(10) + " Expected: 7");
+        StdOut.println("Rank of key 9: " + redBlackTopDown234BST.rank(9) + " Expected: 8");
+        StdOut.println("Rank of key 10: " + redBlackTopDown234BST.rank(10) + " Expected: 9");
 
         //Test delete()
         StdOut.println("\nDelete key 2");
@@ -598,14 +693,20 @@ public class Exercise25_TopDown234Trees {
         for(Integer key : redBlackTopDown234BST.keys()) {
             StdOut.println("Key " + key + ": " + redBlackTopDown234BST.get(key));
         }
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
+        StdOut.println("Size consistent: " + redBlackTopDown234BST.isSubtreeCountConsistent() + " Expected: true");
 
         //Test deleteMin()
-        StdOut.println("\nDelete min (key -2)");
+        StdOut.println("\nDelete min (key -5)");
         redBlackTopDown234BST.deleteMin();
 
         for(Integer key : redBlackTopDown234BST.keys()) {
             StdOut.println("Key " + key + ": " + redBlackTopDown234BST.get(key));
         }
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
+        StdOut.println("Size consistent: " + redBlackTopDown234BST.isSubtreeCountConsistent() + " Expected: true");
 
         //Test deleteMax()
         StdOut.println("\nDelete max (key 99)");
@@ -614,10 +715,18 @@ public class Exercise25_TopDown234Trees {
         for(Integer key : redBlackTopDown234BST.keys()) {
             StdOut.println("Key " + key + ": " + redBlackTopDown234BST.get(key));
         }
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
+        StdOut.println("Size consistent: " + redBlackTopDown234BST.isSubtreeCountConsistent() + " Expected: true");
 
         //Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
         for(Integer key : redBlackTopDown234BST.keys(2, 10)) {
+            StdOut.println("Key " + key + ": " + redBlackTopDown234BST.get(key));
+        }
+
+        StdOut.println("\nKeys in range [-4, -1]");
+        for(Integer key : redBlackTopDown234BST.keys(-4, -1)) {
             StdOut.println("Key " + key + ": " + redBlackTopDown234BST.get(key));
         }
 
@@ -628,7 +737,11 @@ public class Exercise25_TopDown234Trees {
                 StdOut.println("Key " + key + ": " + redBlackTopDown234BST.get(key));
             }
 
+            //redBlackIterative234BST.delete(redBlackIterative234BST.select(0));
             redBlackTopDown234BST.delete(redBlackTopDown234BST.select(redBlackTopDown234BST.size() - 1));
+            StdOut.println("Is valid 2-3-4 tree: " + redBlackTopDown234BST.isValid234Tree() + " Expected: true");
+            StdOut.println("Is BST: " + redBlackTopDown234BST.isBST() + " Expected: true");
+            StdOut.println("Size consistent: " + redBlackTopDown234BST.isSubtreeCountConsistent() + " Expected: true");
 
             StdOut.println();
         }

@@ -927,37 +927,37 @@ public class Exercise26_SingleTopDownPass {
         Exercise26_SingleTopDownPass singleTopDownPass = new Exercise26_SingleTopDownPass();
         RedBlackIterative234BST<Integer, Integer> redBlackIterative234BST = singleTopDownPass.new RedBlackIterative234BST<>();
         redBlackIterative234BST.put(5, 5);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(1, 1);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(9, 9);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(2, 2);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(0, 0);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(99, 99);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(-1, -1);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(-2, -2);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(3, 3);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(-5, -5);
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true\n");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true\n");
 
-        System.out.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true\n");
+        StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true\n");
 
         StdOut.println("Keys() test");
 
@@ -994,9 +994,9 @@ public class Exercise26_SingleTopDownPass {
         for(Integer key : redBlackIterative234BST.keys()) {
             StdOut.println("Key " + key + ": " + redBlackIterative234BST.get(key));
         }
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
-        System.out.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
 
         //Test deleteMin()
         StdOut.println("\nDelete min (key -5)");
@@ -1005,9 +1005,9 @@ public class Exercise26_SingleTopDownPass {
         for(Integer key : redBlackIterative234BST.keys()) {
             StdOut.println("Key " + key + ": " + redBlackIterative234BST.get(key));
         }
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
-        System.out.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
 
         //Test deleteMax()
         StdOut.println("\nDelete max (key 99)");
@@ -1016,9 +1016,9 @@ public class Exercise26_SingleTopDownPass {
         for(Integer key : redBlackIterative234BST.keys()) {
             StdOut.println("Key " + key + ": " + redBlackIterative234BST.get(key));
         }
-        System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-        System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
-        System.out.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
+        StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+        StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
 
         //Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
@@ -1040,9 +1040,9 @@ public class Exercise26_SingleTopDownPass {
 
             //redBlackIterative234BST.delete(redBlackIterative234BST.select(0));
             redBlackIterative234BST.delete(redBlackIterative234BST.select(redBlackIterative234BST.size() - 1));
-            System.out.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
-            System.out.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
-            System.out.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
+            StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+            StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
+            StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
 
             StdOut.println();
         }
