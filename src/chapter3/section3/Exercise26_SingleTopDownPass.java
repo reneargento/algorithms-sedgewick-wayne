@@ -389,24 +389,26 @@ public class Exercise26_SingleTopDownPass {
         }
 
         public void deleteMin() {
-            root = deleteMin(root, null, null);
+            root = deleteMin(root, false);
         }
 
         //Needs a Node parameter because it is used in delete()
-        private Node deleteMin(Node node, Node parent, Node grandparent) {
+        private Node deleteMin(Node subtreeRoot, boolean isDelete) {
             if(isEmpty()) {
                 return null;
             }
 
-            if(node.left == null) {
-                return node.right;
+            if(subtreeRoot.left == null) {
+                return subtreeRoot.right;
             }
 
-            if(!isRed(node.left) && !isRed(node.right)) {
-                node.color = RED;
+            if(!isRed(subtreeRoot.left) && !isRed(subtreeRoot.right)) {
+                subtreeRoot.color = RED;
             }
 
-            Node currentNode = node;
+            Node grandparent = null;
+            Node parent = null;
+            Node currentNode = subtreeRoot;
 
             //Used to avoid decrementing the size of the deleted node's right child after deletion and promotion
             boolean nodeDeleted = false;
@@ -418,8 +420,19 @@ public class Exercise26_SingleTopDownPass {
                 }
 
                 if(!isRed(currentNode.left) && currentNode.left != null && !isRed(currentNode.left.left)) {
+
+                    //Check if subtree root will be updated
+                    boolean updateSubtreeRoot = false;
+                    if(currentNode == subtreeRoot) {
+                        updateSubtreeRoot = true;
+                    }
+
                     currentNode = moveRedLeft(currentNode);
                     updateParentReference(parent, currentNode);
+
+                    if(updateSubtreeRoot) {
+                        subtreeRoot = currentNode;
+                    }
                 }
 
                 if(currentNode.left != null && currentNode.left.left == null) {
@@ -428,24 +441,61 @@ public class Exercise26_SingleTopDownPass {
                 }
 
                 //Balance on the way down
+                Node oldParent = parent;
+
                 if(parent != null) {
-                    if(grandparent == null) {
-                        root = balance(parent);
-                    } else {
-                        grandparent.left = balance(parent);
+                    parent = balance(parent);
+
+                    if(grandparent == null && !isDelete) {
+                        root = parent;
+                    } else if(grandparent != null) {
+                        grandparent.left = parent;
+                    }
+
+                    if(parent.left == subtreeRoot || parent.right == subtreeRoot) {
+                        subtreeRoot = parent;
                     }
                 }
 
                 grandparent = parent;
-                parent = currentNode;
+                if(oldParent != parent) {
+                    parent = oldParent;
+                } else {
+                    parent = currentNode;
+                }
+
                 currentNode = currentNode.left;
+            }
+
+            //Balance on the bottom
+            //Balance parent
+            if(parent != grandparent) {
+                parent = balance(parent);
+
+                if(grandparent == null && !isDelete) {
+                    root = parent;
+                } else if(grandparent != null) {
+                    grandparent.left = parent;
+                }
+                if(parent.left == subtreeRoot || parent.right == subtreeRoot) {
+                    subtreeRoot = parent;
+                }
+            }
+
+            //Balance bottom node (if different from parent)
+            if(parent.left != null) {
+                parent.left = balance(parent.left);
+
+                if(parent.left.left == subtreeRoot || parent.left.right == subtreeRoot) {
+                    subtreeRoot = parent;
+                }
             }
 
             if(!isEmpty()) {
                 root.color = BLACK;
             }
 
-            return node;
+            return subtreeRoot;
         }
 
         public void deleteMax() {
@@ -492,16 +542,35 @@ public class Exercise26_SingleTopDownPass {
 
                 //Balance on the way down
                 if(parent != null) {
+                    parent = balance(parent);
+
                     if(grandparent == null) {
-                        root = balance(parent);
-                    } else {
-                        grandparent.right = balance(parent);
+                        root = parent;
+                    } else  {
+                        grandparent.right = parent;
                     }
                 }
 
                 grandparent = parent;
                 parent = currentNode;
                 currentNode = currentNode.right;
+            }
+
+            //Balance on the bottom
+            //Balance parent
+            if(parent != grandparent) {
+                parent = balance(parent);
+
+                if(grandparent == null) {
+                    root = parent;
+                } else  {
+                    grandparent.right = parent;
+                }
+            }
+
+            //Balance bottom node (if different from parent)
+            if(parent.right != null) {
+                parent.right = balance(parent.right);
             }
 
             if(!isEmpty()) {
@@ -532,8 +601,11 @@ public class Exercise26_SingleTopDownPass {
 
                 if(key.compareTo(currentNode.key) < 0) {
 
-                    //Balance parents
-                    balanceAndUpdateParents(grandparent, parent);
+                    //Balance parent
+                    if(parent != null) {
+                        parent = balance(parent);
+                        updateParentReference(grandparent, parent);
+                    }
 
                     if(!isRed(currentNode.left) && currentNode.left != null && !isRed(currentNode.left.left)) {
                         currentNode = moveRedLeft(currentNode);
@@ -574,23 +646,28 @@ public class Exercise26_SingleTopDownPass {
                         Node aux = min(currentNode.right);
                         currentNode.key = aux.key;
                         currentNode.value = aux.value;
-                        currentNode.right = deleteMin(currentNode.right, currentNode, parent);
+                        currentNode.right = deleteMin(currentNode.right, true);
 
                         break;
                     } else {
-                        //Balance parents
-                        balanceAndUpdateParents(grandparent, parent);
+                        //Balance parent
+                        if(parent != null) {
+                            parent = balance(parent);
+                            updateParentReference(grandparent, parent);
+                        }
 
                         grandparent = parent;
                         parent = currentNode;
-
                         currentNode = currentNode.right;
                     }
                 }
             }
 
-            //Balance parents
-            balanceAndUpdateParents(grandparent, parent);
+            //Balance on the bottom
+            if(parent != null) {
+                parent = balance(parent);
+                updateParentReference(grandparent, parent);
+            }
 
             if(!isEmpty()) {
                 root.color = BLACK;
@@ -625,24 +702,6 @@ public class Exercise26_SingleTopDownPass {
                     parent.left = child;
                 } else {
                     parent.right = child;
-                }
-            }
-        }
-
-        private void balanceAndUpdateParents(Node grandparent, Node parent) {
-            if(parent == null) {
-                return;
-            }
-
-            if(grandparent == null) {
-                root = balance(root);
-            } else  {
-                boolean isParentNodeLeftChild = parent.key.compareTo(grandparent.key) < 0;
-
-                if(isParentNodeLeftChild) {
-                    grandparent.left = balance(parent);
-                } else {
-                    grandparent.right = balance(parent);
                 }
             }
         }
@@ -814,7 +873,6 @@ public class Exercise26_SingleTopDownPass {
                     return false;
                 }
             }
-
             return true;
         }
 
