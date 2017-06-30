@@ -40,6 +40,10 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return node.size;
     }
 
+    public boolean isEmpty() {
+        return size(root) == 0;
+    }
+
     public Value get(Key key) {
         if(key == null) {
             return null;
@@ -237,14 +241,14 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
     }
 
     public void deleteMin() {
+        if(root == null) {
+            return;
+        }
+
         root = deleteMin(root);
     }
 
     private Node deleteMin(Node node) {
-        if(node == null) {
-            return null;
-        }
-
         if(node.left == null) {
             return node.right;
         }
@@ -255,14 +259,14 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
     }
 
     public void deleteMax() {
+        if(root == null) {
+            return;
+        }
+
         root = deleteMax(root);
     }
 
     private Node deleteMax(Node node) {
-        if(node == null) {
-            return null;
-        }
-
         if(node.right == null) {
             return node.left;
         }
@@ -273,14 +277,18 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
     }
 
     public void delete(Key key) {
+        if(isEmpty()) {
+            return;
+        }
+
+        if(!contains(key)) {
+            return;
+        }
+
         root = delete(root, key);
     }
 
     private Node delete(Node node, Key key) {
-        if(node == null) {
-            return null;
-        }
-
         int compare = key.compareTo(node.key);
         if(compare < 0) {
             node.left = delete(node.left, key);

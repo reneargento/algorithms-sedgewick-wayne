@@ -1023,6 +1023,33 @@ public class Exercise29_OptimalStorage {
             return isValid23Tree(node.left) && isValid23Tree(node.right);
         }
 
+        public boolean isBalanced() {
+            int blackNodes = 0; // number of black links on path from root to min
+
+            Node currentNode = root;
+            while (currentNode != null) {
+                if(!isRed(currentNode)) {
+                    blackNodes++;
+                }
+
+                currentNode = currentNode.left;
+            }
+
+            return isBalanced(root, blackNodes);
+        }
+
+        private boolean isBalanced(Node node, int blackNodes) {
+            if(node == null) {
+                return blackNodes == 0;
+            }
+
+            if(!isRed(node)) {
+                blackNodes--;
+            }
+
+            return isBalanced(node.left, blackNodes) && isBalanced(node.right, blackNodes);
+        }
+
     }
 
     public static void main(String[] args) {
@@ -1038,24 +1065,34 @@ public class Exercise29_OptimalStorage {
         RedBlackBSTOptimalStorage<Integer, Integer> redBlackBSTOptimalStorage = optimalStorage.new RedBlackBSTOptimalStorage<>();
         redBlackBSTOptimalStorage.put(5, 5);
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         redBlackBSTOptimalStorage.put(1, 1);
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         redBlackBSTOptimalStorage.put(9, 9);
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         redBlackBSTOptimalStorage.put(2, 2);
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         redBlackBSTOptimalStorage.put(0, 0);
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         redBlackBSTOptimalStorage.put(99, 99);
-        StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");;
+        StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         redBlackBSTOptimalStorage.put(-1, -1);
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         redBlackBSTOptimalStorage.put(-2, -2);
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         redBlackBSTOptimalStorage.put(3, 3);
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         redBlackBSTOptimalStorage.put(-5, -5);
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
 
         StdOut.println("Size consistent: " + redBlackBSTOptimalStorage.isSubtreeCountConsistent() + " Expected: true\n");
 
@@ -1095,6 +1132,7 @@ public class Exercise29_OptimalStorage {
             StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
         }
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         StdOut.println("Size consistent: " + redBlackBSTOptimalStorage.isSubtreeCountConsistent() + " Expected: true");
 
         //Test deleteMin()
@@ -1105,6 +1143,7 @@ public class Exercise29_OptimalStorage {
             StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
         }
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         StdOut.println("Size consistent: " + redBlackBSTOptimalStorage.isSubtreeCountConsistent() + " Expected: true");
 
         //Test deleteMax()
@@ -1115,6 +1154,7 @@ public class Exercise29_OptimalStorage {
             StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
         }
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         StdOut.println("Size consistent: " + redBlackBSTOptimalStorage.isSubtreeCountConsistent() + " Expected: true");
 
         //Test keys() with range
@@ -1138,6 +1178,7 @@ public class Exercise29_OptimalStorage {
             //redBlackBSTOptimalStorage.delete(redBlackBSTOptimalStorage.select(0));
             redBlackBSTOptimalStorage.delete(redBlackBSTOptimalStorage.select(redBlackBSTOptimalStorage.size() - 1));
             StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
+            StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
             StdOut.println("Size consistent: " + redBlackBSTOptimalStorage.isSubtreeCountConsistent() + " Expected: true");
 
             StdOut.println();

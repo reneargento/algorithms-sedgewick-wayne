@@ -28,7 +28,6 @@ public class Exercise25_SoftwareCaching {
         private Node first;
         private int size;
 
-        private boolean isCacheValid;
         private Node cacheItem;
 
         public boolean isEmpty() {
@@ -51,7 +50,7 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            if(isCacheValid && cacheItem != null && cacheItem.key == key) {
+            if(cacheItem != null && cacheItem.key == key) {
                 StdOut.println("Cache hit");
                 return cacheItem.value;
             }
@@ -61,9 +60,7 @@ public class Exercise25_SoftwareCaching {
             for(Node node = first; node != null; node = node.next) {
                 if(key.equals(node.key)) {
 
-                    isCacheValid = true;
                     cacheItem = node;
-
                     return node.value;
                 }
             }
@@ -81,7 +78,7 @@ public class Exercise25_SoftwareCaching {
                 return;
             }
 
-            if(isCacheValid && cacheItem != null && cacheItem.key == key) {
+            if(cacheItem != null && cacheItem.key == key) {
                 cacheItem.value = value;
 
                 StdOut.println("Cache hit");
@@ -110,7 +107,7 @@ public class Exercise25_SoftwareCaching {
                 return;
             }
 
-            if(isCacheValid && cacheItem != null && cacheItem.key == key) {
+            if(cacheItem != null && cacheItem.key == key) {
                 invalidateCache();
             }
 
@@ -140,7 +137,6 @@ public class Exercise25_SoftwareCaching {
         }
 
         private void invalidateCache() {
-            isCacheValid = false;
             cacheItem = null;
         }
     }
@@ -151,7 +147,6 @@ public class Exercise25_SoftwareCaching {
         private Value[] values;
         private int size;
 
-        private boolean isCacheValid;
         private Key cacheKey;
         private int cacheKeyRank;
 
@@ -188,8 +183,7 @@ public class Exercise25_SoftwareCaching {
 
             if(rank < size && keys[rank].compareTo(key) == 0) {
 
-                if(!isCacheValid || cacheKey != key) {
-                    isCacheValid = true;
+                if(cacheKey == null || cacheKey != key) {
                     cacheKey = key;
                     cacheKeyRank = rank;
                 }
@@ -205,7 +199,7 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(isCacheValid && cacheKey.compareTo(key) == 0) {
+            if(cacheKey != null && cacheKey.compareTo(key) == 0) {
                 return cacheKeyRank;
             }
 
@@ -413,7 +407,7 @@ public class Exercise25_SoftwareCaching {
 
             int rank;
 
-            if(isCacheValid && cacheKey.compareTo(key) == 0) {
+            if(cacheKey != null && cacheKey.compareTo(key) == 0) {
                 StdOut.println("Cache hit");
                 rank = cacheKeyRank;
             } else {
@@ -425,7 +419,6 @@ public class Exercise25_SoftwareCaching {
         }
 
         private void invalidateCache() {
-            isCacheValid = false;
             cacheKey = null;
             cacheKeyRank = -1;
         }

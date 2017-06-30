@@ -93,7 +93,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return newRoot;
     }
 
-    private void flipColors(Node node) {
+    protected void flipColors(Node node) {
         if(node == null || node.left == null || node.right == null) {
             return;
         }
@@ -433,7 +433,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return balance(node);
     }
 
-    private Node moveRedLeft(Node node) {
+    protected Node moveRedLeft(Node node) {
         //Assuming that node is red and both node.left and node.left.left are black,
         // make node.left or one of its children red
         flipColors(node);
@@ -446,7 +446,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return node;
     }
 
-    private Node moveRedRight(Node node) {
+    protected Node moveRedRight(Node node) {
         //Assuming that node is red and both node.right and node.right.left are black,
         // make node.right or one of its children red
         flipColors(node);
@@ -458,7 +458,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return node;
     }
 
-    private Node balance(Node node) {
+    protected Node balance(Node node) {
         if(node == null) {
             return null;
         }

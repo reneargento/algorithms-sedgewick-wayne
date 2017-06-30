@@ -411,6 +411,7 @@ public class Exercise26_SingleTopDownPass {
             Node currentNode = subtreeRoot;
 
             //Used to avoid decrementing the size of the deleted node's right child after deletion and promotion
+            //It can't use updateSizeOfNodesInPath(min()) because this method is used in delete() operation
             boolean nodeDeleted = false;
 
             while (currentNode != null) {
@@ -503,6 +504,8 @@ public class Exercise26_SingleTopDownPass {
                 return;
             }
 
+            updateSizeOfNodesInPath(max());
+
             if(root.right == null) {
                 root = root.left;
                 return;
@@ -516,28 +519,25 @@ public class Exercise26_SingleTopDownPass {
             Node parent = null;
             Node currentNode = root;
 
-            //Used to avoid decrementing the size of the deleted node's right child after deletion and promotion
-            boolean nodeDeleted = false;
-
             while (currentNode != null) {
-
-                if(!nodeDeleted) {
-                    currentNode.size = currentNode.size - 1;
-                }
 
                 if(!isRed(currentNode.right) && isRed(currentNode.left)) {
                     currentNode = rotateRight(currentNode);
                     updateParentReference(parent, currentNode);
                 }
 
+                if(currentNode.right == null) {
+                    if(parent == null) {
+                        root = currentNode.left;
+                    } else {
+                        parent.right = currentNode.left;
+                    }
+                    currentNode = parent;
+                }
+
                 if(!isRed(currentNode.right) && currentNode.right != null && !isRed(currentNode.right.left)) {
                     currentNode = moveRedRight(currentNode);
                     updateParentReference(parent, currentNode);
-                }
-
-                if(currentNode.right != null && currentNode.right.right == null) {
-                    currentNode.right = currentNode.right.left;
-                    nodeDeleted = true;
                 }
 
                 //Balance on the way down
@@ -601,18 +601,20 @@ public class Exercise26_SingleTopDownPass {
 
                 if(key.compareTo(currentNode.key) < 0) {
 
-                    //Balance parent
-                    if(parent != null) {
-                        parent = balance(parent);
-                        updateParentReference(grandparent, parent);
-                    }
-
                     if(!isRed(currentNode.left) && currentNode.left != null && !isRed(currentNode.left.left)) {
                         currentNode = moveRedLeft(currentNode);
                         updateParentReference(parent, currentNode);
                     }
 
-                    grandparent = parent;
+                    //Balance on the way down
+                    Node oldParent = parent;
+
+                    if(parent != null) {
+                        parent = balance(parent);
+                        updateParentReference(grandparent, parent);
+                    }
+
+                    grandparent = oldParent;
                     parent = currentNode;
                     currentNode = currentNode.left;
                 } else {
@@ -913,6 +915,33 @@ public class Exercise26_SingleTopDownPass {
 
             return true;
         }
+
+        public boolean isBalanced() {
+            int blackNodes = 0; // number of black links on path from root to min
+
+            Node currentNode = root;
+            while (currentNode != null) {
+                if(!isRed(currentNode)) {
+                    blackNodes++;
+                }
+
+                currentNode = currentNode.left;
+            }
+
+            return isBalanced(root, blackNodes);
+        }
+
+        private boolean isBalanced(Node node, int blackNodes) {
+            if(node == null) {
+                return blackNodes == 0;
+            }
+
+            if(!isRed(node)) {
+                blackNodes--;
+            }
+
+            return isBalanced(node.left, blackNodes) && isBalanced(node.right, blackNodes);
+        }
     }
 
     public static void main(String[] args) {
@@ -928,33 +957,43 @@ public class Exercise26_SingleTopDownPass {
         RedBlackIterative234BST<Integer, Integer> redBlackIterative234BST = singleTopDownPass.new RedBlackIterative234BST<>();
         redBlackIterative234BST.put(5, 5);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(1, 1);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(9, 9);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(2, 2);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(0, 0);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(99, 99);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(-1, -1);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(-2, -2);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(3, 3);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         redBlackIterative234BST.put(-5, -5);
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true\n");
 
         StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true\n");
@@ -995,6 +1034,7 @@ public class Exercise26_SingleTopDownPass {
             StdOut.println("Key " + key + ": " + redBlackIterative234BST.get(key));
         }
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
 
@@ -1006,6 +1046,7 @@ public class Exercise26_SingleTopDownPass {
             StdOut.println("Key " + key + ": " + redBlackIterative234BST.get(key));
         }
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
 
@@ -1017,6 +1058,7 @@ public class Exercise26_SingleTopDownPass {
             StdOut.println("Key " + key + ": " + redBlackIterative234BST.get(key));
         }
         StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+        StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
         StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
         StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
 
@@ -1041,6 +1083,7 @@ public class Exercise26_SingleTopDownPass {
             //redBlackIterative234BST.delete(redBlackIterative234BST.select(0));
             redBlackIterative234BST.delete(redBlackIterative234BST.select(redBlackIterative234BST.size() - 1));
             StdOut.println("Is valid 2-3-4 tree: " + redBlackIterative234BST.isValid234Tree() + " Expected: true");
+            StdOut.println("Is balanced: " + redBlackIterative234BST.isBalanced() + " Expected: true");
             StdOut.println("Is BST: " + redBlackIterative234BST.isBST() + " Expected: true");
             StdOut.println("Size consistent: " + redBlackIterative234BST.isSubtreeCountConsistent() + " Expected: true");
 
