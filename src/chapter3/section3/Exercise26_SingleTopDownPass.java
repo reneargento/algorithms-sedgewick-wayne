@@ -24,6 +24,8 @@ public class Exercise26_SingleTopDownPass {
             boolean color;
             int size;
 
+            int numberOfBlackNodesInPath; //Only used to check if the tree is balanced on isBalanced()
+
             Node(Key key, Value value, int size, boolean color) {
                 this.key = key;
                 this.value = value;
@@ -436,6 +438,7 @@ public class Exercise26_SingleTopDownPass {
                     }
                 }
 
+                //Delete node
                 if(currentNode.left != null && currentNode.left.left == null) {
                     currentNode.left = currentNode.left.right;
                     nodeDeleted = true;
@@ -526,6 +529,7 @@ public class Exercise26_SingleTopDownPass {
                     updateParentReference(parent, currentNode);
                 }
 
+                //Delete node
                 if(currentNode.right == null) {
                     if(parent == null) {
                         root = currentNode.left;
@@ -917,6 +921,10 @@ public class Exercise26_SingleTopDownPass {
         }
 
         public boolean isBalanced() {
+            if(isEmpty()) {
+                return true;
+            }
+
             int blackNodes = 0; // number of black links on path from root to min
 
             Node currentNode = root;
@@ -928,19 +936,41 @@ public class Exercise26_SingleTopDownPass {
                 currentNode = currentNode.left;
             }
 
-            return isBalanced(root, blackNodes);
+            return isBalanced(blackNodes);
         }
 
-        private boolean isBalanced(Node node, int blackNodes) {
-            if(node == null) {
-                return blackNodes == 0;
+        private boolean isBalanced(int blackNodes) {
+            Queue<Node> queue = new Queue<>();
+            queue.enqueue(root);
+            root.numberOfBlackNodesInPath = 0;
+
+            while (!queue.isEmpty()) {
+                Node current = queue.dequeue();
+
+                if(!isRed(current)) {
+                    current.numberOfBlackNodesInPath++;
+                }
+
+                if(current.left != null) {
+                    current.left.numberOfBlackNodesInPath = current.numberOfBlackNodesInPath;
+                    queue.enqueue(current.left);
+                } else {
+                    if(current.numberOfBlackNodesInPath != blackNodes) {
+                        return false;
+                    }
+                }
+
+                if(current.right != null) {
+                    current.right.numberOfBlackNodesInPath = current.numberOfBlackNodesInPath;
+                    queue.enqueue(current.right);
+                } else {
+                    if(current.numberOfBlackNodesInPath != blackNodes) {
+                        return false;
+                    }
+                }
             }
 
-            if(!isRed(node)) {
-                blackNodes--;
-            }
-
-            return isBalanced(node.left, blackNodes) && isBalanced(node.right, blackNodes);
+            return true;
         }
     }
 
