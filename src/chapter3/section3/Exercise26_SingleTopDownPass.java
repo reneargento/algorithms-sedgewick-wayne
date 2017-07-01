@@ -413,7 +413,7 @@ public class Exercise26_SingleTopDownPass {
             Node currentNode = subtreeRoot;
 
             //Used to avoid decrementing the size of the deleted node's right child after deletion and promotion
-            //It can't use updateSizeOfNodesInPath(min()) because this method is used in delete() operation
+            //It can't use updateSizeOfNodesInPath(min()) because deleteMin() is used in delete() operation
             boolean nodeDeleted = false;
 
             while (currentNode != null) {
@@ -627,6 +627,7 @@ public class Exercise26_SingleTopDownPass {
                         updateParentReference(parent, currentNode);
                     }
 
+                    //Delete node
                     if(key.compareTo(currentNode.key) == 0 && currentNode.right == null) {
                         if(parent == null) {
                             root = currentNode.left;
@@ -648,6 +649,7 @@ public class Exercise26_SingleTopDownPass {
                         updateParentReference(parent, currentNode);
                     }
 
+                    //Delete node
                     if(key.compareTo(currentNode.key) == 0) {
                         Node aux = min(currentNode.right);
                         currentNode.key = aux.key;

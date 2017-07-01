@@ -38,7 +38,7 @@ public class Exercise39_DeleteTheMinimum {
             return balance(node);
         }
 
-        private Node moveRedLeft(Node node) {
+        protected Node moveRedLeft(Node node) {
             //Assuming that node is red and both node.left and node.left.left are black,
             // make node.left or one of its children red
             flipColors(node);
@@ -51,7 +51,7 @@ public class Exercise39_DeleteTheMinimum {
             return node;
         }
 
-        private Node balance(Node node) {
+        protected Node balance(Node node) {
             if(node == null) {
                 return null;
             }
@@ -73,7 +73,7 @@ public class Exercise39_DeleteTheMinimum {
             return node;
         }
 
-        private void flipColors(Node node) {
+        protected void flipColors(Node node) {
             if(node != null) {
                 node.color = !node.color;
 

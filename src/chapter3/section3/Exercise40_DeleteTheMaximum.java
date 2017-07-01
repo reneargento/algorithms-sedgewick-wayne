@@ -42,7 +42,7 @@ public class Exercise40_DeleteTheMaximum {
             return balance(node);
         }
 
-        private Node moveRedRight(Node node) {
+        protected Node moveRedRight(Node node) {
             //Assuming that node is red and both node.right and node.right.left are black,
             // make node.right or one of its children red
             flipColors(node);
@@ -54,7 +54,7 @@ public class Exercise40_DeleteTheMaximum {
             return node;
         }
 
-        private Node balance(Node node) {
+        protected Node balance(Node node) {
             if(node == null) {
                 return null;
             }
@@ -76,7 +76,7 @@ public class Exercise40_DeleteTheMaximum {
             return node;
         }
 
-        private void flipColors(Node node) {
+        protected void flipColors(Node node) {
             if(node != null) {
                 node.color = !node.color;
 

@@ -66,7 +66,7 @@ public class Exercise41_Delete {
             return balance(node);
         }
 
-        private Node moveRedLeft(Node node) {
+        protected Node moveRedLeft(Node node) {
             flipColors(node);
 
             if(node.right != null && isRed(node.right.left)) {
@@ -77,7 +77,7 @@ public class Exercise41_Delete {
             return node;
         }
 
-        private Node moveRedRight(Node node) {
+        protected Node moveRedRight(Node node) {
             flipColors(node);
 
             if(node.left != null && isRed(node.left.left)) {
@@ -87,7 +87,7 @@ public class Exercise41_Delete {
             return node;
         }
 
-        private Node balance(Node node) {
+        protected Node balance(Node node) {
             if(node == null) {
                 return null;
             }
@@ -109,7 +109,7 @@ public class Exercise41_Delete {
             return node;
         }
 
-        private void flipColors(Node node) {
+        protected void flipColors(Node node) {
             if(node != null) {
                 node.color = !node.color;
 
