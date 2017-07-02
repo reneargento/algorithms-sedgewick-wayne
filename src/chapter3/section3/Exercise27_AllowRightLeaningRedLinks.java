@@ -157,9 +157,11 @@ public class Exercise27_AllowRightLeaningRedLinks {
             if(node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
+                flipColors(node);
             } else if(node.right != null && isRed(node.right.right)) {
                 node.right = rotateLeft(node.right);
                 node = rotateLeft(node);
+                flipColors(node);
             }
 
             return node;
@@ -172,9 +174,11 @@ public class Exercise27_AllowRightLeaningRedLinks {
 
             if(node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
+                flipColors(node);
             } else if(node.left != null && isRed(node.left.right)) {
                 node.left = rotateLeft(node.left);
                 node = rotateRight(node);
+                flipColors(node);
             }
 
             return node;

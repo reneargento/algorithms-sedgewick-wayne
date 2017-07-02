@@ -722,6 +722,7 @@ public class Exercise26_SingleTopDownPass {
             if(node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
+                flipColors(node);
             }
 
             return node;
@@ -734,6 +735,7 @@ public class Exercise26_SingleTopDownPass {
 
             if(node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
+                flipColors(node);
             }
 
             return node;

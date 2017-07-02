@@ -786,11 +786,13 @@ public class Exercise29_OptimalStorage {
                     if(node.right != null && isRed(node.right.left)) {
                         node.right = rotateRight(node.right);
                         node = rotateLeft(node);
+                        flipColors(node);
                     }
                 } else {
                     if(node.right != null && isRed(node.right.right)) {
                         node.right = rotateRight(node.right);
                         node = rotateLeft(node);
+                        flipColors(node);
                     }
                 }
             } else {
@@ -798,11 +800,13 @@ public class Exercise29_OptimalStorage {
                     if(node.left != null && isRed(node.left.left)) {
                         node.left = rotateRight(node.left);
                         node = rotateLeft(node);
+                        flipColors(node);
                     }
                 } else {
                     if(node.left != null && isRed(node.left.right)) {
                         node.left = rotateRight(node.left);
                         node = rotateLeft(node);
+                        flipColors(node);
                     }
                 }
             }
@@ -819,20 +823,24 @@ public class Exercise29_OptimalStorage {
                 if(!isRed(node.left)) {
                     if(node.left != null && isRed(node.left.left)) {
                         node = rotateRight(node);
+                        flipColors(node);
                     }
                 } else {
                     if(node.left != null && isRed(node.left.right)) {
                         node = rotateRight(node);
+                        flipColors(node);
                     }
                 }
             } else {
                 if(!isRed(node.left)) {
                     if(node.right != null && isRed(node.right.left)) {
                         node = rotateRight(node);
+                        flipColors(node);
                     }
                 } else {
                     if(node.right != null && isRed(node.right.right)) {
                         node = rotateRight(node);
+                        flipColors(node);
                     }
                 }
             }

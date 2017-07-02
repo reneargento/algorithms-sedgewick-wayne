@@ -49,6 +49,7 @@ public class Exercise40_DeleteTheMaximum {
 
             if(node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
+                flipColors(node);
             }
 
             return node;

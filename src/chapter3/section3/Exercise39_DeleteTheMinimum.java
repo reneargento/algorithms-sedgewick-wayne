@@ -46,6 +46,7 @@ public class Exercise39_DeleteTheMinimum {
             if(node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
+                flipColors(node);
             }
 
             return node;
