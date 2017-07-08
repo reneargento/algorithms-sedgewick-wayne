@@ -74,7 +74,8 @@ public class VisualAccumulator {
 
     public void writeFinalMean() {
         StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.text(size + (size * 0.04), mean(), String.valueOf((int) mean()));
+        long roundMean = Math.round(mean());
+        StdDraw.text(size + (size * 0.04), mean(), String.valueOf(roundMean));
     }
 
     public void writeText(String text, double xCoordinate, double yCoordinate, Color color) {

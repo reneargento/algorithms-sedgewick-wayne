@@ -1,26 +1,38 @@
-package chapter3.section2;
+package chapter3.section3;
 
 import util.FileUtil;
 import util.VisualAccumulator;
 
 /**
- * Created by rene on 12/06/17.
+ * Created by rene on 08/07/17.
  */
-public class Exercise44_CostPlots {
+public class Exercise43_CostPlots {
 
-    private class BinarySearchTreeCostPlots<Key extends Comparable<Key>, Value> extends BinarySearchTree<Key, Value> {
+    private class RedBlackBSTCostPlots<Key extends Comparable<Key>, Value> extends RedBlackBST<Key, Value> {
 
         private int cost;
 
-        public int putAndComputeCost(Key key, Value value) {
+        private int putAndComputeCost(Key key, Value value) {
+            if(key == null) {
+                return 0;
+            }
+
+            if(value == null) {
+                delete(key);
+                return 0;
+            }
+
             cost = 0;
+
             root = put(root, key, value);
+            root.color = BLACK;
+
             return cost;
         }
 
         private Node put(Node node, Key key, Value value) {
             if(node == null) {
-                return new Node(key, value, 1);
+                return new Node(key, value, 1, RED);
             }
 
             int compare = key.compareTo(node.key);
@@ -34,6 +46,19 @@ public class Exercise44_CostPlots {
                 node.value = value;
             }
 
+            if(isRed(node.right) && !isRed(node.left)) {
+                cost++;
+                node = rotateLeft(node);
+            }
+            if(isRed(node.left) && isRed(node.left.left)) {
+                cost++;
+                node = rotateRight(node);
+            }
+            if(isRed(node.left) && isRed(node.right)) {
+                cost++;
+                flipColors(node);
+            }
+
             node.size = size(node.left) + 1 + size(node.right);
             return node;
         }
@@ -44,12 +69,12 @@ public class Exercise44_CostPlots {
     public static void main(String[] args) {
         String[] wordsInTale = FileUtil.getAllStringsFromFile(TALE_FILE_PATH);
         int minLength = 8; //Same as the book analysis
-        new Exercise44_CostPlots().frequencyCounter(wordsInTale, minLength);
+        new Exercise43_CostPlots().frequencyCounter(wordsInTale, minLength);
     }
 
     private String frequencyCounter(String[] words, int minLength) {
 
-        String title = "BST costs using put() in FrequencyCounter";
+        String title = "Red-black BST costs using put() in FrequencyCounter";
         String xAxisLabel = "operations";
         String yAxisLabel = "cost";
         double maxNumberOfOperations = 18000;
@@ -58,7 +83,7 @@ public class Exercise44_CostPlots {
 
         VisualAccumulator visualAccumulator = new VisualAccumulator(originValue, maxNumberOfOperations, maxCost, title,
                 xAxisLabel, yAxisLabel);
-        BinarySearchTreeCostPlots<String, Integer> binarySearchTree = new BinarySearchTreeCostPlots<>();
+        RedBlackBSTCostPlots<String, Integer> redBlackBSTCostPlots = new RedBlackBSTCostPlots<>();
 
         for(String word : words) {
 
@@ -67,27 +92,27 @@ public class Exercise44_CostPlots {
             }
 
             int cost;
-            if(!binarySearchTree.contains(word)) {
-                cost = binarySearchTree.putAndComputeCost(word, 1);
+            if(!redBlackBSTCostPlots.contains(word)) {
+                cost = redBlackBSTCostPlots.putAndComputeCost(word, 1);
             } else {
-                cost = binarySearchTree.putAndComputeCost(word, binarySearchTree.get(word) + 1);
+                cost = redBlackBSTCostPlots.putAndComputeCost(word, redBlackBSTCostPlots.get(word) + 1);
             }
             visualAccumulator.addDataValue(cost, true);
         }
 
         String max = "";
-        int cost = binarySearchTree.putAndComputeCost(max, 0);
+        int cost = redBlackBSTCostPlots.putAndComputeCost(max, 0);
         visualAccumulator.addDataValue(cost, true);
 
-        for(String word : binarySearchTree.keys()) {
-            if(binarySearchTree.get(word) > binarySearchTree.get(max)) {
+        for(String word : redBlackBSTCostPlots.keys()) {
+            if(redBlackBSTCostPlots.get(word) > redBlackBSTCostPlots.get(max)) {
                 max = word;
             }
         }
 
         visualAccumulator.writeFinalMean();
 
-        return max + " " + binarySearchTree.get(max);
+        return max + " " + redBlackBSTCostPlots.get(max);
     }
 
 }

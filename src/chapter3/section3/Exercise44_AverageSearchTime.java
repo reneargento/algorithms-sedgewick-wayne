@@ -1,4 +1,4 @@
-package chapter3.section2;
+package chapter3.section3;
 
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdDraw;
@@ -6,26 +6,27 @@ import edu.princeton.cs.algs4.StdRandom;
 import util.VisualAccumulator;
 
 /**
- * Created by rene on 13/06/17.
+ * Created by rene on 08/07/17.
  */
-public class Exercise47_AverageSearchTime {
+public class Exercise44_AverageSearchTime {
 
-    private class BinarySearchTreeInternalPathLength<Key extends Comparable<Key>, Value> extends BinarySearchTree<Key, Value> {
+    private class RedBlackBSTInternalPathLength<Key extends Comparable<Key>, Value> extends RedBlackBST<Key, Value> {
 
         private class Node {
-            private Key key;
-            private Value value;
+            Key key;
+            Value value;
+            Node left, right;
 
-            private Node left;
-            private Node right;
-
-            private int size; //# of nodes in subtree rooted here
+            boolean color;
+            int size;
             private int depth; //used only to compute the internal path length
 
-            public Node(Key key, Value value, int size) {
+            Node(Key key, Value value, int size, boolean color) {
                 this.key = key;
                 this.value = value;
+
                 this.size = size;
+                this.color = color;
             }
         }
 
@@ -43,13 +44,83 @@ public class Exercise47_AverageSearchTime {
             return node.size;
         }
 
+        private boolean isRed(Node node) {
+            if(node == null) {
+                return false;
+            }
+
+            return node.color == RED;
+        }
+
+        private Node rotateLeft(Node node) {
+            if(node == null || node.right == null) {
+                return node;
+            }
+
+            Node newRoot = node.right;
+
+            node.right = newRoot.left;
+            newRoot.left = node;
+
+            newRoot.color = node.color;
+            node.color = RED;
+
+            newRoot.size = node.size;
+            node.size = size(node.left) + 1 + size(node.right);
+
+            return newRoot;
+        }
+
+        private Node rotateRight(Node node) {
+            if(node == null || node.left == null) {
+                return node;
+            }
+
+            Node newRoot = node.left;
+
+            node.left = newRoot.right;
+            newRoot.right = node;
+
+            newRoot.color = node.color;
+            node.color = RED;
+
+            newRoot.size = node.size;
+            node.size = size(node.left) + 1 + size(node.right);
+
+            return newRoot;
+        }
+
+        private void flipColors(Node node) {
+            if(node == null || node.left == null || node.right == null) {
+                return;
+            }
+
+            //The root must have opposite color of its two children
+            if((isRed(node) && !isRed(node.left) && !isRed(node.right))
+                    || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
+                node.color = !node.color;
+                node.left.color = !node.left.color;
+                node.right.color = !node.right.color;
+            }
+        }
+
         public void put(Key key, Value value) {
+            if(key == null) {
+                return;
+            }
+
+            if(value == null) {
+                delete(key);
+                return;
+            }
+
             root = put(root, key, value);
+            root.color = BLACK;
         }
 
         private Node put(Node node, Key key, Value value) {
             if(node == null) {
-                return new Node(key, value, 1);
+                return new Node(key, value, 1, RED);
             }
 
             int compare = key.compareTo(node.key);
@@ -62,11 +133,21 @@ public class Exercise47_AverageSearchTime {
                 node.value = value;
             }
 
+            if(isRed(node.right) && !isRed(node.left)) {
+                node = rotateLeft(node);
+            }
+            if(isRed(node.left) && isRed(node.left.left)) {
+                node = rotateRight(node);
+            }
+            if(isRed(node.left) && isRed(node.right)) {
+                flipColors(node);
+            }
+
             node.size = size(node.left) + 1 + size(node.right);
             return node;
         }
 
-        public int internalPathLength() {
+        private int internalPathLength() {
             if(root == null) {
                 return 0;
             }
@@ -94,7 +175,7 @@ public class Exercise47_AverageSearchTime {
             return internalPathLength;
         }
 
-        public double averagePathLength() {
+        private double averagePathLength() {
             if(size() == 0) {
                 return 0;
             }
@@ -104,12 +185,12 @@ public class Exercise47_AverageSearchTime {
     }
 
     private void doExperiment() {
-        String title = "Average path length to a random node in a BST built from random keys";
+        String title = "Average path length to a random node in a red-black BST built from random keys";
         String xAxisLabel = "number of keys N";
         String yAxisLabel = "compares";
         double maxNumberOfOperations = 10000;
         double maxCost = 20;
-        int originValue = 100;
+        int originValue = 1;
 
         VisualAccumulator visualAccumulator = new VisualAccumulator(originValue, maxNumberOfOperations, maxCost, title,
                 xAxisLabel, yAxisLabel);
@@ -123,15 +204,15 @@ public class Exercise47_AverageSearchTime {
             long totalAvgPathLengths = 0;
 
             for(int t=0; t < numberOfTrials; t++) {
-                BinarySearchTreeInternalPathLength<Integer, Integer> binarySearchTreeInternalPathLength =
-                        new BinarySearchTreeInternalPathLength<>();
+                RedBlackBSTInternalPathLength<Integer, Integer> redBlackBSTInternalPathLength =
+                        new RedBlackBSTInternalPathLength<>();
 
                 for(int i=0; i < size; i++) {
                     Integer randomKey = StdRandom.uniform(Integer.MAX_VALUE);
-                    binarySearchTreeInternalPathLength.put(randomKey, randomKey);
+                    redBlackBSTInternalPathLength.put(randomKey, randomKey);
                 }
 
-                double averagePathLength = binarySearchTreeInternalPathLength.averagePathLength();
+                double averagePathLength = redBlackBSTInternalPathLength.averagePathLength();
                 totalAvgPathLengths += averagePathLength;
 
                 if(size % 200 == 0) {
@@ -144,8 +225,8 @@ public class Exercise47_AverageSearchTime {
             if(size % 200 == 0) {
                 visualAccumulator.drawDataValue(size, averageOfAveragesPathLength, StdDraw.RED);
 
-                //Draw the expected average path length -> 1.39 lg N - 1.85
-                double expectedAveragePathLength = 1.39 * (Math.log(size) / Math.log(2)) - 1.85;
+                //Draw the expected average path length -> lg N - .5
+                double expectedAveragePathLength = (Math.log(size) / Math.log(2)) - 0.5;
                 visualAccumulator.drawDataValue(size, expectedAveragePathLength, StdDraw.BLACK);
 
                 if(lastExpectedAveragePathLength != -1) {
@@ -164,7 +245,7 @@ public class Exercise47_AverageSearchTime {
     }
 
     public static void main(String[] args) {
-        new Exercise47_AverageSearchTime().doExperiment();
+        new Exercise44_AverageSearchTime().doExperiment();
     }
 
 }
