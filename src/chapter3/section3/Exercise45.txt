@@ -1,0 +1,5 @@
+3.3.45 - Count rotations
+
+When the tree doesn't have many nodes (less than 2000) the average number of rotations and splits is around 2 per put() operation.
+When the tree has more than 2000 nodes the average number of rotations and splits is 1 per put() operation, possibly because the tree already has many balanced branches and the rotations and splits do not propagate up many levels.
+During the experiment the worst-case number of rotations and splits was close to 20.

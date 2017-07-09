@@ -1,0 +1,6 @@
+3.3.46 - Height
+
+The average height of the red-black BST after all the put() operations is 15.
+The final red-black BST size is 8932 and since the height was measured from N = 1 to N = 8932 , the average height is consistent with the formula: 
+AVG Height ~ 2 lg n
+It is also interesting to notice that the height may decrease after insertions of nodes.

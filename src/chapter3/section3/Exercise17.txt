@@ -1,0 +1,40 @@
+3.3.17
+
+Random keys 1: P Z R X W H F N B L J I E Q C V
+Random keys 2: R C J O N E L U W F V S G I K Z
+
+Red-black BST built with random keys 1:
+
+                        (B)R
+               (R)J                (B)X
+        (B)H         (B)N        (B)W  (B)Z
+   (R)E     (B)I  (B)L   (B)Q  (R)V
+ (B)C (B)F              (R)P
+(R)B
+
+BST built with random keys 1:
+
+                 P
+           H           Z
+        F     N      R
+       B     L     Q   X
+        E   J         W
+       C   I         V
+
+Red-black BST built with random keys 2:
+
+                          (B)O
+               (R)G                       (B)W
+      (B)E              (B)L         (R)U     (B)Z
+   (B)C   (B)F      (R)J    (B)N   (B)S (B)V
+                 (B)I (B)K        (R)R
+
+BST built with random keys 2:
+
+                R
+       C               U
+            J        S   W
+       E        O       V Z
+        F      N
+         G    L
+          I  K

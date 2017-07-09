@@ -1,0 +1,51 @@
+3.3.2
+
+Insert Y     Y
+
+       L     LY
+
+       P     LPY
+
+       P     P
+            L Y
+
+       M      P
+            LM Y
+
+       X      P
+            LM XY
+
+       H       P
+            HLM XY
+
+       H      LP
+            H M  XY
+
+       C      LP
+            CH M  XY
+
+       R      LP
+            CH M  RXY
+
+       R      LPX
+            CH M  R Y
+
+       R         P
+              L     X
+            CH M   R Y
+
+       A          P
+               L     X
+            ACH M   R Y
+
+       A          P
+              CL     X
+            A H M   R Y
+
+       E          P
+              CL      X
+            A EH M   R Y
+
+       S           P
+              CL       X
+            A EH M   RS Y

@@ -1,0 +1,42 @@
+3.3.12
+                         (B)R
+                   (R)E             (B)X
+              (B)C     (B)M     (R)S
+           (R)A     (R)H
+
+Insert P
+                         (B)R
+                   (R)E             (B)X
+              (B)C     (B)M     (R)S
+           (R)A     (R)H  (R)P
+
+Color flip
+                         (B)R
+                   (R)E             (B)X
+              (B)C     (R)M     (R)S
+           (R)A     (B)H  (B)P
+
+Rotate left
+                           (B)R
+                   (R)M             (B)X
+              (R)E     (B)P     (R)S
+           (B)C  (B)H  
+         (R)A
+
+Rotate right
+                      (B)M  
+               (R)E         (R)R
+            (B)C  (B)H   (B)P    (B)X  
+         (R)A                  (R)S
+
+Color flip
+                      (R)M  
+               (B)E         (B)R
+            (B)C  (B)H   (B)P    (B)X  
+         (R)A                  (R)S
+
+Paint root black
+                      (B)M  
+               (B)E         (B)R
+            (B)C  (B)H   (B)P    (B)X  
+         (R)A                (R)S

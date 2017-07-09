@@ -1,0 +1,59 @@
+3.3.24 - Worst case for red-black BSTs
+
+To construct a worst-case red-black BST (consisting of N nodes and with almost all the paths from the root to a null link of length 2 lg N) we have to insert the values 1, ..., 2^(n + 1) - 2 in reverse order.
+This produces the worst-case red-black BST, a skinny tree.
+
+Examples:
+ 
+N = 1
+
+Insert values 1, ..., 2 in reverse order
+
+Insert  2      (B)2
+
+        1      (B)2
+             (R)1
+
+N = 2
+
+Insert values 1, ..., 6 in reverse order
+
+Insert  6       (B)6
+
+        5       (B)6
+             (R)5
+
+        4       (B)6
+             (R)5
+           (R)4
+
+        4       (B)5
+             (R)4  (R)6
+           
+        4       (R)5
+             (B)4  (B)6
+
+        4       (B)5
+             (B)4  (B)6
+
+        3       (B)5
+             (B)4  (B)6
+           (R)3
+
+        2        (B)5
+              (B)4  (B)6
+            (R)3
+          (R)2
+
+        2           (B)5
+               (B)3      (B)6
+            (R)2  (R)4
+
+        2           (B)5
+               (R)3      (B)6
+            (B)2  (B)4
+
+        1           (B)5
+               (R)3      (B)6
+            (B)2  (B)4
+          (R)1

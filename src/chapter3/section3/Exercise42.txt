@@ -1,0 +1,8 @@
+3.3.42 - Count red nodes
+
+Tree Size |   Red Nodes %
+    10000           25.46
+   100000           25.39
+  1000000           25.39
+
+Hypothesis: In a red-black BST built by insertion of N random keys, ~25% of its nodes are red.

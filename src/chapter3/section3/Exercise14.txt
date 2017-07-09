@@ -1,0 +1,121 @@
+3.3.14
+
+Insert A        (B)A
+
+       B        (B)A
+                   (R)B
+
+       B        (B)B
+              (R)A
+
+       C         (B)B
+              (R)A  (R)C
+
+       C         (R)B
+              (B)A  (B)C
+
+       C         (B)B
+              (B)A  (B)C
+
+       D         (B)B
+              (B)A  (B)C
+                      (R)D
+
+       D          (B)B
+              (B)A    (B)D
+                    (R)C
+
+       E          (B)B
+              (B)A     (B)D
+                    (R)C  (R)E
+
+       E          (B)B
+              (B)A     (R)D
+                    (B)C  (B)E
+
+       E            (B)D
+               (R)B     (B)E
+            (B)A  (B)C  
+
+       F            (B)D
+               (R)B     (B)E
+            (B)A  (B)C     (R)F
+
+       F             (B)D
+               (R)B        (B)F
+            (B)A  (B)C  (R)E 
+
+       G             (B)D
+               (R)B        (B)F
+            (B)A  (B)C  (R)E  (R)G
+
+       G             (B)D
+               (R)B        (R)F
+            (B)A  (B)C  (B)E  (B)G
+
+       G             (R)D
+               (B)B        (B)F
+            (B)A  (B)C  (B)E  (B)G 
+
+       G             (B)D
+               (B)B        (B)F
+            (B)A  (B)C  (B)E  (B)G 
+
+       H             (B)D
+               (B)B        (B)F
+            (B)A  (B)C  (B)E  (B)G
+                                (R)H
+
+       H             (B)D
+               (B)B         (B)F
+            (B)A  (B)C  (B)E    (B)H
+                              (R)G
+
+       I             (B)D
+               (B)B         (B)F
+            (B)A  (B)C  (B)E    (B)H
+                              (R)G  (R)I
+
+       I             (B)D
+               (B)B         (B)F
+            (B)A  (B)C  (B)E    (R)H
+                              (B)G  (B)I
+
+       I               (B)D
+               (B)B             (B)H
+            (B)A  (B)C     (R)F     (B)I
+                        (B)E  (B)G  
+
+       J               (B)D
+               (B)B             (B)H
+            (B)A  (B)C     (R)F     (B)I
+                        (B)E  (B)G    (R)J
+
+       J                (B)D
+               (B)B              (B)H
+            (B)A  (B)C     (R)F       (B)J
+                        (B)E  (B)G  (R)I
+
+       K                (B)D
+               (B)B              (B)H
+            (B)A  (B)C     (R)F        (B)J
+                        (B)E  (B)G  (R)I  (R)K
+
+       K                (B)D
+               (B)B              (B)H
+            (B)A  (B)C     (R)F        (R)J
+                        (B)E  (B)G  (B)I  (B)K
+
+       K                (B)D
+               (B)B              (R)H
+            (B)A  (B)C     (B)F        (B)J
+                        (B)E  (B)G  (B)I  (B)K
+
+       K                    (B)H
+                     (R)D             (B)J
+              (B)B        (B)F     (B)I  (B)K   
+           (B)A  (B)C  (B)E  (B)G  
+
+Every insert operation requires either coloring (zero or more operations), left rotation (at most one) or a combination of coloring and left rotation. 
+The more nodes in the tree, the more nodes involved in these operations.
+The tree height is monotonically increasing when inserting keys in increasing order.

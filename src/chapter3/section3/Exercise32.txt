@@ -1,0 +1,51 @@
+3.3.32 - AVL trees
+
+Coloring red links that go from nodes of even height to nodes of odd height in an AVL tree gives a perfectly balanced 2-3-4 tree.
+This happens because every two levels of the tree will merge its nodes into 4-nodes (or 3-nodes if the node has only one child or 2-nodes if the node has no children). This generates a perfectly balanced 2-3-4 tree.
+
+For an AVL tree of size 6:
+
+         (B)H
+   (B)B        (B)V
+(B)A  (B)C   (B)R
+
+2-3 representation
+    H
+  B   V
+ A C R
+
+After coloring red links:
+
+         (B)H
+   (R)B        (R)V
+(B)A  (B)C   (B)R
+
+2-3 representation
+    BHV
+  A C   R
+
+For an AVL tree of size 19:
+                                  (B)P
+                    (B)L                        (B)T
+        (B)H              (B)N           (B)R          (B)V
+   (B)F        (B)J    (B)M  (B)O     (B)Q   (B)S   (B)U  (B)X
+(B)E  (B)G  (B)I  (B)K
+
+2-3 representation
+              P
+        L           T
+    H       N     R    V
+ F    J   M   O  Q S  U X
+E G  I K
+
+After coloring red links:
+                                  (B)P
+                    (R)L                        (R)T
+        (B)H              (B)N           (B)R          (B)V
+   (R)F        (R)J    (R)M  (R)O     (R)Q   (R)S   (R)U  (R)X
+(B)E  (B)G  (B)I  (B)K
+
+2-3 representation
+             LPT
+    FHJ   MNO   QRS   UVX
+ E G I K

@@ -1,0 +1,6 @@
+3.3.9
+
+(iii) and (iv)
+
+(i) is not balanced
+(ii) is not ordered (F cannot be on the left side of E)

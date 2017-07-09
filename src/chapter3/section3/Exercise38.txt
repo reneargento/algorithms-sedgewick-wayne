@@ -1,0 +1,56 @@
+3.3.38 - Fundamental theorem of rotations
+
+Any BST can be transformed into any other BST on the same set of keys by a sequence of left and right rotations.
+
+Rotations move keys to the left or right, allowing BSTs to change their structure. 
+After repeatedly doing left rotations on the largest key and recurring on the resulting left subtree, the resulting BST has height N (with every right link null). On the other hand, after repeatedly doing right rotations on the smallest key and recurring on the resulting right subtree, the resulting BST has height N (with every left link null).
+These are the left and right limits, and BSTs can move between these structures with rotations on different nodes.
+
+Example:
+
+Original BST
+    4
+  2   5
+ 1 3
+
+Right rotation 1
+    2
+  1   4
+     3 5
+
+Right rotation 2
+    1
+      2
+       4
+      3 5
+
+Right rotation 3 - Right limit
+    1
+     2
+      3
+       4
+        5
+
+Left rotation 1
+     2
+    1 3
+       4
+        5
+
+Left rotation 2
+     3
+    2 4
+   1   5
+
+Left rotation 3
+     4
+    3 5
+   2
+  1
+
+Left rotation 4 - Left limit
+      5
+     4
+    3
+   2
+  1

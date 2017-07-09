@@ -1,0 +1,29 @@
+3.3.3
+
+Insertion order: E M R X A C H S
+
+Insert E     E
+
+Insert M     E
+              M
+
+Insert R     E
+              MR
+
+Insert X     E
+              MRX
+
+Insert X     ER
+              M X
+
+Insert A     ER
+            A M X
+
+Insert C     ER
+           AC M X
+
+Insert H      ER
+           AC HM X
+
+Insert S      ER
+           AC HM SX

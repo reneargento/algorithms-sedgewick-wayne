@@ -1,0 +1,48 @@
+3.3.1
+
+Insert E     E
+
+       A     AE
+
+       S     AES
+
+       S      E
+             A S
+
+       Y      E
+             A SY
+
+       Q       E
+             A   QSY
+
+       Q       ES
+             A  Q Y
+
+       U       ES
+             A  Q UY
+
+       T       ES
+             A  Q TUY
+
+       T       ESU
+             A  Q T Y
+
+       T         S
+              E    U
+             A Q  T Y
+
+       I         S
+              E     U
+             A IQ  T Y
+
+       O          S
+              E      U
+             A IOQ  T Y
+
+       O          S
+              EO     U
+             A I Q  T Y
+
+       N          S
+              EO      U
+             A IN Q  T Y

@@ -1,0 +1,10 @@
+3.3.23 - 2-3 trees without balance restriction
+
+Average path length for 100 random insertions: 7
+Average path length for 1000 random insertions: 12
+Average path length for 10000 random insertions: 17
+Average path length for 100000 random insertions: 20
+Average path length for 1000000 random insertions: 26
+Average path length for 10000000 random insertions: 30
+
+Hypothesis: In a non-balanced 2-3 tree the average path length becomes the same as the average path length for a standard binary search tree: ~1.44 lg N after N random insertions.

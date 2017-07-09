@@ -1,0 +1,811 @@
+3.3.36 - 2-3-4-5-6-7-8 trees
+
+******
+Search
+******
+If the search key is null, return an IllegalArgumentException.
+
+Call the search function with a node parameter and the search key recursively, passing the root and the search key as the initial parameters.
+
+If the current node is null, the search key is not in the tree. Return null.
+Check the type of the current node.
+
+If it is a 2-node, compare the search key with the current node key:
+
+Result             Action
+compare < 0        Continue the search on the left subtree
+compare > 0        Continue the search on the right subtree
+compare = 0        Return the associated node value
+
+If it is a 3-node, compare the search key with the current node left key (leftCompare) and right key (rightCompare):
+ 
+Result               Action
+leftCompare < 0      Continue the search on the left subtree
+rightCompare < 0
+
+leftCompare > 0      Continue the search on the middle subtree
+rightCompare < 0
+
+leftCompare > 0      Continue the search on the right subtree
+rightCompare > 0
+
+leftCompare = 0      Return the left value
+rightCompare != 0
+
+leftCompare != 0     Return the right value
+rightCompare = 0
+
+If it is a 4-node, compare the search key with the current node left key (leftCompare), middle key (middleCompare) and right key (rightCompare):
+ 
+Result               Action
+leftCompare < 0      Continue the search on the left subtree
+middleCompare < 0
+rightCompare < 0
+
+leftCompare > 0      Continue the search on the middle1 subtree
+middleCompare < 0
+rightCompare < 0
+
+leftCompare > 0      Continue the search on the middle2 subtree
+middleCompare > 0
+rightCompare < 0
+
+leftCompare > 0      Continue the search on the right subtree
+middleCompare > 0
+rightCompare > 0
+
+leftCompare = 0      Return the left value
+middleCompare != 0
+rightCompare != 0
+
+leftCompare != 0     Return the middle value
+middleCompare = 0
+rightCompare != 0
+
+leftCompare != 0     Return the right value
+middleCompare != 0
+rightCompare = 0
+
+If it is a 5-node, compare the search key with the current node left key (leftCompare), middle1 key (middle1Compare), middle2 key (middle2Compare) and right key (rightCompare):
+ 
+Result                Action
+leftCompare < 0       Continue the search on the left subtree
+middle1Compare < 0
+middle2Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle1 subtree
+middle1Compare < 0
+middle2Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle2 subtree
+middle1Compare > 0
+middle2Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle3 subtree
+middle1Compare > 0
+middle2Compare > 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the right subtree
+middle1Compare > 0
+middle2Compare > 0
+rightCompare > 0
+
+leftCompare = 0       Return the left value
+middle1Compare != 0
+middle2Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle1 value
+middle1Compare = 0
+middle2Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle2 value
+middle1Compare != 0
+middle2Compare = 0
+rightCompare != 0
+
+leftCompare != 0      Return the right value
+middle1Compare != 0
+middle2Compare != 0
+rightCompare = 0
+
+If it is a 6-node, compare the search key with the current node left key (leftCompare), middle1 key (middle1Compare), middle2 key (middle2Compare), middle3 key (middle3Compare) and right key (rightCompare):
+ 
+Result                Action
+leftCompare < 0       Continue the search on the left subtree
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle1 subtree
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle2 subtree
+middle1Compare > 0
+middle2Compare < 0
+middle3Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle3 subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle4 subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the right subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+rightCompare > 0
+
+leftCompare = 0       Return the left value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle1 value
+middle1Compare = 0
+middle2Compare != 0
+middle3Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle2 value
+middle1Compare != 0
+middle2Compare = 0
+middle3Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle3 value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare = 0
+rightCompare != 0
+
+leftCompare != 0      Return the right value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+rightCompare = 0
+
+If it is a 7-node, compare the search key with the current node left key (leftCompare), middle1 key (middle1Compare), middle2 key (middle2Compare), middle3 key (middle3Compare), middle4 key (middle4Compare) and right key (rightCompare):
+ 
+Result                Action
+leftCompare < 0       Continue the search on the left subtree
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle1 subtree
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0      Continue the search on the middle2 subtree
+middle1Compare > 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle3 subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare < 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle4 subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle5 subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the right subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+rightCompare > 0
+
+leftCompare = 0       Return the left value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle1 value
+middle1Compare = 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle2 value
+middle1Compare != 0
+middle2Compare = 0
+middle3Compare != 0
+middle4Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle3 value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare = 0
+middle4Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle4 value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare = 0
+rightCompare != 0
+
+leftCompare != 0      Return the right value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+rightCompare = 0
+
+If it is an 8-node, compare the search key with the current node left key (leftCompare), middle1 key (middle1Compare), middle2 key (middle2Compare), middle3 key (middle3Compare), middle4 key (middle4Compare), middle5 key (middle5Compare) and right key (rightCompare):
+ 
+Result                Action
+leftCompare < 0       Continue the search on the left subtree
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle1 subtree
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle2 subtree
+middle1Compare > 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle3 subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare < 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle4 subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle5 subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the middle6 subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+middle5Compare > 0
+rightCompare < 0
+
+leftCompare > 0       Continue the search on the right subtree
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+middle5Compare > 0
+rightCompare > 0
+
+leftCompare = 0       Return the left value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle1 value
+middle1Compare = 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle2 value
+middle1Compare != 0
+middle2Compare = 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle3 value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare = 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle4 value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare = 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Return the middle5 value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare = 0
+rightCompare != 0
+
+leftCompare != 0      Return the right value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare = 0
+
+*********
+Insertion
+*********
+
+If the key is null, return an IllegalArgumentException.
+If the value is null, delete the key from the tree and return.
+
+Call the insertion function with a node parameter and the insertion key and insertion value recursively, passing the root and the insertion key and insertion value as the initial parameters.
+
+Check the type of the current node.
+
+If the node is null, create a new node. The node type will depend on the node parent.
+If the node parent is a 2-node, merge the parent and the new key into a 3-node. If the node parent is a 3-node, merge the parent and the new key into a 4-node and so on, until the 8-node parent case, where a temporary 9-node will be created.
+Include in the new node the insertion key and insertion value and set its size to the current size + 1.
+Return this node to the last recursive call.
+
+If it is a 2-node, compare the insertion key with the current node key:
+
+Result             Action
+compare < 0        Assign the current node left subtree to the recursive insertion call, passing node.left as a parameter
+compare > 0        Assign the current node right subtree to the recursive insertion call, passing node.right as a parameter
+compare = 0        Update the current node value to the insertion value
+
+If it is a 3-node, compare the insertion key with the current node left key (leftCompare) and right key (rightCompare):
+ 
+Result             Action
+leftCompare < 0    Assign the current node left subtree to the recursive insertion call, passing node.left as a parameter
+rightCompare < 0
+
+leftCompare > 0    Assign the current node middle subtree to the recursive insertion call, passing node.middle as a parameter
+rightCompare < 0
+
+leftCompare > 0    Assign the current node right subtree to the recursive insertion call, passing node.right as a parameter
+rightCompare > 0
+
+leftCompare = 0    Update the current node left value to the insertion value
+rightCompare != 0
+
+leftCompare != 0   Update the current node right value to the insertion value
+rightCompare = 0
+
+If it is a 4-node, compare the insertion key with the current node left key (leftCompare), middle key (middleCompare) and right key (rightCompare):
+ 
+Result               Action
+leftCompare < 0      Assign the current node left subtree to the recursive insertion call, passing node.left as a parameter
+middleCompare < 0
+rightCompare < 0
+
+leftCompare > 0      Assign the current node middle1 subtree to the recursive insertion call, passing node.middle1 as a parameter
+middleCompare < 0
+rightCompare < 0
+
+leftCompare > 0      Assign the current node middle2 subtree to the recursive insertion call, passing node.middle2 as a parameter
+middleCompare > 0
+rightCompare < 0
+
+leftCompare > 0      Assign the current node right subtree to the recursive insertion call, passing node.right as a parameter
+middleCompare > 0
+rightCompare > 0
+
+leftCompare = 0      Update the current node left value to the insertion value
+middleCompare != 0
+rightCompare != 0
+
+leftCompare != 0     Update the current node middle value to the insertion value
+middleCompare = 0
+rightCompare != 0
+
+leftCompare != 0     Update the current node right value to the insertion value
+middleCompare != 0
+rightCompare = 0
+
+If it is a 5-node, compare the insertion key with the current node left key (leftCompare), middle1 key (middle1Compare), middle2 key (middle2Compare) and right key (rightCompare):
+ 
+Result                Action
+leftCompare < 0       Assign the current node left subtree to the recursive insertion call, passing node.left as a parameter
+middle1Compare < 0
+middle2Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle1 subtree to the recursive insertion call, passing node.middle1 as a parameter
+middle1Compare < 0
+middle2Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle2 subtree to the recursive insertion call, passing node.middle2 as a parameter
+middle1Compare > 0
+middle2Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle3 subtree to the recursive insertion call, passing node.middle3 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node right subtree to the recursive insertion call, passing node.right as a parameter
+middle1Compare > 0
+middle2Compare > 0
+rightCompare > 0
+
+leftCompare = 0       Update the current node left value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle1 value to the insertion value
+middle1Compare = 0
+middle2Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle2 value to the insertion value
+middle1Compare != 0
+middle2Compare = 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node right value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+rightCompare = 0
+
+If it is a 6-node, compare the insertion key with the current node left key (leftCompare), middle1 key (middle1Compare), middle2 key (middle2Compare), middle3 key (middle3Compare) and right key (rightCompare):
+ 
+Result                Action
+leftCompare < 0       Assign the current node left subtree to the recursive insertion call, passing node.left as a parameter
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle1 subtree to the recursive insertion call, passing node.middle1 as a parameter
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle2 subtree to the recursive insertion call, passing node.middle2 as a parameter
+middle1Compare > 0
+middle2Compare < 0
+middle3Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle3 subtree to the recursive insertion call, passing node.middle3 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle4 subtree to the recursive insertion call, passing node.middle4 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node right subtree to the recursive insertion call, passing node.right as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+rightCompare > 0
+
+leftCompare = 0       Update the current node left value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle1 value to the insertion value
+middle1Compare = 0
+middle2Compare != 0
+middle3Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle2 value to the insertion value
+middle1Compare != 0
+middle2Compare = 0
+middle3Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle3 value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare = 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node right value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+rightCompare = 0
+
+If it is a 7-node, compare the insertion key with the current node left key (leftCompare), middle1 key (middle1Compare), middle2 key (middle2Compare), middle3 key (middle3Compare), middle4 key (middle4Compare) and right key (rightCompare):
+ 
+Result                Action
+leftCompare < 0       Assign the current node left subtree to the recursive insertion call, passing node.left as a parameter
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle1 subtree to the recursive insertion call, passing node.middle1 as a parameter
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0      Assign the current node middle2 subtree to the recursive insertion call, passing node.middle2 as a parameter
+middle1Compare > 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle3 subtree to the recursive insertion call, passing node.middle3 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare < 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle4 subtree to the recursive insertion call, passing node.middle4 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle5 subtree to the recursive insertion call, passing node.middle5 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node right subtree to the recursive insertion call, passing node.right as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+rightCompare > 0
+
+leftCompare = 0       Update the current node left value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle1 value to the insertion value
+middle1Compare = 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle2 value to the insertion value
+middle1Compare != 0
+middle2Compare = 0
+middle3Compare != 0
+middle4Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle3 value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare = 0
+middle4Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle4 value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare = 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node right value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+rightCompare = 0
+
+If it is an 8-node, compare the insertion key with the current node left key (leftCompare), middle1 key (middle1Compare), middle2 key (middle2Compare), middle3 key (middle3Compare), middle4 key (middle4Compare), middle5 key (middle5Compare) and right key (rightCompare):
+ 
+Result                Action
+leftCompare < 0       Assign the current node left subtree to the recursive insertion call, passing node.left as a parameter
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle1 subtree to the recursive insertion call, passing node.middle1 as a parameter
+middle1Compare < 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle2 subtree to the recursive insertion call, passing node.middle2 as a parameter
+middle1Compare > 0
+middle2Compare < 0
+middle3Compare < 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle3 subtree to the recursive insertion call, passing node.middle3 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare < 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle4 subtree to the recursive insertion call, passing node.middle4 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare < 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle5 subtree to the recursive insertion call, passing node.middle5 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+middle5Compare < 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node middle6 subtree to the recursive insertion call, passing node.middle6 as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+middle5Compare > 0
+rightCompare < 0
+
+leftCompare > 0       Assign the current node right subtree to the recursive insertion call, passing node.right as a parameter
+middle1Compare > 0
+middle2Compare > 0
+middle3Compare > 0
+middle4Compare > 0
+middle5Compare > 0
+rightCompare > 0
+
+leftCompare = 0       Update the current node left value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle1 value to the insertion value
+middle1Compare = 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle2 value to the insertion value
+middle1Compare != 0
+middle2Compare = 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle3 value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare = 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle4 value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare = 0
+middle5Compare != 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node middle5 value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare = 0
+rightCompare != 0
+
+leftCompare != 0      Update the current node right value to the insertion value
+middle1Compare != 0
+middle2Compare != 0
+middle3Compare != 0
+middle4Compare != 0
+middle5Compare != 0
+rightCompare = 0
+
+If the current node is a 9-node, split it to eight 2-nodes and merge the middle value with the parent node.
+If the parent node is now a 3-node, 4-node, 5-node, 6-node, 7-node or 8-node there is no need to split it. Otherwise, if it is now a 9-node, split it and merge the middle value with its parent. Do this recursively until a parent is not a 9-node or until the root becomes a 9-node. If the root becomes a 9-node, split it into eight 2-nodes, incrementing the tree height by 1.
+After every recursive call, set the size of the current node to the sum of the size of its children + its number of keys.

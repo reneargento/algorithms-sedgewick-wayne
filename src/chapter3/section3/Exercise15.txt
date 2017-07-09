@@ -1,0 +1,131 @@
+3.3.15
+
+If keys are inserted in decreasing order into a red-black BST, the tree height is NOT monotonically increasing.
+
+Insert K        (B)K
+
+Insert J        (B)K
+              (R)J
+
+Insert I         (B)K
+              (R)J
+            (R)I
+
+Insert I         (B)J
+              (R)I  (R)K
+
+Insert I         (R)J
+              (B)I  (B)K
+
+Insert I         (B)J
+              (B)I  (B)K
+
+Insert H         (B)J
+              (B)I  (B)K
+            (R)H
+
+Insert G         (B)J
+              (B)I  (B)K
+            (R)H
+          (R)G
+
+Insert G            (B)J
+               (B)H      (B)K
+            (R)G  (R)I
+
+Insert G            (B)J
+               (R)H      (B)K
+            (B)G  (B)I
+
+Insert F            (B)J
+               (R)H      (B)K
+            (B)G  (B)I
+          (R)F
+
+Insert E             (B)J
+                (R)H      (B)K
+             (B)G  (B)I
+           (R)F
+         (R)E
+
+Insert E                (B)J
+                   (R)H      (B)K
+              (B)F     (B)I
+           (R)E  (R)G
+
+Insert E                (B)J
+                   (R)H      (B)K
+              (R)F     (B)I
+           (B)E  (B)G
+
+Insert E                (B)H
+                  (R)F        (R)J
+              (B)E  (B)G   (B)I  (B)K
+
+Insert E                (R)H
+                  (B)F        (B)J
+              (B)E  (B)G   (B)I  (B)K
+
+Insert E                (B)H
+                  (B)F        (B)J
+              (B)E  (B)G   (B)I  (B)K     (Tree height decreased from 3 to 2)
+
+Insert D                (B)H
+                  (B)F        (B)J
+              (B)E  (B)G   (B)I  (B)K
+            (R)D
+
+Insert C                (B)H
+                  (B)F        (B)J
+              (B)E  (B)G   (B)I  (B)K
+            (R)D
+          (R)C
+
+Insert C                  (B)H
+                   (B)F         (B)J
+              (B)D    (B)G   (B)I  (B)K
+            (R)C (R)E
+
+Insert C                  (B)H
+                   (B)F         (B)J
+              (R)D    (B)G   (B)I  (B)K
+            (B)C (B)E
+
+Insert B                  (B)H
+                   (B)F         (B)J
+              (R)D    (B)G   (B)I  (B)K
+            (B)C (B)E
+          (R)B
+
+Insert A                   (B)H
+                    (B)F         (B)J
+               (R)D    (B)G   (B)I  (B)K
+             (B)C (B)E
+           (R)B
+         (R)A
+
+Insert A                      (B)H
+                       (B)F          (B)J
+                  (R)D     (B)G   (B)I  (B)K
+              (B)B   (B)E
+           (R)A (R)C
+
+Insert A                      (B)H
+                       (B)F          (B)J
+                  (R)D     (B)G   (B)I  (B)K
+              (R)B   (B)E
+           (B)A (B)C
+
+Insert A                     (B)H
+                     (B)D            (B)J
+               (R)B       (R)F    (B)I  (B)K
+            (B)A (B)C   (B)E (B)G
+
+Insert A                     (B)H
+                     (R)D            (B)J
+               (B)B       (B)F    (B)I  (B)K
+            (B)A (B)C   (B)E (B)G             (Tree height decreased from 4 to 3)
+
+The insert operation may require no other operations, coloring, right rotation (zero, one or two) or a combination of coloring and right rotation. 
+The more nodes in the tree, the more nodes involved in these operations.
+The tree height is not monotonically increasing when inserting keys in decreasing order.

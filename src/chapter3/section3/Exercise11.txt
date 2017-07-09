@@ -1,0 +1,112 @@
+3.3.11
+
+Insert Y        (B)Y
+
+       L        (B)Y
+             (R)L
+
+       P        (B)Y
+             (R)L
+                (R)P
+
+       P        (B)Y
+             (R)P
+           (R)L
+
+       P      (B)P
+           (R)L  (R)Y
+           
+       P      (R)P
+           (B)L  (B)Y
+
+       P      (B)P
+           (B)L  (B)Y
+
+       M        (B)P
+           (B)L      (B)Y
+             (R)M
+
+       M       (B)P
+           (B)M     (B)Y
+         (R)L 
+
+       X        (B)P
+           (B)M      (B)Y
+         (R)L      (R)X
+
+       H         (B)P
+            (B)M      (B)Y
+          (R)L      (R)X
+         (R)H
+
+       H           (B)P
+            (B)L         (B)Y
+          (R)H (R)M    (R)X
+         
+       H           (B)P
+            (R)L         (B)Y
+          (B)H (B)M    (R)X
+
+       C            (B)P
+             (R)L         (B)Y
+           (B)H (B)M    (R)X
+         (R)C
+
+       R            (B)P
+             (R)L         (B)Y
+           (B)H (B)M    (R)X
+         (R)C          (R)R
+
+       R            (B)P
+             (R)L         (B)X
+           (B)H (B)M    (R)R (R)Y
+         (R)C
+
+       R            (B)P
+             (R)L         (R)X
+           (B)H (B)M    (B)R (B)Y
+         (R)C
+
+       R            (R)P
+             (B)L         (B)X
+           (B)H (B)M    (B)R (B)Y
+         (R)C
+
+       R            (B)P
+             (B)L         (B)X
+           (B)H (B)M    (B)R (B)Y
+         (R)C
+
+       A              (B)P
+               (B)L         (B)X
+             (B)H (B)M    (B)R (B)Y
+           (R)C
+          (R)A
+
+       A                 (B)P
+                  (B)L          (B)X
+             (B)C     (B)M    (B)R (B)Y
+           (R)A (R)H
+
+       A                 (B)P
+                  (B)L          (B)X
+             (R)C     (B)M    (B)R (B)Y
+           (B)A (B)H
+
+       E                 (B)P
+                   (B)L          (B)X
+              (R)C     (B)M    (B)R (B)Y
+           (B)A  (B)H
+                (R)E
+
+       S                 (B)P
+                   (B)L             (B)X
+              (R)C     (B)M    (B)R     (B)Y
+           (B)A  (B)H             (R)S
+                (R)E
+
+       S                 (B)P
+                   (B)L             (B)X
+              (R)C     (B)M     (B)S    (B)Y
+           (B)A  (B)H         (R)R
+                (R)E

@@ -1,0 +1,109 @@
+3.3.10
+
+Insert E        (B)E
+
+       A        (B)E
+             (R)A
+
+       S        (B)E
+             (R)A   (R)S
+
+       S        (R)E
+             (B)A   (B)S
+
+       S        (B)E
+             (B)A   (B)S
+
+       Y        (B)E
+             (B)A   (B)S
+                      (R)Y
+
+       Y          (B)E
+             (B)A     (B)Y
+                    (R)S
+
+       Q          (B)E
+             (B)A      (B)Y
+                     (R)S
+                   (R)Q
+
+       Q          (B)E
+             (B)A      (B)S
+                     (R)Q  (R)Y
+
+       Q          (B)E
+             (B)A      (R)S
+                     (B)Q  (B)Y
+
+       Q          (B)S
+             (R)E      (B)Y
+          (B)A  (B)Q
+
+       U           (B)S
+             (R)E       (B)Y
+          (B)A  (B)Q  (R)U
+
+       T            (B)S
+             (R)E         (B)Y
+          (B)A  (B)Q    (R)U
+                      (R)T
+
+       T           (B)S
+             (R)E        (B)U
+          (B)A  (B)Q   (R)T  (R)Y
+
+       T           (B)S
+             (R)E        (R)U
+          (B)A  (B)Q   (B)T  (B)Y
+                      
+       T           (R)S
+             (B)E        (B)U
+          (B)A  (B)Q   (B)T  (B)Y
+
+       T           (B)S
+             (B)E        (B)U
+          (B)A  (B)Q   (B)T  (B)Y
+
+       I             (B)S
+              (B)E          (B)U
+          (B)A    (B)Q   (B)T  (B)Y
+                (R)I
+
+       O             (B)S
+              (B)E          (B)U
+          (B)A    (B)Q   (B)T  (B)Y
+                (R)I
+                  (R)O
+
+       O             (B)S
+              (B)E          (B)U
+          (B)A    (B)Q   (B)T  (B)Y
+                 (R)O
+               (R)I
+
+       O               (B)S
+              (B)E             (B)U
+          (B)A    (B)O      (B)T  (B)Y
+                (R)I (R)Q
+               
+       O               (B)S
+              (B)E             (B)U
+          (B)A    (R)O      (B)T  (B)Y
+                (B)I (B)Q
+
+       O               (B)S
+               (B)O             (B)U
+           (R)E    (B)Q      (B)T  (B)Y
+        (B)A  (B)I 
+
+       N               (B)S
+               (B)O             (B)U
+           (R)E    (B)Q      (B)T  (B)Y
+        (B)A  (B)I 
+                 (R)N
+
+       N                (B)S
+                (B)O             (B)U
+           (R)E     (B)Q      (B)T  (B)Y
+        (B)A  (B)N 
+             (R)I

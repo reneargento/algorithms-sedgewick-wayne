@@ -1,0 +1,145 @@
+3.3.16
+
+      (B)j
+                          (B)u
+                        (R)t
+                      (B)s
+                    (R)r
+                  (B)q
+                (R)p
+           (B)l
+        (R)k   (B)o
+             (R)m
+
+Inserting n
+
+Step 1
+      (B)j
+                          (B)u
+                        (R)t
+                      (B)s
+                    (R)r
+                  (B)q
+                (R)p
+            (B)l
+        (R)k    (B)o
+              (R)m
+                 (R)n
+
+Step 2
+      (B)j
+                          (B)u
+                        (R)t
+                      (B)s
+                    (R)r
+                  (B)q
+                (R)p
+            (B)l
+        (R)k    (B)o
+              (R)n
+            (R)m
+
+Step 3
+      (B)j
+                          (B)u
+                        (R)t
+                      (B)s
+                    (R)r
+                  (B)q
+                (R)p
+            (B)l
+        (R)k    (B)n
+              (R)m  (R)o
+
+Step 4
+      (B)j
+                          (B)u
+                        (R)t
+                      (B)s
+                    (R)r
+                  (B)q
+                (R)p
+            (B)l
+        (R)k    (R)n
+              (B)m  (B)o
+
+Step 5
+      (B)j
+                          (B)u
+                        (R)t
+                      (B)s
+                    (R)r
+                  (B)q
+                (R)p
+            (R)l
+        (B)k    (B)n
+              (B)m  (B)o
+
+Step 6
+      (B)j
+                          (B)u
+                        (R)t
+                      (B)s
+                    (R)r
+                  (B)p
+            (R)l       (R)q  (q's left child is now p's former right child)
+        (B)k    (B)n
+              (B)m  (B)o
+
+Step 7
+      (B)j
+                          (B)u
+                        (R)t
+                      (B)s
+                    (R)r
+                  (R)p
+            (B)l       (B)q
+        (B)k    (B)n
+              (B)m  (B)o
+
+Step 8
+      (B)j
+                          (B)u
+                        (R)t
+                      (B)r
+                  (R)p       (R)s  (s's left child is now r's former right child)
+            (B)l       (B)q
+        (B)k    (B)n
+              (B)m  (B)o
+
+Step 9
+      (B)j
+                          (B)u
+                        (R)t
+                      (R)r
+                  (B)p       (B)s
+            (B)l       (B)q
+        (B)k    (B)n
+              (B)m  (B)o
+
+Step 10
+      (B)j
+                              (B)t
+                        (R)r        (R)u  (u's left child is now t's former right child)
+                  (B)p      (B)s
+            (B)l      (B)q
+        (B)k    (B)n
+              (B)m  (B)o
+
+Step 11
+      (B)j
+                              (R)t
+                        (B)r        (B)u
+                  (B)p      (B)s
+            (B)l      (B)q
+        (B)k    (B)n
+              (B)m  (B)o
+
+Step 12
+                (B)t
+       (R)j              (B)u
+             (B)r
+        (B)p       (B)s
+   (B)l      (B)q
+(B)k   (B)n
+     (B)m  (B)o

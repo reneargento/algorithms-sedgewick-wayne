@@ -1,0 +1,81 @@
+3.3.18
+
+N = 2
+
+  (B)N
+(R)N
+
+N = 3
+
+   (B)N
+(B)N (B)N
+
+N = 4
+
+     (B)N
+(B)N      (B)N
+        (R)N
+
+N = 5
+
+       (B)N
+  (B)N      (B)N
+(R)N      (R)N
+
+       (B)N
+  (R)N      (B)N
+(B)N (B)N     
+
+N = 6
+
+        (B)N
+  (R)N       (B)N
+(B)N (B)N  (R)N
+
+N = 7
+
+           (B)N
+    (R)N          (B)N
+(B)N    (B)N    (R)N
+      (R)N
+
+        (B)N
+  (B)N        (B)N
+(B)N (B)N  (B)N  (B)N
+
+N = 8
+
+              (B)N
+       (R)N          (B)N
+   (B)N    (B)N    (R)N
+(R)N     (R)N
+
+        (B)N
+  (B)N         (B)N
+(B)N (B)N  (B)N    (B)N
+                 (R)N
+
+N = 9
+
+              (B)N
+       (B)N           (B)N
+   (B)N    (B)N    (B)N  (B)N
+(R)N     (R)N
+
+          (B)N
+  (B)N            (B)N
+(B)N (B)N    (R)N     (B)N  
+          (B)N  (B)N  
+
+N = 10
+
+               (B)N
+       (B)N            (B)N
+   (B)N    (B)N     (B)N  (B)N
+(R)N     (R)N     (R)N
+
+               (B)N
+        (B)N           (B)N
+     (R)N  (B)N     (B)N   (B)N  
+  (B)N
+(R)N (B)N

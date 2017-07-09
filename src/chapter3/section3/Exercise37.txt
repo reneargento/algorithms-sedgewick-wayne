@@ -1,0 +1,34 @@
+3.3.37 - Memoryless
+
+Red-black BSTs are not memoryless because the rebalance (rotations and colorings) made when inserting a new minimum value and when deleting the immediately-inserted minimum value occur in opposite directions and lead to the same balanced tree. 
+This can be seen is this example:
+
+  (B)3
+(R)2
+
+Insert a key smaller than all keys
+    (B)3
+  (R)2
+(R)1
+
+     (B)2          (Rotate right)
+  (R)1  (R)3
+
+     (R)2          (Flip colors)
+  (B)1  (B)3
+
+     (B)2          (Flip color of root)
+  (B)1  (B)3
+
+Delete the minimum
+     (R)2          (Flip color of root)
+  (B)1  (B)3
+
+     (B)2          (Flip colors)
+  (R)1  (R)3
+
+     (B)2          (Delete min)
+        (R)3
+
+     (B)3          (Rotate left)
+   (R)2

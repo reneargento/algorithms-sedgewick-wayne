@@ -1,0 +1,75 @@
+3.2.22
+
+Sequence in which the height of the BST is less than the height of the red-black BST: 5 1 10 15 6 0
+
+BST
+
+Insert  5     5
+
+        1     5
+            1
+
+       10     5
+            1   10
+
+       15     5
+            1   10
+                 15
+
+        6     5
+            1    10
+                6  15
+
+        0     5
+            1    10
+           0    6  15
+
+Height: 2
+
+Red-black BST
+
+Insert  5       (B)5
+
+        1        (B)5
+               (R)1
+
+       10         (B)5
+               (R)1  (R)10
+
+       10         (R)5
+               (B)1  (B)10
+
+       10         (B)5
+               (B)1  (B)10
+
+       15         (B)5
+              (B)1  (B)10
+                      (R)15
+
+       15         (B)5
+              (B)1    (B)15
+                    (R)10
+
+       6           (B)5
+              (B)1      (B)15
+                      (R)10
+                    (R)6
+
+       6            (B)5
+              (B)1      (B)10
+                      (R)6  (R)15
+
+       6            (B)5
+              (B)1      (R)10
+                      (B)6  (B)15
+
+       6           (B)10
+               (R)5      (B)15
+           (B)1   (B)6
+
+       0           (B)10
+               (R)5      (B)15
+           (B)1   (B)6
+         (R)0
+
+Height: 3

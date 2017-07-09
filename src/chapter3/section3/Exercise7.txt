@@ -1,0 +1,45 @@
+3.3.7
+
+1- root
+                                 abc
+less than a   between a and b   between b and c   greater than c
+
+                                  b
+            a                                   c
+less than a   between a and b   between b and c   greater than c
+
+2- parent is a 2-node (left)
+                                                 d
+                                 abc                             greater than d
+less than a   between a and b   between b and c   greater than c
+
+                                                 bd
+            a                                   c                             greater than d
+less than a   between a and b   between b and c   between c and d
+
+3- parent is a 2-node (right)
+                                       a
+                 less than a                              bcd
+                                between a and b   between b and c   between c and d   greater than d
+
+                                       ac
+                 less than a                    b                                   d
+                                between a and b   between b and c   between c and d   greater than d
+
+4- parent is a 3-node (left)
+                                                 de
+                                 abc                 between d and e                 greater than e
+less than a   between a and b   between b and c   between c and d
+
+                                               bde
+            a                                   c                 between d and e                 greater than e
+less than a   between a and b   between b and c   between c and d
+
+5- parent is a 3-node (right)
+                                       ab
+                 less than a    between a and b           cde
+                                                  between b and c   between c and d   between d and e   greater than e
+
+                                                  abd
+                 less than a    between a and b                   c                                   e
+                                                  between b and c   between c and d   between d and e   greater than e
