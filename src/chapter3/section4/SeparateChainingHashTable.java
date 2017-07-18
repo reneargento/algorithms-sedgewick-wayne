@@ -2,13 +2,15 @@ package chapter3.section4;
 
 import edu.princeton.cs.algs4.Queue;
 
+import java.util.Arrays;
+
 /**
  * Created by rene on 17/07/17.
  */
 @SuppressWarnings("unchecked")
 public class SeparateChainingHashTable<Key, Value> {
 
-    private class SequentialSearchSymbolTable {
+    class SequentialSearchSymbolTable<Key, Value> {
 
         private class Node {
             Key key;
@@ -92,7 +94,7 @@ public class SeparateChainingHashTable<Key, Value> {
     }
 
     private int size;
-    private SequentialSearchSymbolTable[] symbolTable;
+    SequentialSearchSymbolTable[] symbolTable;
 
     public SeparateChainingHashTable() {
         this(997);
@@ -100,7 +102,7 @@ public class SeparateChainingHashTable<Key, Value> {
 
     public SeparateChainingHashTable(int size) {
         this.size = size;
-        symbolTable = (SequentialSearchSymbolTable[]) new Object[size];
+        symbolTable = new SequentialSearchSymbolTable[size];
 
         for(int i=0; i < size; i++) {
             symbolTable[i] = new SequentialSearchSymbolTable();
@@ -124,7 +126,7 @@ public class SeparateChainingHashTable<Key, Value> {
             throw new IllegalArgumentException("Argument to get() cannot be null");
         }
 
-        return symbolTable[hash(key)].get(key);
+        return (Value) symbolTable[hash(key)].get(key);
     }
 
     public void put(Key key, Value value) {
@@ -149,8 +151,28 @@ public class SeparateChainingHashTable<Key, Value> {
     }
 
     public Iterable<Key> keys() {
-        //Will be implemented in exercise 3.4.19
-        return null;
+        Queue<Key> keys = new Queue<>();
+
+        for(SequentialSearchSymbolTable sequentialSearchST : symbolTable) {
+            for(Object key : sequentialSearchST.keys()) {
+                keys.enqueue((Key) key);
+            }
+        }
+
+        if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+            Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
+            for(int i=0; i < keysToBeSorted.length; i++) {
+                keysToBeSorted[i] = keys.dequeue();
+            }
+
+            Arrays.sort(keysToBeSorted);
+
+            for(Key key : keysToBeSorted) {
+                keys.enqueue(key);
+            }
+        }
+
+        return keys;
     }
 
 }

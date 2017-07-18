@@ -1,5 +1,9 @@
 package chapter3.section4;
 
+import edu.princeton.cs.algs4.Queue;
+
+import java.util.Arrays;
+
 /**
  * Created by rene on 17/07/17.
  */
@@ -8,10 +12,10 @@ public class LinearProbingHashTable<Key, Value> {
 
     private int keysSize;
     private int size;
-    private Key[] keys;
+    protected Key[] keys;
     private Value[] values;
 
-    private LinearProbingHashTable(int size) {
+    LinearProbingHashTable(int size) {
         this.size = size;
         keys = (Key[]) new Object[size];
         values = (Value[]) new Object[size];
@@ -115,6 +119,31 @@ public class LinearProbingHashTable<Key, Value> {
         if(keysSize > 0 && keysSize <= size / 8) {
             resize(size / 2);
         }
+    }
+
+    public Iterable<Key> keys() {
+        Queue<Key> keySet = new Queue<>();
+
+        for(Object key : keys) {
+            if(key != null) {
+                keySet.enqueue((Key) key);
+            }
+        }
+
+        if(!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
+            Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
+            for(int i=0; i < keysToBeSorted.length; i++) {
+                keysToBeSorted[i] = keySet.dequeue();
+            }
+
+            Arrays.sort(keysToBeSorted);
+
+            for(Key key : keysToBeSorted) {
+                keySet.enqueue(key);
+            }
+        }
+
+        return keySet;
     }
 
 }
