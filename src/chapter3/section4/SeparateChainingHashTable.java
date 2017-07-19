@@ -27,10 +27,6 @@ public class SeparateChainingHashTable<Key, Value> {
         private Node first;
         private int size;
 
-        public boolean isEmpty() {
-            return size == 0;
-        }
-
         public int size() {
             return size;
         }
@@ -62,20 +58,16 @@ public class SeparateChainingHashTable<Key, Value> {
         }
 
         public void delete(Key key) {
-            if(isEmpty()) {
-                return;
-            }
+            size--;
 
             if(first.key.equals(key)) {
                 first = first.next;
-                size--;
                 return;
             }
 
             for(Node node = first; node != null; node = node.next) {
                 if(node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
-                    size--;
                     return;
                 }
             }
@@ -93,7 +85,11 @@ public class SeparateChainingHashTable<Key, Value> {
 
     }
 
+    public static final double INCREASE_THRESHOLD = 0.7;
+    public static final double DECREASE_THRESHOLD = 0.25;
+
     private int size;
+    private int keysSize;
     SequentialSearchSymbolTable[] symbolTable;
 
     public SeparateChainingHashTable() {
@@ -109,8 +105,20 @@ public class SeparateChainingHashTable<Key, Value> {
         }
     }
 
+    public int size() {
+        return keysSize;
+    }
+
+    public boolean isEmpty() {
+        return keysSize == 0;
+    }
+
     private int hash(Key key) {
         return (key.hashCode() & 0x7fffffff) % size;
+    }
+
+    private double getLoadFactor() {
+        return ((double) keysSize) / (double) size;
     }
 
     public boolean contains(Key key) {
@@ -119,6 +127,19 @@ public class SeparateChainingHashTable<Key, Value> {
         }
 
         return get(key) != null;
+    }
+
+    public void resize(int newSize) {
+        SeparateChainingHashTable<Key, Value> separateChainingHashTableTemp =
+                new SeparateChainingHashTable<>(newSize);
+
+        for(Key key : keys()) {
+            separateChainingHashTableTemp.put(key, get(key));
+        }
+
+        symbolTable = separateChainingHashTableTemp.symbolTable;
+        size = separateChainingHashTableTemp.size;
+        keysSize = separateChainingHashTableTemp.keysSize;
     }
 
     public Value get(Key key) {
@@ -139,7 +160,16 @@ public class SeparateChainingHashTable<Key, Value> {
             return;
         }
 
+        int currentSize = symbolTable[hash(key)].size;
         symbolTable[hash(key)].put(key, value);
+
+        if(currentSize < symbolTable[hash(key)].size) {
+            keysSize++;
+        }
+
+        if(getLoadFactor() > INCREASE_THRESHOLD) {
+            resize(size * 2);
+        }
     }
 
     public void delete(Key key) {
@@ -147,7 +177,20 @@ public class SeparateChainingHashTable<Key, Value> {
             throw new IllegalArgumentException("Argument to delete() cannot be null");
         }
 
+        if(isEmpty()) {
+            return;
+        }
+
+        if(!contains(key)) {
+            return;
+        }
+
         symbolTable[hash(key)].delete(key);
+        keysSize--;
+
+        if(getLoadFactor() < DECREASE_THRESHOLD) {
+            resize(size / 2);
+        }
     }
 
     public Iterable<Key> keys() {
