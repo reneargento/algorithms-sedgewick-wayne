@@ -85,11 +85,11 @@ public class SeparateChainingHashTable<Key, Value> {
 
     }
 
-    public static final double INCREASE_THRESHOLD = 0.7;
-    public static final double DECREASE_THRESHOLD = 0.25;
+    protected static final double INCREASE_THRESHOLD = 0.7;
+    protected static final double DECREASE_THRESHOLD = 0.25;
 
-    private int size;
-    private int keysSize;
+    protected int size;
+    protected int keysSize;
     SequentialSearchSymbolTable[] symbolTable;
 
     public SeparateChainingHashTable() {
@@ -113,11 +113,11 @@ public class SeparateChainingHashTable<Key, Value> {
         return keysSize == 0;
     }
 
-    private int hash(Key key) {
+    protected int hash(Key key) {
         return (key.hashCode() & 0x7fffffff) % size;
     }
 
-    private double getLoadFactor() {
+    protected double getLoadFactor() {
         return ((double) keysSize) / (double) size;
     }
 
@@ -160,10 +160,11 @@ public class SeparateChainingHashTable<Key, Value> {
             return;
         }
 
-        int currentSize = symbolTable[hash(key)].size;
-        symbolTable[hash(key)].put(key, value);
+        int hashIndex = hash(key);
+        int currentSize = symbolTable[hashIndex].size;
+        symbolTable[hashIndex].put(key, value);
 
-        if(currentSize < symbolTable[hash(key)].size) {
+        if(currentSize < symbolTable[hashIndex].size) {
             keysSize++;
         }
 
