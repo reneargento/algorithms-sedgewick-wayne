@@ -30,25 +30,51 @@ public class Exercise2 {
         private int keysSize;
         private int numberOfBuckets;
 
-        private static final double INCREASE_THRESHOLD = 0.7;
-        private static final double DECREASE_THRESHOLD = 0.25;
+        private int averageListSize;
+
+        private static final int DEFAULT_NUMBER_OF_BUCKETS = 50;
+        private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
+
+        //The largest prime <= 2^i for i = 3 to 31
+        //Used to distribute keys uniformly in the hash table after resizes
+        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        private final int[] PRIMES = {
+                7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
+                32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
+                8388593, 16777213, 33554393, 67108859, 134217689, 268435399,
+                536870909, 1073741789, 2147483647
+        };
+
+        //The lg of the hash table size
+        //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+        private int lgM;
 
         public SeparateChainingHashTableLinkedList() {
-            this(10);
+            this(DEFAULT_NUMBER_OF_BUCKETS, DEFAULT_AVERAGE_LIST_SIZE);
         }
 
-        SeparateChainingHashTableLinkedList(int numberOfBuckets) {
+        SeparateChainingHashTableLinkedList(int numberOfBuckets, int averageListSize) {
             keysSize = 0;
             this.numberOfBuckets = numberOfBuckets;
             buckets = new ArrayList<>(numberOfBuckets);
 
+            this.averageListSize = averageListSize;
+
             for(int i=0; i < numberOfBuckets; i++) {
                 buckets.add(null);
             }
+
+            lgM = (int) (Math.log(numberOfBuckets) / Math.log(2));
         }
 
         private int hash(Key key) {
-            return (key.hashCode() & 0x7fffffff) % numberOfBuckets;
+            int hash = key.hashCode() & 0x7fffffff;
+
+            if(lgM < 26) {
+                hash = hash % PRIMES[lgM + 5];
+            }
+
+            return hash % numberOfBuckets;
         }
 
         private double getLoadFactor() {
@@ -138,8 +164,9 @@ public class Exercise2 {
             Node newNode = new Node(key, value, node);
             buckets.set(bucketIndex, newNode);
 
-            if(getLoadFactor() > INCREASE_THRESHOLD) {
+            if(getLoadFactor() > averageListSize) {
                 resize(numberOfBuckets * 2);
+                lgM++;
             }
         }
 
@@ -165,7 +192,7 @@ public class Exercise2 {
                 buckets.set(bucketIndex, node.next);
             } else {
                 while (node != null) {
-                    if(node.next.equals(key)) {
+                    if(node.next.key.equals(key)) {
                         node.next = node.next.next;
                         break;
                     }
@@ -174,8 +201,9 @@ public class Exercise2 {
                 }
             }
 
-            if(getLoadFactor() < DECREASE_THRESHOLD) {
+            if(numberOfBuckets > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(numberOfBuckets / 2);
+                lgM--;
             }
         }
 
@@ -214,7 +242,7 @@ public class Exercise2 {
     public static void main(String[] args) {
         Exercise2 exercise2 = new Exercise2();
         SeparateChainingHashTableLinkedList<Integer, Integer> separateChainingHashTableLinkedList =
-                exercise2.new SeparateChainingHashTableLinkedList<>(5);
+                exercise2.new SeparateChainingHashTableLinkedList<>(5, 2);
 
         separateChainingHashTableLinkedList.put(10, 10);
         separateChainingHashTableLinkedList.put(99, 99);

@@ -10,19 +10,41 @@ import java.util.Arrays;
 @SuppressWarnings("unchecked")
 public class LinearProbingHashTable<Key, Value> {
 
-    private int keysSize;
-    private int size;
+    protected int keysSize;
+    protected int size;
     protected Key[] keys;
-    private Value[] values;
+    protected Value[] values;
+
+    //The largest prime <= 2^i for i = 3 to 31
+    //Used to distribute keys uniformly in the hash table after resizes
+    //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+    private static final int[] PRIMES = {
+            7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
+            32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
+            8388593, 16777213, 33554393, 67108859, 134217689, 268435399,
+            536870909, 1073741789, 2147483647
+    };
+
+    //The lg of the hash table size
+    //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+    protected int lgM;
 
     LinearProbingHashTable(int size) {
         this.size = size;
         keys = (Key[]) new Object[size];
         values = (Value[]) new Object[size];
+
+        lgM = (int) (Math.log(size) / Math.log(2));
     }
 
-    private int hash(Key key) {
-        return (key.hashCode() & 0x7fffffff) % size;
+    protected int hash(Key key) {
+        int hash = key.hashCode() & 0x7fffffff;
+
+        if(lgM < 26) {
+            hash = hash % PRIMES[lgM + 5];
+        }
+
+        return hash % size;
     }
 
     private void resize(int newSize) {
@@ -71,8 +93,9 @@ public class LinearProbingHashTable<Key, Value> {
             return;
         }
 
-        if(keysSize >= size / 2) {
+        if(keysSize >= size / (double) 2) {
             resize(size * 2);
+            lgM++;
         }
 
         int tableIndex;
@@ -116,8 +139,9 @@ public class LinearProbingHashTable<Key, Value> {
         }
 
         keysSize--;
-        if(keysSize > 0 && keysSize <= size / 8) {
+        if(keysSize > 0 && keysSize <= size / (double) 8) {
             resize(size / 2);
+            lgM--;
         }
     }
 
