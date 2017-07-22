@@ -37,6 +37,10 @@ public class LinearProbingHashTable<Key, Value> {
         lgM = (int) (Math.log(size) / Math.log(2));
     }
 
+    public int size() {
+        return keysSize;
+    }
+
     protected int hash(Key key) {
         int hash = key.hashCode() & 0x7fffffff;
 
@@ -50,7 +54,7 @@ public class LinearProbingHashTable<Key, Value> {
     private void resize(int newSize) {
         LinearProbingHashTable<Key, Value> tempHashTable = new LinearProbingHashTable<>(newSize);
 
-        for(int i=0; i < size; i++) {
+        for(int i = 0; i < size; i++) {
             if(keys[i] != null) {
                 tempHashTable.put(keys[i], values[i]);
             }
@@ -112,6 +116,10 @@ public class LinearProbingHashTable<Key, Value> {
     }
 
     public void delete(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Argument to delete() cannot be null");
+        }
+
         if(!contains(key)) {
             return;
         }
@@ -123,6 +131,7 @@ public class LinearProbingHashTable<Key, Value> {
 
         keys[tableIndex] = null;
         values[tableIndex] = null;
+        keysSize--;
 
         tableIndex = (tableIndex + 1) % size;
 
@@ -138,7 +147,6 @@ public class LinearProbingHashTable<Key, Value> {
             tableIndex = (tableIndex + 1) % size;
         }
 
-        keysSize--;
         if(keysSize > 0 && keysSize <= size / (double) 8) {
             resize(size / 2);
             lgM--;
