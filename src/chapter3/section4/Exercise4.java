@@ -1,5 +1,7 @@
 package chapter3.section4;
 
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,8 +15,8 @@ public class Exercise4 {
         int[] values = exercise4.perfectHashFunction();
 
         if(values != null) {
-            System.out.println("a = " + values[0]);
-            System.out.println("m = " + values[1]);
+            StdOut.println("a = " + values[0]);
+            StdOut.println("m = " + values[1]);
         }
     }
 

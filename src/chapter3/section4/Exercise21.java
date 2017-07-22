@@ -1,5 +1,7 @@
 package chapter3.section4;
 
+import edu.princeton.cs.algs4.StdOut;
+
 /**
  * Created by rene on 21/07/17.
  */
@@ -50,19 +52,19 @@ public class Exercise21 {
 
         //Hash code 1
         linearProbingHashTableAvgSearchMissCost.put(1, 1);
-        System.out.println(linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss() + " Expected: 0");
+        StdOut.println(linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss() + " Expected: 0");
 
         //Hash code 0
         linearProbingHashTableAvgSearchMissCost.put(0, 0);
         //Hash code 2
         linearProbingHashTableAvgSearchMissCost.put(2, 2);
-        System.out.println(linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss() + " Expected: 0");
+        StdOut.println(linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss() + " Expected: 0");
 
         //Hash code 3
         linearProbingHashTableAvgSearchMissCost.put(3, 3);
         //Hash code 4
         linearProbingHashTableAvgSearchMissCost.put(4, 4);
-        System.out.println(linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss() + " Expected: 1");
+        StdOut.println(linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss() + " Expected: 1");
     }
 
 }

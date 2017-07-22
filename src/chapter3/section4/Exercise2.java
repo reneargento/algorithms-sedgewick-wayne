@@ -1,6 +1,7 @@
 package chapter3.section4;
 
 import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -171,15 +172,11 @@ public class Exercise2 {
         }
 
         public void delete(Key key) {
-            if(isEmpty()) {
-                return;
-            }
-
             if (key == null) {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(!contains(key)) {
+            if(isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -252,44 +249,44 @@ public class Exercise2 {
         separateChainingHashTableLinkedList.put(1, 1);
         separateChainingHashTableLinkedList.put(9, 9);
 
-        System.out.println("Contains 33, expected: true");
-        System.out.println(separateChainingHashTableLinkedList.contains(33));
-        System.out.println("Contains 34, expected: false");
-        System.out.println(separateChainingHashTableLinkedList.contains(34));
+        StdOut.println("Contains 33, expected: true");
+        StdOut.println(separateChainingHashTableLinkedList.contains(33));
+        StdOut.println("Contains 34, expected: false");
+        StdOut.println(separateChainingHashTableLinkedList.contains(34));
 
-        System.out.println("\nGet -5, 10 and 99");
-        System.out.println(separateChainingHashTableLinkedList.get(-5));
-        System.out.println(separateChainingHashTableLinkedList.get(10));
-        System.out.println(separateChainingHashTableLinkedList.get(99));
+        StdOut.println("\nGet -5, 10 and 99");
+        StdOut.println(separateChainingHashTableLinkedList.get(-5));
+        StdOut.println(separateChainingHashTableLinkedList.get(10));
+        StdOut.println(separateChainingHashTableLinkedList.get(99));
 
-        System.out.println("\nKeys");
+        StdOut.println("\nKeys");
         for(Integer key : separateChainingHashTableLinkedList.keys()) {
-            System.out.print(key + " ");
+            StdOut.print(key + " ");
         }
-        System.out.println("\nExpected: -5 1 2 9 10 33 99");
+        StdOut.println("\nExpected: -5 1 2 9 10 33 99");
 
-        System.out.println("\nDelete -5 and 2");
+        StdOut.println("\nDelete -5 and 2");
         separateChainingHashTableLinkedList.delete(-5);
         separateChainingHashTableLinkedList.delete(2);
 
-        System.out.println("\nKeys");
+        StdOut.println("\nKeys");
         for(Integer key : separateChainingHashTableLinkedList.keys()) {
-            System.out.print(key + " ");
+            StdOut.print(key + " ");
         }
-        System.out.println("\nExpected: 1 9 10 33 99");
+        StdOut.println("\nExpected: 1 9 10 33 99");
 
-        System.out.println("\nSize, expected: 5");
-        System.out.println(separateChainingHashTableLinkedList.size());
+        StdOut.println("\nSize, expected: 5");
+        StdOut.println(separateChainingHashTableLinkedList.size());
 
-        System.out.println("\nDelete all");
+        StdOut.println("\nDelete all");
         separateChainingHashTableLinkedList.delete(1);
         separateChainingHashTableLinkedList.delete(9);
         separateChainingHashTableLinkedList.delete(10);
         separateChainingHashTableLinkedList.delete(33);
         separateChainingHashTableLinkedList.delete(99);
 
-        System.out.println("Size, expected: 0");
-        System.out.println(separateChainingHashTableLinkedList.size());
+        StdOut.println("Size, expected: 0");
+        StdOut.println(separateChainingHashTableLinkedList.size());
     }
 
 }

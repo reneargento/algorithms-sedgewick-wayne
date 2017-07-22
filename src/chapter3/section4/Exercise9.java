@@ -1,5 +1,7 @@
 package chapter3.section4;
 
+import edu.princeton.cs.algs4.StdOut;
+
 /**
  * Created by rene on 20/07/17.
  */
@@ -44,20 +46,20 @@ public class Exercise9 {
         separateChainingHashTableWithDelete.put(6, 6);
         separateChainingHashTableWithDelete.put(7, 7);
 
-        System.out.println("Keys");
+        StdOut.println("Keys");
         for(Integer key : separateChainingHashTableWithDelete.keys()) {
-            System.out.print(key + " ");
+            StdOut.print(key + " ");
         }
 
         int[] keysToDelete = {-1, 1, 2, 7, 6, 4, 5, 3};
         for(int k : keysToDelete) {
-            System.out.println("\nDelete key " + k);
+            StdOut.println("\nDelete key " + k);
             separateChainingHashTableWithDelete.delete(k);
 
             for(Integer key : separateChainingHashTableWithDelete.keys()) {
-                System.out.print(key + " ");
+                StdOut.print(key + " ");
             }
-            System.out.println("\nSize: " + separateChainingHashTableWithDelete.size());
+            StdOut.println("\nSize: " + separateChainingHashTableWithDelete.size());
         }
     }
 

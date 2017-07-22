@@ -1,5 +1,7 @@
 package chapter3.section4;
 
+import edu.princeton.cs.algs4.StdOut;
+
 /**
  * Created by rene on 21/07/17.
  */
@@ -89,19 +91,19 @@ public class Exercise20 {
 
         //Hash code 1
         linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(5), 5);
-        System.out.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 1");
+        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 1");
 
         //Hash code 0
         linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(8), 8);
         //Hash code 2
         linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(2), 2);
-        System.out.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 1");
+        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 1");
 
         //Hash code 1 -> hash collision and is sent to index 3
         linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(1), 1);
         //Hash code 1 -> hash collision and is sent to index 4
         linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(9), 9);
-        System.out.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 2");
+        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 2");
     }
 
 }

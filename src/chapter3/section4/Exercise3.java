@@ -1,6 +1,7 @@
 package chapter3.section4;
 
 import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -178,15 +179,11 @@ public class Exercise3 {
         }
 
         public void delete(Key key) {
-            if(isEmpty()) {
-                return;
-            }
-
             if (key == null) {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(!contains(key)) {
+            if(isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -293,20 +290,20 @@ public class Exercise3 {
         separateChainingHashTableLinkedListWithDeleteK.put(6, 6);
         separateChainingHashTableLinkedListWithDeleteK.put(7, 7);
 
-        System.out.println("\nKeys");
+        StdOut.println("\nKeys");
         for(Integer key : separateChainingHashTableLinkedListWithDeleteK.keys()) {
-            System.out.print(key + " ");
+            StdOut.print(key + " ");
         }
 
         int[] kValuesToTest = {8, 7, 6, 4, 3, 2, 0};
         for(int k : kValuesToTest) {
-            System.out.println("\nDelete K = " + k);
+            StdOut.println("\nDelete K = " + k);
             separateChainingHashTableLinkedListWithDeleteK.deleteNewestNodes(k);
 
             for(Integer key : separateChainingHashTableLinkedListWithDeleteK.keys()) {
-                System.out.print(key + " ");
+                StdOut.print(key + " ");
             }
-            System.out.println("\nSize: " + separateChainingHashTableLinkedListWithDeleteK.size());
+            StdOut.println("\nSize: " + separateChainingHashTableLinkedListWithDeleteK.size());
         }
     }
 

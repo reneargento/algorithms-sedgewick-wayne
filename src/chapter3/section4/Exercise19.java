@@ -1,6 +1,7 @@
 package chapter3.section4;
 
 import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Arrays;
 
@@ -73,7 +74,7 @@ public class Exercise19 {
     public static void main(String[] args) {
         Exercise19 exercise19 = new Exercise19();
 
-        System.out.println("Separate Chaining tests");
+        StdOut.println("Separate Chaining tests");
         SeparateChainingHashTableWithKeys<Integer, Integer> separateChainingHashTableWithKeys =
                 exercise19.new SeparateChainingHashTableWithKeys<>();
 
@@ -86,9 +87,9 @@ public class Exercise19 {
         separateChainingHashTableWithKeys.put(9, 9);
 
         for(Integer key : separateChainingHashTableWithKeys.keys()) {
-            System.out.print(key + " ");
+            StdOut.print(key + " ");
         }
-        System.out.println("\nExpected: -5 1 2 9 10 33 99");
+        StdOut.println("\nExpected: -5 1 2 9 10 33 99");
 
         SeparateChainingHashTableWithKeys<Exercise19, Exercise19> separateChainingHashTableWithKeys2 =
                 exercise19.new SeparateChainingHashTableWithKeys<>();
@@ -99,11 +100,11 @@ public class Exercise19 {
         separateChainingHashTableWithKeys2.put(nonComparableKey2, nonComparableKey2);
 
         for(Exercise19 key : separateChainingHashTableWithKeys2.keys()) {
-            System.out.print(key + " ");
+            StdOut.print(key + " ");
         }
-        System.out.println("\nExpected: chapter3.section4.Exercise19@XXX chapter3.section4.Exercise19@XXX");
+        StdOut.println("\nExpected: chapter3.section4.Exercise19@XXX chapter3.section4.Exercise19@XXX");
 
-        System.out.println("\nLinear Probing tests");
+        StdOut.println("\nLinear Probing tests");
         LinearProbingHashTableWithKeys<Integer, Integer> linearProbingHashTableWithKeys =
                 exercise19.new LinearProbingHashTableWithKeys<>(20);
 
@@ -116,9 +117,9 @@ public class Exercise19 {
         linearProbingHashTableWithKeys.put(9, 9);
 
         for(Integer key : linearProbingHashTableWithKeys.keys()) {
-            System.out.print(key + " ");
+            StdOut.print(key + " ");
         }
-        System.out.println("\nExpected: -5 1 2 9 10 33 99");
+        StdOut.println("\nExpected: -5 1 2 9 10 33 99");
 
         LinearProbingHashTableWithKeys<Exercise19, Exercise19> linearProbingHashTableWithKeys2 =
                 exercise19.new LinearProbingHashTableWithKeys<>(20);
@@ -129,9 +130,9 @@ public class Exercise19 {
         linearProbingHashTableWithKeys2.put(nonComparableKey4, nonComparableKey4);
 
         for(Exercise19 key : linearProbingHashTableWithKeys2.keys()) {
-            System.out.print(key + " ");
+            StdOut.print(key + " ");
         }
-        System.out.println("\nExpected: chapter3.section4.Exercise19@XXX chapter3.section4.Exercise19@XXX");
+        StdOut.println("\nExpected: chapter3.section4.Exercise19@XXX chapter3.section4.Exercise19@XXX");
     }
 
 }

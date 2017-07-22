@@ -1,5 +1,7 @@
 package chapter3.section4;
 
+import edu.princeton.cs.algs4.StdOut;
+
 /**
  * Created by rene on 21/07/17.
  */
@@ -80,7 +82,7 @@ public class Exercise18 {
             }
 
             if(getLoadFactor() >= averageListSize) {
-                System.out.println("Resize - doubling hash table size");
+                StdOut.println("Resize - doubling hash table size");
 
                 resize(size * 2);
                 lgM++;
@@ -92,11 +94,7 @@ public class Exercise18 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty()) {
-                return;
-            }
-
-            if(!contains(key)) {
+            if(isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -104,7 +102,7 @@ public class Exercise18 {
             keysSize--;
 
             if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
-                System.out.println("Resize - shrinking hash table size");
+                StdOut.println("Resize - shrinking hash table size");
 
                 resize(size / 2);
                 lgM--;
@@ -121,19 +119,19 @@ public class Exercise18 {
             separateChainingHashTableResize.put(i, i);
         }
 
-        System.out.println("Expected: Resize - doubling hash table size 2x");
+        StdOut.println("Expected: Resize - doubling hash table size 2x");
 
         for(int i = 0; i < 10; i++) {
             separateChainingHashTableResize.delete(i);
         }
 
-        System.out.println("Expected: Resize - shrinking hash table size");
+        StdOut.println("Expected: Resize - shrinking hash table size");
 
         for(int i = 10; i < 15; i++) {
             separateChainingHashTableResize.delete(i);
         }
 
-        System.out.println("Expected: Resize - shrinking hash table size");
+        StdOut.println("Expected: Resize - shrinking hash table size");
     }
 
 }

@@ -31,6 +31,10 @@ public class SeparateChainingHashTable<Key, Value> {
             return size;
         }
 
+        public boolean isEmpty() {
+            return size == 0;
+        }
+
         public boolean contains(Key key) {
             return get(key) != null;
         }
@@ -58,16 +62,16 @@ public class SeparateChainingHashTable<Key, Value> {
         }
 
         public void delete(Key key) {
-            size--;
-
             if(first.key.equals(key)) {
                 first = first.next;
+                size--;
                 return;
             }
 
             for(Node node = first; node != null; node = node.next) {
                 if(node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
+                    size--;
                     return;
                 }
             }
@@ -97,7 +101,7 @@ public class SeparateChainingHashTable<Key, Value> {
     //The largest prime <= 2^i for i = 3 to 31
     //Used to distribute keys uniformly in the hash table after resizes
     //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
-    private static final int[] PRIMES = {
+    protected static final int[] PRIMES = {
         7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
         32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
         8388593, 16777213, 33554393, 67108859, 134217689, 268435399,
@@ -106,7 +110,7 @@ public class SeparateChainingHashTable<Key, Value> {
 
     //The lg of the hash table size
     //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
-    private int lgM;
+    protected int lgM;
 
     public SeparateChainingHashTable() {
         this(DEFAULT_HASH_TABLE_SIZE, DEFAULT_AVERAGE_LIST_SIZE);
@@ -204,11 +208,7 @@ public class SeparateChainingHashTable<Key, Value> {
             throw new IllegalArgumentException("Argument to delete() cannot be null");
         }
 
-        if(isEmpty()) {
-            return;
-        }
-
-        if(!contains(key)) {
+        if(isEmpty() || !contains(key)) {
             return;
         }
 
