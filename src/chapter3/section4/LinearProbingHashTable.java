@@ -164,7 +164,7 @@ public class LinearProbingHashTable<Key, Value> {
 
         if(!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
             Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-            for(int i=0; i < keysToBeSorted.length; i++) {
+            for(int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keySet.dequeue();
             }
 

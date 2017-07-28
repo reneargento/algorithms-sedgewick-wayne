@@ -232,7 +232,7 @@ public class SeparateChainingHashTable<Key, Value> {
 
         if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
             Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-            for(int i=0; i < keysToBeSorted.length; i++) {
+            for(int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keys.dequeue();
             }
 
