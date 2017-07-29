@@ -32,7 +32,7 @@ public class VisualAccumulator {
 
         StdDraw.text(maxX / 2, xAxisLabelHeight, xAxisLabel);
         //Y axis label
-        StdDraw.text(-(maxY * 0.025), maxY / 2, yAxisLabel, 90);
+        StdDraw.text(-(maxY * 15), maxY / 2, yAxisLabel, 90);
 
         StdDraw.setPenColor(StdDraw.BLACK);
         //Title
@@ -76,6 +76,11 @@ public class VisualAccumulator {
         StdDraw.setPenColor(StdDraw.RED);
         long roundMean = Math.round(mean());
         StdDraw.text(size + (size * 0.04), mean(), String.valueOf(roundMean));
+    }
+
+    public void writeExactFinalMean() {
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.text(size + (size * 0.04), mean(), String.format("%.1f", mean()));
     }
 
     public void writeText(String text, double xCoordinate, double yCoordinate, Color color) {
