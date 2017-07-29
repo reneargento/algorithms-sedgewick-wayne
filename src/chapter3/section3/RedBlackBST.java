@@ -377,11 +377,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     }
 
     public void delete(Key key) {
-        if(isEmpty()) {
-            return;
-        }
-
-        if(!contains(key)) {
+        if(isEmpty() || !contains(key)) {
             return;
         }
 

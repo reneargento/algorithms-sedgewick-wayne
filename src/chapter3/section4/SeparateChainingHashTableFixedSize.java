@@ -5,10 +5,10 @@ import edu.princeton.cs.algs4.Queue;
 import java.util.Arrays;
 
 /**
- * Created by rene on 17/07/17.
+ * Created by rene on 28/07/17.
  */
 @SuppressWarnings("unchecked")
-public class SeparateChainingHashTable<Key, Value> {
+public class SeparateChainingHashTableFixedSize<Key, Value> {
 
     class SequentialSearchSymbolTable<Key, Value> {
 
@@ -25,7 +25,7 @@ public class SeparateChainingHashTable<Key, Value> {
         }
 
         private Node first;
-        protected int size;
+        private int size;
 
         public int size() {
             return size;
@@ -89,43 +89,23 @@ public class SeparateChainingHashTable<Key, Value> {
 
     }
 
-    protected int averageListSize;
-
-    protected int size;
-    protected int keysSize;
+    private int size;
+    private int keysSize;
     SequentialSearchSymbolTable[] symbolTable;
 
     private static final int DEFAULT_HASH_TABLE_SIZE = 997;
-    private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
 
-    //The largest prime <= 2^i for i = 3 to 31
-    //Used to distribute keys uniformly in the hash table after resizes
-    //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
-    protected static final int[] PRIMES = {
-        7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
-        32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
-        8388593, 16777213, 33554393, 67108859, 134217689, 268435399,
-        536870909, 1073741789, 2147483647
-    };
-
-    //The lg of the hash table size
-    //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
-    protected int lgM;
-
-    public SeparateChainingHashTable() {
-        this(DEFAULT_HASH_TABLE_SIZE, DEFAULT_AVERAGE_LIST_SIZE);
+    public SeparateChainingHashTableFixedSize() {
+        this(DEFAULT_HASH_TABLE_SIZE);
     }
 
-    public SeparateChainingHashTable(int initialSize, int averageListSize) {
-        this.size = initialSize;
-        this.averageListSize = averageListSize;
+    public SeparateChainingHashTableFixedSize(int size) {
+        this.size = size;
         symbolTable = new SequentialSearchSymbolTable[size];
 
         for(int i = 0; i < size; i++) {
             symbolTable[i] = new SequentialSearchSymbolTable();
         }
-
-        lgM = (int) (Math.log(size) / Math.log(2));
     }
 
     public int size() {
@@ -136,18 +116,10 @@ public class SeparateChainingHashTable<Key, Value> {
         return keysSize == 0;
     }
 
-    protected int hash(Key key) {
+    private int hash(Key key) {
         int hash = key.hashCode() & 0x7fffffff;
-
-        if(lgM < 26) {
-            hash = hash % PRIMES[lgM + 5];
-        }
-
+        hash = (31 * hash) & 0x7fffffff;
         return hash % size;
-    }
-
-    protected double getLoadFactor() {
-        return ((double) keysSize) / (double) size;
     }
 
     public boolean contains(Key key) {
@@ -156,19 +128,6 @@ public class SeparateChainingHashTable<Key, Value> {
         }
 
         return get(key) != null;
-    }
-
-    public void resize(int newSize) {
-        SeparateChainingHashTable<Key, Value> separateChainingHashTableTemp =
-                new SeparateChainingHashTable<>(newSize, averageListSize);
-
-        for(Key key : keys()) {
-            separateChainingHashTableTemp.put(key, get(key));
-        }
-
-        symbolTable = separateChainingHashTableTemp.symbolTable;
-        size = separateChainingHashTableTemp.size;
-        keysSize = separateChainingHashTableTemp.keysSize;
     }
 
     public Value get(Key key) {
@@ -196,11 +155,6 @@ public class SeparateChainingHashTable<Key, Value> {
         if(currentSize < symbolTable[hashIndex].size) {
             keysSize++;
         }
-
-        if(getLoadFactor() > averageListSize) {
-            resize(size * 2);
-            lgM++;
-        }
     }
 
     public void delete(Key key) {
@@ -214,11 +168,6 @@ public class SeparateChainingHashTable<Key, Value> {
 
         symbolTable[hash(key)].delete(key);
         keysSize--;
-
-        if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
-            resize(size / 2);
-            lgM--;
-        }
     }
 
     public Iterable<Key> keys() {
