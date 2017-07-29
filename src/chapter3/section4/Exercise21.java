@@ -1,6 +1,7 @@
 package chapter3.section4;
 
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
 
 /**
  * Created by rene on 21/07/17.
@@ -13,58 +14,24 @@ public class Exercise21 {
             super(size);
         }
 
-        //Average cost of a search miss = (1 + N / (2M) + SUM(square of cluster lengths)) / (2M)
-        public long getAverageCostOfSearchMiss() {
-            double totalNumberOfComparesForSearchMiss = 1 + keysSize / (2 * size);
-            totalNumberOfComparesForSearchMiss += getSumOfClusterLengthSquares();
-
-            return (long) (totalNumberOfComparesForSearchMiss / (2 * size));
-        }
-
-        private long getSumOfClusterLengthSquares() {
-            long sumOfClusterLengthSquares = 0;
-
-            int currentClusterLength = 0;
-
-            for(int i = 0; i < keys.length; i++) {
-                if(keys[i] == null) {
-                    if(currentClusterLength != 0) {
-                        sumOfClusterLengthSquares += Math.pow(currentClusterLength, 2);
-                        currentClusterLength = 0;
-                    }
-                } else {
-                    currentClusterLength++;
-                }
-            }
-
-            if(currentClusterLength != 0) {
-                sumOfClusterLengthSquares += Math.pow(currentClusterLength, 2);
-            }
-
-            return sumOfClusterLengthSquares;
+        //Average cost of search miss = ~1/2 * (1 + (1 / (1 - a)^2))
+        public double getAverageCostOfSearchMiss() {
+            double loadFactor = getLoadFactor();
+            return 0.5 * (1 + (1 / Math.pow(1 - loadFactor, 2)));
         }
     }
 
     public static void main(String[] args) {
         Exercise21 exercise21 = new Exercise21();
         LinearProbingHashTableAvgSearchMissCost<Integer, Integer> linearProbingHashTableAvgSearchMissCost =
-                exercise21.new LinearProbingHashTableAvgSearchMissCost<>(10);
+                exercise21.new LinearProbingHashTableAvgSearchMissCost<>(1000000);
 
-        //Hash code 1
-        linearProbingHashTableAvgSearchMissCost.put(1, 1);
-        StdOut.println(linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss() + " Expected: 0");
+        for(int i = 0; i < 500000; i++) {
+            int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
+            linearProbingHashTableAvgSearchMissCost.put(randomKey, randomKey);
+        }
 
-        //Hash code 0
-        linearProbingHashTableAvgSearchMissCost.put(0, 0);
-        //Hash code 2
-        linearProbingHashTableAvgSearchMissCost.put(2, 2);
-        StdOut.println(linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss() + " Expected: 0");
-
-        //Hash code 3
-        linearProbingHashTableAvgSearchMissCost.put(3, 3);
-        //Hash code 4
-        linearProbingHashTableAvgSearchMissCost.put(4, 4);
-        StdOut.println(linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss() + " Expected: 1");
+        StdOut.printf("Average cost of search miss: %.2f", linearProbingHashTableAvgSearchMissCost.getAverageCostOfSearchMiss());
     }
 
 }

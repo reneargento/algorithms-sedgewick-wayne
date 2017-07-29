@@ -51,6 +51,10 @@ public class LinearProbingHashTable<Key, Value> {
         return hash % size;
     }
 
+    protected double getLoadFactor() {
+        return keysSize / (double) size;
+    }
+
     private void resize(int newSize) {
         LinearProbingHashTable<Key, Value> tempHashTable = new LinearProbingHashTable<>(newSize);
 
