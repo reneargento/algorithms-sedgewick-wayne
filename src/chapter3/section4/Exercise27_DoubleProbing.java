@@ -1,6 +1,9 @@
 package chapter3.section4;
 
+import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
+
+import java.util.Arrays;
 
 /**
  * Created by rene on 22/07/17.
@@ -8,24 +11,140 @@ import edu.princeton.cs.algs4.StdOut;
 @SuppressWarnings("unchecked")
 public class Exercise27_DoubleProbing {
 
-    static class SeparateChainingHashTableDoubleProbing<Key, Value> extends SeparateChainingHashTable<Key, Value> {
+    private class SeparateChainingHashTableDoubleProbing<Key, Value> {
 
-        SeparateChainingHashTableDoubleProbing() {
-            super();
+        private class SequentialSearchSymbolTable<Key, Value> {
+
+            private class Node {
+                Key key;
+                Value value;
+                Node next;
+
+                public Node(Key key, Value value, Node next) {
+                    this.key = key;
+                    this.value = value;
+                    this.next = next;
+                }
+            }
+
+            private Node first;
+            private int size;
+
+            public int size() {
+                return size;
+            }
+
+            public boolean isEmpty() {
+                return size == 0;
+            }
+
+            public boolean contains(Key key) {
+                return get(key) != null;
+            }
+
+            public Value get(Key key) {
+                for(Node node = first; node != null; node = node.next) {
+                    if(key.equals(node.key)) {
+                        return node.value;
+                    }
+                }
+
+                return null;
+            }
+
+            public void put(Key key, Value value) {
+                for(Node node = first; node != null; node = node.next) {
+                    if(key.equals(node.key)) {
+                        node.value = value;
+                        return;
+                    }
+                }
+
+                first = new Node(key, value, first);
+                size++;
+            }
+
+            public void delete(Key key) {
+                if(first.key.equals(key)) {
+                    first = first.next;
+                    size--;
+                    return;
+                }
+
+                for(Node node = first; node != null; node = node.next) {
+                    if(node.next != null && node.next.key.equals(key)) {
+                        node.next = node.next.next;
+                        size--;
+                        return;
+                    }
+                }
+            }
+
+            public Iterable<Key> keys() {
+                Queue<Key> keys = new Queue<>();
+
+                for(Node node = first; node != null; node = node.next) {
+                    keys.enqueue(node.key);
+                }
+
+                return keys;
+            }
+
         }
 
-        SeparateChainingHashTableDoubleProbing(int size, int averageListSize) {
-            super(size, averageListSize);
+        private int averageListSize;
+
+        private int size;
+        private int keysSize;
+        private SequentialSearchSymbolTable[] symbolTable;
+
+        private static final int DEFAULT_HASH_TABLE_SIZE = 997;
+        private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
+
+        public SeparateChainingHashTableDoubleProbing() {
+            this(DEFAULT_HASH_TABLE_SIZE, DEFAULT_AVERAGE_LIST_SIZE);
+        }
+
+        public SeparateChainingHashTableDoubleProbing(int initialSize, int averageListSize) {
+            this.size = initialSize;
+            this.averageListSize = averageListSize;
+            symbolTable = new SequentialSearchSymbolTable[size];
+
+            for(int i = 0; i < size; i++) {
+                symbolTable[i] = new SequentialSearchSymbolTable();
+            }
+        }
+
+        public int size() {
+            return keysSize;
+        }
+
+        public boolean isEmpty() {
+            return keysSize == 0;
+        }
+
+        private double getLoadFactor() {
+            return ((double) keysSize) / (double) size;
+        }
+
+        public boolean contains(Key key) {
+            if (key == null) {
+                throw new IllegalArgumentException("Argument to contains() cannot be null");
+            }
+
+            return get(key) != null;
         }
 
         int hash1(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
-            return (11 * hash) % size;
+            hash = (11 * hash) & 0x7fffffff;
+            return hash % size;
         }
 
         int hash2(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
-            return (17 * hash) % size;
+            hash = (17 * hash) & 0x7fffffff;
+            return hash % size;
         }
 
         public void resize(int newSize) {
@@ -117,7 +236,6 @@ public class Exercise27_DoubleProbing {
 
             if(getLoadFactor() > averageListSize) {
                 resize(size * 2);
-                lgM++;
             }
         }
 
@@ -160,14 +278,40 @@ public class Exercise27_DoubleProbing {
 
             if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(size / 2);
-                lgM--;
             }
+        }
+
+        public Iterable<Key> keys() {
+            Queue<Key> keys = new Queue<>();
+
+            for(SequentialSearchSymbolTable sequentialSearchST : symbolTable) {
+                for(Object key : sequentialSearchST.keys()) {
+                    keys.enqueue((Key) key);
+                }
+            }
+
+            if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+                Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
+                for(int i = 0; i < keysToBeSorted.length; i++) {
+                    keysToBeSorted[i] = keys.dequeue();
+                }
+
+                Arrays.sort(keysToBeSorted);
+
+                for(Key key : keysToBeSorted) {
+                    keys.enqueue(key);
+                }
+            }
+
+            return keys;
         }
     }
 
     public static void main(String[] args) {
+        Exercise27_DoubleProbing doubleProbing = new Exercise27_DoubleProbing();
+
         SeparateChainingHashTableDoubleProbing<Integer, Integer> separateChainingHashTableDoubleProbing =
-                new Exercise27_DoubleProbing.SeparateChainingHashTableDoubleProbing<>(9, 2);
+                doubleProbing. new SeparateChainingHashTableDoubleProbing<>(9, 2);
 
         for(int key = 1; key <= 100; key++) {
             separateChainingHashTableDoubleProbing.put(key, key);

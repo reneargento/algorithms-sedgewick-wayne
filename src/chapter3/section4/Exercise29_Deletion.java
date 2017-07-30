@@ -8,8 +8,7 @@ import edu.princeton.cs.algs4.StdOut;
 @SuppressWarnings("unchecked")
 public class Exercise29_Deletion {
 
-    private class SeparateChainingHashTableDoubleProbingDelete<Key, Value>
-            extends Exercise27_DoubleProbing.SeparateChainingHashTableDoubleProbing<Key, Value> {
+    private class SeparateChainingHashTableDoubleProbingDelete<Key, Value> extends DoubleProbingHashTable<Key, Value> {
 
         public void delete(Key key) {
             if (key == null) {
@@ -46,12 +45,11 @@ public class Exercise29_Deletion {
 
             if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(size / 2);
-                lgM--;
             }
         }
     }
 
-    private class DoubleHashingHashTableDelete<Key, Value> extends Exercise28_DoubleHashing.DoubleHashingHashTable<Key, Value> {
+    private class DoubleHashingHashTableDelete<Key, Value> extends DoubleHashingHashTable<Key, Value> {
 
         DoubleHashingHashTableDelete(int size) {
             super(size);
