@@ -1,0 +1,81 @@
+3.4.27 - Double probing
+
+key hash1 hash2 value
+  E   1      1    0
+
+0 null
+1 E0
+2 null     
+
+key hash1 hash2 value
+  A   2      2    1
+
+0 null
+1 E0
+2 A1 
+
+key hash1 hash2 value
+  S   2      2    2
+
+0 null
+1 E0
+2 A1 -> S2
+
+key hash1 hash2 value
+  Y   2      2    3
+
+0 null
+1 E0
+2 A1 -> S2 -> Y3
+
+key hash1 hash2 value
+  Q   1      1    4
+
+0 null
+1 E0 -> Q4
+2 A1 -> S2 -> Y3
+
+key hash1 hash2 value
+  U   0      0    5
+
+0 U5
+1 E0 -> Q4
+2 A1 -> S2 -> Y3
+
+key hash1 hash2 value
+  T   1      1    6
+
+0 U5
+1 E0 -> Q4 -> T6
+2 A1 -> S2 -> Y3
+
+key hash1 hash2 value
+  I   0      0    7
+
+0 U5 -> I7
+1 E0 -> Q4 -> T6
+2 A1 -> S2 -> Y3
+
+key hash1 hash2 value
+  O   0      0    8
+
+0 U5 -> I7 -> O8
+1 E0 -> Q4 -> T6
+2 A1 -> S2 -> Y3
+
+key hash1 hash2 value
+  N   1      1    9
+
+0 U5 -> I7 -> O8 -> N9
+1 E0 -> Q4 -> T6
+2 A1 -> S2 -> Y3
+
+Average number of probes for random search hit: 
+1- If the hash values are the same or if the key is found on the first list: (1 + 1 + 2 + 4 + 3 + 2 + 2 + 3 + 1 + 3) = 22
+2- If the key is found on the second list: (5 + 5 + 6 + 8 + 7 + 6 + 6 + 7 + 5 + 7) = 62
+Average number of probes for random search hit: (22 + 62) / 10 = 8
+
+Average number of probes for search miss:
+1- If the hash values are the same: (5 + 4 + 4) = 13
+2- If the hash values are different: (9 + 9 + 8) = 26
+Average number of probes for search miss: (13 + 26) / 10 ~= 4

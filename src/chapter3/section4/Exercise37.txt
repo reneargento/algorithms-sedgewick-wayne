@@ -1,0 +1,10 @@
+3.4.37 - Hybrid
+
+An important practical effect is that the keys need to be comparable in order to be used in a red-black BST separate-chaining hash table. This is not a requirement with sequential search separate-chaining hash tables.
+
+Experiments have shown that red-black BST separate-chaining hash tables are much faster than sequential search separate-chaining hash tables on put() operations, and faster on get() and delete() operations when dealing with 10^6 keys.
+
+Operation |  Sequential Search time |  Red-black BST time
+      Put                     31.38                  2.29
+      Get                      3.18                  0.26
+   Delete                      3.63                  0.52

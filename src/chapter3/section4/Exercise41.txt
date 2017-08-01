@@ -1,0 +1,8 @@
+3.4.41 - Double probing
+
+In experiments inserting 10^6 keys, querying 5x10^5 keys and deleting 5x10^5 keys, separate-chaining had better performance than double probing on all operations (put, get and delete).
+
+Operation |  Separate-chaining HT time |  Double probing HT time
+      Put                         1.93                      2.51
+      Get                         0.11                      0.22
+   Delete                         0.16                      0.28

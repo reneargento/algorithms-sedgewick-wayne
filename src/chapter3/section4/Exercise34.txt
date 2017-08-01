@@ -1,0 +1,31 @@
+3.4.34 - Hash cost
+
+Hash table with Separate Chaining
+
+Integer keys
+Ratio of time required for hash() to the time required for compareTo() on put() operation: 0.07
+Ratio of time required for hash() to the time required for compareTo() on get() operation: 0.05
+Ratio of time required for hash() to the time required for compareTo() on delete() operation: 0.06
+Double keys
+Ratio of time required for hash() to the time required for compareTo() on put() operation: 0.07
+Ratio of time required for hash() to the time required for compareTo() on get() operation: 0.05
+Ratio of time required for hash() to the time required for compareTo() on delete() operation: 0.05
+String keys
+Ratio of time required for hash() to the time required for compareTo() on put() operation: 0.07
+Ratio of time required for hash() to the time required for compareTo() on get() operation: 0.08
+Ratio of time required for hash() to the time required for compareTo() on delete() operation: 0.08
+
+Hash table with Linear Probing
+
+Integer keys
+Ratio of time required for hash() to the time required for compareTo() on put() operation: 0.59
+Ratio of time required for hash() to the time required for compareTo() on get() operation: 0.46
+Ratio of time required for hash() to the time required for compareTo() on delete() operation: 0.60
+Double keys
+Ratio of time required for hash() to the time required for compareTo() on put() operation: 0.51
+Ratio of time required for hash() to the time required for compareTo() on get() operation: 0.37
+Ratio of time required for hash() to the time required for compareTo() on delete() operation: 0.34
+String keys
+Ratio of time required for hash() to the time required for compareTo() on put() operation: 0.39
+Ratio of time required for hash() to the time required for compareTo() on get() operation: 0.37
+Ratio of time required for hash() to the time required for compareTo() on delete() operation: 0.35

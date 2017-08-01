@@ -1,0 +1,27 @@
+3.4.6
+
+Proposition: With keys that are t-bit integers, for a hash function with prime M, each key bit has the property that there exist two keys differing only in that bit that have different hash values.
+
+Proof: Consider the hash function k % M where k is an integer and M is a prime number. 
+Every time that we modify exactly one bit in an integer, we either add (when modifying from 0 to 1) or subtract (when modifying from 1 to 0) a value that is a power of 2 (0, 1, 2, 4, etc). Since we are never adding or subtracting a prime number (other than 2) or any prime number multiples, the modular hash function with a prime M (other than 2) will yield a different result for both numbers.
+
+Example: 5-bit integer 16
+16: 10000
+17: 10001 (differing only in the 1st bit)
+18: 10010 (differing only in the 2nd bit)
+20: 10100 (differing only in the 3rd bit)
+24: 11000 (differing only in the 4th bit)
+8:  01000 (differing only in the 5th bit)
+
+For M = 7
+
+16 % 7 = 2
+17 % 7 = 3
+18 % 7 = 4
+20 % 7 = 6
+24 % 7 = 3
+8 % 7 = 1
+
+This definition does not hold for M = 2 though, as can be seen with the numbers 16 and 18, which differ by only 1 bit but have the same hash value in a modular hash function:
+16 % 2 = 0
+18 % 2 = 0

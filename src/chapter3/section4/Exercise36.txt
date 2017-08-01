@@ -1,0 +1,14 @@
+3.4.36 - List length range
+
+N = 1000
+Length of the shortest list: 85
+Length of the longest list: 114
+N = 10000
+Length of the shortest list: 78
+Length of the longest list: 126
+N = 100000
+Length of the shortest list: 68
+Length of the longest list: 131
+N = 1000000
+Length of the shortest list: 61
+Length of the longest list: 136

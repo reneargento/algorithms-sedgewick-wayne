@@ -1,0 +1,15 @@
+3.4.39 - Linear-probing distribution
+
+Proposition M says that in a linear-probing hash table of size M and N = a M keys, the average number of probes (under assumption J) required is:
+~1/2 * (1 + (1 / (1 - a))) and ~1/2 * (1 + (1 / (1 - a)^2))
+for search hits and search misses (or inserts), respectively. In particular, when a is about 1/2, the average number of probes for a search hit is about 3/2 and for a search miss is about 5/2. These estimates lose a bit of precision as a approaches 1, but we do not need them for that case, because we will only use linear probing for a less than one-half.
+
+Results:
+
+Table size |  Avg cost of search miss |  Expected avg cost of search miss
+      1000                       2.36                                2.50
+     10000                       2.44                                2.50
+    100000                       2.48                                2.50
+   1000000                       2.50                                2.50
+
+The results clearly validate proposition M in relation to the average cost of search misses, with all experiments yielding approximately the same result as expected by the formula proposed in proposition M.

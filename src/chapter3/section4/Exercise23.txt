@@ -1,0 +1,18 @@
+3.4.23
+
+Since R is a power of 2, only the first lg(R) bits are used to compute the hashcode.
+This can be seen with the strings "rene" and "ener".
+
+"rene" has hashcode 43
+hash = 0
+hash = (256 * 0 + 82) % 255 = 82
+hash = (256 * 82 + 69) % 255 = 151
+hash = (256 * 151 + 78) % 255 = 229
+hash = (256 * 229 + 69) % 255 = 43
+
+"ener" also has hashcode 43
+hash = 0
+hash = (256 * 0 + 69) % 255 = 69
+hash = (256 * 69 + 78) % 255 = 147
+hash = (256 * 147 + 69) % 255 = 216
+hash = (256 * 216 + 82) % 255 = 43

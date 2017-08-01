@@ -1,0 +1,10 @@
+3.4.24
+
+             Space usage in symbol tables
+      Method          Space usage for N items (double keys)
+Separate chaining     Sequential search symbol tables: 24 + 48N. A sequential search object consumes 24 bytes: 16 bytes for overhead and 8 bytes for the "first" reference plus the memory for the nodes. A node in a sequential search symbol table consumes 48 bytes of memory: 16 bytes overhead, 8 bytes for double key, 8 bytes for double value, 8 bytes for next reference and 8 bytes for inner class overhead.
+                      Separate chaining: 56 + 32M + 48N. A separate chaining symbol table consumes 56 bytes + 8M (16 bytes for overhead, 20 bytes for array overhead, 8 bytes for pointer array, 4 bytes for M, 4 bytes for padding) + (8 bytes per reference to each array entry) + plus the memory for the M sequential search objects mentioned above.
+
+Linear probing        80 + between 32N and 128N. (16 bytes for overhead, 20 bytes for keys array overhead, 20 bytes for values array overhead, 8 bytes for keys pointer array, 8 bytes for values pointer array, 4 bytes for M, 4 bytes for N) + (between 4 and 16 bytes per reference with array resizing) * (8 bytes per double key, 8 bytes per double value).
+
+BSTs                 24 + 56N. 16 bytes for overhead and 8 bytes for the "first" reference plus the memory for the nodes. A node in a BST consumes 56 bytes of memory: 16 bytes overhead, 8 bytes for double key, 8 bytes for double value, 8 bytes for left reference, 8 bytes for right reference and 8 bytes for inner class overhead).

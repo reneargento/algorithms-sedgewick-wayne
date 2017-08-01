@@ -1,0 +1,392 @@
+3.4.11
+
+key hash value
+  E   3    0
+
+0 null      2 null
+1 null      3 E0
+
+key hash value
+  A   3    1
+
+0 A1      2 null
+1 null    3 E0
+
+Doubles hash table size and M becomes 8
+
+0 null      4 null
+1 null      5 null
+2 null      6 null
+3 null      7 null
+
+Reinsert A1
+key hash value
+  A    3   1
+
+0 null      4 null
+1 null      5 null
+2 null      6 null
+3 A1        7 null
+
+Reinsert E0
+key hash value
+  E    7   0
+
+0 null      4 null
+1 null      5 null
+2 null      6 null
+3 A1        7 E0
+
+key hash value
+  S   1    2
+
+0 null      4 null
+1 S2        5 null
+2 null      6 null
+3 A1        7 E0
+
+key hash value
+  Y   3    3
+
+0 null      4 Y3
+1 S2        5 null
+2 null      6 null
+3 A1        7 E0
+
+Doubles hash table size and M becomes 16
+
+0 null      8 null
+1 null      9 null
+2 null     10 null
+3 null     11 null
+4 null     12 null
+5 null     13 null
+6 null     14 null
+7 null     15 null
+
+Reinsert A1
+key hash value
+  A   11   1
+
+0 null      8 null
+1 null      9 null
+2 null     10 null
+3 null     11 A1
+4 null     12 null
+5 null     13 null
+6 null     14 null
+7 null     15 null
+
+Reinsert E0
+key hash value
+  E    7   0
+
+0 null      8 null
+1 null      9 null
+2 null     10 null
+3 null     11 A1
+4 null     12 null
+5 null     13 null
+6 null     14 null
+7 E0       15 null
+
+Reinsert S2
+key hash value
+  S    1   2
+
+0 null      8 null
+1 S2        9 null
+2 null     10 null
+3 null     11 A1
+4 null     12 null
+5 null     13 null
+6 null     14 null
+7 E0       15 null
+
+Reinsert Y3
+key hash value
+  Y    3   3
+
+0 null      8 null
+1 S2        9 null
+2 null     10 null
+3 Y3       11 A1
+4 null     12 null
+5 null     13 null
+6 null     14 null
+7 E0       15 null
+
+key hash value
+  Q   11   4
+
+0 null      8 null
+1 S2        9 null
+2 null     10 null
+3 Y3       11 A1
+4 null     12 Q4
+5 null     13 null
+6 null     14 null
+7 E0       15 null
+
+key hash value
+  U    7   5
+
+0 null      8 U5
+1 S2        9 null
+2 null     10 null
+3 Y3       11 A1
+4 null     12 Q4
+5 null     13 null
+6 null     14 null
+7 E0       15 null
+
+key hash value
+  T   12   6
+
+0 null      8 U5
+1 S2        9 null
+2 null     10 null
+3 Y3       11 A1
+4 null     12 Q4
+5 null     13 T6
+6 null     14 null
+7 E0       15 null
+
+key hash value
+  I    3   7
+
+0 null      8 U5
+1 S2        9 null
+2 null     10 null
+3 Y3       11 A1
+4 I7       12 Q4
+5 null     13 T6
+6 null     14 null
+7 E0       15 null
+
+Doubles hash table size and M becomes 32
+
+ 0 null     16 null
+ 1 null     17 null
+ 2 null     18 null
+ 3 null     19 null
+ 4 null     20 null
+ 5 null     21 null
+ 6 null     22 null
+ 7 null     23 null
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 null     27 null
+12 null     28 null
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+Reinsert A1
+key hash value
+  A   11   1
+
+ 0 null     16 null
+ 1 null     17 null
+ 2 null     18 null
+ 3 null     19 null
+ 4 null     20 null
+ 5 null     21 null
+ 6 null     22 null
+ 7 null     23 null
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 A1       27 null
+12 null     28 null
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+Reinsert E0
+key hash value
+  E   23   0
+
+ 0 null     16 null
+ 1 null     17 null
+ 2 null     18 null
+ 3 null     19 null
+ 4 null     20 null
+ 5 null     21 null
+ 6 null     22 null
+ 7 null     23 E0
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 A1       27 null
+12 null     28 null
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+Reinsert I7
+key hash value
+  I    3   7
+
+ 0 null     16 null
+ 1 null     17 null
+ 2 null     18 null
+ 3 I7       19 null
+ 4 null     20 null
+ 5 null     21 null
+ 6 null     22 null
+ 7 null     23 E0
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 A1       27 null
+12 null     28 null
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+Reinsert Q4
+key hash value
+  Q   27   4
+
+ 0 null     16 null
+ 1 null     17 null
+ 2 null     18 null
+ 3 I7       19 null
+ 4 null     20 null
+ 5 null     21 null
+ 6 null     22 null
+ 7 null     23 E0
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 A1       27 Q4
+12 null     28 null
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+Reinsert S2
+key hash value
+  S   17   2
+
+ 0 null     16 null
+ 1 null     17 S2
+ 2 null     18 null
+ 3 I7       19 null
+ 4 null     20 null
+ 5 null     21 null
+ 6 null     22 null
+ 7 null     23 E0
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 A1       27 Q4
+12 null     28 null
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+Reinsert T6
+key hash value
+  T   28   6
+
+ 0 null     16 null
+ 1 null     17 S2
+ 2 null     18 null
+ 3 I7       19 null
+ 4 null     20 null
+ 5 null     21 null
+ 6 null     22 null
+ 7 null     23 E0
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 A1       27 Q4
+12 null     28 T6
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+Reinsert U5
+key hash value
+  U    7   5
+
+ 0 null     16 null
+ 1 null     17 S2
+ 2 null     18 null
+ 3 I7       19 null
+ 4 null     20 null
+ 5 null     21 null
+ 6 null     22 null
+ 7 U5       23 E0
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 A1       27 Q4
+12 null     28 T6
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+Reinsert Y3
+key hash value
+  Y   19   3
+
+ 0 null     16 null
+ 1 null     17 S2
+ 2 null     18 null
+ 3 I7       19 Y3
+ 4 null     20 null
+ 5 null     21 null
+ 6 null     22 null
+ 7 U5       23 E0
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 A1       27 Q4
+12 null     28 T6
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+key hash value
+  O    5   8
+
+ 0 null     16 null
+ 1 null     17 S2
+ 2 null     18 null
+ 3 I7       19 Y3
+ 4 null     20 null
+ 5 O8       21 null
+ 6 null     22 null
+ 7 U5       23 E0
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 null
+11 A1       27 Q4
+12 null     28 T6
+13 null     29 null
+14 null     30 null
+15 null     31 null
+
+key hash value
+  N   26   9
+
+ 0 null     16 null
+ 1 null     17 S2
+ 2 null     18 null
+ 3 I7       19 Y3
+ 4 null     20 null
+ 5 O8       21 null
+ 6 null     22 null
+ 7 U5       23 E0
+ 8 null     24 null
+ 9 null     25 null
+10 null     26 N9
+11 A1       27 Q4
+12 null     28 T6
+13 null     29 null
+14 null     30 null
+15 null     31 null

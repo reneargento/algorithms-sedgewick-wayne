@@ -1,0 +1,51 @@
+3.4.8
+
+As we have seen on exercise 2.5.31, probability theory says that after generating N random values, the number of distinct values is about M(1 - e^(-a)) where M = the maximum value generated - 1 (in this case, the hash table length - 1), N = number of keys generated and a = N / M.
+
+In this case M = N, so the hash table length is the same as the number of keys to be inserted:
+a = 1
+Number of distinct values = M(1 - e^(-1))
+
+For N = 10
+Number of distinct values = 10(1 - e^(-1))
+Number of distinct values ~ 6
+
+For N = 10^2
+Number of distinct values = 10^2(1 - e^(-1))
+Number of distinct values ~ 63
+
+For N = 10^3
+Number of distinct values = 10^3(1 - e^(-1))
+Number of distinct values ~ 632
+
+For N = 10^4
+Number of distinct values = 10^4(1 - e^(-1))
+Number of distinct values ~ 6321
+
+For N = 10^5
+Number of distinct values = 10^5(1 - e^(-1))
+Number of distinct values ~ 63212
+
+For N = 10^6
+Number of distinct values = 10^6(1 - e^(-1))
+Number of distinct values ~ 632120
+
+Also, considering assumption J (uniform hashing assumption) the distinct keys will be distributed uniformly among the M buckets and the lists will have length > 1 only when duplicate keys are inserted. We know that in the real world other collisions may happen but it is a valid approximation. This means that the number of empty lists in the hash table will be equal to M - D where M is the hash table length and D is the number of distinct values inserted. 
+
+For N = 10
+Number of empty lists expected = 10 - 6 = 4
+
+For N = 10^2
+Number of empty lists expected = 10^2 - 63 = 37
+
+For N = 10^3
+Number of empty lists expected = 10^3 - 632 = 368
+
+For N = 10^4
+Number of empty lists expected = 10^4 - 6321 = 3679
+
+For N = 10^5
+Number of empty lists expected = 10^5 - 63212 = 36788
+
+For N = 10^6
+Number of empty lists expected = 10^6 - 632120 = 367880

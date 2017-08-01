@@ -1,0 +1,21 @@
+3.4.15
+
+In the worst case all keys hash to the same index.
+The exercise description does not mention the initial hash table size. This is important to compute the number of compares in a hash table with array resizing. This exercise answer assumes that the initial hash table size is N and its size is expanded with doubling whenever half full.
+
+The number of compares per insert is:
+1 for the first insert, 2 for the second insert, 3 for the third insert and so on, until the (N/2)th insert.
+When the table is half full it is resized to 2N and the keys are reinserted, with 1, 2, 3, ..., N/2 compares.
+
+Then, for the insert of the other keys there are N/2 + 1, N/2 + 2, ..., N compares per insert.
+
+This is equal to:
+Number of compares = (1 + 2 + 3 + ... + N/2) + 1 + 2 + 3 + ... + N/2 + (N/2 + 1) + (N/2 + 2) + ... + N
+Number of compares = (N/2 + 1) * N / 2 / 2 + (N + 1) * N / 2
+Number of compares = (N^2/2 + N) / 4 + (N^2 + N) / 2
+Number of compares = (N^2/2 + N) / 4 + (2N^2 + 2N) / 4
+Number of compares = (N^2/2 + (2N / 2)) / 4 + (2N^2 + 2N) / 4
+Number of compares = (N^2 + 2N) / 8 + (4N^2 + 4N) / 8
+Number of compares = (5N^2 + 6N) / 8
+
+In the worst case, to insert N keys into an initially empty table, using linear probing with array resizing it would take (5N^2 + 6N) / 8 compares.

@@ -1,0 +1,217 @@
+3.4.28 - Double hashing
+
+Hash function: 11*k % M
+Secondary hash function: i+k % M
+
+key hash hash2 value
+  E   0    -     0
+
+0 E0        6 null
+1 null      7 null
+2 null      8 null
+3 null      9 null
+4 null     10 null
+5 null
+
+key hash hash2 value
+  A   0    1     1
+
+0 E0        6 null
+1 A1        7 null
+2 null      8 null
+3 null      9 null
+4 null     10 null
+5 null
+
+key hash hash2 value
+  S   0    8     2
+
+0 E0        6 null
+1 A1        7 null
+2 null      8 S2
+3 null      9 null
+4 null     10 null
+5 null
+
+key hash hash2 value
+  Y   0    3     3
+
+0 E0        6 null
+1 A1        7 null
+2 null      8 S2
+3 Y3        9 null
+4 null     10 null
+5 null
+
+key hash hash2 value
+  Q   0    6     4
+
+0 E0        6 Q4
+1 A1        7 null
+2 null      8 S2
+3 Y3        9 null
+4 null     10 null
+5 null
+
+key hash hash2 value
+  U   0    10    5
+
+0 E0        6 Q4
+1 A1        7 null
+2 null      8 S2
+3 Y3        9 null
+4 null     10 U5
+5 null
+
+key hash hash2 value
+  T   0    9     6
+
+0 E0        6 Q4
+1 A1        7 null
+2 null      8 S2
+3 Y3        9 T6
+4 null     10 U5
+5 null
+
+key hash hash2 value
+  I   0    9,7   7
+
+0 E0        6 Q4
+1 A1        7 I7
+2 null      8 S2
+3 Y3        9 T6
+4 null     10 U5
+5 null
+
+key hash hash2 value
+  O   0    4     8
+
+0 E0        6 Q4
+1 A1        7 I7
+2 null      8 S2
+3 Y3        9 T6
+4 O8       10 U5
+5 null
+
+key hash         hash2       value
+  N   0    3,6,9,1,4,7,10,2    9
+
+0 E0        6 Q4
+1 A1        7 I7
+2 N9        8 S2
+3 Y3        9 T6
+4 O8       10 U5
+5 null
+
+Average number of probes for random search hit: (2 + 1 + 3 + 9 + 2 + 2 + 2 + 2 + 2 + 2) / 10 ~= 3
+Average number of probes for search miss: 1 / (1 - load factor) = 1 / (1 - 10/11) = 1 / (1 - 0.9) = 1 / 0.1 = 10
+Reference for the average number of search miss formula: 
+http://www.cs.cmu.edu/afs/cs/academic/class/15210-f13/www/lectures/lecture24.pdf
+
+Hash function: 17*k % M
+Secondary hash function: i+k % M
+
+key hash hash2 value
+  E   8    -     0
+
+0 null      6 null
+1 null      7 null
+2 null      8 E0
+3 null      9 null
+4 null     10 null
+5 null
+
+key hash hash2 value
+  A   6    -     1
+
+0 null      6 A1
+1 null      7 null
+2 null      8 E0
+3 null      9 null
+4 null     10 null
+5 null
+
+key hash hash2 value
+  S   4    -     2
+
+0 null      6 A1
+1 null      7 null
+2 null      8 E0
+3 null      9 null
+4 S2       10 null
+5 null
+
+key hash hash2 value
+  Y   7    -     3
+
+0 null      6 A1
+1 null      7 Y3
+2 null      8 E0
+3 null      9 null
+4 S2       10 null
+5 null
+
+key hash hash2 value
+  Q   3    -     4
+
+0 null      6 A1
+1 null      7 Y3
+2 null      8 E0
+3 Q4        9 null
+4 S2       10 null
+5 null
+
+key hash hash2 value
+  U   5    -     5
+
+0 null      6 A1
+1 null      7 Y3
+2 null      8 E0
+3 Q4        9 null
+4 S2       10 null
+5 U5
+
+key hash hash2 value
+  T  10    -     6
+
+0 null      6 A1
+1 null      7 Y3
+2 null      8 E0
+3 Q4        9 null
+4 S2       10 T6
+5 U5
+
+key hash    hash2    value
+  I  10    8,6,4,2     7
+
+0 null      6 A1
+1 null      7 Y3
+2 I7        8 E0
+3 Q4        9 null
+4 S2       10 T6
+5 U5
+
+key hash     hash2     value
+  O   2    6,10,3,7,0    8
+
+0 O8        6 A1
+1 null      7 Y3
+2 I7        8 E0
+3 Q4        9 null
+4 S2       10 T6
+5 U5
+
+key hash      hash2         value
+  N   7   10,2,5,8,0,3,6,9    9
+
+0 O8        6 A1
+1 null      7 Y3
+2 I7        8 E0
+3 Q4        9 N9
+4 S2       10 T6
+5 U5
+
+Average number of probes for random search hit: (1 + 1 + 5 + 9 + 6 + 1 + 1 + 1 + 2 + 1) / 10 ~= 3
+Average number of probes for search miss: 1 / (1 - load factor) = 1 / (1 - 10/11) = 1 / (1 - 0.9) = 1 / 0.1 = 10
+Reference for the average number of search miss formula: 
+http://www.cs.cmu.edu/afs/cs/academic/class/15210-f13/www/lectures/lecture24.pdf

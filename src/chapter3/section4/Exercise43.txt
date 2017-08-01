@@ -1,0 +1,10 @@
+3.4.43 - Parking problem
+
+The experimental studies show that the number of compares needed to insert M random keys into a linear-probing hash table of size M is less (about half) than ~cM^(3/2), where c = SQRT(PI / 2).
+
+Hash table size |  Number of compares |  Expected number of compares
+           1000                 20759                          39633
+          10000                549400                        1253314
+         100000              25177118                       39633272
+        1000000            1133109117                     1253314137
+

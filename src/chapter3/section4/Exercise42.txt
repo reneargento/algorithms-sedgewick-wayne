@@ -1,0 +1,8 @@
+3.4.42 - Double hashing
+
+In experiments inserting 10^6 keys, querying 5x10^5 keys and deleting 5x10^5 keys, linear-probing had better performance than double hashing on all operations (put, get and delete).
+
+Operation |  Linear-probing HT time |  Double hashing HT time
+      Put                      0.21                      4.68
+      Get                      0.05                      2.43
+   Delete                      0.12                      1.05

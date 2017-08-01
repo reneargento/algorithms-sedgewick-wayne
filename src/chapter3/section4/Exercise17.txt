@@ -1,0 +1,57 @@
+3.4.17
+
+Hash table
+
+0 P10       8 L11
+1 M9        9 null
+2 null     10 E12
+3 null     11 null
+4 A8       12 null
+5 C4       13 null
+6 S0       14 R3
+7 H5       15 X7
+
+Delete C (hash 5)
+
+0 P10       8 L11
+1 M9        9 null
+2 null     10 E12
+3 null     11 null
+4 A8       12 null
+5 null     13 null
+6 S0       14 R3
+7 H5       15 X7
+
+Reinsert S0 (hash 6)
+
+0 P10       8 L11
+1 M9        9 null
+2 null     10 E12
+3 null     11 null
+4 A8       12 null
+5 null     13 null
+6 S0       14 R3
+7 H5       15 X7
+
+Reinsert H5 (hash 4)
+
+0 P10       8 L11
+1 M9        9 null
+2 null     10 E12
+3 null     11 null
+4 A8       12 null
+5 H5       13 null
+6 S0       14 R3
+7 null     15 X7
+
+Reinsert L11 (hash 6)
+
+0 P10       8 null
+1 M9        9 null
+2 null     10 E12
+3 null     11 null
+4 A8       12 null
+5 H5       13 null
+6 S0       14 R3
+7 L11      15 X7
+

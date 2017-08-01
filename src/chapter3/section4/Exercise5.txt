@@ -1,0 +1,4 @@
+3.4.5
+
+The implementation is legal since objects that are equal() will have the same hash code.
+However, using it will be very ineffective since all keys will have the same hash code and will be placed on the same bucket/index in a hash table. This means that there will always be hash collisions and that the hash table will have the same characteristics of a linked list, with linear time for get(), put() and delete() operations.

@@ -1,0 +1,73 @@
+3.4.35 - Chi-square test
+
+For random keys, the results varied with the tests resulting that the Integer, Double and String keys produce random values and do not produce.
+
+Test 1:
+
+Integer key type hash function
+Produces random values: True
+Probability = 77.51%
+
+Double key type hash function
+Produces random values: True
+Probability = 77.51%
+
+String key type hash function
+Produces random values: False
+Probability = 77.51%
+
+Test 2:
+
+Integer key type hash function
+Produces random values: True
+Probability = 77.51%
+
+Double key type hash function
+Produces random values: True
+Probability = 77.51%
+
+String key type hash function
+Produces random values: False
+Probability = 77.51%
+
+Test 3:
+
+Integer key type hash function
+Produces random values: False
+Probability = 77.51%
+
+Double key type hash function
+Produces random values: True
+Probability = 77.51%
+
+String key type hash function
+Produces random values: False
+Probability = 77.51%
+
+Test 4:
+
+Integer key type hash function
+Produces random values: False
+Probability = 77.51%
+
+Double key type hash function
+Produces random values: True
+Probability = 77.51%
+
+String key type hash function
+Produces random values: False
+Probability = 77.51%
+
+Test 5:
+
+Integer key type hash function
+Produces random values: True
+Probability = 77.51%
+
+Double key type hash function
+Produces random values: True
+Probability = 77.51%
+
+String key type hash function
+Produces random values: True
+Probability = 77.51%

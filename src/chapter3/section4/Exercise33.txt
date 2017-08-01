@@ -1,0 +1,4 @@
+3.4.33 - Bad hash function
+
+I think the designers chose this implementation because it multiplies the hash value by a prime number several times. By skipping max(1, 1/8) chars in every iteration, it guarantees that the multiplication will only happen a constant number of time, improving the performance of the hash function.
+I think it was abandoned because by skipping many characters on long strings, many similar strings (that differ by only a few characters) had the same hash code, causing several hash collisions.

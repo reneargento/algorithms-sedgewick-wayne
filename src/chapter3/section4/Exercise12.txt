@@ -1,0 +1,11 @@
+3.4.12
+
+The alternatives A, B, C, D, E and F could not possibly result from inserting these keys.
+
+The minimum and maximum number of probes required to build a table of size 7 with these keys is 12:
+1 + 2 + 1 + 2 + 1 + 2 + 3 = 12 probes
+
+Insertion order:
+B, C, A, G, D, E, F
+
+This is because regardless of the insertion order, there will always be 12 probes since the hash collision does not overlap from one hash value to another (both keys with hash value 0 will be distributed in the indexes 0 and 1; both keys with hash value 2 will be distributed in the indexes 2 and 3 and the three keys with hash value 4 will be distributed in the indexes 4, 5 and 6).

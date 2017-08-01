@@ -1,0 +1,3 @@
+3.4.13
+
+The scenario A (all keys hash to the same index) and C (all keys hash to an even-numbered index) will lead to a linear running time for a random search hit in a linear-probing hash table in the worst case (when the search key was the last key inserted). This assumes that in scenario C all keys hashed to the same even-numbered index.
