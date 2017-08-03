@@ -108,8 +108,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     }
 
     public void put(Key key, Value value) {
-        if(key == null) {
-            return;
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
         }
 
         if(value == null) {
@@ -377,6 +377,10 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
     }
 
     public void delete(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
         if(isEmpty() || !contains(key)) {
             return;
         }
