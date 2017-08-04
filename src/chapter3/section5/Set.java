@@ -9,22 +9,20 @@ import java.util.NoSuchElementException;
  */
 public class Set<Key extends Comparable<Key>> {
 
-    private class RedBlackBST<Key extends Comparable<Key>, Value> {
+    private class RedBlackBST<Key extends Comparable<Key>> {
 
         private static final boolean RED = true;
         private static final boolean BLACK = false;
 
         private class Node {
             Key key;
-            Value value;
             Node left, right;
 
             boolean color;
             int size;
 
-            Node(Key key, Value value, int size, boolean color) {
+            Node(Key key, int size, boolean color) {
                 this.key = key;
-                this.value = value;
 
                 this.size = size;
                 this.color = color;
@@ -109,33 +107,28 @@ public class Set<Key extends Comparable<Key>> {
             }
         }
 
-        public void put(Key key, Value value) {
+        public void put(Key key) {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
-                delete(key);
-                return;
-            }
-
-            root = put(root, key, value);
+            root = put(root, key);
             root.color = BLACK;
         }
 
-        private Node put(Node node, Key key, Value value) {
+        private Node put(Node node, Key key) {
             if(node == null) {
-                return new Node(key, value, 1, RED);
+                return new Node(key, 1, RED);
             }
 
             int compare = key.compareTo(node.key);
 
             if(compare < 0) {
-                node.left = put(node.left, key, value);
+                node.left = put(node.left, key);
             } else if(compare > 0) {
-                node.right = put(node.right, key, value);
+                node.right = put(node.right, key);
             } else {
-                node.value = value;
+                node.key = key;
             }
 
             if(isRed(node.right) && !isRed(node.left)) {
@@ -152,34 +145,27 @@ public class Set<Key extends Comparable<Key>> {
             return node;
         }
 
-        public Value get(Key key) {
-            if(key == null) {
-                return null;
-            }
-
-            return get(root, key);
-        }
-
-        private Value get(Node node, Key key) {
-            if(node == null) {
-                return null;
-            }
-
-            int compare = key.compareTo(node.key);
-            if(compare < 0) {
-                return get(node.left, key);
-            } else if(compare > 0) {
-                return get(node.right, key);
-            } else {
-                return node.value;
-            }
-        }
-
         public boolean contains(Key key) {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
-            return get(key) != null;
+            return contains(root, key);
+        }
+
+        private boolean contains(Node node, Key key) {
+            while (node != null) {
+                int compare = key.compareTo(node.key);
+
+                if(compare < 0) {
+                    node = node.left;
+                } else if(compare > 0) {
+                    node = node.right;
+                } else {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public Key min() {
@@ -425,7 +411,6 @@ public class Set<Key extends Comparable<Key>> {
                 if(key.compareTo(node.key) == 0) {
                     Node aux = min(node.right);
                     node.key = aux.key;
-                    node.value = aux.value;
                     node.right = deleteMin(node.right);
                 } else {
                     node.right = delete(node.right, key);
@@ -542,7 +527,7 @@ public class Set<Key extends Comparable<Key>> {
         }
     }
 
-    private RedBlackBST<Key, Boolean> set;
+    private RedBlackBST<Key> set;
 
     Set() {
         set = new RedBlackBST<>();
@@ -565,7 +550,7 @@ public class Set<Key extends Comparable<Key>> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        set.put(key, false);
+        set.put(key);
     }
 
     public void delete(Key key) {

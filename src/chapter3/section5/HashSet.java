@@ -10,18 +10,16 @@ import java.util.Arrays;
 @SuppressWarnings("unchecked")
 public class HashSet<Key> {
 
-    private class SeparateChainingHashTable<Key, Value> {
+    private class SeparateChainingHashTable<Key> {
 
-        private class SequentialSearchSymbolTable<Key, Value> {
+        private class SequentialSearchSymbolTable<Key> {
 
             private class Node {
                 Key key;
-                Value value;
                 Node next;
 
-                public Node(Key key, Value value, Node next) {
+                public Node(Key key, Node next) {
                     this.key = key;
-                    this.value = value;
                     this.next = next;
                 }
             }
@@ -38,28 +36,24 @@ public class HashSet<Key> {
             }
 
             public boolean contains(Key key) {
-                return get(key) != null;
-            }
-
-            public Value get(Key key) {
                 for(Node node = first; node != null; node = node.next) {
                     if(key.equals(node.key)) {
-                        return node.value;
+                        return true;
                     }
                 }
 
-                return null;
+                return false;
             }
 
-            public void put(Key key, Value value) {
+            public void put(Key key) {
                 for(Node node = first; node != null; node = node.next) {
                     if(key.equals(node.key)) {
-                        node.value = value;
+                        node.key = key;
                         return;
                     }
                 }
 
-                first = new Node(key, value, first);
+                first = new Node(key, first);
                 size++;
             }
 
@@ -153,15 +147,15 @@ public class HashSet<Key> {
         }
 
         public boolean contains(Key key) {
-            return get(key) != null;
+            return symbolTable[hash(key)].contains(key);
         }
 
         private void resize(int newSize) {
-            SeparateChainingHashTable<Key, Value> separateChainingHashTableTemp =
+            SeparateChainingHashTable<Key> separateChainingHashTableTemp =
                     new SeparateChainingHashTable<>(newSize, averageListSize);
 
             for(Key key : keys()) {
-                separateChainingHashTableTemp.put(key, get(key));
+                separateChainingHashTableTemp.put(key);
             }
 
             symbolTable = separateChainingHashTableTemp.symbolTable;
@@ -169,14 +163,10 @@ public class HashSet<Key> {
             keysSize = separateChainingHashTableTemp.keysSize;
         }
 
-        public Value get(Key key) {
-            return (Value) symbolTable[hash(key)].get(key);
-        }
-
-        public void put(Key key, Value value) {
+        public void put(Key key) {
             int hashIndex = hash(key);
             int currentSize = symbolTable[hashIndex].size;
-            symbolTable[hashIndex].put(key, value);
+            symbolTable[hashIndex].put(key);
 
             if(currentSize < symbolTable[hashIndex].size) {
                 keysSize++;
@@ -229,7 +219,7 @@ public class HashSet<Key> {
 
     }
 
-    private SeparateChainingHashTable<Key, Boolean> hashTable;
+    private SeparateChainingHashTable<Key> hashTable;
 
     HashSet() {
         hashTable = new SeparateChainingHashTable<>();
@@ -256,7 +246,7 @@ public class HashSet<Key> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        hashTable.put(key, false);
+        hashTable.put(key);
     }
 
     public void delete(Key key) {

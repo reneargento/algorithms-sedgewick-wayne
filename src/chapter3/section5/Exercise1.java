@@ -107,7 +107,25 @@ public class Exercise1 {
 
         @Override
         public String toString() {
-            return "Set of size " + size();
+            if(isEmpty()) {
+                return "{ }";
+            }
+
+            StringBuilder stringBuilder = new StringBuilder("{");
+
+            boolean isFirstKey = true;
+            for(Key key : keys()) {
+                if(isFirstKey) {
+                    isFirstKey = false;
+                } else {
+                    stringBuilder.append(",");
+                }
+
+                stringBuilder.append(" ").append(key);
+            }
+
+            stringBuilder.append(" }");
+            return stringBuilder.toString();
         }
     }
 
@@ -145,7 +163,25 @@ public class Exercise1 {
 
         @Override
         public String toString() {
-            return "HashSet of size " + size();
+            if(isEmpty()) {
+                return "{ }";
+            }
+
+            StringBuilder stringBuilder = new StringBuilder("{");
+
+            boolean isFirstKey = true;
+            for(Key key : keys()) {
+                if(isFirstKey) {
+                    isFirstKey = false;
+                } else {
+                    stringBuilder.append(",");
+                }
+
+                stringBuilder.append(" ").append(key);
+            }
+
+            stringBuilder.append(" }");
+            return stringBuilder.toString();
         }
     }
 
@@ -175,10 +211,12 @@ public class Exercise1 {
         for(Integer key : set.keys()) {
             StdOut.print(key + " ");
         }
-        StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99\n");
+        StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99");
+
+        StdOut.println("\ntoString() test: " + set);
 
         //Test min()
-        StdOut.println("Min key: " + set.min() + " Expected: -5");
+        StdOut.println("\nMin key: " + set.min() + " Expected: -5");
 
         //Test max()
         StdOut.println("Max key: " + set.max() + " Expected: 99");
@@ -244,8 +282,6 @@ public class Exercise1 {
             set.delete(set.select(set.size() - 1));
             StdOut.println();
         }
-
-        StdOut.println("\ntoString() test: " + set);
     }
 
     private void testHashSet() {
@@ -270,6 +306,8 @@ public class Exercise1 {
         }
         StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99");
 
+        StdOut.println("\ntoString() test: " + hashSet);
+
         //Test delete()
         StdOut.println("\nDelete key 2");
         hashSet.delete(2);
@@ -291,8 +329,6 @@ public class Exercise1 {
         for(Integer key : hashSet.keys()) {
             StdOut.print(key + " ");
         }
-
-        StdOut.println("\ntoString() test: " + hashSet);
     }
 
 }
