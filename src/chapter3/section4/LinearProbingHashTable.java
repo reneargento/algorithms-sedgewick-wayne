@@ -41,6 +41,10 @@ public class LinearProbingHashTable<Key, Value> {
         return keysSize;
     }
 
+    public boolean isEmpty() {
+        return keysSize == 0;
+    }
+
     protected int hash(Key key) {
         int hash = key.hashCode() & 0x7fffffff;
 
