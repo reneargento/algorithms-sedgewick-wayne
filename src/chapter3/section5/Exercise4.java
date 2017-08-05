@@ -11,14 +11,14 @@ import java.util.Arrays;
 @SuppressWarnings("unchecked")
 public class Exercise4 {
 
-    private class HashSTInt {
+    private class HashSTint<Value> {
 
         private int keysSize;
         private int size;
         private int[] keys;
-        private int[] values;
+        private Value[] values;
 
-        final static int EMPTY_VALUE = Integer.MIN_VALUE;
+        public final static int EMPTY_KEY = Integer.MIN_VALUE;
 
         //The largest prime <= 2^i for i = 3 to 31
         //Used to distribute keys uniformly in the hash table after resizes
@@ -34,16 +34,13 @@ public class Exercise4 {
         //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
-        private HashSTInt(int size) {
+        private HashSTint(int size) {
             this.size = size;
             keys = new int[size];
-            values = new int[size];
+            values = (Value[]) new Object[size];
 
             for(int i = 0; i < size; i++) {
-                keys[i] = EMPTY_VALUE;
-            }
-            for(int i = 0; i < size; i++) {
-                values[i] = EMPTY_VALUE;
+                keys[i] = EMPTY_KEY;
             }
 
             lgM = (int) (Math.log(size) / Math.log(2));
@@ -72,10 +69,10 @@ public class Exercise4 {
         }
 
         private void resize(int newSize) {
-            HashSTInt tempHashTable = new HashSTInt(newSize);
+            HashSTint<Value> tempHashTable = new HashSTint<>(newSize);
 
             for(int i = 0; i < size; i++) {
-                if(keys[i] != EMPTY_VALUE) {
+                if(keys[i] != EMPTY_KEY) {
                     tempHashTable.put(keys[i], values[i]);
                 }
             }
@@ -86,11 +83,11 @@ public class Exercise4 {
         }
 
         public boolean contains(int key) {
-            if (key == EMPTY_VALUE) {
+            if (key == EMPTY_KEY) {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
+            for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
                 if(keys[tableIndex] == key) {
                     return true;
                 }
@@ -99,27 +96,26 @@ public class Exercise4 {
             return false;
         }
 
-        //Since the keys and values are ints and we cannot use null, we return EMPTY_VALUE when a key is not found
-        public int get(int key) {
-            if (key == EMPTY_VALUE) {
+        public Value get(int key) {
+            if (key == EMPTY_KEY) {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
+            for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
                 if(keys[tableIndex] == key) {
                     return values[tableIndex];
                 }
             }
 
-            return EMPTY_VALUE;
+            return null;
         }
 
-        public void put(int key, int value) {
-            if (key == EMPTY_VALUE) {
+        public void put(int key, Value value) {
+            if (key == EMPTY_KEY) {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            if(value == EMPTY_VALUE) {
+            if(value == null) {
                 delete(key);
                 return;
             }
@@ -130,7 +126,7 @@ public class Exercise4 {
             }
 
             int tableIndex;
-            for(tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
+            for(tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
                 if(keys[tableIndex] == key) {
                     values[tableIndex] = value;
                     return;
@@ -143,7 +139,7 @@ public class Exercise4 {
         }
 
         public void delete(int key) {
-            if (key == EMPTY_VALUE) {
+            if (key == EMPTY_KEY) {
                 throw new IllegalArgumentException("Invalid key");
             }
 
@@ -156,18 +152,18 @@ public class Exercise4 {
                 tableIndex = (tableIndex + 1) % size;
             }
 
-            keys[tableIndex] = EMPTY_VALUE;
-            values[tableIndex] = EMPTY_VALUE;
+            keys[tableIndex] = EMPTY_KEY;
+            values[tableIndex] = null;
             keysSize--;
 
             tableIndex = (tableIndex + 1) % size;
 
-            while (keys[tableIndex] != EMPTY_VALUE) {
+            while (keys[tableIndex] != EMPTY_KEY) {
                 int keyToRedo = keys[tableIndex];
-                int valueToRedo = values[tableIndex];
+                Value valueToRedo = values[tableIndex];
 
-                keys[tableIndex] = EMPTY_VALUE;
-                values[tableIndex] = EMPTY_VALUE;
+                keys[tableIndex] = EMPTY_KEY;
+                values[tableIndex] = null;
                 keysSize--;
 
                 put(keyToRedo, valueToRedo);
@@ -184,7 +180,7 @@ public class Exercise4 {
             Queue<Integer> keySet = new Queue<>();
 
             for(int key : keys) {
-                if(key != EMPTY_VALUE) {
+                if(key != EMPTY_KEY) {
                     keySet.enqueue(key);
                 }
             }
@@ -200,14 +196,14 @@ public class Exercise4 {
         }
     }
 
-    private class HashSTDouble {
+    private class HashSTdouble<Value> {
 
         private int keysSize;
         private int size;
         private double[] keys;
-        private double[] values;
+        private Value[] values;
 
-        final static double EMPTY_VALUE = Double.MIN_VALUE;
+        public final static double EMPTY_VALUE = Double.MIN_VALUE;
 
         //The largest prime <= 2^i for i = 3 to 31
         //Used to distribute keys uniformly in the hash table after resizes
@@ -223,16 +219,13 @@ public class Exercise4 {
         //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
-        private HashSTDouble(int size) {
+        private HashSTdouble(int size) {
             this.size = size;
             keys = new double[size];
-            values = new double[size];
+            values = (Value[]) new Object[size];
 
             for(int i = 0; i < size; i++) {
                 keys[i] = EMPTY_VALUE;
-            }
-            for(int i = 0; i < size; i++) {
-                values[i] = EMPTY_VALUE;
             }
 
             lgM = (int) (Math.log(size) / Math.log(2));
@@ -261,7 +254,7 @@ public class Exercise4 {
         }
 
         private void resize(int newSize) {
-            HashSTDouble tempHashTable = new HashSTDouble(newSize);
+            HashSTdouble<Value> tempHashTable = new HashSTdouble<>(newSize);
 
             for(int i = 0; i < size; i++) {
                 if(keys[i] != EMPTY_VALUE) {
@@ -288,8 +281,7 @@ public class Exercise4 {
             return false;
         }
 
-        //Since the keys and values are doubles and we cannot use null, we return EMPTY_VALUE when a key is not found
-        public double get(double key) {
+        public Value get(double key) {
             if (key == EMPTY_VALUE) {
                 throw new IllegalArgumentException("Invalid key");
             }
@@ -300,15 +292,15 @@ public class Exercise4 {
                 }
             }
 
-            return EMPTY_VALUE;
+            return null;
         }
 
-        public void put(double key, double value) {
+        public void put(double key, Value value) {
             if (key == EMPTY_VALUE) {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            if(value == EMPTY_VALUE) {
+            if(value == null) {
                 delete(key);
                 return;
             }
@@ -346,17 +338,17 @@ public class Exercise4 {
             }
 
             keys[tableIndex] = EMPTY_VALUE;
-            values[tableIndex] = EMPTY_VALUE;
+            values[tableIndex] = null;
             keysSize--;
 
             tableIndex = (tableIndex + 1) % size;
 
             while (keys[tableIndex] != EMPTY_VALUE) {
                 double keyToRedo = keys[tableIndex];
-                double valueToRedo = values[tableIndex];
+                Value valueToRedo = values[tableIndex];
 
                 keys[tableIndex] = EMPTY_VALUE;
-                values[tableIndex] = EMPTY_VALUE;
+                values[tableIndex] = null;
                 keysSize--;
 
                 put(keyToRedo, valueToRedo);
@@ -391,97 +383,97 @@ public class Exercise4 {
 
     public static void main(String[] args) {
         Exercise4 exercise4 = new Exercise4();
-        exercise4.testHashSTInt();
-        exercise4.testHashSTDouble();
+        exercise4.testHashSTint();
+        exercise4.testHashSTdouble();
     }
 
-    private void testHashSTInt() {
-        StdOut.println("HashSTInt test");
-        HashSTInt hashSTInt = new HashSTInt(5);
+    private void testHashSTint() {
+        StdOut.println("HashSTint test");
+        HashSTint hashSTint = new HashSTint(5);
 
-        hashSTInt.put(5, 5);
-        hashSTInt.put(1, 1);
-        hashSTInt.put(9, 9);
-        hashSTInt.put(2, 2);
-        hashSTInt.put(0, 0);
-        hashSTInt.put(99, 99);
-        hashSTInt.put(-1, -1);
-        hashSTInt.put(-2, -2);
-        hashSTInt.put(3, 3);
-        hashSTInt.put(-5, -5);
+        hashSTint.put(5, 5);
+        hashSTint.put(1, 1);
+        hashSTint.put(9, 9);
+        hashSTint.put(2, 2);
+        hashSTint.put(0, 0);
+        hashSTint.put(99, 99);
+        hashSTint.put(-1, -1);
+        hashSTint.put(-2, -2);
+        hashSTint.put(3, 3);
+        hashSTint.put(-5, -5);
 
         StdOut.println("\nKeys() test");
 
-        for(Integer key : hashSTInt.keys()) {
-            StdOut.println("Key " + key + ": " + hashSTInt.get(key));
+        for(Integer key : hashSTint.keys()) {
+            StdOut.println("Key " + key + ": " + hashSTint.get(key));
         }
         StdOut.println("Expected: -5 -2 -1 0 1 2 3 5 9 99\n");
 
         //Test delete()
         StdOut.println("Delete key 2");
-        hashSTInt.delete(2);
+        hashSTint.delete(2);
 
-        for(Integer key : hashSTInt.keys()) {
-            StdOut.println("Key " + key + ": " + hashSTInt.get(key));
+        for(Integer key : hashSTint.keys()) {
+            StdOut.println("Key " + key + ": " + hashSTint.get(key));
         }
 
         StdOut.println("\nDelete key 99");
-        hashSTInt.delete(99);
+        hashSTint.delete(99);
 
-        for(Integer key : hashSTInt.keys()) {
-            StdOut.println("Key " + key + ": " + hashSTInt.get(key));
+        for(Integer key : hashSTint.keys()) {
+            StdOut.println("Key " + key + ": " + hashSTint.get(key));
         }
 
         StdOut.println("\nDelete key -5");
-        hashSTInt.delete(-5);
+        hashSTint.delete(-5);
 
-        for(Integer key : hashSTInt.keys()) {
-            StdOut.println("Key " + key + ": " + hashSTInt.get(key));
+        for(Integer key : hashSTint.keys()) {
+            StdOut.println("Key " + key + ": " + hashSTint.get(key));
         }
     }
 
-    private void testHashSTDouble() {
-        StdOut.println("\n\nHashSTDouble test");
-        HashSTDouble hashSTDouble = new HashSTDouble(5);
+    private void testHashSTdouble() {
+        StdOut.println("\n\nHashSTdouble test");
+        HashSTdouble hashSTdouble = new HashSTdouble(5);
 
-        hashSTDouble.put(5.0, 5.0);
-        hashSTDouble.put(1.0, 1.0);
-        hashSTDouble.put(9.5, 9.5);
-        hashSTDouble.put(2.1, 2.1);
-        hashSTDouble.put(0.0, 0.0);
-        hashSTDouble.put(99.999, 99.999);
-        hashSTDouble.put(-1.05, -1.05);
-        hashSTDouble.put(-2.2, -2.2);
-        hashSTDouble.put(3.0, 3.0);
-        hashSTDouble.put(-5.9, -5.9);
+        hashSTdouble.put(5.0, 5.0);
+        hashSTdouble.put(1.0, 1.0);
+        hashSTdouble.put(9.5, 9.5);
+        hashSTdouble.put(2.1, 2.1);
+        hashSTdouble.put(0.0, 0.0);
+        hashSTdouble.put(99.999, 99.999);
+        hashSTdouble.put(-1.05, -1.05);
+        hashSTdouble.put(-2.2, -2.2);
+        hashSTdouble.put(3.0, 3.0);
+        hashSTdouble.put(-5.9, -5.9);
 
         StdOut.println("\nKeys() test");
 
-        for(Double key : hashSTDouble.keys()) {
-            StdOut.println("Key " + key + ": " + hashSTDouble.get(key));
+        for(Double key : hashSTdouble.keys()) {
+            StdOut.println("Key " + key + ": " + hashSTdouble.get(key));
         }
         StdOut.println("\nExpected: -5.9 -2.2 -1.05 0.0 1.0 2.1 3.0 5.0 9.5 99.999");
 
         //Test delete()
         StdOut.println("\nDelete key 2.1");
-        hashSTDouble.delete(2.1);
+        hashSTdouble.delete(2.1);
 
-        for(Double key : hashSTDouble.keys()) {
-            StdOut.println("Key " + key + ": " + hashSTDouble.get(key));
+        for(Double key : hashSTdouble.keys()) {
+            StdOut.println("Key " + key + ": " + hashSTdouble.get(key));
         }
 
         StdOut.println("\nDelete key 99.999");
-        hashSTDouble.delete(99.999);
+        hashSTdouble.delete(99.999);
 
-        for(Double key : hashSTDouble.keys()) {
-            StdOut.println("Key " + key + ": " + hashSTDouble.get(key));
+        for(Double key : hashSTdouble.keys()) {
+            StdOut.println("Key " + key + ": " + hashSTdouble.get(key));
         }
 
         StdOut.println("\nDelete key -5.9");
-        hashSTDouble.delete(-5.9);
+        hashSTdouble.delete(-5.9);
 
-        for(Double key : hashSTDouble.keys()) {
-            StdOut.println("Key " + key + ": " + hashSTDouble.get(key));
+        for(Double key : hashSTdouble.keys()) {
+            StdOut.println("Key " + key + ": " + hashSTdouble.get(key));
         }
     }
 
