@@ -351,10 +351,10 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
 
     public int size(Key low, Key high) {
         if (low == null)  {
-            throw new IllegalArgumentException("First argument to keys() cannot be null");
+            throw new IllegalArgumentException("First argument to size() cannot be null");
         }
         if (high == null) {
-            throw new IllegalArgumentException("Second argument to keys() cannot be null");
+            throw new IllegalArgumentException("Second argument to size() cannot be null");
         }
 
         if (low.compareTo(high) > 0) {
