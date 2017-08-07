@@ -17,7 +17,7 @@ public class Exercise11 {
      * If y is a node in the left subtree of x, then y:key <= x:key.
      * If y is a node in the right subtree of x, then y:key >= x:key.
      */
-    private class Multiset<Key extends Comparable<Key>> {
+    private class MultiSET<Key extends Comparable<Key>> {
 
         private static final boolean RED = true;
         private static final boolean BLACK = false;
@@ -594,7 +594,7 @@ public class Exercise11 {
 
     public static void main(String[] args) {
         Exercise11 exercise11 = new Exercise11();
-        Multiset<Integer> multiset = exercise11.new Multiset<>();
+        MultiSET<Integer> multiset = exercise11.new MultiSET<>();
 
         //Test add()
         multiset.add(0);
