@@ -154,7 +154,7 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> impleme
 
     public Key select(int k) {
         if(isEmpty() || k >= size) {
-            throw new IllegalArgumentException("Invalid argument: " + k);
+            throw new IllegalArgumentException("Index " + k + " is higher than size");
         }
 
         return keys[k];

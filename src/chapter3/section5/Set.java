@@ -621,4 +621,27 @@ public class Set<Key extends Comparable<Key>> {
         return set.size(low, high);
     }
 
+    @Override
+    public String toString() {
+        if(isEmpty()) {
+            return "{ }";
+        }
+
+        StringBuilder stringBuilder = new StringBuilder("{");
+
+        boolean isFirstKey = true;
+        for(Key key : keys()) {
+            if(isFirstKey) {
+                isFirstKey = false;
+            } else {
+                stringBuilder.append(",");
+            }
+
+            stringBuilder.append(" ").append(key);
+        }
+
+        stringBuilder.append(" }");
+        return stringBuilder.toString();
+    }
+
 }

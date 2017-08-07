@@ -261,4 +261,27 @@ public class HashSet<Key> {
         return hashTable.keys();
     }
 
+    @Override
+    public String toString() {
+        if(isEmpty()) {
+            return "{ }";
+        }
+
+        StringBuilder stringBuilder = new StringBuilder("{");
+
+        boolean isFirstKey = true;
+        for(Key key : keys()) {
+            if(isFirstKey) {
+                isFirstKey = false;
+            } else {
+                stringBuilder.append(",");
+            }
+
+            stringBuilder.append(" ").append(key);
+        }
+
+        stringBuilder.append(" }");
+        return stringBuilder.toString();
+    }
+
 }

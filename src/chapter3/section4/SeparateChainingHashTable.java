@@ -168,7 +168,6 @@ public class SeparateChainingHashTable<Key, Value> {
 
         symbolTable = separateChainingHashTableTemp.symbolTable;
         size = separateChainingHashTableTemp.size;
-        keysSize = separateChainingHashTableTemp.keysSize;
     }
 
     public Value get(Key key) {
