@@ -214,7 +214,7 @@ public class SeparateChainingHashTable<Key, Value> {
         symbolTable[hash(key)].delete(key);
         keysSize--;
 
-        if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
+        if(size > 0 && getLoadFactor() <= averageListSize / (double) 4) {
             resize(size / 2);
             lgM--;
         }
@@ -223,9 +223,9 @@ public class SeparateChainingHashTable<Key, Value> {
     public Iterable<Key> keys() {
         Queue<Key> keys = new Queue<>();
 
-        for(SequentialSearchSymbolTable sequentialSearchST : symbolTable) {
-            for(Object key : sequentialSearchST.keys()) {
-                keys.enqueue((Key) key);
+        for(SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
+            for(Key key : sequentialSearchST.keys()) {
+                keys.enqueue(key);
             }
         }
 

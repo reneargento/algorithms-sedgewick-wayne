@@ -173,9 +173,9 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
     public Iterable<Key> keys() {
         Queue<Key> keys = new Queue<>();
 
-        for(SequentialSearchSymbolTable sequentialSearchST : symbolTable) {
-            for(Object key : sequentialSearchST.keys()) {
-                keys.enqueue((Key) key);
+        for(SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
+            for(Key key : sequentialSearchST.keys()) {
+                keys.enqueue(key);
             }
         }
 

@@ -43,7 +43,7 @@ public class Exercise29_Deletion {
                 }
             }
 
-            if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
+            if(size > 0 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(size / 2);
             }
         }
