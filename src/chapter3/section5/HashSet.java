@@ -89,7 +89,7 @@ public class HashSet<Key> {
 
         private int size;
         private int keysSize;
-        private SequentialSearchSymbolTable[] symbolTable;
+        private SequentialSearchSymbolTable<Key>[] symbolTable;
 
         private static final int DEFAULT_HASH_TABLE_SIZE = 997;
         private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
@@ -118,7 +118,7 @@ public class HashSet<Key> {
             symbolTable = new SequentialSearchSymbolTable[size];
 
             for(int i = 0; i < size; i++) {
-                symbolTable[i] = new SequentialSearchSymbolTable();
+                symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
 
             lgM = (int) (Math.log(size) / Math.log(2));

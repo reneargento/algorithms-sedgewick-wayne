@@ -106,7 +106,7 @@ public class Exercise40_PlotsSeparateChaining {
 
         private int size;
         private int keysSize;
-        private SequentialSearchSymbolTable[] symbolTable;
+        private SequentialSearchSymbolTable<Key, Value>[] symbolTable;
 
         private int costOfPutCompares;
 
@@ -137,7 +137,7 @@ public class Exercise40_PlotsSeparateChaining {
             symbolTable = new SequentialSearchSymbolTable[size];
 
             for(int i = 0; i < size; i++) {
-                symbolTable[i] = new SequentialSearchSymbolTable();
+                symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
 
             lgM = (int) (Math.log(size) / Math.log(2));
@@ -193,7 +193,7 @@ public class Exercise40_PlotsSeparateChaining {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            return (Value) symbolTable[hash(key)].get(key);
+            return symbolTable[hash(key)].get(key);
         }
 
         public int putAndComputeCost(Key key, Value value, boolean resetCostOfPutCompares) {

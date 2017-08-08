@@ -96,7 +96,7 @@ public class Exercise27_DoubleProbing {
 
         private int size;
         private int keysSize;
-        private SequentialSearchSymbolTable[] symbolTable;
+        private SequentialSearchSymbolTable<Key, Value>[] symbolTable;
 
         private static final int DEFAULT_HASH_TABLE_SIZE = 997;
         private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
@@ -111,7 +111,7 @@ public class Exercise27_DoubleProbing {
             symbolTable = new SequentialSearchSymbolTable[size];
 
             for(int i = 0; i < size; i++) {
-                symbolTable[i] = new SequentialSearchSymbolTable();
+                symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
         }
 
@@ -171,19 +171,19 @@ public class Exercise27_DoubleProbing {
             Value value;
             if(symbolTable[hash1].size <= symbolTable[hash2].size) {
                 StdOut.println("Searching in list 1");
-                value = (Value) symbolTable[hash1].get(key);
+                value = symbolTable[hash1].get(key);
 
                 if(value == null && hash1 != hash2) {
                     StdOut.println("Searching in list 2");
-                    value = (Value) symbolTable[hash2].get(key);
+                    value = symbolTable[hash2].get(key);
                 }
             } else {
                 StdOut.println("Searching in list 2");
-                value = (Value) symbolTable[hash2].get(key);
+                value = symbolTable[hash2].get(key);
 
                 if(value == null) {
                     StdOut.println("Searching in list 1");
-                    value = (Value) symbolTable[hash1].get(key);
+                    value = symbolTable[hash1].get(key);
                 }
             }
 

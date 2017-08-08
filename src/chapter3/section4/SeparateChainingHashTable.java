@@ -93,7 +93,7 @@ public class SeparateChainingHashTable<Key, Value> {
 
     protected int size;
     protected int keysSize;
-    SequentialSearchSymbolTable[] symbolTable;
+    SequentialSearchSymbolTable<Key, Value>[] symbolTable;
 
     private static final int DEFAULT_HASH_TABLE_SIZE = 997;
     private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
@@ -122,7 +122,7 @@ public class SeparateChainingHashTable<Key, Value> {
         symbolTable = new SequentialSearchSymbolTable[size];
 
         for(int i = 0; i < size; i++) {
-            symbolTable[i] = new SequentialSearchSymbolTable();
+            symbolTable[i] = new SequentialSearchSymbolTable<>();
         }
 
         lgM = (int) (Math.log(size) / Math.log(2));
@@ -175,7 +175,7 @@ public class SeparateChainingHashTable<Key, Value> {
             throw new IllegalArgumentException("Argument to get() cannot be null");
         }
 
-        return (Value) symbolTable[hash(key)].get(key);
+        return symbolTable[hash(key)].get(key);
     }
 
     public void put(Key key, Value value) {

@@ -99,7 +99,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
 
         private int size;
         private int keysSize;
-        private SequentialSearchSymbolTable[] symbolTable;
+        private SequentialSearchSymbolTable<Key, Value>[] symbolTable;
 
         private static final int DEFAULT_HASH_TABLE_SIZE = 997;
 
@@ -112,7 +112,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
             symbolTable = new SequentialSearchSymbolTable[size];
 
             for(int i = 0; i < size; i++) {
-                symbolTable[i] = new SequentialSearchSymbolTable();
+                symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
         }
 
@@ -143,7 +143,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            return (Value) symbolTable[hash(key)].get(key);
+            return symbolTable[hash(key)].get(key);
         }
 
         public int putAndComputeCost(Key key, Value value) {

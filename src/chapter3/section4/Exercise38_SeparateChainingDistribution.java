@@ -101,7 +101,7 @@ public class Exercise38_SeparateChainingDistribution {
 
         private int size;
         private int keysSize;
-        private SequentialSearchSymbolTable[] symbolTable;
+        private SequentialSearchSymbolTable<Key, Value>[] symbolTable;
 
         private int costOfPutCompares;
 
@@ -110,7 +110,7 @@ public class Exercise38_SeparateChainingDistribution {
             symbolTable = new SequentialSearchSymbolTable[size];
 
             for(int i = 0; i < size; i++) {
-                symbolTable[i] = new SequentialSearchSymbolTable();
+                symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
         }
 
@@ -141,7 +141,7 @@ public class Exercise38_SeparateChainingDistribution {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            return (Value) symbolTable[hash(key)].get(key);
+            return symbolTable[hash(key)].get(key);
         }
 
         public void put(Key key, Value value) {
