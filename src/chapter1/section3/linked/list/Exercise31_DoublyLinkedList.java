@@ -168,19 +168,19 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 		return item;
 	}
 
-	public Item removeNode(int nodeNumber) {
-		if (isEmpty() || nodeNumber <= 0 || nodeNumber > size()){
+	public Item removeItemWithIndex(int nodeIndex) {
+		if (isEmpty() || nodeIndex <= 0 || nodeIndex > size()){
 			return null;
 		}
 
-		boolean startFromTheBeginning = nodeNumber <= size() / 2;
+		boolean startFromTheBeginning = nodeIndex <= size() / 2;
 
 		int index = startFromTheBeginning ? 1 : size();
 
 		DoubleNode currentNode = startFromTheBeginning? first : last;
 
 		while (currentNode != null) {
-			if(nodeNumber == index) {
+			if(nodeIndex == index) {
 				break;
 			}
 
@@ -258,7 +258,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 		doublyLinkedList.removeFromTheBeginning();
 		doublyLinkedList.removeFromTheEnd();
 
-		doublyLinkedList.removeNode(2);
+		doublyLinkedList.removeItemWithIndex(2);
 
 		for (int number : doublyLinkedList) {
 			StdOut.println(number);
