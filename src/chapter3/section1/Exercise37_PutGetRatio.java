@@ -3,6 +3,7 @@ package chapter3.section1;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
 import util.ArrayGenerator;
+import util.Constants;
 import util.FileUtil;
 
 /**
@@ -10,7 +11,7 @@ import util.FileUtil;
  */
 public class Exercise37_PutGetRatio {
 
-    private static final String TALE_FILE_PATH = "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/tale_of_two_cities.txt";
+    private static final String TALE_FILE_PATH = Constants.FILES_PATH + "tale_of_two_cities.txt";
 
     public static void main(String[] args) {
         new Exercise37_PutGetRatio().doExperiments();

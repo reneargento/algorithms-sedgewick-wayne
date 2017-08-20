@@ -5,12 +5,14 @@ import java.util.List;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
+import util.Constants;
 
 public class Exercise15_FileInput {
-	
+
+	private static final String FILE_PATH = Constants.FILES_PATH + "intsFile.txt";
+
 	public static void main(String...args) {
-		String filePath = "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/intsFile.txt";
-		int[] ints = readAllInts(filePath);
+		int[] ints = readAllInts(FILE_PATH);
 		
 		for(int i : ints){
 			StdOut.print(i + " ");

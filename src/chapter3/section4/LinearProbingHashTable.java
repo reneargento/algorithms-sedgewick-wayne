@@ -29,7 +29,7 @@ public class LinearProbingHashTable<Key, Value> {
     //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
     protected int lgM;
 
-    LinearProbingHashTable(int size) {
+    public LinearProbingHashTable(int size) {
         this.size = size;
         keys = (Key[]) new Object[size];
         values = (Value[]) new Object[size];

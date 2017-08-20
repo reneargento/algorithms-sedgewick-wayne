@@ -9,116 +9,122 @@ import java.util.Iterator;
  * Created by rene on 8/16/16.
  */
 @SuppressWarnings("unchecked")
-public class Exercise36_RandomQueue2<Item> implements Iterable<Item>{
+public class Exercise36_RandomQueue2 {
 
-    private Item[] array;
-    private int size;
+    public class RandomQueue2<Item> implements Iterable<Item> {
+        private Item[] items;
+        private int size;
 
-    public Exercise36_RandomQueue2() {
-        array = (Item[]) new Object[1];
-        size = 0;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public void enqueue(Item item) {
-        if(size == array.length) {
-            resize(array.length * 2);
+        public RandomQueue2() {
+            items = (Item[]) new Object[1];
+            size = 0;
         }
 
-        array[size] = item;
-        size++;
-    }
-
-    public Item dequeue() {
-        if(isEmpty()){
-            throw new RuntimeException("Queue underflow");
+        public boolean isEmpty() {
+            return size == 0;
         }
 
-        int randomIndex = StdRandom.uniform(0, size);
+        public void enqueue(Item item) {
+            if(size == items.length) {
+                resize(items.length * 2);
+            }
 
-        Item randomItem = array[randomIndex];
-
-        array[randomIndex] = array[size - 1];
-        array[size - 1] = null;
-        size--;
-
-        return randomItem;
-    }
-
-    public Item sample() {
-        if (isEmpty()) {
-            throw new RuntimeException("Queue underflow");
+            items[size] = item;
+            size++;
         }
 
-        int randomIndex = StdRandom.uniform(0, size);
+        public Item dequeue() {
+            if(isEmpty()){
+                throw new RuntimeException("Queue underflow");
+            }
 
-        Item randomItem = array[randomIndex];
-        return randomItem;
-    }
+            int randomIndex = StdRandom.uniform(0, size);
 
-    private void resize(int capacity) {
-        Item[] temp = (Item[]) new Object[capacity];
+            Item randomItem = items[randomIndex];
 
-        for (int i=0; i < size; i++) {
-            temp[i] = array[i];
+            items[randomIndex] = items[size - 1];
+            items[size - 1] = null;
+            size--;
+
+            if(size > 0 && size == items.length / 4) {
+                resize(items.length / 2);
+            }
+
+            return randomItem;
         }
 
-        array = temp;
-    }
+        public Item sample() {
+            if (isEmpty()) {
+                throw new RuntimeException("Queue underflow");
+            }
 
-    @Override
-    public Iterator<Item> iterator() {
-        return new RandomQueueIterator();
-    }
+            int randomIndex = StdRandom.uniform(0, size);
 
-    private class RandomQueueIterator implements Iterator<Item> {
-
-        int index;
-        Item[] arrayCopy;
-
-        public RandomQueueIterator(){
-            index = 0;
-            arrayCopy = (Item[]) new Object[array.length];
-
-            copyArray();
-            shuffleItems();
+            Item randomItem = items[randomIndex];
+            return randomItem;
         }
 
-        public boolean hasNext() {
-            return index < size;
-        }
+        private void resize(int capacity) {
+            Item[] temp = (Item[]) new Object[capacity];
 
-        public Item next() {
-            Item item = arrayCopy[index];
-            index++;
-            return item;
-        }
-
-        private void copyArray() {
             for (int i=0; i < size; i++) {
-                arrayCopy[i] = array[i];
+                temp[i] = items[i];
             }
+
+            items = temp;
         }
 
-        private void shuffleItems() {
+        @Override
+        public Iterator<Item> iterator() {
+            return new RandomQueueIterator();
+        }
 
-            for (int i=0; i<size; i++) {
-                int randomIndex = StdRandom.uniform(0, size);
+        private class RandomQueueIterator implements Iterator<Item> {
 
-                //Swap
-                Item temp = arrayCopy[i];
-                arrayCopy[i] = arrayCopy[randomIndex];
-                arrayCopy[randomIndex] = temp;
+            int index;
+            Item[] arrayCopy;
+
+            public RandomQueueIterator(){
+                index = 0;
+                arrayCopy = (Item[]) new Object[items.length];
+
+                copyArray();
+                shuffleItems();
+            }
+
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            public Item next() {
+                Item item = arrayCopy[index];
+                index++;
+                return item;
+            }
+
+            private void copyArray() {
+                for (int i=0; i < size; i++) {
+                    arrayCopy[i] = items[i];
+                }
+            }
+
+            private void shuffleItems() {
+
+                for (int i = 0; i < size; i++) {
+                    int randomIndex = StdRandom.uniform(0, size);
+
+                    //Swap
+                    Item temp = arrayCopy[i];
+                    arrayCopy[i] = arrayCopy[randomIndex];
+                    arrayCopy[randomIndex] = temp;
+                }
             }
         }
     }
-
 
     public static void main(String[] args) {
-        Exercise36_RandomQueue2<Card> randomQueue = new Exercise36_RandomQueue2<>();
+        Exercise36_RandomQueue2 exercise36_randomQueue2 = new Exercise36_RandomQueue2();
+        RandomQueue2<Card> randomQueue = exercise36_randomQueue2.new RandomQueue2<>();
         fillQueueWithBridgeHandsCards(randomQueue);
 
         for (Card card : randomQueue) {
@@ -126,7 +132,7 @@ public class Exercise36_RandomQueue2<Item> implements Iterable<Item>{
         }
     }
 
-    private static void fillQueueWithBridgeHandsCards(Exercise36_RandomQueue2 randomQueue) {
+    private static void fillQueueWithBridgeHandsCards(RandomQueue2 randomQueue) {
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
 
         for (int i=0; i < suits.length; i++){

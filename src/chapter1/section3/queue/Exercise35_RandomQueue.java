@@ -6,70 +6,77 @@ import edu.princeton.cs.algs4.StdRandom;
 /**
  * Created by rene on 8/16/16.
  */
-public class Exercise35_RandomQueue<Item> {
+@SuppressWarnings("unchecked")
+public class Exercise35_RandomQueue {
 
-    private Item[] array;
-    private int size;
+    public class RandomQueue<Item> {
+        private Item[] items;
+        private int size;
 
-    @SuppressWarnings("unchecked")
-    public Exercise35_RandomQueue() {
-        array = (Item[]) new Object[1];
-        size = 0;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public void enqueue(Item item) {
-        if(size == array.length) {
-            resize(array.length * 2);
+        public RandomQueue() {
+            items = (Item[]) new Object[1];
+            size = 0;
         }
 
-        array[size] = item;
-        size++;
-    }
-
-    public Item dequeue() {
-        if(isEmpty()){
-            throw new RuntimeException("Queue underflow");
+        public boolean isEmpty() {
+            return size == 0;
         }
 
-        int randomIndex = StdRandom.uniform(0, size);
+        public void enqueue(Item item) {
+            if(size == items.length) {
+                resize(items.length * 2);
+            }
 
-        Item randomItem = array[randomIndex];
-
-        array[randomIndex] = array[size - 1];
-        array[size - 1] = null;
-        size--;
-
-        return randomItem;
-    }
-
-    public Item sample() {
-        if (isEmpty()) {
-            throw new RuntimeException("Queue underflow");
+            items[size] = item;
+            size++;
         }
 
-        int randomIndex = StdRandom.uniform(0, size);
+        public Item dequeue() {
+            if(isEmpty()){
+                throw new RuntimeException("Queue underflow");
+            }
 
-        Item randomItem = array[randomIndex];
-        return randomItem;
-    }
+            int randomIndex = StdRandom.uniform(0, size);
 
-    @SuppressWarnings("unchecked")
-    private void resize(int capacity) {
-        Item[] temp = (Item[]) new Object[capacity];
+            Item randomItem = items[randomIndex];
 
-        for (int i=0; i < size; i++) {
-            temp[i] = array[i];
+            items[randomIndex] = items[size - 1];
+            items[size - 1] = null;
+            size--;
+
+            if(size > 0 && size == items.length / 4) {
+                resize(items.length / 2);
+            }
+
+            return randomItem;
         }
 
-        array = temp;
+        public Item sample() {
+            if (isEmpty()) {
+                throw new RuntimeException("Queue underflow");
+            }
+
+            int randomIndex = StdRandom.uniform(0, size);
+
+            Item randomItem = items[randomIndex];
+            return randomItem;
+        }
+
+        private void resize(int capacity) {
+            Item[] temp = (Item[]) new Object[capacity];
+
+            for (int i=0; i < size; i++) {
+                temp[i] = items[i];
+            }
+
+            items = temp;
+        }
     }
 
     public static void main(String[] args) {
-        Exercise35_RandomQueue<Card> randomQueue = new Exercise35_RandomQueue<>();
+        Exercise35_RandomQueue exercise35_randomQueue = new Exercise35_RandomQueue();
+        RandomQueue<Card> randomQueue = exercise35_randomQueue.new RandomQueue<>();
+
         fillQueueWithBridgeHandsCards(randomQueue);
 
         for (int i =0; i < 2; i++) {
@@ -90,7 +97,7 @@ public class Exercise35_RandomQueue<Item> {
     }
 
     @SuppressWarnings("unchecked")
-    private static void fillQueueWithBridgeHandsCards(Exercise35_RandomQueue randomQueue) {
+    private static void fillQueueWithBridgeHandsCards(RandomQueue randomQueue) {
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
 
         for (int i=0; i < suits.length; i++){

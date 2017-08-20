@@ -2,6 +2,7 @@ package chapter3.section1;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import util.Constants;
 import util.FileUtil;
 
 import java.util.*;
@@ -27,7 +28,7 @@ public class Exercise26_FrequencyCountDictionary {
         }
     }
 
-    private static final String DICTIONARY_FILE_PATH = "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/3.1.26_Dictionary.txt";
+    private static final String DICTIONARY_FILE_PATH = Constants.FILES_PATH + "3.1.26_Dictionary.txt";
 
     public static void main(String[] args) {
         /**

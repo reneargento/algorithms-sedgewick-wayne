@@ -1,5 +1,6 @@
 package chapter3.section2;
 
+import util.Constants;
 import util.FileUtil;
 import util.VisualAccumulator;
 
@@ -39,7 +40,7 @@ public class Exercise44_CostPlots {
         }
     }
 
-    private static final String TALE_FILE_PATH = "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/tale_of_two_cities.txt";
+    private static final String TALE_FILE_PATH = Constants.FILES_PATH + "tale_of_two_cities.txt";
 
     public static void main(String[] args) {
         String[] wordsInTale = FileUtil.getAllStringsFromFile(TALE_FILE_PATH);

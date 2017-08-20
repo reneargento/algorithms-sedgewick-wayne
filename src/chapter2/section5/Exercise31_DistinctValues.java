@@ -25,7 +25,7 @@ public class Exercise31_DistinctValues {
             int distinctArrayIndex = 0;
 
             for(int i=0; i < numberOfTrials; i++) {
-                int numberOfDistinctValues = distinctValues.countDistinctValues(numberOfValues, maxValue);
+                int numberOfDistinctValues = distinctValues.countDistinctValuesIneffective(numberOfValues, maxValue);
                 distinct[distinctArrayIndex++] = numberOfDistinctValues;
             }
 
@@ -40,7 +40,7 @@ public class Exercise31_DistinctValues {
         }
     }
 
-    private void doExperiment() {
+    public void doExperiment() {
 
         int numberOfTrials = 10;
 
@@ -51,11 +51,11 @@ public class Exercise31_DistinctValues {
          */
         int[] values = {1000, 10000, 100000, 1000000};
 
-        StdOut.printf("%13s %13s %13s %23s\n", "Values Generated | ","Max Value | ", "Distinct Values | "
+        StdOut.printf("%13s %13s %13s %23s\n", "Values Generated | ", "Max Value | ", "Distinct Values | "
                 , "Expected Distinct Values");
 
         for(int n = 0; n < values.length; n++) {
-            for(int m =0 ; m < 3; m++) {
+            for(int m = 0 ; m < 3; m++) {
                 int numberOfValues = values[n];
 
                 int maxValue = 0;
@@ -71,7 +71,7 @@ public class Exercise31_DistinctValues {
                 int distinctArrayIndex = 0;
 
                 for(int trial = 0; trial < numberOfTrials; trial++) {
-                    int distinctValues = countDistinctValues(numberOfValues, maxValue);
+                    int distinctValues = countDistinctValuesIneffective(numberOfValues, maxValue);
                     distinct[distinctArrayIndex++] = distinctValues;
                 }
 
@@ -84,15 +84,35 @@ public class Exercise31_DistinctValues {
         }
     }
 
-    private int countDistinctValues(int numberOfValues, int maxValue) {
+    //This method will be used on exercise 3.5.30
+    private int countDistinctValuesUsingSet(int numberOfValues, int maxValue) {
         Set<Integer> distinctValues = new HashSet<>();
 
-        for(int i=0; i < numberOfValues; i++) {
+        for(int i = 0; i < numberOfValues; i++) {
             int generatedValue = StdRandom.uniform(maxValue);
             distinctValues.add(generatedValue);
         }
 
         return distinctValues.size();
+    }
+
+    private int countDistinctValuesIneffective(int numberOfValues, int maxValue) {
+        int[] values = new int[maxValue];
+
+        for(int i = 0; i < numberOfValues; i++) {
+            int generatedValue = StdRandom.uniform(maxValue);
+            values[generatedValue]++;
+        }
+
+        int distinctValues = 0;
+
+        for (int value : values) {
+            if (value != 0) {
+                distinctValues++;
+            }
+        }
+
+        return distinctValues;
     }
 
     private void printResults(int numberOfValues, int maxValue, double distinctValues, double expectedValue) {
