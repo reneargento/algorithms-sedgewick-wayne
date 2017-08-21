@@ -11,7 +11,7 @@ import java.util.Arrays;
 @SuppressWarnings("unchecked")
 public class Exercise4 {
 
-    private class HashSTint<Value> {
+    class HashSTint<Value> {
 
         private int keysSize;
         private int size;
@@ -20,11 +20,11 @@ public class Exercise4 {
 
         public final static int EMPTY_KEY = Integer.MIN_VALUE;
 
-        //The largest prime <= 2^i for i = 3 to 31
+        //The largest prime <= 2^i for i = 1 to 31
         //Used to distribute keys uniformly in the hash table after resizes
         //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
-                7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
+                1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
                 8388593, 16777213, 33554393, 67108859, 134217689, 268435399,
                 536870909, 1073741789, 2147483647
@@ -34,7 +34,7 @@ public class Exercise4 {
         //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
-        private HashSTint(int size) {
+        HashSTint(int size) {
             this.size = size;
             keys = new int[size];
             values = (Value[]) new Object[size];
@@ -196,7 +196,7 @@ public class Exercise4 {
         }
     }
 
-    private class HashSTdouble<Value> {
+    class HashSTdouble<Value> {
 
         private int keysSize;
         private int size;
@@ -205,11 +205,11 @@ public class Exercise4 {
 
         public final static double EMPTY_VALUE = Double.MIN_VALUE;
 
-        //The largest prime <= 2^i for i = 3 to 31
+        //The largest prime <= 2^i for i = 1 to 31
         //Used to distribute keys uniformly in the hash table after resizes
         //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
-                7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
+                1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
                 8388593, 16777213, 33554393, 67108859, 134217689, 268435399,
                 536870909, 1073741789, 2147483647
@@ -219,7 +219,7 @@ public class Exercise4 {
         //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
-        private HashSTdouble(int size) {
+        HashSTdouble(int size) {
             this.size = size;
             keys = new double[size];
             values = (Value[]) new Object[size];

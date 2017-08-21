@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  */
 public class Exercise5 {
 
-    private class STint<Value> {
+    class STint<Value> {
 
         private static final boolean RED = true;
         private static final boolean BLACK = false;
@@ -561,7 +561,7 @@ public class Exercise5 {
 
     }
 
-    private class STdouble<Value> {
+    class STdouble<Value> {
 
         private static final boolean RED = true;
         private static final boolean BLACK = false;
