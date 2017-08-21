@@ -25,7 +25,7 @@ public class Exercise31_DistinctValues {
             int distinctArrayIndex = 0;
 
             for(int i=0; i < numberOfTrials; i++) {
-                int numberOfDistinctValues = distinctValues.countDistinctValuesIneffective(numberOfValues, maxValue);
+                int numberOfDistinctValues = distinctValues.countDistinctValues(numberOfValues, maxValue);
                 distinct[distinctArrayIndex++] = numberOfDistinctValues;
             }
 
@@ -71,7 +71,7 @@ public class Exercise31_DistinctValues {
                 int distinctArrayIndex = 0;
 
                 for(int trial = 0; trial < numberOfTrials; trial++) {
-                    int distinctValues = countDistinctValuesIneffective(numberOfValues, maxValue);
+                    int distinctValues = countDistinctValues(numberOfValues, maxValue);
                     distinct[distinctArrayIndex++] = distinctValues;
                 }
 
@@ -96,7 +96,7 @@ public class Exercise31_DistinctValues {
         return distinctValues.size();
     }
 
-    private int countDistinctValuesIneffective(int numberOfValues, int maxValue) {
+    private int countDistinctValues(int numberOfValues, int maxValue) {
         int[] values = new int[maxValue];
 
         for(int i = 0; i < numberOfValues; i++) {
