@@ -1,9 +1,12 @@
 package chapter3.section5;
 
+import chapter3.section3.RedBlackBST;
 import chapter3.section4.SeparateChainingHashTable;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Created by rene on 17/08/17.
@@ -12,15 +15,18 @@ public class Exercise27_List {
 
     public class List<Item> implements Iterable<Item> {
 
-        private SeparateChainingHashTable<Item, Integer> positionsMap;
-        private SeparateChainingHashTable<Integer, Item> itemsMap;
+        private RedBlackBST<Double, Item> itemsBST;
+        private SeparateChainingHashTable<Item, Double> itemsPositions;
+
+        private static final double INITIAL_VALUE = 50000;
+        private static final double OFFSET = 0.0001;;
 
         List() {
-            positionsMap = new SeparateChainingHashTable<>();
-            itemsMap = new SeparateChainingHashTable<>();
+            itemsBST = new RedBlackBST<>();
+            itemsPositions = new SeparateChainingHashTable<>();
         }
 
-        //O(n)
+        //O(lg n)
         public void addFront(Item item) {
             if(item == null) {
                 throw new IllegalArgumentException("Item cannot be null");
@@ -30,21 +36,21 @@ public class Exercise27_List {
                 delete(item);
             }
 
-            //Increment the index of all items
-            int maxIndex = size() - 1;
-            for(int i = maxIndex; i >= 0; i--) {
-                Item currentItem = itemsMap.get(i);
-                int newIndex = i + 1;
+            double minKey;
 
-                itemsMap.put(newIndex, currentItem);
-                positionsMap.put(currentItem, newIndex);
+            if(isEmpty()) {
+                minKey = INITIAL_VALUE;
+            } else {
+                minKey = itemsBST.min();
             }
 
-            itemsMap.put(0, item);
-            positionsMap.put(item, 0);
+            double newMinKey = minKey - OFFSET;
+
+            itemsBST.put(newMinKey, item);
+            itemsPositions.put(item, newMinKey);
         }
 
-        //O(1) if item is not in the list, O(n) if it is
+        //O(lg n)
         public void addBack(Item item) {
             if(item == null) {
                 throw new IllegalArgumentException("Item cannot be null");
@@ -54,50 +60,49 @@ public class Exercise27_List {
                 delete(item);
             }
 
-            int newIndex = size();
-            itemsMap.put(newIndex, item);
-            positionsMap.put(item, newIndex);
+            double maxKey;
+
+            if(isEmpty()) {
+                maxKey = INITIAL_VALUE;
+            } else {
+                maxKey = itemsBST.max();
+            }
+
+            double newMaxKey = maxKey + OFFSET;
+
+            itemsBST.put(newMaxKey, item);
+            itemsPositions.put(item, newMaxKey);
         }
 
-        //O(n)
+        //O(lg n)
         public Item deleteFront() {
             if(isEmpty()) {
                 return null;
             }
 
-            Item firstItem = itemsMap.get(0);
+            Item firstItem = itemsBST.get(itemsBST.min());
 
-            for(int i = 1; i < size(); i++) {
-                Item currentItem = itemsMap.get(i);
-                int newIndex = i - 1;
-
-                itemsMap.put(newIndex, currentItem);
-                positionsMap.put(currentItem, newIndex);
-            }
-
-            int maxIndex = size() - 1;
-            itemsMap.delete(maxIndex);
-            positionsMap.delete(firstItem);
+            itemsBST.deleteMin();
+            itemsPositions.delete(firstItem);
 
             return firstItem;
         }
 
-        //O(1)
+        //O(lg n)
         public Item deleteBack() {
             if(isEmpty()) {
                 return null;
             }
 
-            int maxIndex = size() - 1;
-            Item lastItem = itemsMap.get(maxIndex);
+            Item lastItem = itemsBST.get(itemsBST.max());
 
-            itemsMap.delete(maxIndex);
-            positionsMap.delete(lastItem);
+            itemsBST.deleteMax();
+            itemsPositions.delete(lastItem);
 
             return lastItem;
         }
 
-        //O(n)
+        //O(lg n)
         public void delete(Item item) {
             if(item == null) {
                 throw new IllegalArgumentException("Item cannot be null");
@@ -107,24 +112,12 @@ public class Exercise27_List {
                 return;
             }
 
-            int size = size();
-            int index = positionsMap.get(item);
-
-            //Decrement the index of all items after the ith position
-            for(int i = index + 1; i < size; i++) {
-                Item currentItem = itemsMap.get(i);
-                int newIndex = i - 1;
-
-                itemsMap.put(newIndex, currentItem);
-                positionsMap.put(currentItem, newIndex);
-            }
-
-            int maxIndex = size() - 1;
-            itemsMap.delete(maxIndex);
-            positionsMap.delete(item);
+            double itemPosition = itemsPositions.get(item);
+            itemsBST.delete(itemPosition);
+            itemsPositions.delete(item);
         }
 
-        //O(n)
+        //O(lg n)
         public void add(int index, Item item) {
             if(item == null) {
                 throw new IllegalArgumentException("Item cannot be null");
@@ -139,35 +132,41 @@ public class Exercise27_List {
                 delete(item);
             }
 
-            int maxIndex = size() - 1;
+            double previousItemIndex = 0;
+            double nextItemIndex = size() - 1;
 
-            //Increment the index of all items after the ith position
-            for(int i = maxIndex; i >= index; i--) {
-                int newIndex = i + 1;
-                Item currentItem = itemsMap.get(i);
-
-                positionsMap.put(currentItem, newIndex);
-                itemsMap.put(newIndex, currentItem);
+            if(index > 0) {
+                previousItemIndex = itemsBST.select(index - 1);
+            } else if(index == 0) {
+                previousItemIndex = itemsBST.min() - OFFSET;
             }
 
-            positionsMap.put(item, index);
-            itemsMap.put(index, item);
+            if(index < size()) {
+                nextItemIndex = itemsBST.select(index);
+            } else if(index == size()) {
+                nextItemIndex = itemsBST.max() + OFFSET;
+            }
+
+            double medianKey = (previousItemIndex + nextItemIndex) / 2;
+
+            itemsBST.put(medianKey, item);
+            itemsPositions.put(item, medianKey);
         }
 
-        //O(n)
+        //O(lg n)
         public Item delete(int index) {
             if(index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Invalid index");
             }
 
-            Item deletedItem = itemsMap.get(index);
+            Item deletedItem = itemsBST.get(itemsBST.select(index));
             delete(deletedItem);
             return deletedItem;
         }
 
         //O(1)
         public boolean contains(Item item) {
-            return positionsMap.contains(item);
+            return itemsPositions.contains(item);
         }
 
         //O(1)
@@ -177,7 +176,7 @@ public class Exercise27_List {
 
         //O(1)
         public int size() {
-            return itemsMap.size();
+            return itemsPositions.size();
         }
 
         @Override
@@ -185,24 +184,27 @@ public class Exercise27_List {
             return new ListIterator();
         }
 
+        //O(n)
         private class ListIterator implements Iterator<Item> {
 
-            int currentKey;
+            Queue<Double> keys;
 
             ListIterator() {
-                currentKey = 0;
+                keys = new LinkedList<>();
+
+                for(Double key : itemsBST.keys()) {
+                    keys.add(key);
+                }
             }
 
             @Override
             public boolean hasNext() {
-                return currentKey < size();
+                return keys.size() > 0;
             }
 
             @Override
             public Item next() {
-                Item nextItem = itemsMap.get(currentKey);
-                currentKey++;
-                return nextItem;
+                return itemsBST.get(keys.poll());
             }
         }
 

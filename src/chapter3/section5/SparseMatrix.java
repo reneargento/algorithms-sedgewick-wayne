@@ -89,6 +89,7 @@ public class SparseMatrix {
         return result;
     }
 
+    //Matrix-matrix multiplication
     public SparseMatrix dot(SparseMatrix sparseMatrix) {
         if(columnSize != sparseMatrix.rowSize) {
             throw new IllegalArgumentException("Matrix A columns number and Matrix B rows number must match");
@@ -103,6 +104,25 @@ public class SparseMatrix {
                 if(dot != 0) {
                     result.put(i, j, dot);
                 }
+            }
+        }
+
+        return result;
+    }
+
+    //Matrix-vector multiplication
+    public SparseVector dot(SparseVector sparseVector) {
+        if(columnSize != sparseVector.dimension) {
+            throw new IllegalArgumentException("Matrix columns number and vector dimension must match");
+        }
+
+        SparseVector result = new SparseVector(rowSize);
+
+        for(int i = 0; i < rows.length; i++) {
+            double dot = rows[i].dot(sparseVector);
+
+            if(dot != 0) {
+                result.put(i, dot);
             }
         }
 
