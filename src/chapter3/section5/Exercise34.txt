@@ -1,0 +1,19 @@
+3.5.34 - Sparse vector
+
+Results for a matrix 10^5 x 10^5 and a vector of dimension 10^5:
+
+        Method |      Matrix type |        Vector type |  Time spent
+        Arrays    Many non-zeroes      Many non-zeroes          3.48
+        Arrays    Many non-zeroes          Many zeroes          0.10
+        Arrays        Many zeroes      Many non-zeroes          0.11
+        Arrays        Many zeroes          Many zeroes          0.12
+Sparse Vectors    Many non-zeroes      Many non-zeroes          9.42
+Sparse Vectors    Many non-zeroes          Many zeroes          0.57
+Sparse Vectors        Many zeroes      Many non-zeroes          0.61
+Sparse Vectors        Many zeroes          Many zeroes          0.42
+
+Where "many non-zeroes" means that 95% of the matrix or vector values were nonzero and "many zeroes" means that 95% of the matrix or vector values were zero.
+
+For a 10^5 x 10^5 matrix and a vector of dimension 10^5, even when using an optimized version of a Hash Map with primitive keys and values (int keys and double values) to avoid the autoboxing and unboxing operations, the standard implementation using arrays is still faster.
+So it seems that sparse vectors offer a gain in space, since they do not store the 0 values, but when it comes to time, the array implementation is faster.
+For matrices and vectors of bigger sizes that cannot be represented as arrays, such as N = 10 billion or 100 billion, using sparse matrices and sparse vectors offer a huge advantage not only in space, but also in time.

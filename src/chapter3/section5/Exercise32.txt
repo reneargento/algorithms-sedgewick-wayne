@@ -1,0 +1,17 @@
+3.5.32 - Dictionary
+
+Results:
+
+    Large input |  Number of queries |  Time spent
+   surnames.csv               100000          0.48
+ sdss174052.csv               100000          0.78
+   surnames.csv              1000000          0.44
+ sdss174052.csv              1000000          0.90
+   surnames.csv             10000000          1.38
+ sdss174052.csv             10000000          3.00
+   surnames.csv            100000000         17.07
+ sdss174052.csv            100000000         23.29
+   surnames.csv           1000000000        166.49
+ sdss174052.csv           1000000000        240.42
+
+The tests show that the performance of LookupCSV is very good even when dealing with large inputs and large number of queries. With large CSV files (both with over 150,000 rows) and a large number of queries (10^5, 10^6, 10^7, 10^8 and 10^9), all operations were performed in less or equal to 3 seconds (for 10^7 and less queries), less than 24 seconds (for 10^8 queries) or around 4 minutes (for 10^9 - a billion - queries).

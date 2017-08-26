@@ -1,0 +1,42 @@
+3.5.35 - Primitive types
+
+Results:
+
+  Symbol table |   Key type |   Size and queries |  Time spent
+Linear probing      Integer               100000          0.01
+Linear probing      Integer              1000000          0.06
+Linear probing      Integer             10000000          6.40
+Linear probing      Integer            100000000         34.52
+Linear probing          int               100000          0.01
+Linear probing          int              1000000          0.06
+Linear probing          int             10000000          0.59
+Linear probing          int            100000000         17.57
+Linear probing       Double               100000          0.02
+Linear probing       Double              1000000          0.20
+Linear probing       Double             10000000          1.69
+Linear probing       Double            100000000         47.10
+Linear probing       double               100000          0.01
+Linear probing       double              1000000          0.08
+Linear probing       double             10000000          0.57
+Linear probing       double            100000000         11.88
+ Red-black BST      Integer               100000          0.06
+ Red-black BST      Integer              1000000          1.09
+ Red-black BST      Integer             10000000         12.96
+ Red-black BST      Integer            100000000        213.51
+ Red-black BST          int               100000          0.05
+ Red-black BST          int              1000000          0.85
+ Red-black BST          int             10000000         14.08
+ Red-black BST          int            100000000        180.47
+ Red-black BST       Double               100000          0.07
+ Red-black BST       Double              1000000          1.29
+ Red-black BST       Double             10000000         15.28
+ Red-black BST       Double            100000000        294.94
+ Red-black BST       double               100000          0.05
+ Red-black BST       double              1000000          0.86
+ Red-black BST       double             10000000         15.51
+ Red-black BST       double            100000000        227.48
+
+As shown in the results, with a linear probing hash table the time saved is around 50% for Integer/int keys and around 75% for Double/double keys. With a red-black BST the time saved is around 15% for Integer/int keys and around 23% for Double/double keys.
+Regarding space, primitive int type keys require 4 bytes whereas Integer types require 24 bytes (16 bytes for object overhead, 4 bytes for its int instance variable and 4 bytes of padding). Using int keys in a symbol table saves 20 bytes per key.
+Primitive double type keys require 8 bytes whereas Double types require 24 bytes (16 bytes for object overhead and 8 bytes for its double instance variable). Using double keys in a symbol table saves 16 bytes per key.
+Also using primitive types for values instead of their wrapper classes doubles such space savings. Using a combination of int keys and int values yields a saving of 40 bytes per key/value pair in comparison with a key/value pair of Integers. And with both double keys and double values there is a saving of 32 bytes per key/value pair in comparison with a key/value pair of Doubles.

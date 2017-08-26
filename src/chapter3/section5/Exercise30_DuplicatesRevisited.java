@@ -13,7 +13,9 @@ public class Exercise30_DuplicatesRevisited {
 
     private class DistinctCounter {
         public int deDupWithIntegerValues(int numberOfValues, int maxValue) {
-            HashSet<Integer> set = new HashSet<>();
+            //Using Java's super optimized Set and HashSet since we are dealing with very large numbers
+            // and every optimization counts
+            java.util.Set<Integer> set = new java.util.HashSet<>();
 
             for(int i = 0; i < numberOfValues; i++) {
                 int key = StdRandom.uniform(maxValue);
@@ -27,7 +29,9 @@ public class Exercise30_DuplicatesRevisited {
         }
 
         public long deDupWithLongValues(int numberOfValues, long maxValue) {
-            HashSet<Long> set = new HashSet<>();
+            //Using Java's super optimized Set and HashSet since we are dealing with very large numbers
+            // and every optimization counts
+            java.util.Set<Long> set = new java.util.HashSet<>();
 
             for(int i = 0; i < numberOfValues; i++) {
                 long key = ThreadLocalRandom.current().nextLong(maxValue);
@@ -64,7 +68,7 @@ public class Exercise30_DuplicatesRevisited {
 
             for(int i = 0; i < numberOfValues; i++) {
                 long key = ThreadLocalRandom.current().nextLong(maxValue);
-                values[(int) key]++; //Ok to cast since the max value is 10^9
+                values[(int) key]++; //Ok to cast since the max value is 2x 10^9
             }
 
             int distinctValues = 0;

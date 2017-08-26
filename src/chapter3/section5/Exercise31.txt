@@ -1,0 +1,10 @@
+3.5.31 - Spell Checker
+
+Results:
+
+Time spent red-black BST |  Time spent separate chaining |  Time spent linear probing
+                    0.59                            0.58                         0.25
+
+The linear-probing hash symbol table had the best result and the red-black BST and the separate chaining symbol table came tied in second place with similar results.
+The expected results would be both the separate chaining and linear probing hash tables achieving the best results, since they have a constant time lookup, and the red-black BST achieving a worse result (but still fast) since it has a performance of O(lg n) for search. 
+Overall the results are similar to the expected, except for the time spent with the separate chaining hash table, which took longer than expected and had a similar performance as the red-black BST.

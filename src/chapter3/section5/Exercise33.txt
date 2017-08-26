@@ -1,0 +1,18 @@
+3.5.33 - Indexing
+
+Results:
+
+    Large input |  Number of queries |  Time spent
+   surnames.csv               100000          1.98
+ sdss174052.csv               100000          1.82
+   surnames.csv              1000000          2.30
+ sdss174052.csv              1000000          2.35
+   surnames.csv             10000000          7.31
+ sdss174052.csv             10000000          6.98
+   surnames.csv            100000000         59.23
+ sdss174052.csv            100000000         50.23
+   surnames.csv           1000000000        549.57
+ sdss174052.csv           1000000000        460.00
+
+The tests show that the performance of LookupIndex is very good even when dealing with large inputs and large number of queries. With large CSV files (both with over 150,000 rows) and a large number of queries (10^5, 10^6, 10^7, 10^8 and 10^9), all operations were performed in less than 8 seconds (for 10^7 and less queries), less than 1 minute (for 10^8 queries) or less than 10 minutes (for 10^9 - a billion - queries).
+These are good results considering the flexibility that LookupIndex provides with all parameters indexed.
