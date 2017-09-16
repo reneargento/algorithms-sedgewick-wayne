@@ -11,7 +11,7 @@ public class Graph {
 
     private final int vertices;
     private int edges;
-    private Bag<Integer>[] adjacent;
+    Bag<Integer>[] adjacent;
 
     public Graph(int vertices) {
         this.vertices = vertices;
@@ -50,6 +50,22 @@ public class Graph {
 
     public Iterable<Integer> adjacent(int vertex) {
         return adjacent[vertex];
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(int vertex = 0; vertex < vertices(); vertex++) {
+            stringBuilder.append(vertex).append(": ");
+
+            for(int neighbor : adjacent(vertex)) {
+                stringBuilder.append(neighbor).append(" ");
+            }
+            stringBuilder.append("\n");
+        }
+
+        return stringBuilder.toString();
     }
 
 }

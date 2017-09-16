@@ -19,11 +19,12 @@ public class BreadthFirstPaths {
         bfs(graph, source);
     }
 
-    private void bfs(Graph graph, int vertex) {
+    private void bfs(Graph graph, int sourceVertex) {
         Queue<Integer> queue = new Queue<>();
-        visited[vertex] = true;
+        visited[sourceVertex] = true;
 
-        queue.enqueue(vertex);
+        queue.enqueue(sourceVertex);
+
         while (!queue.isEmpty()) {
             int currentVertex = queue.dequeue();
 

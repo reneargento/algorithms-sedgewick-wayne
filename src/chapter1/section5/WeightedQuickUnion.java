@@ -5,9 +5,9 @@ package chapter1.section5;
  */
 public class WeightedQuickUnion implements UF{
 
-    int id[];
-    int size[];
-    int count;
+    private int id[];
+    private int size[];
+    private int count;
 
     public WeightedQuickUnion(int n) {
         id = new int[n];
@@ -56,4 +56,9 @@ public class WeightedQuickUnion implements UF{
 
         count--;
     }
+
+    public int[] getSizes() {
+        return size;
+    }
+
 }
