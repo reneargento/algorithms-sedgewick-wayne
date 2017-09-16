@@ -49,7 +49,7 @@ public class Graph {
     }
 
     public Iterable<Integer> adjacent(int vertex) {
-        return adjacent(vertex);
+        return adjacent[vertex];
     }
 
 }

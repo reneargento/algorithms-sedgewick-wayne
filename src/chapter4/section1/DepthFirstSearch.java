@@ -4,7 +4,7 @@ package chapter4.section1;
  * Created by rene on 12/09/17.
  */
 public class DepthFirstSearch {
-    
+
     private boolean[] visited;
     private int count;
 
