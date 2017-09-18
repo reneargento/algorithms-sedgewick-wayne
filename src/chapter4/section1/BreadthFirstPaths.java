@@ -12,10 +12,23 @@ public class BreadthFirstPaths {
     private int[] edgeTo;
     private final int source;
 
+    private int[] distTo;
+
     public BreadthFirstPaths(Graph graph, int source) {
         visited = new boolean[graph.vertices()];
         edgeTo = new int[graph.vertices()];
         this.source = source;
+
+        distTo = new int[graph.vertices()];
+
+        distTo[source] = 0;
+        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+            if(vertex == source) {
+                continue;
+            }
+            distTo[vertex] = Integer.MAX_VALUE;
+        }
+
         bfs(graph, source);
     }
 
@@ -30,12 +43,25 @@ public class BreadthFirstPaths {
 
             for(int neighbor : graph.adjacent(currentVertex)) {
                 if(!visited[neighbor]) {
-                    edgeTo[neighbor] = currentVertex;
                     visited[neighbor] = true;
+
+                    edgeTo[neighbor] = currentVertex;
+                    distTo[neighbor] = distTo[currentVertex] + 1;
+
                     queue.enqueue(neighbor);
                 }
             }
         }
+    }
+
+    //O(1)
+    public int distTo(int vertex) {
+        return distTo[vertex];
+    }
+
+    //O(1)
+    public int edgeTo(int vertex) {
+        return edgeTo[vertex];
     }
 
     public boolean hasPathTo(int vertex) {

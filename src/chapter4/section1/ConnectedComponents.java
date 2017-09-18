@@ -3,7 +3,7 @@ package chapter4.section1;
 /**
  * Created by rene on 15/09/17.
  */
-public class ConnectedComponents {
+public class ConnectedComponents implements ConnectedComponentsInterface {
 
     private boolean[] visited;
     private int[] id;

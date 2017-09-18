@@ -48,6 +48,11 @@ public class Graph {
         edges++;
     }
 
+    public void addDirectedEdge(int vertex1, int vertex2) {
+        adjacent[vertex1].add(vertex2);
+        edges++;
+    }
+
     public Iterable<Integer> adjacent(int vertex) {
         return adjacent[vertex];
     }
