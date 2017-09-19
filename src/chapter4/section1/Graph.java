@@ -10,7 +10,7 @@ import edu.princeton.cs.algs4.In;
 public class Graph {
 
     private final int vertices;
-    private int edges;
+    protected int edges;
     Bag<Integer>[] adjacent;
 
     public Graph(int vertices) {
@@ -45,11 +45,6 @@ public class Graph {
     public void addEdge(int vertex1, int vertex2) {
         adjacent[vertex1].add(vertex2);
         adjacent[vertex2].add(vertex1);
-        edges++;
-    }
-
-    public void addDirectedEdge(int vertex1, int vertex2) {
-        adjacent[vertex1].add(vertex2);
         edges++;
     }
 
