@@ -221,7 +221,7 @@ public class HashSet<Key> {
 
     private SeparateChainingHashTable<Key> hashTable;
 
-    HashSet() {
+    public HashSet() {
         hashTable = new SeparateChainingHashTable<>();
     }
 

@@ -52,7 +52,7 @@ public class Exercise3 {
                 for(int vertex = 0; vertex < graph.vertices(); vertex++) {
                     // Reverse so that adjacency list is in same order as original
                     Stack<Integer> stack = new Stack<>();
-                    for (int neighbor : graph.adjacent[vertex]) {
+                    for (int neighbor : graph.getAdjacencyList()[vertex]) {
                         stack.push(neighbor);
                     }
                     for (int neighbor : stack) {

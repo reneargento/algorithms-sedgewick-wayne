@@ -36,8 +36,8 @@ public class ConnectedComponentsIterativeDFS implements ConnectedComponents {
         Iterator<Integer>[] adjacentIterators = (Iterator<Integer>[]) new Iterator[graph.vertices()];
 
         for (int vertexId = 0; vertexId < adjacentIterators.length; vertexId++) {
-            if(graph.adjacent[vertexId] != null) {
-                adjacentIterators[vertexId] = graph.adjacent[vertexId].iterator();
+            if(graph.getAdjacencyList()[vertexId] != null) {
+                adjacentIterators[vertexId] = graph.getAdjacencyList()[vertexId].iterator();
             }
         }
 

@@ -11,7 +11,7 @@ public class Graph {
 
     private final int vertices;
     protected int edges;
-    Bag<Integer>[] adjacent;
+    private Bag<Integer>[] adjacent;
 
     public Graph(int vertices) {
         this.vertices = vertices;
@@ -46,6 +46,14 @@ public class Graph {
         adjacent[vertex1].add(vertex2);
         adjacent[vertex2].add(vertex1);
         edges++;
+    }
+
+    public Bag<Integer>[] getAdjacencyList() {
+        return adjacent;
+    }
+
+    public void updateAdjacencyList(int vertex, Bag adjacencyList) {
+        adjacent[vertex] = adjacencyList;
     }
 
     public Iterable<Integer> adjacent(int vertex) {
