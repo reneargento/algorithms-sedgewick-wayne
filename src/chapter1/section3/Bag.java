@@ -13,12 +13,19 @@ public class Bag<Item> implements Iterable<Item> {
     }
 
     private Node first;
+    private int size;
+
+    public int size() {
+        return size;
+    }
 
     public void add(Item item) {
         Node oldFirst = first;
         first = new Node();
         first.item = item;
         first.next = oldFirst;
+
+        size++;
     }
 
     public Iterator<Item> iterator() {

@@ -56,6 +56,10 @@ public class Graph {
         adjacent[vertex] = adjacencyList;
     }
 
+    public int degree(int vertex) {
+        return adjacent[vertex].size();
+    }
+
     public Iterable<Integer> adjacent(int vertex) {
         return adjacent[vertex];
     }
