@@ -7,7 +7,7 @@ import java.util.Iterator;
  */
 public class DoublyLinkedList<Item> implements Iterable<Item> {
 
-    private class DoubleNode {
+    public class DoubleNode {
         Item item;
         DoubleNode previous;
         DoubleNode next;
@@ -71,6 +71,27 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
         }
 
         size++;
+    }
+
+    //Useful for LRU cache implementation
+    public DoubleNode insertAtTheBeginningAndReturnNode(Item item) {
+        DoubleNode oldFirst = first;
+
+        first = new DoubleNode();
+        first.item = item;
+        first.next = oldFirst;
+
+        if (oldFirst != null) {
+            oldFirst.previous = first;
+        }
+
+        //If the list was empty before adding the new item:
+        if (last == null) {
+            last = first;
+        }
+
+        size++;
+        return first;
     }
 
     public void insertAtTheEnd(Item item) {
@@ -231,6 +252,36 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 
             currentNode = currentNode.next;
         }
+    }
+
+    //Useful for LRU cache implementation
+    public void removeItemWithNode(DoubleNode doubleNode) {
+        if(doubleNode == null) {
+            throw new IllegalArgumentException("Node cannot be null");
+        }
+
+        if(isEmpty()) {
+            return;
+        }
+
+        DoubleNode previousNode = doubleNode.previous;
+        DoubleNode nextNode = doubleNode.next;
+
+        if (previousNode != null) {
+            previousNode.next = nextNode;
+        }
+        if (nextNode != null) {
+            nextNode.previous = previousNode;
+        }
+
+        if(doubleNode == first) {
+            first = nextNode;
+        }
+        if (doubleNode == last) {
+            last = previousNode;
+        }
+
+        size--;
     }
 
     public Item removeItemWithIndex(int nodeIndex) {

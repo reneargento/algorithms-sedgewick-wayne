@@ -7,12 +7,13 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by rene on 17/08/17.
  */
+@SuppressWarnings("unchecked")
 public class Exercise26_LRUCache {
 
     public class LRUCache<Item> {
 
         private DoublyLinkedList<Item> doublyLinkedList;
-        private SeparateChainingHashTable<Item, Integer> hashTable;
+        private SeparateChainingHashTable<Item, DoublyLinkedList.DoubleNode> hashTable;
 
         LRUCache() {
             doublyLinkedList = new DoublyLinkedList<>();
@@ -23,33 +24,17 @@ public class Exercise26_LRUCache {
             return doublyLinkedList.size();
         }
 
-        //O(n)
+        //O(1)
         public void access(Item item) {
-            if(!hashTable.contains(item)) {
 
-                //Increment all item positions
-                for(Item itemKey : hashTable.keys()) {
-                    int currentIndex = hashTable.get(itemKey);
-                    currentIndex++;
-                    hashTable.put(itemKey, currentIndex);
-                }
-            } else {
-                //Increment all item positions before the item
-                for(Item itemKey : doublyLinkedList) {
-                    if(itemKey.equals(item)) {
-                        break;
-                    }
-
-                    int currentIndex = hashTable.get(itemKey);
-                    currentIndex++;
-                    hashTable.put(itemKey, currentIndex);
-                }
-
-                doublyLinkedList.removeItem(item);
+            if(hashTable.contains(item)) {
+                DoublyLinkedList.DoubleNode itemNodeInList = hashTable.get(item);
+                doublyLinkedList.removeItemWithNode(itemNodeInList);
             }
 
-            doublyLinkedList.insertAtTheBeginning(item);
-            hashTable.put(item, 0);
+            DoublyLinkedList.DoubleNode newListNode = doublyLinkedList.insertAtTheBeginningAndReturnNode(item);
+            //Overwrite item in hash table if it exists or simply add it if it does not exist
+            hashTable.put(item, newListNode);
         }
 
         //O(1)
