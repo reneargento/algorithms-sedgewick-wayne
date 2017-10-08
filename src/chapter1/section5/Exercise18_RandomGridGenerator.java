@@ -40,8 +40,8 @@ public class Exercise18_RandomGridGenerator {
         3 * * - *
         4 * * * -
          */
-        for(int i=0; i < numberOfSites; i++) {
-            for(int j=0; j < numberOfSites; j++) {
+        for(int i = 0; i < numberOfSites; i++) {
+            for(int j = 0; j < numberOfSites; j++) {
                 if(i != j) {
                     Connection connection = new Connection(i, j);
                     randomBag.add(connection);

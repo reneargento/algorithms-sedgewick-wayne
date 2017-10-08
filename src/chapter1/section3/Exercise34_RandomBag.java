@@ -41,7 +41,7 @@ public class Exercise34_RandomBag<Item> implements Iterable<Item>{
 
         Item[] temp = (Item[]) new Object[capacity];
 
-        for(int i=0; i<size(); i++){
+        for(int i = 0; i < size(); i++){
             temp[i] = array[i];
         }
 
@@ -63,7 +63,7 @@ public class Exercise34_RandomBag<Item> implements Iterable<Item>{
             index = 0;
             arrayCopy = (Item[]) new Object[size];
 
-            for(int i=0; i<size; i++){
+            for(int i = 0; i < size; i++){
                 arrayCopy[i] = array[i];
             }
 
@@ -83,9 +83,9 @@ public class Exercise34_RandomBag<Item> implements Iterable<Item>{
         }
 
         private void sortArrayCopy() {
-            for(int i=0; i<size; i++){
+            for(int i = 0; i < size; i++){
 
-                int randomIndex = StdRandom.uniform(0, size-1);
+                int randomIndex = StdRandom.uniform(0, size - 1);
 
                 //Swap
                 Item temp = arrayCopy[i];
