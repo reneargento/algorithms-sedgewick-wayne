@@ -16,11 +16,17 @@ public class Exercise37_EuclideanGraphs {
 
         public class Vertex {
             int id;
+            String name;
             double xCoordinate;
             double yCoordinate;
 
             Vertex(int id, double xCoordinate, double yCoordinate) {
+                this(id, String.valueOf(id), xCoordinate, yCoordinate);
+            }
+
+            Vertex(int id, String name, double xCoordinate, double yCoordinate) {
                 this.id = id;
+                this.name = name;
                 this.xCoordinate = xCoordinate;
                 this.yCoordinate = yCoordinate;
             }
@@ -92,7 +98,7 @@ public class Exercise37_EuclideanGraphs {
 
                     StdDraw.setPenColor(Color.BLUE);
                     StdDraw.text(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
-                            String.valueOf(allVertices[vertexId].id));
+                            allVertices[vertexId].name);
                 }
             }
         }
