@@ -9,7 +9,7 @@ public class ConnectedComponentsRecursiveDFS implements ConnectedComponents {
     private int[] id;
     private int count;
 
-    public ConnectedComponentsRecursiveDFS(Graph graph) {
+    public ConnectedComponentsRecursiveDFS(GraphInterface graph) {
         visited = new boolean[graph.vertices()];
         id = new int[graph.vertices()];
 
@@ -21,7 +21,7 @@ public class ConnectedComponentsRecursiveDFS implements ConnectedComponents {
         }
     }
 
-    private void dfs(Graph graph, int vertex) {
+    private void dfs(GraphInterface graph, int vertex) {
         visited[vertex] = true;
         id[vertex] = count;
 

@@ -14,7 +14,7 @@ public class BreadthFirstPaths {
 
     private int[] distTo;
 
-    public BreadthFirstPaths(Graph graph, int source) {
+    public BreadthFirstPaths(GraphInterface graph, int source) {
         visited = new boolean[graph.vertices()];
         edgeTo = new int[graph.vertices()];
         this.source = source;
@@ -32,7 +32,7 @@ public class BreadthFirstPaths {
         bfs(graph, source);
     }
 
-    private void bfs(Graph graph, int sourceVertex) {
+    private void bfs(GraphInterface graph, int sourceVertex) {
         Queue<Integer> queue = new Queue<>();
         visited[sourceVertex] = true;
 

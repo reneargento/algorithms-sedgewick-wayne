@@ -11,14 +11,14 @@ public class DepthFirstPaths {
     private int[] edgeTo;
     private final int source;
 
-    public DepthFirstPaths(Graph graph, int source) {
+    public DepthFirstPaths(GraphInterface graph, int source) {
         visited = new boolean[graph.vertices()];
         edgeTo = new int[graph.vertices()];
         this.source = source;
         dfs(graph, source);
     }
 
-    private void dfs(Graph graph, int vertex) {
+    private void dfs(GraphInterface graph, int vertex) {
         visited[vertex] = true;
 
         for(int neighbor : graph.adjacent(vertex)) {

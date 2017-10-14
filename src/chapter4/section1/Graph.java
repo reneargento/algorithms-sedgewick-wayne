@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.In;
  * Created by rene on 12/09/17.
  */
 @SuppressWarnings("unchecked")
-public class Graph {
+public class Graph implements GraphInterface {
 
     private final int vertices;
     protected int edges;
