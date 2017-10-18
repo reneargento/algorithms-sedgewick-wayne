@@ -1,0 +1,4 @@
+4.1.12
+
+When neither v nor w are at the root, the BFS tree tell us that if they are on the same branch, there is a path between v and w of distance equal to the number of edges between them in the branch.
+If they are not on the same branch, there is a path between v and w of distance Dv + Dw, where Dv is the distance from the root to vertex v and Dw is the distance from the root to vertex w.

@@ -1,0 +1,7 @@
+4.1.11
+
+Tree represented by edgeTo[] after call to bfs(G, 0):
+
+         0
+     5   2   6
+  10    3

@@ -1,0 +1,255 @@
+4.1.28
+
+Non-isomorphic graphs:
+
+There are 2 non-isomorphic graphs with 2 vertices:
+o o
+
+o-o
+
+There are 4 non-isomorphic graphs with 3 vertices:
+ o
+o o
+
+ o
+o-o
+
+o-o-o
+
+ o
+/ \
+o-o
+
+There are 11 non-isomorphic graphs with 4 vertices:
+o o o o
+
+o-o o o
+
+o-o-o o
+
+o-o-o-o
+
+o-o o-o
+
+  o
+  |
+  o
+ / \
+o   o
+
+  o
+ / \
+o---o o
+
+o-o
+| |
+o-o
+
+  o
+  | 
+  o
+ / \
+o---o
+
+  o
+ / \
+o---o
+ \ /
+  o
+
+   o
+  /|\
+ / o \
+/ / \ \
+o------o
+
+There are 34 non-isomorphic graphs with 5 vertices:
+  o
+o   o
+ o o
+
+  o
+o   o
+ o-o
+
+  o
+o    o
+    /
+ o-o
+
+   o
+o     o
+ \   /
+  o o
+
+   o
+ / | \
+o  o  o  
+     o
+
+  o
+ / \
+o   o 
+ o-o
+
+   o
+ /  \
+o    o 
+ \
+  o o
+
+   o
+ /  \
+o----o
+  o o
+
+   o
+ /|\\
+o o oo
+
+o-o
+| |
+o-o o
+
+o
+|
+o-o
+| |
+o o
+
+  o
+  |
+  o
+ / \
+o---o o
+
+o-o-o-o-o
+
+  o  o
+ /|  |
+o |  |
+ \|  |
+  o  o
+
+o--o
+|  |
+o--o
+|
+o
+
+o   o
+|   |
+o---o
+ \ /
+  o
+
+ o--o
+  \/
+o--o--o
+
+   o
+ /  \
+o    o 
+ \   /
+  o-o
+
+    o   (This is a complete graph, where all vertices have degree = 4)
+ / / \\
+o------o
+\ /\ /\/
+ \|/\ |/
+  o---o
+
+    o
+ / / \\
+o------o
+\ /\ /\/
+ \|/\ |/
+  o   o
+
+o---o
+|\ /|\
+| X | o
+|/ \|/
+o---o
+
+o---o
+|\ /|
+| o |
+|/ \|
+o---o
+
+o---o
+|\ /|\
+| X | o
+|/ \|
+o---o
+
+   o
+ // \
+o-o  o
+   \/
+    o
+
+o-o-o-o
+ \| | /
+   o
+
+    o
+   /\
+  /  \
+ /    \
+o------o
+\  \ / /
+ \ /\ /
+  o  o
+
+o---o
+| X | o
+o---o
+
+o   o
+|\ /|
+| o |
+|/ \|
+o   o
+
+     o
+    /|\
+o--o | o
+    \|/
+     o
+
+  o
+  |
+  o
+ /|\
+o | o
+ \|/
+  o
+
+  o
+ / \
+o---o
+|   |
+o---o
+
+o---o
+|  /|
+| o |
+|/  |
+o---o
+
+  o
+  |
+  o
+  |
+  o
+ / \
+o---o
+
+o---o
+| \ |
+o---o o
+
+Based on: http://www.graphclasses.org/smallgraphs.html

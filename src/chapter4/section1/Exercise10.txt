@@ -1,0 +1,13 @@
+4.1.10
+
+Every connected graph has a vertex whose removal (including all incident edges) will not disconnect the graph.
+
+Proof by contradiction:
+If the graph has a node of degree one, removing it gives a connected graph.
+Example: o - o
+
+Otherwise, every path in the graph belongs to a cycle. To see this, start with any path, then notice that the terminal nodes of this path must be connected to other nodes that are not in the path, so we add them to the path to make a new path. Since the graph is connected, continuing this process it is possible to see that in the end all the nodes from the graph will be in the path.
+
+If among all those paths there is no path from which one can remove a node without disconnecting the graph, then all those paths are bridges. In this case, they do not belong to a cycle, which is a contradiction (assuming the graph is finite).
+
+Based on: https://math.stackexchange.com/questions/891325/proof-verification-a-connected-graph-always-has-a-vertex-that-is-not-a-cut-vert

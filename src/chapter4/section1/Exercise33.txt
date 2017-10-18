@@ -1,0 +1,13 @@
+4.1.33 - Odd cycles
+
+A graph is two-colorable (bipartite) if and only if it contains no odd-length cycle.
+
+Proof:
+1- Proving that a graph with an odd-length cycle cannot be bipartite:
+If a graph G is bipartite with vertex sets V1 and V2, every step along a walk takes you either from V1 to V2 or from V2 to V1. To end up where you started, therefore, you must take an even number of steps.
+
+2- Proving that a graph with only even-length cycles is bipartite:
+Consider G to be a graph with only even-length cycles. Let v0 be any vertex. For each vertex v in the same component C0 as v0 let d(v) be the length of the shortest path from v0 to v. Color red every vertex in C0 whose distance from v0 is even, and color the other vertices of C0 blue. Do the same for each component of G. Check that if G had any edge between two red vertices or between two blue vertices, it would have an odd cycle. Thus, G is bipartite, the red vertices and the blue vertices being the two parts.
+
+Reference: 
+https://math.stackexchange.com/questions/311665/proof-a-graph-is-bipartite-if-and-only-if-it-contains-no-odd-cycles

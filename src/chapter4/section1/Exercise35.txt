@@ -1,0 +1,21 @@
+4.1.35 - Biconnectedness
+
+Any graph with no articulation points is biconnected.
+
+Proof:
+Consider two vertices, s, t, and a path P1 connecting s to t.
+We know that no vertex in P1 is an articulation point, so for each vertex v in the path, there is always another path P2 connecting s to t that does not include it. Also, P2 does not include any of the vertices of P1, otherwise any vertex included in both paths would be an articulation point (being the only way to connect s to t).
+This means that every pair of vertices is connected by two vertex-disjoint paths (such as P1 and P2), making the graph biconnected.
+
+Graph illustration (P1 is the path s-v1 v1-v2 v2-t and P2 is the path s-v3 v3-v4 v4-t):
+
+s
+|\
+| \
+v1 v3
+|   \
+|   v4
+v2 /
+| /
+|/
+t

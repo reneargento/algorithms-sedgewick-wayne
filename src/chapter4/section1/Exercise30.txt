@@ -1,0 +1,31 @@
+4.1.30 - Eulerian and Hamiltonian cycles
+
+An Eulerian cycle (or Eulerian circuit) is a path which starts and ends at the same vertex and includes every edge exactly once.
+A Hamiltonian cycle is a path which starts and ends at the same vertex and includes every vertex exactly once (except for the source, which is visited twice).
+
+According to Euler theorems a graph has an Eulerian cycle/circuit if and only if it does not have any vertices of odd degree.
+
+First graph:
+0-1 0-2 0-3 1-3 1-4 2-5 2-9 3-6 4-7 4-8 5-8 5-9 6-7 6-9 7-8
+
+It does not have an Eulerian cycle because it has vertices of odd degree (0, 1, 2, 3, 4, 5, 6, 7, 8 and 9).
+It has a Hamiltonian cycle: 1-4 4-8 8-7 7-6 6-9 9-5 5-2 2-0 0-3 3-1
+
+Second graph:
+0-1 0-2 0-3 1-3 0-3 2-5 5-6 3-6 4-7 4-8 5-8 5-9 6-7 6-9 8-8
+
+It has an Eulerian cycle (all the vertices have even degrees):
+0-3 3-0 0-2 2-5 5-9 9-6 6-5 5-8 8-8 8-4 4-7 7-6 6-3 3-1 1-0
+There is no Hamiltonian cycle.
+
+Third graph:
+0-1 1-2 1-3 0-3 0-4 2-5 2-9 3-6 4-7 4-8 5-8 5-9 6-7 6-9 7-8
+
+It does not have an Eulerian cycle because it has vertices of odd degree (0, 1, 2, 3, 4, 5, 6, 7, 8, 9).
+It has a Hamiltonian cycle: 4-8 8-7 7-6 6-9 9-5 5-2 2-1 1-3 3-0 0-4
+
+Fourth graph:
+4-1 7-9 6-2 7-3 5-0 0-2 0-8 1-6 3-9 6-3 2-8 1-5 9-8 4-5 4-7
+
+It does not have an Eulerian cycle because it has vertices of odd degree (0, 1, 2, 3, 4, 5, 6, 7, 8, 9).
+It has a Hamiltonian cycle: 0-5 5-4 4-1 1-6 6-3 3-7 7-9 9-8 8-2 2-0

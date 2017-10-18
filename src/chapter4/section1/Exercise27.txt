@@ -1,0 +1,34 @@
+4.1.27
+
+Integer
+* object overhead -> 16 bytes
+* int value -> 4 bytes
+* padding -> 4 bytes
+Amount of memory needed: 16 + 4 + 4 = 24 bytes
+
+Node
+* object overhead -> 16 bytes
+* extra overhead for reference to the enclosing instance -> 8 bytes
+* Item reference (item) -> 8 bytes
+* Node reference (next) -> 8 bytes
+Amount of memory needed: 16 + 8 + 8 + 8 = 40 bytes
+
+Bag
+* object overhead -> 16 bytes
+* Node reference (first) -> 8 bytes
+* N Nodes -> 40N bytes
+* Integer (item) -> 24N bytes
+Amount of memory needed: 16 + 8 + 40N + 24N = 64N + 24 bytes
+
+Graph
+* object overhead -> 16 bytes
+* int value (V) -> 4 bytes
+* int value (E) -> 4 bytes
+* Bag<Integer>[] reference (adj) -> 8 bytes
+* array of Bag<Integer> (adj)
+   object overhead -> 16 bytes
+   int value (length) -> 4 bytes
+   int value (padding) -> 4 bytes
+   Bag references -> 8V -> (Resizing array): 8V * 2 = 16V
+   Bag -> 64E + 24 bytes -> There are V Bags and in total, they have 2E nodes -> 128E + 24V
+Amount of memory needed: 16 + 4 + 4 + 8 + 16 + 4 + 4 + 16V + 128E + 24V = 128E + 40V + 56 bytes

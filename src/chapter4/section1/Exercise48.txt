@@ -1,0 +1,27 @@
+4.1.48 - Path lengths in DFS
+
+Experiments were ran with the following Java virtual machine parameters to avoid stack overflow in DepthFirstPaths:
+-d64 -Xms512m -Xmx4g
+
+Results:
+
+Running 1000 experiments with 100 vertices and 300 edges for random graphs and random simple graphs.
+Running 1000 experiments with 100 vertices and a distance of 0.3 for interval graphs.
+
+            Graph type |   Probability of finding path |  Average path length
+          Random graph                            1.00                  45.47
+   Random simple graph                            1.00                  46.36
+ Random interval graph                            1.00                  50.19
+
+Running 1000 experiments with 300 vertices and 100 edges for random graphs and random simple graphs.
+Running 1000 experiments with 300 vertices and a distance of 0.3 for interval graphs.
+
+            Graph type |   Probability of finding path |  Average path length
+          Random graph                            0.01                   3.57
+   Random simple graph                            0.01                   2.30
+ Random interval graph                            1.00                 144.54
+
+Conclusions:
+
+According to the experiment results, when the graph has more edges than vertices there is a high probability of finding a path between 2 random vertices (approximately 100%) and the average path length of such paths is close to 1/2 vertices.
+When the graph has more vertices than edges there is a low probability of finding a path between 2 random vertices (approximately 0% for random graphs and random simple graphs). For random interval graphs, when a high interval graph distance is used, the probability of finding a path between 2 random vertices is 100% when using either 100 or 300 vertices. The average path length of the paths found is close to 1/100 vertices for random graphs and random simple graphs and close to 1/2 vertices for random interval graphs.

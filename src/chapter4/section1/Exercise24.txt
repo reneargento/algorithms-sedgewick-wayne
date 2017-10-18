@@ -1,0 +1,159 @@
+4.1.24
+
+Number of connected components: 33
+Size of the largest component: 118774
+Number of components of size less than 10: 5
+Does the largest component contain Kevin Bacon: Yes
+
+Eccentricity, diameter, radius, center and girth:
+
+The strategy for computing the eccentricity, diameter, radius, center and girth of the largest component was the following:
+The algorithm required for these exact computations has complexity of O(V * E) (running breadth-first search from all vertices). V is ~= 10^5, which means the algorithm required for these exact computation has complexity ~= 10^10.
+
+In order to reduce the complexity of the computations (and to be able to compute them), domain knowledge was used to compute approximate results.
+Based on the Kevin Bacon game, we know that Kevin Bacon has been on several movies and that he is closely connected to most of the actors and actresses in the graph. Therefore, he has a high probability of being the center of the graph.
+
+Using Kevin Bacon as the center, we compute his vertex eccentricity to get the graph radius.
+A breadth-first search using Kevin Bacon as the source computes the vertices that are furthest from the center. Computing the eccentricities of these vertices we can find the diameter of the graph.
+
+The eccentricities of the center and of the vertices furthest from it are shown in the results. The range of the eccentricities  is [10, 18]. Computing the eccentricities of all vertices would bring us back to the original problem of =~ 10^10 operations.
+
+Finally, for the girth, we know that there is a very high probability that two actors have worked together on two different movies. This gives a girth of 4, which is the minimum girth possible for the movies graph:
+Actor -- Movie -- Actor
+    \            /
+     \   Movie  /
+To validate this theory we run the algorithm to compute the girth of the graph but stop once we find a cycle of length 4, since it is the shortest cycle possible.
+
+
+Eccentricities of Kevin Bacon and of vertices furthest from the center in the largest component:
+Eccentricity of vertex 22970: 16
+Eccentricity of vertex 22971: 16
+Eccentricity of vertex 22972: 16
+Eccentricity of vertex 22973: 16
+Eccentricity of vertex 22974: 16
+Eccentricity of vertex 22976: 16
+Eccentricity of vertex 22977: 16
+Eccentricity of vertex 22978: 16
+Eccentricity of vertex 22979: 16
+Eccentricity of vertex 22980: 16
+Eccentricity of vertex 51437: 18
+Eccentricity of vertex 51438: 18
+Eccentricity of vertex 51439: 18
+Eccentricity of vertex 51440: 18
+Eccentricity of vertex 51441: 18
+Eccentricity of vertex 51442: 18
+Eccentricity of vertex 51443: 18
+Eccentricity of vertex 51444: 18
+Eccentricity of vertex 51445: 18
+Eccentricity of vertex 51446: 18
+Eccentricity of vertex 51447: 18
+Eccentricity of vertex 51448: 18
+Eccentricity of vertex 51449: 18
+Eccentricity of vertex 51450: 18
+Eccentricity of vertex 51451: 18
+Eccentricity of vertex 51452: 18
+Eccentricity of vertex 51453: 18
+Eccentricity of vertex 51454: 18
+Eccentricity of vertex 51455: 18
+Eccentricity of vertex 51456: 18
+Eccentricity of vertex 51457: 18
+Eccentricity of vertex 51458: 18
+Eccentricity of vertex 51459: 18
+Eccentricity of vertex 51460: 18
+Eccentricity of vertex 51461: 18
+Eccentricity of vertex 51462: 18
+Eccentricity of vertex 51463: 18
+Eccentricity of vertex 51464: 18
+Eccentricity of vertex 51465: 18
+Eccentricity of vertex 51466: 18
+Eccentricity of vertex 51467: 18
+Eccentricity of vertex 51468: 18
+Eccentricity of vertex 51469: 18
+Eccentricity of vertex 51470: 18
+Eccentricity of vertex 51471: 18
+Eccentricity of vertex 51472: 18
+Eccentricity of vertex 51473: 18
+Eccentricity of vertex 51474: 18
+Eccentricity of vertex 51475: 18
+Eccentricity of vertex 51476: 18
+Eccentricity of vertex 51477: 18
+Eccentricity of vertex 51478: 18
+Eccentricity of vertex 51479: 18
+Eccentricity of vertex 51480: 18
+Eccentricity of vertex 51481: 18
+Eccentricity of vertex 51482: 18
+Eccentricity of vertex 51483: 18
+Eccentricity of vertex 51484: 18
+Eccentricity of vertex 51485: 18
+Eccentricity of vertex 51486: 18
+Eccentricity of vertex 51487: 18
+Eccentricity of vertex 51488: 18
+Eccentricity of vertex 51489: 18
+Eccentricity of vertex 51490: 18
+Eccentricity of vertex 51491: 18
+Eccentricity of vertex 51492: 18
+Eccentricity of vertex 51493: 18
+Eccentricity of vertex 51494: 18
+Eccentricity of vertex 51495: 18
+Eccentricity of vertex 51496: 18
+Eccentricity of vertex 51497: 18
+Eccentricity of vertex 51498: 18
+Eccentricity of vertex 51499: 18
+Eccentricity of vertex 51500: 18
+Eccentricity of vertex 51501: 18
+Eccentricity of vertex 51502: 18
+Eccentricity of vertex 51503: 18
+Eccentricity of vertex 51504: 18
+Eccentricity of vertex 51505: 18
+Eccentricity of vertex 51506: 18
+Eccentricity of vertex 51507: 18
+Eccentricity of vertex 51508: 18
+Eccentricity of vertex 51509: 18
+Eccentricity of vertex 51510: 18
+Eccentricity of vertex 51511: 18
+Eccentricity of vertex 51512: 18
+Eccentricity of vertex 51513: 18
+Eccentricity of vertex 51514: 18
+Eccentricity of vertex 51515: 18
+Eccentricity of vertex 51516: 18
+Eccentricity of vertex 51517: 18
+Eccentricity of vertex 51518: 18
+Eccentricity of vertex 51519: 18
+Eccentricity of vertex 51520: 18
+Eccentricity of vertex 86241: 16
+Eccentricity of vertex 86242: 16
+Eccentricity of vertex 86243: 16
+Eccentricity of vertex 86244: 16
+Eccentricity of vertex 86245: 16
+Eccentricity of vertex 86246: 16
+Eccentricity of vertex 86247: 16
+Eccentricity of vertex 86248: 16
+Eccentricity of vertex 86249: 16
+Eccentricity of vertex 86250: 16
+Eccentricity of vertex 86251: 16
+Eccentricity of vertex 86252: 16
+Eccentricity of vertex 86253: 16
+Eccentricity of vertex 86254: 16
+Eccentricity of vertex 86255: 16
+Eccentricity of vertex 86256: 16
+Eccentricity of vertex 86257: 16
+Eccentricity of vertex 86258: 16
+Eccentricity of vertex 86259: 16
+Eccentricity of vertex 118353: 18
+Eccentricity of vertex 118354: 18
+Eccentricity of vertex 118355: 18
+Eccentricity of vertex 118356: 18
+Eccentricity of vertex 118357: 18
+Eccentricity of vertex 118358: 18
+Eccentricity of vertex 118359: 18
+Eccentricity of vertex 118360: 18
+Eccentricity of vertex 118361: 18
+Eccentricity of vertex 118362: 18
+Eccentricity of vertex 118363: 18
+Eccentricity of vertex 118364: 18
+Eccentricity of vertex 9145: 10
+
+Diameter of largest component: 18
+Radius of largest component: 10
+Center of largest component: 9145
+Girth of largest component: 4

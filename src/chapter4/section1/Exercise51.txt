@@ -1,0 +1,26 @@
+4.1.51 - Two-colorable
+
+Results:
+
+Running 1000 experiments with 100 vertices and 300 edges for random graphs and random simple graphs.
+Running 1000 experiments with 100 vertices and a distance of 0.3 for interval graphs.
+
+            Graph type |   Edges examined
+          Random graph                 33
+   Random simple graph                 24
+ Random interval graph                  5
+
+Running 1000 experiments with 300 vertices and 100 edges for random graphs and random simple graphs.
+Running 1000 experiments with 300 vertices and a distance of 0.3 for interval graphs.
+
+            Graph type |   Edges examined
+          Random graph                171
+   Random simple graph                199
+ Random interval graph                  5
+
+Conclusions:
+
+The higher the degree of the vertices, the lower the number of edges required to be examined to discover the two-colorability of a graph using depth-first search. 
+With a graph with more edges than vertices close to 1/10 of the graph edges have to be examined in random graphs and random simple graphs. 
+With a graph with more vertices than edges close to twice the number of the graph edges (2 * E) have to be examined in random graphs and random simple graphs.
+All experiments with random interval graphs (with distance of 0.3 and either 100 or 300 vertices) resulted in only 5 edges having to be examined to discover the graph's two-colorability.

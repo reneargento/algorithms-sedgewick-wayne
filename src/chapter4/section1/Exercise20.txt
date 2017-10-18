@@ -1,0 +1,53 @@
+4.1.20
+             Has Cycle?             marked[]         
+                  F        0 1 2 3 4 5 6 7 8 9 10 11 
+dfs(0)                     T                         
+ dfs(5)                    T         T               
+  check 0         F
+  dfs(10)                  T         T         T     
+   check 5        F
+   dfs(3)                  T     T   T         T       
+    check 10      F
+    dfs(6)                 T     T   T T       T      
+     dfs(2)                T   T T   T T       T      
+      check 5     T (cycle found here)
+      check 6     T
+      check 0     T
+      check 3     T
+     2 done
+     check 3      T
+     check 0      T
+    6 done
+    check 2       T
+   3 done
+  10 done
+  check 2         T
+ 5 done
+ check 2          T
+ check 6          T
+0 done
+dfs(1)                     T T T T   T T       T       
+ dfs(4)                    T T T T T T T       T       
+  check 1         T
+  dfs(8)                   T T T T T T T   T   T       
+   check 1        T
+   dfs(11)                 T T T T T T T   T   T  T    
+    check 8       T
+    dfs(7)                 T T T T T T T T T   T  T    
+     check 8      T
+     check 11     T
+    7 done
+    check 1       T
+   11 done
+   check 7        T
+   check 4        T
+  8 done
+ 4 done
+ check 8          T
+ check 11         T
+1 done
+dfs(9)                     T T T T T T T T T T T  T
+9 done
+
+The order of growth of the running time of the Cycle constructor, in the worst case is O(V + E).
+Each adjacency-list entry is examined exactly once, and there are 2 * E such entries (two for each edge); initializing the marked[] array takes time proportional to V.
