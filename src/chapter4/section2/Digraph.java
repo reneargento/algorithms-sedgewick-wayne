@@ -1,19 +1,19 @@
-package chapter4.section1;
+package chapter4.section2;
 
 import chapter1.section3.Bag;
 import edu.princeton.cs.algs4.In;
 
 /**
- * Created by rene on 12/09/17.
+ * Created by rene on 17/10/17.
  */
 @SuppressWarnings("unchecked")
-public class Graph implements GraphInterface {
+public class Digraph {
 
     private final int vertices;
-    protected int edges;
+    private int edges;
     private Bag<Integer>[] adjacent;
 
-    public Graph(int vertices) {
+    public Digraph(int vertices) {
         this.vertices = vertices;
         this.edges = 0;
         adjacent = (Bag<Integer>[]) new Bag[vertices];
@@ -23,7 +23,7 @@ public class Graph implements GraphInterface {
         }
     }
 
-    public Graph(In in) {
+    public Digraph(In in) {
         this(in.readInt());
         int edges = in.readInt();
 
@@ -44,24 +44,23 @@ public class Graph implements GraphInterface {
 
     public void addEdge(int vertex1, int vertex2) {
         adjacent[vertex1].add(vertex2);
-        adjacent[vertex2].add(vertex1);
         edges++;
-    }
-
-    public Bag<Integer>[] getAdjacencyList() {
-        return adjacent;
-    }
-
-    public void updateAdjacencyList(int vertex, Bag adjacencyList) {
-        adjacent[vertex] = adjacencyList;
-    }
-
-    public int degree(int vertex) {
-        return adjacent[vertex].size();
     }
 
     public Iterable<Integer> adjacent(int vertex) {
         return adjacent[vertex];
+    }
+
+    public Digraph reverse() {
+        Digraph reverse = new Digraph(vertices);
+
+        for(int vertex = 0; vertex < vertices; vertex++) {
+            for(int neighbor : adjacent(vertex)) {
+                reverse.addEdge(neighbor, vertex);
+            }
+        }
+
+        return reverse;
     }
 
     @Override
@@ -79,5 +78,4 @@ public class Graph implements GraphInterface {
 
         return stringBuilder.toString();
     }
-
 }
