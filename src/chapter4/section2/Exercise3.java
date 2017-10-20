@@ -1,4 +1,4 @@
-package chapter4.section1;
+package chapter4.section2;
 
 import chapter1.section3.Bag;
 import chapter1.section3.Stack;
@@ -6,27 +6,27 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 15/09/17.
+ * Created by rene on 19/10/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise3 {
 
-    public class CopyGraph {
+    public class CopyDigraph {
         private final int vertices;
         private int edges;
         private Bag<Integer>[] adjacent;
 
-        public CopyGraph(int vertices) {
+        public CopyDigraph(int vertices) {
             this.vertices = vertices;
             this.edges = 0;
             adjacent = (Bag<Integer>[]) new Bag[vertices];
 
-            for(int i = 0; i < vertices; i++) {
-                adjacent[i] = new Bag<>();
+            for(int vertex = 0; vertex < vertices; vertex++) {
+                adjacent[vertex] = new Bag<>();
             }
         }
 
-        public CopyGraph(In in) {
+        public CopyDigraph(In in) {
             this(in.readInt());
             int edges = in.readInt();
 
@@ -37,22 +37,22 @@ public class Exercise3 {
             }
         }
 
-        public CopyGraph(Graph graph) {
-            if(graph == null) {
+        public CopyDigraph(Digraph digraph) {
+            if(digraph == null) {
                 vertices = 0;
             } else {
-                this.vertices = graph.vertices();
-                this.edges = graph.edges();
+                this.vertices = digraph.vertices();
+                this.edges = digraph.edges();
                 adjacent = (Bag<Integer>[]) new Bag[vertices];
 
-                for(int i = 0; i < vertices; i++) {
-                    adjacent[i] = new Bag<>();
+                for(int vertex = 0; vertex < vertices; vertex++) {
+                    adjacent[vertex] = new Bag<>();
                 }
 
-                for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+                for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
                     // Reverse so that adjacency list is in the same order as original
                     Stack<Integer> stack = new Stack<>();
-                    for (int neighbor : graph.getAdjacencyList()[vertex]) {
+                    for (int neighbor : digraph.getAdjacencyList()[vertex]) {
                         stack.push(neighbor);
                     }
                     for (int neighbor : stack) {
@@ -72,12 +72,23 @@ public class Exercise3 {
 
         public void addEdge(int vertex1, int vertex2) {
             adjacent[vertex1].add(vertex2);
-            adjacent[vertex2].add(vertex1);
             edges++;
         }
 
         public Iterable<Integer> adjacent(int vertex) {
             return adjacent[vertex];
+        }
+
+        public Digraph reverse() {
+            Digraph reverse = new Digraph(vertices);
+
+            for(int vertex = 0; vertex < vertices; vertex++) {
+                for(int neighbor : adjacent(vertex)) {
+                    reverse.addEdge(neighbor, vertex);
+                }
+            }
+
+            return reverse;
         }
 
         @Override
@@ -100,27 +111,27 @@ public class Exercise3 {
     public static void main(String[] args) {
         Exercise3 exercise3 = new Exercise3();
 
-        Graph graph = new Graph(5);
-        graph.addEdge(0, 1);
-        graph.addEdge(0, 2);
-        graph.addEdge(0, 3);
-        graph.addEdge(1, 2);
-        graph.addEdge(1, 4);
-        graph.addEdge(2, 3);
+        Digraph digraph = new Digraph(5);
+        digraph.addEdge(0, 1);
+        digraph.addEdge(0, 2);
+        digraph.addEdge(0, 3);
+        digraph.addEdge(1, 2);
+        digraph.addEdge(1, 4);
+        digraph.addEdge(2, 3);
 
-        CopyGraph copyGraph = exercise3.new CopyGraph(graph);
-        StdOut.println(copyGraph);
+        CopyDigraph copyDigraph = exercise3.new CopyDigraph(digraph);
+        StdOut.println(copyDigraph);
 
         StdOut.println("Expected:\n" +
                 "0: 3 2 1\n" +
-                "1: 4 2 0\n" +
-                "2: 3 1 0\n" +
-                "3: 2 0\n" +
-                "4: 1\n");
+                "1: 4 2\n" +
+                "2: 3\n" +
+                "3: \n" +
+                "4: \n");
 
-        copyGraph.addEdge(0, 4);
-        StdOut.println("Edges in original graph: " + graph.edges() + " Expected: 6");
-        StdOut.println("Edges in copy graph: " + copyGraph.edges() + " Expected: 7");
+        copyDigraph.addEdge(0, 4);
+        StdOut.println("Edges in original digraph: " + digraph.edges() + " Expected: 6");
+        StdOut.println("Edges in copy digraph: " + copyDigraph.edges() + " Expected: 7");
     }
 
 }

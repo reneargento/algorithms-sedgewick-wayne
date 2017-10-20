@@ -47,6 +47,10 @@ public class Digraph {
         edges++;
     }
 
+    public Bag<Integer>[] getAdjacencyList() {
+        return adjacent;
+    }
+
     public Iterable<Integer> adjacent(int vertex) {
         return adjacent[vertex];
     }
