@@ -56,12 +56,12 @@ public class Graph implements GraphInterface {
         adjacent[vertex] = adjacencyList;
     }
 
-    public int degree(int vertex) {
-        return adjacent[vertex].size();
-    }
-
     public Iterable<Integer> adjacent(int vertex) {
         return adjacent[vertex];
+    }
+
+    public int degree(int vertex) {
+        return adjacent[vertex].size();
     }
 
     @Override

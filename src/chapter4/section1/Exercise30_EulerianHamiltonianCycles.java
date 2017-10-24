@@ -37,7 +37,7 @@ public class Exercise30_EulerianHamiltonianCycles {
         public Stack<Integer> getEulerCycle(Graph graph) {
 
             // A graph with no edges is considered to have an Eulerian cycle
-            if(graph.edges == 0) {
+            if(graph.edges() == 0) {
                 return new Stack<>();
             }
 
@@ -104,7 +104,7 @@ public class Exercise30_EulerianHamiltonianCycles {
                 eulerCycle.push(vertex);
             }
 
-            // For each edge we visited a vertex. Add 1 because the first and last vertices are the same.
+            // For each edge visited, we visited a vertex. Add 1 because the first and last vertices are the same.
             if(eulerCycle.size() == graph.edges + 1) {
                 return eulerCycle;
             } else {

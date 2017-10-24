@@ -12,10 +12,16 @@ public class Digraph {
     private final int vertices;
     private int edges;
     private Bag<Integer>[] adjacent;
+    private int[] indegrees;
+    private int[] outdegrees;
 
     public Digraph(int vertices) {
         this.vertices = vertices;
         this.edges = 0;
+
+        indegrees = new int[vertices];
+        outdegrees = new int[vertices];
+
         adjacent = (Bag<Integer>[]) new Bag[vertices];
 
         for(int vertex = 0; vertex < vertices; vertex++) {
@@ -45,6 +51,9 @@ public class Digraph {
     public void addEdge(int vertex1, int vertex2) {
         adjacent[vertex1].add(vertex2);
         edges++;
+
+        outdegrees[vertex1]++;
+        indegrees[vertex2]++;
     }
 
     public Bag<Integer>[] getAdjacencyList() {
@@ -53,6 +62,14 @@ public class Digraph {
 
     public Iterable<Integer> adjacent(int vertex) {
         return adjacent[vertex];
+    }
+
+    public int indegree(int vertex) {
+        return indegrees[vertex];
+    }
+
+    public int outdegree(int vertex) {
+        return outdegrees[vertex];
     }
 
     public Digraph reverse() {
