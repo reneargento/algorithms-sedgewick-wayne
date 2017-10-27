@@ -15,10 +15,10 @@ public class Exercise37_EuclideanGraphs {
     public class EuclideanGraph {
 
         public class Vertex {
-            int id;
-            String name;
-            double xCoordinate;
-            double yCoordinate;
+            protected int id;
+            protected String name;
+            protected double xCoordinate;
+            protected double yCoordinate;
 
             Vertex(int id, double xCoordinate, double yCoordinate) {
                 this(id, String.valueOf(id), xCoordinate, yCoordinate);
