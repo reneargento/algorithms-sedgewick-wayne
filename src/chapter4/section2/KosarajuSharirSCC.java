@@ -9,9 +9,12 @@ public class KosarajuSharirSCC {
     private int[] id; // component identifiers
     private int count; // number of strong components
 
+    private Digraph digraph;
+
     public KosarajuSharirSCC(Digraph digraph) {
         visited = new boolean[digraph.vertices()];
         id = new int[digraph.vertices()];
+        this.digraph = digraph;
 
         DepthFirstOrder depthFirstOrder = new DepthFirstOrder(digraph.reverse());
 
@@ -32,6 +35,20 @@ public class KosarajuSharirSCC {
                 dfs(digraph, neighbor);
             }
         }
+    }
+
+    public Digraph getKernelDAG() {
+        Digraph kernelDAG = new Digraph(count());
+
+        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            for(int neighbor : digraph.adjacent(vertex)) {
+                if(id(vertex) != id(neighbor)) {
+                    kernelDAG.addEdge(id(vertex), id(neighbor));
+                }
+            }
+        }
+
+        return kernelDAG;
     }
 
     public boolean stronglyConnected(int vertex1, int vertex2) {

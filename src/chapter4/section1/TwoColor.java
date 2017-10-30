@@ -9,7 +9,7 @@ public class TwoColor {
     private boolean[] color;
     private boolean isTwoColorable = true;
 
-    public TwoColor(Graph graph) {
+    public TwoColor(GraphInterface graph) {
         visited = new boolean[graph.vertices()];
         color = new boolean[graph.vertices()];
 
@@ -20,17 +20,20 @@ public class TwoColor {
         }
     }
 
-    private void dfs(Graph graph, int vertex) {
+    private void dfs(GraphInterface graph, int vertex) {
         visited[vertex] = true;
 
-        for(int neighbor : graph.adjacent(vertex)) {
-            if(!visited[neighbor]) {
-                color[neighbor] = !color[vertex];
-                dfs(graph, neighbor);
-            } else if(color[neighbor] == color[vertex]) {
-                isTwoColorable = false;
+        if(graph.adjacent(vertex) != null) {
+            for(int neighbor : graph.adjacent(vertex)) {
+                if(!visited[neighbor]) {
+                    color[neighbor] = !color[vertex];
+                    dfs(graph, neighbor);
+                } else if(color[neighbor] == color[vertex]) {
+                    isTwoColorable = false;
+                }
             }
         }
+
     }
 
     public boolean isBipartite() {
