@@ -21,8 +21,8 @@ public class Exercise41_RandomSimpleGraphs {
             this.edges = 0;
             adjacent = (HashSet<Integer>[]) new HashSet[vertices];
 
-            for(int i = 0; i < vertices; i++) {
-                adjacent[i] = new HashSet<>();
+            for(int vertex = 0; vertex < vertices; vertex++) {
+                adjacent[vertex] = new HashSet<>();
             }
         }
 
