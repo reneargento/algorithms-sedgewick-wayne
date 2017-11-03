@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.In;
  * Created by rene on 17/10/17.
  */
 @SuppressWarnings("unchecked")
-public class Digraph {
+public class Digraph implements DigraphInterface {
 
     private final int vertices;
     private int edges;

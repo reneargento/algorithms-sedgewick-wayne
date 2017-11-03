@@ -1,7 +1,5 @@
 package chapter4.section1;
 
-import chapter1.section3.Bag;
-
 /**
  * Created by rene on 13/10/17.
  */

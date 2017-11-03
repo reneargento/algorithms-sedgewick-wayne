@@ -2,10 +2,14 @@ package chapter4.section1;
 
 import chapter1.section3.Bag;
 import chapter3.section4.SeparateChainingHashTable;
+import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import util.Constants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rene on 09/10/17.
@@ -18,11 +22,13 @@ public class Exercise45_RealWorldGraphs {
     private class WeightedGraph {
 
         private class Edge {
-            int otherVertex;
+            int vertex1;
+            int vertex2;
             double weight;
 
-            Edge(int otherVertex, double weight) {
-                this.otherVertex = otherVertex;
+            Edge(int vertex1, int vertex2, double weight) {
+                this.vertex1 = vertex1;
+                this.vertex2 = vertex2;
                 this.weight = weight;
             }
         }
@@ -45,6 +51,13 @@ public class Exercise45_RealWorldGraphs {
             return edges;
         }
 
+        public void addVertex(int vertex) {
+            if(!adjacent.contains(vertex)) {
+                adjacent.put(vertex, new Bag<>());
+                vertices++;
+            }
+        }
+
         public void addEdge(int vertex1, int vertex2, double weight) {
             if(!adjacent.contains(vertex1)) {
                 adjacent.put(vertex1, new Bag<>());
@@ -55,11 +68,11 @@ public class Exercise45_RealWorldGraphs {
                 vertices++;
             }
 
-            Edge edge1 = new Edge(vertex1, weight);
-            Edge edge2 = new Edge(vertex2, weight);
+            Edge edge1 = new Edge(vertex1, vertex2, weight);
+            Edge edge2 = new Edge(vertex2, vertex1, weight);
 
-            adjacent.get(vertex1).add(edge2);
-            adjacent.get(vertex2).add(edge1);
+            adjacent.get(vertex1).add(edge1);
+            adjacent.get(vertex2).add(edge2);
             edges++;
         }
 
@@ -74,9 +87,12 @@ public class Exercise45_RealWorldGraphs {
             for(int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(Edge neighbor : adjacent(vertex)) {
-                    stringBuilder.append(neighbor.otherVertex).append(" ");
+                if(adjacent(vertex) != null) {
+                    for(Edge neighbor : adjacent(vertex)) {
+                        stringBuilder.append(neighbor.vertex2).append(" ");
+                    }
                 }
+
                 stringBuilder.append("\n");
             }
 
@@ -84,7 +100,7 @@ public class Exercise45_RealWorldGraphs {
         }
     }
 
-    private WeightedGraph randomRealGraph(int randomVerticesToChoose) {
+    private WeightedGraph randomRealGraph(int randomVerticesToChoose, int randomEdgesToChoose) {
         String filePath = Constants.FILES_PATH + Constants.US_AIR_FILE;
         String separator = " ";
 
@@ -109,36 +125,71 @@ public class Exercise45_RealWorldGraphs {
         SeparateChainingHashTable<Integer, Integer> graphToSubGraphMap =
                 new SeparateChainingHashTable<>();
 
+        List<WeightedGraph.Edge> allSubGraphEdges = new ArrayList<>();
+
         for(int vertex = 0; vertex < randomVerticesToChoose; vertex++) {
             // Randomly choose a vertex between 1 and vertices
             int randomVertexId = StdRandom.uniform(vertices) + 1;
 
-            if(!graphToSubGraphMap.contains(randomVertexId)) {
-                int subGraphVertexId = graphToSubGraphMap.size();
-                graphToSubGraphMap.put(randomVertexId, subGraphVertexId);
+            if(graphToSubGraphMap.contains(randomVertexId)) {
+                continue;
             }
 
-            int subGraphCurrentVertexId = graphToSubGraphMap.get(randomVertexId);
+            int subGraphVertexId = graphToSubGraphMap.size();
+            graphToSubGraphMap.put(randomVertexId, subGraphVertexId);
+
+            randomSubGraph.addVertex(subGraphVertexId);
 
             for(WeightedGraph.Edge edge : fullGraph.adjacent(randomVertexId)) {
-
-                if(!graphToSubGraphMap.contains(edge.otherVertex)) {
-                    int subGraphVertexId = graphToSubGraphMap.size();
-                    graphToSubGraphMap.put(edge.otherVertex, subGraphVertexId);
-                }
-
-                int subGraphNeighborVertexId = graphToSubGraphMap.get(edge.otherVertex);
-
-                randomSubGraph.addEdge(subGraphCurrentVertexId, subGraphNeighborVertexId, edge.weight);
+                allSubGraphEdges.add(randomSubGraph.new Edge(subGraphVertexId, edge.vertex2, edge.weight));
             }
+        }
+
+        // Randomly choose E edges from the subgraph induced by the random vertices
+        if(randomEdgesToChoose > allSubGraphEdges.size()) {
+            throw new IllegalArgumentException("Not enough edges to choose");
+        }
+
+        WeightedGraph.Edge[] allSubGraphEdgesArray = new WeightedGraph.Edge[allSubGraphEdges.size()];
+        int allSubGraphEdgesArrayIndex = 0;
+        HashSet<Integer> edgesChosen = new HashSet<>();
+
+        for(WeightedGraph.Edge edge : allSubGraphEdges) {
+            allSubGraphEdgesArray[allSubGraphEdgesArrayIndex++] = edge;
+        }
+
+        for(int edge = 0; edge < randomEdgesToChoose; edge++) {
+            // Randomly choose an edge
+            int randomEdgeId = StdRandom.uniform(allSubGraphEdgesArray.length);
+
+            if(edgesChosen.contains(randomEdgeId)) {
+                continue;
+            }
+
+            edgesChosen.add(randomEdgeId);
+
+            WeightedGraph.Edge randomEdge = allSubGraphEdgesArray[randomEdgeId];
+
+            if(!graphToSubGraphMap.contains(randomEdge.vertex2)) {
+                int subGraphNeighborVertexId = graphToSubGraphMap.size();
+                graphToSubGraphMap.put(randomEdge.vertex2, subGraphNeighborVertexId);
+            }
+
+            int subGraphNeighborVertexId = graphToSubGraphMap.get(randomEdge.vertex2);
+            randomSubGraph.addEdge(randomEdge.vertex1, subGraphNeighborVertexId, randomEdge.weight);
         }
 
         return randomSubGraph;
     }
 
+    // Example parameters:
+    // 20 20
     public static void main(String[] args) {
         int randomVerticesToChoose = Integer.parseInt(args[0]);
-        WeightedGraph randomRealGraph = new Exercise45_RealWorldGraphs().randomRealGraph(randomVerticesToChoose);
+        int randomEdgesToChoose = Integer.parseInt(args[1]);
+
+        WeightedGraph randomRealGraph = new Exercise45_RealWorldGraphs().
+                randomRealGraph(randomVerticesToChoose, randomEdgesToChoose);
 
         StdOut.println(randomRealGraph);
     }
