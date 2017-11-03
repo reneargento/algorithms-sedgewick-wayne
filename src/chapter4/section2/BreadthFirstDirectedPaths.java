@@ -14,7 +14,7 @@ public class BreadthFirstDirectedPaths {
 
     private int[] distTo;
 
-    public BreadthFirstDirectedPaths(Digraph digraph, int source) {
+    public BreadthFirstDirectedPaths(DigraphInterface digraph, int source) {
         visited = new boolean[digraph.vertices()];
         edgeTo = new int[digraph.vertices()];
         this.source = source;
@@ -32,7 +32,7 @@ public class BreadthFirstDirectedPaths {
         bfs(digraph, source);
     }
 
-    private void bfs(Digraph digraph, int sourceVertex) {
+    private void bfs(DigraphInterface digraph, int sourceVertex) {
         Queue<Integer> queue = new Queue<>();
         visited[sourceVertex] = true;
 

@@ -14,7 +14,7 @@ public class DepthFirstOrder {
     private Queue<Integer> postOrder;
     private Stack<Integer> reversePostOrder;
 
-    public DepthFirstOrder(Digraph digraph) {
+    public DepthFirstOrder(DigraphInterface digraph) {
         preOrder = new Queue<>();
         postOrder = new Queue<>();
         reversePostOrder = new Stack<>();
@@ -27,7 +27,7 @@ public class DepthFirstOrder {
         }
     }
 
-    private void dfs(Digraph digraph, int vertex) {
+    private void dfs(DigraphInterface digraph, int vertex) {
         preOrder.enqueue(vertex);
 
         visited[vertex] = true;

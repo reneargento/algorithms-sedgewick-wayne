@@ -9,9 +9,9 @@ public class KosarajuSharirSCC {
     private int[] id; // component identifiers
     private int count; // number of strong components
 
-    private Digraph digraph;
+    private DigraphInterface digraph;
 
-    public KosarajuSharirSCC(Digraph digraph) {
+    public KosarajuSharirSCC(DigraphInterface digraph) {
         visited = new boolean[digraph.vertices()];
         id = new int[digraph.vertices()];
         this.digraph = digraph;
@@ -26,7 +26,7 @@ public class KosarajuSharirSCC {
         }
     }
 
-    private void dfs(Digraph digraph, int vertex) {
+    private void dfs(DigraphInterface digraph, int vertex) {
         visited[vertex] = true;
         id[vertex] = count;
 

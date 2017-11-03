@@ -20,6 +20,6 @@ Running 1000 experiments with 300 vertices and a distance of 0.3 for interval gr
 
 Conclusions:
 
-According to the experiment results, when the graph has more edges than vertices there is a high probability of finding a path between 2 random vertices (approximately 100%) and the average path length of such paths is close to 1/100 vertices.
-When the graph has more vertices than edges there is a low probability of finding a path between 2 random vertices (approximately 0% for random graphs and random simple graphs). For random interval graphs, when a high interval graph distance is used, the probability of finding a path between 2 random vertices is 100% when using either 100 or 300 vertices. The average path length of the paths found is also close to 1/100 vertices for all graph types.
+According to the experiment results, when the graph has more edges than vertices there is a high probability of finding a path between 2 random vertices (approximately 100%) and the average path length of such paths is close to 3/100 vertices.
+When the graph has more vertices than edges there is a low probability of finding a path between 2 random vertices (approximately 0% for random graphs and random simple graphs). For random interval graphs, when a high interval graph distance is used, the probability of finding a path between 2 random vertices is 100% when using either 100 or 300 vertices. The average path length of the paths found is close to 1/100 vertices for all graph types.
 As expected, the average path lengths found using BFS are much shorter than when using DFS. 
