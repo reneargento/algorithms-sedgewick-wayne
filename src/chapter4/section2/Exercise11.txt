@@ -1,0 +1,43 @@
+4.2.11
+
+A family of sparse digraphs whose number of directed cycles grows exponentially in the number of vertices is the following:
+
+Take an n-cycle and make every edge a parallel edge. Now there are 2^n cycles.
+Example: 
+
+o -> o
+^    |
+|    v
+o <- o
+
+becomes
+
+o -> o
+^^->||
+||  ||
+||<-vv
+o <- o
+
+Another possibility, to avoid parallel edges, is to double each edge in a crossing way, leading to 2^(n/2) cycles.
+Example: 
+
+o -> o
+^    |
+|    v
+o <- o
+
+becomes
+
+o -> o
+^\  ^|
+| \ /|
+|  X |
+| / \|
+|/  vv
+o <- o
+
+The graphs are sparse, since there are just two edges per vertex in the first graph, or 1.5 edges per vertex on the second graph.
+Every vertex added in this graph family will grow the number of directed cycles exponentially.
+
+Based on: 
+https://stackoverflow.com/questions/32650192/what-is-a-family-of-digraphs-whose-number-of-directed-cycles-grows-exponentially

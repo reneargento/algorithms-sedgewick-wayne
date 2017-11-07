@@ -1,0 +1,38 @@
+4.2.20
+False.
+
+Consider the following digraph:
+
+    5     4
+   / \   / \
+  v   v v   v
+  2    0  > 1
+   \     /
+    v   /
+      3
+
+And the visiting order: 0, 1, 2, 3, 4, 5
+
+The postorder of the digraph is:
+0 1 3 2 4 5
+
+The digraph's reverse is:
+
+    5     4
+   ^ ^   ^ ^
+  /   \ /   \
+  2    0    1
+   ^      _/
+    \   v 
+      3
+
+The postorder of the digraph's reverse is:
+4 5 0 2 3 1
+
+The reverse postorder of the digraph's reverse is:
+1 3 2 0 5 4
+
+And 1 3 2 0 5 4 != 0 1 3 2 4 5
+
+Note that if we changed the visiting order of the vertices the orders would be the same.
+If the visiting order to compute the postorder of the digraph were 1, 2, 3, 0, 5, 4 and the visiting order to compute the postorder of the digraph's reverse continued to be 0, 1, 2, 3, 4, 5, the postorder of the digraph and the reverse postorder of the digraph's reverse would both yield the same order: 1 3 2 0 5 4

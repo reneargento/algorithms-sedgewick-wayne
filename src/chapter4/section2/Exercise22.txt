@@ -1,0 +1,3 @@
+4.2.22
+
+True, the strong components of a digraph are the same as the strong components of its reverse.

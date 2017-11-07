@@ -1,0 +1,20 @@
+4.2.54 - Breadth lengths in BFS
+
+Running 1000 experiments with 100 vertices and 300 edges for random digraphs, random simple digraphs and random sparse digraphs.
+
+          Digraph type |   Experiments |  Vertices |  Edges |   Probability of finding path |   Average path length
+        Random digraph            1000         100      300                            0.88                    5.21
+ Random simple digraph            1000         100      300                            1.00                    4.76
+ Random sparse digraph            1000         100      300                            0.88                    5.23
+
+Running 1000 experiments with 300 vertices and 100 edges for random digraphs and random simple digraphs.
+Running 1000 experiments with 300 vertices and 900 edges for random sparse digraphs.
+
+          Digraph type |   Experiments |  Vertices |  Edges |   Probability of finding path |   Average path length
+        Random digraph            1000         300      100                            0.01                    1.22
+ Random simple digraph            1000         300      100                            0.01                    2.00
+ Random sparse digraph            1000         300      900                            0.86                    6.07
+
+The experiment results show that when the digraph has more edges than vertices there is a high probability of finding a path between 2 random vertices (approximately 90% when the digraph has 100 vertices and 300 edges) and the average path length of such paths is close to 5/100 vertices. The probability of finding a path is 100% in the case of random simple digraphs.
+When the digraph has more vertices than edges there is a low probability of finding a path between 2 random vertices (approximately 0% for random digraphs and random simple digraphs when the digraph has 300 vertices and 100 edges). The average path length of the paths found is close to 1/100 vertices for random digraphs and random simple digraphs.
+As expected, the average path lengths found using BFS are much shorter than when using DFS when the digraph has more edges than vertices. When the digraph has more vertices than edges, the average path length of paths found using DFS and BFS is similar.

@@ -1,0 +1,25 @@
+4.2.35 - Digraph enumeration
+
+In a digraph with V vertices there are V^2 possible directed edges (considering that all vertices can have a directed edge pointing to all vertices, including self-loops).
+Each edge can be included in the digraph or not, so there are 2 possibilities per edge.
+Therefore, the number of different V-vertex digraphs with no parallel edges is 2^V^2.
+
+How many digraphs are there that contain V vertices and E edges?
+Each vertex V may have or may not have a directed edge to any of the V vertices (since self-loops are allowed), so there are V^2 possible combinations.
+From this set of combinations there are E ways to choose the vertices to connect.
+
+So there are (V^2) = (V^2)! / E! * ((V^2) - E)!
+             ( E )
+different digraphs with V vertices and E edges (and no parallel edges).
+
+
+There are 2^20^2 20-vertex digraphs, which is equal to 2^400 digraphs.
+If every electron in the universe examines a digraph every nanosecond and there are approximately 10^80 electrons in the universe, then 10^80 digraphs are examined per nanosecond.
+The age of the universe will be approximately 10^20 years. Each year is equal to 3.154 * 10^16 nanoseconds, so 10^20 years has 3.154 * 10^36 nanoseconds.
+The total number of digraphs examined will be approximately 3.154 * 10^36 * 10^80 = 3.154 * 10^116.
+If all the electrons in the universe could run a supercomputer capable of processing 10^80 digraphs per nanosecond for the estimated lifetime of the universe, the upper bound on the percentage of 20-vertex digraphs that could ever be examined would be 3.154 * 10^116 / 2^400, which is equal to 0.00012214154, or approximately 0.01%.
+
+Reference: 
+Handbook of Discrete and Combinatorial Mathematics by Kenneth H. Rosen, page 583
+https://math.stackexchange.com/questions/1072726/counting-simple-connected-labeled-graphs-with-n-vertices-and-k-edges
+https://math.stackexchange.com/questions/128439/how-to-determine-the-number-of-directed-undirected-graphs

@@ -1,0 +1,4 @@
+4.2.23
+
+True, the most important thing during the second search is to visit all the reachable vertices, which will all be part of the same strong component. Doing the search with depth-first search or breadth-first search at that point is indifferent.
+Depth-first search is only required on the first search, in order to compute the reverse postorder of the digraph (or of its reverse).

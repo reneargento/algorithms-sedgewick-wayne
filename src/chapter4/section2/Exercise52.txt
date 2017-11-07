@@ -1,0 +1,22 @@
+4.2.52 - Reachability
+
+Results:
+
+Running 1000 experiments with 100 vertices and 300 edges for random digraphs, random simple digraphs and random sparse digraphs.
+
+          Digraph type |   Experiments |      Vertices |         Edges |  Average number of vertices reachable
+        Random digraph            1000             100             300                                   87.78
+ Random simple digraph            1000             100             300                                  100.00
+ Random sparse digraph            1000             100             300                                   89.09
+
+Running 1000 experiments with 300 vertices and 100 edges for random digraphs and random simple digraphs.
+Running 1000 experiments with 300 vertices and 900 edges for random sparse digraphs.
+
+          Digraph type |   Experiments |      Vertices |         Edges |  Average number of vertices reachable
+        Random digraph            1000             300             100                                    1.41
+ Random simple digraph            1000             300             100                                    1.47
+ Random sparse digraph            1000             300             900                                  265.34
+
+Conclusions:
+
+According to the experiment results, when the digraph has more edges than vertices the number of vertices that are reachable from a randomly chosen vertex is higher (around 90 vertices when the digraph has 300 edges and 100 vertices) than when the digraph has more vertices than edges (around 1.5 vertices when the digraph has 100 edges and 300 vertices).

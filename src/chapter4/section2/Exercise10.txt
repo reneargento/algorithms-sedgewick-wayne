@@ -1,0 +1,15 @@
+4.2.10
+
+Given a DAG, there is no topological order that cannot result from applying a DFS-based algorithm, no matter in what order the vertices adjacent to each vertex are chosen.
+
+Proof:
+As seen on proposition F:
+Consider any edge v->w. One of the following three cases must hold when dfs(v) is called:
+1- dfs(w) has already been called and has returned (w is marked).
+2- dfs(w) has not yet been called (w is unmarked), so v->w will cause dfs(w) to be called (and return), either directly or indirectly, before dfs(v) returns.
+3- dfs(w) has been called and had not yet returned when dfs(v) is called. This case in impossible in a DAG, because the recursive call chain implies a path from w to v and v->w would complete a directed cycle.
+
+In the two possible cases, dfs(w) is done before dfs(v), so w appears before v in postorder and after v in reverse postorder. Thus, each edge v->w points from a vertex earlier in the order to a vertex later in the order, as desired.
+
+Since topological orders are the reverse postorder of a digraph, this means that topological orders can always be found when applying a DFS-based algorithm. The topological sort that results from such algorithm depends on the order in which the vertices adjacent to each vertex are chosen.
+If a topological order could not be found applying a DFS-based algorithm this means that dfs(v) would finish before dfs(w) for an edge v->w, which is not possible in a DAG.

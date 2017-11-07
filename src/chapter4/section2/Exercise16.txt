@@ -1,0 +1,15 @@
+4.2.16
+
+Given a digraph G, the first vertex in the reverse postorder of G is in a strong component that is a source of G's kernel DAG.
+
+Proof:
+The first vertex in the reverse postorder of G is the vertex which finishes its dfs() last in G. Since it finishes later than all the other vertices it is part of a strong component which is a source in G.
+G's kernel DAG is formed by collapsing all the vertices in each strong component to a single vertex (and removing any self-loops). Since the first vertex in the reverse postorder of G is part of a strong component which is a source in G, it will be in a strong component that is a source in G's kernel DAG.
+
+
+The first vertex in the reverse postorder of Gr is in a strong component that is a sink of G's kernel DAG.
+
+Proof:
+In Gr all the vertices in the strong components of G are still reachable from one another, but now source vertices become sink vertices and sink vertices become source vertices.
+The first vertex in the reverse postorder of Gr is the vertex which finishes its dfs() last in Gr. Since it finishes later than all the other vertices it is part of a strong component which is a source in Gr. This means that it is part of a strong component which is a sink in G (and became part of a strong component which is a source in Gr when the edge's directions were reversed).
+G's kernel DAG is formed by collapsing all the vertices in each strong component to a single vertex (and removing any self-loops). Since the first vertex in the reverse postorder of Gr is part of a strong component which is a sink in G, it will be in a strong component that is a sink in G's kernel DAG.

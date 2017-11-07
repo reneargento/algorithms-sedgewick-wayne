@@ -1,0 +1,3 @@
+4.2.18
+
+In a DAG each vertex is its own strong component.

@@ -1,0 +1,13 @@
+4.2.13
+
+Two vertices in a digraph G are in the same strong component if and only if there is a directed cycle (not necessarily simple) containing both of them.
+
+Proof:
+Part 1: If there is a directed cycle containing vertex v and vertex w they are in the same strong component.
+As per the definition of a directed cycle, any vertex in the cycle can reach any other vertex contained in the cycle (including itself).
+Therefore, v and w are in the same strong component because there is a path from v to w and from w to v.
+
+Part 2: If v and w are in the same strong component there is a directed cycle containing them.
+Proof by contradiction:
+Assume that v and w are in the same strong component but there is no directed cycle containing them.
+In this case, either v cannot be reached from w or w cannot be reached from v or neither vertex can be reached from the other. Since they are in a strong component there is a path from v to w and from w to v, so this is not possible.

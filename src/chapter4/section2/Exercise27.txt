@@ -1,0 +1,13 @@
+4.2.27 - Topological sort and BFS
+
+The algorithm does not necessarily produce a topological order because some vertices closer to the source may be preceded by vertices further from the source in a topological order.
+
+Example:
+Consider the graph:
+0 -> 1 -> 2 -> 3 -> 4 -> 5
+          |             /
+          v            /
+          6 <----------
+
+The algorithm running BFS would produce the following topological order: 0 1 2 6 3 4 5
+Such order is invalid because 6 should be preceded by 5 in a topological order.

@@ -1,0 +1,58 @@
+4.2.37 - Arithmetic expressions
+
+A family of arithmetic expressions with the property that the size of the expression tree is exponentially larger than the size of the corresponding DAG is the family of expressions with many repeated subexpressions. The expression tree will have nodes for all the subexpressions whereas the DAG will only have vertices for unique subexpressions.
+
+Example 1: 
+2 + (3 * 4) + (3 * 4) / 5
+
+Expression tree:
+                +
+              /   \
+            /(DIV) +
+           /\     / \
+          *  5   2   *
+         / \        / \
+        3   4      3   4
+
+Expression DAG:
+               +
+              / \
+             v   v
+            +    /(DIV)
+            /\  / \
+           v  vv  v
+           2  *   5
+              /\
+             v  v
+             3  4
+
+Example 2: 
+(3 * 4) + (3 * 4) + (3 * 4) + (3 * 4) / 6
+
+Expression tree:
+                       /(DIV)
+                    /      \
+                   +        6
+                /    \
+               +         + 
+             /  \      /   \              
+            *    *    *     *
+           / \  / \  / \   / \
+          3   4 3 4 3   4 3   4
+
+
+Expression DAG:
+
+                   /(DIV)
+                 /   \
+                v     v
+                +     6
+              /\ / \
+             v v v v
+               *
+               /\
+              v v
+              3 4
+
+Different than expression trees, the expression DAGs store computation results to avoid re-calculations.
+In families of arithmetic expressions with many repeated subexpressions the running time for solving the expression using an expression DAG will be proportional to the logarithm of the running time for solving the expression with an expression tree.

@@ -1,0 +1,3 @@
+4.2.25
+
+In a transitive closure of a digraph that is a simple directed path with V vertices and V - 1 edges there are (V - 1) * V / 2 = (V^2 - V) / 2 edges.

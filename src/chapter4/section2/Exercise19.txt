@@ -1,0 +1,3 @@
+4.2.19
+
+If you run the Kosaraju-Sharir algorithm on a DAG it will consider and count each vertex as its own strong component.

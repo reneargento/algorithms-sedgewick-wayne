@@ -1,0 +1,15 @@
+4.2.1
+
+The maximum number of edges in a digraph with V vertices and no parallel edges is V * (V - 1).
+Since we do not have self-loops or parallel edges, each vertex can connect to V - 1 other vertices. 
+
+Example:
+  o -> o
+   <-
+|^  XX ^|
+v| <-  |v
+ o -> o
+
+The minimum number of edges in a digraph with V vertices, none of which are isolated (have degree 0) is V - 1.
+Example:
+o -> o -> o

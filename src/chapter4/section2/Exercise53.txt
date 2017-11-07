@@ -1,0 +1,21 @@
+4.2.53 - Path lengths in DFS
+
+Results:
+
+Running 1000 experiments with 100 vertices and 300 edges for random digraphs, random simple digraphs and random sparse digraphs.
+
+          Digraph type |   Experiments |  Vertices |  Edges |   Probability of finding path |   Average path length
+        Random digraph            1000         100      300                            0.87                   30.47
+ Random simple digraph            1000         100      300                            1.00                   41.98
+ Random sparse digraph            1000         100      300                            0.89                   31.86
+
+Running 1000 experiments with 300 vertices and 100 edges for random digraphs and random simple digraphs.
+Running 1000 experiments with 300 vertices and 900 edges for random sparse digraphs.
+
+          Digraph type |   Experiments |  Vertices |  Edges |   Probability of finding path |   Average path length
+        Random digraph            1000         300      100                            0.01                    1.67
+ Random simple digraph            1000         300      100                            0.00                    1.75
+ Random sparse digraph            1000         300      900                            0.88                   90.38
+
+The experiment results show that when the digraph has more edges than vertices there is a high probability of finding a path between 2 random vertices (approximately 90% when the digraph has 100 vertices and 300 edges) and the average path length of such paths is close to 1/3 vertices.
+When the digraph has more vertices than edges there is a low probability of finding a path between 2 random vertices (approximately 0% for random digraphs and random simple digraphs when the digraph has 300 vertices and 100 edges).

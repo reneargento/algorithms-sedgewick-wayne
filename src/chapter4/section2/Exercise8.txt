@@ -1,0 +1,1293 @@
+4.2.8
+
+Non-isomorphic DAGs:
+
+There are 2 non-isomorphic DAGs with 2 vertices:
+o o
+
+o->o
+
+
+There are 6 non-isomorphic DAGs with 3 vertices:
+ o
+o o
+
+ o
+o->o
+
+o->o->o
+
+ o
+/ \
+v  v
+o  o
+
+  o
+ ^ ^
+/   \
+o    o
+
+ o
+/ \
+v  v
+o->o
+
+
+There are 31 non-isomorphic DAGs with 4 vertices:
+o o o o
+
+o->o o o
+
+o->o->o o
+
+o->o->o->o
+
+o->o o->o
+
+o->o o
+ \
+  v
+  o
+
+o<-o->o
+   |
+   v
+   o
+
+o->o<-o o
+
+   o
+   |
+   v
+   o
+  ^ ^
+ /   \
+o     o
+
+  o
+  |
+  v
+  o
+ / \
+v   v
+o   o
+
+   o
+   |
+   v
+   o
+  ^ \
+ /   v
+o     o
+
+   o
+   |
+   v
+   o
+  ^ ^
+ /   \
+o <-- o
+
+  o
+  |
+  v
+  o
+ / \
+v   v
+o<--o
+
+   o
+   |
+   v
+   o
+  ^ \
+ /   v
+o --> o
+
+o    o
+| /\ |
+vv  vv
+o    o
+
+o -> o
+| /\ |
+vv  vv
+o    o
+
+o    o
+| /\ |
+vv  vv
+o <- o
+
+o -> o
+| /\ |
+vv  vv
+o <- o
+
+  o
+ / \
+v   v
+o-->o o
+
+  o
+ ^ ^
+/   \
+o-->o o
+
+o->o
+|  |
+v  v
+o->o
+
+  o
+  | 
+  v
+  o
+ / \
+v   v
+o-->o
+
+  o
+  ^ 
+  |
+  o
+ / \
+v   v
+o-->o
+
+  o
+  | 
+  v
+  o
+ ^ ^
+/   \
+o-->o
+
+  o
+  ^ 
+  |
+  o
+ ^ ^
+/   \
+o-->o
+
+  o
+ / \
+v   v
+o--->o
+ \   /
+  v v
+   o
+
+  o
+ ^ ^
+/   \
+o--->o
+ \   /
+  v v
+   o
+
+o-->o
+|\ /|
+| X |
+vv vv
+o-->o
+
+   o
+  /|\
+  /v \
+ / o \
+/ / \ \
+vv   v v
+o----->o
+
+    o
+   ^|^
+   /v \
+  / o  \
+ / ^ ^  \
+/ /   \  \
+o------->o
+
+    o
+   ^^^
+   /| \
+  / o  \
+ / ^ ^  \
+/ /   \  \
+o------->o
+
+
+There are 302 non-isomorphic DAGs with 5 vertices, a subset of 134 is shown here:
+  o
+o   o
+ o o
+
+  o
+o   o
+ o->o
+
+   o
+o     o
+      ^
+     /
+ o->o
+
+   o
+o      o
+      /
+     v
+ o->o
+
+   o
+o     o
+^ 
+ \
+  o->o
+
+   o
+o     o
+^     ^
+ \   /
+  o o
+
+   o
+    ^
+     \    
+o     o
+      ^
+     /
+ o->o
+
+   o
+     \
+      v 
+o     o
+      ^
+     /
+ o->o
+
+  o
+ /  \
+v    v
+o    o 
+ \
+  v
+  o o
+
+   o
+ / | \
+v  v  v
+o  o  o  
+     o
+
+   o
+ / |^
+v  v \ 
+o  o  o  
+     o
+
+   o
+  /^^
+ v | \
+o  o  o  
+     o
+
+   o
+  ^^^
+ / | \
+o  o  o  
+     o
+
+   o
+  / ^
+ v   \    
+o     o
+      ^
+     /
+ o->o
+
+   o
+  ^ ^
+ /   \    
+o     o
+      ^
+     /
+ o->o
+
+   o
+  ^ ^
+ /   \    
+o     o
+     /
+    v
+ o->o
+
+   o
+  ^|^
+ / | \    
+o  \  o
+    v
+ o->o
+
+   o
+ /|\\
+v v vv
+o o oo
+
+   o
+ /|\^
+v v v\
+o o o o
+
+   o
+ /|^^
+v v \\
+o o o o
+
+   o
+ /^^^
+v | \\
+o o o o
+
+   o
+ ^^^^
+ /| |\
+o o o o
+
+o
+|
+v
+o<-o
+^  | 
+|  v
+o  o
+
+   o  o
+ ^ ^  ^
+ / |  |
+o  |  |
+ \ |  |
+  v   |
+  o   o
+
+   o  o
+  /^  ^
+ v |  |
+o  |  |
+ ^ |  |
+  \   |
+  o   o
+
+o-->o
+|   |
+v   v
+o-->o
+|
+v
+o
+
+o-->o
+|   |
+v   v
+o-->o
+^
+|
+o
+
+o     o
+|     |
+v     v
+o  -> o
+ \   /
+  v v 
+   o
+
+o   > o
+|  /  |
+v /   v
+o     o
+ \   /
+  v v 
+   o
+
+ o -> o
+  \  /
+   vv
+o<-o->o
+
+ o -> o
+  \  /
+   vv
+o->o<-o
+
+   o
+ /   \
+v     v
+o     o 
+ \    /
+  v  v
+  o->o
+
+   o
+ /   \
+v     v
+o     o 
+ \    ^
+  v  /
+  o->o
+
+   o
+ /   \
+v     v
+o     o 
+ ^    ^
+  \  /
+  o->o
+
+    o  
+ / /\ \
+v /  \ v
+o<------o
+\ |\ /\/
+ \|/\ |/
+  vv  vv
+  o--->o
+
+o--->o
+|\  /|
+| \/ |
+| X  | o
+|/ \ |
+vv  vv
+o--->o
+
+o--->o
+|\  ^|
+|\ / |
+| X  | o
+|/ \ |
+v/  vv
+o--->o
+
+o--->o
+^\  /|
+| \/ | 
+| X  | o
+| /\ |    
+|/  \|
+|v  vv
+o--->o
+
+o--->o
+^\  ^|
+| \/ |
+| X  | o
+| /\ |   
+|/  \|
+|/  vv
+o--->o
+
+o--->o
+|\  /|
+| \/ |
+| X  | o
+| /\ |   
+|/  \|
+vv  vv
+o--->o
+
+o--->o
+|\  ^|
+| \/ |
+| X  | o
+| /\ |   
+|/  \|
+v/  vv
+o--->o
+
+o--->o
+^\  /|
+| \/ |
+| X  | o
+| /\ |   
+|/  \|
+|v  vv
+o--->o
+
+o--->o
+^\  ^|
+| \/ |
+| X  | o
+| /\ |   
+|/  \|
+|/  vv
+o--->o
+
+o--->o
+|\  /|^
+| \/ | \
+| X  |  o
+|/ \ |
+vv  vv
+o--->o
+
+o--->o
+|\  ^|^
+|\ / | \
+| X  |  o
+|/ \ |
+v/  vv
+o--->o
+
+o--->o
+^\  /|^
+| \/ | \
+| X  |  o
+| /\ |    
+|/  \|
+|v  vv
+o--->o
+
+o--->o
+^\  ^|^
+| \/ | \
+| X  |  o
+| /\ |   
+|/  \|
+|/  vv
+o--->o
+
+o--->o
+|\  /|\
+| \/ | v
+| X  | o
+| /\ |   
+|/  \|
+vv  vv
+o--->o
+
+o--->o
+|\  ^|\
+| \/ | v
+| X  | o
+| /\ |   
+|/  \|
+v/  vv
+o--->o
+
+o--->o
+^\  /|\
+| \/ | v
+| X  | o
+| /\ |   
+|/  \|
+|v  vv
+o--->o
+
+o--->o
+^\  ^|\
+| \/ | v
+| X  | o
+| /\ |   
+|/  \|
+|/  vv
+o--->o
+
+o--->o
+|\  /|
+| \/ |
+| X  |  o
+|/ \ | /
+vv  vvv
+o--->o
+
+o--->o
+|\  ^|
+|\ / |
+| X  |  o
+|/ \ | /
+v/  vvv
+o--->o
+
+o--->o
+^\  /|
+| \/ |
+| X  |  
+| /\ |  o   
+|/  \| /
+|v  vvv
+o--->o
+
+o--->o
+^\  ^|
+| \/ |
+| X  |  
+| /\ |  o   
+|/  \| /
+|/  vvv
+o--->o
+
+o--->o
+|\  /|
+| \/ |
+| X  |  o
+| /\ |  ^   
+|/  \| /
+vv  vv/
+o--->o
+
+o--->o
+|\  ^|
+| \/ |
+| X  |  o
+| /\ |  ^   
+|/  \| /
+v/  vv/
+o--->o
+
+o--->o
+^\  /|
+| \/ |
+| X  |  o
+| /\ |  ^   
+|/  \| /
+|v  vv/
+o--->o
+
+o--->o
+^\  ^|
+| \/ |
+| X  |  o
+| /\ |  ^   
+|/  \| /
+|/  vv/
+o--->o
+
+o--->o
+|\  /|^
+| \/ | \
+| X  |  o
+|/ \ | /
+vv  vvv
+o--->o
+
+o--->o
+|\  ^|^
+|\ / | \
+| X  |  o
+|/ \ | /
+v/  vvv
+o--->o
+
+o--->o
+^\  /|^
+| \/ | \
+| X  |  o
+| /\ | /   
+|/  \|v
+|v  vv
+o--->o
+
+o--->o
+^\  ^|^
+| \/ | \
+| X  |  o
+| /\ | /   
+|/  \|v
+|/  vv
+o--->o
+
+o--->o
+|\  /|\
+| \/ | v
+| X  | o
+| /\ | ^   
+|/  \|/
+vv  vv
+o--->o
+
+o--->o
+|\  ^|\
+| \/ | v
+| X  | o
+| /\ | ^   
+|/  \|/
+v/  vv
+o--->o
+
+o--->o
+^\  /|\
+| \/ | v
+| X  | o
+| /\ | ^   
+|/  \|/
+|v  vv
+o--->o
+
+o--->o
+^\  ^|\
+| \/ | v
+| X  | o
+| /\ | ^   
+|/  \|/
+|/  vv
+o--->o
+
+o-->o
+|^ ^|
+|\ /|
+| o |
+|/ \|
+vv vv
+o<--o
+
+   o
+ / / \
+v  v  v
+o->o  o
+   \ /
+   vv
+    o
+
+   o
+ / / \
+v  v  v
+o->o  o
+   ^ /
+   \v
+    o
+
+   o
+ / / \
+v  v  v
+o->o  o
+   ^ ^
+   \/
+    o
+
+   o
+ / ^ \
+v  /  v
+o->o  o
+   ^ ^
+   \/
+    o
+
+   o
+ / ^ ^
+v  /  \
+o->o  o
+   ^ ^
+   \/
+    o
+
+   o
+ ^ ^ ^
+/  /  \
+o->o  o
+   ^ ^
+   \/
+    o
+
+o->o->o->o
+ \ |  |  /
+ v v  v v 
+    o
+
+o-> o->o->o
+ ^  ^  ^  ^
+  \ |  | / 
+     o
+
+o->o->o<-o
+ \ |  |  /
+ v v  v v 
+    o
+
+o-> o->o<-o
+ ^  ^  ^  /
+  \ |  | v 
+     o
+
+o-> o->o<-o
+ ^  ^  ^  ^
+  \ |  | / 
+     o
+
+    o
+   /\
+  /  \
+ v    v
+o----->o
+\ \  / /
+ v vv v
+  o  o
+
+    o
+   /\
+  /  \
+ v    v
+o----->o
+\ \  / ^
+ v vv /
+  o  o
+
+    o
+   /\
+  /  \
+ v    v
+o----->o
+\ \  ^ ^
+ v v/ /
+  o  o
+
+    o
+   /\
+  /  \
+ v    v
+o----->o
+\ ^  ^ ^
+ v \/ /
+  o  o
+
+    o
+   /\
+  /  \
+ v    v
+o----->o
+^ ^  ^ ^
+ \ \/ /
+  o  o
+
+    o
+   ^\
+  /  \
+ /    v
+o----->o
+\ \  / /
+ v vv v
+  o  o
+
+    o
+   ^\
+  /  \
+ /    v
+o----->o
+\ \  / ^
+ v vv /
+  o  o
+
+    o
+   ^\
+  /  \
+ /    v
+o----->o
+\ \  ^ ^
+ v v/ /
+  o  o
+
+    o
+   ^\
+  /  \
+ /    v
+o----->o
+\ ^  ^ ^
+ v \/ /
+  o  o
+
+    o
+   ^\
+  /  \
+ /    v
+o----->o
+^ ^  ^ ^
+ \ \/ /
+  o  o
+
+    o
+   ^^
+  /  \
+ /    \
+o----->o
+\ \  / /
+ v vv v
+  o  o
+
+    o
+   ^^
+  /  \
+ /    \
+o----->o
+\ \  / ^
+ v vv /
+  o  o
+
+    o
+   ^^
+  /  \
+ /    \
+o----->o
+\ \  ^ ^
+ v v/ /
+  o  o
+
+    o
+   ^^
+  /  \
+ /    \
+o----->o
+\ ^  ^ ^
+ v \/ /
+  o  o
+
+    o
+   ^^
+  /  \
+ /    \
+o----->o
+^ ^  ^ ^
+ \ \/ /
+  o  o
+
+o   o
+|^ ^|
+|\ /|
+| o |
+|/ \|
+vv vv
+o   o
+
+o   o
+^^ ^|
+|\ /|
+| o |
+|/ \|
+|v vv
+o   o
+
+     o
+    /|\
+   v | v
+o->o | o
+    \| /
+    vvv
+     o
+
+     o
+    /|\
+   v | v
+o->o | o
+    \| ^
+    vv/
+     o
+
+     o
+    /^\
+   v | v
+o->o | o
+   ^ | ^
+    \|/
+     o
+
+     o
+    /|\
+   v | v
+o<-o | o
+    \| /
+    vvv
+     o
+
+     o
+    /|\
+   v | v
+o<-o | o
+    \| ^
+    vv/
+     o
+
+     o
+    /^\
+   v | v
+o<-o | o
+   ^ | ^
+    \|/
+     o
+
+  o
+  |
+  v
+  o
+ /|\
+v | v
+o | o
+ \|/
+ vvv
+  o
+
+  o
+  ^
+  |
+  o
+ /|\
+v | v
+o | o
+ \|/
+ vvv
+  o
+
+  o
+  ^
+  |
+  o
+ /|^
+v | \
+o | o
+ \|/
+ vvv
+  o
+
+  o
+  ^
+  |
+  o
+ ^|^
+/ | \
+o | o
+ \|/
+ vvv
+  o
+
+  o
+  |
+  v
+  o
+ /|\
+v | v
+o | o
+ \| ^
+ vv/
+  o
+
+  o
+  |
+  v
+  o
+ /^\
+v | v
+o | o
+ \| ^
+ v|/
+  o
+
+  o
+  |
+  v
+  o
+ /^\
+v | v
+o | o
+^ | ^
+ \|/
+  o
+
+  o
+ / \
+v   v
+o-->o
+|   |
+v   v
+o-->o
+
+  o
+ / \
+v   v
+o-->o
+|   ^
+v   |
+o-->o
+
+  o
+ / \
+v   v
+o<--o
+|   |
+v   v
+o-->o
+
+  o
+ / \
+v   v
+o<--o
+|   |
+v   v
+o-->o
+
+  o
+ ^ ^
+/   \
+o-->o
+|   |
+v   v
+o-->o
+
+  o
+ ^ ^
+/   \
+o-->o
+|   ^
+v   |
+o-->o
+
+  o
+ ^ ^
+/   \
+o<--o
+|   |
+v   v
+o-->o
+
+  o
+ ^ ^
+/   \
+o<--o
+|   |
+v   v
+o-->o
+
+o-->o
+|  ^^
+|  /|
+| o |
+|/  |
+vv  |
+o-->o
+
+o-->o
+|  ^^
+|  /|
+| o |
+|^  |
+v/  |
+o-->o
+
+o-->o
+^  ^^
+|  /|
+| o |
+|/  |
+|v  |
+o-->o
+
+o-->o
+^  ^^
+|  /|
+| o |
+|^  |
+|/  |
+o-->o
+
+o-->o
+|  ^|
+|  /|
+| o |
+|/  |
+vv  v
+o-->o
+
+o-->o
+|  ^|
+|  /|
+| o |
+|^  |
+v/  v
+o-->o
+
+o-->o
+^  ^|
+|  /|
+| o |
+|/  |
+|v  v
+o-->o
+
+o-->o
+^  ^|
+|  /|
+| o |
+|^  |
+|/  v
+o-->o
+
+  o
+  |
+  v
+  o
+  |
+  v
+  o
+ / \
+v   v
+o-->o
+
+  o
+  ^
+  |
+  o
+  |
+  v
+  o
+ / \
+v   v
+o-->o
+
+  o
+  |
+  v
+  o
+  |
+  v
+  o
+ ^ ^
+/   \
+o-->o
+
+  o
+  ^
+  |
+  o
+  |
+  v
+  o
+ ^ ^
+/   \
+o-->o
+
+o-->o
+|\  |
+| \ |
+v  vv
+o-->o o
+
+o-->o
+^\  |
+| \ |
+|  vv
+o-->o o
+
+o-->o
+|\  ^
+| \ |
+v  v|
+o-->o o
+
+o-->o
+^\  ^
+| \ |
+|  v|
+o-->o o
+
+Based on:
+https://oeis.org/A003087
+https://math.stackexchange.com/questions/354062/how-many-nonisomorphic-directed-simple-graphs-are-there-with-n-vertices-when/354077
+

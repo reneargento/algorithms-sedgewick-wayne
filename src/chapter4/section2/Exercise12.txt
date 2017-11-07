@@ -1,0 +1,29 @@
+4.2.12
+
+The strong components in Gr are the same as in G.
+
+Proof:
+For each strong component in G, every pair of vertices u and v has a path that can go from vertex u to vertex v and another path that can go from vertex v to vertex u.
+Reversing each edge direction in Gr maintains these paths, since the only modification is in the direction of the edges and there are no added or removed edges or added or removed vertices.
+
+Proof by contradiction:
+Suppose that there is a new strong component in Gr or that a strong component in G no longer exists in Gr.
+This would imply that not only the edge directions were reversed, but also that there is a new edge connecting a vertex that was not part of the original strong component (if there is a new strong component in Gr) or that an edge connecting two vertices in the original strong component was removed (if there is a strong component in G that no longer exists in Gr). Both cases are not possible.
+
+The main difference in Gr is that source vertices become sink vertices and sink vertices become source vertices, but this does not affect the strong components.
+
+Example:
+G graph
+A -> B -> C -> D
+     ^   /
+      \ v
+       E
+      
+G reverse (Gr)
+A <- B <- C <- D
+     \   ^
+      v /
+       E
+      
+As we can see in graphs G and Gr, the strongly connected components are the same.
+In this case, the strongly connected component is composed of the vertices B, C and E.

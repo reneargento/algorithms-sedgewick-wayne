@@ -1,0 +1,3 @@
+4.2.21
+
+False, this is not always the case. One or more vertices in the strong component may have edges pointing to one or more vertices that are not in the strong component. Depending on the visit order, this (or these) vertex (vertices) may be visited before the other vertices in the strong component and may be added to the postorder before the other unvisited vertices in the strong component.

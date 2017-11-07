@@ -1,0 +1,36 @@
+4.2.28 - Directed Eulerian Cycle
+
+Note: The statement to prove in the exercise "A strongly-connected digraph G has a directed Eulerian cycle if and only if each vertex has its indegree equal to its outdegree" was modified to "A strongly-connected digraph G has a directed Eulerian cycle if and only if IT IS CONNECTED AND each vertex has its indegree equal to its outdegree". This is the correct statement, otherwise the following graph would be considered to have an Eulerian cycle and it does not have one:
+
+o -> o   o -> o
+^    |   ^    |
+|    v   |    v
+o <- o   o <- o
+
+A strongly-connected digraph G has a directed Eulerian cycle if and only if it is connected and each vertex has its indegree equal to its outdegree.
+
+Proof:
+Part 1: If a strongly-connected digraph G has a directed Eulerian cycle then G is connected and each vertex of G has its indegree equal to its outdegree.
+If G is strongly-connected then it is, by definition, connected.
+If G has a directed Eulerian cycle C, then C is either a simple cycle (does not intersect with itself), or not. Since each vertex in a simple cycle has indegree = outdegree = 1, then if C is a simple cycle, the claim is true.
+If C is not a simple cycle, then it must contain a simple cycle. Remove it from G and from C. The remaining C is still an Euler circuit for the remaining G. Repeat removing (simple) cycles until no edges are left.
+When removing a cycle, an edge pointing to each vertex on the cycle and an edge pointing from each vertex on the cycle are removed. After a cycle deletion, the indegree and outdegree of each vertex on the cycle decrease by exactly 1.
+At the end, when no edges are left, all indegrees and outdegrees are 0. So all vertices in G must have started with indegree equal to their outdegree.
+
+Part 2: If G is connected and each vertex in G has its indegree equal to its outdegree then G is a strongly-connected digraph that has a directed Eulerian cycle.
+If every vertex v in G has indegree equals to its outdegree then for any vertex there must be a path starting from v and coming back to v. This statement can be proven as follows:
+For any vertex v, there must be a cycle that contains v. Start from v and choose any outgoing edge of v, such as (v, u). Since the indegree of u is equal to the outdegree of u it is possible to pick some edge pointing from u and continue visiting edges. Each time an edge is chosen it can be removed from further consideration. At each vertex other than v, at the time an edge pointing to it is visited, there must be an edge pointing from it that is unvisited, since indegree is equal to outdegree for all vertices. The only vertex for which there may not be an unvisited outgoing edge is v - because the cycle started by visiting one of the edges pointing from v. Since there is always an edge pointing from a vertex that can be visited for any vertex other than v, eventually the cycle must return to v, thus proving the claim.
+Now it is possible to choose a random vertex v and find a cycle C that comes back to v. 
+Delete all the edges on C from G to create G'.
+If there are no more edges then C was a strongly connected component and G is a strongly-connected digraph with a directed Eulerian cycle.
+If there are still any edges on G': Each vertex in G' still has its indegree equal to its outdegree, so pick a vertex v' on C that has edges pointing to it and repeat the process. Since G is connected, G' shares at least one vertex with the removed cycle C.
+Overall we find a cycle C, then another cycle C' that has (at least) a common vertex with C, and so on until there are no edges remaining.
+When finished, the process ends up with a set of cycles with vertices in G whose union contains every edge exactly once.
+This means that for every pair of cycles C and C' there exists a big cycle that goes around C, passes through C', goes around C', then comes back to C and finishes C, meaning that G is a strongly-connected digraph with a directed Eulerian cycle (which is the big cycle that contains all the cycles found).
+
+The proof that the union of a finite number of cycles of a connected digraph is a cycle is the following:
+Proof by induction: for a single cycle, there is nothing to prove. If there is more than one cycle, there is at least two cycles that share a vertex. Starting from this vertex, traverse the first of the cycles then the other cycle, which exactly implies that the union of the two is a cycle. We are thus able to reduce the number of cycles in the union by 1 which leads to a proof by induction on the number of cycles.
+
+Based on:
+http://www.bowdoin.edu/~ltoma/teaching/cs231/fall09/Homeworks/old/H9-sol%203.pdf
+https://www.cut-the-knot.org/arithmetic/combinatorics/EulerCyclesInDigraph.shtml

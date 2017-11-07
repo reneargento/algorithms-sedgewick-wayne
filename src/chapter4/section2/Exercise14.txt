@@ -1,0 +1,8 @@
+4.2.14
+
+Let C be a strong component in a digraph G and let v be any vertex not in C.
+If there is an edge e pointing from v to any vertex in C, then vertex v appears before every vertex in C in the reverse postorder of G.
+
+Proof:
+If v is visited before every vertex in C, then every vertex in C will be visited and finished before v finishes (because every vertex in C is reachable from v via edge e). If some vertex in C is visited before v, then all vertices in C will be visited and finished before v is visited (because v is not reachable from any vertex in C - if it were, such a path when combined with edge e would be part of a directed cycle implying that v is in C.
+Consequently, the vertices in C will appear before v in the postorder of G. Therefore, v will appear before every vertex in C in the reverse postorder of G.

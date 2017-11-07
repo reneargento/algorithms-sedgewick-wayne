@@ -1,0 +1,3 @@
+4.2.17
+
+Number of strong components: 10

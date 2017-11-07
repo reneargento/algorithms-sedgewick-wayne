@@ -1,0 +1,18 @@
+4.2.36 - DAG enumeration
+
+First it is necessary to compute the maximum number of possible edges in a DAG.
+Consider any vertex in the digraph. Let's call it V1.
+The maximum number of directed edges that V1 can have without generating a cycle is V - 1 (it can have a directed edge pointing to all the other vertices). 
+Choose a second vertex, V2. 
+V2 can have a directed edge to all the other vertices, except itself and V1. This adds V - 2 additional edges to the digraph.
+Continue this process for the remaining vertices: each vertex can have one less directed edge than the previous vertex.
+The last vertex cannot have any directed edges.
+
+The sum of all possible edges is (V - 1) + (V - 2) + ... + 1 + 0 = (V - 1) * V / 2
+
+From this set of combinations there are E ways to choose the vertices to connect.
+
+So there are ((V - 1) * V / 2) = ((V - 1) * V / 2)! / E! * (((V - 1) * V / 2) - E)! DAGs.
+             (      E        )
+
+Reference: https://stackoverflow.com/questions/11699095/how-many-edges-can-there-be-in-a-dag
