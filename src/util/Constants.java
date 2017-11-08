@@ -12,5 +12,6 @@ public class Constants {
     public static final String MEDIUM_DIGRAPH_FILE = "4.2.17_mediumDG.txt";
     public static final String WEB_DIGRAPH_FILE = "web-google-dir.txt";
     public static final String CITATION_DIGRAPH_FILE = "hep-ph-citations.txt";
+    public static final String TINY_EWG_FILE = "4.3.9_tinyEWG.txt";
 
 }

@@ -1,0 +1,48 @@
+package chapter4.section3;
+
+import chapter1.section3.Queue;
+import chapter1.section5.UnionFind;
+import chapter2.section4.PriorityQueueResize;
+
+/**
+ * Created by rene on 07/11/17.
+ */
+public class KruskalMST {
+
+    private Queue<Edge> minimumSpanningTree;
+
+    public KruskalMST(EdgeWeightedGraph edgeWeightedGraph) {
+        minimumSpanningTree = new Queue<>();
+        PriorityQueueResize<Edge> priorityQueue = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
+
+        for(Edge edge : edgeWeightedGraph.edges()) {
+            priorityQueue.insert(edge);
+        }
+
+        UnionFind unionFind = new UnionFind(edgeWeightedGraph.vertices());
+
+        while (!priorityQueue.isEmpty() && minimumSpanningTree.size() < edgeWeightedGraph.vertices() - 1) {
+            Edge edge = priorityQueue.deleteTop(); // Get lowest-weight edge from priority queue
+            int vertex1 = edge.either();
+            int vertex2 = edge.other(vertex1);
+
+            // Ignore ineligible edges
+            if(unionFind.connected(vertex1, vertex2)) {
+                continue;
+            }
+
+            unionFind.union(vertex1, vertex2);
+            minimumSpanningTree.enqueue(edge); // Add edge to the minimum spanning tree
+        }
+    }
+
+    public Iterable<Edge> edges() {
+        return minimumSpanningTree;
+    }
+
+    public double weight() {
+        // Will be done in exercise 4.3.31
+        return 0;
+    }
+
+}
