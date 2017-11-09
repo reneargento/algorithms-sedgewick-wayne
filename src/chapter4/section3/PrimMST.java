@@ -1,5 +1,6 @@
 package chapter4.section3;
 
+import chapter1.section3.Queue;
 import chapter2.section4.IndexMinPriorityQueue;
 
 /**
@@ -7,10 +8,12 @@ import chapter2.section4.IndexMinPriorityQueue;
  */
 public class PrimMST {
 
-    private Edge[] edgeTo; // shortest edge from tree vertex
+    protected Edge[] edgeTo; // shortest edge from tree vertex
     private double[] distTo; // distTo[vertex] = edgeTo[vertex].weight()
     private boolean[] marked; // true if vertex is on the minimum spanning tree
     private IndexMinPriorityQueue<Double> priorityQueue; // eligible crossing edges
+
+    private double weight;
 
     public PrimMST(EdgeWeightedGraph edgeWeightedGraph) {
         edgeTo = new Edge[edgeWeightedGraph.vertices()];
@@ -43,6 +46,11 @@ public class PrimMST {
 
             if(edge.weight() < distTo[otherVertex]) {
                 // Edge edge is the new best connection from the minimum spanning tree to otherVertex
+                if(distTo[otherVertex] != Double.POSITIVE_INFINITY) {
+                    weight -= distTo[otherVertex];
+                }
+                weight += edge.weight();
+
                 edgeTo[otherVertex] = edge;
                 distTo[otherVertex] = edge.weight();
 
@@ -56,13 +64,27 @@ public class PrimMST {
     }
 
     public Iterable<Edge> edges() {
-        // Will be done in exercise 4.3.21
-        return null;
+        Queue<Edge> minimumSpanningTree = new Queue<>();
+
+        for(int vertex = 1; vertex < edgeTo.length; vertex++) {
+            minimumSpanningTree.enqueue(edgeTo[vertex]);
+        }
+
+        return minimumSpanningTree;
     }
 
-    public double weight() {
-        // Will be done in exercise 4.3.31
-        return 0;
+    public double lazyWeight() {
+        double weight = 0;
+
+        for(Edge edge : edges()) {
+            weight += edge.weight();
+        }
+
+        return weight;
+    }
+
+    public double eagerWeight() {
+        return weight;
     }
 
 }
