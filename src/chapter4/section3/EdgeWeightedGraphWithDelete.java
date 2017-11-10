@@ -1,29 +1,30 @@
 package chapter4.section3;
 
 import chapter1.section3.Bag;
+import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.In;
 
 /**
- * Created by rene on 07/11/17.
+ * Created by rene on 09/11/17.
  */
 @SuppressWarnings("unchecked")
-public class EdgeWeightedGraph implements EdgeWeightedGraphInterface {
+public class EdgeWeightedGraphWithDelete implements EdgeWeightedGraphInterface {
 
     private final int vertices;
     private int edges;
-    private Bag<Edge>[] adjacent;
+    private HashSet<Edge>[] adjacent;
 
-    public EdgeWeightedGraph(int vertices) {
+    public EdgeWeightedGraphWithDelete(int vertices) {
         this.vertices = vertices;
-        edges = 0;
-        adjacent = (Bag<Edge>[]) new Bag[vertices];
+        this.edges = 0;
+        adjacent = (HashSet<Edge>[]) new HashSet[vertices];
 
         for(int vertex = 0; vertex < vertices; vertex++) {
-            adjacent[vertex] = new Bag<>();
+            adjacent[vertex] = new HashSet<>();
         }
     }
 
-    public EdgeWeightedGraph(In in) {
+    public EdgeWeightedGraphWithDelete(In in) {
         this(in.readInt());
         int edges = in.readInt();
 
@@ -58,15 +59,24 @@ public class EdgeWeightedGraph implements EdgeWeightedGraphInterface {
         edges++;
     }
 
+    public void deleteEdge(Edge edge) {
+        int vertex1 = edge.either();
+        int vertex2 = edge.other(vertex1);
+
+        adjacent[vertex1].delete(edge);
+        adjacent[vertex2].delete(edge);
+        edges--;
+    }
+
     public Iterable<Edge> adjacent(int vertex) {
-        return adjacent[vertex];
+        return adjacent[vertex].keys();
     }
 
     public Iterable<Edge> edges() {
         Bag<Edge> edges = new Bag<>();
 
         for(int vertex = 0; vertex < vertices; vertex++) {
-            for(Edge edge : adjacent[vertex]) {
+            for(Edge edge : adjacent[vertex].keys()) {
                 if(edge.other(vertex) > vertex) {
                     edges.add(edge);
                 }
@@ -92,3 +102,4 @@ public class EdgeWeightedGraph implements EdgeWeightedGraphInterface {
         return stringBuilder.toString();
     }
 }
+

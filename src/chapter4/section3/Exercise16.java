@@ -2,7 +2,6 @@ package chapter4.section3;
 
 import chapter1.section3.Queue;
 import chapter1.section3.Stack;
-import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Arrays;
@@ -12,13 +11,6 @@ import java.util.Arrays;
  */
 public class Exercise16 {
 
-    private boolean visited[];
-    private Edge[] edgeTo;
-    private Stack<Edge> cycle; // edges on  a cycle (if one exists)
-    private boolean[] onStack; // vertices on recursive call stack
-    private HashSet<Edge> visitedEdges;
-    private boolean cycleFound;
-
     public double[] getWeightRangeToBeInMST(Queue<Edge> minimumSpanningTree, Edge newEdge) {
         EdgeWeightedGraph edgeWeightedGraph = new EdgeWeightedGraph(minimumSpanningTree.size() + 1);
 
@@ -26,25 +18,12 @@ public class Exercise16 {
             edgeWeightedGraph.addEdge(edgeInMST);
         }
 
-        // MST now has a cycle
+        // Add newEdge and MST now has a cycle
         edgeWeightedGraph.addEdge(newEdge);
 
-        visited = new boolean[edgeWeightedGraph.vertices()];
-        edgeTo = new Edge[edgeWeightedGraph.vertices()];
-        onStack = new boolean[edgeWeightedGraph.vertices()];
-        visitedEdges = new HashSet<>();
-        cycleFound = false;
-        cycle = null;
-
-        for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
-            if(cycleFound) {
-                break;
-            }
-
-            if(!visited[vertex]) {
-                dfs(edgeWeightedGraph, vertex);
-            }
-        }
+        // Get cycle
+        EdgeWeightedCycle edgeWeightedCycle = new EdgeWeightedCycle(edgeWeightedGraph);
+        Stack<Edge> cycle = edgeWeightedCycle.cycle();
 
         Edge[] edgesInCycle = new Edge[cycle.size()];
         int edgesInCycleIndex = 0;
@@ -65,43 +44,6 @@ public class Exercise16 {
         }
 
         return new double[]{minWeightInRange, maxWeightInRange};
-    }
-
-    private void dfs(EdgeWeightedGraph edgeWeightedGraph, int vertex) {
-        onStack[vertex] = true;
-        visited[vertex] = true;
-
-        for(Edge neighbor : edgeWeightedGraph.adjacent(vertex)) {
-            if(visitedEdges.contains(neighbor)) {
-                continue;
-            }
-
-            visitedEdges.add(neighbor);
-            int neighborVertex = neighbor.other(vertex);
-
-            if(hasCycle()) {
-                return;
-            } else if(!visited[neighborVertex]) {
-                edgeTo[neighborVertex] = neighbor;
-                dfs(edgeWeightedGraph, neighborVertex);
-            } else if(onStack[neighborVertex]) {
-                cycleFound = true;
-                cycle = new Stack<>();
-
-                for(int currentVertex = vertex; currentVertex != neighborVertex;
-                    currentVertex = edgeTo[currentVertex].other(currentVertex)) {
-                    cycle.push(edgeTo[currentVertex]);
-                }
-
-                cycle.push(neighbor);
-            }
-        }
-
-        onStack[vertex] = false;
-    }
-
-    public boolean hasCycle() {
-        return cycle != null;
     }
 
     public static void main(String[] args) {

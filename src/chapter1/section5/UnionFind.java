@@ -15,7 +15,7 @@ public class UnionFind implements UF {
         ranks = new int[n];
         components = n;
 
-        for(int i=0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             leaders[i]  = i;
             ranks[i] = 0;
         }

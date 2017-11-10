@@ -15,7 +15,7 @@ public class PrimMST {
 
     private double weight;
 
-    public PrimMST(EdgeWeightedGraph edgeWeightedGraph) {
+    public PrimMST(EdgeWeightedGraphInterface edgeWeightedGraph) {
         edgeTo = new Edge[edgeWeightedGraph.vertices()];
         distTo = new double[edgeWeightedGraph.vertices()];
         marked = new boolean[edgeWeightedGraph.vertices()];
@@ -34,7 +34,7 @@ public class PrimMST {
         }
     }
 
-    private void visit(EdgeWeightedGraph edgeWeightedGraph, int vertex) {
+    private void visit(EdgeWeightedGraphInterface edgeWeightedGraph, int vertex) {
         // Add vertex to the minimum spanning tree; update data structures
         marked[vertex] = true;
 

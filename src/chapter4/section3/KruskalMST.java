@@ -10,6 +10,7 @@ import chapter2.section4.PriorityQueueResize;
 public class KruskalMST {
 
     private Queue<Edge> minimumSpanningTree;
+    private double weight;
 
     public KruskalMST(EdgeWeightedGraph edgeWeightedGraph) {
         minimumSpanningTree = new Queue<>();
@@ -33,6 +34,8 @@ public class KruskalMST {
 
             unionFind.union(vertex1, vertex2);
             minimumSpanningTree.enqueue(edge); // Add edge to the minimum spanning tree
+
+            weight += edge.weight();
         }
     }
 
@@ -40,9 +43,18 @@ public class KruskalMST {
         return minimumSpanningTree;
     }
 
-    public double weight() {
-        // Will be done in exercise 4.3.31
-        return 0;
+    public double lazyWeight() {
+        double weight = 0;
+
+        for(Edge edge : edges()) {
+            weight += edge.weight();
+        }
+
+        return weight;
+    }
+
+    public double eagerWeight() {
+        return weight;
     }
 
 }
