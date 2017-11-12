@@ -73,7 +73,7 @@ public class Exercise37_EuclideanGraphs {
             edges++;
         }
 
-        public void show(double xScaleLow, double xScaleHigh, double yScaleLow, double yScaleHigh, double radiusToCleanAroundVertex) {
+        public void show(double xScaleLow, double xScaleHigh, double yScaleLow, double yScaleHigh, double radiusOfCircleAroundVertex) {
             // Set canvas size
             StdDraw.setCanvasSize(500, 400);
             StdDraw.setXscale(xScaleLow, xScaleHigh);
@@ -94,7 +94,11 @@ public class Exercise37_EuclideanGraphs {
 
                     StdDraw.setPenColor(Color.WHITE);
                     StdDraw.filledCircle(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
-                            radiusToCleanAroundVertex);
+                            radiusOfCircleAroundVertex);
+
+                    StdDraw.setPenColor(Color.BLACK);
+                    StdDraw.circle(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
+                            radiusOfCircleAroundVertex);
 
                     StdDraw.setPenColor(Color.BLUE);
                     StdDraw.text(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
@@ -158,7 +162,7 @@ public class Exercise37_EuclideanGraphs {
         euclideanGraph.addEdge(vertex1, vertex5);
         euclideanGraph.addEdge(vertex5, vertex6);
 
-        euclideanGraph.show(0, 15, 0, 20, 0.5);
+        euclideanGraph.show(0, 15, -2, 18, 0.5);
         StdOut.println(euclideanGraph);
     }
 

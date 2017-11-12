@@ -25,7 +25,7 @@ Digraph
 * int value (V) -> 4 bytes
 * int value (E) -> 4 bytes
 * Bag<Integer>[] reference (adj) -> 8 bytes
-* array of Bag<Integer> (adj)
+* Bag<Integer>[] (adj)
    object overhead -> 16 bytes
    int value (length) -> 4 bytes
    int value (padding) -> 4 bytes

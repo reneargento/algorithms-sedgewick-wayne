@@ -12,6 +12,8 @@ public class LazyPrimMST {
     private Queue<Edge> minimumSpanningTree;
     private PriorityQueueResize<Edge> priorityQueue; // crossing (and ineligible) edges
 
+    private double weight;
+
     public LazyPrimMST(EdgeWeightedGraph edgeWeightedGraph) {
         priorityQueue = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
         marked = new boolean[edgeWeightedGraph.vertices()];
@@ -31,6 +33,7 @@ public class LazyPrimMST {
 
             // Add edge to the minimum spanning tree
             minimumSpanningTree.enqueue(edge);
+            weight += edge.weight();
 
             // Add vertex to the minimum spanning tree
             if(!marked[vertex1]) {
@@ -57,9 +60,18 @@ public class LazyPrimMST {
         return minimumSpanningTree;
     }
 
-    public double weight() {
-        // Will be done in exercise 4.3.31
-        return 0;
+    public double lazyWeight() {
+        double weight = 0;
+
+        for(Edge edge : edges()) {
+            weight += edge.weight();
+        }
+
+        return weight;
+    }
+
+    public double eagerWeight() {
+        return weight;
     }
 
 }
