@@ -39,7 +39,7 @@ public class Exercise38_EuclideanDigraphs {
         private final int vertices;
         private int edges;
         private Vertex[] allVertices;
-        private Bag<Vertex>[] adjacent;
+        private Bag<Integer>[] adjacent;
 
         private int[] indegrees;
         private int[] outdegrees;
@@ -48,7 +48,7 @@ public class Exercise38_EuclideanDigraphs {
             this.vertices = vertices;
             this.edges = 0;
             allVertices = new Vertex[vertices];
-            adjacent = (Bag<Vertex>[]) new Bag[vertices];
+            adjacent = (Bag<Integer>[]) new Bag[vertices];
 
             indegrees = new int[vertices];
             outdegrees = new int[vertices];
@@ -70,19 +70,16 @@ public class Exercise38_EuclideanDigraphs {
             allVertices[vertex.id] = vertex;
         }
 
-        public void addEdge(Vertex vertex1, Vertex vertex2) {
-            if(allVertices[vertex1.id] == null) {
-                allVertices[vertex1.id] = vertex1;
-            }
-            if(allVertices[vertex2.id] == null) {
-                allVertices[vertex2.id] = vertex2;
+        public void addEdge(int vertexId1, int vertexId2) {
+            if(allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
+                throw new IllegalArgumentException("Vertex id not found");
             }
 
-            adjacent[vertex1.id].add(vertex2);
+            adjacent[vertexId1].add(vertexId2);
 
             edges++;
-            outdegrees[vertex1.id]++;
-            indegrees[vertex2.id]++;
+            outdegrees[vertexId1]++;
+            indegrees[vertexId2]++;
         }
 
         public void show(double xScaleLow, double xScaleHigh, double yScaleLow, double yScaleHigh,
@@ -98,48 +95,49 @@ public class Exercise38_EuclideanDigraphs {
             double arrowWidth = padding * 2;
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                for(Vertex neighbor : adjacent(vertexId)) {
+                for(Integer neighbor : adjacent(vertexId)) {
+                    Vertex neighborVertex = allVertices[neighbor];
 
                     // Edges pointing up
-                    if(allVertices[vertexId].yCoordinate < neighbor.yCoordinate) {
-                        if(allVertices[vertexId].xCoordinate < neighbor.xCoordinate) {
+                    if(allVertices[vertexId].yCoordinate < neighborVertex.yCoordinate) {
+                        if(allVertices[vertexId].xCoordinate < neighborVertex.xCoordinate) {
                             // Edge pointing diagonally up and right
                             drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate + padding,
-                                    neighbor.xCoordinate, neighbor.yCoordinate - padding, arrowWidth, arrowLength);
-                        } else if(allVertices[vertexId].xCoordinate > neighbor.xCoordinate) {
+                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
+                        } else if(allVertices[vertexId].xCoordinate > neighborVertex.xCoordinate) {
                             // Edge pointing diagonally up and left
                             drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate + padding,
-                                    neighbor.xCoordinate, neighbor.yCoordinate - padding, arrowWidth, arrowLength);
+                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
                         } else {
                             // Edge pointing up
                             drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate + padding * 2,
-                                    neighbor.xCoordinate, neighbor.yCoordinate - padding, arrowWidth, arrowLength);
+                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
                         }
-                    } if(allVertices[vertexId].yCoordinate > neighbor.yCoordinate) {
+                    } if(allVertices[vertexId].yCoordinate > neighborVertex.yCoordinate) {
                         //Edges pointing down
-                        if(allVertices[vertexId].xCoordinate < neighbor.xCoordinate) {
+                        if(allVertices[vertexId].xCoordinate < neighborVertex.xCoordinate) {
                             // Edge pointing diagonally down and right
                             drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate - padding * 2,
-                                    neighbor.xCoordinate, neighbor.yCoordinate + padding * 4, arrowWidth, arrowLength);
-                        } else if(allVertices[vertexId].xCoordinate > neighbor.xCoordinate) {
+                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 4, arrowWidth, arrowLength);
+                        } else if(allVertices[vertexId].xCoordinate > neighborVertex.xCoordinate) {
                             // Edge pointing diagonally down and left
                             drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate - padding * 2,
-                                    neighbor.xCoordinate, neighbor.yCoordinate + padding * 4, arrowWidth, arrowLength);
+                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 4, arrowWidth, arrowLength);
                         } else {
                             // Edge pointing down
                             drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate - padding * 2,
-                                    neighbor.xCoordinate, neighbor.yCoordinate + padding * 2, arrowWidth, arrowLength);
+                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 2, arrowWidth, arrowLength);
                         }
-                    } else if(allVertices[vertexId].yCoordinate == neighbor.yCoordinate) {
+                    } else if(allVertices[vertexId].yCoordinate == neighborVertex.yCoordinate) {
                         // Horizontal edges
-                        if(allVertices[vertexId].xCoordinate < neighbor.xCoordinate) {
+                        if(allVertices[vertexId].xCoordinate < neighborVertex.xCoordinate) {
                             // Edge pointing right
                             drawArrowLine(allVertices[vertexId].xCoordinate + padding * 2, allVertices[vertexId].yCoordinate,
-                                    neighbor.xCoordinate - padding * 2, neighbor.yCoordinate, arrowWidth, arrowLength);
-                        } else if(allVertices[vertexId].xCoordinate > neighbor.xCoordinate) {
+                                    neighborVertex.xCoordinate - padding * 2, neighborVertex.yCoordinate, arrowWidth, arrowLength);
+                        } else if(allVertices[vertexId].xCoordinate > neighborVertex.xCoordinate) {
                             // Edge pointing left
                             drawArrowLine(allVertices[vertexId].xCoordinate - padding * 2, allVertices[vertexId].yCoordinate,
-                                    neighbor.xCoordinate + padding * 2, neighbor.yCoordinate, arrowWidth, arrowLength);
+                                    neighborVertex.xCoordinate + padding * 2, neighborVertex.yCoordinate, arrowWidth, arrowLength);
                         }
                     }
                 }
@@ -155,7 +153,7 @@ public class Exercise38_EuclideanDigraphs {
             }
         }
 
-        public Iterable<Vertex> adjacent(int vertexId) {
+        public Iterable<Integer> adjacent(int vertexId) {
             return adjacent[vertexId];
         }
 
@@ -171,8 +169,8 @@ public class Exercise38_EuclideanDigraphs {
             EuclideanDigraph reverse = new EuclideanDigraph(vertices);
 
             for(int vertex = 0; vertex < vertices; vertex++) {
-                for(Vertex neighbor : adjacent(vertex)) {
-                    reverse.addEdge(neighbor, allVertices[vertex]);
+                for(Integer neighbor : adjacent(vertex)) {
+                    reverse.addEdge(neighbor, vertex);
                 }
             }
 
@@ -186,8 +184,8 @@ public class Exercise38_EuclideanDigraphs {
             for(int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(Vertex neighbor : adjacent(vertex)) {
-                    stringBuilder.append(neighbor.id).append(" ");
+                for(Integer neighbor : adjacent(vertex)) {
+                    stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
             }
@@ -256,14 +254,14 @@ public class Exercise38_EuclideanDigraphs {
         euclideanDigraph.addVertex(vertex5);
         euclideanDigraph.addVertex(vertex6);
 
-        euclideanDigraph.addEdge(vertex0, vertex1);
-        euclideanDigraph.addEdge(vertex2, vertex1);
-        euclideanDigraph.addEdge(vertex0, vertex2);
-        euclideanDigraph.addEdge(vertex3, vertex6);
-        euclideanDigraph.addEdge(vertex4, vertex6);
-        euclideanDigraph.addEdge(vertex3, vertex4);
-        euclideanDigraph.addEdge(vertex1, vertex5);
-        euclideanDigraph.addEdge(vertex5, vertex6);
+        euclideanDigraph.addEdge(0, 1);
+        euclideanDigraph.addEdge(2, 1);
+        euclideanDigraph.addEdge(0, 2);
+        euclideanDigraph.addEdge(3, 6);
+        euclideanDigraph.addEdge(4, 6);
+        euclideanDigraph.addEdge(3, 4);
+        euclideanDigraph.addEdge(1, 5);
+        euclideanDigraph.addEdge(5, 6);
 
         euclideanDigraph.show(0, 15, 0, 20, 0.08, 0.4);
         StdOut.println(euclideanDigraph);

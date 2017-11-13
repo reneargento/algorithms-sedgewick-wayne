@@ -48,7 +48,7 @@ public class Exercise47_RandomTransportationGraphs {
                 String[] vertices = in.readLine().split(separator);
 
                 for(int vertex = 0; vertex < vertices.length - 1; vertex++) {
-                    //Since we need an EuclideanGraph, we use the coordinates instead of the vertex IDs
+                    //Since we need an EuclideanGraph, we get the coordinates first
 //                    int vertex1 = vertexNameToIdMap.get(vertices[vertex]);
 //                    int vertex2 = vertexNameToIdMap.get(vertices[vertex + 1]);
 
@@ -57,7 +57,10 @@ public class Exercise47_RandomTransportationGraphs {
                     Exercise37_EuclideanGraphs.EuclideanGraph.Vertex coordinateVertex2 =
                             metroStationToCoordinateMap.get(vertices[vertex + 1]);
 
-                    graph.addEdge(coordinateVertex1, coordinateVertex2);
+                    graph.addVertex(coordinateVertex1);
+                    graph.addVertex(coordinateVertex2);
+
+                    graph.addEdge(coordinateVertex1.id, coordinateVertex2.id);
                 }
             }
         }

@@ -174,7 +174,7 @@ public class Exercise44_RandomGridGraphs {
 
                         //Used to avoid connecting vertices more than once
                         if(vertexId1 < vertexId2) {
-                            randomEuclideanGridGraph.addEdge(verticesGrid[row][column], verticesGrid[neighborRow][neighborColumn]);
+                            randomEuclideanGridGraph.addEdge(vertexId1, vertexId2);
                         }
                     }
                 }
@@ -183,9 +183,9 @@ public class Exercise44_RandomGridGraphs {
 
         //Add extra edges
         for(Edge extraEdge : extraEdgesList) {
-            // We access allVertices[] here because extraEdgesList is guaranteed to only have edges connecting valid vertices
-            // Otherwise, we would have to get the vertices references from verticesGrid[][]
-            randomEuclideanGridGraph.addEdge(allVertices[extraEdge.vertex1], allVertices[extraEdge.vertex2]);
+            // We have to access allVertices[] here because it has the updated vertex ids (in the cases where graph
+            // shrinking occurred).
+            randomEuclideanGridGraph.addEdge(allVertices[extraEdge.vertex1].id, allVertices[extraEdge.vertex2].id);
         }
 
         return randomEuclideanGridGraph;

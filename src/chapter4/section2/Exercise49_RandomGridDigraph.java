@@ -183,9 +183,9 @@ public class Exercise49_RandomGridDigraph {
                         if(vertexId1 < vertexId2) {
                             int randomDirection = StdRandom.uniform(2);
                             if(randomDirection == 0) {
-                                randomEuclideanGridDigraph.addEdge(verticesGrid[row][column], verticesGrid[neighborRow][neighborColumn]);
+                                randomEuclideanGridDigraph.addEdge(vertexId1, vertexId2);
                             } else {
-                                randomEuclideanGridDigraph.addEdge(verticesGrid[neighborRow][neighborColumn], verticesGrid[row][column]);
+                                randomEuclideanGridDigraph.addEdge(vertexId2, vertexId1);
                             }
                         }
                     }
@@ -195,9 +195,9 @@ public class Exercise49_RandomGridDigraph {
 
         //Add extra edges
         for(Edge extraEdge : extraEdgesList) {
-            // We access allVertices[] here because extraEdgesList is guaranteed to only have edges connecting valid vertices
-            // Otherwise, we would have to get the vertices references from verticesGrid[][]
-            randomEuclideanGridDigraph.addEdge(allVertices[extraEdge.tailVertex], allVertices[extraEdge.headVertex]);
+            // We have to access allVertices[] here because it has the updated vertex ids (in the cases where graph
+            // shrinking occurred).
+            randomEuclideanGridDigraph.addEdge(allVertices[extraEdge.tailVertex].id, allVertices[extraEdge.headVertex].id);
         }
 
         return randomEuclideanGridDigraph;

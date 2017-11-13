@@ -35,7 +35,7 @@ public class Exercise43_RandomEuclideanGraphs {
                         allVertices[otherVertex].xCoordinate, allVertices[otherVertex].yCoordinate);
 
                 if(distance <= radius) {
-                    randomEuclideanGraph.addEdge(allVertices[vertexId], allVertices[otherVertex]);
+                    randomEuclideanGraph.addEdge(vertexId, otherVertex);
                     unionFind.union(vertexId, otherVertex);
                 }
             }

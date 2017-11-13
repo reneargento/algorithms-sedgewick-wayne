@@ -39,13 +39,13 @@ public class Exercise37_EuclideanGraphs {
         private final int vertices;
         private int edges;
         private Vertex[] allVertices;
-        private Bag<Vertex>[] adjacent;
+        private Bag<Integer>[] adjacent;
 
         public EuclideanGraph(int vertices) {
             this.vertices = vertices;
             this.edges = 0;
             allVertices = new Vertex[vertices];
-            adjacent = (Bag<Vertex>[]) new Bag[vertices];
+            adjacent = (Bag<Integer>[]) new Bag[vertices];
 
             for(int i = 0; i < vertices; i++) {
                 adjacent[i] = new Bag<>();
@@ -64,16 +64,13 @@ public class Exercise37_EuclideanGraphs {
             allVertices[vertex.id] = vertex;
         }
 
-        public void addEdge(Vertex vertex1, Vertex vertex2) {
-            if(allVertices[vertex1.id] == null) {
-                allVertices[vertex1.id] = vertex1;
-            }
-            if(allVertices[vertex2.id] == null) {
-                allVertices[vertex2.id] = vertex2;
+        public void addEdge(int vertexId1, int vertexId2) {
+            if(allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
+                throw new IllegalArgumentException("Vertex id not found");
             }
 
-            adjacent[vertex1.id].add(vertex2);
-            adjacent[vertex2.id].add(vertex1);
+            adjacent[vertexId1].add(vertexId2);
+            adjacent[vertexId2].add(vertexId1);
             edges++;
         }
 
@@ -87,9 +84,11 @@ public class Exercise37_EuclideanGraphs {
             StdDraw.setPenColor(Color.BLACK);
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                for(Vertex neighbor : adjacent(vertexId)) {
+                for(int neighbor : adjacent(vertexId)) {
+                    Vertex neighborVertex = allVertices[neighbor];
+
                     StdDraw.line(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
-                            neighbor.xCoordinate, neighbor.yCoordinate);
+                            neighborVertex.xCoordinate, neighborVertex.yCoordinate);
                 }
             }
 
@@ -115,7 +114,7 @@ public class Exercise37_EuclideanGraphs {
             return adjacent[vertex].size();
         }
 
-        public Iterable<Vertex> adjacent(int vertexId) {
+        public Iterable<Integer> adjacent(int vertexId) {
             return adjacent[vertexId];
         }
 
@@ -126,8 +125,8 @@ public class Exercise37_EuclideanGraphs {
             for(int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(Vertex neighbor : adjacent(vertex)) {
-                    stringBuilder.append(neighbor.id).append(" ");
+                for(int neighbor : adjacent(vertex)) {
+                    stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
             }
@@ -157,14 +156,14 @@ public class Exercise37_EuclideanGraphs {
         euclideanGraph.addVertex(vertex5);
         euclideanGraph.addVertex(vertex6);
 
-        euclideanGraph.addEdge(vertex0, vertex1);
-        euclideanGraph.addEdge(vertex2, vertex1);
-        euclideanGraph.addEdge(vertex0, vertex2);
-        euclideanGraph.addEdge(vertex3, vertex6);
-        euclideanGraph.addEdge(vertex4, vertex6);
-        euclideanGraph.addEdge(vertex3, vertex4);
-        euclideanGraph.addEdge(vertex1, vertex5);
-        euclideanGraph.addEdge(vertex5, vertex6);
+        euclideanGraph.addEdge(0, 1);
+        euclideanGraph.addEdge(2, 1);
+        euclideanGraph.addEdge(0, 2);
+        euclideanGraph.addEdge(3, 6);
+        euclideanGraph.addEdge(4, 6);
+        euclideanGraph.addEdge(3, 4);
+        euclideanGraph.addEdge(1, 5);
+        euclideanGraph.addEdge(5, 6);
 
         euclideanGraph.show(0, 15, -2, 18, 0.5);
         StdOut.println(euclideanGraph);

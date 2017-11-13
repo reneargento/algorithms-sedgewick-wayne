@@ -37,9 +37,9 @@ public class Exercise48_RandomEuclideanDigraphs {
                 if(distance <= radius) {
                     int randomDirection = StdRandom.uniform(2);
                     if(randomDirection == 0) {
-                        randomEuclideanDigraph.addEdge(allVertices[vertexId], allVertices[otherVertex]);
+                        randomEuclideanDigraph.addEdge(vertexId, otherVertex);
                     } else {
-                        randomEuclideanDigraph.addEdge(allVertices[otherVertex], allVertices[vertexId]);
+                        randomEuclideanDigraph.addEdge(otherVertex, vertexId);
                     }
 
                     unionFind.union(vertexId, otherVertex);
