@@ -30,6 +30,10 @@ public class Exercise38_EuclideanDigraphs {
                 this.xCoordinate = xCoordinate;
                 this.yCoordinate = yCoordinate;
             }
+
+            public void updateName(String name) {
+                this.name = name;
+            }
         }
 
         private final int vertices;

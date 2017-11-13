@@ -1,5 +1,6 @@
 package chapter4.section2;
 
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.ArrayList;
@@ -146,6 +147,7 @@ public class Exercise49_RandomGridDigraph {
                 for (int column = 0; column < vertexNumberSqrt; column++) {
                     allVertices[verticesGrid[row][column].id].id = currentVertexId;
                     verticesGrid[row][column].id = currentVertexId;
+                    verticesGrid[row][column].updateName(String.valueOf(currentVertexId));
 
                     currentVertexId++;
                 }
@@ -230,6 +232,8 @@ public class Exercise49_RandomGridDigraph {
         Exercise38_EuclideanDigraphs.EuclideanDigraph randomGridDigraph =
                 new Exercise49_RandomGridDigraph().randomGridDigraph(vertices, extraEdges);
         randomGridDigraph.show(-0.1, 1.1, -0.1, 1.1, 0.01, 0.03);
+
+        StdOut.println(randomGridDigraph);
     }
 
 }

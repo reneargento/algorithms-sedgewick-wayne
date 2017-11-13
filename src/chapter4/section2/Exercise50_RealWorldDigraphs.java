@@ -171,28 +171,40 @@ public class Exercise50_RealWorldDigraphs {
                 new SeparateChainingHashTable<>();
 
         List<DirectedEdge> allSubDigraphEdges = new ArrayList<>();
+        HashSet<Integer> chosenVertices = new HashSet<>();
 
         for(int vertex = 0; vertex < randomVerticesToChoose; vertex++) {
             // Randomly choose a vertex between 1 and vertices
             int randomVertexId = StdRandom.uniform(vertices) + 1;
 
-            if(digraphToSubDigraphMap.contains(randomVertexId)) {
+            if(chosenVertices.contains(randomVertexId)) {
                 continue;
             }
+            chosenVertices.add(randomVertexId);
 
-            int subDigraphVertexId = digraphToSubDigraphMap.size();
-            digraphToSubDigraphMap.put(randomVertexId, subDigraphVertexId);
+            int subDigraphVertexId1 = digraphToSubDigraphMap.size();
+            digraphToSubDigraphMap.put(randomVertexId, subDigraphVertexId1);
 
-            randomSubDigraph.addVertex(subDigraphVertexId);
+            randomSubDigraph.addVertex(subDigraphVertexId1);
 
             for(int neighbor : fullDigraph.adjacent(randomVertexId)) {
-                allSubDigraphEdges.add(new DirectedEdge(subDigraphVertexId, neighbor));
+                int subDigraphVertexId2;
+
+                if(!digraphToSubDigraphMap.contains(neighbor)) {
+                    subDigraphVertexId2 = digraphToSubDigraphMap.size();
+                    digraphToSubDigraphMap.put(neighbor, subDigraphVertexId2);
+                    randomSubDigraph.addVertex(subDigraphVertexId2);
+                } else {
+                    subDigraphVertexId2 = digraphToSubDigraphMap.get(neighbor);
+                }
+
+                allSubDigraphEdges.add(new DirectedEdge(subDigraphVertexId1, subDigraphVertexId2));
             }
         }
 
         // Randomly choose E directed edges from the subdigraph induced by the random vertices
         if(randomEdgesToChoose > allSubDigraphEdges.size()) {
-            throw new IllegalArgumentException("Not enough edges to choose");
+            throw new IllegalArgumentException("Not enough edges to choose from the induced subgraph");
         }
 
         DirectedEdge[] allSubDigraphEdgesArray = new DirectedEdge[allSubDigraphEdges.size()];
@@ -214,14 +226,7 @@ public class Exercise50_RealWorldDigraphs {
             edgesChosen.add(randomEdgeId);
 
             DirectedEdge randomEdge = allSubDigraphEdgesArray[randomEdgeId];
-
-            if(!digraphToSubDigraphMap.contains(randomEdge.toVertex)) {
-                int subDigraphNeighborVertexId = digraphToSubDigraphMap.size();
-                digraphToSubDigraphMap.put(randomEdge.toVertex, subDigraphNeighborVertexId);
-            }
-
-            int subDigraphNeighborVertexId = digraphToSubDigraphMap.get(randomEdge.toVertex);
-            randomSubDigraph.addEdge(randomEdge.fromVertex, subDigraphNeighborVertexId);
+            randomSubDigraph.addEdge(randomEdge.fromVertex, randomEdge.toVertex);
         }
 
         return randomSubDigraph;

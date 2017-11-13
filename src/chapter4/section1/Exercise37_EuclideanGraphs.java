@@ -30,6 +30,10 @@ public class Exercise37_EuclideanGraphs {
                 this.xCoordinate = xCoordinate;
                 this.yCoordinate = yCoordinate;
             }
+
+            public void updateName(String name) {
+                this.name = name;
+            }
         }
 
         private final int vertices;
