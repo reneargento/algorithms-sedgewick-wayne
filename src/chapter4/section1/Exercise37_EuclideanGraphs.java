@@ -87,8 +87,10 @@ public class Exercise37_EuclideanGraphs {
                 for(int neighbor : adjacent(vertexId)) {
                     Vertex neighborVertex = allVertices[neighbor];
 
-                    StdDraw.line(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
-                            neighborVertex.xCoordinate, neighborVertex.yCoordinate);
+                    if(neighbor >= vertexId) {
+                        StdDraw.line(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
+                                neighborVertex.xCoordinate, neighborVertex.yCoordinate);
+                    }
                 }
             }
 

@@ -6,6 +6,7 @@ import chapter2.section4.IndexMinPriorityQueue;
 /**
  * Created by rene on 07/11/17.
  */
+// O(E lg V)
 public class PrimMST {
 
     protected Edge[] edgeTo; // shortest edge from tree vertex

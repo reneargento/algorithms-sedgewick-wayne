@@ -7,12 +7,13 @@ import chapter2.section4.PriorityQueueResize;
 /**
  * Created by rene on 07/11/17.
  */
+// O(E lg E)
 public class KruskalMST {
 
     private Queue<Edge> minimumSpanningTree;
     private double weight;
 
-    public KruskalMST(EdgeWeightedGraph edgeWeightedGraph) {
+    public KruskalMST(EdgeWeightedGraphInterface edgeWeightedGraph) {
         minimumSpanningTree = new Queue<>();
         PriorityQueueResize<Edge> priorityQueue = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
 

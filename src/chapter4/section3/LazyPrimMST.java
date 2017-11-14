@@ -6,6 +6,7 @@ import chapter2.section4.PriorityQueueResize;
 /**
  * Created by rene on 07/11/17.
  */
+// O(E lg E)
 public class LazyPrimMST {
 
     private boolean[] marked; // minimum spanning tree vertices
@@ -14,7 +15,7 @@ public class LazyPrimMST {
 
     private double weight;
 
-    public LazyPrimMST(EdgeWeightedGraph edgeWeightedGraph) {
+    public LazyPrimMST(EdgeWeightedGraphInterface edgeWeightedGraph) {
         priorityQueue = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
         marked = new boolean[edgeWeightedGraph.vertices()];
         minimumSpanningTree = new Queue<>();
@@ -45,7 +46,7 @@ public class LazyPrimMST {
         }
     }
 
-    private void visit(EdgeWeightedGraph edgeWeightedGraph, int vertex) {
+    private void visit(EdgeWeightedGraphInterface edgeWeightedGraph, int vertex) {
         // Mark vertex and add to priority queue all edges from vertex to unmarked vertices
         marked[vertex] = true;
 
