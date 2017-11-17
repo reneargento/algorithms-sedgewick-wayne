@@ -27,32 +27,32 @@ public class QuickSort {
     private static int partition(Comparable[] array, int low, int high) {
         Comparable pivot = array[low];
 
-        int i = low;
-        int j = high + 1;
+        int lowIndex = low;
+        int highIndex = high + 1;
 
         while(true) {
-            while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+            while (ArrayUtil.less(array[++lowIndex], pivot)) {
+                if(lowIndex == high) {
                     break;
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--j])) {
-                if(j == low) {
+            while(ArrayUtil.less(pivot, array[--highIndex])) {
+                if(highIndex == low) {
                     break;
                 }
             }
 
-            if(i >= j) {
+            if(lowIndex >= highIndex) {
                 break;
             }
 
-            ArrayUtil.exchange(array, i, j);
+            ArrayUtil.exchange(array, lowIndex, highIndex);
         }
 
         //Place pivot in the right place
-        ArrayUtil.exchange(array, low, j);
-        return j;
+        ArrayUtil.exchange(array, low, highIndex);
+        return highIndex;
     }
 
 }

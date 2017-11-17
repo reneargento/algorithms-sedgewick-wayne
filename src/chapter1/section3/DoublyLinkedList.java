@@ -228,25 +228,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 
         while (currentNode != null) {
             if(currentNode.item.equals(item)) {
-                DoubleNode previousNode = currentNode.previous;
-                DoubleNode nextNode = currentNode.next;
-
-                if (previousNode != null) {
-                    previousNode.next = nextNode;
-                }
-                if (nextNode != null) {
-                    nextNode.previous = previousNode;
-                }
-
-                if(currentNode == first) {
-                    first = nextNode;
-                }
-                if (currentNode == last) {
-                    last = previousNode;
-                }
-
-                size--;
-
+                removeItemWithNode(currentNode);
                 break;
             }
 
@@ -286,7 +268,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 
     public Item removeItemWithIndex(int nodeIndex) {
         if (nodeIndex <= 0 || nodeIndex >= size()){
-            throw new IllegalArgumentException("Index must be lower than size");
+            throw new IllegalArgumentException("Index must be higher than 0 and lower than size");
         }
 
         if(isEmpty()) {
@@ -315,7 +297,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 
         @SuppressWarnings("ConstantConditions") //if we got here, the node exists
         Item item = currentNode.item;
-        removeItem(item);
+        removeItemWithNode(currentNode);
 
         return item;
     }
