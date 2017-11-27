@@ -54,10 +54,10 @@ public static void main(String[] args) {
 		
 		StdOut.println("TABLE");
 		
-		for (int i=0; i< positions.length; i++) {
+		for (int i = 0; i< positions.length; i++) {
 			StdOut.printf("%3d  ", i);
 			
-			for (int j=0; j< positions[0].length; j++) {
+			for (int j = 0; j< positions[0].length; j++) {
 				StdOut.printf("%4d ", positions[i][j]);
 			}
 			StdOut.println();

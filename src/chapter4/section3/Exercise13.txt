@@ -1,0 +1,23 @@
+4.3.13
+
+The strategy "start with any vertex as a single-vertex MST, then add V - 1 edges to it, taking next a min-weight edge incident to the vertex most recently added to the MST" does not find the MST in the following graph:
+
+  C
+ / \ 
+A - B - D
+ \ /   /
+  E - -
+
+Where the weights of the edges are:
+A-B = 1
+A-C = 4
+C-B = 4
+B-D = 3
+B-E = 1
+E-A = 2
+D-E = 3
+
+The MST generated would be: 
+A-B B-E E-A A-C C-B
+
+Which is not a MST.

@@ -18,7 +18,7 @@ public class Exercise39_RandomMatches {
 		
 		int[] results = new int[4];
 		
-		for (int i=0; i < t; i++) {
+		for (int i = 0; i < t; i++) {
 			results[0] += experiment(n1);
 			results[1] += experiment(n2);
 			results[2] += experiment(n3);
@@ -48,7 +48,7 @@ public class Exercise39_RandomMatches {
 		
 		int numbersInBothArrays = 0;
 		
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			
 			if (binarySearch(array1[i], array2, 0, array2.length -1)) {
 				numbersInBothArrays++;

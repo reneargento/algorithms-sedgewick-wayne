@@ -17,8 +17,8 @@ public class Exercise13 {
 		
 		int[][] newMat = new int[mat[0].length][mat.length];
 		
-		for (int i=0; i<mat.length; i++){
-			for (int j=0; j < mat[0].length; j++) {
+		for (int i = 0; i < mat.length; i++){
+			for (int j = 0; j < mat[0].length; j++) {
 				newMat[j][i] = mat[i][j];
 			}
 		}
@@ -27,8 +27,8 @@ public class Exercise13 {
 	}
 	
 	private static void print(int[][] mat){
-		for (int i=0; i<mat.length; i++){
-			for (int j=0; j < mat[0].length; j++) {
+		for (int i = 0; i < mat.length; i++){
+			for (int j = 0; j < mat[0].length; j++) {
 				StdOut.print(mat[i][j] + " ");
 			}
 			StdOut.println();

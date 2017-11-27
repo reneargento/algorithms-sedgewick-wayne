@@ -1,0 +1,8 @@
+4.3.8
+
+Given any cycle in an edge-weighted graph (all edge weights distinct), the edge of maximum weight in the cycle does not belong to the MST of the graph.
+
+Proof:
+Consider by contradiction that the edge of maximum weight in the cycle C, edge e, belongs to the MST of the graph.
+Since MSTs do not contain cycles there is at least one edge in C that is not in the MST. Let's call one of these edges f.
+Now add f to the MST. There is now a cycle in the MST. Since e has the maximum weight in the cycle C and all edge weights are distinct, it means that weight(f) < weight(e). Removing the edge e after having added the edge f would generate a new MST' with total weight less than the total weight in MST, contradicting its minimality.

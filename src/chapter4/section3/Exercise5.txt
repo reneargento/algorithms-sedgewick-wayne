@@ -1,0 +1,21 @@
+4.3.5
+
+The greedy algorithm starts with all edges colored gray, finds a cut with no black edges, color its minimum-weight edge black and continues until V - 1 edges have been colored black.
+Assume that there are two edges, e and f, which have the same weight in the graph.
+
+Case 1: 
+Both e and f are minimum-weight edges in a cut C with no black edges. Coloring either e or f black would be part of the generation of a valid MST, since they both have the minimum weight in the cut. The edges e and f will not be chosen together, because once either e or f is chosen, C will already have a black edge.
+
+Case 2:
+Edges e and f are minimum-weight edges in different cuts: C1 and C2.
+In this case, they will both be colored black and will be part of the MST.
+
+Case 3:
+Edges e and f are in the same cut C but are not minimum-weight edges.
+In this case, neither e nor f will be chosen.
+
+Case 4:
+Edges e and f are in different cuts (C1 and C2) but are not minimum-weight edges.
+In this case, neither e nor f will be chosen.
+
+Therefore, the greedy algorithm will be valid even when edge weights are not distinct.

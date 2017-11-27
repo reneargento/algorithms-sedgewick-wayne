@@ -1,0 +1,5 @@
+4.3.19
+
+Scanning through all V entries in the distTo[] array to find the non-tree vertex with the smallest weight instead of using a priority queue to find the next vertex to add to the tree in PrimMST would have the order of growth of running time O(V^2): all V distTo[] entries would be scanned V times.
+
+This method is optimal for dense graphs because they have many more edges than vertices. Having an MST algorithm's performance rely only on vertices (and not on edges) would be optimal since there are less vertices than edges in such graphs.

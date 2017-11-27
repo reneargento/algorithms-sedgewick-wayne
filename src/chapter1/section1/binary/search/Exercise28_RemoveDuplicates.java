@@ -24,7 +24,7 @@ public class Exercise28_RemoveDuplicates {
 		newWhitelist[0] = whitelist[0];
 		int count = 0;
 		
-		for (int i=1; i<whitelist.length; i++){
+		for (int i = 1; i < whitelist.length; i++){
 			if (whitelist[i] != newWhitelist[count]) {
 				count++;
 				
@@ -43,7 +43,7 @@ public class Exercise28_RemoveDuplicates {
 		
 		int numbersCount = 0;
 		
-		for (int i=0; i<keys.length; i++) {
+		for (int i = 0; i < keys.length; i++) {
 			
 			int index = rank(keys[i], whitelist, 0, whitelist.length-1);
 

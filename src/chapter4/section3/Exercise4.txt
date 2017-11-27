@@ -1,0 +1,16 @@
+4.3.4
+
+Assertion: An edge-weighted graph has a unique MST only if its edge weights are distinct.
+
+Counterexample:
+The following edge-weighted graph has a unique MST but not all of its edge weights are distinct:
+
+A-B
+| |
+C-D
+
+Edge weights: 
+A-B = 4
+A-C = 1
+C-D = 1
+D-B = 1

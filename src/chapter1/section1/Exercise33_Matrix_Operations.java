@@ -22,8 +22,8 @@ public class Exercise33_Matrix_Operations {
 		double[][] c = mult(a, b);
 		
 		StdOut.println("Matrix multiplication:");
-		for (int i=0; i<c.length; i++){
-			for (int j=0; j<c[0].length; j++){
+		for (int i = 0; i < c.length; i++){
+			for (int j = 0; j < c[0].length; j++){
 				StdOut.print(c[i][j] + " ");
 			}
 			StdOut.println();
@@ -38,8 +38,8 @@ public class Exercise33_Matrix_Operations {
 		double[][] e = transpose(d);
 		
 		StdOut.println("Transpose:");
-		for (int i=0; i<e.length; i++){
-			for (int j=0; j<e[0].length; j++){
+		for (int i = 0; i < e.length; i++){
+			for (int j = 0; j < e[0].length; j++){
 				StdOut.print(e[i][j] + " ");
 			}
 			StdOut.println();
@@ -73,7 +73,7 @@ public class Exercise33_Matrix_Operations {
 		double[] k = mult(i, j);
 		
 		StdOut.println("Vector-matrix product:");
-		for (int l=0; l<k.length; l++){
+		for (int l = 0; l < k.length; l++){
 			StdOut.print(k[l] + " ");
 		}
 	}
@@ -87,7 +87,7 @@ public class Exercise33_Matrix_Operations {
 		
 		double result = 0;
 		
-		for (int i=0; i< x.length; i++){
+		for (int i = 0; i < x.length; i++){
 			result += x[i] * y[i];
 		}
 		
@@ -107,9 +107,9 @@ public class Exercise33_Matrix_Operations {
 		// the same number of columns as the second matrix
 		double[][] c = new double[a.length][b[0].length];
 		
-		for (int i=0; i< a.length; i++) {
-			for (int j=0; j< b[0].length; j++) {
-				for (int k=0; k< a[0].length; k++) {
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < b[0].length; j++) {
+				for (int k = 0; k < a[0].length; k++) {
 					c[i][j] += a[i][k] * b[k][j];
 				}
 			}
@@ -131,8 +131,8 @@ public class Exercise33_Matrix_Operations {
 		
 		double[][] b = new double[a[0].length][a.length];
 		
-		for (int i=0; i<a.length; i++){
-			for (int j=0; j<a[0].length; j++){
+		for (int i = 0; i <a.length; i++){
+			for (int j = 0; j <a[0].length; j++){
 				b[j][i] = a[i][j];
 			}
 		}
@@ -150,8 +150,8 @@ public class Exercise33_Matrix_Operations {
 		
 		double[] b = new double[a.length];
 		
-		for (int i=0; i<a.length; i++) {
-			for (int j=0; j<x.length; j++) {
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < x.length; j++) {
 				b[i] += a[i][j] * x[j];
 			}
 		}
@@ -169,8 +169,8 @@ public class Exercise33_Matrix_Operations {
 		
 		double[] b = new double[a[0].length];
 		
-		for (int i=0; i<a.length; i++) {
-			for (int j=0; j<a[0].length; j++) {
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < a[0].length; j++) {
 				b[i] += a[j][i] * y[j];
 			}
 		}

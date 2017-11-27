@@ -10,14 +10,14 @@ public class Exercise35_DiceSimulation {
 		double[] distExperiment = diceExperiment();
 		
 		StdOut.println("Exact:");
-		for (int i=2; i< distExact.length; i++) {
+		for (int i = 2; i < distExact.length; i++) {
 			StdOut.printf("%5.3f ", distExact[i]);
 		}
 		
 		StdOut.println();
 		
 		StdOut.println("Experiment:");
-		for (int i=2; i< distExperiment.length; i++) {
+		for (int i = 2; i < distExperiment.length; i++) {
 			StdOut.printf("%5.3f ", distExperiment[i]);
 		}
 	}
@@ -49,7 +49,7 @@ public class Exercise35_DiceSimulation {
 		int diceTwo = 0;
 		int sum = 0;
 		
-		for (int i=0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			diceOne = StdRandom.uniform(1, 7);
 			diceTwo = StdRandom.uniform(1, 7);
 			
@@ -58,7 +58,7 @@ public class Exercise35_DiceSimulation {
 			distExperiment[sum]++;
 		}
 		
-		for (int k = 2; k<= 2 * SIDES; k++) {
+		for (int k = 2; k <= 2 * SIDES; k++) {
 			distExperiment[k] /= n;
 		}
 		

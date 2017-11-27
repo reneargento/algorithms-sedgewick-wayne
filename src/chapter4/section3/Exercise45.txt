@@ -1,0 +1,18 @@
+4.3.45 - External MST
+
+To find the MST of a graph so large that only V edges can fit into main memory at once:
+
+1- Pre-process the graph to remove parallel edges and self-loops. Self-loops will not be part of the MST and only the edges with minimum cost should be kept among the parallel edges.
+Since only V edges can fit into memory at once, do this pre-processing on one vertex at a time, doing more than one verification per vertex if it is connected to more than V edges.
+After the pre-processing, each vertex will be connected to at most V - 1 edges. 
+Each vertex will also be the root of its sub tree.
+
+2- Boruvka's algorithm can be used, processing one vertex at a time, since the decision of edges to add to the MST is independent from sub tree to sub tree.
+For each vertex, select the edge it is connected to of minimum weight that connects the vertex in the current sub tree to another sub tree* (it is possible that a vertex is connected only to other vertices in the same sub tree, so there can be no selected edges for some vertices, or two vertices may choose the same edge). Save the edge chosen in an array of length V located outside main memory.
+
+3- Now there are at most V edges selected. Move the array with the edges selected to the main memory.
+Continue with Boruvka's algorithm: for each edge selected, check if it connects two different sub trees*, by checking if the vertices connected by the edge have different roots in their sub trees. If it does, add it to the MST and merge the two sub trees, updating the root of one of the sub trees to match the root of the other sub tree.
+
+4- Repeat steps 2 and 3 until there is only one subtree left and the MST is complete.
+
+* Checking if vertices are in the same sub tree and updating their roots can be done with a union-find data structure. Since only V edges can fit into main memory at once and the union-find requires two arrays of size V (int[] leaders and int[] ranks), it should be located outside the main memory.

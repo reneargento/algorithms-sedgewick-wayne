@@ -20,7 +20,7 @@ public class Exercise21 {
 		
 		String[] splittedValues = lines.split(" ");
 		
-		for (int i=0; i < splittedValues.length; i++) {
+		for (int i = 0; i < splittedValues.length; i++) {
 			if (i % 3 != 0) {
 				StdOut.printf("%8s",splittedValues[i]);
 			} else{

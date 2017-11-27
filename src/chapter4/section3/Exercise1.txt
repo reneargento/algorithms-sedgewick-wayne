@@ -1,0 +1,10 @@
+4.3.1
+
+It is possible to rescale the weights by adding a positive constant to all of them or multiplying them all by a positive constant without affecting the MST.
+
+Proof by contradiction:
+Consider that after adding a positive constant to all weights (or multiplying them all by a positive constant) the new MST' is different from the original MST.
+This would imply that there is a cut C in which edge e has the smallest weight in MST and edge f has the smallest weight in MST'. Since all weights increased the same amount, this is impossible.
+
+Solution 2 (based on https://algs4.cs.princeton.edu/43mst/):
+Kruskal's algorithm accesses the edge weights only through the compareTo() method. Adding a positive constant to each weight (or multiplying by a positive constant) won't change the result of the compareTo() method.

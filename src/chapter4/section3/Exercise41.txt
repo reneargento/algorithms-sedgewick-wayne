@@ -1,0 +1,14 @@
+4.3.41 - Heaviest MST edge
+
+Running 10 experiments with 100000 vertices and 300000 edges for random edge weighted graphs with uniform weight distribution and random edge weighted graphs with gaussian weight distribution. 
+Running 10 experiments with 1000 vertices and 499500 edges (all vertices are connected to each other) for random edge weighted Euclidean graphs.
+
+                    Edge Weighted Graph type |  Vertices |    Edges |  Average heaviest edge weight |  AVG edges not heavier than heaviest edge
+ Random graph w/ uniform weight distribution      100000     300000                          0.9996                                   299859.70
+Random graph w/ gaussian weight distribution      100000     300000                          3.3943                                   299841.70
+                      Random Euclidean graph        1000     499500                          0.0581                                     5205.10
+
+The experiment results show that for random edge weighted graphs with uniform weight distribution the average heaviest edge weight in the minimum-spanning tree is 0.9996, and on average 299859.7 edges are not heavier than this edge weight. Since a sparse graph model was used (with 100000 vertices and 300000 edges), it is expected that the heaviest edge weight in the minimum-spanning tree will have a value close to the upper range of weight values and that most of the edges in the graph will have a weight less than or equal to it.
+For random edge weighted graphs with gaussian weight distribution the average heaviest edge weight in the minimum-spanning tree is 3.3943, and on average 299841.7 edges are not heavier than this edge weight. The experiments for this graph model also used a sparse graph configuration (100000 vertices and 300000 edges) so it also makes sense that the heaviest edge weight in the minimum-spanning tree has a value close to the upper range of weight values and that most of the edges in the graph have a weight less than or equal to it.
+For random edge weighted Euclidean graphs the average heaviest edge weight in the minimum-spanning tree is 0.0581, and on average 5205.1 edges are not heavier than this edge weight. 
+The Euclidean graph configuration used on the experiments is of a dense graph (with 1000 vertices and 499500 edges). With more options of edges to select for the minimum-spanning tree, the heaviest edge weight is closer to the lower range of weight values. Also related to the large number of edge choices for the minimum-spanning tree, only a small fraction of the edges in the graph have less or equal weights than it.

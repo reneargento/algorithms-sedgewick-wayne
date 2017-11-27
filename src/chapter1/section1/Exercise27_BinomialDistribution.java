@@ -28,8 +28,8 @@ public class Exercise27_BinomialDistribution {
 		
 		double[][] arr = new double[N+1][k+1];
 		
-		for (int i=0; i<arr.length; i++){
-			for (int j=0; j< arr[0].length; j++) {
+		for (int i = 0; i<arr.length; i++){
+			for (int j = 0; j < arr[0].length; j++) {
 				arr[i][j] = -1;
 			}
 		}

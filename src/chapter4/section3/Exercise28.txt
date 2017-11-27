@@ -1,0 +1,57 @@
+4.3.28
+
+Using a two-dimensional array of double for adjacent edges instead of using an array of Bag<Edge>:
+
+double[][]
+* object overhead -> 16 bytes
+* int value (length) -> 4 bytes
+* int value (padding) -> 4 bytes
+* double[] array overheads + lengths + paddings -> 24V bytes
+* double[] references -> 8V bytes
+* double values (weight) -> 8V^2 bytes
+Amount of memory needed: 16 + 4 + 4 + 24V + 8V + 8V^2 = 8V^2 + 32V + 24 bytes
+
+EdgeWeightedGraphSpaceEfficient
+* object overhead -> 16 bytes
+* int value (V) -> 4 bytes
+* int value (E) -> 4 bytes
+* double[][] reference (adj) -> 8 bytes
+* double[][] (adj) -> 8V^2 + 32V + 24 bytes
+Amount of memory needed: 16 + 4 + 4 + 8 + 8V^2 + 32V + 24 = 8V^2 + 32V + 56 bytes
+
+As seen on exercise 4.3.11, an array of Bag<Edge> uses 112E + 40V + 56 bytes.
+The memory saved when using a two-dimensional array of doubles for adjacent edges is 112E + 8V, but it also uses 8V^2 extra memory. This means that its memory saving benefit is higher when the graph has a large number of edges, such as in the case of dense graphs.
+
+Using Doubles as keys for the priority queue instead of using Edges:
+
+Edge
+* object overhead -> 16 bytes
+* int value (vertex1) -> 4 bytes
+* int value (vertex2) -> 4 bytes
+* double value (weight) -> 8 bytes
+Amount of memory needed: 16 + 4 + 4 + 8 = 32 bytes
+
+Double
+* object overhead -> 16 bytes
+* double value -> 8 bytes
+Amount of memory needed: 16 + 8 = 24 bytes
+
+PriorityQueue (assuming a min-priority queue and not a priority queue that may be either min or max)
+* object overhead -> 16 bytes
+* int value (size) -> 4 bytes
+* int value (padding) -> 4 bytes
+* Key[] reference (priorityQueue) -> 8 bytes
+* Key[] (priorityQueue)
+   object overhead -> 16 bytes
+   int value (length) -> 4 bytes
+   int value (padding) -> 4 bytes
+   Key references -> 8E -> (Resizing array): 8E * 2 = 16E
+
+   Edge -> 32 bytes -> 32E
+   Double -> 24 bytes -> 24E
+Amount of memory needed when using Edge keys: 16 + 4 + 4 + 8 + 16 + 4 + 4 + 16E + 32E = 48E + 56 bytes
+Amount of memory needed when using Double keys: 16 + 4 + 4 + 8 + 16 + 4 + 4 + 16E + 24E = 40E + 56 bytes
+
+The memory saved when using Double keys for the priority queue is 8E.
+
+Total memory saved = 112E + 8V + 8E = 120E + 8V, with an extra use of 8V^2 memory.

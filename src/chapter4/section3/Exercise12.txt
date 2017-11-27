@@ -1,0 +1,24 @@
+4.3.12
+
+Considering a graph with distinct edge weights:
+
+The lightest edge has to belong to the MST.
+Proof: The greedy algorithms analyzed work by finding cuts with no black edges and coloring its minimum-weight edge black. The lightest edge in the graph will be the minimum-weight edge in one of the cuts. In fact, when using Kruskal's algorithm, the lightest edge will be the first edge added to the MST.
+If the lightest edge were not part of the MST, this would mean that there is another edge e with a lower weight than it in some cut, and that e was added to the MST. And that would be a contradiction, since e cannot be the lightest edge.
+
+The heaviest edge can belong to the MST.
+Consider the following example, where the heaviest edge belongs to the MST:
+   A
+  / \
+ B - C - E
+
+Where the weights of the edges are:
+A-B = 1
+B-C = 1
+A-C = 2
+C-E = 100
+
+The MST in this case is: A-B B-C C-E
+
+A min-weight edge on every cycle has to belong to the MST.
+Proof by contradiction: Consider any cycle C in an edge-weighted graph G. Suppose there are two different MSTs of G, say T1 and T2. Let e = v-w be the min weight edge of C that is in one of T1 or T2, but not both. Let's suppose e is in T1. Adding e to T2 creates a cycle C2. There is at least one edge, say f, in C2 that is not in T1 (otherwise T1 would be cyclic). Since all of the edge weights are distinct, weight(e) < weight(f). Now, replacing f with e in T2 yields a new spanning tree with weight less than that of T2 (contradicting the minimality of T2).

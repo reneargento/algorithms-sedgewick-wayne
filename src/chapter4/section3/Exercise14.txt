@@ -1,0 +1,16 @@
+4.3.14
+
+There are 2 possible cases when an edge from G is deleted.
+
+1- Case 1: The deleted edge is not part of the given MST (this can be checked in linear time)
+In this case the MST of the new graph remains the same as the original MST.
+The only situations in which an MST would change would be if a new edge was added with less weight than an edge that is part of an MST or if one of the edges that are part of an MST were deleted.
+
+2- Case 2: The deleted edge is part of the given MST
+In this case, the given MST is now divided in 2 connected components.
+Check which vertices were connected by the deleted edge. Assuming that edge e was deleted and that it connected vertices v and w:
+Run a breadth-first search from vertex v and color all reached vertices blue (this can be done in O(E + V) time).
+Now check all edges (this can be done in O(E) time):
+If an edge connects a blue vertex with a non-blue vertex, it is a candidate for being part of the new MST. Check its weight and see if it is the first weight checked or if it is less than all the other candidate edge weights.
+If it is, store its weight and its reference.
+In the end, after having checked all edges, add the candidate edge with the smallest weight to the MST, which will become an MST of the new graph.

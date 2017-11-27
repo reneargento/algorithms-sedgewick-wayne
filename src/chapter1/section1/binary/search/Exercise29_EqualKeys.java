@@ -30,7 +30,7 @@ public static void main(String[] args) {
 		
 		int numbersCount = 0;
 		
-		for (int i=0; i<keys.length; i++) {
+		for (int i = 0; i < keys.length; i++) {
 			
 			int index = rank(keys[i], whitelist, 0, whitelist.length-1, false);
 
@@ -94,7 +94,7 @@ public static void main(String[] args) {
 		int count = 0;
 		
 		if (index != -1) {
-			for (int i=index; i < arr.length && arr[i] == key; i++) {
+			for (int i = index; i < arr.length && arr[i] == key; i++) {
 				count++;
 			}
 		}
@@ -109,7 +109,7 @@ public static void main(String[] args) {
 		int indexFromRank = rank(key, arr);
 		int count = count(key, arr);
 		
-		for (int i=indexFromRank; i < indexFromRank + count - 1; i++) {
+		for (int i = indexFromRank; i < indexFromRank + count - 1; i++) {
 			if (arr[i] != key) {
 				verification = false;
 				break;

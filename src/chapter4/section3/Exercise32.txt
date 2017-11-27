@@ -1,0 +1,14 @@
+4.3.32 - Specified set
+
+There is no guarantee that all edges in the intersection of G and S are part of a connected graph, so in this case it is better to use a modification of Kruskal's algorithm (instead of Prim's) and the result may be a minimum-weight spanning forest.
+
+1- Sort all edges of G by weight.
+2- Iterate through the sorted edges and for each edge:
+   2.1- If it is not contained in S, do nothing and continue the iteration.
+        If it is contained in S:
+   2.2- If it generates a cycle with the already selected edges, do nothing and continue the iteration.
+        If it does not generate a cycle, add it to the current MST.
+3- Finish the iteration once all edges have been processed or if the MST has V - 1 edges (where V is the number of vertices in G).
+4- Return the MST.
+
+If the result must be an MST, check if the result MST is connected doing a depth-first search starting from the first vertex and checking if it reaches all vertices. If the result MST is not connected (and therefore it is a minimum-spanning forest), return an error result or throw an exception.

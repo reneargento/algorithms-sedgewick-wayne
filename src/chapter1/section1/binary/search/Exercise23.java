@@ -29,7 +29,7 @@ public class Exercise23 {
 		
 		int numbersCount = 0;
 		
-		for (int i=0; i<numbers.length; i++) {
+		for (int i = 0; i < numbers.length; i++) {
 			
 			int index = rank(numbers[i], arr, 0, arr.length-1);
 

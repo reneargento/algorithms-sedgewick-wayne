@@ -66,7 +66,7 @@ public class Exercise38_BinarySearchXBruteForce {
 		
 		int result = -1;
 		
-		for (int i=0; i< arr.length; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			if (key == arr[i]) {
 				result = i;
 			}

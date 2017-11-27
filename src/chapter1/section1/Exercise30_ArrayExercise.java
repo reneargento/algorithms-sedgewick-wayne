@@ -8,17 +8,17 @@ public class Exercise30_ArrayExercise {
 		
 		int n = 5;
 		
-		boolean[][] arr = new boolean[n][n];
+		boolean[][] array = new boolean[n][n];
 		
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			for (int j=0; j<n; j++) {
-				arr[i][j] = isPrime(i, j);
+				array[i][j] = isPrime(i, j);
 			}
 		}
 		
-		for (int i=0; i<n; i++) {
-			for (int j=0; j<n; j++) {
-				StdOut.print(arr[i][j] + " ");
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				StdOut.print(array[i][j] + " ");
 			}
 			StdOut.println();
 		}
@@ -30,7 +30,7 @@ public class Exercise30_ArrayExercise {
 		
 		int biggestValue = (i >= j)? i : j;
 		
-		for (int k=2; k <= biggestValue; k++) {
+		for (int k = 2; k <= biggestValue; k++) {
 			
 			if (i % k == 0 && j % k == 0){
 				isPrime = false;

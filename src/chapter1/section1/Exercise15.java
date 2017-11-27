@@ -13,13 +13,13 @@ public class Exercise15 {
 		
 		int[] newArrB = histogram(b, 7);
 		
-		for (int i=0; i< newArrA.length; i++) {
+		for (int i = 0; i < newArrA.length; i++) {
 			StdOut.print(newArrA[i] + " ");
 		}
 		
 		StdOut.println();
 		
-		for (int i=0; i< newArrB.length; i++) {
+		for (int i = 0; i < newArrB.length; i++) {
 			StdOut.print(newArrB[i] + " ");
 		}
 	}
@@ -27,7 +27,7 @@ public class Exercise15 {
 	private static int[] histogram(int[] a, int m){
 		int[] newArr = new int[m];
 		
-		for (int i=0; i< a.length; i++) {
+		for (int i = 0; i < a.length; i++) {
 			if (a[i] < m) {
 				newArr[a[i]]++;
 			}

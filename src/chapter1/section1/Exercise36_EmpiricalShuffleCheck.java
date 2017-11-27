@@ -34,7 +34,7 @@ public class Exercise36_EmpiricalShuffleCheck {
 	public static void shuffle(double[] a) {
 		int n = a.length;
 		
-		for (int i=0; i < n; i++) {
+		for (int  i= 0; i < n; i++) {
 			int r = i + StdRandom.uniform(n - i);
 			double temp = a[i];
 			a[i] = a[r];
@@ -46,10 +46,10 @@ public class Exercise36_EmpiricalShuffleCheck {
 		
 		StdOut.println("TABLE");
 		
-		for (int i=0; i< positions.length; i++) {
+		for (int i = 0; i< positions.length; i++) {
 			StdOut.printf("%3d  ", i);
 			
-			for (int j=0; j< positions[0].length; j++) {
+			for (int j = 0; j< positions[0].length; j++) {
 				StdOut.printf("%4d ", positions[i][j]);
 			}
 			StdOut.println();

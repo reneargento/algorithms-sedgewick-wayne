@@ -1,0 +1,12 @@
+4.3.24 - Reverse-delete algorithm
+
+The reverse-delete algorithm starts with a graph containing all the edges. It then repeatedly go through the edges in decreasing order of weight. For each edge, it checks if deleting that edge will disconnect the graph; if not it deletes it.
+
+Proof of correctness:
+The graph edges are evaluated in decreasing order of weight.
+Consider by contradiction that there is an edge e that is the maximum-weight edge in a cycle C and that the reverse-delete algorithm does not delete it once it is evaluated (note that during normal operation the algorithm would delete it, since it is part of a cycle and its removal does not disconnect the graph). This means that another edge in cycle C will be deleted before the algorithm finishes the computation of the MST, since an MST cannot contain any cycles. 
+Let's assume that edge f is deleted. Since the edges are evaluated in decreasing order of weight and e is the maximum-weight edge in C, weight(f) < weight(e).
+Now, after the MST computation (let's call it MST1) is complete, re-add edge f. This will generate cycle C again in MST1.
+If this time we remove edge e instead of edge f, the new MST (let's call it MST2) weight will be less than the weight of MST1 (because weight(f) < weight(e)). This contradicts the minimality of MST1.
+
+The order of growth of the number of edge-weight compares performed by the reverse-delete algorithm is O(E lg E). This is because edge weight compares are only made when the array of edges is sorted in decreasing order.

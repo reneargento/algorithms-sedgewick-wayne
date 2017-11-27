@@ -1,0 +1,7 @@
+4.3.7
+
+Method 1:
+To find a maximum spanning tree of an edge-weighted graph negate its edges (multiply all edge weights by -1) and run either Prim or Kruskal algorithm. Multiply all edge weights in the final MST by -1 again to return the weights to their original value.
+
+Method 2:
+Reverse the sense of comparison in the compareTo() method: always choose the edges with max weight instead of the edges with min weight in the graph cuts in both Prim and Kruskal algorithms.

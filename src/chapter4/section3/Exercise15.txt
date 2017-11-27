@@ -1,0 +1,14 @@
+4.3.15
+
+When an edge e with weight w is added to the edge-weighted graph G:
+
+Add the edge e to the given MST and a cycle C will be formed. 
+It is possible to find C with a depth-first search in O(V + E) in the MST, which is the same as O(V + V) = O(V).
+
+There are now 2 possible cases:
+
+1- Case 1: The new edge e is not the min-weight edge in C.
+In this case, it should be removed and the MST of the new graph remains the same as the original MST.
+
+2- Case 2: The new edge e is a min-weight edge in C.
+In this case, remove the max-weight edge in C from the MST. This will generate an MST of the new graph.

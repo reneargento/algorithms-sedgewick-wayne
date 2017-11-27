@@ -1,0 +1,11 @@
+4.3.20
+
+At any point during the execution of Kruskal's algorithm, each vertex is closer to some vertex in its subtree than to any vertex not in its subtree.
+
+True. Since Kruskal's algorithm adds edges to an MST by order of weight/length, if there is an edge e = v-w of length 1 and there is an edge f = v-z of length 2, there are two possible cases:
+
+Case 1: Edge e is chosen before edge f.
+In this case, vertex v is closer to a vertex in its subtree (vertex w) than to a vertex not in its subtree (vertex z).
+
+Case 2: Edge f is chosen before edge e.
+This can only happen if choosing edge e would generate a cycle. But in order to generate a cycle there must be another vertex connected to both vertex v and vertex w. Let's call this vertex a. If vertex a is already connected to vertex v this means that the length of the edge connecting v-a is smaller than the length of edge e. Therefore, even in this case vertex v is closer to a vertex in its subtree (vertex a) than to a vertex not in its subtree (both vertices w and z).

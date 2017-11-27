@@ -27,7 +27,7 @@ public class Exercise32_Histogram {
 		}
 
 		double[] numbersArray = new double[numbers.size()];
-		for(int i=0; i < numbers.size(); i++) {
+		for(int i = 0; i < numbers.size(); i++) {
 			numbersArray[i] = numbers.get(i);
 		}
 
@@ -67,10 +67,10 @@ public class Exercise32_Histogram {
 
 		int indexOfInterval;
 		
-		for (int i=0; i< numbers.length; i++) {
+		for (int i = 0; i < numbers.length; i++) {
 			indexOfInterval = 0;
 			
-			for (double j=l; j<=r && indexOfInterval < n; j+= intervalOfNumbers) {
+			for (double j = l; j <=r && indexOfInterval < n; j+= intervalOfNumbers) {
 				if (numbers[i] >= j && numbers[i] <= j + intervalOfNumbers) {
 					numbersInInterval[indexOfInterval]++;
 				}
