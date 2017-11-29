@@ -5,14 +5,14 @@ import chapter1.section3.Stack;
 /**
  * Created by rene on 27/11/17.
  */
-public class DirectedCycle {
+public class EdgeWeightedDirectedCycle {
 
     private boolean visited[];
     private DirectedEdge[] edgeTo;
     private Stack<DirectedEdge> cycle; // vertices on  a cycle (if one exists)
     private boolean[] onStack; // vertices on recursive call stack
 
-    public DirectedCycle(EdgeWeightedDigraph edgeWeightedDigraph) {
+    public EdgeWeightedDirectedCycle(EdgeWeightedDigraph edgeWeightedDigraph) {
         onStack = new boolean[edgeWeightedDigraph.vertices()];
         edgeTo = new DirectedEdge[edgeWeightedDigraph.vertices()];
         visited = new boolean[edgeWeightedDigraph.vertices()];

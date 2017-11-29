@@ -8,8 +8,8 @@ import chapter2.section4.IndexMinPriorityQueue;
  */
 public class DijkstraSP {
 
-    private DirectedEdge[] edgeTo;
-    private double[] distTo;
+    private DirectedEdge[] edgeTo;  // last edge on path to vertex
+    private double[] distTo;        // length of path to vertex
     private IndexMinPriorityQueue<Double> priorityQueue;
 
     public DijkstraSP(EdgeWeightedDigraph edgeWeightedDigraph, int source) {

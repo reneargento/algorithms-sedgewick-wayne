@@ -24,8 +24,21 @@ public class EdgeWeightedDigraph {
     }
 
     public EdgeWeightedDigraph(In in) {
-        // Will be implemented in exercise 4.4.2
-        this(0);
+        this(in.readInt());
+        int edges = in.readInt();
+
+        if (edges < 0) {
+            throw new IllegalArgumentException("Number of edges must be nonnegative");
+        }
+
+        for(int i = 0; i < edges; i++) {
+            int vertexFrom = in.readInt();
+            int vertexTo = in.readInt();
+            double weight = in.readDouble();
+
+            DirectedEdge edge = new DirectedEdge(vertexFrom, vertexTo, weight);
+            addEdge(edge);
+        }
     }
 
     public int vertices() {
@@ -55,6 +68,22 @@ public class EdgeWeightedDigraph {
         }
 
         return bag;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(int vertex = 0; vertex < vertices(); vertex++) {
+            stringBuilder.append(vertex).append(": ");
+
+            for(DirectedEdge neighbor : adjacent(vertex)) {
+                stringBuilder.append(neighbor).append(" ");
+            }
+            stringBuilder.append("\n");
+        }
+
+        return stringBuilder.toString();
     }
 
 }

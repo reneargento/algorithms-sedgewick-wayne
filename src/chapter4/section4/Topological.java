@@ -8,7 +8,7 @@ public class Topological {
     private Iterable<Integer> topologicalOrder;
 
     public Topological(EdgeWeightedDigraph edgeWeightedDigraph) {
-        DirectedCycle cycleFinder = new DirectedCycle(edgeWeightedDigraph);
+        EdgeWeightedDirectedCycle cycleFinder = new EdgeWeightedDirectedCycle(edgeWeightedDigraph);
 
         if(!cycleFinder.hasCycle()) {
             DepthFirstOrder depthFirstOrder = new DepthFirstOrder(edgeWeightedDigraph);
