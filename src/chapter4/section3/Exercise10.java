@@ -14,16 +14,17 @@ public class Exercise10 {
         private final int vertices;
         private int edges;
         private double[][] adjacent; // adjacency matrix that stores the edge weights
-                                     // adjacent[i][j] = -1 if there is no direct edge between vertex i and vertex j
+                                     // adjacent[i][j] = Double.POSITIVE_INFINITY if there is no direct edge
+                                     // between vertex i and vertex j
 
         public EdgeWeightedGraphAdjacencyMatrix(int vertices) {
             this.vertices = vertices;
             edges = 0;
             adjacent = new double[vertices][vertices];
 
-            for(int i = 0; i < vertices; i++) {
-                for(int j = 0; j < vertices; j++) {
-                    adjacent[i][j] = -1;
+            for(int vertex1 = 0; vertex1 < vertices; vertex1++) {
+                for(int vertex2 = 0; vertex2 < vertices; vertex2++) {
+                    adjacent[vertex1][vertex2] = Double.POSITIVE_INFINITY;
                 }
             }
         }
@@ -59,8 +60,8 @@ public class Exercise10 {
             int vertex2 = edge.other(vertex1);
             double weight = edge.weight();
 
-            // Parallel edges are not allowed
-            if(adjacent[vertex1][vertex2] != -1) {
+            // Parallel edges are ignored
+            if(hasEdge(vertex1, vertex2)) {
                 return;
             }
 
@@ -70,14 +71,14 @@ public class Exercise10 {
         }
 
         public boolean hasEdge(int vertex1, int vertex2) {
-            return adjacent[vertex1][vertex2] != -1;
+            return adjacent[vertex1][vertex2] != Double.POSITIVE_INFINITY;
         }
 
         public Iterable<Edge> adjacent(int vertex) {
             Bag<Edge> adjacentEdges = new Bag<>();
 
             for(int i = 0; i < vertices; i++) {
-                if(adjacent[vertex][i] != -1) {
+                if(hasEdge(vertex, i)) {
                     adjacentEdges.add(new Edge(vertex, i, adjacent[vertex][i]));
                 }
             }
