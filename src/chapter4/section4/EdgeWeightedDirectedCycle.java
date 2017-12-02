@@ -9,7 +9,7 @@ public class EdgeWeightedDirectedCycle {
 
     private boolean visited[];
     private DirectedEdge[] edgeTo;
-    private Stack<DirectedEdge> cycle; // vertices on  a cycle (if one exists)
+    private Stack<DirectedEdge> cycle; // vertices on a cycle (if one exists)
     private boolean[] onStack; // vertices on recursive call stack
 
     public EdgeWeightedDirectedCycle(EdgeWeightedDigraph edgeWeightedDigraph) {
@@ -41,12 +41,13 @@ public class EdgeWeightedDirectedCycle {
 
                 cycle.push(edge);
 
-                for(DirectedEdge edgeInCycle = edgeTo[vertex]; edgeInCycle != null && edgeInCycle.from() != vertex;
-                    edgeInCycle = edgeTo[edgeInCycle.from()]) {
+                for(DirectedEdge edgeInCycle = edgeTo[vertex]; edgeInCycle != null; edgeInCycle = edgeTo[edgeInCycle.from()]) {
                     cycle.push(edgeInCycle);
-                }
 
-                cycle.push(edge);
+                    if(edgeInCycle.from() == neighbor) {
+                        break;
+                    }
+                }
             }
         }
 
