@@ -47,10 +47,12 @@ public class Exercise7 {
         public Iterable<DirectedEdge> getPath() {
             LinkedList<DirectedEdge> path = new LinkedList<>();
 
-            while (previousPath != null && previousPath.directedEdge != null) {
-                path.addFirst(previousPath.directedEdge);
+            Path currentPreviousPath = previousPath;
 
-                previousPath = previousPath.previousPath;
+            while (currentPreviousPath != null && currentPreviousPath.directedEdge != null) {
+                path.addFirst(currentPreviousPath.directedEdge);
+
+                currentPreviousPath = currentPreviousPath.previousPath;
             }
             path.add(directedEdge);
 

@@ -39,15 +39,15 @@ public class EdgeWeightedDirectedCycle {
             } else if(onStack[neighbor]) {
                 cycle = new Stack<>();
 
-                cycle.push(edge);
+                DirectedEdge edgeInCycle = edge;
 
-                for(DirectedEdge edgeInCycle = edgeTo[vertex]; edgeInCycle != null; edgeInCycle = edgeTo[edgeInCycle.from()]) {
+                while (edgeInCycle.from() != neighbor) {
                     cycle.push(edgeInCycle);
-
-                    if(edgeInCycle.from() == neighbor) {
-                        break;
-                    }
+                    edgeInCycle = edgeTo[edgeInCycle.from()];
                 }
+
+                cycle.push(edgeInCycle);
+                return;
             }
         }
 

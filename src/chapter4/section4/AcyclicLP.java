@@ -21,7 +21,11 @@ public class AcyclicLP {
     }
 
     public double distTo(int vertex) {
-        return acyclicSP.distTo(vertex);
+        if(acyclicSP.distTo(vertex) == 0) {
+            return 0;
+        }
+
+        return acyclicSP.distTo(vertex) * -1;
     }
 
     public boolean hasPathTo(int vertex) {
