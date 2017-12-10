@@ -49,6 +49,10 @@ public class DijkstraSP {
         return distTo[vertex];
     }
 
+    public DirectedEdge edgeTo(int vertex) {
+        return edgeTo[vertex];
+    }
+
     public boolean hasPathTo(int vertex) {
         return distTo[vertex] < Double.POSITIVE_INFINITY;
     }
