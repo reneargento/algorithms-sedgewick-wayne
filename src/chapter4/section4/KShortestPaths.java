@@ -47,10 +47,12 @@ public class KShortestPaths {
         public Iterable<DirectedEdge> getPath() {
             LinkedList<DirectedEdge> path = new LinkedList<>();
 
-            while (previousPath != null && previousPath.directedEdge != null) {
-                path.addFirst(previousPath.directedEdge);
+            Path iterator = previousPath;
 
-                previousPath = previousPath.previousPath;
+            while (iterator != null && iterator.directedEdge != null) {
+                path.addFirst(iterator.directedEdge);
+
+                iterator = iterator.previousPath;
             }
             path.add(directedEdge);
 

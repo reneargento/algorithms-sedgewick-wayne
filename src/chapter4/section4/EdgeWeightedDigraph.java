@@ -49,6 +49,10 @@ public class EdgeWeightedDigraph {
         return edges;
     }
 
+    public int outdegree(int vertex) {
+        return adjacent[vertex].size();
+    }
+
     public void addEdge(DirectedEdge edge) {
         adjacent[edge.from()].add(edge);
         edges++;
