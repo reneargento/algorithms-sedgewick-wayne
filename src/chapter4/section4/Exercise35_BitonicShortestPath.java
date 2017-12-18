@@ -114,7 +114,7 @@ public class Exercise35_BitonicShortestPath {
 
         private Path[] bitonicPathTo;  // bitonic path to vertex
 
-        // O(Ap lg Ap), where Ap is the number of ascending paths in the digraph
+        // O(P lg P), where P is the number of paths in the digraph
         public BitonicSP(EdgeWeightedDigraph edgeWeightedDigraph, int source) {
 
             bitonicPathTo = new Path[edgeWeightedDigraph.vertices()];
