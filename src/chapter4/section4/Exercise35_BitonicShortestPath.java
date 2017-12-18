@@ -238,7 +238,11 @@ public class Exercise35_BitonicShortestPath {
                     Path path = new Path(currentShortestPath, edge);
                     priorityQueue.insert(path);
 
-                    allCurrentPaths.add(path);
+                    // If we are relaxing edges for the first time, store the ascending paths so they can be further
+                    // relaxed when computing the descending paths on the second relaxation
+                    if(isAscendingOrder) {
+                        allCurrentPaths.add(path);
+                    }
                 }
             }
         }
