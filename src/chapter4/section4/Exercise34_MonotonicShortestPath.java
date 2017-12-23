@@ -10,7 +10,6 @@ import java.util.*;
  * Created by rene on 10/12/17.
  */
 // Based on https://stackoverflow.com/questions/22876105/find-a-monotonic-shortest-path-in-a-graph-in-oe-logv
-    // Assumes that all edge weights are positive (still works
 public class Exercise34_MonotonicShortestPath {
 
     public class Path {
