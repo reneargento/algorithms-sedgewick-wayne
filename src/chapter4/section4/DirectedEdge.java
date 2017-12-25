@@ -3,7 +3,7 @@ package chapter4.section4;
 /**
  * Created by rene on 27/11/17.
  */
-public class DirectedEdge {
+public class DirectedEdge implements Comparable<DirectedEdge> {
 
     private final int vertex1;
     private final int vertex2;
@@ -25,6 +25,16 @@ public class DirectedEdge {
 
     public int to() {
         return vertex2;
+    }
+
+    public int compareTo(DirectedEdge that) {
+        if (this.weight < that.weight) {
+            return -1;
+        } else if (this.weight > that.weight) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public String toString() {
