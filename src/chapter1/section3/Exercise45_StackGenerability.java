@@ -4,6 +4,8 @@ import edu.princeton.cs.algs4.StdOut;
 
 /**
  * Created by rene on 8/23/16.
+ * Adapted by AspectLeft (https://github.com/AspectLeft) -> Added the correct implementation
+ * for canAPermutationBeGenerated() on 12/25/17
  */
 public class Exercise45_StackGenerability {
 
@@ -25,52 +27,70 @@ public class Exercise45_StackGenerability {
         return false;
     }
 
-    private static boolean canAPermutationBeGenerated(String[] inputValues) {
+    private static boolean canAPermutationBeGenerated(String[] permutation) {
 
-        int pushesCount = 0;
-        int popsCount = 0;
+        Stack<Integer> stack = new Stack<>();
+        int current = 0;
 
-        for(String input : inputValues) {
-            if(input.equals("-")){
-                popsCount++;
-            } else{
-                pushesCount++;
+        for (String value: permutation) {
+            int integerValue = Integer.parseInt(value);
+
+            if (stack.isEmpty() || integerValue > stack.peek()) {
+                while (current < integerValue) {
+                    stack.push(current);
+                    current++;
+                }
+
+                current++;
+            } else if (integerValue == stack.peek()) {
+                stack.pop();
+                current++;
+            } else {
+                return false;
             }
         }
 
-        return pushesCount >= popsCount;
+        return true;
     }
 
     public static void main(String[] args) {
-        //TEST 1
+        //"Will the stack underflow?" tests
         String input1Values = "0 1 2 - - -";
         String[] input1 = input1Values.split("\\s");
 
-        StdOut.println("Input 1 - Will Underflow? (expected = false)");
-        StdOut.println(willTheStackUnderflow(input1));
+        StdOut.print("Input 1 - Will Underflow? ");
+        StdOut.println(willTheStackUnderflow(input1) + " Expected: false");
 
-        StdOut.println("Input 1 - Can permutation be generated? (expected = true)");
-        StdOut.println(canAPermutationBeGenerated(input1));
-
-        //TEST 2
         String input2Values = "0 1 2 - - - 3 4 5 - - 6 - - -";
         String[] input2 = input2Values.split("\\s");
 
-        StdOut.println("Input 2 - Will Underflow? (expected = true)");
-        StdOut.println(willTheStackUnderflow(input2));
+        StdOut.print("Input 2 - Will Underflow? ");
+        StdOut.println(willTheStackUnderflow(input2) + " Expected: true");
 
-        StdOut.println("Input 2 - Can permutation be generated? (expected = false)");
-        StdOut.println(canAPermutationBeGenerated(input2));
-
-        //TEST 3
         String input3Values = "0 - - 1 2 -";
         String[] input3 = input3Values.split("\\s");
 
-        StdOut.println("Input 3 - Will Underflow? (expected = true)");
-        StdOut.println(willTheStackUnderflow(input3));
+        StdOut.print("Input 3 - Will Underflow? ");
+        StdOut.println(willTheStackUnderflow(input3) + " Expected: true");
 
-        StdOut.println("Input 3 - Can permutation be generated? (expected = true)");
-        StdOut.println(canAPermutationBeGenerated(input3));
+        //"Can permutation be generated?" tests
+        StdOut.println("\nCan a permutation be generated?");
+        StdOut.print("Input: 4 3 2 1 0 9 8 7 6 5 - ");
+        StdOut.println(canAPermutationBeGenerated("4 3 2 1 0 9 8 7 6 5".split(" ")) + " Expected: true");
+        StdOut.print("Input: 4 6 8 7 5 3 2 9 0 1 - ");
+        StdOut.println(canAPermutationBeGenerated("4 6 8 7 5 3 2 9 0 1".split(" ")) + " Expected: false");
+        StdOut.print("Input: 2 5 6 7 4 8 9 3 1 0 - ");
+        StdOut.println(canAPermutationBeGenerated("2 5 6 7 4 8 9 3 1 0".split(" ")) + " Expected: true");
+        StdOut.print("Input: 4 3 2 1 0 5 6 7 8 9 - ");
+        StdOut.println(canAPermutationBeGenerated("4 3 2 1 0 5 6 7 8 9".split(" ")) + " Expected: true");
+        StdOut.print("Input: 1 2 3 4 5 6 9 8 7 0 - ");
+        StdOut.println(canAPermutationBeGenerated("1 2 3 4 5 6 9 8 7 0".split(" ")) + " Expected: true");
+        StdOut.print("Input: 0 4 6 5 3 8 1 7 2 9 - ");
+        StdOut.println(canAPermutationBeGenerated("0 4 6 5 3 8 1 7 2 9".split(" ")) + " Expected: false");
+        StdOut.print("Input: 1 4 7 9 8 6 5 3 0 2 - ");
+        StdOut.println(canAPermutationBeGenerated("1 4 7 9 8 6 5 3 0 2".split(" ")) + " Expected: false");
+        StdOut.print("Input: 2 1 4 3 6 5 8 7 9 0 - ");
+        StdOut.println(canAPermutationBeGenerated("2 1 4 3 6 5 8 7 9 0".split(" ")) + " Expected: true");
     }
 
 }
