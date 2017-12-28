@@ -17,5 +17,6 @@ public class Constants {
     public static final String EWD_FILE = "4.4.2.txt";
     public static final String RATES_FILE = "rates.txt";
     public static final String REAL_WORLD_RATES_FILE = "4.4.20_rates.txt";
+    public static final String TINY_EWD_FILE = "tinyEWD.txt";
 
 }
