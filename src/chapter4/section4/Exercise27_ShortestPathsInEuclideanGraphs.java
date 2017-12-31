@@ -5,6 +5,8 @@ import chapter1.section3.Stack;
 import chapter2.section4.IndexMinPriorityQueue;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
+import util.DrawUtilities;
+import util.DrawUtilities.Coordinate;
 
 import java.awt.*;
 
@@ -17,13 +19,12 @@ import java.awt.*;
 public class Exercise27_ShortestPathsInEuclideanGraphs {
 
     @SuppressWarnings("unchecked")
-    public class EuclideanEdgeWeightedDigraph {
+    public class EuclideanEdgeWeightedDigraph implements EdgeWeightedDigraphInterface {
 
         public class Vertex {
-            private int id;
+            protected int id;
             private String name;
-            private double xCoordinate;
-            private double yCoordinate;
+            protected Coordinate coordinates;
 
             Vertex(int id, double xCoordinate, double yCoordinate) {
                 this(id, String.valueOf(id), xCoordinate, yCoordinate);
@@ -32,8 +33,11 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
             Vertex(int id, String name, double xCoordinate, double yCoordinate) {
                 this.id = id;
                 this.name = name;
-                this.xCoordinate = xCoordinate;
-                this.yCoordinate = yCoordinate;
+                coordinates = new DrawUtilities().new Coordinate(xCoordinate, yCoordinate);
+            }
+
+            public void updateName(String name) {
+                this.name = name;
             }
         }
 
@@ -61,8 +65,12 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
             return edges;
         }
 
-        public Vertex getVertex(int vertex) {
-            return allVertices[vertex];
+        public int outdegree(int vertex) {
+            return adjacent[vertex].size();
+        }
+
+        public Vertex getVertex(int vertexId) {
+            return allVertices[vertexId];
         }
 
         public void addVertex(Vertex vertex) {
@@ -82,129 +90,69 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
         }
 
         public void show(double xScaleLow, double xScaleHigh, double yScaleLow, double yScaleHigh,
-                         double padding, double arrowLength) {
-            // Set canvas size
+                         double radiusOfCircleAroundVertex, double padding, double arrowLength) {
             StdDraw.setCanvasSize(500, 400);
             StdDraw.setXscale(xScaleLow, xScaleHigh);
             StdDraw.setYscale(yScaleLow, yScaleHigh);
 
             StdDraw.setPenRadius(0.002D);
-            StdDraw.setPenColor(Color.BLACK);
-
-            double arrowWidth = padding * 2;
-
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                for(DirectedEdge edge : adjacent(vertexId)) {
-                    int neighbor = edge.to();
-                    Vertex neighborVertex = allVertices[neighbor];
-
-                    // Edges pointing up
-                    if(allVertices[vertexId].yCoordinate < neighborVertex.yCoordinate) {
-                        if(allVertices[vertexId].xCoordinate < neighborVertex.xCoordinate) {
-                            // Edge pointing diagonally up and right
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate + padding,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
-                        } else if(allVertices[vertexId].xCoordinate > neighborVertex.xCoordinate) {
-                            // Edge pointing diagonally up and left
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate + padding,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
-                        } else {
-                            // Edge pointing up
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate + padding * 2,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
-                        }
-                    } if(allVertices[vertexId].yCoordinate > neighborVertex.yCoordinate) {
-                        //Edges pointing down
-                        if(allVertices[vertexId].xCoordinate < neighborVertex.xCoordinate) {
-                            // Edge pointing diagonally down and right
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate - padding * 2,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 4, arrowWidth, arrowLength);
-                        } else if(allVertices[vertexId].xCoordinate > neighborVertex.xCoordinate) {
-                            // Edge pointing diagonally down and left
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate - padding * 2,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 4, arrowWidth, arrowLength);
-                        } else {
-                            // Edge pointing down
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate - padding * 2,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 2, arrowWidth, arrowLength);
-                        }
-                    } else if(allVertices[vertexId].yCoordinate == neighborVertex.yCoordinate) {
-                        // Horizontal edges
-                        if(allVertices[vertexId].xCoordinate < neighborVertex.xCoordinate) {
-                            // Edge pointing right
-                            drawArrowLine(allVertices[vertexId].xCoordinate + padding * 2, allVertices[vertexId].yCoordinate,
-                                    neighborVertex.xCoordinate - padding * 2, neighborVertex.yCoordinate, arrowWidth, arrowLength);
-                        } else if(allVertices[vertexId].xCoordinate > neighborVertex.xCoordinate) {
-                            // Edge pointing left
-                            drawArrowLine(allVertices[vertexId].xCoordinate - padding * 2, allVertices[vertexId].yCoordinate,
-                                    neighborVertex.xCoordinate + padding * 2, neighborVertex.yCoordinate, arrowWidth, arrowLength);
-                        }
-                    }
-                }
-            }
-
-            StdDraw.setPenColor(Color.BLUE);
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
                 if(allVertices[vertexId] != null) {
-                    StdDraw.text(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
-                            allVertices[vertexId].name);
+                    double xCoordinate = allVertices[vertexId].coordinates.getXCoordinate();
+                    double yCoordinate = allVertices[vertexId].coordinates.getYCoordinate();
+
+                    StdDraw.setPenColor(Color.WHITE);
+                    StdDraw.filledCircle(xCoordinate, yCoordinate, radiusOfCircleAroundVertex);
+
+                    StdDraw.setPenColor(Color.BLACK);
+                    StdDraw.circle(xCoordinate, yCoordinate, radiusOfCircleAroundVertex);
+
+                    StdDraw.setPenColor(Color.BLUE);
+                    StdDraw.text(xCoordinate, yCoordinate, allVertices[vertexId].name);
+                }
+            }
+
+            StdDraw.setPenColor(Color.BLACK);
+
+            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+                for(DirectedEdge edge : adjacent(vertexId)) {
+                    int otherVertexId = edge.to();
+                    Vertex neighborVertex = allVertices[otherVertexId];
+
+                    DrawUtilities.drawArrow(allVertices[vertexId].coordinates, neighborVertex.coordinates, padding,
+                            arrowLength);
                 }
             }
         }
 
-        /**
-         * Draw an arrow line between two points.
-         * @param x1 x-position of first point.
-         * @param y1 y-position of first point.
-         * @param x2 x-position of second point.
-         * @param y2 y-position of second point.
-         * @param arrowWidth  the width of the arrow.
-         * @param arrowHeight  the height of the arrow.
-         */
-        private void drawArrowLine(double x1, double y1, double x2, double y2, double arrowWidth, double arrowHeight) {
-            double xDistance = x2 - x1;
-            double yDistance = y2 - y1;
-            double distance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
-
-            double xm = distance - arrowWidth;
-            double xn = xm;
-            double ym = arrowHeight;
-            double yn = -arrowHeight;
-            double x;
-
-            double sin = yDistance / distance;
-            double cos = xDistance / distance;
-
-            x = xm * cos - ym * sin + x1;
-            ym = xm * sin + ym * cos + y1;
-            xm = x;
-
-            x = xn * cos - yn * sin + x1;
-            yn = xn * sin + yn * cos + y1;
-            xn = x;
-
-            double[] xPoints = {x2, xm, xn};
-            double[] yPoints = {y2, ym, yn};
-
-            StdDraw.line(x1, y1, x2, y2);
-            StdDraw.filledPolygon(xPoints, yPoints);
-        }
-
-        public Iterable<DirectedEdge> adjacent(int vertex) {
-            return adjacent[vertex];
+        public Iterable<DirectedEdge> adjacent(int vertexId) {
+            return adjacent[vertexId];
         }
 
         public Iterable<DirectedEdge> edges() {
-            Bag<DirectedEdge> bag = new Bag<>();
+            Bag<DirectedEdge> edges = new Bag<>();
 
             for(int vertex = 0; vertex < vertices; vertex++) {
                 for(DirectedEdge edge : adjacent[vertex]) {
-                    bag.add(edge);
+                    edges.add(edge);
                 }
             }
 
-            return bag;
+            return edges;
+        }
+
+        public EuclideanEdgeWeightedDigraph reverse() {
+            EuclideanEdgeWeightedDigraph reverse = new EuclideanEdgeWeightedDigraph(vertices);
+
+            for(int vertex = 0; vertex < vertices; vertex++) {
+                for(DirectedEdge edge : adjacent(vertex)) {
+                    int neighbor = edge.to();
+                    reverse.addEdge(new DirectedEdge(neighbor, vertex, edge.weight()));
+                }
+            }
+
+            return reverse;
         }
 
         @Override
@@ -303,8 +251,8 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
             EuclideanEdgeWeightedDigraph.Vertex point1 = euclideanEdgeWeightedDigraph.getVertex(vertex1);
             EuclideanEdgeWeightedDigraph.Vertex point2 = euclideanEdgeWeightedDigraph.getVertex(vertex2);
 
-            return Math.sqrt(Math.pow(point1.xCoordinate - point2.xCoordinate, 2) +
-                    Math.pow(point1.yCoordinate - point2.yCoordinate, 2));
+            return Math.sqrt(Math.pow(point1.coordinates.getXCoordinate() - point2.coordinates.getXCoordinate(), 2) +
+                    Math.pow(point1.coordinates.getYCoordinate() - point2.coordinates.getYCoordinate(), 2));
         }
 
         // O(V)
@@ -349,8 +297,8 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
 
     private double getDistanceBetweenVertices(EuclideanEdgeWeightedDigraph.Vertex vertex1,
                                               EuclideanEdgeWeightedDigraph.Vertex vertex2) {
-        return Math.sqrt(Math.pow(vertex1.xCoordinate - vertex2.xCoordinate, 2) +
-                Math.pow(vertex1.yCoordinate - vertex2.yCoordinate, 2));
+        return Math.sqrt(Math.pow(vertex1.coordinates.getXCoordinate() - vertex2.coordinates.getXCoordinate(), 2) +
+                Math.pow(vertex1.coordinates.getYCoordinate() - vertex2.coordinates.getYCoordinate(), 2));
     }
 
     public static void main(String[] args) {
@@ -397,7 +345,8 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
         DijkstraSPEuclideanGraph dijkstraSPEuclideanGraph =
                 shortestPathsInEuclideanGraphs.new DijkstraSPEuclideanGraph(euclideanEdgeWeightedDigraph, 0);
 
-        euclideanEdgeWeightedDigraph.show(0, 15, 0, 20, 0.08, 0.4);
+        euclideanEdgeWeightedDigraph.show(0, 15, 0, 20,
+                0.5, 0.08, 0.5);
 
         for(int vertex = 0; vertex < euclideanEdgeWeightedDigraph.vertices(); vertex++) {
             StdOut.printf("Distance to vertex %d: %.2f\n", vertex, dijkstraSPEuclideanGraph.distTo(vertex));
