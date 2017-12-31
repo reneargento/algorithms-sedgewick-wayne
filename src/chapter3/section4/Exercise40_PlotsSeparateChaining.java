@@ -239,7 +239,7 @@ public class Exercise40_PlotsSeparateChaining {
             symbolTable[hash(key)].delete(key);
             keysSize--;
 
-            if(size > 0 && getLoadFactor() <= averageListSize / (double) 4) {
+            if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(size / 2);
                 lgM--;
             }

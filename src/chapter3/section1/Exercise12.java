@@ -156,7 +156,7 @@ public class Exercise12 {
             items[size - 1] = null;
             size--;
 
-            if(size > 0 && size == items.length / 4) {
+            if(size > 1 && size == items.length / 4) {
                 resize(items.length / 2);
             }
         }

@@ -160,7 +160,7 @@ public class Exercise8 {
                 tableIndex = (tableIndex + 1) % size;
             }
 
-            if(keysSize > 0 && keysSize <= size / (double) 8) {
+            if(keysSize > 1 && keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             }

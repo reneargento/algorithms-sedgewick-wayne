@@ -257,7 +257,7 @@ public class Exercise18_Multisets {
                 symbolTable[hash(key)].delete(key);
                 keysSize--;
 
-                if(size > 0 && getLoadFactor() <= averageListSize / (double) 4) {
+                if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                     resize(size / 2);
                     lgM--;
                 }
@@ -438,7 +438,7 @@ public class Exercise18_Multisets {
                 keys[size - 1] = null;
                 size--;
 
-                if(size > 0 && size == keys.length / 4) {
+                if(size > 1 && size == keys.length / 4) {
                     resize(keys.length / 2);
                 }
             }

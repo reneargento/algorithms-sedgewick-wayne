@@ -3,6 +3,8 @@ package chapter4.section2;
 import chapter1.section3.Bag;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
+import util.DrawUtilities;
+import util.DrawUtilities.Coordinate;
 
 import java.awt.*;
 
@@ -17,8 +19,7 @@ public class Exercise38_EuclideanDigraphs {
         public class Vertex {
             protected int id;
             private String name;
-            protected double xCoordinate;
-            protected double yCoordinate;
+            protected Coordinate coordinates;
 
             Vertex(int id, double xCoordinate, double yCoordinate) {
                 this(id, String.valueOf(id), xCoordinate, yCoordinate);
@@ -27,8 +28,7 @@ public class Exercise38_EuclideanDigraphs {
             Vertex(int id, String name, double xCoordinate, double yCoordinate) {
                 this.id = id;
                 this.name = name;
-                this.xCoordinate = xCoordinate;
-                this.yCoordinate = yCoordinate;
+                coordinates = new DrawUtilities().new Coordinate(xCoordinate, yCoordinate);
             }
 
             public void updateName(String name) {
@@ -53,8 +53,8 @@ public class Exercise38_EuclideanDigraphs {
             indegrees = new int[vertices];
             outdegrees = new int[vertices];
 
-            for(int i = 0; i < vertices; i++) {
-                adjacent[i] = new Bag<>();
+            for(int vertex = 0; vertex < vertices; vertex++) {
+                adjacent[vertex] = new Bag<>();
             }
         }
 
@@ -83,72 +83,38 @@ public class Exercise38_EuclideanDigraphs {
         }
 
         public void show(double xScaleLow, double xScaleHigh, double yScaleLow, double yScaleHigh,
-                         double padding, double arrowLength) {
-            // Set canvas size
+                         double radiusOfCircleAroundVertex, double padding, double arrowLength) {
             StdDraw.setCanvasSize(500, 400);
             StdDraw.setXscale(xScaleLow, xScaleHigh);
             StdDraw.setYscale(yScaleLow, yScaleHigh);
 
             StdDraw.setPenRadius(0.002D);
-            StdDraw.setPenColor(Color.BLACK);
+            StdDraw.setPenColor(Color.BLUE);
 
-            double arrowWidth = padding * 2;
+            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+                if(allVertices[vertexId] != null) {
+                    double xCoordinate = allVertices[vertexId].coordinates.getXCoordinate();
+                    double yCoordinate = allVertices[vertexId].coordinates.getYCoordinate();
+
+                    StdDraw.setPenColor(Color.WHITE);
+                    StdDraw.filledCircle(xCoordinate, yCoordinate, radiusOfCircleAroundVertex);
+
+                    StdDraw.setPenColor(Color.BLACK);
+                    StdDraw.circle(xCoordinate, yCoordinate, radiusOfCircleAroundVertex);
+
+                    StdDraw.setPenColor(Color.BLUE);
+                    StdDraw.text(xCoordinate, yCoordinate, allVertices[vertexId].name);
+                }
+            }
+
+            StdDraw.setPenColor(Color.BLACK);
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
                 for(Integer neighbor : adjacent(vertexId)) {
                     Vertex neighborVertex = allVertices[neighbor];
 
-                    // Edges pointing up
-                    if(allVertices[vertexId].yCoordinate < neighborVertex.yCoordinate) {
-                        if(allVertices[vertexId].xCoordinate < neighborVertex.xCoordinate) {
-                            // Edge pointing diagonally up and right
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate + padding,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
-                        } else if(allVertices[vertexId].xCoordinate > neighborVertex.xCoordinate) {
-                            // Edge pointing diagonally up and left
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate + padding,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
-                        } else {
-                            // Edge pointing up
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate + padding * 2,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
-                        }
-                    } if(allVertices[vertexId].yCoordinate > neighborVertex.yCoordinate) {
-                        //Edges pointing down
-                        if(allVertices[vertexId].xCoordinate < neighborVertex.xCoordinate) {
-                            // Edge pointing diagonally down and right
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate - padding * 2,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 4, arrowWidth, arrowLength);
-                        } else if(allVertices[vertexId].xCoordinate > neighborVertex.xCoordinate) {
-                            // Edge pointing diagonally down and left
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate - padding * 2,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 4, arrowWidth, arrowLength);
-                        } else {
-                            // Edge pointing down
-                            drawArrowLine(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate - padding * 2,
-                                    neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 2, arrowWidth, arrowLength);
-                        }
-                    } else if(allVertices[vertexId].yCoordinate == neighborVertex.yCoordinate) {
-                        // Horizontal edges
-                        if(allVertices[vertexId].xCoordinate < neighborVertex.xCoordinate) {
-                            // Edge pointing right
-                            drawArrowLine(allVertices[vertexId].xCoordinate + padding * 2, allVertices[vertexId].yCoordinate,
-                                    neighborVertex.xCoordinate - padding * 2, neighborVertex.yCoordinate, arrowWidth, arrowLength);
-                        } else if(allVertices[vertexId].xCoordinate > neighborVertex.xCoordinate) {
-                            // Edge pointing left
-                            drawArrowLine(allVertices[vertexId].xCoordinate - padding * 2, allVertices[vertexId].yCoordinate,
-                                    neighborVertex.xCoordinate + padding * 2, neighborVertex.yCoordinate, arrowWidth, arrowLength);
-                        }
-                    }
-                }
-            }
-
-            StdDraw.setPenColor(Color.BLUE);
-
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                if(allVertices[vertexId] != null) {
-                    StdDraw.text(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
-                            allVertices[vertexId].name);
+                    DrawUtilities.drawArrow(allVertices[vertexId].coordinates, neighborVertex.coordinates,
+                            padding, arrowLength);
                 }
             }
         }
@@ -192,45 +158,6 @@ public class Exercise38_EuclideanDigraphs {
 
             return stringBuilder.toString();
         }
-
-        /**
-         * Draw an arrow line between two points.
-         * @param x1 x-position of first point.
-         * @param y1 y-position of first point.
-         * @param x2 x-position of second point.
-         * @param y2 y-position of second point.
-         * @param arrowWidth  the width of the arrow.
-         * @param arrowHeight  the height of the arrow.
-         */
-        private void drawArrowLine(double x1, double y1, double x2, double y2, double arrowWidth, double arrowHeight) {
-            double xDistance = x2 - x1;
-            double yDistance = y2 - y1;
-            double distance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
-
-            double xm = distance - arrowWidth;
-            double xn = xm;
-            double ym = arrowHeight;
-            double yn = -arrowHeight;
-            double x;
-
-            double sin = yDistance / distance;
-            double cos = xDistance / distance;
-
-            x = xm * cos - ym * sin + x1;
-            ym = xm * sin + ym * cos + y1;
-            xm = x;
-
-            x = xn * cos - yn * sin + x1;
-            yn = xn * sin + yn * cos + y1;
-            xn = x;
-
-            double[] xPoints = {x2, xm, xn};
-            double[] yPoints = {y2, ym, yn};
-
-            StdDraw.line(x1, y1, x2, y2);
-            StdDraw.filledPolygon(xPoints, yPoints);
-        }
-
     }
 
     public static void main(String[] args) {
@@ -263,7 +190,8 @@ public class Exercise38_EuclideanDigraphs {
         euclideanDigraph.addEdge(1, 5);
         euclideanDigraph.addEdge(5, 6);
 
-        euclideanDigraph.show(0, 15, 0, 20, 0.08, 0.4);
+        euclideanDigraph.show(0, 15, 0, 20, 0.5,
+                0.08, 0.4);
         StdOut.println(euclideanDigraph);
     }
 

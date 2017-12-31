@@ -272,7 +272,7 @@ public class Exercise34_HashCost {
             symbolTable[hash].delete(key);
             keysSize--;
 
-            if(size > 0 && getLoadFactor() <= averageListSize / (double) 4) {
+            if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(size / 2);
                 lgM--;
             }
@@ -487,7 +487,7 @@ public class Exercise34_HashCost {
                 tableIndex = (tableIndex + 1) % size;
             }
 
-            if(keysSize > 0 && keysSize <= size / (double) 8) {
+            if(keysSize > 1 && keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             }

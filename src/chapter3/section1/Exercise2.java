@@ -87,7 +87,7 @@ public class Exercise2 {
                 }
             }
 
-            if(size > 0 && size == keys.length / 4) {
+            if(size > 1 && size == keys.length / 4) {
                 resize(keys.length / 2);
             }
         }

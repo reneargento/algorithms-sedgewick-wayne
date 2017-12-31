@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class Exercise41_HeaviestMSTEdge {
 
-    private void generateGraphsAndDoExperiments(int experiments, int vertices, int euclideanGraphVertices, int edges) {
+    private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges, int euclideanGraphVertices) {
 
         StdOut.printf("%47s %11s %10s %10s %10s\n", "Edge Weighted Graph type | ", "Vertices | ",
                 "Edges | ", "Average heaviest edge weight | ", "AVG edges not heavier than heaviest edge");
@@ -61,10 +61,12 @@ public class Exercise41_HeaviestMSTEdge {
 
         Exercise35_RandomEuclideanEdgeWeightedGraphs randomEuclideanEdgeWeightedGraphs =
                 new Exercise35_RandomEuclideanEdgeWeightedGraphs();
+        // Running the experiment on a complete graph
+        double radius = 1;
 
         for(int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraphInterface randomEdgeWeightedEuclideanGraph =
-                    randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices);
+                    randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices, radius);
 
             edges = randomEdgeWeightedEuclideanGraph.edgesCount();
 
@@ -129,16 +131,17 @@ public class Exercise41_HeaviestMSTEdge {
                 averageNumberOfEdgesNotHeavierThanHeaviestEdge);
     }
 
+    // Parameters example: 10 100000 300000 1000
     public static void main(String[] args) {
-        //Arguments example: 10 100000 1000 300000
         int experiments = Integer.parseInt(args[0]);
         int vertices = Integer.parseInt(args[1]);
-        // In an Euclidean graph all vertices are connected to all vertices.
-        // So this requires a separate number of vertices to avoid a very high number of edges while still having a dense graph.
-        int euclideanGraphVertices = Integer.parseInt(args[2]);
-        int edges = Integer.parseInt(args[3]);
+        int edges = Integer.parseInt(args[2]);
 
-        new Exercise41_HeaviestMSTEdge().generateGraphsAndDoExperiments(experiments, vertices, euclideanGraphVertices, edges);
+        // In the Euclidean graph all vertices are connected to all vertices.
+        // So this requires a separate number of vertices to avoid a very high number of edges while still having a dense graph.
+        int euclideanGraphVertices = Integer.parseInt(args[3]);
+
+        new Exercise41_HeaviestMSTEdge().generateGraphsAndDoExperiments(experiments, vertices, edges, euclideanGraphVertices);
     }
 
 }

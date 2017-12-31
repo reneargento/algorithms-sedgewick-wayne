@@ -10,6 +10,7 @@ import java.util.PriorityQueue;
  * Created by rene on 23/12/17.
  */
 // Based on https://algs4.cs.princeton.edu/44sp/LazyDijkstraSP.java.html
+// O (E lg E)
 public class Exercise39_LazyImplementationDijkstra {
 
     public class LazyDijkstraSP {
@@ -29,7 +30,7 @@ public class Exercise39_LazyImplementationDijkstra {
             }
         }
 
-        public LazyDijkstraSP(EdgeWeightedDigraph edgeWeightedDigraph, int source) {
+        public LazyDijkstraSP(EdgeWeightedDigraphInterface edgeWeightedDigraph, int source) {
             edgeTo = new DirectedEdge[edgeWeightedDigraph.vertices()];
             distTo = new double[edgeWeightedDigraph.vertices()];
             priorityQueue = new PriorityQueue<>(new ByDistanceFromSourceComparator());
@@ -54,7 +55,7 @@ public class Exercise39_LazyImplementationDijkstra {
             }
         }
 
-        private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex) {
+        private void relax(EdgeWeightedDigraphInterface edgeWeightedDigraph, int vertex) {
             marked[vertex] = true;
 
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
@@ -69,7 +70,7 @@ public class Exercise39_LazyImplementationDijkstra {
             }
         }
 
-        private void checkPresenceOfNegativeEdges(EdgeWeightedDigraph edgeWeightedDigraph) {
+        private void checkPresenceOfNegativeEdges(EdgeWeightedDigraphInterface edgeWeightedDigraph) {
             for (DirectedEdge edge : edgeWeightedDigraph.edges()) {
                 if (edge.weight() < 0) {
                     throw new IllegalArgumentException("Edge " + edge + " has negative weight");

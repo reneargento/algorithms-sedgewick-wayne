@@ -70,9 +70,9 @@ public class Exercise55_StrongComponents {
         }
     }
 
+    // Parameters example: 1000 100 300
+    //                     1000 300 100
     public static void main(String[] args) {
-        //Arguments example: 1000 100 300
-        //                   1000 300 100
         int experiments = Integer.parseInt(args[0]);
         int vertices = Integer.parseInt(args[1]);
         int edges = Integer.parseInt(args[2]);

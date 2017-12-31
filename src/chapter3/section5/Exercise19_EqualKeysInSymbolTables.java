@@ -233,7 +233,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 symbolTable[hashIndex].delete(key);
                 keysSize--;
 
-                if(size > 0 && getLoadFactor() <= averageListSize / (double) 4) {
+                if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                     resize(size / 2);
                     lgM--;
                 }
@@ -436,7 +436,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 values[size - 1] = null;
                 size--;
 
-                if(size > 0 && size == keys.length / 4) {
+                if(size > 1 && size == keys.length / 4) {
                     resize(keys.length / 2);
                 }
             }

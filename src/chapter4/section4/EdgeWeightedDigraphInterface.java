@@ -7,8 +7,10 @@ public interface EdgeWeightedDigraphInterface {
 
     int vertices();
     int edgesCount();
+    int outdegree(int vertex);
     void addEdge(DirectedEdge edge);
     Iterable<DirectedEdge> adjacent(int vertex);
     Iterable<DirectedEdge> edges();
+    EdgeWeightedDigraphInterface reverse();
 
 }

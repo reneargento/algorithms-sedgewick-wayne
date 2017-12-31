@@ -6,13 +6,14 @@ import chapter2.section4.IndexMinPriorityQueue;
 /**
  * Created by rene on 27/11/17.
  */
+// O (E lg V)
 public class DijkstraSP {
 
     private DirectedEdge[] edgeTo;  // last edge on path to vertex
     private double[] distTo;        // length of path to vertex
     private IndexMinPriorityQueue<Double> priorityQueue;
 
-    public DijkstraSP(EdgeWeightedDigraph edgeWeightedDigraph, int source) {
+    public DijkstraSP(EdgeWeightedDigraphInterface edgeWeightedDigraph, int source) {
         edgeTo = new DirectedEdge[edgeWeightedDigraph.vertices()];
         distTo = new double[edgeWeightedDigraph.vertices()];
         priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedDigraph.vertices());
@@ -28,7 +29,7 @@ public class DijkstraSP {
         }
     }
 
-    private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex) {
+    private void relax(EdgeWeightedDigraphInterface edgeWeightedDigraph, int vertex) {
         for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
             int neighbor = edge.to();
 

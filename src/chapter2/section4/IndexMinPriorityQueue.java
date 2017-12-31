@@ -10,7 +10,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
     private Key[] keys;
     private int[] pq; //Holds the indices of the keys
     private int[] qp; //Inverse of pq -> qp[i] gives the position of i in pq[] (the index j such that pq[j] is i).
-    // qp[pq[i]] = pq[qp[i]] = i
+                      // qp[pq[i]] = pq[qp[i]] = i
     private int size = 0;
 
     @SuppressWarnings("unchecked")
@@ -92,7 +92,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
         sink(index);
 
         keys[i] = null; //Same thing as keys[pq[size + 1]] = null
-        qp[i] = -1;  //Same thing as qp[pq[size + 1]] = -1;
+        qp[i] = -1;     //Same thing as qp[pq[size + 1]] = -1;
     }
 
     //Change the key associated with index to key argument

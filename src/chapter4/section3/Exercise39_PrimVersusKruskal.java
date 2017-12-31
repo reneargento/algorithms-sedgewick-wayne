@@ -12,7 +12,7 @@ public class Exercise39_PrimVersusKruskal {
     private static final int EAGER_PRIM_ID = 1;
     private static final int KRUSKAL_ID = 2;
 
-    private void generateGraphsAndDoExperiments(int experiments, int vertices, int euclideanGraphVertices, int edges) {
+    private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges, int euclideanGraphVertices) {
 
         StdOut.printf("%47s %18s %12s %10s %10s\n", "Edge Weighted Graph type | ", "MST Algorithm | ", "Vertices | ",
                 "Edges | ", "Average time spent");
@@ -95,10 +95,12 @@ public class Exercise39_PrimVersusKruskal {
 
         Exercise35_RandomEuclideanEdgeWeightedGraphs randomEuclideanEdgeWeightedGraphs =
                 new Exercise35_RandomEuclideanEdgeWeightedGraphs();
+        // Running the experiment on a complete graph
+        double radius = 1;
 
         for(int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraphInterface randomEdgeWeightedEuclideanGraph =
-                    randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices);
+                    randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices, radius);
 
             edges = randomEdgeWeightedEuclideanGraph.edgesCount();
 
@@ -155,16 +157,17 @@ public class Exercise39_PrimVersusKruskal {
         StdOut.printf("%44s %18s %12d %10d %21.2f\n", graphType, mstAlgorithm, vertices, edges, averageTimeSpent);
     }
 
+    // Parameters example: 10 100000 300000 1000
     public static void main(String[] args) {
-        //Arguments example: 10 100000 1000 300000
         int experiments = Integer.parseInt(args[0]);
         int vertices = Integer.parseInt(args[1]);
-        // In an Euclidean graph all vertices are connected to all vertices.
-        // So this requires a separate number of vertices to avoid a very high number of edges while still having a dense graph.
-        int euclideanGraphVertices = Integer.parseInt(args[2]);
-        int edges = Integer.parseInt(args[3]);
+        int edges = Integer.parseInt(args[2]);
 
-        new Exercise39_PrimVersusKruskal().generateGraphsAndDoExperiments(experiments, vertices, euclideanGraphVertices, edges);
+        // In the Euclidean graph all vertices are connected to all vertices.
+        // So this requires a separate number of vertices to avoid a very high number of edges while still having a dense graph.
+        int euclideanGraphVertices = Integer.parseInt(args[3]);
+
+        new Exercise39_PrimVersusKruskal().generateGraphsAndDoExperiments(experiments, vertices, edges, euclideanGraphVertices);
     }
 
 }

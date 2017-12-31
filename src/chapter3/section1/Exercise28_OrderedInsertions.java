@@ -145,7 +145,7 @@ public class Exercise28_OrderedInsertions {
             values[size - 1] = null;
             size--;
 
-            if(size > 0 && size == keys.length / 4) {
+            if(size > 1 && size == keys.length / 4) {
                 resize(keys.length / 2);
             }
         }

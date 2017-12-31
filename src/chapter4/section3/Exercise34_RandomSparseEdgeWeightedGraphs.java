@@ -46,11 +46,11 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
         }
     }
 
-    //A graph is considered sparse if its number of different edges is within a small constant factor of V
-    public List<EdgeWeightedGraph> randomSparseEdgeWeightedGraphsGenerator(int numberOfGraphs, boolean uniformWeightDistribution) {
-
-        if(numberOfGraphs < 1) {
-            throw new IllegalArgumentException("Number of graphs must be positive");
+    //A graph is considered sparse if its number of edges is within a small constant factor of V
+    public List<EdgeWeightedGraph> randomSparseEdgeWeightedGraphsGenerator(int numberOfGraphs,
+                                                                           boolean uniformWeightDistribution) {
+        if(numberOfGraphs < 0) {
+            throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 
         RandomEdgeWeightedGraphs randomEdgeWeightedGraphsGenerator = new RandomEdgeWeightedGraphs();
@@ -78,19 +78,22 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
         return randomEdgeWeightedGraphs;
     }
 
+    //Parameter example: 100
     public static void main(String[] args) {
+        int numberOfGraphs = Integer.parseInt(args[0]);
+
         Exercise34_RandomSparseEdgeWeightedGraphs randomSparseEdgeWeightedGraphs =
                 new Exercise34_RandomSparseEdgeWeightedGraphs();
 
         List<EdgeWeightedGraph> randomSparseEdgeWeightedGraphsUniform =
-                randomSparseEdgeWeightedGraphs.randomSparseEdgeWeightedGraphsGenerator(10, true);
+                randomSparseEdgeWeightedGraphs.randomSparseEdgeWeightedGraphsGenerator(numberOfGraphs, true);
         StdOut.println("Random-sparse-edge-weighted-graphs with uniform weights distribution generated: "
-                + (randomSparseEdgeWeightedGraphsUniform.size() > 0));
+                + (randomSparseEdgeWeightedGraphsUniform.size() == numberOfGraphs));
 
         List<EdgeWeightedGraph> randomSparseEdgeWeightedGraphsGaussian =
-                randomSparseEdgeWeightedGraphs.randomSparseEdgeWeightedGraphsGenerator(10, false);
+                randomSparseEdgeWeightedGraphs.randomSparseEdgeWeightedGraphsGenerator(numberOfGraphs, false);
         StdOut.println("Random-sparse-edge-weighted-graphs with gaussian weights distribution generated: "
-                + (randomSparseEdgeWeightedGraphsGaussian.size() > 0));
+                + (randomSparseEdgeWeightedGraphsGaussian.size() == numberOfGraphs));
     }
 
 }

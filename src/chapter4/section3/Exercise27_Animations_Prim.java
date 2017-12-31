@@ -80,8 +80,7 @@ public class Exercise27_Animations_Prim {
             drawVerticesInMST(randomCoordinates);
         }
 
-        private void initCanvas(double xScaleLow, double xScaleHigh,
-                                double yScaleLow, double yScaleHigh) {
+        private void initCanvas(double xScaleLow, double xScaleHigh, double yScaleLow, double yScaleHigh) {
             // Set canvas size
 //            StdDraw.setCanvasSize(500, 400); // Use this dimension for tinyEWG.txt
             StdDraw.setCanvasSize(1000, 1000);

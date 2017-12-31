@@ -48,7 +48,10 @@ public class Exercise19 {
             }
         }
 
-        // There is no known efficient algorithm for finding the lowest cycle in a graph
+        // There is no known efficient algorithm for finding the lowest cycle in a graph.
+        // Such problem is NP-hard and can be reduced from the Hamiltonian Cycle problem:
+        // Set each edge weight to −1. There is a cycle of weight at most −n iff the graph has a Hamiltonian Cycle.
+
         // Generate all possible cycles
         List<String> allCyclesOfLength2 = generateCycleCombinations(2, CURRENCIES - 1);
         List<String> allCyclesOfLength3 = generateCycleCombinations(3, CURRENCIES - 1);
@@ -106,7 +109,7 @@ public class Exercise19 {
     }
 
     private void generateCycles(List<String> combinations, String currentCycle, int position, int size,
-                                       HashSet<Integer> verticesInCycle, int maxValue) {
+                                HashSet<Integer> verticesInCycle, int maxValue) {
         StringBuilder cycleCopy = new StringBuilder(currentCycle);
 
         if(position == size) {

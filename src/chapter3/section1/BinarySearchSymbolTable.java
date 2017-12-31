@@ -131,7 +131,7 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> impleme
         values[size - 1] = null;
         size--;
 
-        if(size > 0 && size == keys.length / 4) {
+        if(size > 1 && size == keys.length / 4) {
             resize(keys.length / 2);
         }
     }

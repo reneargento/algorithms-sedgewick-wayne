@@ -13,4 +13,5 @@ T(16) = T(1) * 2^b * 2^b * 2^b * 2^b
 which is equal to:
 T(16) = T(1) * 2^b^lgN
 
-T(N) = N0 * 2^b^lgN
+T(N) = T(N0) * 2^b^lgN
+T(N) = T * 2^b^lgN

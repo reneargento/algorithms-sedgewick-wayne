@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.In;
  * Created by rene on 27/11/17.
  */
 @SuppressWarnings("unchecked")
-public class EdgeWeightedDigraph {
+public class EdgeWeightedDigraph implements EdgeWeightedDigraphInterface {
 
     private final int vertices;
     private int edges;
@@ -72,6 +72,19 @@ public class EdgeWeightedDigraph {
         }
 
         return bag;
+    }
+
+    public EdgeWeightedDigraph reverse() {
+        EdgeWeightedDigraph reverse = new EdgeWeightedDigraph(vertices);
+
+        for(int vertex = 0; vertex < vertices; vertex++) {
+            for(DirectedEdge edge : adjacent(vertex)) {
+                int neighbor = edge.to();
+                reverse.addEdge(new DirectedEdge(neighbor, vertex, edge.weight()));
+            }
+        }
+
+        return reverse;
     }
 
     @Override

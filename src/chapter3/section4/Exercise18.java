@@ -101,7 +101,7 @@ public class Exercise18 {
             symbolTable[hash(key)].delete(key);
             keysSize--;
 
-            if(size > 0 && getLoadFactor() <= averageListSize / (double) 4) {
+            if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 StdOut.println("Resize - shrinking hash table size");
 
                 resize(size / 2);

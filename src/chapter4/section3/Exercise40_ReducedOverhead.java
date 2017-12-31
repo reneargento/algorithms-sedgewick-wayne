@@ -9,6 +9,7 @@ import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
+import util.MathUtil;
 
 import java.awt.*;
 
@@ -385,7 +386,7 @@ public class Exercise40_ReducedOverhead {
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
                 for(int otherVertexId = vertexId + 1; otherVertexId < vertices; otherVertexId++) {
-                    double distance = distanceBetweenPoints(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
+                    double distance = MathUtil.distanceBetweenPoints(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
                             allVertices[otherVertexId].xCoordinate, allVertices[otherVertexId].yCoordinate);
 
                     Edge edge = new Edge(vertexId, otherVertexId, distance);
@@ -394,10 +395,6 @@ public class Exercise40_ReducedOverhead {
             }
 
             return euclideanEdgeWeightedGraphSpaceEfficient;
-        }
-
-        private double distanceBetweenPoints(double x1, double y1, double x2, double y2) {
-            return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
         }
     }
 
@@ -408,7 +405,7 @@ public class Exercise40_ReducedOverhead {
     private static final int EAGER_PRIM_ID = 1;
     private static final int KRUSKAL_ID = 2;
 
-    private void generateGraphsAndDoExperiments(int experiments, int vertices, int euclideanGraphVertices, int edges) {
+    private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges, int euclideanGraphVertices) {
 
         StdOut.printf("%63s %18s %12s %10s %10s\n", "Edge Weighted Graph type | ", "MST Algorithm | ", "Vertices | ",
                 "Edges | ", "Average time spent");
@@ -500,6 +497,8 @@ public class Exercise40_ReducedOverhead {
                 new Exercise35_RandomEuclideanEdgeWeightedGraphs();
         RandomEuclideanEdgeWeightedGraphSpaceEfficient randomEuclideanEdgeWeightedGraphSpaceEfficient =
                 new RandomEuclideanEdgeWeightedGraphSpaceEfficient();
+        // Running the experiment on a complete graph
+        double radius = 1;
 
         for(int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
             for(int graphTypeSpaceEfficientId = 0; graphTypeSpaceEfficientId < 2; graphTypeSpaceEfficientId++) {
@@ -509,7 +508,8 @@ public class Exercise40_ReducedOverhead {
 
                     if(graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
                         EdgeWeightedGraphInterface randomEdgeWeightedEuclideanGraph =
-                                randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices);
+                                randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices,
+                                        radius);
 
                         edges = randomEdgeWeightedEuclideanGraph.edgesCount();
 
@@ -569,18 +569,19 @@ public class Exercise40_ReducedOverhead {
         StdOut.printf("%60s %18s %12d %10d %21.2f\n", graphType, mstAlgorithm, vertices, edges, averageTimeSpent);
     }
 
+    // Parameters example: 10 2500 5000 250
     public static void main(String[] args) {
         //new Exercise40_ReducedOverhead().tests();
 
-        //Arguments example: 10 2500 250 5000
         int experiments = Integer.parseInt(args[0]);
         int vertices = Integer.parseInt(args[1]);
-        // In an Euclidean graph all vertices are connected to all vertices.
-        // So this requires a separate number of vertices to avoid a very high number of edges while still having a dense graph.
-        int euclideanGraphVertices = Integer.parseInt(args[2]);
-        int edges = Integer.parseInt(args[3]);
+        int edges = Integer.parseInt(args[2]);
 
-        new Exercise40_ReducedOverhead().generateGraphsAndDoExperiments(experiments, vertices, euclideanGraphVertices, edges);
+        // In the Euclidean graph all vertices are connected to all vertices.
+        // So this requires a separate number of vertices to avoid a very high number of edges while still having a dense graph.
+        int euclideanGraphVertices = Integer.parseInt(args[3]);
+
+        new Exercise40_ReducedOverhead().generateGraphsAndDoExperiments(experiments, vertices, edges, euclideanGraphVertices);
     }
 
     private void tests() {

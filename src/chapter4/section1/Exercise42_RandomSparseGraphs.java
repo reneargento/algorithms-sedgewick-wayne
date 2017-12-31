@@ -13,8 +13,8 @@ public class Exercise42_RandomSparseGraphs {
     //A graph is considered sparse if its number of different edges is within a small constant factor of V
     public List<Graph> randomSparseGraph(int numberOfGraphs) {
 
-        if(numberOfGraphs < 1) {
-            throw new IllegalArgumentException("Number of graphs must be positive");
+        if(numberOfGraphs < 0) {
+            throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 
         Exercise40_RandomGraphs randomGraphs = new Exercise40_RandomGraphs();
@@ -33,9 +33,12 @@ public class Exercise42_RandomSparseGraphs {
         return randomSparseGraphs;
     }
 
+    // Parameter example: 100
     public static void main(String[] args) {
-        List<Graph> randomSparseGraphs = new Exercise42_RandomSparseGraphs().randomSparseGraph(10);
-        StdOut.println("Random sparse graphs generated: " + (randomSparseGraphs.size() > 0));
+        int numberOfGraphs = Integer.parseInt(args[0]);
+
+        List<Graph> randomSparseGraphs = new Exercise42_RandomSparseGraphs().randomSparseGraph(numberOfGraphs);
+        StdOut.println("Random sparse graphs generated: " + (randomSparseGraphs.size() == numberOfGraphs));
     }
 
 }

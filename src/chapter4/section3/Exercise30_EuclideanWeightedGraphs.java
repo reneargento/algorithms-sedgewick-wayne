@@ -47,8 +47,8 @@ public class Exercise30_EuclideanWeightedGraphs {
             allVertices = new Vertex[vertices];
             adjacent = (Bag<Edge>[]) new Bag[vertices];
 
-            for(int i = 0; i < vertices; i++) {
-                adjacent[i] = new Bag<>();
+            for(int vertex = 0; vertex < vertices; vertex++) {
+                adjacent[vertex] = new Bag<>();
             }
         }
 
@@ -78,7 +78,6 @@ public class Exercise30_EuclideanWeightedGraphs {
         }
 
         public void show(double xScaleLow, double xScaleHigh, double yScaleLow, double yScaleHigh, double radiusOfCircleAroundVertex) {
-            // Set canvas size
             StdDraw.setCanvasSize(500, 400);
             StdDraw.setXscale(xScaleLow, xScaleHigh);
             StdDraw.setYscale(yScaleLow, yScaleHigh);

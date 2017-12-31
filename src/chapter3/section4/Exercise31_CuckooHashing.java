@@ -289,7 +289,7 @@ public class Exercise31_CuckooHashing {
 
             keysSize--;
 
-            if(keysSize > 0 && keysSize <= size / (double) 8) {
+            if(keysSize > 1 && keysSize <= size / (double) 8) {
                 resize(size / 2);
             }
         }
