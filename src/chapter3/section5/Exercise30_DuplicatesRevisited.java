@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.Stopwatch;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by rene on 19/08/17.
+ * Created by Rene Argento on 19/08/17.
  */
 public class Exercise30_DuplicatesRevisited {
 

@@ -3,7 +3,7 @@ package chapter1.section3;
 import java.util.Iterator;
 
 /**
- * Created by rene on 14/11/17.
+ * Created by Rene Argento on 14/11/17.
  */
 public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
 

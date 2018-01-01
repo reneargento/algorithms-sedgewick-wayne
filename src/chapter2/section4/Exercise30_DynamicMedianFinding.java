@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import util.ArrayUtil;
 
 /**
- * Created by rene on 26/03/17.
+ * Created by Rene Argento on 26/03/17.
  */
 public class Exercise30_DynamicMedianFinding {
 

@@ -3,7 +3,7 @@ package chapter3.section3;
 import edu.princeton.cs.algs4.StdDraw;
 
 /**
- * Created by rene on 18/06/17.
+ * Created by Rene Argento on 18/06/17.
  */
 public class Exercise31_TreeDrawing {
 

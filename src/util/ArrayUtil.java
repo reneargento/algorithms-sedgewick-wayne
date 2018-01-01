@@ -1,7 +1,7 @@
 package util;
 
 /**
- * Created by rene on 04/03/17.
+ * Created by Rene Argento on 04/03/17.
  */
 @SuppressWarnings("unchecked")
 public class ArrayUtil {

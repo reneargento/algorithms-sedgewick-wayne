@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Arrays;
 
 /**
- * Created by rene on 18/02/17.
+ * Created by Rene Argento on 18/02/17.
  */
 //Good explanation here: http://www.geeksforgeeks.org/counting-inversions/
     //Related to the Kendall tau distance: https://en.wikipedia.org/wiki/Kendall_tau_distance

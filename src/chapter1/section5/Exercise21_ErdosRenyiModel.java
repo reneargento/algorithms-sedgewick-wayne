@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 09/12/16.
+ * Created by Rene Argento on 09/12/16.
  */
 public class Exercise21_ErdosRenyiModel {
 

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by rene on 27/11/16.
+ * Created by Rene Argento on 27/11/16.
  */
 public class Exercise44_BirthdayProblem {
 

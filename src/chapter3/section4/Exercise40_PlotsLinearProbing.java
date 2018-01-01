@@ -5,7 +5,7 @@ import util.FileUtil;
 import util.VisualAccumulator;
 
 /**
- * Created by rene on 29/07/17.
+ * Created by Rene Argento on 29/07/17.
  */
 public class Exercise40_PlotsLinearProbing {
 

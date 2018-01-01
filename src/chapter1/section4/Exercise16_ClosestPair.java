@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Arrays;
 
 /**
- * Created by rene on 9/30/16.
+ * Created by Rene Argento on 9/30/16.
  */
 public class Exercise16_ClosestPair {
 

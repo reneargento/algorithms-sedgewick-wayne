@@ -11,7 +11,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
 /**
- * Created by rene on 18/04/17.
+ * Created by Rene Argento on 18/04/17.
  */
 public class Exercise33_RandomTransactions {
 

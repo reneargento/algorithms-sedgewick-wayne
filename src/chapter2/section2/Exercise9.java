@@ -3,7 +3,7 @@ package chapter2.section2;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by rene on 11/02/17.
+ * Created by Rene Argento on 11/02/17.
  */
 public class Exercise9 {
 

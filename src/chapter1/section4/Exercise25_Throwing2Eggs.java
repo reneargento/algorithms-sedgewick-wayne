@@ -3,7 +3,7 @@ package chapter1.section4;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 23/10/16.
+ * Created by Rene Argento on 23/10/16.
  */
 public class Exercise25_Throwing2Eggs {
 

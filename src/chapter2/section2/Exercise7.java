@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 11/02/17.
+ * Created by Rene Argento on 11/02/17.
  */
 //The experiment shows that the number of compares used by mergesort is not monotonically increasing
 public class Exercise7 {

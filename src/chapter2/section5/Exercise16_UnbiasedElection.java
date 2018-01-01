@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * Created by rene on 11/04/17.
+ * Created by Rene Argento on 11/04/17.
  */
 //Based on http://algs4.cs.princeton.edu/25applications/California.java.html
 public class Exercise16_UnbiasedElection {

@@ -3,7 +3,7 @@ package chapter3.section2;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 03/06/17.
+ * Created by Rene Argento on 03/06/17.
  */
 @SuppressWarnings("unchecked")
 //Based on http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/

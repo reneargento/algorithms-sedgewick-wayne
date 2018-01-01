@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import java.util.*;
 
 /**
- * Created by rene on 24/03/17.
+ * Created by Rene Argento on 24/03/17.
  */
 public class Exercise25_ComputationalNumberTheory {
 

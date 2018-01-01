@@ -8,7 +8,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
- * Created by rene on 26/07/17.
+ * Created by Rene Argento on 26/07/17.
  */
 @SuppressWarnings("unchecked")
 public class CuckooHashTable<Key, Value> {

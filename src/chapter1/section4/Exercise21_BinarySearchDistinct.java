@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by rene on 18/10/16.
+ * Created by Rene Argento on 18/10/16.
  */
 public class Exercise21_BinarySearchDistinct {
 

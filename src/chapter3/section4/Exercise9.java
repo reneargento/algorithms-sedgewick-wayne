@@ -3,7 +3,7 @@ package chapter3.section4;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 20/07/17.
+ * Created by Rene Argento on 20/07/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise9 {

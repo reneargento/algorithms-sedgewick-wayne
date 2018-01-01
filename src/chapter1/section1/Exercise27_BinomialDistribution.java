@@ -2,6 +2,9 @@ package chapter1.section1;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise27_BinomialDistribution {
 	
 	static int count = 0;

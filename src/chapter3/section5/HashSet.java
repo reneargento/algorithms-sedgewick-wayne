@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Queue;
 import java.util.Arrays;
 
 /**
- * Created by rene on 02/08/17.
+ * Created by Rene Argento on 02/08/17.
  */
 @SuppressWarnings("unchecked")
 public class HashSet<Key> {

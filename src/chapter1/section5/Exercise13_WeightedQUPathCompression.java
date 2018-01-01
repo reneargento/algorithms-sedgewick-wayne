@@ -3,7 +3,7 @@ package chapter1.section5;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 04/12/16.
+ * Created by Rene Argento on 04/12/16.
  */
 public class Exercise13_WeightedQUPathCompression {
 

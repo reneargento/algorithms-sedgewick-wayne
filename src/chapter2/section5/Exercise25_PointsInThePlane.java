@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * Created by rene on 15/04/17.
+ * Created by Rene Argento on 15/04/17.
  */
 public class Exercise25_PointsInThePlane {
 

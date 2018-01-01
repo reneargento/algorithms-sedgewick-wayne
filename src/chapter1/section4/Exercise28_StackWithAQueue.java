@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 20/11/16.
+ * Created by Rene Argento on 20/11/16.
  */
 public class Exercise28_StackWithAQueue<Item> {
 

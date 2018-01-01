@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.Transaction;
 import java.util.Arrays;
 
 /**
- * Created by rene on 30/01/17.
+ * Created by Rene Argento on 30/01/17.
  */
 public class Exercise22_TransactionSortTest {
 

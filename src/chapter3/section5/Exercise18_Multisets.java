@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 07/08/17.
+ * Created by Rene Argento on 07/08/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise18_Multisets {

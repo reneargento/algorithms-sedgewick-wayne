@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.Interval1D;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 21/07/17.
+ * Created by Rene Argento on 21/07/17.
  */
 public class Exercise22 {
 

@@ -8,7 +8,7 @@ import util.FileUtil;
 import java.util.*;
 
 /**
- * Created by rene on 27/04/17.
+ * Created by Rene Argento on 27/04/17.
  */
 public class Exercise26_FrequencyCountDictionary {
 

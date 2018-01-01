@@ -3,7 +3,7 @@ package chapter2.section5;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 12/04/17.
+ * Created by Rene Argento on 12/04/17.
  */
 public class Exercise19_KendallTauDistance {
 

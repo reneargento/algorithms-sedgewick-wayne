@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.*;
 
 /**
- * Created by rene on 17/04/17.
+ * Created by Rene Argento on 17/04/17.
  */
 public class Exercise32_8Puzzle {
 

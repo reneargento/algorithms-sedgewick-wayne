@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 24/04/17.
+ * Created by Rene Argento on 24/04/17.
  */
 @SuppressWarnings("unchecked")
 //Based on http://www.geeksforgeeks.org/interpolation-search/

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 21/12/16.
+ * Created by Rene Argento on 21/12/16.
  */
 public class Exercise25_DoublingTestRandomGrids {
 

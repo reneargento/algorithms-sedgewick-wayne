@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise32_Histogram {
 
 	public static void main(String[] args) {

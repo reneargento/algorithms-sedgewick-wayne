@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import util.VisualAccumulator;
 
 /**
- * Created by rene on 08/07/17.
+ * Created by Rene Argento on 08/07/17.
  */
 public class Exercise44_AverageSearchTime {
 

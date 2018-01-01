@@ -8,7 +8,7 @@ import util.VisualAccumulator;
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 01/05/17.
+ * Created by Rene Argento on 01/05/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise38_AmortizedCostPlotsBinSearch {

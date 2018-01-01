@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.*;
 
 /**
- * Created by rene on 09/04/17.
+ * Created by Rene Argento on 09/04/17.
  */
 public class Exercise8 {
 

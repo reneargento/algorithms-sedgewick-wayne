@@ -4,6 +4,9 @@ import edu.princeton.cs.algs4.Interval1D;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise2 {
 
 	public static void main(String[] args){

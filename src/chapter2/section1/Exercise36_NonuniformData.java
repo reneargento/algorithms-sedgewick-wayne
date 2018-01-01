@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.Stopwatch;
 import java.util.Arrays;
 
 /**
- * Created by rene on 05/02/17.
+ * Created by Rene Argento on 05/02/17.
  */
 public class Exercise36_NonuniformData {
 

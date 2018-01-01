@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 27/04/17.
+ * Created by Rene Argento on 27/04/17.
  */
 //Based on http://algs4.cs.princeton.edu/31elementary/TestBinarySearchST.java.html
 public class Exercise29_TestClient {

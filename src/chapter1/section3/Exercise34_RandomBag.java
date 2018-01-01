@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.Iterator;
 
 /**
- * Created by rene on 8/16/16.
+ * Created by Rene Argento on 8/16/16.
  */
 public class Exercise34_RandomBag<Item> implements Iterable<Item>{
 

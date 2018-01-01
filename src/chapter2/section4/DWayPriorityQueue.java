@@ -3,7 +3,7 @@ package chapter2.section4;
 import util.ArrayUtil;
 
 /**
- * Created by rene on 16/11/17.
+ * Created by Rene Argento on 16/11/17.
  */
 @SuppressWarnings("unchecked")
 public class DWayPriorityQueue<Key extends Comparable<Key>> {

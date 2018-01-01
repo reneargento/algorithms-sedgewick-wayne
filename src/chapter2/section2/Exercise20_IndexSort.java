@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Arrays;
 
 /**
- * Created by rene on 18/02/17.
+ * Created by Rene Argento on 18/02/17.
  */
 //Based on http://algs4.cs.princeton.edu/22mergesort/Merge.java.html
 public class Exercise20_IndexSort {

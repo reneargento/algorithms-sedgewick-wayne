@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by rene on 01/07/17.
+ * Created by Rene Argento on 01/07/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise34_All23Trees {

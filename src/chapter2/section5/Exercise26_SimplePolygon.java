@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.util.Arrays;
 
 /**
- * Created by rene on 15/04/17.
+ * Created by Rene Argento on 15/04/17.
  */
 public class Exercise26_SimplePolygon {
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 26/07/17.
+ * Created by Rene Argento on 26/07/17.
  */
 public class Exercise32_HashAttack {
 

@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.awt.*;
 
 /**
- * Created by rene on 01/05/17.
+ * Created by Rene Argento on 01/05/17.
  */
 public class VisualAccumulator {
 

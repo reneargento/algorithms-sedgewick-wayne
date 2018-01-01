@@ -8,7 +8,7 @@ import util.ArrayGenerator;
 import java.util.Map;
 
 /**
- * Created by rene on 28/03/17.
+ * Created by Rene Argento on 28/03/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise37_PerformanceDriverII {

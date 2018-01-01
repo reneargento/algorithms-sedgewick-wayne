@@ -3,6 +3,9 @@ package chapter1.section2;
 import edu.princeton.cs.algs4.Date;
 import edu.princeton.cs.algs4.StdOut;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise19_2_Parsing {
 	
 	private final String who;

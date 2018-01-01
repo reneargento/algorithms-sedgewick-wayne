@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by rene on 27/11/16.
+ * Created by Rene Argento on 27/11/16.
  */
 public class Exercise43_ResizingArrayXLinkedList<Item> {
 

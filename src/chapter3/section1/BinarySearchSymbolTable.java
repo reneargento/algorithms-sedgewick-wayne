@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Queue;
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 22/04/17.
+ * Created by Rene Argento on 22/04/17.
  */
 @SuppressWarnings("unchecked")
 public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value>{

@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.Arrays;
 
 /**
- * Created by rene on 27/03/17.
+ * Created by Rene Argento on 27/03/17.
  */
 public class Exercise35_Sampling {
 

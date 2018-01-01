@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.Iterator;
 
 /**
- * Created by rene on 18/02/17.
+ * Created by Rene Argento on 18/02/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise18_ShufflingALinkedList<Item> {

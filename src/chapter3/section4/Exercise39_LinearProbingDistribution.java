@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by rene on 29/07/17.
+ * Created by Rene Argento on 29/07/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise39_LinearProbingDistribution {

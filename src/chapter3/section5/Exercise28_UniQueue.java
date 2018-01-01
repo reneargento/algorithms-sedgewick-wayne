@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 
 /**
- * Created by rene on 19/08/17.
+ * Created by Rene Argento on 19/08/17.
  */
 public class Exercise28_UniQueue {
 

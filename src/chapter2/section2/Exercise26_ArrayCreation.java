@@ -7,7 +7,7 @@ import util.ArrayGenerator;
 import java.util.Map;
 
 /**
- * Created by rene on 20/02/17.
+ * Created by Rene Argento on 20/02/17.
  */
 public class Exercise26_ArrayCreation {
 

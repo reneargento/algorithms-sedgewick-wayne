@@ -3,7 +3,7 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 8/23/16.
+ * Created by Rene Argento on 8/23/16.
  * Adapted by AspectLeft (https://github.com/AspectLeft) -> Added the correct implementation
  * for canAPermutationBeGenerated() on 12/25/17
  */

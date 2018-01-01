@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 9/27/16.
+ * Created by Rene Argento on 9/27/16.
  */
 //Only log-log plot for better visualization
 public class Exercise3_2 {

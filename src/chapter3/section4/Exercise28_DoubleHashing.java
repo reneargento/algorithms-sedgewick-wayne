@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.Queue;
 import java.util.*;
 
 /**
- * Created by rene on 22/07/17.
+ * Created by Rene Argento on 22/07/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise28_DoubleHashing {

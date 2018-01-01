@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import util.ArrayUtil;
 
 /**
- * Created by rene on 25/03/17.
+ * Created by Rene Argento on 25/03/17.
  */
 //Based on: http://eranle.blogspot.com.br/2012/08/min-max-heap-java-implementation.html
 @SuppressWarnings("unchecked")

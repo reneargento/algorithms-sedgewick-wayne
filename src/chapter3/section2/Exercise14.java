@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 import java.util.Stack;
 
 /**
- * Created by rene on 31/05/17.
+ * Created by Rene Argento on 31/05/17.
  */
 public class Exercise14 {
 

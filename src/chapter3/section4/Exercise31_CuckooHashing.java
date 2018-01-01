@@ -8,7 +8,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
- * Created by rene on 24/07/17.
+ * Created by Rene Argento on 24/07/17.
  */
 //Based on http://www.keithschwarz.com/interesting/code/cuckoo-hashmap/CuckooHashMap.java.html
 @SuppressWarnings("unchecked")

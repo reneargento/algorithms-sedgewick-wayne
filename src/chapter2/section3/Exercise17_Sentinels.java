@@ -9,7 +9,7 @@ import util.ArrayGenerator;
 import java.util.Map;
 
 /**
- * Created by rene on 06/03/17.
+ * Created by Rene Argento on 06/03/17.
  */
 public class Exercise17_Sentinels {
 

@@ -3,7 +3,7 @@ package chapter1.section4;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 10/1/16.
+ * Created by Rene Argento on 10/1/16.
  */
 public class Exercise19_LocalMinimumMatrix {
 

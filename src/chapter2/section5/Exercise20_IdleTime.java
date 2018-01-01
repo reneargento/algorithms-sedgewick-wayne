@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Arrays;
 
 /**
- * Created by rene on 12/04/17.
+ * Created by Rene Argento on 12/04/17.
  */
 public class Exercise20_IdleTime {
 

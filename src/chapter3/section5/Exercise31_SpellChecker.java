@@ -10,7 +10,7 @@ import util.Constants;
 import util.FileUtil;
 
 /**
- * Created by rene on 19/08/17.
+ * Created by Rene Argento on 19/08/17.
  */
 public class Exercise31_SpellChecker {
 

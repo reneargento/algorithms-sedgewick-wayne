@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 /**
- * Created by rene on 10/04/17.
+ * Created by Rene Argento on 10/04/17.
  */
 //The resulting solution is guaranteed to be within 33% of the best possible (actually 4/3 - 1/(3N)).
 public class Exercise13_LoadBalancing {

@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Arrays;
 
 /**
- * Created by rene on 13/04/17.
+ * Created by Rene Argento on 13/04/17.
  */
 public class Exercise21_MultidimensionalSort {
 

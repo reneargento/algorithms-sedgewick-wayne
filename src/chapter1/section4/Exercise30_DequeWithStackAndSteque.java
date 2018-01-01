@@ -1,12 +1,12 @@
 package chapter1.section4;
 
-import chapter1.section3.linked.list.Exercise32_Steque;
+import chapter1.section3.Exercise32_Steque;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Stack;
 
 /**
- * Created by rene on 20/11/16.
+ * Created by Rene Argento on 20/11/16.
  */
 public class Exercise30_DequeWithStackAndSteque<Item> {
 

@@ -3,7 +3,7 @@ package chapter1.section4;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 9/30/16.
+ * Created by Rene Argento on 9/30/16.
  */
 // http://stackoverflow.com/questions/12238241/find-local-minima-in-an-array
 // http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf

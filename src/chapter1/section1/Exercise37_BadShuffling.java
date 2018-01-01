@@ -3,6 +3,9 @@ package chapter1.section1;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise37_BadShuffling {
 	
 public static void main(String[] args) {

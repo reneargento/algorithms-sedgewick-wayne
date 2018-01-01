@@ -3,7 +3,7 @@ package chapter2.section4;
 import util.ArrayUtil;
 
 /**
- * Created by rene on 30/03/17.
+ * Created by Rene Argento on 30/03/17.
  */
 public class HeapSort {
 

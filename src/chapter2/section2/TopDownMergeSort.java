@@ -1,7 +1,7 @@
 package chapter2.section2;
 
 /**
- * Created by rene on 11/02/17.
+ * Created by Rene Argento on 11/02/17.
  */
 public class TopDownMergeSort {
 

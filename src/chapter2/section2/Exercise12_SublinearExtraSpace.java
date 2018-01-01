@@ -3,7 +3,7 @@ package chapter2.section2;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by rene on 12/02/17.
+ * Created by Rene Argento on 12/02/17.
  */
 //Based on http://softwareengineering.stackexchange.com/questions/179431/sublinear-extra-space-mergesort
 @SuppressWarnings("unchecked")

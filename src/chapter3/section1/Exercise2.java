@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 22/04/17.
+ * Created by Rene Argento on 22/04/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise2 {

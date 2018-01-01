@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Queue;
 import java.util.Arrays;
 
 /**
- * Created by rene on 17/07/17.
+ * Created by Rene Argento on 17/07/17.
  */
 @SuppressWarnings("unchecked")
 public class SeparateChainingHashTable<Key, Value> {

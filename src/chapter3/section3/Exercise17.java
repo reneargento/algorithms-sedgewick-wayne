@@ -6,7 +6,7 @@ import util.ArrayGenerator;
 
 
 /**
- * Created by rene on 18/06/17.
+ * Created by Rene Argento on 18/06/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise17 {

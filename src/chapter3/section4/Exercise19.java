@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Arrays;
 
 /**
- * Created by rene on 17/07/17.
+ * Created by Rene Argento on 17/07/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise19 {

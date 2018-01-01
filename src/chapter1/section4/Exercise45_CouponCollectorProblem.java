@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.*;
 
 /**
- * Created by rene on 27/11/16.
+ * Created by Rene Argento on 27/11/16.
  */
 public class Exercise45_CouponCollectorProblem {
 

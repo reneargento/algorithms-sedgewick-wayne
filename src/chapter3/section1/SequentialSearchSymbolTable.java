@@ -3,7 +3,7 @@ package chapter3.section1;
 import edu.princeton.cs.algs4.Queue;
 
 /**
- * Created by rene on 22/04/17.
+ * Created by Rene Argento on 22/04/17.
  */
 public class SequentialSearchSymbolTable<Key, Value> implements SymbolTable<Key, Value>{
 

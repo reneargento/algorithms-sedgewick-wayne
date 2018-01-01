@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 
 /**
- * Created by rene on 15/02/17.
+ * Created by Rene Argento on 15/02/17.
  */
 //Based on http://stackoverflow.com/questions/7685/merge-sort-a-linked-list
 @SuppressWarnings("unchecked")

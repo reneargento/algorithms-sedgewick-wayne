@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by rene on 19/02/17.
+ * Created by Rene Argento on 19/02/17.
  */
 public class Exercise25_MultiwayMergesort {
 

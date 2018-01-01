@@ -4,7 +4,7 @@ import chapter2.section4.PriorityQueueResize;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 14/04/17.
+ * Created by Rene Argento on 14/04/17.
  */
 public class Exercise22_StockMarketTrading {
 

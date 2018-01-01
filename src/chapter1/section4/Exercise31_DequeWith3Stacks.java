@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Stack;
 
 /**
- * Created by rene on 20/11/16.
+ * Created by Rene Argento on 20/11/16.
  */
 //Based on http://stackoverflow.com/questions/23585523/implementing-deque-using-3-stacks-amortized-time-o1
 public class Exercise31_DequeWith3Stacks<Item> {

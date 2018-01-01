@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import util.ArrayUtil;
 
 /**
- * Created by rene on 25/03/17.
+ * Created by Rene Argento on 25/03/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise27_FindTheMinimum {

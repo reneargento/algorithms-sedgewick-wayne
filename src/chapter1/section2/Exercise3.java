@@ -9,6 +9,9 @@ import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise3 {
 	
 	private static Map<Interval2D, Interval1D[]> intervalMap = new HashMap<>();

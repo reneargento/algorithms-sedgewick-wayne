@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by rene on 17/08/17.
+ * Created by Rene Argento on 17/08/17.
  */
 public class Exercise25_RegistrarScheduling {
 

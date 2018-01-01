@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 28/04/17.
+ * Created by Rene Argento on 28/04/17.
  */
 //This program must be run with the VM Option -ea OR -enableassertions
 @SuppressWarnings("unchecked")

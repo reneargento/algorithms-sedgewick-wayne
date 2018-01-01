@@ -5,7 +5,7 @@ import chapter3.section3.RedBlackBST;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 06/08/17.
+ * Created by Rene Argento on 06/08/17.
  */
 public class Exercise14 {
 

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by rene on 26/11/16.
+ * Created by Rene Argento on 26/11/16.
  */
 public class Exercise40_3SumRandomValues {
 

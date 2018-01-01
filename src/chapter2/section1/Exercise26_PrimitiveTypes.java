@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
 /**
- * Created by rene on 01/02/17.
+ * Created by Rene Argento on 01/02/17.
  */
 public class Exercise26_PrimitiveTypes {
 

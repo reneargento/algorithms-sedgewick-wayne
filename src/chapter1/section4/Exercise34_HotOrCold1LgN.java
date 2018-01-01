@@ -3,7 +3,7 @@ package chapter1.section4;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 23/11/16.
+ * Created by Rene Argento on 23/11/16.
  */
 //IOI 2010 task
 //Based on http://stackoverflow.com/questions/25558951/hot-and-cold-binary-search-game

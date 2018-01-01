@@ -2,6 +2,9 @@ package chapter1.section2;
 
 import edu.princeton.cs.algs4.StdDraw;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise10 {
 	
 	private int n;

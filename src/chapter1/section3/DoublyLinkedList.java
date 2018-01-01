@@ -3,7 +3,7 @@ package chapter1.section3;
 import java.util.Iterator;
 
 /**
- * Created by rene on 17/08/17.
+ * Created by Rene Argento on 17/08/17.
  */
 public class DoublyLinkedList<Item> implements Iterable<Item> {
 

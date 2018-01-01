@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by rene on 26/11/16.
+ * Created by Rene Argento on 26/11/16.
  */
 public class Exercise38_Naive3Sum {
 

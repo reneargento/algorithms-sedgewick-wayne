@@ -1,7 +1,7 @@
 package chapter1.section5;
 
 /**
- * Created by rene on 09/12/16.
+ * Created by Rene Argento on 09/12/16.
  */
 public class QuickFind implements UF {
 

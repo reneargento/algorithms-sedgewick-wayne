@@ -5,6 +5,9 @@ import java.util.Arrays;
 import edu.princeton.cs.algs4.Counter;
 import edu.princeton.cs.algs4.StdOut;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise9 {
 
 	public static void main(String[] args){

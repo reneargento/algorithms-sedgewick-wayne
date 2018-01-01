@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by rene on 30/01/17.
+ * Created by Rene Argento on 30/01/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise18_VisualTrace_InsertionSort {

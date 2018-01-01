@@ -7,7 +7,7 @@ import util.ArrayGenerator;
 import java.util.Map;
 
 /**
- * Created by rene on 19/02/17.
+ * Created by Rene Argento on 19/02/17.
  */
 public class Exercise24_SortTestImprovement {
 

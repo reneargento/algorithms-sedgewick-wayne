@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by rene on 09/03/17.
+ * Created by Rene Argento on 09/03/17.
  */
 //Based on: http://algs4.cs.princeton.edu/23quicksort/QuickX.java.html
 public class Exercise22_Fast3WayPartitioning {

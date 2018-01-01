@@ -4,7 +4,7 @@ import chapter1.section3.Exercise34_RandomBag;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 08/12/16.
+ * Created by Rene Argento on 08/12/16.
  */
 public class Exercise18_RandomGridGenerator {
 

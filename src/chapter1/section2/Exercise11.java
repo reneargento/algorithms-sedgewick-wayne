@@ -1,5 +1,8 @@
 package chapter1.section2;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise11 {
 	
 	private final int month;

@@ -3,7 +3,7 @@ package chapter2.section1;
 import util.ArrayUtil;
 
 /**
- * Created by rene on 02/02/17.
+ * Created by Rene Argento on 02/02/17.
  */
 @SuppressWarnings("unchecked")
 public class InsertionSort {

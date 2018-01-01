@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 29/06/17.
+ * Created by Rene Argento on 29/06/17.
  */
 //Based on http://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/AVLTreeST.java.html
 public class Exercise32_AVLTrees {

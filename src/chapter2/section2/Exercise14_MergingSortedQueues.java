@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 13/02/17.
+ * Created by Rene Argento on 13/02/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise14_MergingSortedQueues {

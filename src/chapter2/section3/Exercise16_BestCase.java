@@ -3,7 +3,7 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 05/03/17.
+ * Created by Rene Argento on 05/03/17.
  */
 //Based on http://algs4.cs.princeton.edu/23quicksort/QuickBest.java.html
 public class Exercise16_BestCase {

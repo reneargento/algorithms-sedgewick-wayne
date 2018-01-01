@@ -1,12 +1,11 @@
 package chapter1.section3;
 
-import chapter1.section3.linked.list.Exercise32_Steque;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 8/23/16.
+ * Created by Rene Argento on 8/23/16.
  */
 public class Exercise47_CatenableCollections<Item> {
 

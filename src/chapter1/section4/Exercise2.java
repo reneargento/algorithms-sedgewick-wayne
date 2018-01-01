@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.math.BigInteger;
 
 /**
- * Created by rene on 9/27/16.
+ * Created by Rene Argento on 9/27/16.
  */
 public class Exercise2 {
 

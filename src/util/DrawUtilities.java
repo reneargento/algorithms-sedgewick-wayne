@@ -3,7 +3,7 @@ package util;
 import edu.princeton.cs.algs4.StdDraw;
 
 /**
- * Created by rene on 26/12/17.
+ * Created by Rene Argento on 26/12/17.
  */
 public class DrawUtilities {
 

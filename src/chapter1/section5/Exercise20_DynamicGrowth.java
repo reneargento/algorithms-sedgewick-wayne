@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by rene on 08/12/16.
+ * Created by Rene Argento on 08/12/16.
  */
 public class Exercise20_DynamicGrowth {
 

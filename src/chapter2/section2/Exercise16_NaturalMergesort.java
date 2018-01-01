@@ -3,7 +3,7 @@ package chapter2.section2;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by rene on 14/02/17.
+ * Created by Rene Argento on 14/02/17.
  */
 //Running time: O(n * IS)
     // Array size = n

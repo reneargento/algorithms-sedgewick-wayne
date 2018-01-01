@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by rene on 11/03/17.
+ * Created by Rene Argento on 11/03/17.
  */
 public class Exercise31_HistogramOfRunningTimes {
 

@@ -7,6 +7,9 @@ import java.util.Date;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise19_1_Parsing {
 	
 	private final int month;

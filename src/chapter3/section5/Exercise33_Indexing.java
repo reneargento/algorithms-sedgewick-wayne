@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.*;
 import util.Constants;
 
 /**
- * Created by rene on 20/08/17.
+ * Created by Rene Argento on 20/08/17.
  */
 public class Exercise33_Indexing {
 

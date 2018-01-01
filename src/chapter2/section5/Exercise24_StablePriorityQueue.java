@@ -3,7 +3,7 @@ package chapter2.section5;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 15/04/17.
+ * Created by Rene Argento on 15/04/17.
  */
 //Based on http://algs4.cs.princeton.edu/25applications/StableMinPQ.java.html
 @SuppressWarnings("unchecked")

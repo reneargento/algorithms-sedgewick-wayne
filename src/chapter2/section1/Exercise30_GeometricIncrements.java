@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 04/02/17.
+ * Created by Rene Argento on 04/02/17.
  */
 public class Exercise30_GeometricIncrements {
 

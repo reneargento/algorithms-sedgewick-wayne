@@ -4,7 +4,7 @@ import chapter1.section3.DoublyLinkedList;
 import chapter3.section4.SeparateChainingHashTable;
 
 /**
- * Created by rene on 01/10/17.
+ * Created by Rene Argento on 01/10/17.
  */
 @SuppressWarnings("unchecked")
 public class LRUCache<Item> {

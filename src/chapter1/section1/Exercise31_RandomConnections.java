@@ -3,6 +3,9 @@ package chapter1.section1;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise31_RandomConnections {
 
 	public static void main(String[] args) {

@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Queue;
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 30/06/17.
+ * Created by Rene Argento on 30/06/17.
  */
 public class AVLTree<Key extends Comparable<Key>, Value> {
 

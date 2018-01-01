@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by rene on 22/07/17.
+ * Created by Rene Argento on 22/07/17.
  */
 public class Exercise26_LazyDeleteLinearProbing {
 

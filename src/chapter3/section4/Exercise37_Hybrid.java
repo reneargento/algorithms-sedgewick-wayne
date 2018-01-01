@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.*;
 import java.util.Arrays;
 
 /**
- * Created by rene on 28/07/17.
+ * Created by Rene Argento on 28/07/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise37_Hybrid {

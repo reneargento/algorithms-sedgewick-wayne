@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by rene on 08/12/16.
+ * Created by Rene Argento on 08/12/16.
  */
 public class Exercise19_Animation {
 

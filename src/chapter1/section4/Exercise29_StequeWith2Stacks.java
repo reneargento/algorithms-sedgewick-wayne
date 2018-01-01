@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Stack;
 
 /**
- * Created by rene on 20/11/16.
+ * Created by Rene Argento on 20/11/16.
  */
 public class Exercise29_StequeWith2Stacks<Item> {
 

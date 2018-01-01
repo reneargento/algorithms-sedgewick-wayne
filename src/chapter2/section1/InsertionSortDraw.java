@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.awt.*;
 
 /**
- * Created by rene on 29/01/17.
+ * Created by Rene Argento on 29/01/17.
  */
 @SuppressWarnings("unchecked")
 public class InsertionSortDraw {

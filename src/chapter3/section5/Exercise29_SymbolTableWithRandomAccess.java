@@ -1,11 +1,11 @@
 package chapter3.section5;
 
-import chapter1.section3.queue.Exercise35_RandomQueue;
+import chapter1.section3.Exercise35_RandomQueue;
 import chapter3.section4.SeparateChainingHashTable;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 19/08/17.
+ * Created by Rene Argento on 19/08/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise29_SymbolTableWithRandomAccess {

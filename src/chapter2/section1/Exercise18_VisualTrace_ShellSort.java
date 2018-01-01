@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.awt.*;
 
 /**
- * Created by rene on 30/01/17.
+ * Created by Rene Argento on 30/01/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise18_VisualTrace_ShellSort {

@@ -2,6 +2,9 @@ package chapter1.section2;
 
 import edu.princeton.cs.algs4.StdOut;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise17_RationalNumbersRobust {
 	
 	private long numerator;

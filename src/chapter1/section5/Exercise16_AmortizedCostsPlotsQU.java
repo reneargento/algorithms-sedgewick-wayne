@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 08/12/16.
+ * Created by Rene Argento on 08/12/16.
  */
 public class Exercise16_AmortizedCostsPlotsQU {
 

@@ -3,7 +3,7 @@ package chapter1.section5;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 07/12/16.
+ * Created by Rene Argento on 07/12/16.
  */
 //Also known as union by rank
     //Components are only united when they have the same height,

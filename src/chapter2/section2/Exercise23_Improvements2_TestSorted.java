@@ -1,7 +1,7 @@
 package chapter2.section2;
 
 /**
- * Created by rene on 19/02/17.
+ * Created by Rene Argento on 19/02/17.
  */
 //This implementation uses the second mergesort improvement:
     //Improvement #2 - Test if the array is already sorted to avoid merge calls

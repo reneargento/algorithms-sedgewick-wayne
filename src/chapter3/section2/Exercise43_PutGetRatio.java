@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Stopwatch;
 import util.ArrayGenerator;
 
 /**
- * Created by rene on 12/06/17.
+ * Created by Rene Argento on 12/06/17.
  */
 public class Exercise43_PutGetRatio {
 

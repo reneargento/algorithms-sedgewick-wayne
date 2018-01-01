@@ -7,6 +7,9 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import util.Constants;
 
+/**
+ * Created by Rene Argento
+ */
 public class Exercise15_FileInput {
 
 	private static final String FILE_PATH = Constants.FILES_PATH + "intsFile.txt";

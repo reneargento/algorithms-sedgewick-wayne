@@ -3,7 +3,7 @@ package chapter1.section4;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 23/10/16.
+ * Created by Rene Argento on 23/10/16.
  */
 //Reference: http://stackoverflow.com/questions/17404642/throwing-eggs-from-a-building
 public class Exercise24_ThrowingEggs {

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by rene on 07/03/17.
+ * Created by Rene Argento on 07/03/17.
  */
 public class Exercise19_MedianOf5Partitioning {
 

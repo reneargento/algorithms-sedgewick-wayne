@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by rene on 11/04/17.
+ * Created by Rene Argento on 11/04/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise17_CheckStability {

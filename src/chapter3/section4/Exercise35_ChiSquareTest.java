@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by rene on 27/07/17.
+ * Created by Rene Argento on 27/07/17.
  */
 public class Exercise35_ChiSquareTest extends Exercise30_ChiSquareStatistic {
 

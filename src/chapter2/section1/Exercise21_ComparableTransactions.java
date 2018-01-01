@@ -3,7 +3,7 @@ package chapter2.section1;
 import edu.princeton.cs.algs4.Date;
 
 /**
- * Created by rene on 30/01/17.
+ * Created by Rene Argento on 30/01/17.
  */
 public class Exercise21_ComparableTransactions implements Comparable<Exercise21_ComparableTransactions>{
 

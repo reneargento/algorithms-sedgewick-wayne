@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 26/03/17.
+ * Created by Rene Argento on 26/03/17.
  */
 //Based on http://algs4.cs.princeton.edu/24pq/IndexMaxPQ.java.html
 public class Exercise33_IndexPriorityQueueImplementation {

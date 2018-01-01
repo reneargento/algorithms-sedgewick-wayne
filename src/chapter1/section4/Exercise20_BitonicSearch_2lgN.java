@@ -3,7 +3,7 @@ package chapter1.section4;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 17/10/16.
+ * Created by Rene Argento on 17/10/16.
  */
 //Based on http://stackoverflow.com/questions/19372930/given-a-bitonic-array-and-element-x-in-the-array-find-the-index-of-x-in-2logn
 public class Exercise20_BitonicSearch_2lgN {

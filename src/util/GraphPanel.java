@@ -1,7 +1,7 @@
 package util;
 
 /**
- * Created by rene on 08/12/16.
+ * Created by Rene Argento on 08/12/16.
  */
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;

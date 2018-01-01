@@ -6,7 +6,7 @@ import util.ArrayUtil;
 import util.ArrayGenerator;
 
 /**
- * Created by rene on 04/03/17.
+ * Created by Rene Argento on 04/03/17.
  */
 public class Exercise10 {
 

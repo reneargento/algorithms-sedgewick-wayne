@@ -1,7 +1,7 @@
 package chapter2.section2;
 
 /**
- * Created by rene on 19/02/17.
+ * Created by Rene Argento on 19/02/17.
  */
 //This implementation uses the first mergesort improvement:
     //Improvement #1 - Cutoff for small arrays

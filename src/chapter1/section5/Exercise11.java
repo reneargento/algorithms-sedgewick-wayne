@@ -3,7 +3,7 @@ package chapter1.section5;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 04/12/16.
+ * Created by Rene Argento on 04/12/16.
  */
 // The change in WeightedQuickFind will slightly improve performance.
     // Find() will still be O(1) and union() operation will still be O(n), but there will be less parent updates in the

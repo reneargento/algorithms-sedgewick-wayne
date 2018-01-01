@@ -1,7 +1,7 @@
 package chapter3.section1;
 
 /**
- * Created by rene on 12/06/17.
+ * Created by Rene Argento on 12/06/17.
  */
 public interface SymbolTable<Key, Value> {
 

@@ -3,7 +3,7 @@ package chapter2.section4;
 import util.ArrayUtil;
 
 /**
- * Created by rene on 20/03/17.
+ * Created by Rene Argento on 20/03/17.
  */
 @SuppressWarnings("unchecked")
 public class PriorityQueue<Key extends Comparable<Key>> {

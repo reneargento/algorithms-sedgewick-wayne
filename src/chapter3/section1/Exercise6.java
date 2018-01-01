@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by rene on 23/04/17.
+ * Created by Rene Argento on 23/04/17.
  */
 public class Exercise6 {
 

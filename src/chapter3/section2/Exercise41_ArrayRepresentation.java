@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.Stopwatch;
 import java.util.NoSuchElementException;
 
 /**
- * Created by rene on 11/06/17.
+ * Created by Rene Argento on 11/06/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise41_ArrayRepresentation {

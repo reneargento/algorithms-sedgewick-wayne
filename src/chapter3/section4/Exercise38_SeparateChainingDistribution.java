@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.Arrays;
 
 /**
- * Created by rene on 29/07/17.
+ * Created by Rene Argento on 29/07/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise38_SeparateChainingDistribution {

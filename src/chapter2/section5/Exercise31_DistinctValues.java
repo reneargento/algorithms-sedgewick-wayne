@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by rene on 16/04/17.
+ * Created by Rene Argento on 16/04/17.
  */
 public class Exercise31_DistinctValues {
 

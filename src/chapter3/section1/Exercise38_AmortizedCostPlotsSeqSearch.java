@@ -6,7 +6,7 @@ import util.FileUtil;
 import util.VisualAccumulator;
 
 /**
- * Created by rene on 01/05/17.
+ * Created by Rene Argento on 01/05/17.
  */
 public class Exercise38_AmortizedCostPlotsSeqSearch {
 

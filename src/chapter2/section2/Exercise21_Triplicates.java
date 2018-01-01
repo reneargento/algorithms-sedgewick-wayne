@@ -3,7 +3,7 @@ package chapter2.section2;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 19/02/17.
+ * Created by Rene Argento on 19/02/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise21_Triplicates {

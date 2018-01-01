@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 10/06/17.
+ * Created by Rene Argento on 10/06/17.
  */
 public class Exercise39_AverageCase {
 
