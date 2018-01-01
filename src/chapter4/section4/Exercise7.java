@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by rene on 30/11/17.
+ * Created by Rene Argento on 30/11/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise7 {

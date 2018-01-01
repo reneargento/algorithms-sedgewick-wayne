@@ -1,7 +1,7 @@
 package chapter4.section1;
 
 /**
- * Created by rene on 13/10/17.
+ * Created by Rene Argento on 13/10/17.
  */
 public interface GraphInterface {
 

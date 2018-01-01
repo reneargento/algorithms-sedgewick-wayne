@@ -5,7 +5,7 @@ import chapter1.section5.UnionFind;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 14/11/17.
+ * Created by Rene Argento on 14/11/17.
  */
 // Based on https://algs4.cs.princeton.edu/43mst/BoruvkaMST.java.html
     // O(E lg V lg* E) where lg* is the inverse Ackermann function

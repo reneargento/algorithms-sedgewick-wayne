@@ -88,14 +88,14 @@ public class DWayPriorityQueue<Key extends Comparable<Key>> {
 
     // children of n: ((n * d - (d - 2)), ..., (n * d + 1))
     private void sink(int index) {
-        int smallestChildIndex = (index * numberOfChildrenPerNode - (numberOfChildrenPerNode - 2));
-        int highestChildIndex = (index * numberOfChildrenPerNode + 1);
+        int childSmallestIndex = (index * numberOfChildrenPerNode - (numberOfChildrenPerNode - 2));
+        int childHighestIndex = (index * numberOfChildrenPerNode + 1);
 
-        while (smallestChildIndex <= size) {
+        while (childSmallestIndex <= size) {
 
-            int selectedChildIndex = smallestChildIndex;
+            int selectedChildIndex = childSmallestIndex;
 
-            for(int childIndex = smallestChildIndex + 1; childIndex <= highestChildIndex; childIndex++) {
+            for(int childIndex = childSmallestIndex + 1; childIndex <= childHighestIndex; childIndex++) {
                 if (childIndex <= size &&
                         (
                                 (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[childIndex]))
@@ -114,8 +114,8 @@ public class DWayPriorityQueue<Key extends Comparable<Key>> {
             }
 
             index = selectedChildIndex;
-            smallestChildIndex = (index * numberOfChildrenPerNode - (numberOfChildrenPerNode - 2));
-            highestChildIndex = (index * numberOfChildrenPerNode + 1);
+            childSmallestIndex = (index * numberOfChildrenPerNode - (numberOfChildrenPerNode - 2));
+            childHighestIndex = (index * numberOfChildrenPerNode + 1);
         }
     }
 

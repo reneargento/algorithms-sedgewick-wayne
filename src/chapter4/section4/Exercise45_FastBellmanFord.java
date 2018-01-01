@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.ArrayList;
 
 /**
- * Created by rene on 24/12/17.
+ * Created by Rene Argento on 24/12/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise45_FastBellmanFord {

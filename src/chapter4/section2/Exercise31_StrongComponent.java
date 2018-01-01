@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by rene on 24/10/17.
+ * Created by Rene Argento on 24/10/17.
  */
 public class Exercise31_StrongComponent {
 

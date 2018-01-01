@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.In;
 import util.Constants;
 
 /**
- * Created by rene on 12/10/17.
+ * Created by Rene Argento on 12/10/17.
  */
 public class Exercise47_RandomTransportationGraphs {
 

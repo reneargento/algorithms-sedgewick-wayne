@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 
 /**
- * Created by rene on 17/09/17.
+ * Created by Rene Argento on 17/09/17.
  */
 public class Exercise24 {
 

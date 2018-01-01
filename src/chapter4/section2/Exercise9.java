@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 21/10/17.
+ * Created by Rene Argento on 21/10/17.
  */
 //Based on https://stackoverflow.com/questions/36381100/verify-that-given-list-of-nodes-of-a-graph-is-a-correct-topological-order
 public class Exercise9 {

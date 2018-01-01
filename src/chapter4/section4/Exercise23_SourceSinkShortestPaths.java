@@ -5,7 +5,7 @@ import chapter2.section4.IndexMinPriorityQueue;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 06/12/17.
+ * Created by Rene Argento on 06/12/17.
  */
 public class Exercise23_SourceSinkShortestPaths {
 
@@ -53,7 +53,7 @@ public class Exercise23_SourceSinkShortestPaths {
                     edgeTo[neighbor] = edge;
 
                     if(priorityQueue.contains(neighbor)) {
-                        priorityQueue.changeKey(neighbor, distTo[neighbor]);
+                        priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                     } else {
                         priorityQueue.insert(neighbor, distTo[neighbor]);
                     }

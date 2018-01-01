@@ -4,7 +4,7 @@ import chapter1.section3.Bag;
 import edu.princeton.cs.algs4.In;
 
 /**
- * Created by rene on 27/11/17.
+ * Created by Rene Argento on 27/11/17.
  */
 @SuppressWarnings("unchecked")
 public class EdgeWeightedDigraph implements EdgeWeightedDigraphInterface {

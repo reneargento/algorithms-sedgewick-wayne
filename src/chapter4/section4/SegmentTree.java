@@ -3,7 +3,7 @@ package chapter4.section4;
 import java.util.Arrays;
 
 /**
- * Adapted by rene on 21/12/17.
+ * Adapted by Rene Argento on 21/12/17.
  */
 
 /**

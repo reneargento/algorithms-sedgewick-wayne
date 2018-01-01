@@ -3,7 +3,7 @@ package chapter4.section4;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 08/12/17.
+ * Created by Rene Argento on 08/12/17.
  */
 public class Exercise28_LongestPathsInDAGs {
 

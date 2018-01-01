@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.*;
 
 /**
- * Created by rene on 10/12/17.
+ * Created by Rene Argento on 10/12/17.
  */
 // Based on https://stackoverflow.com/questions/22876105/find-a-monotonic-shortest-path-in-a-graph-in-oe-logv
 public class Exercise34_MonotonicShortestPath {

@@ -5,7 +5,7 @@ import chapter1.section3.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 10/12/17.
+ * Created by Rene Argento on 10/12/17.
  */
 public class Exercise32_ParentCheckingHeuristic {
 

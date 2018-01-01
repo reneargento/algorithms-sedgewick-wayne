@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 30/10/17.
+ * Created by Rene Argento on 30/10/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise43_ReachableVertexInDigraph {

@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.*;
 
 /**
- * Created by rene on 30/09/17.
+ * Created by Rene Argento on 30/09/17.
  */
 @SuppressWarnings("unchecked")
 //Based on http://algs4.cs.princeton.edu/41graph/EulerianCycle.java

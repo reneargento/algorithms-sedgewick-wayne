@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 31/10/17.
+ * Created by Rene Argento on 31/10/17.
  */
 public class Exercise48_RandomEuclideanDigraphs {
 

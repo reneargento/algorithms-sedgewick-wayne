@@ -6,7 +6,7 @@ import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 07/12/17.
+ * Created by Rene Argento on 07/12/17.
  */
 public class Exercise25_ShortestPathsBetweenTwoSubsets {
 
@@ -52,7 +52,7 @@ public class Exercise25_ShortestPathsBetweenTwoSubsets {
                     edgeTo[neighbor] = edge;
 
                     if(priorityQueue.contains(neighbor)) {
-                        priorityQueue.changeKey(neighbor, distTo[neighbor]);
+                        priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                     } else {
                         priorityQueue.insert(neighbor, distTo[neighbor]);
                     }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 12/11/17.
+ * Created by Rene Argento on 12/11/17.
  */
 // The data source is a file containing information about United States flight distances
 // It can be downloaded here: http://networkrepository.com/inf-USAir97.php

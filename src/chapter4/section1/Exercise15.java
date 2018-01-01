@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import util.Constants;
 
 /**
- * Created by rene on 16/09/17.
+ * Created by Rene Argento on 16/09/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise15 {

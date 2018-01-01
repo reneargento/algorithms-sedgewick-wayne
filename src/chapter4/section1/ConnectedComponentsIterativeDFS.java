@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 /**
- * Created by rene on 18/09/17.
+ * Created by Rene Argento on 18/09/17.
  */
 @SuppressWarnings("unchecked")
 public class ConnectedComponentsIterativeDFS implements ConnectedComponents {

@@ -12,7 +12,7 @@ import util.DrawUtilities.Coordinate;
 import java.awt.*;
 
 /**
- * Created by rene on 26/12/17.
+ * Created by Rene Argento on 26/12/17.
  */
 public class Exercise48_Animate {
 
@@ -81,7 +81,7 @@ public class Exercise48_Animate {
                     edgeTo[neighbor] = edge;
 
                     if(priorityQueue.contains(neighbor)) {
-                        priorityQueue.changeKey(neighbor, distTo[neighbor]);
+                        priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                     } else {
                         priorityQueue.insert(neighbor, distTo[neighbor]);
                     }

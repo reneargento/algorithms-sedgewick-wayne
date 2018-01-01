@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 19/10/17.
+ * Created by Rene Argento on 19/10/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise3 {

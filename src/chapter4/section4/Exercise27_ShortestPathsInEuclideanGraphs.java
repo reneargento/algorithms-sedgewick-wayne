@@ -11,7 +11,7 @@ import util.DrawUtilities.Coordinate;
 import java.awt.*;
 
 /**
- * Created by rene on 07/12/17.
+ * Created by Rene Argento on 07/12/17.
  */
 // Based on the article "Shortest paths in euclidean graphs" by Robert Sedgewick & Jeffrey Scott Vitter, 1985
     // And slides https://www.cs.princeton.edu/courses/archive/spr10/cos226/lectures/15-44ShortestPaths-2x2.pdf
@@ -239,7 +239,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
                     edgeTo[neighbor] = edge;
 
                     if(priorityQueue.contains(neighbor)) {
-                        priorityQueue.changeKey(neighbor, distTo[neighbor]);
+                        priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                     } else {
                         priorityQueue.insert(neighbor, distTo[neighbor]);
                     }

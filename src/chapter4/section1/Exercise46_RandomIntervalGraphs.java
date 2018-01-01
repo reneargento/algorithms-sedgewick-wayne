@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.List;
 
 /**
- * Created by rene on 12/10/17.
+ * Created by Rene Argento on 12/10/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise46_RandomIntervalGraphs {

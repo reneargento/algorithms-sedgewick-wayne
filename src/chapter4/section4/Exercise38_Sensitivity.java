@@ -4,7 +4,7 @@ import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 22/12/17.
+ * Created by Rene Argento on 22/12/17.
  */
 // Adapted from http://courses.csail.mit.edu/6.006/fall10/handouts/quiz2review.pdf section 8.3
 public class Exercise38_Sensitivity {

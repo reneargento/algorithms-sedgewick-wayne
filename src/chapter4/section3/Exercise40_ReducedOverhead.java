@@ -16,7 +16,7 @@ import java.awt.*;
 import static chapter4.section3.Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient.NO_CONNECTION;
 
 /**
- * Created by rene on 13/11/17.
+ * Created by Rene Argento on 13/11/17.
  */
 public class Exercise40_ReducedOverhead {
 
@@ -77,7 +77,7 @@ public class Exercise40_ReducedOverhead {
                     distTo[otherVertex] = edgeWeight;
 
                     if(priorityQueue.contains(otherVertex)) {
-                        priorityQueue.changeKey(otherVertex, distTo[otherVertex]);
+                        priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                     } else {
                         priorityQueue.insert(otherVertex, distTo[otherVertex]);
                     }

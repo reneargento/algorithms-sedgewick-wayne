@@ -8,8 +8,8 @@ import java.util.NoSuchElementException;
 public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
 
     private Key[] keys;
-    private int[] pq; //Holds the indices of the keys
-    private int[] qp; //Inverse of pq -> qp[i] gives the position of i in pq[] (the index j such that pq[j] is i).
+    private int[] pq; // Holds the indices of the keys
+    private int[] qp; // Inverse of pq -> qp[i] gives the position of i in pq[] (the index j such that pq[j] is i).
                       // qp[pq[i]] = pq[qp[i]] = i
     private int size = 0;
 
@@ -19,8 +19,8 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
         pq = new int[size + 1];
         qp = new int[size + 1];
 
-        for(int i = 0; i < qp.length; i++) {
-            qp[i] = -1;
+        for(int index = 0; index < qp.length; index++) {
+            qp[index] = -1;
         }
     }
 
@@ -61,7 +61,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
         }
     }
 
-    //Remove a minimal key and return its index
+    // Remove a minimal key and return its index
     public int deleteMin() {
         if(size == 0) {
             throw new NoSuchElementException("Priority queue underflow");
@@ -91,19 +91,43 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
         swim(index);
         sink(index);
 
-        keys[i] = null; //Same thing as keys[pq[size + 1]] = null
-        qp[i] = -1;     //Same thing as qp[pq[size + 1]] = -1;
+        keys[i] = null; // Same thing as keys[pq[size + 1]] = null
+        qp[i] = -1;     // Same thing as qp[pq[size + 1]] = -1;
     }
 
-    //Change the key associated with index to key argument
+    // Change the key associated with index to key argument
     public void changeKey(int index, Key key) {
-        if(!contains(index)) {
+        if (!contains(index)) {
             throw new NoSuchElementException("Index is not in the priority queue");
         }
 
         keys[index] = key;
 
         swim(qp[index]);
+        sink(qp[index]);
+    }
+
+    public void decreaseKey(int index, Key key) {
+        if (!contains(index)) {
+            throw new NoSuchElementException("Index is not in the priority queue");
+        }
+        if (key.compareTo(keys[index]) >= 0) {
+            throw new IllegalArgumentException("Calling decreaseKey() with given argument would not strictly decrease the key");
+        }
+
+        keys[index] = key;
+        swim(qp[index]);
+    }
+
+    public void increaseKey(int index, Key key) {
+        if (!contains(index)) {
+            throw new NoSuchElementException("Index is not in the priority queue");
+        }
+        if (key.compareTo(keys[index]) <= 0) {
+            throw new IllegalArgumentException("Calling increaseKey() with given argument would not strictly increase the key");
+        }
+
+        keys[index] = key;
         sink(qp[index]);
     }
 

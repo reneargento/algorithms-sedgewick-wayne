@@ -4,7 +4,7 @@ import chapter1.section5.WeightedQuickUnion;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 16/09/17.
+ * Created by Rene Argento on 16/09/17.
  */
 public class Exercise8 {
 

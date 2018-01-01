@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.LinkedList;
 
 /**
- * Created by rene on 02/12/17.
+ * Created by Rene Argento on 02/12/17.
  */
 public class Exercise18 {
 

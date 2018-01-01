@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 12/11/17.
+ * Created by Rene Argento on 12/11/17.
  */
 public class Exercise35_RandomEuclideanEdgeWeightedGraphs {
 

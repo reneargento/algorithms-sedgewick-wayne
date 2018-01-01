@@ -4,7 +4,7 @@ import chapter1.section3.Queue;
 import chapter1.section3.Stack;
 
 /**
- * Created by rene on 17/10/17.
+ * Created by Rene Argento on 17/10/17.
  */
 public class DepthFirstOrder {
 

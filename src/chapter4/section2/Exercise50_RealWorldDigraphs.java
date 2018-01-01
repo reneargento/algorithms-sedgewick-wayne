@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 01/11/17.
+ * Created by Rene Argento on 01/11/17.
  */
 // The data source is a file containing vertices representing web-pages and edges representing hyperlinks from one page
 // to another. It can be downloaded here: http://networkrepository.com/web-google-dir.php

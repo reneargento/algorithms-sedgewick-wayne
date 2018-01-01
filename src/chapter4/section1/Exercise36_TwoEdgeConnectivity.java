@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 01/10/17.
+ * Created by Rene Argento on 01/10/17.
  */
 // Based on http://algs4.cs.princeton.edu/41graph/Bridge.java.html
 public class Exercise36_TwoEdgeConnectivity {

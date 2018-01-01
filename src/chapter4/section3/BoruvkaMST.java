@@ -4,7 +4,7 @@ import chapter1.section3.Queue;
 import chapter1.section5.UnionFind;
 
 /**
- * Created by rene on 16/11/17.
+ * Created by Rene Argento on 16/11/17.
  */
 public class BoruvkaMST {
 

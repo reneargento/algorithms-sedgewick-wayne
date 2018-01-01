@@ -11,7 +11,7 @@ import util.Constants;
 import java.awt.*;
 
 /**
- * Created by rene on 11/11/17.
+ * Created by Rene Argento on 11/11/17.
  */
 public class Exercise27_Animations_Kruskal {
 

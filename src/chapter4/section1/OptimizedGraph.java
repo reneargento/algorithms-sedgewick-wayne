@@ -4,7 +4,7 @@ import chapter1.section3.Bag;
 import edu.princeton.cs.algs4.In;
 
 /**
- * Created by rene on 29/10/17.
+ * Created by Rene Argento on 29/10/17.
  */
 @SuppressWarnings("unchecked")
 // This graph data structure initializes its adjacency lists lazily to avoid initializing lists that will not be used

@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by rene on 09/11/17.
+ * Created by Rene Argento on 09/11/17.
  */
 public class Exercise24_ReverseDeleteAlgorithm {
 

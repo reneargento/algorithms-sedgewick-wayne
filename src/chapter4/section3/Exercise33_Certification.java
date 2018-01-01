@@ -5,7 +5,7 @@ import chapter1.section5.UnionFind;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 11/11/17.
+ * Created by Rene Argento on 11/11/17.
  */
 public class Exercise33_Certification {
 

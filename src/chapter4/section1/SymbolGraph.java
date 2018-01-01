@@ -4,7 +4,7 @@ import chapter3.section4.SeparateChainingHashTable;
 import edu.princeton.cs.algs4.In;
 
 /**
- * Created by rene on 15/09/17.
+ * Created by Rene Argento on 15/09/17.
  */
 public class SymbolGraph {
 

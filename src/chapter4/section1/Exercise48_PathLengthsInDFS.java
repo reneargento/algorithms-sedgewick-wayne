@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by rene on 13/10/17.
+ * Created by Rene Argento on 13/10/17.
  */
 public class Exercise48_PathLengthsInDFS {
 

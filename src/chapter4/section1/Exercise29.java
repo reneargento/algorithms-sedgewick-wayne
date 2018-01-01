@@ -5,7 +5,7 @@ import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 21/09/17.
+ * Created by Rene Argento on 21/09/17.
  */
 //The original Cycle algorithm considers parallel edges and self-loops as cycles
     //This version is modified to do not consider parallel edges and self-loops as cycles

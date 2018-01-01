@@ -4,7 +4,7 @@ import chapter1.section3.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 17/09/17.
+ * Created by Rene Argento on 17/09/17.
  */
 public class Exercise18 {
 

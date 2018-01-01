@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
- * Created by rene on 23/12/17.
+ * Created by Rene Argento on 23/12/17.
  */
 // Based on https://algs4.cs.princeton.edu/44sp/LazyDijkstraSP.java.html
 // O (E lg E)

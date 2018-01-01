@@ -7,7 +7,7 @@ import chapter2.section4.PriorityQueueResize;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 09/11/17.
+ * Created by Rene Argento on 09/11/17.
  */
 // Based on https://algs4.cs.princeton.edu/43mst/PrimMST.java.html
     // and https://algs4.cs.princeton.edu/43mst/KruskalMST.java.html
@@ -75,7 +75,7 @@ public class Exercise22_MinimumSpanningForest {
                     distTo[otherVertex] = edge.weight();
 
                     if(priorityQueue.contains(otherVertex)) {
-                        priorityQueue.changeKey(otherVertex, distTo[otherVertex]);
+                        priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                     } else {
                         priorityQueue.insert(otherVertex, distTo[otherVertex]);
                     }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 02/11/17.
+ * Created by Rene Argento on 02/11/17.
  */
 // The data source is a file containing vertices representing high energy phenomenology papers
 // and edges representing citations from one paper to another.

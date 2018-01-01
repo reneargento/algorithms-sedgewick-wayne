@@ -5,7 +5,7 @@ import chapter1.section5.UnionFind;
 import chapter2.section4.PriorityQueueResize;
 
 /**
- * Created by rene on 07/11/17.
+ * Created by Rene Argento on 07/11/17.
  */
 // O(E lg E)
 public class KruskalMST {

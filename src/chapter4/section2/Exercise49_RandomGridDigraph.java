@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * Created by rene on 01/11/17.
+ * Created by Rene Argento on 01/11/17.
  */
 public class Exercise49_RandomGridDigraph {
 

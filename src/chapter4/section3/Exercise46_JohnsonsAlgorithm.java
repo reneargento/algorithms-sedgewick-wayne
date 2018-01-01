@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
 
 /**
- * Created by rene on 16/11/17.
+ * Created by Rene Argento on 16/11/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise46_JohnsonsAlgorithm {

@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.*;
 
 /**
- * Created by rene on 10/12/17.
+ * Created by Rene Argento on 10/12/17.
  */
 // If we didn't need a simple path (if repeated vertices were allowed), it would be possible to
     // 1- relax all edges in ascending order, starting from vertex s, to get the shortest ascending distance from it

@@ -11,7 +11,7 @@ import util.Constants;
 import java.awt.*;
 
 /**
- * Created by rene on 10/11/17.
+ * Created by Rene Argento on 10/11/17.
  */
 public class Exercise27_Animations_Prim {
 
@@ -172,7 +172,7 @@ public class Exercise27_Animations_Prim {
                     distTo[otherVertex] = edge.weight();
 
                     if(priorityQueue.contains(otherVertex)) {
-                        priorityQueue.changeKey(otherVertex, distTo[otherVertex]);
+                        priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                     } else {
                         priorityQueue.insert(otherVertex, distTo[otherVertex]);
                     }

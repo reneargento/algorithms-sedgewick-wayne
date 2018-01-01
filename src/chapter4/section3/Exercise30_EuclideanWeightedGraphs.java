@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.awt.*;
 
 /**
- * Created by rene on 11/11/17.
+ * Created by Rene Argento on 11/11/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise30_EuclideanWeightedGraphs {

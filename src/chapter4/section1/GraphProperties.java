@@ -3,7 +3,7 @@ package chapter4.section1;
 import chapter1.section3.Queue;
 
 /**
- * Created by rene.argento on 18/09/17.
+ * Created by Rene Argento on 18/09/17.
  */
 public class GraphProperties {
 

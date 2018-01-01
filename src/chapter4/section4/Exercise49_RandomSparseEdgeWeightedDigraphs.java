@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 27/12/17.
+ * Created by Rene Argento on 27/12/17.
  */
 public class Exercise49_RandomSparseEdgeWeightedDigraphs {
 

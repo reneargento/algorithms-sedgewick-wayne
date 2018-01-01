@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 07/10/17.
+ * Created by Rene Argento on 07/10/17.
  */
 public class Exercise42_RandomSparseGraphs {
 

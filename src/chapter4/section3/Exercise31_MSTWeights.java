@@ -7,7 +7,7 @@ import chapter2.section4.PriorityQueueResize;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 11/11/17.
+ * Created by Rene Argento on 11/11/17.
  */
 public class Exercise31_MSTWeights {
 
@@ -129,7 +129,7 @@ public class Exercise31_MSTWeights {
                     distTo[otherVertex] = edge.weight();
 
                     if(priorityQueue.contains(otherVertex)) {
-                        priorityQueue.changeKey(otherVertex, distTo[otherVertex]);
+                        priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                     } else {
                         priorityQueue.insert(otherVertex, distTo[otherVertex]);
                     }

@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Calendar;
 
 /**
- * Created by rene on 19/09/17.
+ * Created by Rene Argento on 19/09/17.
  */
 // args[0] - The file path
 // args[1] - The lines separator

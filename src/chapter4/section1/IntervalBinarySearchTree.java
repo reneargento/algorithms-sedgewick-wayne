@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 12/10/17.
+ * Created by Rene Argento on 12/10/17.
  */
 // Based on http://algs4.cs.princeton.edu/93intersection/IntervalST.java.html
 // Interval binary search tree that uses randomization to maintain balance

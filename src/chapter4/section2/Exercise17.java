@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 import util.Constants;
 
 /**
- * Created by rene on 22/10/17.
+ * Created by Rene Argento on 22/10/17.
  */
 //The digraph on page 591 is located at https://algs4.cs.princeton.edu/42digraph/mediumDG.txt
 public class Exercise17 {

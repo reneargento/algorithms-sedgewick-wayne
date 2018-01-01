@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 27/11/17.
+ * Created by Rene Argento on 27/11/17.
  */
 public class CriticalPathMethod {
 

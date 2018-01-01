@@ -4,7 +4,7 @@ import chapter1.section3.Queue;
 import chapter1.section3.Stack;
 
 /**
- * Created by rene on 15/09/17.
+ * Created by Rene Argento on 15/09/17.
  */
 public class BreadthFirstPaths {
 

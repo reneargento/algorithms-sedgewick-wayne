@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 
 /**
- * Created by rene on 23/10/17.
+ * Created by Rene Argento on 23/10/17.
  */
 //Based on https://algs4.cs.princeton.edu/42digraph/DirectedEulerianCycle.java.html
 @SuppressWarnings("unchecked")

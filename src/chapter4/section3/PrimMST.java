@@ -4,7 +4,7 @@ import chapter1.section3.Queue;
 import chapter2.section4.IndexMinPriorityQueue;
 
 /**
- * Created by rene on 07/11/17.
+ * Created by Rene Argento on 07/11/17.
  */
 // O(E lg V)
 public class PrimMST {
@@ -56,7 +56,7 @@ public class PrimMST {
                 distTo[otherVertex] = edge.weight();
 
                 if(priorityQueue.contains(otherVertex)) {
-                    priorityQueue.changeKey(otherVertex, distTo[otherVertex]);
+                    priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                 } else {
                     priorityQueue.insert(otherVertex, distTo[otherVertex]);
                 }

@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import util.ArrayUtil;
 
 /**
- * Created by rene on 14/11/17.
+ * Created by Rene Argento on 14/11/17.
  */
 // Based on the work of Rodrigo Paredes and Gonzalo Navarro, available at
 // https://www.researchgate.net/publication/242328466_Optimal_Incremental_Sorting

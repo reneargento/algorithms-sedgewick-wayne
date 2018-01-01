@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by rene on 28/10/17.
+ * Created by Rene Argento on 28/10/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise41_OddLengthDirectedCycle {

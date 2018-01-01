@@ -3,7 +3,7 @@ package chapter4.section2;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 29/10/17.
+ * Created by Rene Argento on 29/10/17.
  */
 public class Exercise42_ReachableVertexInDAG {
 

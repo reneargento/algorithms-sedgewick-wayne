@@ -4,7 +4,7 @@ import chapter1.section3.Stack;
 import chapter2.section4.IndexMinPriorityQueue;
 
 /**
- * Created by rene on 27/11/17.
+ * Created by Rene Argento on 27/11/17.
  */
 // O (E lg V)
 public class DijkstraSP {
@@ -38,7 +38,7 @@ public class DijkstraSP {
                 edgeTo[neighbor] = edge;
 
                 if(priorityQueue.contains(neighbor)) {
-                    priorityQueue.changeKey(neighbor, distTo[neighbor]);
+                    priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                 } else {
                     priorityQueue.insert(neighbor, distTo[neighbor]);
                 }

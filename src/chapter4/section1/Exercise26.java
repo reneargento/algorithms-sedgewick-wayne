@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 
 /**
- * Created by rene on 19/09/17.
+ * Created by Rene Argento on 19/09/17.
  */
 //Arguments example: "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/movies.txt" / "Bacon, Kevin"
 @SuppressWarnings("unchecked")

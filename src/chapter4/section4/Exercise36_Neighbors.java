@@ -6,7 +6,7 @@ import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 17/12/17.
+ * Created by Rene Argento on 17/12/17.
  */
 // It seems that the problem statement is not very clear regarding the expected running time of this problem.
     // The problem of finding all the vertices of distance equal to or less than d from a source vertex can be reduced to
@@ -61,7 +61,7 @@ public class Exercise36_Neighbors {
                     edgeTo[neighbor] = edge;
 
                     if(priorityQueue.contains(neighbor)) {
-                        priorityQueue.changeKey(neighbor, distTo[neighbor]);
+                        priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                     } else {
                         priorityQueue.insert(neighbor, distTo[neighbor]);
                     }

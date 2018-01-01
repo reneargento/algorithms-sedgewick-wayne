@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene.argento on 19/10/17.
+ * Created by Rene Argento on 19/10/17.
  */
 public class Exercise7 {
 

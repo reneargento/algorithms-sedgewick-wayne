@@ -1,7 +1,7 @@
 package chapter4.section2;
 
 /**
- * Created by rene on 18/10/17.
+ * Created by Rene Argento on 18/10/17.
  */
 public class KosarajuSharirSCC {
 

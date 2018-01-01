@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 25/10/17.
+ * Created by Rene Argento on 25/10/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise34_2Satisfiability {

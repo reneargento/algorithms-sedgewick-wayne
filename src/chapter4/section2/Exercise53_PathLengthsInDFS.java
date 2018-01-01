@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.List;
 
 /**
- * Created by rene on 02/11/17.
+ * Created by Rene Argento on 02/11/17.
  */
 public class Exercise53_PathLengthsInDFS {
 

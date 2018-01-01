@@ -4,7 +4,7 @@ import chapter1.section3.Stack;
 import chapter3.section5.HashSet;
 
 /**
- * Created by rene on 09/11/17.
+ * Created by Rene Argento on 09/11/17.
  */
 public class EdgeWeightedCycle {
 

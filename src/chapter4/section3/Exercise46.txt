@@ -30,5 +30,5 @@ Random graph w/ gaussian weight distribution        Kruskal MST      1000000    
                       Random Euclidean graph        Kruskal MST         1000     499500      5-Way Heap                  0.04
 
 The experiment results show that for random edge weighted graphs with uniform and gaussian weight distribution the best value of d for d-way heaps is 4 when using the lazy version of Prim's algorithm and 5 when using Kruskal's algorithm.
-For edge weighted Euclidean graphs, for both the lazy version of Prim's algorithm and Kruskal's algorithm, the best value of d for d-way heaps is 5.
+For random edge weighted Euclidean graphs, for both the lazy version of Prim's algorithm and Kruskal's algorithm, the best value of d for d-way heaps is 5.
 These results are probably related to the fact that, even though higher d values for d-way heaps require more nodes to be checked in sink() operations (since there are more children per node), less nodes are checked in swim() operations because there are fewer levels in the tree.

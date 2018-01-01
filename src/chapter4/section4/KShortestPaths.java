@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by rene on 01/12/17.
+ * Created by Rene Argento on 01/12/17.
  */
 // Based on https://en.wikipedia.org/wiki/K_shortest_path_routing#Algorithm
 @SuppressWarnings("unchecked")

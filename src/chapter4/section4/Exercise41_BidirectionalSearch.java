@@ -5,7 +5,7 @@ import chapter2.section4.IndexMinPriorityQueue;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by rene on 23/12/17.
+ * Created by Rene Argento on 23/12/17.
  */
 // This exercise description asks us to use the same priority queue for both shortest-path-trees.
 // This requires a lot of extra bookkeeping.
@@ -104,7 +104,7 @@ public class Exercise41_BidirectionalSearch {
                         edgeToSource[neighbor] = edge;
 
                         if(priorityQueue.contains(neighbor)) {
-                            priorityQueue.changeKey(neighbor, distToSource[neighbor]);
+                            priorityQueue.decreaseKey(neighbor, distToSource[neighbor]);
                         } else {
                             priorityQueue.insert(neighbor, distToSource[neighbor]);
                         }
@@ -124,7 +124,7 @@ public class Exercise41_BidirectionalSearch {
                         edgeToTarget[neighbor] = edge;
 
                         if(priorityQueue.contains(vertex)) {
-                            priorityQueue.changeKey(vertex, distToTarget[neighbor]);
+                            priorityQueue.decreaseKey(vertex, distToTarget[neighbor]);
                         } else {
                             priorityQueue.insert(vertex, distToTarget[neighbor]);
                         }

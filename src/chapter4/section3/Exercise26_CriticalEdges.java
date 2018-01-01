@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rene on 09/11/17.
+ * Created by Rene Argento on 09/11/17.
  */
 // Based on the nice answer given by j_random_hacker here:
     // https://stackoverflow.com/questions/15720155/find-all-critical-edges-of-an-mst

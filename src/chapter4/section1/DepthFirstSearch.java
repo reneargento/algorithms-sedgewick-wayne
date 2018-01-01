@@ -1,7 +1,7 @@
 package chapter4.section1;
 
 /**
- * Created by rene on 12/09/17.
+ * Created by Rene Argento on 12/09/17.
  */
 public class DepthFirstSearch {
 

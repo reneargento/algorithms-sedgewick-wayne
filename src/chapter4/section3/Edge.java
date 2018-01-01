@@ -1,7 +1,7 @@
 package chapter4.section3;
 
 /**
- * Created by rene on 07/11/17.
+ * Created by Rene Argento on 07/11/17.
  */
 public class Edge implements Comparable<Edge> {
 

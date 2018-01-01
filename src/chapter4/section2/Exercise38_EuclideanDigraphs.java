@@ -9,7 +9,7 @@ import util.DrawUtilities.Coordinate;
 import java.awt.*;
 
 /**
- * Created by rene on 26/10/17.
+ * Created by Rene Argento on 26/10/17.
  */
 @SuppressWarnings("unchecked")
 public class Exercise38_EuclideanDigraphs {

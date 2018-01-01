@@ -15,9 +15,9 @@ public class Exercise34_IndexPQAdditionalOps {
     private class IndexMinPQ<Key extends Comparable<Key>> {
 
         private Key[] keys;
-        private int[] pq; //Holds the indices of the keys
-        private int[] qp; //Inverse of pq -> qp[i] gives the position of i in pq[] (the index j such that pq[j] is i).
-        // qp[pq[i]] = pq[qp[i]] = i
+        private int[] pq; // Holds the indices of the keys
+        private int[] qp; // Inverse of pq -> qp[i] gives the position of i in pq[] (the index j such that pq[j] is i).
+                          // qp[pq[i]] = pq[qp[i]] = i
         private int size = 0;
 
         @SuppressWarnings("unchecked")

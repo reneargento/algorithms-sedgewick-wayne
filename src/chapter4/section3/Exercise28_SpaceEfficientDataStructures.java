@@ -9,7 +9,7 @@ import edu.princeton.cs.algs4.StdOut;
 import static chapter4.section3.Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient.NO_CONNECTION;
 
 /**
- * Created by rene on 11/11/17.
+ * Created by Rene Argento on 11/11/17.
  */
 public class Exercise28_SpaceEfficientDataStructures {
 
