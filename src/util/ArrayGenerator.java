@@ -18,7 +18,7 @@ public class ArrayGenerator {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
             Comparable[] array = generateRandomArray(arraySize);
             allArrays.put(i, array);
 
@@ -31,7 +31,7 @@ public class ArrayGenerator {
     public static Comparable[] generateRandomArray(int length) {
         Comparable[] array = new Comparable[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = StdRandom.uniform();
         }
 
@@ -41,7 +41,7 @@ public class ArrayGenerator {
     public static int[] generateRandomIntegerArray(int length, int lowerBoundInclusive, int upperBoundExclusive) {
         int[] array = new int[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = StdRandom.uniform(lowerBoundInclusive, upperBoundExclusive);
         }
 
@@ -51,7 +51,7 @@ public class ArrayGenerator {
     public static int[] generateRandomIntegerArray(int length, int upperBoundExclusive) {
         int[] array = new int[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = StdRandom.uniform(upperBoundExclusive);
         }
 
@@ -61,7 +61,7 @@ public class ArrayGenerator {
     public static String[] generateRandomStringArray(int length, int minStringLength, int maxStringLength) {
         String[] array = new String[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             int stringSize = StdRandom.uniform(minStringLength, maxStringLength + 1);
             array[i] = new String();
 
@@ -97,7 +97,7 @@ public class ArrayGenerator {
     public static Comparable[] generateOrderedArray(int length) {
         Comparable[] array = new Comparable[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = i;
         }
 
@@ -107,7 +107,7 @@ public class ArrayGenerator {
     public static Comparable[] generateReverseOrderedArray(int length) {
         Comparable[] array = new Comparable[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = length - 1 - i;
         }
 
@@ -117,7 +117,7 @@ public class ArrayGenerator {
     public static Comparable[] generateArrayWithAllKeysEqual(int length) {
         Comparable[] array = new Comparable[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = 0;
         }
 
@@ -127,7 +127,7 @@ public class ArrayGenerator {
     public static Comparable[] generateDistinctValuesShuffledArray(int length) {
         Comparable[] array = new Comparable[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = i;
         }
 
@@ -139,7 +139,7 @@ public class ArrayGenerator {
     public static Comparable[] generateRandomArrayWith2Values(int length) {
         Comparable[] array = new Comparable[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = StdRandom.uniform(2);
         }
 
@@ -149,7 +149,7 @@ public class ArrayGenerator {
     public static Comparable[] generateRandomArrayWith3Values(int length) {
         Comparable[] array = new Comparable[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = StdRandom.uniform(3);
         }
 
