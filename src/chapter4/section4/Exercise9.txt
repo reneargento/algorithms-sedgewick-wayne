@@ -1,0 +1,17 @@
+4.4.9
+
+The error is in the length of the shortest path between Norwich and New London. It cannot be less than 83, otherwise it would generate a path between Norwich and Westerly of length less than 101 (Norwich -> New London -> Westerly) and 101 is the length of the shortest path between Norwich and Westerly.
+
+Corrected table
+            Providence  Westerly  New London  Norwich
+Providence       -         53         54        48
+Westerly         53         -         18        101    
+New London       54        18          -        83
+Norwich          48       101         83         -
+
+Table that shows how to achieve the shortest routes
+              Providence                   Westerly                      New London                     Norwich
+Providence       -                  Providence->Westerly             Providence->New London    Providence->Norwich
+Westerly    Westerly->Providence              -                      Westerly->New London      Westerly->Providence->Norwich
+New London  New London->Providence  New London->Westerly                       -               New London->Norwich
+Norwich     Norwich->Providence     Norwich->Providence->Westerly    Norwich->New London                 -

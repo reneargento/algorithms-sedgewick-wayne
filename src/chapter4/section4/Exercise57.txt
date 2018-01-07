@@ -1,0 +1,25 @@
+4.4.57 - Johnson's algorithm
+
+Running 10 experiments with 1000000 vertices and 3000000 edges for random edge weighted digraphs with uniform weight distribution. 
+Running 10 experiments with 4000 vertices and 7801582 edges (for every pair of vertices v and w, there is a directed edge v->w if w > v) for random Euclidean edge weighted digraphs.
+Running 10 experiments with 1000000 vertices and 2000000 edges for random grid edge weighted digraphs.
+
+                    Edge Weighted Digraph type |   Vertices |    Edges |    D-way heap |  Average time spent
+ Random digraph w/ uniform weight distribution      1000000    3000000      2-Way Heap                  1.49
+ Random digraph w/ uniform weight distribution      1000000    3000000      3-Way Heap                  1.26
+ Random digraph w/ uniform weight distribution      1000000    3000000      4-Way Heap                  1.22
+ Random digraph w/ uniform weight distribution      1000000    3000000      5-Way Heap                  1.21
+                      Random Euclidean digraph         4000    7799111      2-Way Heap                  0.15
+                      Random Euclidean digraph         4000    7799111      3-Way Heap                  0.15
+                      Random Euclidean digraph         4000    7799111      4-Way Heap                  0.14
+                      Random Euclidean digraph         4000    7799111      5-Way Heap                  0.14
+                           Random grid digraph      1000000    2000000      2-Way Heap                  0.09
+                           Random grid digraph      1000000    2000000      3-Way Heap                  0.09
+                           Random grid digraph      1000000    2000000      4-Way Heap                  0.08
+                           Random grid digraph      1000000    2000000      5-Way Heap                  0.07
+
+The experiments show that when using d-way heaps for the eager version of Dijkstra's algorithm, the best value of d for random edge weighted digraphs with uniform weight distribution is 5, with an average time of 1.21 seconds. The performance of the algorithm for the 4-way heap was similar to the 5-way heap, with an average time spent of 1.22 seconds. The 3-way heap had an average performance with an average time spent of 1.26 seconds and the performance of the 2-way heap was inferior to all the other heap configurations, with an average time spent of 1.49 seconds.
+For random Euclidean edge weighted digraphs, 4-way and 5-way heaps had the best performance, with an average time spent of 0.14 seconds. 2-way and 3-way heaps had a similar performance with an average time spent of 0.15 seconds.
+For random grid edge weighted digraphs, 5-way heaps again had the best performance, with an average time spent of 0.07 seconds. 4-way heaps had an average time spent of 0.08 seconds and 2-way and 3-way heaps had a similar, but slower, performance with an average time spent of 0.09 seconds. 
+It is possible to conclude that 5-way heaps seem to lead to a good performance when running Dijkstra's algorithm and 4-way and 3-way heaps have a good to average performance and 2-way heaps do not usually have a good performance when compared to the other heap configurations.
+These results may be related to the fact that, even though higher d values for d-way heaps require more nodes to be checked in sink() operations (since there are more children per node), less nodes are checked in swim() operations because there are fewer levels in the tree. Dijkstra's algorithm does more swim() than sink() operations: there are at most V deleteMin() operations (one for each vertex to be relaxed) which leads to at most V sink() operations. On the other hand, there are at most V insert() and up to E decreaseKey() operations, both leading to a swim() operation. This shows that the benefits of having to check fewer levels in the tree in swim() operations outweighs the increased number of comparisons in sink() operations.

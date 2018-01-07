@@ -1,0 +1,25 @@
+4.4.42 - Worst case (Dijkstra)
+
+Description of the graph family:
+Vertex set V = {1, ..., n}, where the first vertex is the source.
+Edge set E = U(from i=1 to n) Ei, where Ei is the set of edges going out of vertex i, Ei = {(i, j) | i + 1 <= j <= n}.
+The weight of the edge from vertex i to vertex j is defined as w((i, j)) = j - i - 1.
+Example of a graph from this family for n = 4:
+
+    ____2____
+   /         \
+  /___1___    \
+ /        v    v
+1 -> 2 -> 3 -> 4
+  0   \0    0  ^
+       \______/
+           1
+
+The n - 1 edges which start from the source are examined first by the Dijkstra algorithm.
+Since their destination vertices {2, ..., n} are not yet in the priority queue all these vertices are inserted with their initial tentative distances {0, ..., n - 2}. Processing the other m - (n - 1) edges always causes the decreaseKey operation for each edge and decreases the tentative distance of the destination vertex by one.
+
+The presented family of graphs is very dense: m = n(n + 1) / 2.
+To construct sparser graphs we can remove edges from the set En-1 and when it is empty we continue to remove edges from the set En-2, then En-3 and so fort, until we achieve the desired m. This order of removal keeps the required number of decreaseKey operations equal to m - (n - 1). This way we obtain graphs with variable density: n <= m < n(n + 1) / 2.
+
+Based on: http://algo2.iti.kit.edu/sanders/courses/algdat03/sol2.pdf
+This website also has a nice illustration of the graph family described here for n = 8. 

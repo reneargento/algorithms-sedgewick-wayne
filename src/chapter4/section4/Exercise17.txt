@@ -1,0 +1,3 @@
+4.4.17
+
+If a vertex is allowed to be enqueued more than once in the same pass of Bellman-Ford algorithm the running time of the algorithm can go exponential. For example, consider what happens for the complete edge-weighted digraph whose edge weights are all -1 or when any negative cycle is present in an edge-weighted digraph.

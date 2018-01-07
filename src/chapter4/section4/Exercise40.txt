@@ -1,0 +1,47 @@
+4.4.40 - Bottleneck SPT
+
+A minimum spanning tree of an undirected graph is equivalent to a bottleneck shortest-paths-tree of the graph.
+
+Proof:
+Consider by contradiction that a minimum spanning tree MST of graph G and a bottleneck shortest-paths-tree of graph G are not equivalent.
+
+This means that: 
+1- there are at least two disjoint paths p1 and p2 between two vertices v and w.
+2- there is an edge e1 in p1.
+3- there is an edge e2 in p2.
+4- weight(e1) > weight(e), for each edge e in p2.
+
+And either of the following two cases is true:
+
+CASE 1:
+5- a MST contains e1, but not e2.
+6- a bottleneck shortest-paths-tree of graph G contains e2, but not e1.
+
+Removing edge e1 from the MST generates a cut c1. Both edges e1 and e2 will be crossing edges in c1: e1 will be a crossing edge because it connects both sets of vertices that got disconnected when it was removed from the MST and e2 will be a crossing edge because it is in p2, which is a different path than p1, and connects both vertices v and w, that got disconnected.
+
+Adding edge e2 to the other edges in MST \ e1 generates a new minimum spanning tree, MST'. Since weight(e2) < weight(e1), then weight(MST') < weight(MST), which would be impossible since MST is a minimum spanning tree.
+
+CASE 2:
+5- a bottleneck shortest-paths-tree of graph G contains e1, but not e2.
+6- a MST contains e2, but not e1.
+
+Since p1 and p2 are disjoint paths between vertices v and w, and p1 has an edge longest than any edge in p2, p1 could be replaced with p2 in the bottleneck shortest-paths-tree, generating a new bottleneck shortest-paths-tree, with lower total weight than the original. This would be a contradiction since the original bottleneck shortest-paths-tree is a bottleneck shortest-paths-tree. 
+
+Therefore, a minimum spanning tree MST of graph G and a bottleneck shortest-paths-tree of graph G are equivalent.
+
+Graphical illustration:
+
+0 - 1 - 2
+ \     /
+    3
+
+Edges:
+0-1: weight 5
+1-2: weight 1
+0-3: weight 3
+3-2: weight 4
+
+Vertex v is vertex 0 and vertex w is vertex 2.
+Path p1 is 0-1 1-2.
+Path p2 is 0-3 3-2.
+Edge 0-1 is edge e1 and edge 0-3 is edge e2.

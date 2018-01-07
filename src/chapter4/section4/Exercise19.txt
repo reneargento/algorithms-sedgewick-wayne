@@ -1,0 +1,7 @@
+4.4.19
+
+The lowest-weight cycle (best arbitrage opportunity) is the following:
+
+EUR 1.366 -> CAD
+CAD 0.995 -> USD
+USD 0.741 -> EUR

@@ -1,0 +1,4 @@
+4.4.15
+
+If there is no check to stop the algorithm once a negative cycle is found it would never terminate because it would reach an infinite loop where the negative cycle is located.
+It would continuously enqueue and dequeue the vertices that are part of the negative cycle.

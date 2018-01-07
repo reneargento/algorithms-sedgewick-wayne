@@ -1,0 +1,3 @@
+4.4.16
+
+This approach would work only if all the edges have positive weights in the edge-weighted graph. However, if there is any negative weight edge in the graph it would generate a negative cycle (even if the edge-weighted graph does not contain it), composed of both vertices that the original edge connected, and Bellman-Ford algorithm would not work in that case.

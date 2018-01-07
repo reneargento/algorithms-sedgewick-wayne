@@ -1,0 +1,3 @@
+4.4.1
+
+False. Adding a constant to every edge weight will add more weight to the paths that are composed of more edges, possibly changing the solution to the single-source shortest-paths problem.

@@ -1,0 +1,35 @@
+4.4.11
+
+DirectedEdge
+* object overhead -> 16 bytes
+* int value (vertex1) -> 4 bytes
+* int value (vertex2) -> 4 bytes
+* double value (weight) -> 8 bytes
+Amount of memory needed: 16 + 4 + 4 + 8 = 32 bytes
+
+Node
+* object overhead -> 16 bytes
+* extra overhead for reference to the enclosing instance -> 8 bytes
+* Item reference (item) -> 8 bytes
+* Node reference (next) -> 8 bytes
+Amount of memory needed: 16 + 8 + 8 + 8 = 40 bytes
+
+Bag
+* object overhead -> 16 bytes
+* Node reference (first) -> 8 bytes
+* N Nodes -> 40N bytes
+* DirectedEdge (item) -> 32N bytes
+Amount of memory needed: 16 + 8 + 40N + 32N = 72N + 24 bytes
+
+EdgeWeightedDigraph
+* object overhead -> 16 bytes
+* int value (V) -> 4 bytes
+* int value (E) -> 4 bytes
+* Bag<DirectedEdge>[] reference (adj) -> 8 bytes
+* Bag<DirectedEdge>[] (adj)
+   object overhead -> 16 bytes
+   int value (length) -> 4 bytes
+   int value (padding) -> 4 bytes
+   Bag references -> 8V -> (Resizing array): 8V * 2 = 16V
+   Bag -> 72E + 24 bytes -> There are V Bags in total, and they have E nodes -> 72E + 24V
+Amount of memory needed: 16 + 4 + 4 + 8 + 16 + 4 + 4 + 16V + 72E + 24V = 72E + 40V + 56 bytes

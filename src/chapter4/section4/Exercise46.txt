@@ -1,0 +1,24 @@
+4.4.46 - Bellman-Ford queue never empties
+
+Consider the negative cycle v->w w->z z->v in an edge-weighted digraph G.
+The edge weights are: 
+v->w: 1
+w->z: 1
+z->v: -3
+
+Consider that the initial distances to the vertices are:
+distTo[v] = 0
+distTo[w] = Double.POSITIVE_INFINITY
+distTo[z] = Double.POSITIVE_INFINITY
+
+If this negative cycle is reached from the source vertex in the queue-based implementation of Bellman-Ford, the following will happen:
+Vertex v will update distTo[w] to distTo[v] + 1 = 1 and will add vertex w to the queue.
+Vertex w will be dequeued and will update distTo[z] to distTo[w] + 1 = 2 and will add vertex z to the queue.
+Vertex z will be dequeued and will update distTo[v] to distTo[z] + (-3) = -1. This is a shorter distance than the current distance in distTo[v], so vertex v will be added to the queue.
+
+In the next iteration:
+Vertex v will be dequeued and will update distTo[w] to distTo[v] + 1 = 0. This is a shorter distance than the current distance in distTo[w], so vertex w will be added to the queue.
+Vertex w will be dequeued and will update distTo[z] to distTo[w] + 1 = 1. This is a shorter distance than the current distance in distTo[z], so vertex z will be added to the queue.
+Vertex z will be dequeued and will update distTo[v] to distTo[z] + (-3) = -2. This is a shorter distance than the current distance in distTo[v], so vertex v will be added to the queue.
+
+This is an infinite loop in which distances will always decrease, so the queue neves empties.

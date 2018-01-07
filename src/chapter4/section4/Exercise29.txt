@@ -1,0 +1,17 @@
+4.4.29 - General Optimality
+
+Proposition W: There exists a shortest path from s to v in an edge-weighted digraph if and only if there exists at least one directed path from s to v and no vertex on any directed path from s to v is on a negative cycle.
+
+Proof:
+Part 1: If there exists a shortest path from s to v then there exists at least one directed path from s to v and no vertex on any directed path from s to v is on a negative cycle.
+
+Consider by contradiction that there exists a shortest path from s to v but there is either (1) no directed path from s to v or (2) there is a vertex on a directed path from s to v that is on a negative cycle.
+(1) would not be possible because by definition a shortest path from s to v is a directed path of s to v of minimum weight, so a directed path exists.
+(2) would also not be possible because if there is a vertex on a directed path from s to v that is on a negative cycle then the existence of a shortest path from s to v would be a contradiction, since such cycle could be used to construct a path with weight lower than any given value.
+
+
+Part 2: If there exists at least one directed path from s to v and no vertex on any directed path from s to v is on a negative cycle then there exists a shortest path from s to v.
+
+Consider by contradiction that there exists at least one directed path from s to v and no vertex on any directed path from s to v is on a negative cycle but a a shortest path from s to v does not exist.
+This would not be possible because since no vertex on any directed path from s to v is on a negative cycle then all the directed paths from s to v (let's call this set of paths P) have weights that cannot be reduced any further (as mentioned on part 1 of the proof, this would not be true if a negative cycle were present in any such path, since it could be used to construct paths with lower weights).
+Therefore, a shortest path from s to v is the path of minimum weight in P (or any of the paths that have minimum weight if there is more than one shortest path).

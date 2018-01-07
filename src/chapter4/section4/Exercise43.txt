@@ -1,0 +1,7 @@
+4.4.43 - Negative cycle detection
+
+Initializing all distTo[] entries to 0 and adding all vertices to the queue in the new constructor will make relaxations happen only when a negative edge is found. When a negative edge is found and an edge relaxation happens, the edge will be added to edgeTo[], which will be able to reconstruct any negative cycles found and will be checked in hasNegativeCycle() and negativeCycle() method calls.
+Therefore, a client call to hasNegativeCycle() will return true if and only if the graph has a negative cycle and if any such cycle exists, it will be returned in any client call to the negativeCycle() method.
+
+Another way to show that negative cycles can be found with the new constructor is the following:
+Consider a digraph formed from the original by adding a new source with an edge of weight 0 to all the other vertices. After one pass, all distTo[] entries are 0, and finding a negative cycle reachable from that source is the same as finding a negative cycle anywhere in the original graph.

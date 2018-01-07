@@ -1,0 +1,58 @@
+4.4.32 - Parent-checking heuristic
+
+Proposition: Modifying Bellman-Ford to visit a vertex v only if its shortest-paths-tree parent edgeTo[v] is not currently on the queue correctly computes shortest paths and has a worst-case running time proportional to E * V.
+
+Proof: If parent[v] is currently on the queue this means that (1) there exists an edge w->parent[v], (2) that vertex w was relaxed and (3) that the edge w->parent[v] leads to a shorter distance to parent[v] than the current distance in distTo[parent[v]].
+This situation can arise after vertex parent[v] has been relaxed and edge w->parent[v] has a negative weight that leads to a shorter path to parent[v] than the path with distance distTo[parent[v]].
+In this case relaxing vertex v before relaxing parent[v] would not be effective because the computed distances would take into account the current value of distTo[v] and this value will be decreased after parent[v] is relaxed. After parent[v] is relaxed, vertex v will be enqueued again (because distTo[v] will decrease) and all the distances computed during vertex v relaxation will have to be recomputed.
+Therefore, the parent-checking heuristic avoids redundant work in the Bellman-Ford algorithm while keeping all the other steps of the algorithm intact, correctly computing shortest paths.
+
+Example:
+
+   > p->v
+  /  ^
+ /   | 
+s -> w
+
+Consider the following edge weights, with vertex s as the source:
+s->p 2
+p->v 2
+s->w 4
+w->p -3
+
+Step 0: Vertex s is enqueued and has its distTo[s] distance set to 0.0.
+
+Step 1: Vertex s is dequeued and relaxed and vertices p and w are enqueued.
+distTo[s] = 0.0           edgeTo[s] = null
+distTo[p] = 2.0           edgeTo[p] = s->p 2.0
+distTo[w] = 4.0           edgeTo[w] = s->w 4.0
+distTo[v] = Infinity      edgeTo[v] = null
+
+Step 2: Vertex p is dequeued and relaxed and vertex v is enqueued.
+distTo[s] = 0.0           edgeTo[s] = null
+distTo[p] = 2.0           edgeTo[p] = s->p 2.0
+distTo[w] = 4.0           edgeTo[w] = s->w 4.0
+distTo[v] = 4.0           edgeTo[v] = p->v 2.0
+
+Step 3: Vertex w is dequeued and relaxed and vertex p is enqueued.
+distTo[s] = 0.0           edgeTo[s] = null
+distTo[p] = 1.0           edgeTo[p] = w->p -3.0
+distTo[w] = 4.0           edgeTo[w] = s->w 4.0
+distTo[v] = 4.0           edgeTo[v] = p->v 2.0
+
+Step 4: Vertex v is dequeued. Its parent p is currently on the queue, so through the use of the parent-checking heuristic we do not relax vertex v since its distTo[v] (currently 4.0) will be updated later. We know that after vertex p is relaxed vertex v will be enqueued again, this time with an updated distTo[v] value.
+
+Step 5: Vertex p is dequeued and relaxed and vertex v is enqueued.
+distTo[s] = 0.0           edgeTo[s] = null
+distTo[p] = 1.0           edgeTo[p] = w->p -3.0
+distTo[w] = 4.0           edgeTo[w] = s->w 4.0
+distTo[v] = 3.0           edgeTo[v] = p->v 2.0
+
+Step 6: Vertex v is dequeued and relaxed. If v were connected to other vertices, their distTo[] distances would be updated only once, instead of having to be recomputed in case we were not using the parent-checking heuristic.
+distTo[s] = 0.0           edgeTo[s] = null
+distTo[p] = 1.0           edgeTo[p] = w->p -3.0
+distTo[w] = 4.0           edgeTo[w] = s->w 4.0
+distTo[v] = 3.0           edgeTo[v] = p->v 2.0
+
+If there is no negative cycle reachable from s, the algorithm terminates after relaxations corresponding to the (V - 1)st pass of the generic Bellman-Ford algorithm (the version of the algorithm that does not use a queue to optimize performance), since all shortest paths have fewer than V edges. If there does exist a negative cycle reachable from s, the queue never empties. If any edge is relaxed during the Vth pass of the generic Bellman-Ford algorithm, then the edgeTo[] array has a directed cycle and any such cycle is a negative cycle.
+In the worst case, this algorithm mimics the generic Bellman-Ford algorithm and relaxes all E edges in each of the V passes, leading to a worst-case running time proportional to E * V.

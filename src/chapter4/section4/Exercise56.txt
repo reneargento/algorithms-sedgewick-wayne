@@ -1,0 +1,16 @@
+4.4.56 - Cost of laziness
+
+Running 10 experiments with 1000000 vertices and 3000000 edges for random edge weighted digraphs with uniform weight distribution. 
+Running 10 experiments with 1000 vertices and 488033 edges (for every pair of vertices v and w, there is a directed edge v->w if w > v) for random Euclidean edge weighted digraphs.
+Running 10 experiments with 1000000 vertices and 2000000 edges for random grid edge weighted digraphs.
+ 
+                   Edge Weighted Digraph type |  Dijkstra Version |   Vertices |    Edges |  Average time spent
+Random digraph w/ uniform weight distribution                Lazy      1000000    3000000                  2.02
+Random digraph w/ uniform weight distribution               Eager      1000000    3000000                  1.30
+                     Random Euclidean digraph                Lazy         1000     488033                  0.03
+                     Random Euclidean digraph               Eager         1000     488033                  0.02
+                          Random grid digraph                Lazy      1000000    2000000                  0.42
+                          Random grid digraph               Eager      1000000    2000000                  0.33
+
+For all digraph models analyzed (random digraphs with uniform weight distribution, random Euclidean digraphs and random grid digraphs) the performance of the eager version of Dijkstra's algorithm was better than the performance of the lazy version.
+This is expected, since the worst case runtime of the eager version of Dijkstra's algorithm is O(E lg V) while the worst case runtime of the lazy version of Dijkstra's algorithm is O(E lg E).

@@ -1,0 +1,17 @@
+4.4.5
+
+The modified edge-weighted digraph has a unique shortest-paths tree:
+
+   5->1  3
+   ^    ^ \
+    \  /   \
+     7      \
+     ^      |
+      \     |
+        2   |
+       /    |
+      v     |
+     0      |
+    /       |
+   v        v
+   4        6
