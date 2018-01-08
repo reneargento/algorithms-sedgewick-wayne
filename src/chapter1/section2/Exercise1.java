@@ -30,7 +30,7 @@ public class Exercise1 {
         StdDraw.setXscale(0, 1);
         StdDraw.setYscale(0, 1);
 		
-		for (int i=0; i<points.length; i++) {
+		for (int i = 0; i<points.length; i++) {
 
 			double pointX = StdRandom.uniform();
 			double pointY = StdRandom.uniform();
@@ -49,7 +49,7 @@ public class Exercise1 {
 		
 		Arrays.sort(points, points[0].distanceToOrder());
 		
-		for (int i=1; i < points.length; i++) {
+		for (int i = 1; i < points.length; i++) {
 			currentDistance = points[i].distanceTo(points[i-1]);
 			
 			if (currentDistance < shortestDistance) {

@@ -12,6 +12,7 @@ public class Exercise7 {
 		String s = "test";
 		
 		StdOut.println(mystery(s));
+		StdOut.println("Expected: tset");
 	}
 	
 	public static String mystery(String s) {

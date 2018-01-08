@@ -39,6 +39,7 @@ public class Exercise13 {
 		
 		Exercise13 transaction = new Exercise13("Rene", date, 500);
 		StdOut.println(transaction);
+		StdOut.println("Expected: Rene spent 500.0 on 8/3/2016");
 	}
 	
 }

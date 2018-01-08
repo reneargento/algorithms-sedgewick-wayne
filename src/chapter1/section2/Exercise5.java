@@ -12,6 +12,7 @@ public class Exercise5 {
 		s.toUpperCase();
 		s.substring(6, 11);
 		StdOut.println(s);
+		StdOut.println("Expected: Hello World");
 	}
 
 }

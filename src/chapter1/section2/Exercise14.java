@@ -46,7 +46,7 @@ public class Exercise14 {
 		}
 		
 		Exercise14 that = (Exercise14) x;
-		if (this.who != that.who) {
+		if (!this.who.equals(that.who)) {
 			return false;
 		}
 		if (this.when != that.when) {
@@ -67,10 +67,10 @@ public class Exercise14 {
 		Exercise14 transaction3 = new Exercise14("Argento", date, 600);
 		Exercise14 transaction4 = transaction3;
 		
-		StdOut.println("Equals 1: " + transaction1.equals(transaction2));
-		StdOut.println("Equals 2: " + transaction2.equals(transaction1));
-		StdOut.println("Equals 3: " + transaction1.equals(transaction3));
-		StdOut.println("Equals 4: " + transaction3.equals(transaction4));
+		StdOut.println("Equals 1: " + transaction1.equals(transaction2) + " Expected: true");
+		StdOut.println("Equals 2: " + transaction2.equals(transaction1) + " Expected: true");
+		StdOut.println("Equals 3: " + transaction1.equals(transaction3) + " Expected: false");
+		StdOut.println("Equals 4: " + transaction3.equals(transaction4) + " Expected: true");
 	}
 	
 }

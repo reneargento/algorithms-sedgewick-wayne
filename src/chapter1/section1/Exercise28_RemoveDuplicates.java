@@ -19,6 +19,7 @@ public class Exercise28_RemoveDuplicates {
 		int[] compactWhitelist = removeDuplicates(whitelist);
 				
 		binarySearch(compactWhitelist, keys);
+		StdOut.println("\nExpected (numbers not found): 9, 10");
 	}
 
 	private static int[] removeDuplicates(int[] whitelist) {
@@ -69,9 +70,9 @@ public class Exercise28_RemoveDuplicates {
 			int mid = lo + (hi - lo) / 2;
 			
 			if (key < arr[mid]) {
-				return rank(key, arr, lo, mid-1);
+				return rank(key, arr, lo, mid - 1);
 			} else if (key > arr[mid]){
-				return rank(key, arr, mid+1, hi);
+				return rank(key, arr, mid + 1, hi);
 			} else {
 				return mid;
 			}

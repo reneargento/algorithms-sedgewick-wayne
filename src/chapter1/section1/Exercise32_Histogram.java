@@ -12,11 +12,12 @@ import java.util.List;
  */
 public class Exercise32_Histogram {
 
+	// Parameters example: 4 2.5 9.3 2 2.5 4.3 5.5 6.6 6.7 6.8 8.3 10
 	public static void main(String[] args) {
 		
-		int n = Integer.parseInt(args[0]); //4
-		double l = Double.parseDouble(args[1]); //2.5
-		double r = Double.parseDouble(args[2]); //9.3
+		int n = Integer.parseInt(args[0]);
+		double l = Double.parseDouble(args[1]);
+		double r = Double.parseDouble(args[2]);
 
 		List<Double> numbers = new ArrayList<>();
 		int numberIndex = 3;
@@ -73,7 +74,7 @@ public class Exercise32_Histogram {
 		for (int i = 0; i < numbers.length; i++) {
 			indexOfInterval = 0;
 			
-			for (double j = l; j <=r && indexOfInterval < n; j+= intervalOfNumbers) {
+			for (double j = l; j <= r && indexOfInterval < n; j+= intervalOfNumbers) {
 				if (numbers[i] >= j && numbers[i] <= j + intervalOfNumbers) {
 					numbersInInterval[indexOfInterval]++;
 				}

@@ -22,7 +22,7 @@ public class Exercise27_BinomialDistribution {
 		
 		if ((N == 0) && (k == 0)) return 1.0;
 		if ((N < 0) || (k < 0)) return 0.0;
-		return (1 - p) * binomial(N-1, k, p) + p * binomial(N-1, k-1, p);
+		return (1 - p) * binomial(N - 1, k, p) + p * binomial(N - 1, k - 1, p);
 	}
 	
 	//Enhanced version
@@ -31,7 +31,7 @@ public class Exercise27_BinomialDistribution {
 		
 		double[][] arr = new double[N+1][k+1];
 		
-		for (int i = 0; i<arr.length; i++){
+		for (int i = 0; i < arr.length; i++){
 			for (int j = 0; j < arr[0].length; j++) {
 				arr[i][j] = -1;
 			}
@@ -50,7 +50,7 @@ public class Exercise27_BinomialDistribution {
 		if ((N < 0) || (k < 0)) return 0.0;
 		
 		if (arr[N][k] == -1) {
-			arr[N][k] = (1 - p) * binomial2(arr, N-1, k, p) + p * binomial2(arr, N-1, k-1, p);
+			arr[N][k] = (1 - p) * binomial2(arr, N - 1, k, p) + p * binomial2(arr, N - 1, k - 1, p);
 		}
 		
 		return arr[N][k];

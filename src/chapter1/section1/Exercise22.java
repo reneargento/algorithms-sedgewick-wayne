@@ -18,7 +18,12 @@ public class Exercise22 {
 		int index = rank(key, arr, 0, arr.length-1, 0);
 		
 		StdOut.println();
-		StdOut.print("Index: " + index);
+		StdOut.println("Index: " + index);
+
+		StdOut.println("\nExpected:");
+		StdOut.println("lo: 0 - hi: 6\n" +
+				" lo: 0 - hi: 2\n" +
+				"Index: 1");
 	}
 	
 	private static int rank(int key, int[] arr, int lo, int hi, int depth) {
@@ -27,7 +32,7 @@ public class Exercise22 {
 			StdOut.println();
 		}
 		
-		for (int i = 0; i<depth; i++){
+		for (int i = 0; i < depth; i++){
 			StdOut.print(" ");
 		}
 		

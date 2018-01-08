@@ -19,30 +19,30 @@ public class QuickSort3Way {
             return;
         }
 
-        int lt = low;
+        int lowerThan = low;
         int i = low + 1;
-        int gt = high;
+        int greaterThan = high;
 
         Comparable pivot = array[low];
 
-        while (i <= gt) {
+        while (i <= greaterThan) {
             int compare = array[i].compareTo(pivot);
 
             if(compare < 0) {
-                ArrayUtil.exchange(array, lt, i);
-                lt++;
+                ArrayUtil.exchange(array, lowerThan, i);
+                lowerThan++;
                 i++;
             } else if(compare > 0) {
-                ArrayUtil.exchange(array, i, gt);
-                gt--;
+                ArrayUtil.exchange(array, i, greaterThan);
+                greaterThan--;
             } else {
                 i++;
             }
         }
 
-        //Now a[low..lt - 1] < pivot = a[lt..gt] < a[gt + 1..high]
-        quickSort3Way(array, low, lt - 1);
-        quickSort3Way(array, gt + 1, high);
+        // Now array[low..lowerThan - 1] < pivot = array[lowerThan..greaterThan] < array[greaterThan + 1..high]
+        quickSort3Way(array, low, lowerThan - 1);
+        quickSort3Way(array, greaterThan + 1, high);
     }
 
 }

@@ -88,9 +88,9 @@ public class Exercise38_BinarySearchXBruteForce {
 			int mid = lo + (hi - lo) / 2;
 			
 			if (key < arr[mid]) {
-				return binarySearch(key, arr, lo, mid-1);
+				return binarySearch(key, arr, lo, mid - 1);
 			} else if (key > arr[mid]) {
-				return binarySearch(key, arr, mid+1, hi);
+				return binarySearch(key, arr, mid + 1, hi);
 			} else {
 				return mid;
 			}

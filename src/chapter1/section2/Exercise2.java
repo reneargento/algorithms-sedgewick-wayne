@@ -23,7 +23,7 @@ public class Exercise2 {
 	
 	private static void getIntervals(Interval1D[] intervals) {
 		
-		for (int i=0; i< intervals.length; i++) {
+		for (int i = 0; i< intervals.length; i++) {
 			
 			double firstValue = StdRandom.uniform();
 			double secondValue = StdRandom.uniform();
@@ -40,8 +40,8 @@ public class Exercise2 {
 
 	private static void printIntervalIntersections(Interval1D[] intervals) {
 		
-		for (int i=0; i < intervals.length-1; i++) {
-			for (int j=i+1; j < intervals.length; j++) {
+		for (int i = 0; i < intervals.length - 1; i++) {
+			for (int j = i + 1; j < intervals.length; j++) {
 				
 				if(intervals[i].intersects(intervals[j]) ) {
 					StdOut.printf("Interval 1 - Min: %.3f  Max: %.3f \n", intervals[i].min(), intervals[i].max());

@@ -11,8 +11,8 @@ public class Exercise4 {
 		String string1 = "hello";
 		String string2 = string1;
 		string1 = "world";
-		StdOut.println(string1);
-		StdOut.println(string2);
+		StdOut.println(string1 + " Expected: world");
+		StdOut.println(string2 + " Expected: hello");
 	}
 
 }

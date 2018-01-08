@@ -22,17 +22,17 @@ public static void main(String[] args) {
 		arr[3] = 3;
 		arr[4] = 4;
 		
-		for (int i=0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			badShuffle(arr);
 			
-			for (int j=0; j< arr.length; j++) {
+			for (int j = 0; j< arr.length; j++) {
 				positions[j][(int)arr[j]]++;
 			}
 		}
 		
 		StdOut.println("Order after shuffles:");
 		
-		for (int i=0; i< arr.length; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			StdOut.print(arr[i] + " ");
 		}
 		
@@ -45,7 +45,7 @@ public static void main(String[] args) {
 	public static void badShuffle(double[] a) {
 		int n = a.length;
 		
-		for (int i=0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			int r = 0 + StdRandom.uniform(n - i);
 			double temp = a[i];
 			a[i] = a[r];
@@ -57,10 +57,10 @@ public static void main(String[] args) {
 		
 		StdOut.println("TABLE");
 		
-		for (int i = 0; i< positions.length; i++) {
+		for (int i = 0; i < positions.length; i++) {
 			StdOut.printf("%3d  ", i);
 			
-			for (int j = 0; j< positions[0].length; j++) {
+			for (int j = 0; j < positions[0].length; j++) {
 				StdOut.printf("%4d ", positions[i][j]);
 			}
 			StdOut.println();

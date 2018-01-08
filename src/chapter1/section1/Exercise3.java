@@ -7,6 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise3 {
 
+	// Parameters example: 4 7 4
 	public static void main(String[] args) {
 		int integer1 = Integer.parseInt(args[0]);
 		int integer2 = Integer.parseInt(args[1]);

@@ -46,7 +46,7 @@ public class Exercise3 {
         StdDraw.setXscale(min, max);
         StdDraw.setYscale(min, max);
 		
-		for (int i=0; i < intervals.length; i++) {
+		for (int i = 0; i < intervals.length; i++) {
 
 			Interval1D width = generateInterval1D(min, max);
 			Interval1D height = generateInterval1D(min, max);
@@ -82,8 +82,8 @@ public class Exercise3 {
 		int intersections = 0;
 		int contains = 0;
 		
-		for (int i=0; i < intervals.length-1; i++) {
-			for (int j=i+1; j < intervals.length; j++) {
+		for (int i = 0; i < intervals.length - 1; i++) {
+			for (int j = i + 1; j < intervals.length; j++) {
 				
 				if(intervals[i].intersects(intervals[j]) ) {
 					intersections++;

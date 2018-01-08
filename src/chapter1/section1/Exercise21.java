@@ -7,11 +7,12 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise21 {
 
+	// Parameters example: "Rene 2 1 \nBacon 4 3 \nAbcdef 6 2"
 	public static void main(String[] args) {
 
 		StdOut.printf("%8s %7s %7s %7s","Names","Number1","Number2","Result\n");
 
-		String[] allLines = args[0].split("\n"); //"Rene 2 1 \nBacon 4 3 \nAbcdef 6 2"
+		String[] allLines = args[0].split("\\n");
 
 		for(String line: allLines) {
 			String formattedString = line.replace("\\n", "");
@@ -30,7 +31,7 @@ public class Exercise21 {
 				StdOut.printf("%7s",splittedValues[i]);
 			}
 			
-			if ((i+1) % 3 == 0) {
+			if ((i + 1) % 3 == 0) {
 				double value1 = Double.parseDouble(splittedValues[i-1]);
 				double value2 = Double.parseDouble(splittedValues[i]);
 				double result = value1 / value2;

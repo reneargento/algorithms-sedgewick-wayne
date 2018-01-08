@@ -25,7 +25,7 @@ public static void main(String[] args) {
 		StdOut.println(count(7, whitelist));
 		StdOut.println(count(20, whitelist));
 		
-		StdOut.println("Verification: " + verify(7, whitelist));
+		StdOut.println("Verification: " + verify(7, whitelist) + " Expected: true");
 		//binarySearch(whitelist, keys);
 	}
 	

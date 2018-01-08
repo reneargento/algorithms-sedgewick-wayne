@@ -20,7 +20,7 @@ public class Exercise9 {
 		
 		Arrays.sort(whitelist);
 		
-		for (int i=0; i < keys.length; i++) {
+		for (int i = 0; i < keys.length; i++) {
 			
 			if(rank(keys[i], whitelist, counter) == -1) {
 				StdOut.println(keys[i]);

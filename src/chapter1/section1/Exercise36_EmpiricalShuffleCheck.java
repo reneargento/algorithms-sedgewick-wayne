@@ -8,10 +8,11 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class Exercise36_EmpiricalShuffleCheck {
 
+	// Parameters example: 200000 5
 	public static void main(String[] args) {
 
-		int n = Integer.parseInt(args[0]); // 200000
-		int m = Integer.parseInt(args[1]); // 5
+		int n = Integer.parseInt(args[0]);
+		int m = Integer.parseInt(args[1]);
 		
 		int[][] positions = new int[m][m];
 		
@@ -49,10 +50,10 @@ public class Exercise36_EmpiricalShuffleCheck {
 		
 		StdOut.println("TABLE");
 		
-		for (int i = 0; i< positions.length; i++) {
+		for (int i = 0; i < positions.length; i++) {
 			StdOut.printf("%3d  ", i);
 			
-			for (int j = 0; j< positions[0].length; j++) {
+			for (int j = 0; j < positions[0].length; j++) {
 				StdOut.printf("%4d ", positions[i][j]);
 			}
 			StdOut.println();

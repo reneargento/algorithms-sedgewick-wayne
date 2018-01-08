@@ -9,6 +9,7 @@ public class Exercise14 {
 
 	public static void main(String[] args) {
 		StdOut.print(lg(15));
+		StdOut.println("\nExpected: 3");
 	}
 
 	private static int lg(int n){

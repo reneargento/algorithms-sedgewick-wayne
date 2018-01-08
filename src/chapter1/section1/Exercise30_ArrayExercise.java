@@ -14,7 +14,7 @@ public class Exercise30_ArrayExercise {
 		boolean[][] array = new boolean[n][n];
 		
 		for (int i = 0; i < n; i++) {
-			for (int j=0; j<n; j++) {
+			for (int j = 0; j < n; j++) {
 				array[i][j] = isPrime(i, j);
 			}
 		}

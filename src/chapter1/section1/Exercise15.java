@@ -19,12 +19,14 @@ public class Exercise15 {
 		for (int i = 0; i < newArrA.length; i++) {
 			StdOut.print(newArrA[i] + " ");
 		}
-		
+		StdOut.println("\nExpected: 0 1 1 1 1");
+
 		StdOut.println();
 		
 		for (int i = 0; i < newArrB.length; i++) {
 			StdOut.print(newArrB[i] + " ");
 		}
+        StdOut.println("\nExpected: 0 1 1 1 0 0 0");
 	}
 
 	private static int[] histogram(int[] a, int m){

@@ -134,8 +134,8 @@ public class Exercise33_Matrix_Operations {
 		
 		double[][] b = new double[a[0].length][a.length];
 		
-		for (int i = 0; i <a.length; i++){
-			for (int j = 0; j <a[0].length; j++){
+		for (int i = 0; i < a.length; i++){
+			for (int j = 0; j < a[0].length; j++){
 				b[j][i] = a[i][j];
 			}
 		}

@@ -29,7 +29,7 @@ public class Exercise15_FileInput {
 		String[] inputs = input.split("\\s+");
 		List<Integer> intList = new LinkedList<>();
 		
-		for (int i=0; i< inputs.length; i++) {
+		for (int i = 0; i < inputs.length; i++) {
 			try {
 				int number = Integer.parseInt(inputs[i]);
 				intList.add(number);
@@ -40,7 +40,7 @@ public class Exercise15_FileInput {
 		
 		int[] ints = new int[intList.size()];
 		
-		for (int i=0; i<intList.size(); i++){
+		for (int i = 0; i < intList.size(); i++){
 			ints[i] = intList.get(i);
 		}
 		

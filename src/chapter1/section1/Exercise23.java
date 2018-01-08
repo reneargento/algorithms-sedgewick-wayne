@@ -20,6 +20,12 @@ public class Exercise23 {
 		
 		StdOut.println();
 		binarySearch(arr, numbers, '-');
+
+		StdOut.println("\n\nExpected:");
+		StdOut.println("Numbers NOT in whitelist:\n" +
+                "9, 10\n" +
+                "Numbers IN whitelist:\n" +
+                "1, 4, 5");
 	}
 	
 	private static void binarySearch(int[] arr, int[] numbers, char operation) {
@@ -64,7 +70,7 @@ public class Exercise23 {
 			
 			if (key < arr[mid]) {
 				return rank(key, arr, lo, mid-1);
-			} else if (key > arr[mid]){
+			} else if (key > arr[mid]) {
 				return rank(key, arr, mid+1, hi);
 			} else {
 				return mid;

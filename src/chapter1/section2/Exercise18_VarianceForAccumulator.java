@@ -36,9 +36,9 @@ public class Exercise18_VarianceForAccumulator {
 		validation.addDataValue(4);
 		validation.addDataValue(5);
 		
-		StdOut.println("Mean: " + validation.mean());
-		StdOut.println("Variance: " + validation.var());
-		StdOut.println("Standard Deviation: " + validation.stddev());
+		StdOut.println("Mean: " + validation.mean() + " Expected: 3.6666666666666665");
+		StdOut.println("Variance: " + validation.var() + " Expected:  2.333333333333333");
+		StdOut.println("Standard Deviation: " + validation.stddev() + " Expected: 1.5275252316519465");
 	}
 
 }

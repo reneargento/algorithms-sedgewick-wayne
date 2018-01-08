@@ -14,6 +14,10 @@ public class Exercise13 {
 		};
 		
 		transpose(mat);
+		StdOut.println("\nExpected:");
+		StdOut.println("1 4 \n" +
+                "2 5 \n" +
+                "3 6 ");
 	}
 	
 	private static void transpose(int[][] mat){

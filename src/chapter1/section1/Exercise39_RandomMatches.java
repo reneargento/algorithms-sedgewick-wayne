@@ -10,9 +10,10 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class Exercise39_RandomMatches {
 
+	// Parameter example: 10
 	public static void main(String[] args) {
 
-		int t = Integer.parseInt(args[0]); // 10
+		int t = Integer.parseInt(args[0]);
 
 		int n1 = (int) Math.pow(10, 3);
 		int n2 = (int) Math.pow(10, 4);
@@ -70,9 +71,9 @@ public class Exercise39_RandomMatches {
 			int mid = lo + (hi - lo) / 2;
 			
 			if (key < arr[mid]){
-				binarySearch(key, arr, lo, mid-1);
+				binarySearch(key, arr, lo, mid - 1);
 			} else if (key > arr[mid]) {
-				binarySearch(key, arr, mid+1, hi);
+				binarySearch(key, arr, mid + 1, hi);
 			} else {
 				found = true;
 			}

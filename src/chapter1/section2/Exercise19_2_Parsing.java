@@ -46,6 +46,7 @@ public class Exercise19_2_Parsing {
 		
 		Exercise19_2_Parsing transaction = new Exercise19_2_Parsing("Turing", date, 22.10);
 		StdOut.println(transaction);
+		StdOut.println("Expected: Turing spent 22.1 on 8/5/2016");
 	}
 	
 

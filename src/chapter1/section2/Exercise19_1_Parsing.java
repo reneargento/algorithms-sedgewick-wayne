@@ -71,7 +71,7 @@ public class Exercise19_1_Parsing {
 		String[] days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 		
 		Calendar calendar = Calendar.getInstance();
-		Date date = null;
+		Date date;
 		
 		try {
 			date = new SimpleDateFormat("MM/dd/yyyy").parse(this.toString());
@@ -86,7 +86,8 @@ public class Exercise19_1_Parsing {
 	
 	public static void main(String[] args){
 		Exercise19_1_Parsing parsedDate = new Exercise19_1_Parsing("4/18/1989");
-		StdOut.println(parsedDate);
+		StdOut.println("Parsed date: " + parsedDate);
+		StdOut.println("Expected: 4/18/1989");
 	}
 
 }

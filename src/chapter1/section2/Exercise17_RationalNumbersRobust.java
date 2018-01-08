@@ -134,26 +134,30 @@ public class Exercise17_RationalNumbersRobust {
 		Exercise17_RationalNumbersRobust rational2 = new Exercise17_RationalNumbersRobust(2, 3);
 
 		Exercise17_RationalNumbersRobust rationalPlus = rational1.plus(rational2);
-		StdOut.println("Plus test: 1/4 + 2/3 = " + rationalPlus.numerator + "/" + rationalPlus.denominator);
+		StdOut.println("Plus test: 1/4 + 2/3 = " + rationalPlus.numerator + "/" + rationalPlus.denominator
+				+ " Expected: 11/12");
 
 		Exercise17_RationalNumbersRobust rationalMinus = rational1.minus(rational2);
-		StdOut.println("Minus test: 1/4 - 2/3 = " + rationalMinus.numerator + "/" + rationalMinus.denominator);
+		StdOut.println("Minus test: 1/4 - 2/3 = " + rationalMinus.numerator + "/" + rationalMinus.denominator
+				+ " Expected: -5/12");
 
 		Exercise17_RationalNumbersRobust rationalTimes = rational1.times(rational2);
-		StdOut.println("Times test: 1/4 * 2/3 = " + rationalTimes.numerator + "/" + rationalTimes.denominator);
+		StdOut.println("Times test: 1/4 * 2/3 = " + rationalTimes.numerator + "/" + rationalTimes.denominator
+				+ " Expected: 1/6");
 
 		Exercise17_RationalNumbersRobust rationalDividedBy = rational1.dividedBy(rational2);
-		StdOut.println("Divided by test: 1/4 / 2/3 = " + rationalDividedBy.numerator + "/" + rationalDividedBy.denominator);
+		StdOut.println("Divided by test: 1/4 / 2/3 = " + rationalDividedBy.numerator + "/" + rationalDividedBy.denominator
+				+ " Expected: 3/8");
 
 		Exercise17_RationalNumbersRobust equalRational1 = rational1;
 		Exercise17_RationalNumbersRobust equalRational2 = new Exercise17_RationalNumbersRobust(rational1.numerator(), rational1.denominator());
 		Exercise17_RationalNumbersRobust nonEqualRational = new Exercise17_RationalNumbersRobust(7, 8);
-		StdOut.println("Equal test 1 = " + rational1.equals(equalRational1));
-		StdOut.println("Equal test 2 = " + rational1.equals(equalRational2));
-		StdOut.println("Equal test 3 = " + rational1.equals(nonEqualRational));
+		StdOut.println("Equal test 1 = " + rational1.equals(equalRational1) + " Expected: true");
+		StdOut.println("Equal test 2 = " + rational1.equals(equalRational2) + " Expected: true");
+		StdOut.println("Equal test 3 = " + rational1.equals(nonEqualRational) + " Expected: false");
 		
-		StdOut.println("toString() test 1 = " + rational1);
-		StdOut.println("toString() test 2 = " + rational2);
+		StdOut.println("toString() test 1 = " + rational1 + " Expected: 1/4");
+		StdOut.println("toString() test 2 = " + rational2 + " Expected: 2/3");
 		
 		//Would cause an overflow -to test, comment the GCD divisions on the constructor
 		Exercise17_RationalNumbersRobust rational3 = new Exercise17_RationalNumbersRobust(Integer.MAX_VALUE, Integer.MAX_VALUE);

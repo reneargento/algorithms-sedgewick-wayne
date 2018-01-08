@@ -60,7 +60,7 @@ public class Exercise12 {
 		String[] days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 		
 		Calendar calendar = Calendar.getInstance();
-		Date date = null;
+		Date date;
 		
 		try {
 			date = new SimpleDateFormat("MM/dd/yyyy").parse(this.toString());
@@ -75,13 +75,13 @@ public class Exercise12 {
 	
 	public static void main(String[] args){
 		Exercise12 smartDate1 = new Exercise12(4, 18, 1989);
-		StdOut.println(smartDate1.dayOfTheWeek());
+		StdOut.println(smartDate1.dayOfTheWeek() + " Expected: Tuesday");
 		
 		Exercise12 smartDate2 = new Exercise12(4, 19, 1989);
-		StdOut.println(smartDate2.dayOfTheWeek());
+		StdOut.println(smartDate2.dayOfTheWeek() + " Expected: Wednesday");
 		
 		Exercise12 smartDate3 = new Exercise12(2, 28, 1996);
-		StdOut.println(smartDate3.dayOfTheWeek());
+		StdOut.println(smartDate3.dayOfTheWeek() + " Expected: Wednesday");
 	}
 
 }
