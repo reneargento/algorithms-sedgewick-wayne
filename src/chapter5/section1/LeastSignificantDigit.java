@@ -5,6 +5,7 @@ package chapter5.section1;
  */
 // O(N * W), where N is the number of strings in the array and W is the strings' length.
 // All strings must have equal length.
+// Also known as Radix sort.
 public class LeastSignificantDigit {
 
     public static void lsdSort(String[] array, int stringsLength) {
