@@ -8,9 +8,9 @@ import java.util.Iterator;
 public class DoublyLinkedList<Item> implements Iterable<Item> {
 
     public class DoubleNode {
-        Item item;
-        DoubleNode previous;
-        DoubleNode next;
+        public Item item;
+        public DoubleNode previous;
+        public DoubleNode next;
     }
 
     private int size;
@@ -25,9 +25,21 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
         return size;
     }
 
+    public DoubleNode getFirstNode() {
+        return first;
+    }
+
+    public DoubleNode getLastNode() {
+        return last;
+    }
+
     public Item get(int index) {
-        if(index >= size) {
-            throw new IllegalArgumentException("Index must be lower than size");
+        if(isEmpty()) {
+            return null;
+        }
+
+        if(index < 0 || index >= size) {
+            throw new IllegalArgumentException("Index must be between 0 and " + (size() - 1));
         }
 
         DoubleNode current;
@@ -267,12 +279,12 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
     }
 
     public Item removeItemWithIndex(int nodeIndex) {
-        if (nodeIndex <= 0 || nodeIndex >= size()){
-            throw new IllegalArgumentException("Index must be higher than 0 and lower than size");
-        }
-
         if(isEmpty()) {
             return null;
+        }
+
+        if (nodeIndex < 0 || nodeIndex >= size()){
+            throw new IllegalArgumentException("Index must be between 0 and " + (size() - 1));
         }
 
         boolean startFromTheBeginning = nodeIndex <= size() / 2;

@@ -42,8 +42,12 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public Item get(int index) {
-        if(index >= size) {
-            throw new IllegalArgumentException("Index must be lower than size");
+        if(isEmpty()) {
+            return null;
+        }
+
+        if(index < 0 || index >= size) {
+            throw new IllegalArgumentException("Index must be between 0 and " + (size() - 1));
         }
 
         DoubleNode current = first;
@@ -337,12 +341,12 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public Item removeItemWithIndex(int nodeIndex) {
-        if (nodeIndex <= 0 || nodeIndex >= size()){
-            throw new IllegalArgumentException("Index must be higher than 0 and lower than size");
-        }
-
         if(isEmpty()) {
             return null;
+        }
+
+        if(nodeIndex < 0 || nodeIndex >= size) {
+            throw new IllegalArgumentException("Index must be between 0 and " + (size() - 1));
         }
 
         boolean startFromTheBeginning = nodeIndex <= size() / 2;
