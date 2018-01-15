@@ -4,6 +4,7 @@ import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 8/28/16.
@@ -212,9 +213,13 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
         queueWithStacks.dequeue();
         queueWithStacks.dequeue();
 
-        for(int item : queueWithStacks) {
-            StdOut.print(item + " ");
+        StringJoiner queueItems = new StringJoiner(" ");
+        for (int item : queueWithStacks) {
+            queueItems.add(String.valueOf(item));
         }
+
+        StdOut.println("Queue items: " + queueItems.toString());
+        StdOut.println("Expected: 3");
     }
 
 }

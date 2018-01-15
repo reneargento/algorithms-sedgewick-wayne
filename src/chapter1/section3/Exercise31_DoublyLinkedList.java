@@ -3,6 +3,7 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento
@@ -253,19 +254,47 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 		doublyLinkedList.insertAtTheBeginning(30);
 		doublyLinkedList.insertAtTheEnd(999);
 
+        StringJoiner doublyLinkedListItems = new StringJoiner(" ");
+        for (int item : doublyLinkedList) {
+            doublyLinkedListItems.add(String.valueOf(item));
+        }
+
+        StdOut.println("Doubly linked list items after initial insert: " + doublyLinkedListItems.toString());
+        StdOut.println("Expected: 30 10 999");
+
 		doublyLinkedList.insertBeforeNode(9999, 998);
 		doublyLinkedList.insertBeforeNode(999, 997);
 
+        doublyLinkedListItems = new StringJoiner(" ");
+        for (int item : doublyLinkedList) {
+            doublyLinkedListItems.add(String.valueOf(item));
+        }
+
+        StdOut.println("\nDoubly linked list items after insert before 999: " + doublyLinkedListItems.toString());
+        StdOut.println("Expected: 30 10 997 999");
+
 		doublyLinkedList.insertAfterNode(10, 11);
+
+        doublyLinkedListItems = new StringJoiner(" ");
+        for (int item : doublyLinkedList) {
+            doublyLinkedListItems.add(String.valueOf(item));
+        }
+
+        StdOut.println("\nDoubly linked list items after insert after 10: " + doublyLinkedListItems.toString());
+        StdOut.println("Expected: 30 10 11 997 999");
 
 		doublyLinkedList.removeFromTheBeginning();
 		doublyLinkedList.removeFromTheEnd();
 
 		doublyLinkedList.removeItemWithIndex(2);
 
-		for (int number : doublyLinkedList) {
-			StdOut.println(number);
-		}
+        doublyLinkedListItems = new StringJoiner(" ");
+        for (int item : doublyLinkedList) {
+            doublyLinkedListItems.add(String.valueOf(item));
+        }
+
+        StdOut.println("\nDoubly linked list items after deletions: " + doublyLinkedListItems.toString());
+        StdOut.println("Expected: 10 997");
 	}
 	
 }

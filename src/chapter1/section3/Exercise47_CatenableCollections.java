@@ -4,6 +4,8 @@ import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.StringJoiner;
+
 /**
  * Created by Rene Argento on 8/23/16.
  */
@@ -77,17 +79,24 @@ public class Exercise47_CatenableCollections<Item> {
 
         catenableCollections.catenationQueues(queue1, queue2);
 
-        StdOut.println("Queue 1 after catenation");
-        for(int item : queue1){
-            StdOut.print(item + " ");
+        StringJoiner queue1Items = new StringJoiner(" ");
+        for (int item : queue1) {
+            queue1Items.add(String.valueOf(item));
         }
+
+        StdOut.println("Queue 1 after catenation: " + queue1Items.toString());
+        StdOut.println("Expected: 0 1 2 3 7 8 9");
 
         StdOut.println();
 
-        StdOut.println("Queue 2 after catenation");
-        for(int item : queue2){
-            StdOut.print(item + " ");
+        StringJoiner queue2Items = new StringJoiner(" ");
+        for (int item : queue2) {
+            queue1Items.add(String.valueOf(item));
         }
+
+        StdOut.println("Queue 2 after catenation: " + queue2Items.toString());
+        StdOut.println("Expected: ");
+        StdOut.println();
     }
 
     private static void testStackCatenation(Exercise47_CatenableCollections<Integer> catenableCollections) {
@@ -106,17 +115,24 @@ public class Exercise47_CatenableCollections<Item> {
 
         catenableCollections.catenationStacks(stack1, stack2);
 
-        StdOut.println("Stack 1 after catenation");
-        for(int item : stack1){
-            StdOut.print(item + " ");
+        StringJoiner stack1Items = new StringJoiner(" ");
+        for (int item : stack1) {
+            stack1Items.add(String.valueOf(item));
         }
+
+        StdOut.println("Stack 1 after catenation: " + stack1.toString());
+        StdOut.println("Expected: 9 8 7 3 2 1 0");
 
         StdOut.println();
 
-        StdOut.println("Stack 2 after catenation");
-        for(int item : stack2){
-            StdOut.print(item + " ");
+        StringJoiner stack2Items = new StringJoiner(" ");
+        for (int item : stack2) {
+            stack2Items.add(String.valueOf(item));
         }
+
+        StdOut.println("Stack 2 after catenation: " + stack2Items.toString());
+        StdOut.println("Expected: ");
+        StdOut.println();
     }
 
     private static void testStequeCatenation(Exercise47_CatenableCollections<Integer> catenableCollections) {
@@ -135,17 +151,23 @@ public class Exercise47_CatenableCollections<Item> {
 
         catenableCollections.catenationSteques(steque1, steque2);
 
-        StdOut.println("Steque 1 after catenation");
-        for(int item : steque1){
-            StdOut.print(item + " ");
+        StringJoiner steque1Items = new StringJoiner(" ");
+        for (int item : steque1) {
+            steque1Items.add(String.valueOf(item));
         }
+
+        StdOut.println("Steque 1 after catenation: " + steque1Items.toString());
+        StdOut.println("Expected: 0 1 2 3 7 8 9 ");
 
         StdOut.println();
 
-        StdOut.println("Steque 2 after catenation");
-        for(int item : steque2){
-            StdOut.print(item + " ");
+        StringJoiner steque2Items = new StringJoiner(" ");
+        for (int item : steque2) {
+            steque2Items.add(String.valueOf(item));
         }
+
+        StdOut.println("Steque 2 after catenation: " + steque2Items.toString());
+        StdOut.println("Expected: ");
     }
 
 }

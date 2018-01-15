@@ -1,6 +1,8 @@
 package chapter1.section3;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
+
 import edu.princeton.cs.algs4.StdOut;
 
 /**
@@ -51,7 +53,7 @@ public class Exercise26<Item> implements Iterable<Item> {
 				first = null;
 			} else {
 				Node current = first;
-				for (int i=0; i < size-2; i++) {
+				for (int i = 0; i < size - 2; i++) {
 					current = current.next;
 				}
 				current.next = null;
@@ -73,7 +75,7 @@ public class Exercise26<Item> implements Iterable<Item> {
 			int count = 1;
 			
 			for(current = first; current != null; current = current.next) {
-				if(count == k-1 && current.next != null) {
+				if(count == k - 1 && current.next != null) {
 					current.next = current.next.next;
 					break;
 				}
@@ -181,18 +183,28 @@ public class Exercise26<Item> implements Iterable<Item> {
 		linkedList.add("Mark");
 		linkedList.add("Elon");
 		
-		StdOut.println("Before removing");
+		StdOut.println("Before removing Mark");
+
+		StringJoiner listBeforeRemove = new StringJoiner(" ");
 		for (String name : linkedList) {
-			StdOut.println(name);
+            listBeforeRemove.add(name);
 		}
+
+        StdOut.println(listBeforeRemove.toString());
+        StdOut.println("Expected: Mark Bill Elon Rene Mark Elon");
 		
 		String itemToBeRemoved = "Mark";
 		linkedList.remove(itemToBeRemoved);
 		
-		StdOut.println("After removing");
-		for (String name : linkedList) {
-			StdOut.println(name);
-		}
+		StdOut.println("\nAfter removing Mark");
+
+        StringJoiner listAfterRemove = new StringJoiner(" ");
+        for (String name : linkedList) {
+            listAfterRemove.add(name);
+        }
+
+        StdOut.println(listAfterRemove.toString());
+        StdOut.println("Expected: Bill Elon Rene Elon");
 	}
 	
 }

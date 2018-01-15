@@ -24,6 +24,7 @@ public class Exercise5 {
 
 	public static void main(String[] args) {
 		decimalToBinary(50);
+		StdOut.println("Expected: 110010");
 	}
 
 }

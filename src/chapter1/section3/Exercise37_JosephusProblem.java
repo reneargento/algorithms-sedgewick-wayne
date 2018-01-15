@@ -12,13 +12,13 @@ public class Exercise37_JosephusProblem {
 
         Queue<Integer> queue = new Queue<>();
 
-        for(int i =0; i<numberOfPeople; i++){
+        for(int i = 0; i < numberOfPeople; i++){
             queue.enqueue(i);
         }
 
         while (numberOfPeople > 0) {
 
-            for (int i=1; i<personOrder; i++){
+            for (int i = 1; i < personOrder; i++){
                 queue.enqueue(queue.dequeue());
             }
 
@@ -28,10 +28,12 @@ public class Exercise37_JosephusProblem {
         }
     }
 
+    // Parametes example: 5 10
     public static void main(String[] args) {
-        int personOrder = Integer.parseInt(args[0]); //m
-        int numberOfPeople = Integer.parseInt(args[1]); //n
+        int personOrder = Integer.parseInt(args[0]);
+        int numberOfPeople = Integer.parseInt(args[1]);
 
+        StdOut.println("Order in which people are eliminated:");
         josephusProblem(personOrder, numberOfPeople);
     }
 

@@ -3,6 +3,7 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 8/15/16.
@@ -109,9 +110,13 @@ public class Exercise32_Steque<Item> implements Iterable<Item> {
         steque.enqueue(5);
         steque.enqueue(6);
 
+        StringJoiner stequeItems = new StringJoiner(" ");
         for (int number : steque) {
-            StdOut.println(number);
+            stequeItems.add(String.valueOf(number));
         }
+
+        StdOut.println("Steque items: " + stequeItems.toString());
+        StdOut.println("Expected: 2 1 5 6");
     }
 
 }

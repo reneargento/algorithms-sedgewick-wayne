@@ -9,50 +9,56 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise51_ExpressionEvaluation {
 
+    //Test samples
+    // 2 * 2 + 1 -> 5 //No parentheses
+    // 1 * ( 2 + 1 ) -> 3 //Mix of parentheses and no parentheses
+    // ( 1 * 2 + 1 ) -> 3
+    // 1 + 2 * ( 3 * 2 - 2 * ( 3 * 2 ) + 1 ) -> -9
+    // ( 2 * ( 3 - ( 5 / 2 ) ) + 3 ) -> 4
     public static void main(String[] args){
 
-        Stack<String> ops = new Stack<>();
-        Stack<Double> vals = new Stack<>();
+        Stack<String> operators = new Stack<>();
+        Stack<Double> values = new Stack<>();
 
         while (!StdIn.isEmpty()) {
             //Read token, push if operator.
-            String s = StdIn.readString();
-            if (s.equals("(")) {
-                ops.push(s);
-            } else if (s.equals("+")){
-                if(ops.size() > 0) {
-                    checkIfExistsAndSolveLowPrecedenceOperation(ops, vals);
+            String token = StdIn.readString();
+            if (token.equals("(")) {
+                operators.push(token);
+            } else if (token.equals("+")){
+                if(operators.size() > 0) {
+                    checkIfExistsAndSolveLowPrecedenceOperation(operators, values);
                 }
 
-                ops.push(s);
-            } else if (s.equals("-")) {
-                if(ops.size() > 0) {
-                    checkIfExistsAndSolveLowPrecedenceOperation(ops, vals);
+                operators.push(token);
+            } else if (token.equals("-")) {
+                if(operators.size() > 0) {
+                    checkIfExistsAndSolveLowPrecedenceOperation(operators, values);
                 }
 
-                ops.push(s);
-            } else if (s.equals("*")) {
-                ops.push(s);
-            } else if (s.equals("/")) {
-                ops.push(s);
-            } else if (s.equals("sqrt")) {
-                ops.push(s);
-            } else if (s.equals(")")) {
-                String op = ops.pop();
+                operators.push(token);
+            } else if (token.equals("*")) {
+                operators.push(token);
+            } else if (token.equals("/")) {
+                operators.push(token);
+            } else if (token.equals("sqrt")) {
+                operators.push(token);
+            } else if (token.equals(")")) {
+                String operator = operators.pop();
 
-                if (op.equals("(")){
+                if (operator.equals("(")){
                     //First case - There was just a number inside the parentheses. E.g. ( 6 )
                     //Check to see if there is any high precedence operation waiting for the expression result
-                    checkAndSolveExpressionWaitingParenteshisResult(ops, vals);
+                    checkAndSolveExpressionWaitingParenteshisResult(operators, values);
                 } else {
-                    solveExpressionOnTopOfStack(vals, op);
+                    solveExpressionOnTopOfStack(values, operator);
 
-                    String lastOperator = ops.pop();
-                    if (lastOperator.equals("(") && ops.size() > 0) {
+                    String lastOperator = operators.pop();
+                    if (lastOperator.equals("(") && operators.size() > 0) {
                         //Second case - There was one expression inside the parentheses. E.g. ( 1 + 2 )
                         //Check to see if there is any high precedence operation waiting for the expression result
 
-                        checkAndSolveExpressionWaitingParenteshisResult(ops, vals);
+                        checkAndSolveExpressionWaitingParenteshisResult(operators, values);
                     }
                     //Note - Since we are solving expressions as we read the input, there is no case where we have
                     //more than one expression inside the parentheses
@@ -60,81 +66,76 @@ public class Exercise51_ExpressionEvaluation {
             } else {
                 String lastOperator = null;
 
-                if(ops.size() > 0) {
-                    lastOperator = ops.peek();
+                if(operators.size() > 0) {
+                    lastOperator = operators.peek();
                 }
 
-                if(lastOperator != null && (lastOperator.equals("*") || lastOperator.equals("/") || lastOperator.equals("sqrt"))) {
-                    ops.pop();
+                if(lastOperator != null && (lastOperator.equals("*")
+                        || lastOperator.equals("/")
+                        || lastOperator.equals("sqrt"))) {
+                    operators.pop();
                     double result;
 
                     if (lastOperator.equals("*")) {
-                        result = Double.parseDouble(s) * vals.pop();
+                        result = Double.parseDouble(token) * values.pop();
                     } else if (lastOperator.equals("/")) {
-                        result = vals.pop() / Double.parseDouble(s);
+                        result = values.pop() / Double.parseDouble(token);
                     } else {
-                        result = Math.sqrt(Double.parseDouble(s));
+                        result = Math.sqrt(Double.parseDouble(token));
                     }
 
-                    vals.push(result);
+                    values.push(result);
                 } else {
                     //Token not operator or parenthesis; push double value
-                    vals.push(Double.parseDouble(s));
+                    values.push(Double.parseDouble(token));
                 }
             }
         }
 
         //Finish remaining operation (if exists)
-        if (vals.size() > 1) {
-            String operand = ops.pop();
-            solveExpressionOnTopOfStack(vals, operand);
+        if (values.size() > 1) {
+            String operand = operators.pop();
+            solveExpressionOnTopOfStack(values, operand);
         }
 
-        StdOut.println(vals.pop());
+        StdOut.println(values.pop());
     }
 
-    private static void solveExpressionOnTopOfStack(Stack<Double> vals, String lastOperand) {
+    private static void solveExpressionOnTopOfStack(Stack<Double> values, String lastOperand) {
         //Pop, evaluate and push result
-        double v = vals.pop();
+        double value = values.pop();
         if (lastOperand.equals("+")) {
-            v = vals.pop() + v;
+            value = values.pop() + value;
         } else if (lastOperand.equals("-")) {
-            v = vals.pop() - v;
+            value = values.pop() - value;
         } else if (lastOperand.equals("*")) {
-            v = vals.pop() * v;
+            value = values.pop() * value;
         } else if (lastOperand.equals("/")) {
-            v = vals.pop() / v;
+            value = values.pop() / value;
         } else if (lastOperand.equals("sqrt")) {
-            v = Math.sqrt(v);
+            value = Math.sqrt(value);
         }
-        vals.push(v);
+        values.push(value);
     }
 
-    private static void checkAndSolveExpressionWaitingParenteshisResult(Stack<String> ops, Stack<Double> vals) {
-        String operatorBeforeExpression = ops.peek();
+    private static void checkAndSolveExpressionWaitingParenteshisResult(Stack<String> operators, Stack<Double> values) {
+        String operatorBeforeExpression = operators.peek();
 
         if (operatorBeforeExpression.equals("*")
                 || operatorBeforeExpression.equals("/")
                 || operatorBeforeExpression.equals("sqrt")) {
-            ops.pop();
-            solveExpressionOnTopOfStack(vals, operatorBeforeExpression);
+            operators.pop();
+            solveExpressionOnTopOfStack(values, operatorBeforeExpression);
         }
     }
 
-    private static void checkIfExistsAndSolveLowPrecedenceOperation(Stack<String> ops, Stack<Double> vals) {
-        String operatorBeforeExpression = ops.peek();
+    private static void checkIfExistsAndSolveLowPrecedenceOperation(Stack<String> operators, Stack<Double> values) {
+        String operatorBeforeExpression = operators.peek();
 
         if (operatorBeforeExpression.equals("-") || operatorBeforeExpression.equals("+")) {
-            ops.pop();
-            solveExpressionOnTopOfStack(vals, operatorBeforeExpression);
+            operators.pop();
+            solveExpressionOnTopOfStack(values, operatorBeforeExpression);
         }
 
     }
-
-    //Test samples
-    // 2 * 2 + 1 -> 5 //No parentheses
-    // 1 * ( 2 + 1 ) -> 3 //Mix of parentheses and no parentheses
-    // ( 1 * 2 + 1 ) -> 3
-    // 1 + 2 * ( 3 * 2 - 2 * ( 3 * 2 ) + 1 ) -> -9
-    // ( 2 * ( 3 - ( 5 / 2 ) ) + 3 ) -> 4
 }

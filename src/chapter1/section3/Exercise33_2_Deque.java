@@ -3,6 +3,7 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 8/15/16.
@@ -137,16 +138,16 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
     }
 
     private void moveArrayRight() {
-        for (int i=last; i>=first; i--){
-            array[i+1] = array[i];
+        for (int i=last; i >= first; i--){
+            array[i + 1] = array[i];
         }
         first++;
         last++;
     }
 
     private void moveArrayLeft() {
-        for (int i=first; i<=last; i++) {
-            array[i-1] = array[i];
+        for (int i = first; i <= last; i++) {
+            array[i - 1] = array[i];
         }
         first--;
         last--;
@@ -192,26 +193,34 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
         deque.pushLeft("b");
         deque.pushLeft("c");
 
-        for(String string : deque) {
-            StdOut.println(string);
+        StringJoiner dequeItems = new StringJoiner(" ");
+        for (String item : deque) {
+            dequeItems.add(item);
         }
+
+        StdOut.println("Deque items: " + dequeItems.toString());
+        StdOut.println("Expected: c b a");
     }
 
     private void testPushRight() {
-        StdOut.println("Test Push Right");
+        StdOut.println("\nTest Push Right");
 
         Exercise33_2_Deque<String> deque = new Exercise33_2_Deque<>();
         deque.pushRight("a");
         deque.pushRight("b");
         deque.pushRight("c");
 
-        for(String string : deque) {
-            StdOut.println(string);
+        StringJoiner dequeItems = new StringJoiner(" ");
+        for (String item : deque) {
+            dequeItems.add(item);
         }
+
+        StdOut.println("Deque items: " + dequeItems.toString());
+        StdOut.println("Expected: a b c");
     }
 
     private void testPopLeft() {
-        StdOut.println("Test Pop Left");
+        StdOut.println("\nTest Pop Left");
 
         Exercise33_2_Deque<String> deque = new Exercise33_2_Deque<>();
         deque.pushRight("a");
@@ -221,13 +230,17 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
         deque.popLeft();
         deque.popLeft();
 
-        for(String string : deque) {
-            StdOut.println(string);
+        StringJoiner dequeItems = new StringJoiner(" ");
+        for (String item : deque) {
+            dequeItems.add(item);
         }
+
+        StdOut.println("Deque items: " + dequeItems.toString());
+        StdOut.println("Expected: c");
     }
 
     private void testPopRight() {
-        StdOut.println("Test Pop Right");
+        StdOut.println("\nTest Pop Right");
 
         Exercise33_2_Deque<String> deque = new Exercise33_2_Deque<>();
         deque.pushRight("a");
@@ -237,8 +250,12 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
         deque.popRight();
         deque.popRight();
 
-        for(String string : deque) {
-            StdOut.println(string);
+        StringJoiner dequeItems = new StringJoiner(" ");
+        for (String item : deque) {
+            dequeItems.add(item);
         }
+
+        StdOut.println("Deque items: " + dequeItems.toString());
+        StdOut.println("Expected: a");
     }
 }

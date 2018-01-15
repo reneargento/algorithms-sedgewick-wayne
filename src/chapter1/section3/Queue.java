@@ -26,7 +26,7 @@ public class Queue<Item> implements Iterable<Item> {
     }
 
     public void enqueue(Item item) {
-        if(item == null) {
+        if (item == null) {
             throw new IllegalArgumentException("Item cannot be null");
         }
 
@@ -36,7 +36,7 @@ public class Queue<Item> implements Iterable<Item> {
         last.item = item;
         last.next = null;
 
-        if(isEmpty()) {
+        if (isEmpty()) {
             first = last;
         } else {
             oldLast.next = last;
@@ -46,7 +46,7 @@ public class Queue<Item> implements Iterable<Item> {
     }
 
     public Item dequeue() {
-        if(isEmpty()){
+        if (isEmpty()){
             throw new RuntimeException("Queue underflow");
         }
 
@@ -55,7 +55,7 @@ public class Queue<Item> implements Iterable<Item> {
 
         size--;
 
-        if(isEmpty()) {
+        if (isEmpty()) {
             last = null;
         }
 
@@ -63,7 +63,7 @@ public class Queue<Item> implements Iterable<Item> {
     }
 
     public Item peek() {
-        if(isEmpty()){
+        if (isEmpty()){
             throw new RuntimeException("Queue underflow");
         }
 

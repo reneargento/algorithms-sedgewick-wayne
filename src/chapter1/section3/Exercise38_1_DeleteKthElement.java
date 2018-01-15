@@ -3,6 +3,7 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 8/21/16.
@@ -41,7 +42,7 @@ public class Exercise38_1_DeleteKthElement<Item> implements Iterable<Item>{
             throw new RuntimeException("Invalid index");
         }
 
-        Item item = queue[k-1];
+        Item item = queue[k - 1];
         moveItemsLeft(k);
 
         size--;
@@ -54,16 +55,16 @@ public class Exercise38_1_DeleteKthElement<Item> implements Iterable<Item>{
     }
 
     private void moveItemsLeft(int firstIndex) {
-        for(int i=firstIndex; i < size; i++) {
-            queue[i-1] = queue[i];
+        for(int i = firstIndex; i < size; i++) {
+            queue[i - 1] = queue[i];
         }
-        queue[size-1] = null; //to avoid loitering
+        queue[size - 1] = null; //to avoid loitering
     }
 
     private void resize(int capacity) {
         Item[] temp = (Item[]) new Object[capacity];
 
-        for (int i=0; i<size; i++){
+        for (int i = 0; i<size; i++){
             temp[i] = queue[i];
         }
 
@@ -103,8 +104,12 @@ public class Exercise38_1_DeleteKthElement<Item> implements Iterable<Item>{
         generalizedQueue.delete(1);
         generalizedQueue.delete(3);
 
-        for(int item : generalizedQueue) {
-            StdOut.println(item);
+        StringJoiner generalizedQueueItems = new StringJoiner(" ");
+        for (int item : generalizedQueue) {
+            generalizedQueueItems.add(String.valueOf(item));
         }
+
+        StdOut.println("Generalized queue items: " + generalizedQueueItems.toString());
+        StdOut.println("Expected: 1 2 4");
     }
 }

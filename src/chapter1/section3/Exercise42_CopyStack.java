@@ -3,6 +3,8 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.StringJoiner;
+
 /**
  * Created by Rene Argento on 8/23/16.
  */
@@ -37,16 +39,23 @@ public class Exercise42_CopyStack<Item> extends Stack<Item> {
 
         stackCopy.pop();
 
-        StdOut.println("Original Stack");
-        for(int item : originalStack){
-            StdOut.print(item + " ");
+        StringJoiner originalStackItems = new StringJoiner(" ");
+        for (int item : originalStack) {
+            originalStackItems.add(String.valueOf(item));
         }
 
+        StdOut.println("Original Stack: " + originalStackItems.toString());
+        StdOut.println("Expected: 2 1");
+
         StdOut.println();
-        StdOut.println("Stack Copy");
-        for(int item : stackCopy){
-            StdOut.print(item + " ");
+
+        StringJoiner copyStackItems = new StringJoiner(" ");
+        for (int item : stackCopy) {
+            copyStackItems.add(String.valueOf(item));
         }
+
+        StdOut.println("Stack Copy: " + copyStackItems.toString());
+        StdOut.println("Expected: 5 4 3 2 1");
     }
 
 }

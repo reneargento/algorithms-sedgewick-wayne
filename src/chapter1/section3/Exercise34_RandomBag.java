@@ -4,6 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 8/16/16.
@@ -106,9 +107,14 @@ public class Exercise34_RandomBag<Item> implements Iterable<Item>{
         randomBag.add(7);
         randomBag.add(8);
 
-        for(int number : randomBag){
-            StdOut.println(number);
+        StdOut.print("Random bag items: ");
+
+        StringJoiner randomBagItems = new StringJoiner(" ");
+        for (int item : randomBag) {
+            randomBagItems.add(String.valueOf(item));
         }
+
+        StdOut.println(randomBagItems.toString());
     }
 
 }

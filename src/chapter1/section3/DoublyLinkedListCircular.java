@@ -42,11 +42,11 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public Item get(int index) {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
 
-        if(index < 0 || index >= size) {
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Index must be between 0 and " + (size() - 1));
         }
 
@@ -181,7 +181,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public void insertAfterNode(Item afterNode, Item item) {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return;
         }
 
@@ -193,7 +193,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
             }
         }
 
-        if(currentNode != null) {
+        if (currentNode != null) {
             DoubleNode newNode = new DoubleNode();
             newNode.item = item;
 
@@ -202,7 +202,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
             newNode.previous = currentNode;
             newNode.next = nextNode;
 
-            if(newNode.next == null) {
+            if (newNode.next == null) {
                 //This is the last node
                 last = newNode;
             } else {
@@ -241,13 +241,13 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
 
         Item item = first.item;
 
-        if(first.next != null) {
+        if (first.next != null) {
             first.next.previous = first.previous;
         } else { // There is only 1 element in the list
             last = null;
         }
 
-        if(first.previous != null) {
+        if (first.previous != null) {
             if(size > 2) {
                 first.previous.next = first.next;
             } else {
@@ -269,7 +269,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
 
         Item item = last.item;
 
-        if(last.previous != null) {
+        if (last.previous != null) {
             if(size > 2) {
                 last.previous.next = last.next;
             } else {
@@ -279,7 +279,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
             first = null;
         }
 
-        if(last.next != null) {
+        if (last.next != null) {
             if(size > 2) {
                 last.next.previous = last.previous;
             } else {
@@ -330,7 +330,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
             nextNode.previous = previousNode;
         }
 
-        if(doubleNode == first) {
+        if (doubleNode == first) {
             first = nextNode;
         }
         if (doubleNode == last) {
@@ -341,11 +341,11 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public Item removeItemWithIndex(int nodeIndex) {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
 
-        if(nodeIndex < 0 || nodeIndex >= size) {
+        if (nodeIndex < 0 || nodeIndex >= size) {
             throw new IllegalArgumentException("Index must be between 0 and " + (size() - 1));
         }
 
@@ -356,11 +356,11 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
         DoubleNode currentNode = startFromTheBeginning? first : last;
 
         while (currentNode != null) {
-            if(nodeIndex == index) {
+            if (nodeIndex == index) {
                 break;
             }
 
-            if(startFromTheBeginning) {
+            if (startFromTheBeginning) {
                 index++;
             } else{
                 index--;

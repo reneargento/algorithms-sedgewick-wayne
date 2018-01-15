@@ -24,7 +24,7 @@ public class Exercise8 implements Iterable<String> {
 	private void resize(int max) {
 		String[] temp = new String[max];
 		
-		for(int i=0; i < n; i++) {
+		for(int i = 0; i < n; i++) {
 			temp[i] = items[i];
 		}
 		

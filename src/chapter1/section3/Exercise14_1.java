@@ -54,12 +54,17 @@ public class Exercise14_1 {
 	
 	public static void main(String[] args) {
 		Exercise14_1 fixedSizeArrayQueueOfStrings = new Exercise14_1(3);
+
 		fixedSizeArrayQueueOfStrings.enqueue("1");
 		fixedSizeArrayQueueOfStrings.enqueue("2");
 		fixedSizeArrayQueueOfStrings.enqueue("3");
+
 		StdOut.println("Dequeue 1: " + fixedSizeArrayQueueOfStrings.dequeue());
+        StdOut.println("Expected: 1\n");
+
 		fixedSizeArrayQueueOfStrings.enqueue("4");
 		StdOut.println("Dequeue 2: " + fixedSizeArrayQueueOfStrings.dequeue());
+        StdOut.println("Expected: 2");
 	}
 
 }

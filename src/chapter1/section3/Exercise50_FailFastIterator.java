@@ -98,6 +98,8 @@ public class Exercise50_FailFastIterator<Item> implements Iterable<Item>{
     }
 
     public static void main (String[] args) {
+        StdOut.print("Expected: a java.util.ConcurrentModificationException to be thrown\n");
+
         Exercise50_FailFastIterator<String> failFastIterator = new Exercise50_FailFastIterator<>();
 
         failFastIterator.push("a");
@@ -108,7 +110,7 @@ public class Exercise50_FailFastIterator<Item> implements Iterable<Item>{
         failFastIterator.pop();
 
         for(String string : failFastIterator) {
-            StdOut.print(string + " ");
+            StdOut.print("Iterating at item " + string + " ");
 
             failFastIterator.push("z");
         }

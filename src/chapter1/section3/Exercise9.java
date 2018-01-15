@@ -38,9 +38,9 @@ public class Exercise9 {
 		return operands.pop();
 	}
 
+    // Parameter example: "1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )"
 	public static void main (String args[]) {
-		String input = args[0]; // "1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )"
-
+		String input = args[0];
 		StdOut.println(getInfixExpression(input));
 	}
 

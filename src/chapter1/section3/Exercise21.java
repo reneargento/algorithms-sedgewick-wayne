@@ -46,7 +46,7 @@ public class Exercise21<Item> implements Iterable<Item> {
 				first = null;
 			} else {
 				Node current = first;
-				for (int i=0; i < size-2; i++) {
+				for (int i = 0; i < size - 2; i++) {
 					current = current.next;
 				}
 				current.next = null;
@@ -68,7 +68,7 @@ public class Exercise21<Item> implements Iterable<Item> {
 			int count = 1;
 			
 			for(current = first; current != null; current = current.next) {
-				if(count == k-1 && current.next != null) {
+				if(count == k - 1 && current.next != null) {
 					current.next = current.next.next;
 					break;
 				}
@@ -123,8 +123,8 @@ public class Exercise21<Item> implements Iterable<Item> {
 		linkedList.add("C");
 		linkedList.add("D");
 		
-		StdOut.println("Find result: " + linkedList.find("B"));
-		StdOut.println("Find result: " + linkedList.find("Z"));
+		StdOut.println("Find result: " + linkedList.find("B") + " Expected: true");
+		StdOut.println("Find result: " + linkedList.find("Z") + " Expected: false");
 	}
 
 }

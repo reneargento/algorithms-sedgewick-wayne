@@ -4,6 +4,7 @@ import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 8/27/16.
@@ -108,34 +109,38 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
     }
 
     private void testPushLeft() {
-        StdOut.println("Test Push Left");
-
         Exercise48_TwoStacksDeque<String> deque = new Exercise48_TwoStacksDeque<>();
         deque.pushLeft("a");
         deque.pushLeft("b");
         deque.pushLeft("c");
 
-        for(String string : deque) {
-            StdOut.println(string);
+        StringJoiner dequeItems = new StringJoiner(" ");
+        for (String item : deque) {
+            dequeItems.add(item);
         }
+
+        StdOut.println("Test Push Left: " + dequeItems.toString());
+        StdOut.println("Expected: c b a");
+        StdOut.println();
     }
 
     private void testPushRight() {
-        StdOut.println("Test Push Right");
-
         Exercise48_TwoStacksDeque<String> deque = new Exercise48_TwoStacksDeque<>();
         deque.pushRight("a");
         deque.pushRight("b");
         deque.pushRight("c");
 
-        for(String string : deque) {
-            StdOut.println(string);
+        StringJoiner dequeItems = new StringJoiner(" ");
+        for (String item : deque) {
+            dequeItems.add(item);
         }
+
+        StdOut.println("Test Push Right: " + dequeItems.toString());
+        StdOut.println("Expected: c b a");
+        StdOut.println();
     }
 
     private void testPopLeft() {
-        StdOut.println("Test Pop Left");
-
         Exercise48_TwoStacksDeque<String> deque = new Exercise48_TwoStacksDeque<>();
         deque.pushLeft("a");
         deque.pushLeft("b");
@@ -144,14 +149,17 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
         deque.popLeft();
         deque.popLeft();
 
-        for(String string : deque) {
-            StdOut.println(string);
+        StringJoiner dequeItems = new StringJoiner(" ");
+        for (String item : deque) {
+            dequeItems.add(item);
         }
+
+        StdOut.println("Test Pop Left: " + dequeItems.toString());
+        StdOut.println("Expected: a");
+        StdOut.println();
     }
 
     private void testPopRight() {
-        StdOut.println("Test Pop Right");
-
         Exercise48_TwoStacksDeque<String> deque = new Exercise48_TwoStacksDeque<>();
         deque.pushRight("a");
         deque.pushRight("b");
@@ -160,9 +168,13 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
         deque.popRight();
         deque.popRight();
 
-        for(String string : deque) {
-            StdOut.println(string);
+        StringJoiner dequeItems = new StringJoiner(" ");
+        for (String item : deque) {
+            dequeItems.add(item);
         }
+
+        StdOut.println("Test Pop Right: " + dequeItems.toString());
+        StdOut.println("Expected: a");
     }
 
 }

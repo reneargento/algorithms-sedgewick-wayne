@@ -38,6 +38,11 @@ public class Exercise12 {
 		for (String s : copy) {
 			StdOut.println(s);
 		}
+
+		StdOut.println("\nExpected: " +
+                "\nThird Item\n" +
+                "Second Item\n" +
+                "First Item");
 	}
 
 }

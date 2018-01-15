@@ -37,7 +37,7 @@ public class Stack<Item> implements Iterable<Item> {
     }
 
     public Item pop() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Stack underflow");
         }
 
@@ -49,7 +49,7 @@ public class Stack<Item> implements Iterable<Item> {
     }
 
     public Item peek() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
 

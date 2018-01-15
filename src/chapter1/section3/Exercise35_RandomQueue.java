@@ -65,7 +65,7 @@ public class Exercise35_RandomQueue {
         private void resize(int capacity) {
             Item[] temp = (Item[]) new Object[capacity];
 
-            for (int i=0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 temp[i] = items[i];
             }
 
@@ -79,9 +79,9 @@ public class Exercise35_RandomQueue {
 
         fillQueueWithBridgeHandsCards(randomQueue);
 
-        for (int i =0; i < 2; i++) {
+        for (int i = 0; i < 2; i++) {
             int count = 0;
-            StdOut.println("Hand " + (i+1));
+            StdOut.println("Hand " + (i + 1));
 
             while(count < 13) {
                 StdOut.println(randomQueue.dequeue());
@@ -91,16 +91,16 @@ public class Exercise35_RandomQueue {
         }
 
         Card sample = randomQueue.sample();
-        StdOut.println("Size before sample: " + randomQueue.size);
+        StdOut.println("Size before sample: " + randomQueue.size + " Expected: 26");
         StdOut.println("Random item: " + sample);
-        StdOut.println("Size after sample: " + randomQueue.size);
+        StdOut.println("Size after sample: " + randomQueue.size + " Expected: 26");
     }
 
     @SuppressWarnings("unchecked")
     private static void fillQueueWithBridgeHandsCards(RandomQueue randomQueue) {
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
 
-        for (int i=0; i < suits.length; i++){
+        for (int i = 0; i < suits.length; i++){
             randomQueue.enqueue(new Card("A", suits[i]));
             randomQueue.enqueue(new Card("2", suits[i]));
             randomQueue.enqueue(new Card("3", suits[i]));

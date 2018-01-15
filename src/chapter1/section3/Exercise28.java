@@ -52,7 +52,7 @@ public class Exercise28<Item> implements Iterable<Item> {
 				first = null;
 			} else {
 				Node current = first;
-				for (int i=0; i < size-2; i++) {
+				for (int i = 0; i < size - 2; i++) {
 					current = current.next;
 				}
 				current.next = null;
@@ -74,7 +74,7 @@ public class Exercise28<Item> implements Iterable<Item> {
 			int count = 1;
 			
 			for(current = first; current != null; current = current.next) {
-				if(count == k-1 && current.next != null) {
+				if(count == k - 1 && current.next != null) {
 					current.next = current.next.next;
 					break;
 				}
@@ -95,7 +95,7 @@ public class Exercise28<Item> implements Iterable<Item> {
 		Node current;
 		
 		for(current = first; current != null; current = current.next) {
-			if(current.next != null && current.next.item.equals(key)) {
+			if (current.next != null && current.next.item.equals(key)) {
 				current.next = current.next.next;
 			}
 		}
@@ -206,7 +206,7 @@ public class Exercise28<Item> implements Iterable<Item> {
 		linkedList.add(9);
 		
 		int maxValue = linkedList.max();
-		StdOut.println("Max value: " + maxValue);
+		StdOut.println("Max value: " + maxValue + " Expected: 91");
 	}
 	
 }

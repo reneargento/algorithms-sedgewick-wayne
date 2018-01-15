@@ -41,7 +41,8 @@ public class Exercise10 {
 		String infixExpression = "( ( 1 + 2 ) * ( 4 / 2 ) )";
 		String postFixExpression = infixToPostfix(infixExpression);
 		
-		StdOut.println(postFixExpression);
+		StdOut.println("Postfix expression: " + postFixExpression);
+        StdOut.println("Expected: ( ( 1 2 + ) ( 4 2 / ) * )");
 	}
 
 }

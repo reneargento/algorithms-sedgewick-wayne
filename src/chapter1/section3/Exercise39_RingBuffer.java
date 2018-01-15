@@ -4,6 +4,7 @@ import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 8/21/16.
@@ -51,7 +52,7 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
                 size++;
             } else {
                 if(size < ringBuffer.length) {
-                    if (last == ringBuffer.length -1) {
+                    if (last == ringBuffer.length - 1) {
                         last = 0; //wrap around
                     } else{
                         last++;
@@ -139,16 +140,23 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
         if(item1 != null){
             StdOut.println("Consumed " + item1);
         }
+        StdOut.println("Expected: 0\n");
+
         Integer item2 = ringBuffer.consume();
         if(item2 != null){
             StdOut.println("Consumed " + item2);
         }
+        StdOut.println("Expected: 1\n");
 
         ringBuffer.produce(6);
         ringBuffer.produce(7);
 
-        for(int number : ringBuffer){
-            StdOut.println(number);
+        StringJoiner ringBufferItems = new StringJoiner(" ");
+        for (int item : ringBuffer) {
+            ringBufferItems.add(String.valueOf(item));
         }
+
+        StdOut.println("Main ring buffer items: " + ringBufferItems.toString());
+        StdOut.println("Expected: 2 3 4 5");
     }
 }

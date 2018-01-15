@@ -61,8 +61,11 @@ public class Exercise7<Item> {
 		stack.push("String 8");
 		
 		StdOut.println("Peek: " + stack.peek());
+		StdOut.println("Expected: String 8\n");
 		
 		StdOut.println("Pop: " + stack.pop());
+        StdOut.println("Expected: String 8\n");
 		StdOut.println("Pop: " + stack.pop());
+        StdOut.println("Expected: String 4");
 	}
 }

@@ -3,6 +3,8 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.StringJoiner;
+
 /**
  * Created by Rene Argento on 8/22/16.
  */
@@ -30,16 +32,23 @@ public class Exercise41_CopyQueue<Item> extends Queue<Item>{
         queueCopy.dequeue();
         queueCopy.dequeue();
 
-        StdOut.println("Original Queue");
-        for(int item : originalQueue){
-            StdOut.print(item + " ");
+        StringJoiner originalQueueItems = new StringJoiner(" ");
+        for (int item : originalQueue) {
+            originalQueueItems.add(String.valueOf(item));
         }
 
+        StdOut.println("Original Queue: " + originalQueueItems.toString());
+        StdOut.println("Expected: 2 3 4");
+
         StdOut.println();
-        StdOut.println("Queue Copy");
-        for(int item : queueCopy){
-            StdOut.print(item + " ");
+
+        StringJoiner copyQueueItems = new StringJoiner(" ");
+        for (int item : queueCopy) {
+            copyQueueItems.add(String.valueOf(item));
         }
+
+        StdOut.println("Queue Copy: " + copyQueueItems.toString());
+        StdOut.println("Expected: 3 4 5 99");
     }
 
 }

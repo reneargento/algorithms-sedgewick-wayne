@@ -123,25 +123,39 @@ public class Exercise44_TextEditorBuffer<Item> {
         textEditorBuffer.insert('e');
 
         StdOut.println(textEditorBuffer);
+        StdOut.println("Expected:\n" +
+                "Left Stack: e n e R \n" +
+                "Right Stack: ");
 
-        StdOut.println("Test left");
+        StdOut.println("\nTest left");
         textEditorBuffer.left(3);
 
         StdOut.println(textEditorBuffer);
+        StdOut.println("Expected:\n" +
+                "Left Stack: R \n" +
+                "Right Stack: e n e");
 
-        StdOut.println("Test right");
+        StdOut.println("\nTest right");
         textEditorBuffer.right(2);
 
         StdOut.println(textEditorBuffer);
+        StdOut.println("Expected:\n" +
+                "Left Stack: n e R \n" +
+                "Right Stack: e");
 
-        StdOut.println("Test get");
+        StdOut.println("\nTest get");
         StdOut.println(textEditorBuffer.get());
         StdOut.println(textEditorBuffer.get());
+        StdOut.println("Expected:\ne\ne");
 
-        StdOut.println("Test delete");
+        StdOut.println("\nTest delete");
         StdOut.println(textEditorBuffer.delete());
 
         StdOut.println(textEditorBuffer);
+        StdOut.println("Expected:\n" +
+                "e\n" +
+                "Left Stack: n e R \n" +
+                "Right Stack: ");
     }
 
 }

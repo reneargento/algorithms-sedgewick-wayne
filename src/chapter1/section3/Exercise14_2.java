@@ -74,13 +74,18 @@ public class Exercise14_2 {
 
 	public static void main(String[] args) {
 		Exercise14_2 resizingArrayQueueOfStrings = new Exercise14_2(3);
+
 		resizingArrayQueueOfStrings.enqueue("1");
 		resizingArrayQueueOfStrings.enqueue("2");
 		resizingArrayQueueOfStrings.enqueue("3");
 		resizingArrayQueueOfStrings.enqueue("Full");
+
 		StdOut.println("Dequeue 1: " + resizingArrayQueueOfStrings.dequeue());
+        StdOut.println("Expected: 1\n");
+
 		resizingArrayQueueOfStrings.enqueue("4");
 		StdOut.println("Dequeue 2: " + resizingArrayQueueOfStrings.dequeue());
+        StdOut.println("Expected: 2");
 	}
 
 }

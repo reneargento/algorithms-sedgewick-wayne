@@ -45,8 +45,9 @@ public class Exercise11 {
 		return Integer.parseInt(operands.pop());
 	}
 
+	// Parameter example: "( ( 4 2 + ) 3 / )"
 	public static void main(String[] args) {
-		String postfixExpression = args[0]; // "( ( 4 2 + ) 3 / )"
+		String postfixExpression = args[0];
 		
 		StdOut.println("Result: " + evaluatePostfix(postfixExpression));
 	}

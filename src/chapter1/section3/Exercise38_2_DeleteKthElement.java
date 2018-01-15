@@ -3,6 +3,7 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 8/21/16.
@@ -121,9 +122,13 @@ public class Exercise38_2_DeleteKthElement<Item> implements Iterable<Item>{
         generalizedQueue.delete(4);
         generalizedQueue.insert(99);
 
-        for(int item : generalizedQueue) {
-            StdOut.println(item);
+        StringJoiner generalizedQueueItems = new StringJoiner(" ");
+        for (int item : generalizedQueue) {
+            generalizedQueueItems.add(String.valueOf(item));
         }
+
+        StdOut.println("Generalized queue items: " + generalizedQueueItems.toString());
+        StdOut.println("Expected: 1 2 3 99");
     }
 
 }

@@ -1,6 +1,7 @@
 package chapter1.section3;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 import edu.princeton.cs.algs4.StdOut;
 
@@ -164,10 +165,14 @@ public class Exercise30<Item> implements Iterable<Item> {
 		linkedList.add(4);
 		
 		linkedList.reverse3();
-		
-		for (int number : linkedList) {
-			StdOut.println(number);
-		}
+
+        StringJoiner listItems = new StringJoiner(" ");
+        for (int item : linkedList) {
+            listItems.add(String.valueOf(item));
+        }
+
+        StdOut.println("Reverse list items: " + listItems.toString());
+        StdOut.println("Expected: 4 3 2 1");
 	}
 	
 }

@@ -1,6 +1,7 @@
 package chapter1.section3;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 import edu.princeton.cs.algs4.StdOut;
 
@@ -51,7 +52,7 @@ public class Exercise29<Item> implements Iterable<Item> {
 			return null;
 		}
 		
-		Item item = null;
+		Item item;
 		
 		if (size == 1) {
 			item = last.item;
@@ -102,10 +103,14 @@ public class Exercise29<Item> implements Iterable<Item> {
 		queue.enqueue(2);
 		queue.enqueue(3);
 		queue.enqueue(4);
-		
-		for (int number : queue) {
-			StdOut.println(number);
-		}
+
+        StringJoiner queueItems = new StringJoiner(" ");
+        for (int item : queue) {
+            queueItems.add(String.valueOf(item));
+        }
+
+        StdOut.println("Queue items: " + queueItems.toString());
+        StdOut.println("Expected: 1 2 3 4");
 	}
 	
 }

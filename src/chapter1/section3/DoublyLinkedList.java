@@ -268,7 +268,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
             nextNode.previous = previousNode;
         }
 
-        if(doubleNode == first) {
+        if (doubleNode == first) {
             first = nextNode;
         }
         if (doubleNode == last) {

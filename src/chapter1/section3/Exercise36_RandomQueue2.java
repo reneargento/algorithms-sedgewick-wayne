@@ -67,7 +67,7 @@ public class Exercise36_RandomQueue2 {
         private void resize(int capacity) {
             Item[] temp = (Item[]) new Object[capacity];
 
-            for (int i=0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 temp[i] = items[i];
             }
 
@@ -103,7 +103,7 @@ public class Exercise36_RandomQueue2 {
             }
 
             private void copyArray() {
-                for (int i=0; i < size; i++) {
+                for (int i = 0; i < size; i++) {
                     arrayCopy[i] = items[i];
                 }
             }
@@ -127,6 +127,8 @@ public class Exercise36_RandomQueue2 {
         RandomQueue2<Card> randomQueue = exercise36_randomQueue2.new RandomQueue2<>();
         fillQueueWithBridgeHandsCards(randomQueue);
 
+        StdOut.println("Cards:\n");
+
         for (Card card : randomQueue) {
             StdOut.println(card);
         }
@@ -135,7 +137,7 @@ public class Exercise36_RandomQueue2 {
     private static void fillQueueWithBridgeHandsCards(RandomQueue2 randomQueue) {
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
 
-        for (int i=0; i < suits.length; i++){
+        for (int i = 0; i < suits.length; i++){
             randomQueue.enqueue(new Card("A", suits[i]));
             randomQueue.enqueue(new Card("2", suits[i]));
             randomQueue.enqueue(new Card("3", suits[i]));

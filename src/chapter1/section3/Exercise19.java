@@ -1,6 +1,7 @@
 package chapter1.section3;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 import edu.princeton.cs.algs4.StdOut;
 
@@ -86,17 +87,27 @@ public class Exercise19<Item> implements Iterable<Item>{
 		linkedList.add(2);
 		linkedList.add(3);
 		
-		StdOut.println("Before removing");
+		StdOut.println("Before removing last node");
+
+        StringJoiner listBeforeRemove = new StringJoiner(" ");
 		for (int number : linkedList) {
-			StdOut.println(number);
+            listBeforeRemove.add(String.valueOf(number));
 		}
+
+        StdOut.println(listBeforeRemove.toString());
+        StdOut.println("Expected: 0 1 2 3");
 		
 		linkedList.deleteLastNode();
 		
-		StdOut.println("After removing");
+		StdOut.println("\nAfter removing last node");
+
+        StringJoiner listAfterRemove = new StringJoiner(" ");
 		for (int number : linkedList) {
-			StdOut.println(number);
+            listAfterRemove.add(String.valueOf(number));
 		}
+
+        StdOut.println(listAfterRemove.toString());
+        StdOut.println("Expected: 0 1 2");
 	}
 
 }
