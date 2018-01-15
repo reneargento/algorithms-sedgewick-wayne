@@ -12,9 +12,7 @@ public class Exercise29_TestClient {
     public static void main(String[] args) {
         BinarySearchSymbolTable<String, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        /**
-         * S E A R C H E X A M P L E
-         */
+         // Parameter example: S E A R C H E X A M P L E
         for(int i = 0; !StdIn.isEmpty(); i++) {
             String key = StdIn.readString();
             binarySearchSymbolTable.put(key, i);

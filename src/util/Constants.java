@@ -18,5 +18,9 @@ public class Constants {
     public static final String RATES_FILE = "rates.txt";
     public static final String REAL_WORLD_RATES_FILE = "4.4.20_rates.txt";
     public static final String TINY_EWD_FILE = "tinyEWD.txt";
+    public static final int ASC_II_INITIAL_LOWERCASE_LETTERS_INDEX = 97;
+    public static final int ASC_II_FINAL_LOWERCASE_LETTERS_INDEX = 122;
+    public static final int ASC_II_INITIAL_UPPERCASE_LETTERS_INDEX = 65;
+    public static final int ASC_II_FINAL_UPPERCASE_LETTERS_INDEX = 90;
 
 }

@@ -139,6 +139,17 @@ public class Exercise2 {
         for(Integer key : arrayST.keys()) {
             StdOut.println("Key " + key + ": " + arrayST.get(key));
         }
+
+        StdOut.println("\nExpected:\n" +
+                "Key 0: Value 0\n" +
+                "Key 1: Value 1\n" +
+                "Key 2: Value 2\n" +
+                "Key 3: Value 3\n" +
+                "Key 9: Value 9\n" +
+                "Key 5: Value 5\n" +
+                "Key 6: Value 6\n" +
+                "Key 7: Value 7\n" +
+                "Key 8: Value 8");
     }
 
 }
