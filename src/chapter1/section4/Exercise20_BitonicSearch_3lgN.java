@@ -61,7 +61,7 @@ public class Exercise20_BitonicSearch_3lgN {
         while (low <= high) {
             int middle = low + (high - low) / 2;
 
-            if(array[middle] < value) {
+            if (array[middle] < value) {
                 low = middle + 1;
             } else if (array[middle] > value) {
                 high = middle - 1;
@@ -78,7 +78,7 @@ public class Exercise20_BitonicSearch_3lgN {
         while (low <= high) {
             int middle = low + (high - low) / 2;
 
-            if(array[middle] > value) {
+            if (array[middle] > value) {
                 low = middle + 1;
             } else if (array[middle] < value) {
                 high = middle - 1;
@@ -92,18 +92,18 @@ public class Exercise20_BitonicSearch_3lgN {
 
     private static int findTippingPoint(int[] array, int low, int high) {
 
-        if(low > high) {
+        if (low > high) {
             return array.length - 1;
         }
 
-        if(high == low) {
+        if (high == low) {
             return high;
         }
 
         int middle = low + (high - low) / 2;
 
-        if(middle == 0) {
-            if(array[middle] < array[middle + 1]) {
+        if (middle == 0) {
+            if (array[middle] < array[middle + 1]) {
                 return findTippingPoint(array, middle + 1, high);
             } else {
                 return 0;
@@ -112,7 +112,7 @@ public class Exercise20_BitonicSearch_3lgN {
             return array.length - 1;
         }
 
-        if(array[middle] < array[middle - 1] && array[middle] > array[middle + 1]) {
+        if (array[middle] < array[middle - 1] && array[middle] > array[middle + 1]) {
             high = middle - 1;
             return findTippingPoint(array, low, high);
         } else if (array[middle] > array[middle - 1] && array[middle] < array[middle + 1]) {

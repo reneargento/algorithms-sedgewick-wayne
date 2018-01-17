@@ -34,13 +34,13 @@ public class Exercise17_FarthestPair {
         farthestPair[0] = array[0];
         farthestPair[1] = array[0];
 
-        for(int i=1; i<array.length; i++){
-            if(array[i] < currentMin) {
+        for(int i = 1; i<array.length; i++){
+            if (array[i] < currentMin) {
                 currentMin = array[i];
                 farthestPair[0] = array[i];
             }
 
-            if(array[i] > currentMax) {
+            if (array[i] > currentMax) {
                 currentMax = array[i];
                 farthestPair[1] = array[i];
             }

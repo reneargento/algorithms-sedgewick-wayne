@@ -52,21 +52,21 @@ public class Exercise22_BinarySearchAddSub {
             fibonacciBeforeN = fibonacciN - fibonacciBeforeN; //F(k-2)
             fibonacciN = aux; //F(k-1)
 
-            if(low >= array.length) {
+            if (low >= array.length) {
                 low = array.length - 1;
             }
 
             int elementToCheck = low + fibonacciBeforeN;
 
             //Check to avoid an index higher or equal to the array length
-            if(elementToCheck >= array.length) {
+            if (elementToCheck >= array.length) {
                 elementToCheck = array.length-1;
             }
-            if(elementToCheck < 0) {
+            if (elementToCheck < 0) {
                 elementToCheck = 0;
             }
 
-            if(key < array[elementToCheck]) {
+            if (key < array[elementToCheck]) {
                 high = low + fibonacciBeforeN;
             } else if (key > array[elementToCheck]) {
                 low = low + fibonacciBeforeN;

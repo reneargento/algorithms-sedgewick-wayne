@@ -51,7 +51,7 @@ public class Exercise45_CouponCollectorProblem {
 
             numbersGeneratedCount++;
 
-            if(numbersGenerated.size() == n) {
+            if (numbersGenerated.size() == n) {
                 break;
             }
         }
@@ -61,8 +61,8 @@ public class Exercise45_CouponCollectorProblem {
 
     //For accuracy, the closer to 1, the better
     private void printResults(List<Integer> numbersGeneratedBeforeAllPossibleValues) {
-        StdOut.printf("%12s %21s %29s %8s\n", "N |", "Numbers Generated Before All Values |", "Result Expected by Hypothesis |"
-                , "Accuracy");
+        StdOut.printf("%12s %21s %29s %8s\n", "N |", "Numbers Generated Before All Values |", "Result Expected by Hypothesis |",
+                "Accuracy");
 
         int numberSize = INITIAL_NUMBER_SIZE;
 

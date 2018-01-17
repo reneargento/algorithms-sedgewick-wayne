@@ -31,17 +31,17 @@ public class Exercise15_2_ThreeSumFaster {
             return 0;
         }
 
-        for(int i=0; i < array.length; i++) {
-            start = i+1;
+        for(int i = 0; i < array.length; i++) {
+            start = i + 1;
             end = array.length - 1;
 
             while(start < end) {
-                if(array[i] + array[start] + array[end] > 0){
+                if (array[i] + array[start] + array[end] > 0){
                     end--;
                 } else if (array[i] + array[start] + array[end] < 0) {
                     start++;
                 } else{
-                    System.out.println(""+ array[i] + " " + array[start] + " " + array[end]);
+                    StdOut.println(""+ array[i] + " " + array[start] + " " + array[end]);
                     count++;
 
                     //Compare all following elements with array[end]
@@ -50,7 +50,7 @@ public class Exercise15_2_ThreeSumFaster {
                         count++;
                         tempIndex++;
 
-                        System.out.println(""+ array[i] + " " + array[start] + " " + array[end]);
+                        StdOut.println(""+ array[i] + " " + array[start] + " " + array[end]);
                     }
 
                     //Compare all previous elements with array[start]
@@ -59,7 +59,7 @@ public class Exercise15_2_ThreeSumFaster {
                         count++;
                         tempIndex--;
 
-                        System.out.println(""+ array[i] + " " + array[start] + " " + array[end]);
+                        StdOut.println(""+ array[i] + " " + array[start] + " " + array[end]);
                     }
 
                     start++;

@@ -35,11 +35,11 @@ public class Exercise29_StequeWith2Stacks<Item> {
     //Amortized O(1)
     public Item pop() {
 
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Steque underflow");
         }
 
-        if(headStack.size() == 0) {
+        if (headStack.size() == 0) {
             //Move all items from tail stack to head stack
             while(!tailStack.isEmpty()) {
                 headStack.push(tailStack.pop());

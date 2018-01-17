@@ -30,12 +30,12 @@ public class Exercise28_StackWithAQueue<Item> {
     //O(n)
     public Item pop() {
 
-        if(queue.isEmpty()) {
+        if (queue.isEmpty()) {
             throw new RuntimeException("Stack underflow");
         }
 
         int currentSize = size();
-        for(int i=0; i < currentSize - 1; i++) {
+        for(int i = 0; i < currentSize - 1; i++) {
             queue.enqueue(queue.dequeue());
         }
 

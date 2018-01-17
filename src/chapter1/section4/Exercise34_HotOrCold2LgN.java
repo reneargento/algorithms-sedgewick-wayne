@@ -7,8 +7,8 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise34_HotOrCold2LgN {
 
-    private int hotOrCold(int n, int target) {
-        return firstGuesses(n, target, 1, n);
+    private int hotOrCold(int number, int target) {
+        return firstGuesses(number, target, 1, number);
     }
 
     private int firstGuesses(int number, int target, int low, int high) {
@@ -16,32 +16,32 @@ public class Exercise34_HotOrCold2LgN {
         //Check if it is in the first half
         int firstGuessIndex = number / 2;
 
-        if(firstGuessIndex == target) {
+        if (firstGuessIndex == target) {
             StdOut.println("Found it!");
             return firstGuessIndex;
         }
 
         //Check if it is in the second half
         int secondGuessIndex = (number / 2) + 1;
-        if(secondGuessIndex == target) {
+        if (secondGuessIndex == target) {
             StdOut.println("Found it!");
             return secondGuessIndex;
         } else {
             boolean isItHotter = isItHotter(firstGuessIndex, secondGuessIndex, target);
 
-            if(isItHotter) {
-                return binarySearch(number, target, secondGuessIndex, secondGuessIndex, high);
+            if (isItHotter) {
+                return binarySearch(target, secondGuessIndex, secondGuessIndex, high);
             } else {
-                return binarySearch(number, target, secondGuessIndex, low, firstGuessIndex);
+                return binarySearch(target, secondGuessIndex, low, firstGuessIndex);
             }
         }
     }
 
     //2 * O(lg n)
-    private int binarySearch(int number, int target, int lastGuess, int low, int high) {
+    private int binarySearch(int target, int lastGuess, int low, int high) {
 
-        if(low == high) {
-            if(low == target) {
+        if (low == high) {
+            if (low == target) {
                 //Found it!
                 return low;
             } else {
@@ -62,25 +62,25 @@ public class Exercise34_HotOrCold2LgN {
         }
 
         // Guess middle + 1
-        boolean isItHotterSecondHalf = isItHotter(middle, middle+1, target);
+        boolean isItHotterSecondHalf = isItHotter(middle, middle + 1, target);
 
-        if(middle+1 == target) {
-            return middle+1;
+        if (middle + 1 == target) {
+            return middle + 1;
         } else if (isItHotterSecondHalf) {
-            return binarySearch(number, target, middle+1, middle + 2, high);
+            return binarySearch(target, middle + 1, middle + 2, high);
         } else {
-            return binarySearch(number, target, middle+1, low, middle);
+            return binarySearch(target, middle + 1, low, middle);
         }
     }
 
     private boolean isItHotter(int lastGuess, int currentGuess, int secret) {
 
-        if(currentGuess == secret) {
+        if (currentGuess == secret) {
             StdOut.println("Found it!");
             return true;
         }
 
-        if(Math.abs(secret - currentGuess) < Math.abs(secret - lastGuess)) {
+        if (Math.abs(secret - currentGuess) < Math.abs(secret - lastGuess)) {
             StdOut.println("Hotter - Last guess: " + lastGuess + " Current guess: " + currentGuess);
             return true;
         } else {

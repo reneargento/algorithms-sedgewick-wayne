@@ -37,18 +37,18 @@ public class Exercise31_DequeWith3Stacks<Item> {
 
     //Amortized O(1)
     public Item popLeft() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
 
         Item item = null;
 
-        if(!headStack.isEmpty()) {
+        if (!headStack.isEmpty()) {
             item = headStack.pop();
         } else {
-            if(!tailStack.isEmpty()) {
+            if (!tailStack.isEmpty()) {
                 //Move half items from tail stack to middle stack
-                for(int i=0; i < tailStack.size() / 2; i++) {
+                for(int i = 0; i < tailStack.size() / 2; i++) {
                     middleStack.push(tailStack.pop());
                 }
 
@@ -82,12 +82,12 @@ public class Exercise31_DequeWith3Stacks<Item> {
 
         Item item = null;
 
-        if(!tailStack.isEmpty()) {
+        if (!tailStack.isEmpty()) {
             item = tailStack.pop();
         } else {
-            if(!headStack.isEmpty()) {
+            if (!headStack.isEmpty()) {
                 //Move half items from head stack to middle stack
-                for(int i=0; i < headStack.size() / 2; i++) {
+                for(int i = 0; i < headStack.size() / 2; i++) {
                     middleStack.push(headStack.pop());
                 }
 

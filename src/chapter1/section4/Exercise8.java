@@ -23,7 +23,7 @@ public class Exercise8 {
         Map<Integer, Integer> valuesMap = new HashMap<>();
         int equalNumbersCount = 0;
 
-        for(int i=0; i<values.length; i++) {
+        for(int i = 0; i < values.length; i++) {
             int count = 0;
             if(valuesMap.containsKey(values[i])) {
                 count = valuesMap.get(values[i]);

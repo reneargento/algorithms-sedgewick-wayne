@@ -13,20 +13,21 @@ public class Exercise11 {
         int[] array = {2, 4, 8, 16, 16, 16, 32, 64, 128, 128};
         Exercise11 exercise11 = new Exercise11(array);
 
-        StdOut.println("How many 2: "  + exercise11.howMany(2)); //Expected: 1
-        StdOut.println("How many 16: "  + exercise11.howMany(16)); //Expected: 3
-        StdOut.println("How many 128: "  + exercise11.howMany(128)); //Expected: 2
-        StdOut.println("How many -99: "  + exercise11.howMany(-99)); //Expected: 0
+        StdOut.println("How many 2: "  + exercise11.howMany(2) + " Expected: 1");
+        StdOut.println("How many 16: "  + exercise11.howMany(16) + " Expected: 3");
+        StdOut.println("How many 128: "  + exercise11.howMany(128) + " Expected: 2");
+        StdOut.println("How many -99: "  + exercise11.howMany(-99) + " Expected: 0");
     }
 
-    private int[] a;
+    private int[] array;
 
     public Exercise11(int[] keys) {
-        a = new int[keys.length];
-        for(int i=0; i<keys.length; i++) {
-            a[i] = keys[i]; //defensive copy
+        array = new int[keys.length];
+
+        for(int i = 0; i<keys.length; i++) {
+            array[i] = keys[i]; //defensive copy
         }
-        Arrays.sort(a);
+        Arrays.sort(array);
     }
 
     public boolean contains(int key) {
@@ -35,16 +36,17 @@ public class Exercise11 {
 
     private int rank(int key) {
         //Binary search
-        int lo = 0;
-        int hi = a.length - 1;
+        int low = 0;
+        int high = array.length - 1;
 
-        while(lo <= hi) {
-            //Key is in a[lo..hi] or not present
-            int mid = lo + (hi - lo) / 2;
-            if (key < a[mid]) {
-                hi = mid - 1;
-            } else if (key > a[mid]) {
-                lo = mid + 1;
+        while(low <= high) {
+            //Key is in a[low..high] or not present
+            int mid = low + (high - low) / 2;
+
+            if (key < array[mid]) {
+                high = mid - 1;
+            } else if (key > array[mid]) {
+                low = mid + 1;
             } else {
                 return mid;
             }
@@ -56,14 +58,14 @@ public class Exercise11 {
     private int recursiveRank(int key, int low, int high) {
         int middle = low + (high - low) / 2;
 
-        if(low > high) {
+        if (low > high) {
             return -1;
         }
 
-        if(a[middle] > key) {
-            return recursiveRank(key, low, middle-1);
-        } else if(a[middle] < key) {
-            return recursiveRank(key, middle+1, high);
+        if (array[middle] > key) {
+            return recursiveRank(key, low, middle - 1);
+        } else if(array[middle] < key) {
+            return recursiveRank(key, middle + 1, high);
         } else {
             return middle;
         }
@@ -94,7 +96,7 @@ public class Exercise11 {
 
         //Find the highest index of an element
         while(currentNextIndex != -1) {
-            currentNextIndex = recursiveRank(key, currentNextIndex+1, a.length-1);
+            currentNextIndex = recursiveRank(key, currentNextIndex+1, array.length-1);
 
             if(currentNextIndex != -1) {
                 nextIndex = currentNextIndex;

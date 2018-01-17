@@ -61,7 +61,7 @@ public class Exercise25_Throwing2Eggs {
     private int findFloorIn2SqrtN(int[] array, int low, int high, int searchLevel) {
         int key = 1;
 
-        if(low <= high) {
+        if (low <= high) {
             int sqrt = (int) Math.sqrt(array.length - 1);
 
             int separator = sqrt * searchLevel;
@@ -72,7 +72,7 @@ public class Exercise25_Throwing2Eggs {
 
             StdOut.println("Debug - current index: " + separator);
 
-            if(key > array[separator]) {
+            if (key > array[separator]) {
                 return findFloorIn2SqrtN(array, separator + 1, high, ++searchLevel);
             } else {
                 //We broke 1 out of 2 eggs, now we do a linear search starting from a floor in which we know that the egg
@@ -84,7 +84,7 @@ public class Exercise25_Throwing2Eggs {
 
                 int lastFloorThatDidNotBreak = sqrt * searchLevel;
 
-                for(int i=lastFloorThatDidNotBreak; i <= separator; i++) {
+                for(int i = lastFloorThatDidNotBreak; i <= separator; i++) {
                     StdOut.println("Debug - current index: " + i);
 
                     if(array[i] == 1) {
@@ -109,17 +109,17 @@ public class Exercise25_Throwing2Eggs {
     private int findFloorInCSqrtF(int[] array, int low, int high, int searchElement, int increment) {
         int key = 1;
 
-        if(low <= high) {
+        if (low <= high) {
 
             searchElement = searchElement + increment;
 
-            if(searchElement >= array.length){
+            if (searchElement >= array.length){
                 searchElement = array.length - 1;
             }
 
             StdOut.println("Debug - current index: " + searchElement);
 
-            if(key > array[searchElement]) {
+            if (key > array[searchElement]) {
                 return findFloorInCSqrtF(array, searchElement + 1, high, searchElement, ++increment);
             } else {
                 //We broke 1 out of 2 eggs, now we do a linear search starting from a floor in which we know that the egg
@@ -128,7 +128,7 @@ public class Exercise25_Throwing2Eggs {
                 searchElement = searchElement - increment;
                 int lastFloorThatDidNotBreak = searchElement;
 
-                for(int i=lastFloorThatDidNotBreak; i <= searchElement + increment; i++) {
+                for(int i = lastFloorThatDidNotBreak; i <= searchElement + increment; i++) {
                     StdOut.println("Debug - current index: " + i);
 
                     if(array[i] == 1) {

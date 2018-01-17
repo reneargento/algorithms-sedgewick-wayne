@@ -57,7 +57,7 @@ public class Exercise20_BitonicSearch_2lgN {
                 || (middle < array.length - 1 && array[middle] > array[middle + 1]))) {
             //Case 2: Middle element is smaller than value searched, and max value is on the left
             return bitonicSearch(array, value, low, middle - 1);
-        } else if(array[middle] < value
+        } else if (array[middle] < value
                 && ((middle > 0 && array[middle - 1] < array[middle])
                 || (middle < array.length - 1 && array[middle] < array[middle + 1]))){
             //Case 3: Middle element is smaller than value searched, and max value is on the right
@@ -80,7 +80,7 @@ public class Exercise20_BitonicSearch_2lgN {
         while (low <= high) {
             int middle = low + (high - low) / 2;
 
-            if(array[middle] < value) {
+            if (array[middle] < value) {
                 low = middle + 1;
             } else if (array[middle] > value) {
                 high = middle - 1;
@@ -97,7 +97,7 @@ public class Exercise20_BitonicSearch_2lgN {
         while (low <= high) {
             int middle = low + (high - low) / 2;
 
-            if(array[middle] > value) {
+            if (array[middle] > value) {
                 low = middle + 1;
             } else if (array[middle] < value) {
                 high = middle - 1;

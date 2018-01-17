@@ -39,13 +39,13 @@ public class Exercise3_2 {
     public static double timeTrial(int n) {
         // Time ThreeSum.count() for N random 6-digit ints.
         int MAX = 1000000;
-        int[] a = new int[n];
+        int[] array = new int[n];
 
-        for(int i=0; i < n; i++) {
-            a[i] = StdRandom.uniform(-MAX, MAX);
+        for(int i = 0; i < n; i++) {
+            array[i] = StdRandom.uniform(-MAX, MAX);
         }
         Stopwatch timer = new Stopwatch();
-        int cnt = ThreeSum.count(a);
+        int count = ThreeSum.count(array);
         return timer.elapsedTime();
     }
 
@@ -101,7 +101,7 @@ public class Exercise3_2 {
         StdDraw.setYscale(-10, currentYMaxScale);
 
         //Redraw plot points and lines
-        for(int i=0; i < logLogPlotPoints.size(); i++) {
+        for(int i = 0; i < logLogPlotPoints.size(); i++) {
             drawPointAndLine(logLogPlotPoints.get(i).x(), logLogPlotPoints.get(i).y(), logLogPlotPoints, true);
         }
     }

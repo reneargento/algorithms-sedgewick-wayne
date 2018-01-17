@@ -37,11 +37,11 @@ public class Exercise30_DequeWithStackAndSteque<Item> {
 
     //Amortized O(1)
     public Item popLeft() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
 
-        if(stack.isEmpty()) {
+        if (stack.isEmpty()) {
             while (!steque.isEmpty()) {
                 stack.push(steque.pop());
             }
@@ -57,11 +57,11 @@ public class Exercise30_DequeWithStackAndSteque<Item> {
 
     //Amortized O(1)
     public Item popRight() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
 
-        if(steque.isEmpty()) {
+        if (steque.isEmpty()) {
             while (!stack.isEmpty()) {
                 steque.push(stack.pop());
             }

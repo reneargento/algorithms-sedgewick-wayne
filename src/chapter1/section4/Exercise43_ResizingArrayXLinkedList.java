@@ -50,7 +50,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
 
         public Item pop() {
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new RuntimeException("Stack underflow");
             }
 
@@ -83,7 +83,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
         }
 
         public void push(Item item) {
-            if(size == values.length) {
+            if (size == values.length) {
                 resizeArray(size * 2);
             }
 
@@ -92,7 +92,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
         }
 
         public Item pop() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new RuntimeException("Stack underflow");
             }
 
@@ -100,7 +100,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
             values[size - 1] = null; // to avoid loitering
             size--;
 
-            if(size == values.length / 4) {
+            if (size == values.length / 4) {
                 resizeArray(values.length / 2);
             }
 
@@ -111,7 +111,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
 
             Item[] newValues = (Item[]) new Object[newCapacity];
 
-            for(int i=0; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 newValues[i] = values[i];
             }
 
@@ -135,10 +135,10 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
 
         double[][] runningTimes = new double[resizingArrayRunningTimes.size()][2];
 
-        for(int i=0; i < resizingArrayRunningTimes.size(); i++) {
+        for(int i = 0; i < resizingArrayRunningTimes.size(); i++) {
             runningTimes[i][0] = resizingArrayRunningTimes.get(i);
         }
-        for(int i=0; i < linkedListRunningTimes.size(); i++) {
+        for(int i = 0; i < linkedListRunningTimes.size(); i++) {
             runningTimes[i][1] = linkedListRunningTimes.get(i);
         }
 
@@ -149,7 +149,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
 
         List<Double> runningTimes = new LinkedList<>();
 
-        for(int n=INITIAL_NUMBER_OF_OPERATIONS; n <= FINAL_NUMBER_OF_OPERATIONS; n += n) {
+        for(int n = INITIAL_NUMBER_OF_OPERATIONS; n <= FINAL_NUMBER_OF_OPERATIONS; n += n) {
             double runningTime = timeTrial(n, stack);
             runningTimes.add(runningTime);
         }
@@ -161,7 +161,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
         int max = 1000000;
         int[] numbers = new int[n];
 
-        for(int i=0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             numbers[i] = StdRandom.uniform(-max, max);
         }
 
@@ -185,7 +185,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
 
         int numberOfOperations = INITIAL_NUMBER_OF_OPERATIONS;
 
-        for(int i=0; i < runningTimes.length; i++) {
+        for(int i = 0; i < runningTimes.length; i++) {
             StdOut.printf("%13d %7.1f %6.1f", numberOfOperations, runningTimes[i][0], runningTimes[i][1]);
             StdOut.printf("%9.1f\n", runningTimes[i][0] / runningTimes[i][1]);
 

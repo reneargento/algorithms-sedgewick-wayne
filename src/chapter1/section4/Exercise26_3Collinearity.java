@@ -15,8 +15,8 @@ public class Exercise26_3Collinearity {
         Exercise26_3Collinearity exercise26_3Collinearity = new Exercise26_3Collinearity();
 
         Point2D[] points = new Point2D[6];
-        for(int i=0; i < points.length; i++) {
-            Point2D point = new Point2D(i, i+1.5);
+        for(int i = 0; i < points.length; i++) {
+            Point2D point = new Point2D(i, i + 1.5);
             points[i] = point;
         }
 
@@ -59,13 +59,13 @@ public class Exercise26_3Collinearity {
 
         for(Point2D point2D : points) {
 
-            if(point2D.y() != Math.pow(point2D.x(), 3)) {
+            if (point2D.y() != Math.pow(point2D.x(), 3)) {
                 allYCoordinatesAreXCubic = false;
                 break;
             }
         }
 
-        if(allYCoordinatesAreXCubic) {
+        if (allYCoordinatesAreXCubic) {
             return countTriplesWithCubicYs(points);
         } else {
             return countTriplesUsingSlopes(points);
@@ -79,27 +79,27 @@ public class Exercise26_3Collinearity {
         Map<Double, List<Integer>> slopes = new HashMap<>();
 
         for(int i = 0; i < points.length; i++) {
-            for(int j=i+1; j < points.length; j++) {
+            for(int j = i + 1; j < points.length; j++) {
                 double slope;
 
-                if(points[i].x() - points[j].x() == 0) {
+                if (points[i].x() - points[j].x() == 0) {
                     slope = 0;
                 } else {
                     slope = (points[i].y() - points[j].y()) / (points[i].x() - points[j].x());
                 }
                 List<Integer> pointIndexes = slopes.get(slope);
 
-                if(pointIndexes == null) {
+                if (pointIndexes == null) {
                     List<Integer> indexes = new ArrayList<>();
                     indexes.add(i);
                     indexes.add(j);
 
                     slopes.put(slope, indexes);
                 } else {
-                    if(!slopes.get(slope).contains(i)) {
+                    if (!slopes.get(slope).contains(i)) {
                         slopes.get(slope).add(i);
                     }
-                    if(!slopes.get(slope).contains(j)) {
+                    if (!slopes.get(slope).contains(j)) {
                         slopes.get(slope).add(j);
                     }
                 }
@@ -112,7 +112,7 @@ public class Exercise26_3Collinearity {
             for (int j = i + 1; j < points.length; j++) {
                 double slope;
 
-                if(points[i].x() - points[j].x() == 0) {
+                if (points[i].x() - points[j].x() == 0) {
                     slope = 0;
                 } else {
                     slope = (points[i].y() - points[j].y()) / (points[i].x() - points[j].x());
@@ -120,7 +120,7 @@ public class Exercise26_3Collinearity {
 
                 List<Integer> pointIndexes = slopes.get(slope);
 
-                if(pointIndexes != null) {
+                if (pointIndexes != null) {
 
                     for (Integer index : pointIndexes) {
                         if (index > i && index > j) {
@@ -161,7 +161,7 @@ public class Exercise26_3Collinearity {
         for(int i = 0; i < points.length; i++) {
             List<Integer> pointIndexes = pointsX.get(points[i].x());
 
-            if(pointIndexes == null) {
+            if (pointIndexes == null) {
                 List<Integer> indexes = new ArrayList<>();
                 indexes.add(i);
 
@@ -173,13 +173,13 @@ public class Exercise26_3Collinearity {
 
         int triples = 0;
 
-        for(int i=0; i < points.length - 1; i++) {
-            for(int j=i+1; j < points.length; j++) {
+        for(int i = 0; i < points.length - 1; i++) {
+            for(int j = i + 1; j < points.length; j++) {
 
                 double complementPoint = -1 * (points[i].x() + points[j].x());
                 List<Integer> pointIndexes = pointsX.get(complementPoint);
 
-                if(pointIndexes != null) {
+                if (pointIndexes != null) {
 
                     for (Integer index : pointIndexes) {
                         if (index > i && index > j) {

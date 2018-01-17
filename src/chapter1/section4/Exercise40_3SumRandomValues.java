@@ -18,7 +18,7 @@ public class Exercise40_3SumRandomValues {
         int max = 1000000;
         int[] values = new int[n];
 
-        for(int i=0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             values[i] = StdRandom.uniform(-max, max);
         }
 
@@ -32,7 +32,7 @@ public class Exercise40_3SumRandomValues {
         for(int i = 0; i < values.length; i++) {
             List<Integer> indexesOfNumber = numbers.get(values[i]);
 
-            if(indexesOfNumber == null) {
+            if (indexesOfNumber == null) {
                 List<Integer> indexes = new ArrayList<>();
                 indexes.add(i);
 
@@ -44,15 +44,15 @@ public class Exercise40_3SumRandomValues {
 
         int count = 0;
 
-        for(int i=0; i < values.length - 1; i++) {
-            for(int j = i+1; j < values.length; j++) {
+        for(int i = 0; i < values.length - 1; i++) {
+            for(int j = i + 1; j < values.length; j++) {
                 int neededNumberForATriple = (values[i] + values[j]) * -1;
 
                 List<Integer> indexes = numbers.get(neededNumberForATriple);
 
-                if(indexes != null) {
+                if (indexes != null) {
                     for(int index : indexes) {
-                        if(index > i && index > j) {
+                        if (index > i && index > j) {
                             count++;
                             break;
                         }
@@ -70,7 +70,7 @@ public class Exercise40_3SumRandomValues {
 
         StdOut.printf("%6s %7s %6s\n", "N", "Triples", "Ratio");
 
-        for(int n=250; n <= 16000; n += n) {
+        for(int n = 250; n <= 16000; n += n) {
             int count = generateRandomValuesAndThreeSumCount(n);
             double ratio = (double) count / (double) previousCount;
             previousCount = count;

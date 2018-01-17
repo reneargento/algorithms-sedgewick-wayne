@@ -10,33 +10,33 @@ import java.math.BigInteger;
  */
 public class Exercise2 {
 
-    public static int count(int[] a) {
+    public static int count(int[] array) {
         //Count triples that sum to 0.
-        int N = a.length;
-        int cnt = 0;
+        int length = array.length;
+        int count = 0;
 
         BigInteger bigInteger;
 
-        for (int i=0; i < N; i++) {
-            for (int j=i+1; j < N; j++){
-                for(int k=j+1; k < N; k++){
-                    bigInteger = BigInteger.valueOf(a[i]);
-                    bigInteger = bigInteger.add(BigInteger.valueOf(a[j]));
-                    bigInteger = bigInteger.add(BigInteger.valueOf(a[k]));
+        for (int i = 0; i < length; i++) {
+            for (int j = i + 1; j < length; j++){
+                for(int k = j + 1; k < length; k++){
+                    bigInteger = BigInteger.valueOf(array[i]);
+                    bigInteger = bigInteger.add(BigInteger.valueOf(array[j]));
+                    bigInteger = bigInteger.add(BigInteger.valueOf(array[k]));
 
                     if(bigInteger.intValue() == 0) {
-                        cnt++;
+                        count++;
                     }
                 }
             }
         }
-        return cnt;
+        return count;
     }
 
     public static void main(String[] args) {
         In in = new In(args[0]);
-        int[] a = in.readAllInts();
-        StdOut.println(count(a));
+        int[] array = in.readAllInts();
+        StdOut.println(count(array));
     }
 
 }

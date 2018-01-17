@@ -46,7 +46,7 @@ public class Exercise44_BirthdayProblem {
 
             numbersGeneratedCount++;
 
-            if(numbersGenerated.containsKey(number)) {
+            if (numbersGenerated.containsKey(number)) {
                 break;
             } else {
                 numbersGenerated.put(number, true);
@@ -58,8 +58,8 @@ public class Exercise44_BirthdayProblem {
 
     //For accuracy, the closer to 1, the better
     private void printResults(List<Integer> numbersGeneratedBeforeFirstDuplicate) {
-        StdOut.printf("%12s %17s %29s %8s\n", "N |", "Numbers Generated Before Repeat |", "Result Expected by Hypothesis |"
-        , "Accuracy");
+        StdOut.printf("%12s %17s %29s %8s\n", "N |", "Numbers Generated Before Repeat |", "Result Expected by Hypothesis |",
+                "Accuracy");
 
         int numberSize = INITIAL_NUMBER_SIZE;
 
