@@ -1,0 +1,34 @@
+5.1.4
+
+Trace for 3-way string quicksort (same model as used in the book):
+
+                   --      --      --
+0  no      is      ai      ai      ai      ai
+1  is      ai      co      al      --      al
+2  th      co      fo      --      al      co
+3  ti      fo      al      fo      --      fo
+4  fo      al      go      go      co      go
+5  al      go      --      co      --      is
+6  go      --      is      --      fo      no
+7  pe      no      --      is      --      of
+8  to      --      no      --      go      pa
+9  co      to      --      no      --      pe
+10 to      pe      pe      --      is      th
+11 th      to      of      of      --      th
+12 ai      th      pa      --      no      th
+13 of      ti      --      pe      --      ti
+14 th      of      th      pa      of      to
+15 pa      th      ti      --      --      to
+           pa      to      th      pa     
+           th      th      th      --
+                   to      th      pe
+                   th      --      --
+                   --      to      th
+                           to      th
+                           ti      th
+                                   --
+                                   ti
+                                   --
+                                   to
+                                   to
+                                   --

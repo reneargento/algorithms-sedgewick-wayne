@@ -1,0 +1,204 @@
+5.1.3
+
+According to ASC II values, indices of chars 'a' through 'z' start at 97.
+But this trace indices follow the book convention of 'a' starting at 0.
+
+Trace for MSD string sort (same model as used in the book):
+
+Top level of sort(array, 0, 15, 0):
+
+input
+0  no
+1  is
+2  th
+3  ti
+4  fo
+5  al
+6  go
+7  pe
+8  to
+9  co
+10 to
+11 th
+12 ai
+13 of
+14 th
+15 pa
+
+d=0
+Count frequencies
+0    0
+1    0
+2  a 2
+3  b 0
+4  c 1
+5  d 0
+6  e 0
+7  f 1
+8  g 1
+9  h 0
+10 i 1
+11 j 0
+12 k 0
+13 l 0
+14 m 0
+15 n 1
+16 o 1
+17 p 2
+18 q 0
+19 r 0
+20 s 0
+21 t 6
+22 u 0
+23 v 0
+24 x 0
+25 w 0
+26 y 0
+27 z 0
+
+Transform counts to indices
+0    0
+1    0
+2  a 2
+3  b 2
+4  c 3
+5  d 3
+6  e 3
+7  f 4
+8  g 5
+9  h 5
+10 i 6
+11 j 6
+12 k 6
+13 l 6
+14 m 6
+15 n 7
+16 o 8
+17 p 10
+18 q 10
+19 r 10
+20 s 10
+21 t 16
+22 u 16
+23 v 16
+24 x 16
+25 w 16
+26 y 16
+27 z 16
+
+Distribute and copy back
+0  al
+1  ai
+2  co
+3  fo
+4  go
+5  is
+6  no
+7  of
+8  pe
+9  pa
+10 th
+11 ti
+12 to
+13 to
+14 th
+15 th
+
+Indices at completion of distribute phase
+0    0
+1    2
+2  a 2
+3  b 3
+4  c 3
+5  d 3
+6  e 4
+7  f 5
+8  g 5
+9  h 6
+10 i 6
+11 j 6
+12 k 6
+13 l 6
+14 m 7
+15 n 8
+16 o 10
+17 p 10
+18 q 10
+19 r 10
+20 s 16
+21 t 16
+22 u 16
+23 v 16
+24 x 16
+25 w 16
+26 y 16
+27 z 16
+
+Recursively sort subarrays
+sort(a, 0, 1, 1);
+sort(a, 2, 1, 1);
+sort(a, 2, 2, 1);
+sort(a, 3, 2, 1);
+sort(a, 3, 2, 1);
+sort(a, 3, 3, 1);
+sort(a, 4, 4, 1);
+sort(a, 5, 4, 1);
+sort(a, 5, 5, 1);
+sort(a, 6, 5, 1);
+sort(a, 6, 5, 1);
+sort(a, 6, 5, 1);
+sort(a, 6, 5, 1);
+sort(a, 6, 6, 1);
+sort(a, 7, 7, 1);
+sort(a, 8, 9, 1);
+sort(a, 10, 9, 1);
+sort(a, 10, 9, 1);
+sort(a, 10, 9, 1);
+sort(a, 10, 15, 1);
+sort(a, 16, 15, 1);
+sort(a, 16, 15, 1);
+sort(a, 16, 15, 1);
+sort(a, 16, 15, 1);
+sort(a, 16, 15, 1);
+sort(a, 16, 15, 1);
+sort(a, 16, 15, 1);
+
+Sorted result
+0  ai
+1  al
+2  co
+3  fo
+4  go
+5  is
+6  no
+7  of
+8  pa
+9  pe
+10 th
+11 th
+12 th
+13 ti
+14 to
+15 to
+
+Trace of recursive calls for MSD string sort (no cutoff for small subarrays, subarrays of size 0 and 1 omitted)
+
+input   __      __                      output
+no      al      ai      ai      ai      ai       
+is      ai      al      al      al      al
+th      co      --      co      co      co
+ti      fo      co      fo      fo      fo
+fo      go      fo      go      go      go
+al      is      go      is      is      is
+go      no      is      no      no      no
+pe      of      no      of      of      of
+to      pe      of      --      pa      pa
+co      pa      pe      pa      pe      pe
+to      th      pa      pe      --      th
+th      ti      th      --      th      th
+ai      to      ti      th      th      th
+of      to      to      ti      th      ti
+th      th      to      to      ti      to
+pa      th      th      to      to      to
+        --      th      th      to
+                        th      --

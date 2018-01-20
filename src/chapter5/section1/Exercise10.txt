@@ -1,0 +1,4 @@
+5.1.10
+
+In the worst case all strings are equal and 3-way string quicksort examines all characters of all strings:
+N * W characters.

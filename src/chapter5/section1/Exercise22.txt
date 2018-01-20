@@ -1,0 +1,22 @@
+5.1.22 - Timings
+
+Running 10 experiments with 1000000 strings for random decimal keys (with fixed-length of 10 characters), random CA license plates, random fixed-length words (with fixed-length of 10 characters) and random variable length items (with given values 'A' and 'B'). The cutoff for small subarrays used in Most-Significant-Digit sort was equal to 15.
+
+     Random string type |                 Sort type |  Average time spent
+           Decimal keys     Least-Significant-Digit                  2.30
+           Decimal keys      Most-Significant-Digit                  0.45
+           Decimal keys      3-way string quicksort                  0.32
+      CA license plates     Least-Significant-Digit                  1.48
+      CA license plates      Most-Significant-Digit                  0.41
+      CA license plates      3-way string quicksort                  0.33
+     Fixed length words     Least-Significant-Digit                  2.52
+     Fixed length words      Most-Significant-Digit                  0.28
+     Fixed length words      3-way string quicksort                  0.35
+  Variable length items      Most-Significant-Digit                  1.80
+  Variable length items      3-way string quicksort                  0.55
+
+The experiment results show that for all random string types, LSD sort had the worst results.
+For random decimal keys, random CA license plates and random variable length items 3-way string quicksort had the best results.
+For random fixed-length words, MSD had the best running time.
+Having to always scan all characters in all keys may explain why LSD sort had the slowest running times when sorting all random string types. 3-way string quicksort may have had good results because it does not create a high number of empty subarrays, as MSD sort does, and because it can handle well keys with long common prefixes (which are likely to happen in random decimal keys, random CA license plates and random variable length items).
+Random fixed-length words are less likely to have long common prefixes (because all their characters are in the range [40, 125]), which may explain why MSD sort had better results than both LSD sort and 3-way string quicksort during their sort.

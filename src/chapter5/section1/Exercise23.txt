@@ -1,0 +1,20 @@
+5.1.23 - Array accesses
+
+Running 10 experiments with 1000000 strings for random decimal keys (with fixed-length of 10 characters), random CA license plates, random fixed-length words (with fixed-length of 10 characters) and random variable length items (with given values 'A' and 'B'). The cutoff for small subarrays used in Most-Significant-Digit sort was equal to 15.
+
+     Random string type |                 Sort type |  Number of array accesses
+           Decimal keys     Least-Significant-Digit                    40000000
+           Decimal keys      Most-Significant-Digit                    35443947
+           Decimal keys      3-way string quicksort                    78124405
+      CA license plates     Least-Significant-Digit                    28000000
+      CA license plates      Most-Significant-Digit                    25703588
+      CA license plates      3-way string quicksort                    82889002
+     Fixed length words     Least-Significant-Digit                    40000000
+     Fixed length words      Most-Significant-Digit                    14841196
+     Fixed length words      3-way string quicksort                    95310075
+  Variable length items      Most-Significant-Digit                    72121457
+  Variable length items      3-way string quicksort                    97523400
+
+The experiment results show that for all random string types, 3-way string quicksort accessed the array more times than LSD and MSD sort; LSD sort accessed the array more times than MSD sort; and MSD sort had the lowest number of array accesses.
+A possible explanation for these results is the fact that 3-way string quicksort accesses the array 4 times for each exchange operation, which leads to more array accesses than both LSD and MSD sorts, that do not make inplace exchanges.
+LSD sort will always access the array 4 * N * W times, where N is the number of strings and W is the length of the strings (which is equivalent to 4 array accesses for each character in the keys) and MSD sort will only access the array while the strings have common prefixes, which explains why MSD sort has the lowest number of array accesses of all sort types.

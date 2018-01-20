@@ -1,0 +1,15 @@
+5.1.24 - Rightmost character accessed
+
+Running 1 experiment with 1000000 strings for random decimal keys (with fixed-length of 10 characters), random CA license plates, random fixed-length words (with fixed-length of 10 characters) and random variable length items (with given values 'A' and 'B'). The cutoff for small subarrays used in Most-Significant-Digit sort was equal to 15.
+
+     Random string type |                 Sort type |  Rightmost character accessed
+           Decimal keys      Most-Significant-Digit                               9
+           Decimal keys      3-way string quicksort                               9
+      CA license plates      Most-Significant-Digit                               6
+      CA license plates      3-way string quicksort                               6
+     Fixed length words      Most-Significant-Digit                               5
+     Fixed length words      3-way string quicksort                               5
+  Variable length items      Most-Significant-Digit                              20
+  Variable length items      3-way string quicksort                              20
+
+In all experiments the rightmost character position accessed in MSD sort and in 3-way string quicksort was the same, which shows that both algorithms scan the same characters.

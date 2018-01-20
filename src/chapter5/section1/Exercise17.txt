@@ -1,0 +1,17 @@
+5.1.17 - In-place key-indexed counting
+
+LSD and MSD sorts that use only a constant amount of extra space are not stable.
+
+Counterexample for LSD sort:
+
+The array ["4PGC938", "2IYE230", "3CIO720", "1ICK750", "1OHV845", "4JZY524", "1ICK750", "3CIO720", "1OHV845", "1OHV845", "2RLA629", "2RLA629", "3ATW723"] after being sorted by in-place LSD becomes:
+["1OHV845", "1OHV845", "1OHV845", "1ICK750", "1ICK750", "2RLA629", "2IYE230", "2RLA629", "3ATW723", "3CIO720", "3CIO720", "4PGC938", "4JZY524"]
+If it were sorted by non-in-place LSD the output would be:
+["1ICK750", "1ICK750", "1OHV845", "1OHV845", "1OHV845", "2IYE230", "2RLA629", "2RLA629", "3ATW723", "3CIO720", "3CIO720", "4JZY524", "4PGC938"]
+
+Counterexample for both LSD and MSD sorts:
+
+The array ["CAA" (index 0), "ABB" (index 1), "ABB" (index 2)] after being sorted by either in-place LSD or in-place MSD becomes:
+["ABB" (original index 2), "ABB" (original index 1), "CAA" (original index 0)]
+If it were sorted by non-in-place LSD or MSD the output would be:
+["ABB" (original index 1), "ABB" (original index 2), "CAA" (original index 0)]

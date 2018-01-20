@@ -1,0 +1,10 @@
+5.1.13 - Hybrid sort
+
+Idea: using standard MSD string sort for large arrays, in order to get the advantage of multiway partitioning, and 3-way string quicksort for smaller arrays, in order to avoid the negative effects of large numbers of empty bins.
+
+This idea will work well for random strings because, in general, the higher the number of keys to be sorted, the higher the number of non-empty subarrays generated on each pass of MSD string sort. Such scenario would work well due to the advantage of having multiway partitioning.
+However, MSD string sort will still generate a large number of empty subarrays if there is a large number of equal keys (or a large number of keys with long common prefixes).
+
+3-way string quicksort will avoid the negative effects of large numbers of empty bins not only for smaller arrays, but also for large arrays, while also having the benefit of using less space than MSD string sort since it does not require space for frequency counts or for an auxiliary array. On the other hand, it envolves more data movement than MSD string sort when the number of nonempty subarrays is large because it has to do a series of 3-way partitions to get the effect of the multiway partition. This would not be a problem in the hybrid sort if there were many equal keys in smaller arrays, since 3-way string quicksort would be the algorithm of choice in such situation.
+
+Overall, hybrid sort would be a good choice for random strings. However, a version of hybrid sort that chooses between MSD string sort and 3-way string quicksort based on the percentage of equal keys (choosing MSD string sort if there is a low percentage of equal keys and choosing 3-way string quicksort if there is a high number of equal keys) would be more effective than a version that makes the choice based on the number of keys.

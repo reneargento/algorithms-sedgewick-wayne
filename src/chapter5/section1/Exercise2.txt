@@ -1,0 +1,21 @@
+5.1.2
+
+Trace for LSD string sort (same model as used in the book):
+
+input   d=1   d=0   output
+no      pa    ai    ai
+is      pe    al    al
+th      of    co    co
+ti      th    fo    fo
+fo      th    go    go
+al      th    is    is
+go      ti    no    no
+pe      ai    of    of
+to      al    pa    pa
+co      no    pe    pe
+to      fo    th    th
+th      go    th    th
+ai      to    th    th
+of      co    ti    ti
+th      to    to    to
+pa      is    to    to

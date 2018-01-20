@@ -1,0 +1,31 @@
+5.1.6
+
+Trace for 3-way string quicksort (same model as used in the book):
+
+                    ----     ---      ---      ---
+0  now      is      aid      aid      aid      aid      aid
+1  is       aid     come     all      ---      ---      all
+2  the      come    for      ---      all      all      come
+3  time     for     all      for      ---      ---      for
+4  for      all     good     good     come     come     good
+5  all      good    ----     come     ----     ----     is
+6  good     ---     is       ----     for      for      now
+7  people   now     ---      is       ----     ----     of
+8  to       ---     now      ---      good     good     people
+9  come     to      ---      now      ----     ----     the
+10 to       people  people   ---      is       is       the
+11 the      to      of       of       ---      ---      time
+12 aid      the     ---      ------   now      now      to
+13 of       time    to       people   ---      ---      to
+            of      the      ------   of       of
+            the     time     the      ------   ------
+                    to       time     people   people
+                    the      the      ------   ------
+                    ---      ----     the      the
+                             to       the      the
+                             to       ----     ----
+                             ----     time     time
+                                      ----     ----
+                                      to       to
+                                      to       to
+                                      --       --
