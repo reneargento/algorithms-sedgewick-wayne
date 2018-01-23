@@ -273,7 +273,7 @@ public class Exercise10_Size {
                 return null;
             }
 
-            if (digit == key.length()) {
+            if (digit == key.length() - 1) {
                 node.size = node.size - 1;
                 node.value = null;
             } else {
@@ -420,7 +420,7 @@ public class Exercise10_Size {
         trieWithSize.delete("Algo");
 
         exercise10_size.printNodeSizes(trieWithSize.root, ' ');
-        StdOut.println("Expected: 'A', 'l', 'g' and 'o' nodes with size 2");
+        StdOut.println("Expected: 'A', 'l', 'g', 'o' and 'r' nodes with size 2");
 
         StdOut.println("\nSize of Trie: " + trieWithSize.size());
         StdOut.println("Expected: 5");
@@ -489,7 +489,7 @@ public class Exercise10_Size {
         tstWithSize.delete("Algo");
 
         exercise10_size.printNodeSizes(tstWithSize.root);
-        StdOut.println("Expected: 'A', 'l', 'g' and 'o' nodes with size 2");
+        StdOut.println("Expected: 'A', 'l', 'g', 'o' and 'r' nodes with size 2");
 
         StdOut.println("\nSize of TST: " + tstWithSize.size());
         StdOut.println("Expected: 5");
