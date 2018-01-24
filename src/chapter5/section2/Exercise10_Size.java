@@ -43,6 +43,10 @@ public class Exercise10_Size {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
+            if (key.length() == 0) {
+                throw new IllegalArgumentException("Key must have a positive length");
+            }
+
             Node node = get(root, key, 0);
 
             if (node == null) {
@@ -175,6 +179,10 @@ public class Exercise10_Size {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
+            if (key.length() == 0) {
+                throw new IllegalArgumentException("Key must have a positive length");
+            }
+
             NodeWithSize node = get(root, key, 0);
 
             if (node == null) {
@@ -186,10 +194,6 @@ public class Exercise10_Size {
         private NodeWithSize get(NodeWithSize node, String key, int digit) {
             if (node == null) {
                 return null;
-            }
-
-            if(digit == key.length()) {
-                return node;
             }
 
             char currentChar = key.charAt(digit);

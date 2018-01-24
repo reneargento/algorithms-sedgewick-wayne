@@ -138,7 +138,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return max(node.right);
     }
 
-    //Returns the highest key in the symbol table smaller than or equal to key.
+    // Returns the highest key in the symbol table smaller than or equal to key.
     public Key floor(Key key) {
         Node node = floor(root, key);
         if(node == null) {
@@ -149,19 +149,19 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
     }
 
     private Node floor(Node node, Key key) {
-        if(node == null) {
+        if (node == null) {
             return null;
         }
 
         int compare = key.compareTo(node.key);
 
-        if(compare == 0) {
+        if (compare == 0) {
             return node;
-        } else if(compare < 0) {
+        } else if (compare < 0) {
             return floor(node.left, key);
         } else {
             Node rightNode = floor(node.right, key);
-            if(rightNode != null) {
+            if (rightNode != null) {
                 return rightNode;
             } else {
                 return node;
@@ -169,10 +169,10 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
-    //Returns the smallest key in the symbol table greater than or equal to key.
+    // Returns the smallest key in the symbol table greater than or equal to key.
     public Key ceiling(Key key) {
         Node node = ceiling(root, key);
-        if(node == null) {
+        if (node == null) {
             return null;
         }
 
@@ -186,13 +186,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
 
         int compare = key.compareTo(node.key);
 
-        if(compare == 0) {
+        if (compare == 0) {
             return node;
-        } else if(compare > 0) {
+        } else if (compare > 0) {
             return ceiling(node.right, key);
         } else {
             Node leftNode = ceiling(node.left, key);
-            if(leftNode != null) {
+            if (leftNode != null) {
                 return leftNode;
             } else {
                 return node;
@@ -201,8 +201,8 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
     }
 
     public Key select(int index) {
-        if(index >= size()) {
-            throw new IllegalArgumentException("Index is higher than tree size");
+        if(index < 0 || index >= size()) {
+            throw new IllegalArgumentException("Index cannot be negative and must be lower than tree size");
         }
 
         return select(root, index).key;
@@ -211,7 +211,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
     private Node select(Node node, int index) {
         int leftSubtreeSize = size(node.left);
 
-        if(leftSubtreeSize == index) {
+        if (leftSubtreeSize == index) {
             return node;
         } else if (leftSubtreeSize > index) {
             return select(node.left, index);
@@ -229,7 +229,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
             return 0;
         }
 
-        //Returns the number of keys less than node.key in the subtree rooted at node
+        // Returns the number of keys less than node.key in the subtree rooted at node
         int compare = key.compareTo(node.key);
         if(compare < 0) {
             return rank(node.left, key);
