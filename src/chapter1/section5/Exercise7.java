@@ -12,11 +12,11 @@ public class Exercise7 {
         int[] id;
         int count;
 
-        public QuickFind(int n) {
-            id = new int[n];
-            count = n;
+        public QuickFind(int size) {
+            id = new int[size];
+            count = size;
 
-            for(int i=0; i < id.length; i++) {
+            for(int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
         }
@@ -40,11 +40,11 @@ public class Exercise7 {
             int leaderId1 = find(site1);
             int leaderId2 = find(site2);
 
-            if(leaderId1 == leaderId2) {
+            if (leaderId1 == leaderId2) {
                 return;
             }
 
-            for(int i=0; i < id.length; i++) {
+            for(int i = 0; i < id.length; i++) {
                 if(id[i] == leaderId1) {
                     id[i] = leaderId2;
                 }
@@ -91,7 +91,7 @@ public class Exercise7 {
             int leaderId1 = find(site1);
             int leaderId2 = find(site2);
 
-            if(leaderId1 == leaderId2) {
+            if (leaderId1 == leaderId2) {
                 return;
             }
 

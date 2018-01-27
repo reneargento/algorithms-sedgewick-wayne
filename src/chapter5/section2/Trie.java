@@ -9,24 +9,24 @@ import chapter1.section3.Queue;
 public class Trie<Value> {
 
     protected static final int R = 256; // radix
-    private Node root = new Node();
+    protected Node root = new Node();
 
     protected static class Node {
         protected Object value;
-        private Node[] next = new Node[R];
-        private int size;
+        protected Node[] next = new Node[R];
+        protected int size;
     }
 
     public int size() {
         return size(root);
     }
 
-    private int size(Node nodeWithSize) {
-        if (nodeWithSize == null) {
+    protected int size(Node node) {
+        if (node == null) {
             return 0;
         }
 
-        return nodeWithSize.size;
+        return node.size;
     }
 
     public boolean isEmpty() {
@@ -239,6 +239,230 @@ public class Trie<Value> {
         }
 
         return null;
+    }
+
+    // Ordered methods
+
+    // Returns the highest key in the symbol table smaller than or equal to key.
+    public String floor(String key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        return floor(root, key, 0, new StringBuilder(), null, true);
+    }
+
+    private String floor(Node node, String key, int digit, StringBuilder prefix, String lastKeyFound,
+                         boolean mustBeEqualDigit) {
+        if (node == null) {
+            return null;
+        }
+
+        if (prefix.toString().compareTo(key) > 0) {
+            return lastKeyFound;
+        }
+
+        if (node.value != null) {
+            lastKeyFound = prefix.toString();
+        }
+
+        char currentChar;
+
+        if (mustBeEqualDigit && digit < key.length()) {
+            currentChar = key.charAt(digit);
+        } else {
+            currentChar = R - 1;
+        }
+
+        for (char nextChar = currentChar; true; nextChar--) {
+            if (node.next[nextChar] != null) {
+                if (nextChar == currentChar) {
+                    mustBeEqualDigit = true;
+                } else {
+                    mustBeEqualDigit = false;
+                }
+
+                return floor(node.next[nextChar], key, digit + 1, prefix.append(nextChar), lastKeyFound, mustBeEqualDigit);
+            }
+
+            // nextChar value never becomes less than zero in the for loop, so we need this extra validation
+            if (nextChar == 0) {
+                break;
+            }
+        }
+
+        return lastKeyFound;
+    }
+
+    // Returns the smallest key in the symbol table greater than or equal to key.
+    public String ceiling(String key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        return ceiling(root, key, 0, new StringBuilder(), true);
+    }
+
+    private String ceiling(Node node, String key, int digit, StringBuilder prefix, boolean mustBeEqualDigit) {
+        if (node == null) {
+            return null;
+        }
+
+        if (node.value != null && prefix.toString().compareTo(key) >= 0) {
+            return prefix.toString();
+        }
+
+        char currentChar;
+
+        if (mustBeEqualDigit && digit < key.length()) {
+            currentChar = key.charAt(digit);
+        } else {
+            currentChar = 0;
+        }
+
+        for (char nextChar = currentChar; nextChar < R; nextChar++) {
+            if (node.next[nextChar] != null) {
+                if (nextChar == currentChar) {
+                    mustBeEqualDigit = true;
+                } else {
+                    mustBeEqualDigit = false;
+                }
+
+                return ceiling(node.next[nextChar], key, digit + 1, prefix.append(nextChar), mustBeEqualDigit);
+            }
+        }
+
+        return null;
+    }
+
+    public String select(int index) {
+        if(index < 0 || index >= size()) {
+            throw new IllegalArgumentException("Index cannot be negative and must be lower than trie size");
+        }
+
+        return select(root, index, new StringBuilder());
+    }
+
+    private String select(Node node, int index, StringBuilder prefix) {
+        if (node == null) {
+            return null;
+        }
+
+        if (node.value != null) {
+            index--;
+
+            // Found the key with the target index
+            if (index == -1) {
+                return prefix.toString();
+            }
+        }
+
+        for (char nextChar = 0; nextChar < R; nextChar++) {
+            if (node.next[nextChar] != null) {
+                if (index - size(node.next[nextChar]) < 0) {
+                    return select(node.next[nextChar], index, prefix.append(nextChar));
+                } else {
+                    index = index - size(node.next[nextChar]);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public int rank(String key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        return rank(root, key, 0, 0);
+    }
+
+    private int rank(Node node, String key, int digit, int size) {
+        if (node == null || digit == key.length()) {
+            return size;
+        }
+
+        if (node.value != null) {
+            if (digit < key.length()) {
+                size++;
+            } else {
+                return size;
+            }
+        }
+
+        char currentChar = key.charAt(digit);
+
+        for (char nextChar = 0; nextChar < currentChar; nextChar++) {
+            size += size(node.next[nextChar]);
+        }
+
+        return rank(node.next[currentChar], key, digit + 1, size);
+    }
+
+    public String min() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        return min(root, new StringBuilder());
+    }
+
+    private String min(Node node, StringBuilder prefix) {
+
+        if (node.value != null) {
+            return prefix.toString();
+        }
+
+        for (char nextChar = 0; nextChar < R; nextChar++) {
+            if (node.next[nextChar] != null) {
+                return min(node.next[nextChar], prefix.append(nextChar));
+            }
+        }
+
+        return prefix.toString();
+    }
+
+    public String max() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        return max(root, new StringBuilder());
+    }
+
+    private String max(Node node, StringBuilder prefix) {
+
+        for (char nextChar = R - 1; true; nextChar--) {
+            if (node.next[nextChar] != null) {
+                return max(node.next[nextChar], prefix.append(nextChar));
+            }
+
+            // nextChar value never becomes less than zero in the for loop, so we need this extra validation
+            if (nextChar == 0) {
+                break;
+            }
+        }
+
+        return prefix.toString();
+    }
+
+    public void deleteMin() {
+        if (isEmpty()) {
+            return;
+        }
+
+        String minKey = min();
+        delete(minKey);
+    }
+
+    public void deleteMax() {
+        if (isEmpty()) {
+            return;
+        }
+
+        String maxKey = max();
+        delete(maxKey);
     }
 
 }

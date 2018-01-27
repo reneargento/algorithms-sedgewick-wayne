@@ -33,11 +33,11 @@ public class Exercise17_RandomConnections {
 
             connectionsGenerated++;
 
-            if(verbose) {
+            if (verbose) {
                 StdOut.println("Connection generated: " + randomSite1 + " - " + randomSite2);
             }
 
-            if(!unionFind.connected(randomSite1, randomSite2)) {
+            if (!unionFind.connected(randomSite1, randomSite2)) {
                 unionFind.union(randomSite1, randomSite2);
             }
         }

@@ -8,11 +8,11 @@ public class QuickFind implements UF {
     private int[] id;
     private int count;
 
-    public QuickFind(int n) {
-        id = new int[n];
-        count = n;
+    public QuickFind(int size) {
+        id = new int[size];
+        count = size;
 
-        for(int i=0; i < id.length; i++) {
+        for(int i = 0; i < id.length; i++) {
             id[i] = i;
         }
     }
@@ -36,12 +36,12 @@ public class QuickFind implements UF {
         int leaderId1 = find(site1);
         int leaderId2 = find(site2);
 
-        if(leaderId1 == leaderId2) {
+        if (leaderId1 == leaderId2) {
             return;
         }
 
-        for(int i=0; i < id.length; i++) {
-            if(id[i] == leaderId1) {
+        for(int i = 0; i < id.length; i++) {
+            if (id[i] == leaderId1) {
                 id[i] = leaderId2;
             }
         }

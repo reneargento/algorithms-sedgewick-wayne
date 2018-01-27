@@ -24,16 +24,16 @@ public class Exercise16_AmortizedCostsPlotsQF {
         int totalCost;
         List<Integer> total;
 
-        public QuickFind(int n) {
-            id = new int[n];
-            count = n;
+        public QuickFind(int size) {
+            id = new int[size];
+            count = size;
 
             operation = 1;
             currentCost = 0;
             totalCost = 0;
             total = new ArrayList<>();
 
-            for(int i=0; i < id.length; i++) {
+            for(int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
         }
@@ -53,7 +53,7 @@ public class Exercise16_AmortizedCostsPlotsQF {
         public boolean connected(int site1, int site2) {
             boolean isConnected = find(site1) == find(site2);
 
-            if(isConnected) {
+            if (isConnected) {
                 updateCostAnalysis();
             }
 
@@ -65,11 +65,11 @@ public class Exercise16_AmortizedCostsPlotsQF {
             int leaderId1 = find(site1);
             int leaderId2 = find(site2);
 
-            if(leaderId1 == leaderId2) {
+            if (leaderId1 == leaderId2) {
                 return;
             }
 
-            for(int i=0; i < id.length; i++) {
+            for(int i = 0; i < id.length; i++) {
                 currentCost++; // 1 access for every site
 
                 if(id[i] == leaderId1) {
@@ -102,7 +102,7 @@ public class Exercise16_AmortizedCostsPlotsQF {
         Exercise16_AmortizedCostsPlotsQF amortizedCostsPlots = new Exercise16_AmortizedCostsPlotsQF();
         QuickFind quickFind = amortizedCostsPlots.new QuickFind(numberOfSites);
 
-        for(int i=0; i < 150; i++) {
+        for(int i = 0; i < 150; i++) {
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
 

@@ -36,7 +36,7 @@ public class Exercise23_CompareQFandQUErdosRenyi {
 
         int numberOfSites = 512;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             //QuickUnion
             UF quickUnion = new QuickUnion(numberOfSites);
@@ -75,7 +75,7 @@ public class Exercise23_CompareQFandQUErdosRenyi {
                     randomSite1, randomSite2);
             connectionsGenerated.add(connection);
 
-            if(!unionFind.connected(randomSite1, randomSite2)) {
+            if (!unionFind.connected(randomSite1, randomSite2)) {
                 unionFind.union(randomSite1, randomSite2);
             }
         }
@@ -91,7 +91,7 @@ public class Exercise23_CompareQFandQUErdosRenyi {
 
             Exercise18_RandomGridGenerator.Connection connection = generatedConnections.get(connectionIndex);
 
-            if(!unionFind.connected(connection.p, connection.q)) {
+            if (!unionFind.connected(connection.p, connection.q)) {
                 unionFind.union(connection.p, connection.q);
             }
 

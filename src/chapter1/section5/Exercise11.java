@@ -15,17 +15,17 @@ public class Exercise11 {
         int[] size;
         int count;
 
-        public WeightedQuickFind(int n) {
-            id = new int[n];
-            size = new int[n];
-            count = n;
+        public WeightedQuickFind(int size) {
+            id = new int[size];
+            this.size = new int[size];
+            count = size;
 
-            for(int i=0; i < id.length; i++) {
+            for(int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
 
-            for(int i=0; i < size.length; i++) {
-                size[i] = 1;
+            for(int i = 0; i < this.size.length; i++) {
+                this.size[i] = 1;
             }
         }
 
@@ -47,14 +47,14 @@ public class Exercise11 {
             int parentId1 = find(site1);
             int parentId2 = find(site2);
 
-            if(parentId1 == parentId2) {
+            if (parentId1 == parentId2) {
                 return;
             }
 
             int parentIdToUpdate;
             int newParentId;
 
-            if(size[parentId1] < size[parentId2]) {
+            if (size[parentId1] < size[parentId2]) {
                 parentIdToUpdate = parentId1;
                 newParentId = parentId2;
             } else {
@@ -62,7 +62,7 @@ public class Exercise11 {
                 newParentId = parentId1;
             }
 
-            for(int i=0; i < id.length; i++) {
+            for(int i = 0; i < id.length; i++) {
                 if(id[i] == parentIdToUpdate) {
                     id[i] = newParentId;
                 }

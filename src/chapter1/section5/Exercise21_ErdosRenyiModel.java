@@ -32,7 +32,7 @@ public class Exercise21_ErdosRenyiModel {
 
         int numberOfSites = 16;
 
-        for(int i=0; i < NUMBER_OF_EXPERIMENTS; i++) {
+        for(int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
             int pairsGenerated = Exercise17_RandomConnections.erdosRenyi(numberOfSites, false);
 
             Experiment experiment = new Experiment(numberOfSites, pairsGenerated);

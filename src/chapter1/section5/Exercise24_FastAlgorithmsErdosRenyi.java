@@ -36,7 +36,7 @@ public class Exercise24_FastAlgorithmsErdosRenyi {
 
         int numberOfSites = 512;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             //Weighted QuickUnion
             UF weightedQuickUnion = new WeightedQuickUnion(numberOfSites);
@@ -92,7 +92,7 @@ public class Exercise24_FastAlgorithmsErdosRenyi {
 
             Exercise18_RandomGridGenerator.Connection connection = generatedConnections.get(connectionIndex);
 
-            if(!unionFind.connected(connection.p, connection.q)) {
+            if (!unionFind.connected(connection.p, connection.q)) {
                 unionFind.union(connection.p, connection.q);
             }
 

@@ -25,17 +25,17 @@ public class Exercise26_AmortizedPlotErdosRenyi {
         int totalCost;
         List<Integer> total;
 
-        public UnionFind(int n) {
-            leaders = new int[n];
-            ranks = new int[n];
-            components = n;
+        public UnionFind(int size) {
+            leaders = new int[size];
+            ranks = new int[size];
+            components = size;
 
             operation = 1;
             currentCost = 0;
             totalCost = 0;
             total = new ArrayList<>();
 
-            for(int i=0; i < n; i++) {
+            for(int i = 0; i < size; i++) {
                 leaders[i]  = i;
                 ranks[i] = 0;
             }
@@ -49,7 +49,7 @@ public class Exercise26_AmortizedPlotErdosRenyi {
 
             boolean isConnected = find(site1) == find(site2);
 
-            if(isConnected) {
+            if (isConnected) {
                 updateCostAnalysis();
             }
 
@@ -75,7 +75,7 @@ public class Exercise26_AmortizedPlotErdosRenyi {
             int leader1 = find(site1);
             int leader2 = find(site2);
 
-            if(leader1 == leader2) {
+            if (leader1 == leader2) {
                 return;
             }
 
@@ -122,7 +122,7 @@ public class Exercise26_AmortizedPlotErdosRenyi {
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
 
-            if(!unionFind.connected(randomSite1, randomSite2)) {
+            if (!unionFind.connected(randomSite1, randomSite2)) {
                 unionFind.union(randomSite1, randomSite2);
             }
         }

@@ -12,11 +12,11 @@ public class Exercise12_QuickUnionPathCompression {
         int[] id;
         int count;
 
-        public QuickUnionPathCompression(int n) {
-            id = new int[n];
-            count = n;
+        public QuickUnionPathCompression(int size) {
+            id = new int[size];
+            count = size;
 
-            for(int i=0; i < id.length; i++) {
+            for(int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
         }

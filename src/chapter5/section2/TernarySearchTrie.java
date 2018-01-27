@@ -172,23 +172,6 @@ public class TernarySearchTrie<Value> {
         return node;
     }
 
-    private Node min(Node node) {
-        if(node.left == null) {
-            return node;
-        }
-
-        return min(node.left);
-    }
-
-    private Node deleteMin(Node node) {
-        if (node.left == null) {
-            return node.right;
-        }
-
-        node.left = deleteMin(node.left);
-        return node;
-    }
-
     public Iterable<String> keys() {
         Queue<String> queue = new Queue<>();
         collect(root, new StringBuilder(), queue);
@@ -298,4 +281,291 @@ public class TernarySearchTrie<Value> {
         }
     }
 
+    // Ordered methods
+
+    // Returns the highest key in the symbol table smaller than or equal to key.
+    public String floor(String key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        return floor(root, key, 0, new StringBuilder(), null);
+    }
+
+    private String floor(Node node, String key, int digit, StringBuilder prefix, String lastKeyFound) {
+        if (node == null) {
+            return lastKeyFound;
+        }
+
+        char currentChar;
+        if (digit < key.length()) {
+            currentChar = key.charAt(digit);
+        } else {
+            currentChar = Character.MAX_VALUE;
+        }
+
+        if (currentChar < node.character) {
+            return floor(node.left, key, digit, prefix, lastKeyFound);
+        } else {
+            if ((prefix.toString() + node.character).compareTo(key) > 0) {
+                return lastKeyFound;
+            }
+
+            if (currentChar == node.character) {
+                if (node.value != null) {
+                    lastKeyFound = prefix.toString() + node.character;
+                }
+
+                return floor(node.middle, key, digit + 1, prefix.append(node.character), lastKeyFound);
+            } else {
+                if (node.right != null) {
+                    String keyFound = floor(node.right, key, digit, prefix, lastKeyFound);
+
+                    if (keyFound != null) {
+                        return keyFound;
+                    }
+                }
+
+                // There are no keys higher than key in this subTST, so we can get the highest key
+                prefix.append(node.character);
+                Node currentNode = node;
+
+                while (currentNode.size != 1 || currentNode.value == null) {
+                    currentNode = currentNode.middle;
+
+                    while (currentNode.right != null) {
+                        currentNode = currentNode.right;
+                    }
+                    prefix.append(currentNode.character);
+                }
+
+                return prefix.toString();
+            }
+        }
+    }
+
+    // Returns the smallest key in the symbol table greater than or equal to key.
+    public String ceiling(String key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        return ceiling(root, key, 0, new StringBuilder());
+    }
+
+    private String ceiling(Node node, String key, int digit, StringBuilder prefix) {
+        if (node == null) {
+            return null;
+        }
+
+        char currentChar;
+        if (digit < key.length()) {
+            currentChar = key.charAt(digit);
+        } else {
+            currentChar = 0;
+        }
+
+        if (currentChar > node.character) {
+            return ceiling(node.right, key, digit, prefix);
+        } else if (currentChar == node.character) {
+            if (node.value != null && (prefix.toString() + node.character).compareTo(key) >= 0) {
+                return prefix.toString() + node.character;
+            }
+
+            return ceiling(node.middle, key, digit + 1, prefix.append(node.character));
+        } else {
+
+            if (node.left != null) {
+                String keyFound = ceiling(node.left, key, digit, prefix);
+
+                if (keyFound != null) {
+                    return keyFound;
+                }
+            }
+
+            // There are no keys smaller than key in this subTST, so we can get the smallest key
+            prefix.append(node.character);
+            Node currentNode = node;
+
+            while (currentNode.value == null) {
+                currentNode = currentNode.middle;
+
+                while (currentNode.left != null) {
+                    currentNode = currentNode.left;
+                }
+                prefix.append(currentNode.character);
+            }
+
+            return prefix.toString();
+        }
+
+    }
+
+    public String select(int index) {
+        if(index < 0 || index >= size()) {
+            throw new IllegalArgumentException("Index cannot be negative and must be lower than TST size");
+        }
+
+        return select(root, index, new StringBuilder());
+    }
+
+    private String select(Node node, int index, StringBuilder prefix) {
+        if (node == null) {
+            return null;
+        }
+
+        int leftSubtreeSize = getTreeSize(node.left);
+        int tstSize = leftSubtreeSize + node.size;
+
+        if (index < leftSubtreeSize) {
+            return select(node.left, index, prefix);
+        } else if (index >= tstSize) {
+            return select(node.right, index - tstSize, prefix);
+        } else {
+            if (node.value != null) {
+                if (index == 0) {
+                    return prefix.append(node.character).toString();
+                }
+                index--;
+            }
+
+            prefix.append(node.character);
+            return select(node.middle, index - leftSubtreeSize, prefix);
+        }
+    }
+
+    public int rank(String key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        return rank(root, key, 0, 0);
+    }
+
+    private int rank(Node node, String key, int digit, int size) {
+        if (node == null) {
+            return size;
+        }
+
+        char currentChar = key.charAt(digit);
+
+        if (currentChar < node.character) {
+            return rank(node.left, key, digit, size);
+        } else {
+            // Is current key a prefix of the search key?
+            if (digit < key.length() - 1 && node.value != null) {
+                size++;
+            }
+
+            if (currentChar > node.character) {
+                return getTreeSize(node.left) + getTreeSize(node.middle) +
+                        rank(node.right, key, digit, size);
+            } else if (digit < key.length() - 1) {
+                return getTreeSize(node.left) + rank(node.middle, key, digit + 1, size);
+            } else {
+                return getTreeSize(node.left) + size;
+            }
+        }
+    }
+
+    private int getTreeSize(Node node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int size = node.size;
+        size += getTreeSize(node.left);
+        size += getTreeSize(node.right);
+
+        return size;
+    }
+
+    public String min() {
+        Node minNode = min(root);
+
+        if (minNode == null) {
+            return null;
+        }
+
+        StringBuilder minKey = new StringBuilder();
+        minKey.append(minNode.character);
+
+        while (minNode.value == null) {
+            minNode = minNode.middle;
+
+            while (minNode.left != null) {
+                minNode = minNode.left;
+            }
+            minKey.append(minNode.character);
+        }
+
+        return minKey.toString();
+    }
+
+    private Node min(Node node) {
+        if (node.left == null) {
+            return node;
+        }
+
+        return min(node.left);
+    }
+
+    public String max() {
+        Node maxNode = max(root);
+
+        if (maxNode == null) {
+            return null;
+        }
+
+        StringBuilder maxKey = new StringBuilder();
+        maxKey.append(maxNode.character);
+
+        // Verify if size is different than 1 to avoid getting max key prefixes instead of the max key
+        while (maxNode.size != 1 || maxNode.value == null) {
+            maxNode = maxNode.middle;
+
+            while (maxNode.right != null) {
+                maxNode = maxNode.right;
+            }
+            maxKey.append(maxNode.character);
+        }
+
+        return maxKey.toString();
+    }
+
+    private Node max(Node node) {
+        if (node.right == null) {
+            return node;
+        }
+
+        return max(node.right);
+    }
+
+    public void deleteMin() {
+        if (isEmpty()) {
+            return;
+        }
+
+        String minKey = min();
+        delete(minKey);
+    }
+
+    // Used only in delete()
+    private Node deleteMin(Node node) {
+        if (node.left == null) {
+            return node.right;
+        }
+
+        node.left = deleteMin(node.left);
+        return node;
+    }
+
+    public void deleteMax() {
+        if (isEmpty()) {
+            return;
+        }
+
+        String maxKey = max();
+        delete(maxKey);
+    }
 }

@@ -46,7 +46,7 @@ public class Exercise19_Animation {
 
         UnionFind unionFind = new UnionFind(numberOfSites);
 
-        for(int i=0; i < 10; i++) {
+        for(int i = 0; i < 10; i++) {
             if(unionFind.connected(connections[i].p, connections[i].q)) {
                 continue;
             }
@@ -72,10 +72,10 @@ public class Exercise19_Animation {
 
         int sitesDrawn = 0;
 
-        for(int i=0; i < numberOfColumns; i++) {
+        for(int i = 0; i < numberOfColumns; i++) {
             distanceX = 0;
 
-            for(int j=0; j < numberOfColumns; j++) {
+            for(int j = 0; j < numberOfColumns; j++) {
                 double x = j + distanceX;
                 double y = i + distanceY;
 
@@ -86,14 +86,14 @@ public class Exercise19_Animation {
                 StdDraw.point(x, y);
 
                 sitesDrawn++;
-                if(sitesDrawn == numberOfSites) {
+                if (sitesDrawn == numberOfSites) {
                     break;
                 }
 
                 distanceX += distanceIncrement;
             }
 
-            if(sitesDrawn == numberOfSites) {
+            if (sitesDrawn == numberOfSites) {
                 break;
             }
             distanceY += distanceIncrement;

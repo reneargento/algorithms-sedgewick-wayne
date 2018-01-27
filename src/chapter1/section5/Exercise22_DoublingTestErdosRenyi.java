@@ -58,7 +58,7 @@ public class Exercise22_DoublingTestErdosRenyi {
 
         double previousRunningTime = initialTimer.elapsedTime();
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             UF unionFind = generateUnionFind(numberOfSites, unionFindType);
 

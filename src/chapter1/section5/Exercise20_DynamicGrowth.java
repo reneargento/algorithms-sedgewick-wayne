@@ -25,7 +25,7 @@ public class Exercise20_DynamicGrowth {
         }
 
         public boolean connected(int site1, int site2) {
-            if(leaders == null || site1 >= numberOfSites || site2 >= numberOfSites) {
+            if (leaders == null || site1 >= numberOfSites || site2 >= numberOfSites) {
                 throw new RuntimeException("Site does not exist");
             }
 
@@ -33,7 +33,7 @@ public class Exercise20_DynamicGrowth {
         }
 
         public int find(int site) {
-            if(leaders == null || site >= numberOfSites) {
+            if (leaders == null || site >= numberOfSites) {
                 throw new RuntimeException("Site does not exist");
             }
 
@@ -45,7 +45,7 @@ public class Exercise20_DynamicGrowth {
         }
 
         public void union(int site1, int site2) {
-            if(leaders == null || site1 >= numberOfSites || site2 >= numberOfSites) {
+            if (leaders == null || site1 >= numberOfSites || site2 >= numberOfSites) {
                 throw new RuntimeException("Site does not exist");
             }
 
@@ -56,7 +56,7 @@ public class Exercise20_DynamicGrowth {
                 return;
             }
 
-            if(size[leader1] < size[leader2]) {
+            if (size[leader1] < size[leader2]) {
                 leaders[leader1] = leader2;
                 size[leader2] += size[leader1];
             } else {
@@ -68,12 +68,12 @@ public class Exercise20_DynamicGrowth {
         }
 
         public int newSite() {
-            if(leaders == null) {
+            if (leaders == null) {
                 leaders = new int[1];
                 size = new int[1];
             }
 
-            if(numberOfSites == leaders.length) {
+            if (numberOfSites == leaders.length) {
                 resizeArray(numberOfSites * 2);
             }
 
@@ -91,7 +91,7 @@ public class Exercise20_DynamicGrowth {
             int[] newLeadersArray = new int[newSize];
             int[] newSizeArray = new int[newSize];
 
-            for(int i=0; i < numberOfSites; i++) {
+            for(int i = 0; i < numberOfSites; i++) {
                 newLeadersArray[i] = leaders[i];
                 newSizeArray[i] = size[i];
             }

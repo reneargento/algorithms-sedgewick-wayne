@@ -57,7 +57,7 @@ public class Exercise25_DoublingTestRandomGrids {
 
         double previousRunningTime = initialTimer.elapsedTime();
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             UF unionFind = generateUnionFind(numberOfSites, unionFindType);
 
@@ -104,7 +104,7 @@ public class Exercise25_DoublingTestRandomGrids {
 
             connectionsGenerated++;
 
-            if(!unionFind.connected(randomSite1, randomSite2)) {
+            if (!unionFind.connected(randomSite1, randomSite2)) {
                 unionFind.union(randomSite1, randomSite2);
             }
 

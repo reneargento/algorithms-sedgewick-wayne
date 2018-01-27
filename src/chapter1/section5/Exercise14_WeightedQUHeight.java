@@ -19,15 +19,15 @@ public class Exercise14_WeightedQUHeight {
 
         int maxHeight;
 
-        public WeightedQuickUnionByHeight(int n) {
-            leaders = new int[n];
-            ranks = new int[n];
-            components = n;
+        public WeightedQuickUnionByHeight(int size) {
+            leaders = new int[size];
+            ranks = new int[size];
+            components = size;
 
             maxHeight = 0;
 
             //Initialization
-            for(int i=0; i < n; i++) {
+            for(int i = 0; i < size; i++) {
                 leaders[i] = i;
                 ranks[i] = 0;
             }
