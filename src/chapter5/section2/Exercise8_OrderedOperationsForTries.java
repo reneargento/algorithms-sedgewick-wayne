@@ -320,8 +320,10 @@ public class Exercise8_OrderedOperationsForTries {
             if (currentChar > node.character) {
                 return ceiling(node.right, key, digit, prefix);
             } else if (currentChar == node.character) {
-                if (node.value != null && (prefix.toString() + node.character).compareTo(key) >= 0) {
-                    return prefix.toString() + node.character;
+                String prefixWithCharacter = prefix.toString() + node.character;
+
+                if (node.value != null && prefixWithCharacter.compareTo(key) >= 0) {
+                    return prefixWithCharacter;
                 }
 
                 return ceiling(node.middle, key, digit + 1, prefix.append(node.character));
