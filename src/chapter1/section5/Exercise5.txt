@@ -11,14 +11,16 @@ Each union operation makes ~10^9 instructions (1 for each find(), 1 for comparin
 10^9 for comparing parents, 1 to 10^9 for updating parents and 1 for reducing the count of components)
 
 For 10^6 input pairs, the total number of instructions required (I) is:
-I = M x IU
+I = M x IU x MI
 
-Where M is the number of input pairs and IU is the number of instructions in the union operation.
+Where M is the number of input pairs, IU is the number of instructions in the union operation and MI is the number of machine instructions per iteration of the inner for loop.
 
-I = 10^6 x 10^9
-I = 10^15
+I = 10^6 x 10^9 x 10
+I = 10^16
 
-Seconds needed = 10^15 / 10^9
-Seconds needed = 10^6
+Seconds needed = 10^16 / 10^9
+Seconds needed = 10^7
 
-10^6 seconds = 16,666 minutes = 277 hours = 11.5 days
+10^7 seconds = 166 minutes = 2,777 hours = ~115 days
+
+Thanks for kaustubhb (https://github.com/kaustubhb) for noting that the MI parameter was missing in the formula.

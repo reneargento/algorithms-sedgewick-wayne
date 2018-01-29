@@ -76,17 +76,18 @@ public class Trie<Value> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
+        if (value == null) {
+            delete(key);
+            return;
+        }
+
         boolean isNewKey = false;
 
         if (!contains(key)) {
             isNewKey = true;
         }
 
-        if (value == null) {
-            delete(key);
-        } else {
-            root = put(root, key, value, 0, isNewKey);
-        }
+        root = put(root, key, value, 0, isNewKey);
     }
 
     private Node put(Node node, String key, Value value, int digit, boolean isNewKey) {

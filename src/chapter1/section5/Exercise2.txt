@@ -50,37 +50,33 @@ Forest:
 
 5-7
         0 1 2 3 4 5 6 7 8 9
-array = 0 1 1 4 4 8 6 2 7 0
+array = 0 1 1 4 4 8 6 2 1 0
 Array accesses: 6 (2 for find(5), 3 for find(7) and 1 for updating parent)
 
 Forest:
-0 1 4 6 
-9 2 3  
-  7
-  8
-  5
+0   1   4 6
+9  2 8  3
+   7 5
 
 0-3
         0 1 2 3 4 5 6 7 8 9
-array = 3 1 1 4 4 8 6 2 7 0
+array = 4 1 1 4 4 8 6 2 1 0
 Array accesses: 4 (1 for find(0), 2 for find(3) and 1 for updating parent)
 
 Forest:
-1 4 6 
-2 3  
-7 0
-8 9
-5
+ 1    4   6
+2 8  3 0
+7 5    9
 
 4-2
         0 1 2 3 4 5 6 7 8 9
-array = 3 1 1 4 2 8 6 2 7 0
+array = 4 1 1 4 1 8 6 2 1 0
 Array accesses: 4 (1 for find(4), 2 for find(2) and 1 for updating parent)
 
 Forest:
- 1  6  
- 2     
-7 4  
-8 3
-5 0
-  9
+  1      6
+2 8  4
+7 5 3 0
+      9
+
+Thanks for kaustubhb (https://github.com/kaustubhb) for fixing a bug in the array values.
