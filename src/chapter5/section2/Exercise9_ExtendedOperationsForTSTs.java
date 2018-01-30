@@ -13,9 +13,9 @@ public class Exercise9_ExtendedOperationsForTSTs {
     public class TernarySearchTrieExtended<Value> extends TernarySearchTrie<Value> {
 
         public Iterable<String> keys() {
-            Queue<String> queue = new Queue<>();
-            collect(root, new StringBuilder(), queue);
-            return queue;
+            Queue<String> keys = new Queue<>();
+            collect(root, new StringBuilder(), keys);
+            return keys;
         }
 
         public Iterable<String> keysWithPrefix(String prefix) {
@@ -23,20 +23,20 @@ public class Exercise9_ExtendedOperationsForTSTs {
                 throw new IllegalArgumentException("Prefix cannot be null");
             }
 
-            Queue<String> queue = new Queue<>();
+            Queue<String> keysWithPrefix = new Queue<>();
 
             Node nodeWithPrefix = get(root, prefix, 0);
 
             if (nodeWithPrefix == null) {
-                return queue;
+                return keysWithPrefix;
             }
 
             if (nodeWithPrefix.value != null) {
-                queue.enqueue(prefix);
+                keysWithPrefix.enqueue(prefix);
             }
 
-            collect(nodeWithPrefix.middle, new StringBuilder(prefix), queue);
-            return queue;
+            collect(nodeWithPrefix.middle, new StringBuilder(prefix), keysWithPrefix);
+            return keysWithPrefix;
         }
 
         private void collect(Node node, StringBuilder prefix, Queue<String> queue) {
@@ -60,9 +60,9 @@ public class Exercise9_ExtendedOperationsForTSTs {
                 throw new IllegalArgumentException("Pattern cannot be null");
             }
 
-            Queue<String> queue = new Queue<>();
-            collect(root, new StringBuilder(), pattern, queue);
-            return queue;
+            Queue<String> keysThatMatch = new Queue<>();
+            collect(root, new StringBuilder(), pattern, keysThatMatch);
+            return keysThatMatch;
         }
 
         private void collect(Node node, StringBuilder prefix, String pattern, Queue<String> queue) {

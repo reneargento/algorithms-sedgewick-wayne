@@ -173,9 +173,9 @@ public class TernarySearchTrie<Value> {
     }
 
     public Iterable<String> keys() {
-        Queue<String> queue = new Queue<>();
-        collect(root, new StringBuilder(), queue);
-        return queue;
+        Queue<String> keys = new Queue<>();
+        collect(root, new StringBuilder(), keys);
+        return keys;
     }
 
     public Iterable<String> keysWithPrefix(String prefix) {
@@ -183,20 +183,20 @@ public class TernarySearchTrie<Value> {
             throw new IllegalArgumentException("Prefix cannot be null");
         }
 
-        Queue<String> queue = new Queue<>();
+        Queue<String> keysWithPrefix = new Queue<>();
 
         Node nodeWithPrefix = get(root, prefix, 0);
 
         if (nodeWithPrefix == null) {
-            return queue;
+            return keysWithPrefix;
         }
 
         if (nodeWithPrefix.value != null) {
-            queue.enqueue(prefix);
+            keysWithPrefix.enqueue(prefix);
         }
 
-        collect(nodeWithPrefix.middle, new StringBuilder(prefix), queue);
-        return queue;
+        collect(nodeWithPrefix.middle, new StringBuilder(prefix), keysWithPrefix);
+        return keysWithPrefix;
     }
 
     private void collect(Node node, StringBuilder prefix, Queue<String> queue) {
@@ -220,9 +220,9 @@ public class TernarySearchTrie<Value> {
             throw new IllegalArgumentException("Pattern cannot be null");
         }
 
-        Queue<String> queue = new Queue<>();
-        collect(root, new StringBuilder(), pattern, queue);
-        return queue;
+        Queue<String> keysThatMatch = new Queue<>();
+        collect(root, new StringBuilder(), pattern, keysThatMatch);
+        return keysThatMatch;
     }
 
     private void collect(Node node, StringBuilder prefix, String pattern, Queue<String> queue) {
@@ -289,59 +289,63 @@ public class TernarySearchTrie<Value> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        return floor(root, key, 0, new StringBuilder(), null);
+        return floor(root, key, 0, new StringBuilder(), null, true);
     }
 
-    private String floor(Node node, String key, int digit, StringBuilder prefix, String lastKeyFound) {
+    private String floor(Node node, String key, int digit, StringBuilder prefix, String lastKeyFound,
+                         boolean mustBeEqualDigit) {
         if (node == null) {
             return lastKeyFound;
         }
 
+        StringBuilder prefixWithCharacter = new StringBuilder(prefix).append(node.character);
+
         char currentChar;
-        if (digit < key.length()) {
+        if (digit < key.length() && mustBeEqualDigit) {
             currentChar = key.charAt(digit);
         } else {
             currentChar = Character.MAX_VALUE;
+            mustBeEqualDigit = false;
         }
 
-        if (currentChar < node.character) {
-            return floor(node.left, key, digit, prefix, lastKeyFound);
-        } else {
-            if ((prefix.toString() + node.character).compareTo(key) > 0) {
+        if (currentChar < node.character && mustBeEqualDigit) {
+            return floor(node.left, key, digit, prefix, lastKeyFound, true);
+        } else if (!mustBeEqualDigit || currentChar >= node.character) {
+            // Optimization: if current prefix is higher than the search key, left is the only way to go
+            if (prefixWithCharacter.toString().compareTo(key) > 0) {
+
+                if (node.left != null) {
+                    return floor(node.left, key, digit, prefix, lastKeyFound, mustBeEqualDigit);
+                }
                 return lastKeyFound;
             }
 
-            if (currentChar == node.character) {
-                if (node.value != null) {
-                    lastKeyFound = prefix.toString() + node.character;
-                }
+            if (mustBeEqualDigit && currentChar > node.character) {
+                mustBeEqualDigit = false;
+            }
 
-                return floor(node.middle, key, digit + 1, prefix.append(node.character), lastKeyFound);
-            } else {
-                if (node.right != null) {
-                    String keyFound = floor(node.right, key, digit, prefix, lastKeyFound);
+            // Check child nodes in the order: right, middle, current, left
+            String rightKey = floor(node.right, key, digit, prefix, lastKeyFound, mustBeEqualDigit);
+            if (rightKey != null) {
+                return rightKey;
+            }
 
-                    if (keyFound != null) {
-                        return keyFound;
-                    }
-                }
+            String middleKey = floor(node.middle, key, digit + 1, prefixWithCharacter, null, mustBeEqualDigit);
+            if (middleKey != null) {
+                return middleKey;
+            }
 
-                // There are no keys higher than key in this subTST, so we can get the highest key
-                prefix.append(node.character);
-                Node currentNode = node;
+            if (node.value != null && prefixWithCharacter.toString().compareTo(key) <= 0) {
+                return prefixWithCharacter.toString();
+            }
 
-                while (currentNode.size != 1 || currentNode.value == null) {
-                    currentNode = currentNode.middle;
-
-                    while (currentNode.right != null) {
-                        currentNode = currentNode.right;
-                    }
-                    prefix.append(currentNode.character);
-                }
-
-                return prefix.toString();
+            String leftKey = floor(node.left, key, digit, prefix, lastKeyFound, mustBeEqualDigit);
+            if (leftKey != null) {
+                return leftKey;
             }
         }
+
+        return null;
     }
 
     // Returns the smallest key in the symbol table greater than or equal to key.
@@ -350,57 +354,60 @@ public class TernarySearchTrie<Value> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        return ceiling(root, key, 0, new StringBuilder());
-    }
-
-    private String ceiling(Node node, String key, int digit, StringBuilder prefix) {
-        if (node == null) {
-            return null;
+        if (contains(key)) {
+            return key;
         }
 
+        return ceiling(root, key, 0, new StringBuilder(), null, true);
+    }
+
+    private String ceiling(Node node, String key, int digit, StringBuilder prefix, String lastKeyFound,
+                           boolean mustBeEqualDigit) {
+        if (node == null) {
+            return lastKeyFound;
+        }
+
+        StringBuilder prefixWithCharacter = new StringBuilder(prefix).append(node.character);
+
         char currentChar;
-        if (digit < key.length()) {
+        if (digit < key.length() && mustBeEqualDigit) {
             currentChar = key.charAt(digit);
         } else {
             currentChar = 0;
+            mustBeEqualDigit = false;
         }
 
-        if (currentChar > node.character) {
-            return ceiling(node.right, key, digit, prefix);
-        } else if (currentChar == node.character) {
-            String prefixWithCharacter = prefix.toString() + node.character;
-
-            if (node.value != null && prefixWithCharacter.compareTo(key) >= 0) {
-                return prefixWithCharacter;
+        if (currentChar > node.character && mustBeEqualDigit) {
+            return ceiling(node.right, key, digit, prefix, lastKeyFound, true);
+        } else if (!mustBeEqualDigit || currentChar <= node.character) {
+            if (mustBeEqualDigit && currentChar < node.character) {
+                mustBeEqualDigit = false;
             }
 
-            return ceiling(node.middle, key, digit + 1, prefix.append(node.character));
-        } else {
-
-            if (node.left != null) {
-                String keyFound = ceiling(node.left, key, digit, prefix);
-
-                if (keyFound != null) {
-                    return keyFound;
+            // Check child nodes in the order: left, current, middle, right
+            if (!mustBeEqualDigit) {
+                lastKeyFound = ceiling(node.left, key, digit, prefix, null, false);
+                if (lastKeyFound != null) {
+                    return lastKeyFound;
                 }
             }
 
-            // There are no keys smaller than key in this subTST, so we can get the smallest key
-            prefix.append(node.character);
-            Node currentNode = node;
-
-            while (currentNode.value == null) {
-                currentNode = currentNode.middle;
-
-                while (currentNode.left != null) {
-                    currentNode = currentNode.left;
-                }
-                prefix.append(currentNode.character);
+            if (node.value != null && prefixWithCharacter.toString().compareTo(key) >= 0) {
+                return prefixWithCharacter.toString();
             }
 
-            return prefix.toString();
+            String middleKey = ceiling(node.middle, key, digit + 1, prefixWithCharacter, null, mustBeEqualDigit);
+            if (middleKey != null) {
+                return middleKey;
+            }
+
+            String rightKey = ceiling(node.right, key, digit, prefix, null, mustBeEqualDigit);
+            if (rightKey != null) {
+                return rightKey;
+            }
         }
 
+        return null;
     }
 
     public String select(int index) {

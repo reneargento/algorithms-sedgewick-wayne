@@ -119,11 +119,11 @@ public class Trie<Value> {
             throw new IllegalArgumentException("Prefix cannot be null");
         }
 
-        Queue<String> queue = new Queue<>();
+        Queue<String> keysWithPrefix = new Queue<>();
         Node nodeWithPrefix = get(root, prefix, 0);
-        collect(nodeWithPrefix, new StringBuilder(prefix), queue);
+        collect(nodeWithPrefix, new StringBuilder(prefix), keysWithPrefix);
 
-        return queue;
+        return keysWithPrefix;
     }
 
     private void collect(Node node, StringBuilder prefix, Queue<String> queue) {
@@ -147,9 +147,9 @@ public class Trie<Value> {
             throw new IllegalArgumentException("Pattern cannot be null");
         }
 
-        Queue<String> queue = new Queue<>();
-        collect(root, new StringBuilder(), pattern, queue);
-        return queue;
+        Queue<String> keysThatMatch = new Queue<>();
+        collect(root, new StringBuilder(), pattern, keysThatMatch);
+        return keysThatMatch;
     }
 
     private void collect(Node node, StringBuilder prefix, String pattern, Queue<String> queue) {
@@ -277,13 +277,16 @@ public class Trie<Value> {
 
         for (char nextChar = currentChar; true; nextChar--) {
             if (node.next[nextChar] != null) {
-                if (nextChar == currentChar) {
-                    mustBeEqualDigit = true;
-                } else {
+                if (nextChar < currentChar) {
                     mustBeEqualDigit = false;
                 }
 
-                return floor(node.next[nextChar], key, digit + 1, prefix.append(nextChar), lastKeyFound, mustBeEqualDigit);
+                lastKeyFound = floor(node.next[nextChar], key, digit + 1, prefix.append(nextChar), lastKeyFound, mustBeEqualDigit);
+
+                if (lastKeyFound != null) {
+                    return lastKeyFound;
+                }
+                prefix.deleteCharAt(prefix.length() - 1);
             }
 
             // nextChar value never becomes less than zero in the for loop, so we need this extra validation
@@ -323,13 +326,17 @@ public class Trie<Value> {
 
         for (char nextChar = currentChar; nextChar < R; nextChar++) {
             if (node.next[nextChar] != null) {
-                if (nextChar == currentChar) {
-                    mustBeEqualDigit = true;
-                } else {
+                if (nextChar > currentChar) {
                     mustBeEqualDigit = false;
                 }
 
-                return ceiling(node.next[nextChar], key, digit + 1, prefix.append(nextChar), mustBeEqualDigit);
+                String keyFound = ceiling(node.next[nextChar], key, digit + 1, prefix.append(nextChar),
+                        mustBeEqualDigit);
+
+                if (keyFound != null) {
+                    return keyFound;
+                }
+                prefix.deleteCharAt(prefix.length() - 1);
             }
         }
 
