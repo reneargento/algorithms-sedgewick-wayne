@@ -391,6 +391,7 @@ public class Trie<Value> {
             return size;
         }
 
+        // If a prefix key was found, add 1 to rank
         if (node.value != null) {
             if (digit < key.length()) {
                 size++;

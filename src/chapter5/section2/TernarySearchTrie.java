@@ -354,10 +354,6 @@ public class TernarySearchTrie<Value> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        if (contains(key)) {
-            return key;
-        }
-
         return ceiling(root, key, 0, new StringBuilder(), null, true);
     }
 
