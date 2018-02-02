@@ -2,4 +2,4 @@
 a) No such keyword as "then" in Java language
 b) Missing braces on if conditional
 c) Nothing wrong
-d) Nothing wrong
+d) Missing semicolon after the "then" clause
