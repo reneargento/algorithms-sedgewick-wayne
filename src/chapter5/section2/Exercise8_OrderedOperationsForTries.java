@@ -420,15 +420,18 @@ public class Exercise8_OrderedOperationsForTries {
             if (currentChar < node.character) {
                 return rank(node.left, key, digit, size);
             } else {
-                // Is current key a prefix of the search key?
-                if (digit < key.length() - 1 && node.value != null) {
-                    size++;
-                }
-
                 if (currentChar > node.character) {
-                    return getTreeSize(node.left) + getTreeSize(node.middle) +
-                            rank(node.right, key, digit, size);
+                    if (node.value != null) {
+                        size++;
+                    }
+
+                    return getTreeSize(node.left) + getTreeSize(node.middle) + rank(node.right, key, digit, size);
                 } else if (digit < key.length() - 1) {
+                    // Is current key a prefix of the search key?
+                    if (digit < key.length() - 1 && node.value != null) {
+                        size++;
+                    }
+
                     return getTreeSize(node.left) + rank(node.middle, key, digit + 1, size);
                 } else {
                     return getTreeSize(node.left) + size;
@@ -449,11 +452,11 @@ public class Exercise8_OrderedOperationsForTries {
         }
 
         public String min() {
-            Node minNode = min(root);
-
-            if (minNode == null) {
+            if (isEmpty()) {
                 return null;
             }
+
+            Node minNode = min(root);
 
             StringBuilder minKey = new StringBuilder();
             minKey.append(minNode.character);
@@ -479,11 +482,11 @@ public class Exercise8_OrderedOperationsForTries {
         }
 
         public String max() {
-            Node maxNode = max(root);
-
-            if (maxNode == null) {
+            if (isEmpty()) {
                 return null;
             }
+
+            Node maxNode = max(root);
 
             StringBuilder maxKey = new StringBuilder();
             maxKey.append(maxNode.character);

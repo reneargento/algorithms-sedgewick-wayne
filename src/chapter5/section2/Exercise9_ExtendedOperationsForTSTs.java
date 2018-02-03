@@ -79,8 +79,7 @@ public class Exercise9_ExtendedOperationsForTSTs {
             if (nextCharInPattern == '.' || nextCharInPattern == node.character) {
                 if (digit == pattern.length() - 1 && node.value != null) {
                     queue.enqueue(prefix.toString() + node.character);
-                }
-                if (digit < pattern.length() - 1) {
+                } else if (digit < pattern.length() - 1) {
                     collect(node.middle, prefix.append(node.character), pattern, queue);
                     prefix.deleteCharAt(prefix.length() - 1);
                 }

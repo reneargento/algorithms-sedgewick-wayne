@@ -239,8 +239,7 @@ public class TernarySearchTrie<Value> {
         if (nextCharInPattern == '.' || nextCharInPattern == node.character) {
             if (digit == pattern.length() - 1 && node.value != null) {
                 queue.enqueue(prefix.toString() + node.character);
-            }
-            if (digit < pattern.length() - 1) {
+            } else if (digit < pattern.length() - 1) {
                 collect(node.middle, prefix.append(node.character), pattern, queue);
                 prefix.deleteCharAt(prefix.length() - 1);
             }
@@ -457,15 +456,18 @@ public class TernarySearchTrie<Value> {
         if (currentChar < node.character) {
             return rank(node.left, key, digit, size);
         } else {
-            // Is current key a prefix of the search key?
-            if (digit < key.length() - 1 && node.value != null) {
-                size++;
-            }
-
             if (currentChar > node.character) {
-                return getTreeSize(node.left) + getTreeSize(node.middle) +
-                        rank(node.right, key, digit, size);
+                if (node.value != null) {
+                    size++;
+                }
+
+                return getTreeSize(node.left) + getTreeSize(node.middle) + rank(node.right, key, digit, size);
             } else if (digit < key.length() - 1) {
+                // Is current key a prefix of the search key?
+                if (digit < key.length() - 1 && node.value != null) {
+                    size++;
+                }
+
                 return getTreeSize(node.left) + rank(node.middle, key, digit + 1, size);
             } else {
                 return getTreeSize(node.left) + size;
@@ -486,11 +488,11 @@ public class TernarySearchTrie<Value> {
     }
 
     public String min() {
-        Node minNode = min(root);
-
-        if (minNode == null) {
+        if (isEmpty()) {
             return null;
         }
+
+        Node minNode = min(root);
 
         StringBuilder minKey = new StringBuilder();
         minKey.append(minNode.character);
@@ -516,11 +518,11 @@ public class TernarySearchTrie<Value> {
     }
 
     public String max() {
-        Node maxNode = max(root);
-
-        if (maxNode == null) {
+        if (isEmpty()) {
             return null;
         }
+
+        Node maxNode = max(root);
 
         StringBuilder maxKey = new StringBuilder();
         maxKey.append(maxNode.character);

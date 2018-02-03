@@ -942,8 +942,7 @@ public class Exercise5 {
                 if (nextCharInPattern == '.' || nextCharInPattern == currentNode.character) {
                     if (digit == pattern.length() - 1 && currentNode.value != null) {
                         keysThatMatch.enqueue(prefixWithCharacter.toString());
-                    }
-                    if (digit < pattern.length() - 1 && currentNode.middle != null) {
+                    } else if (digit < pattern.length() - 1 && currentNode.middle != null) {
                         stack.push(new NodeWithInformation(currentNode.middle, prefixWithCharacter));
                     }
                 }
@@ -1175,16 +1174,20 @@ public class Exercise5 {
                 if (currentChar < currentNode.character) {
                     currentNode = currentNode.left;
                 } else  {
-                    // Is current key a prefix of the search key?
-                    if (digit < key.length() - 1 && currentNode.value != null) {
-                        size++;
-                    }
-
                     if (currentChar > currentNode.character) {
+                        if (currentNode.value != null) {
+                            size++;
+                        }
+
                         rank += getTreeSize(currentNode.left) + getTreeSize(currentNode.middle);
 
                         currentNode = currentNode.right;
                     } else if (digit < key.length() - 1) {
+                        // Is current key a prefix of the search key?
+                        if (digit < key.length() - 1 && currentNode.value != null) {
+                            size++;
+                        }
+
                         rank += getTreeSize(currentNode.left);
 
                         currentNode = currentNode.middle;
