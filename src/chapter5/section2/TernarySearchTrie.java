@@ -426,6 +426,8 @@ public class TernarySearchTrie<Value> {
         } else if (index >= tstSize) {
             return select(node.right, index - tstSize, prefix);
         } else {
+            index = index - leftSubtreeSize;
+
             if (node.value != null) {
                 if (index == 0) {
                     return prefix.append(node.character).toString();
@@ -434,7 +436,7 @@ public class TernarySearchTrie<Value> {
             }
 
             prefix.append(node.character);
-            return select(node.middle, index - leftSubtreeSize, prefix);
+            return select(node.middle, index, prefix);
         }
     }
 

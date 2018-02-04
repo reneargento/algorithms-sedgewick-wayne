@@ -1137,6 +1137,8 @@ public class Exercise5 {
                     currentNode = currentNode.right;
                     index = index - tstSize;
                 } else {
+                    index = index - leftSubtreeSize;
+
                     if (currentNode.value != null) {
                         if (index == 0) {
                             key = prefix.append(currentNode.character).toString();
@@ -1149,7 +1151,6 @@ public class Exercise5 {
 
                     if (currentNode.middle != null) {
                         currentNode = currentNode.middle;
-                        index = index - leftSubtreeSize;
                     }
                 }
             }

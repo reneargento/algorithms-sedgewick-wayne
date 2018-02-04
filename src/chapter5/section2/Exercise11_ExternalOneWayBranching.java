@@ -13,14 +13,24 @@ public class Exercise11_ExternalOneWayBranching {
     @SuppressWarnings("unchecked")
     public static class TrieNoExternalOneWayBranching<Value> {
 
-        private static final int R = 256;
-        private Node root = new Node();
+        protected static final int R = 256;
+        protected Node root = new Node();
 
-        private static class Node {
-            private Object value;
-            private Node[] next = new Node[R];
-            private int size;
-            private String characters; // Used to eliminate external one-way branching
+        protected static class Node {
+            Object value;
+            Node[] next = new Node[R];
+            int size;
+            String characters; // Used to eliminate external one-way branching
+        }
+
+        private class NodeWithInformation {
+            private Node node;
+            private StringBuilder prefix;
+
+            NodeWithInformation(Node node, StringBuilder prefix) {
+                this.node = node;
+                this.prefix = prefix;
+            }
         }
 
         public int size() {
@@ -103,7 +113,7 @@ public class Exercise11_ExternalOneWayBranching {
             return get(node.next[nextChar], key, digit + nodeCharactersLength);
         }
 
-        private int compareStrings(String string1, String string2) {
+        protected int compareStrings(String string1, String string2) {
 
             int minLength = Math.min(string1.length(), string2.length());
 
@@ -140,8 +150,13 @@ public class Exercise11_ExternalOneWayBranching {
         private Node put(Node node, String key, Value value, int digit, boolean isNewKey) {
             if (node == null) {
                 node = new Node();
-                // No risk of StringIndexOutOfBoundsException because digit 0 is always the root (that has no value)
-                node.characters = key.substring(digit - 1, key.length());
+
+                // Characters field is only filled if there is more than one character to be stored
+                if (digit != key.length()) {
+                    // No risk of StringIndexOutOfBoundsException because digit 0 is always the root (that has no value)
+                    node.characters = key.substring(digit - 1, key.length());
+                }
+
                 node.value = value;
                 node.size = 1;
 
@@ -161,10 +176,10 @@ public class Exercise11_ExternalOneWayBranching {
                     return node;
                 }
 
-                Node firstNode = new Node();
-                firstNode.size = 2;
+                Node parentNode = new Node();
+                parentNode.size = 2;
 
-                Node currentNode = firstNode;
+                Node currentNode = parentNode;
                 int maxLength = Math.max(nodeCharactersLength, key.length() - digit + 1);
 
                 // Key is new
@@ -182,11 +197,11 @@ public class Exercise11_ExternalOneWayBranching {
                             currentNode = newNode;
                         } else {
                             splitNodes(node, currentNode, key, value, index, digit - 1);
-                            return firstNode;
+                            return parentNode;
                         }
                     } else {
                         splitNodes(node, currentNode, key, value, index, digit - 1);
-                        return firstNode;
+                        return parentNode;
                     }
                 }
             } else {
@@ -207,7 +222,11 @@ public class Exercise11_ExternalOneWayBranching {
             if (index < node.characters.length()) {
                 String remainingCharacters = node.characters.substring(index, node.characters.length());
                 Node firstChild = new Node();
-                firstChild.characters = remainingCharacters;
+
+                if (remainingCharacters.length() > 1) {
+                    firstChild.characters = remainingCharacters;
+                }
+
                 firstChild.size = 1;
                 firstChild.value = node.value;
 
@@ -222,7 +241,11 @@ public class Exercise11_ExternalOneWayBranching {
             if (index + digit < key.length()) {
                 String secondChildKey = key.substring(index + digit, key.length());
                 Node secondChild = new Node();
-                secondChild.characters = secondChildKey;
+
+                if (secondChildKey.length() > 1) {
+                    secondChild.characters = secondChildKey;
+                }
+
                 secondChild.size = 1;
                 secondChild.value = value;
 
@@ -289,7 +312,7 @@ public class Exercise11_ExternalOneWayBranching {
                 return null;
             }
 
-            // Merge nodes to avoid external one-way branching
+            // Merge nodes on the way back to avoid external one-way branching
             // If we got here, the node key has a null value
             if (node.size == 1 && currentChar != null) {
                 if (node.characters == null) {
@@ -324,10 +347,76 @@ public class Exercise11_ExternalOneWayBranching {
             }
 
             Queue<String> keysWithPrefix = new Queue<>();
-            Node nodeWithPrefix = get(root, prefix, 0);
-            collect(nodeWithPrefix, new StringBuilder(prefix), keysWithPrefix);
+
+            NodeWithInformation nodeWithInformation = new NodeWithInformation(root, new StringBuilder());
+            NodeWithInformation nodeWithPrefix = getNodeWithPrefix(nodeWithInformation, prefix, 0);
+
+            if (nodeWithPrefix == null) {
+                return keysWithPrefix;
+            }
+
+            String realPrefix = nodeWithPrefix.prefix.toString();
+
+            collect(nodeWithPrefix.node, new StringBuilder(realPrefix), keysWithPrefix);
 
             return keysWithPrefix;
+        }
+
+        private NodeWithInformation getNodeWithPrefix(NodeWithInformation nodeWithInformation, String key, int digit) {
+            if (nodeWithInformation.node == null) {
+                return null;
+            }
+
+            if (digit == key.length() && nodeWithInformation.node.characters == null) {
+                return nodeWithInformation;
+            }
+
+            int nodeCharactersLength = 1;
+            if (nodeWithInformation.node.characters != null) {
+                nodeCharactersLength = nodeWithInformation.node.characters.length() - 1;
+
+                int substringRightIndex = digit + nodeCharactersLength;
+                if (substringRightIndex > key.length()) {
+                    substringRightIndex = key.length();
+                }
+
+                String currentKeyCharacters = key.substring(digit - 1, substringRightIndex);
+                String nodeCharactersSubstring = nodeWithInformation.node.characters.substring(0, currentKeyCharacters.length());
+
+                int compare = compareStrings(currentKeyCharacters, nodeCharactersSubstring);
+
+                if (compare == 0) {
+                    if (digit + nodeCharactersLength == key.length()) {
+                        return nodeWithInformation;
+                    } // If characters match but this is not the end of the key, continue below
+                } else {
+                    return null;
+                }
+            }
+
+            char nextChar;
+            if (nodeWithInformation.node.characters != null) {
+                if (digit + nodeCharactersLength < key.length()) {
+                    nextChar = key.charAt(digit + nodeCharactersLength);
+                } else {
+                    return nodeWithInformation;
+                }
+            } else {
+                nextChar = key.charAt(digit);
+            }
+
+            Node nextNode = nodeWithInformation.node.next[nextChar];
+            nodeWithInformation.node = nextNode;
+
+            if (nextNode != null ) {
+                if (nextNode.characters != null) {
+                    nodeWithInformation.prefix.append(nextNode.characters);
+                } else {
+                    nodeWithInformation.prefix.append(nextChar);
+                }
+            }
+
+            return getNodeWithPrefix(nodeWithInformation, key, digit + nodeCharactersLength);
         }
 
         private void collect(Node node, StringBuilder prefix, Queue<String> queue) {
@@ -761,19 +850,29 @@ public class Exercise11_ExternalOneWayBranching {
         }
     }
 
-    public class TernarySearchTrieNoExternalOneWayBranching<Value> {
+    public static class TernarySearchTrieNoExternalOneWayBranching<Value> {
 
-        private int size;
-        private Node root;
+        protected int size;
+        protected Node root;
 
-        private class Node {
-            private String characters;
-            private Value value;
-            private int size;
+        protected class Node {
+            String characters;
+            Value value;
+            int size;
 
-            private Node left;
-            private Node middle;
-            private Node right;
+            Node left;
+            Node middle;
+            Node right;
+        }
+
+        private class NodeWithInformation {
+            private Node node;
+            private StringBuilder prefix;
+
+            NodeWithInformation(Node node, StringBuilder prefix) {
+                this.node = node;
+                this.prefix = prefix;
+            }
         }
 
         public int size() {
@@ -835,7 +934,7 @@ public class Exercise11_ExternalOneWayBranching {
             }
         }
 
-        private int compareStrings(String string1, String string2) {
+        protected int compareStrings(String string1, String string2) {
 
             int minLength = Math.min(string1.length(), string2.length());
 
@@ -898,13 +997,13 @@ public class Exercise11_ExternalOneWayBranching {
                         return node;
                     }
 
-                    Node firstNode = new Node();
-                    firstNode.left = node.left;
-                    firstNode.right = node.right;
-                    firstNode.characters = String.valueOf(node.characters.charAt(0));
-                    firstNode.size = 2;
+                    Node parentNode = new Node();
+                    parentNode.left = node.left;
+                    parentNode.right = node.right;
+                    parentNode.characters = String.valueOf(node.characters.charAt(0));
+                    parentNode.size = 2;
 
-                    Node currentNode = firstNode;
+                    Node currentNode = parentNode;
                     int maxLength = Math.max(nodeCharactersLength, key.length() - digit);
 
                     // Key is new
@@ -924,12 +1023,12 @@ public class Exercise11_ExternalOneWayBranching {
                             } else {
                                 boolean isNewNodeLeftChild = newNodeCurrentCharacter < existingNodeCharacter;
                                 splitNodes(node, currentNode, key, value, index, digit, isNewNodeLeftChild);
-                                return firstNode;
+                                return parentNode;
                             }
                         } else {
                             boolean isNewNodeLeftChild = index < key.length();
                             splitNodes(node, currentNode, key, value, index, digit, isNewNodeLeftChild);
-                            return firstNode;
+                            return parentNode;
                         }
                     }
                 }
@@ -953,6 +1052,7 @@ public class Exercise11_ExternalOneWayBranching {
         private void splitNodes(Node node, Node currentNode, String key, Value value, int index, int digit,
                                 boolean isNewNodeLeftChild) {
 
+            // The current node maintains as characters the substring before the split point
             if (index < node.characters.length()) {
                 String remainingCharacters = node.characters.substring(index, node.characters.length());
                 Node middleChild = new Node();
@@ -967,6 +1067,7 @@ public class Exercise11_ExternalOneWayBranching {
                 }
             }
 
+            // The other node maintains as characters the substring on and after the split point
             if (index + digit < key.length()) {
                 String otherChildKey = key.substring(index + digit, key.length());
                 Node newChild = new Node();
@@ -1041,7 +1142,7 @@ public class Exercise11_ExternalOneWayBranching {
                 }
             }
 
-            // Merge nodes to avoid external one-way branching
+            // Merge nodes on the way back to avoid external one-way branching
             if (node.middle != null && node.size == 1 && node.value == null) {
                 node.characters = node.characters + node.middle.characters;
                 node.value = node.middle.value;
@@ -1064,18 +1165,55 @@ public class Exercise11_ExternalOneWayBranching {
 
             Queue<String> keysWithPrefix = new Queue<>();
 
-            Node nodeWithPrefix = get(root, prefix, 0);
+            NodeWithInformation nodeWithInformation = new NodeWithInformation(root, new StringBuilder());
+            NodeWithInformation nodeWithPrefix = getNodeWithPrefix(nodeWithInformation, prefix, 0);
 
-            if (nodeWithPrefix == null) {
+            if (nodeWithPrefix == null || nodeWithPrefix.node == null) {
                 return keysWithPrefix;
             }
 
-            if (nodeWithPrefix.value != null) {
-                keysWithPrefix.enqueue(prefix);
+            String realPrefix = nodeWithPrefix.prefix.toString();
+
+            if (nodeWithPrefix.node.value != null) {
+                keysWithPrefix.enqueue(realPrefix);
             }
 
-            collect(nodeWithPrefix.middle, new StringBuilder(prefix), keysWithPrefix);
+            collect(nodeWithPrefix.node.middle, new StringBuilder(realPrefix), keysWithPrefix);
             return keysWithPrefix;
+        }
+
+        private NodeWithInformation getNodeWithPrefix(NodeWithInformation nodeWithInformation, String key, int digit) {
+            if (nodeWithInformation.node == null) {
+                return null;
+            }
+
+            int nodeCharactersLength = nodeWithInformation.node.characters.length();
+
+            int substringRightIndex = digit + nodeCharactersLength;
+            if (substringRightIndex > key.length()) {
+                substringRightIndex = key.length();
+            }
+
+            String currentKeyCharacters = key.substring(digit, substringRightIndex);
+            String nodeCharactersSubstring = nodeWithInformation.node.characters.substring(0, currentKeyCharacters.length());
+
+            int compare = compareStrings(currentKeyCharacters, nodeCharactersSubstring);
+
+            if (compare < 0) {
+                nodeWithInformation.node = nodeWithInformation.node.left;
+                return getNodeWithPrefix(nodeWithInformation, key, digit);
+            } else if (compare > 0) {
+                nodeWithInformation.node = nodeWithInformation.node.right;
+                return getNodeWithPrefix(nodeWithInformation, key, digit);
+            } else if (digit + nodeCharactersLength < key.length()) {
+                nodeWithInformation.prefix.append(nodeWithInformation.node.characters);
+                nodeWithInformation.node = nodeWithInformation.node.middle;
+
+                return getNodeWithPrefix(nodeWithInformation, key,digit + nodeCharactersLength);
+            } else {
+                nodeWithInformation.prefix.append(nodeWithInformation.node.characters);
+                return nodeWithInformation;
+            }
         }
 
         private void collect(Node node, StringBuilder prefix, Queue<String> queue) {
@@ -1358,6 +1496,8 @@ public class Exercise11_ExternalOneWayBranching {
             } else if (index >= tstSize) {
                 return select(node.right, index - tstSize, prefix);
             } else {
+                index = index - leftSubtreeSize;
+
                 if (node.value != null) {
                     if (index == 0) {
                         return prefix.append(node.characters).toString();
@@ -1367,7 +1507,7 @@ public class Exercise11_ExternalOneWayBranching {
                 }
 
                 prefix.append(node.characters);
-                return select(node.middle, index - leftSubtreeSize, prefix);
+                return select(node.middle, index, prefix);
             }
         }
 
@@ -1450,7 +1590,7 @@ public class Exercise11_ExternalOneWayBranching {
             return minKey.toString();
         }
 
-        private Node min(Node node) {
+        protected Node min(Node node) {
             if (node.left == null) {
                 return node;
             }
@@ -1499,7 +1639,7 @@ public class Exercise11_ExternalOneWayBranching {
         }
 
         // Used only in delete()
-        private Node deleteMin(Node node) {
+        protected Node deleteMin(Node node) {
             if (node.left == null) {
                 return node.right;
             }
