@@ -85,17 +85,17 @@ public class Exercise11_ExternalOneWayBranching {
 
             int nodeCharactersLength = 1;
             if (node.characters != null) {
-                nodeCharactersLength = node.characters.length() - 1;
+                nodeCharactersLength = node.characters.length();
 
-                if (digit + nodeCharactersLength > key.length()) {
+                if (digit - 1 + nodeCharactersLength > key.length()) {
                     return null;
                 }
 
-                String currentPrefix = key.substring(digit - 1, digit + nodeCharactersLength);
+                String currentPrefix = key.substring(digit - 1, digit - 1 + nodeCharactersLength);
                 int compare = compareStrings(currentPrefix, node.characters);
 
                 if (compare == 0) {
-                    if (digit + nodeCharactersLength == key.length()) {
+                    if (digit - 1 + nodeCharactersLength == key.length()) {
                         return node;
                     } // If characters match but this is not the end of the key, continue below
                 } else {
@@ -105,7 +105,7 @@ public class Exercise11_ExternalOneWayBranching {
 
             char nextChar;
             if (node.characters != null) {
-                nextChar = key.charAt(digit + nodeCharactersLength);
+                nextChar = key.charAt(digit - 1 + nodeCharactersLength);
             } else {
                 nextChar = key.charAt(digit);
             }
@@ -170,7 +170,7 @@ public class Exercise11_ExternalOneWayBranching {
             if (node.characters != null) {
                 int nodeCharactersLength = node.characters.length();
 
-                // If the key already exists, there is no need to break the node in smaller components
+                // If the key already exists, there is no need to break the node into smaller components
                 if (!isNewKey && digit - 1 + nodeCharactersLength == key.length()) {
                     node.value = value;
                     return node;
@@ -217,10 +217,11 @@ public class Exercise11_ExternalOneWayBranching {
             return node;
         }
 
-        private void splitNodes(Node node, Node currentNode, String key, Value value, int index, int digit) {
+        private void splitNodes(Node originalNode, Node splitParentNode, String key, Value value, int index, int digit) {
 
-            if (index < node.characters.length()) {
-                String remainingCharacters = node.characters.substring(index, node.characters.length());
+            // The first child node will have as characters the substring before the split point
+            if (index < originalNode.characters.length()) {
+                String remainingCharacters = originalNode.characters.substring(index, originalNode.characters.length());
                 Node firstChild = new Node();
 
                 if (remainingCharacters.length() > 1) {
@@ -228,16 +229,17 @@ public class Exercise11_ExternalOneWayBranching {
                 }
 
                 firstChild.size = 1;
-                firstChild.value = node.value;
+                firstChild.value = originalNode.value;
 
-                char firstChildIndexChar = node.characters.charAt(index);
-                currentNode.next[firstChildIndexChar] = firstChild;
+                char firstChildIndexChar = originalNode.characters.charAt(index);
+                splitParentNode.next[firstChildIndexChar] = firstChild;
             } else {
-                if (node.value != null) {
-                    currentNode.value = node.value;
+                if (originalNode.value != null) {
+                    splitParentNode.value = originalNode.value;
                 }
             }
 
+            // The other node will have as characters the substring on and after the split point
             if (index + digit < key.length()) {
                 String secondChildKey = key.substring(index + digit, key.length());
                 Node secondChild = new Node();
@@ -250,9 +252,9 @@ public class Exercise11_ExternalOneWayBranching {
                 secondChild.value = value;
 
                 char secondChildIndexChar = secondChildKey.charAt(0);
-                currentNode.next[secondChildIndexChar] = secondChild;
+                splitParentNode.next[secondChildIndexChar] = secondChild;
             } else {
-                currentNode.value = value;
+                splitParentNode.value = value;
             }
         }
 
@@ -265,43 +267,27 @@ public class Exercise11_ExternalOneWayBranching {
                 return;
             }
 
-            root = delete(root, key, 0, null);
+            root = delete(root, key, 0);
         }
 
-        private Node delete(Node node, String key, int digit, Character currentChar) {
+        private Node delete(Node node, String key, int digit) {
             if (node == null) {
                 return null;
             }
 
             node.size = node.size - 1;
-            boolean nodeDeleted = false;
 
-            if (digit == key.length()) {
-                if (node.characters == null) {
-                    node.value = null;
-                }
+            int nodeCharactersLength = 1;
+
+            if (node.characters != null) {
+                nodeCharactersLength = node.characters.length();
+            }
+
+            if (digit - 1 + nodeCharactersLength == key.length()) {
+                node.value = null;
             } else {
-                int nodeCharactersLength = 1;
-                if (node.characters != null) {
-                    nodeCharactersLength = node.characters.length() - 1;
-
-                    if (digit + nodeCharactersLength == key.length()) {
-                        node.value = null;
-                        nodeDeleted = true;
-                    }
-                    // If characters match but this is not the end of the key, continue below
-                }
-
-                if (!nodeDeleted) {
-                    char nextChar;
-                    if (node.characters != null) {
-                        nextChar = key.charAt(digit + nodeCharactersLength);
-                    } else {
-                        nextChar = key.charAt(digit);
-                    }
-
-                    node.next[nextChar] = delete(node.next[nextChar], key, digit + nodeCharactersLength, nextChar);
-                }
+                char nextChar = key.charAt(digit - 1 + nodeCharactersLength);
+                node.next[nextChar] = delete(node.next[nextChar], key, digit + nodeCharactersLength);
             }
 
             if (node.value != null) {
@@ -314,9 +300,9 @@ public class Exercise11_ExternalOneWayBranching {
 
             // Merge nodes on the way back to avoid external one-way branching
             // If we got here, the node key has a null value
-            if (node.size == 1 && currentChar != null) {
+            if (node.size == 1 && digit != 0) {
                 if (node.characters == null) {
-                    node.characters = String.valueOf(currentChar);
+                    node.characters = String.valueOf(key.charAt(digit - 1));
                 }
 
                 for (char nextChar = 0; nextChar < R; nextChar++) {
@@ -473,12 +459,7 @@ public class Exercise11_ExternalOneWayBranching {
                 return;
             }
 
-            int nodeCharactersLength = 1;
-            if (node.characters != null) {
-                nodeCharactersLength = node.characters.length();
-            }
-
-            if (digit + nodeCharactersLength <= pattern.length()) {
+            if (digit < pattern.length()) {
                 char nextCharInPattern = pattern.charAt(digit);
 
                 for (char nextChar = 0; nextChar < R; nextChar++) {
@@ -991,7 +972,7 @@ public class Exercise11_ExternalOneWayBranching {
                 if (node.characters.length() > 1) {
                     int nodeCharactersLength = node.characters.length();
 
-                    // If the key already exists, there is no need to break the node in smaller components
+                    // If the key already exists, there is no need to break the node into smaller components
                     if (!isNewKey && digit + nodeCharactersLength == key.length()) {
                         node.value = value;
                         return node;
@@ -1049,25 +1030,25 @@ public class Exercise11_ExternalOneWayBranching {
             return node;
         }
 
-        private void splitNodes(Node node, Node currentNode, String key, Value value, int index, int digit,
+        private void splitNodes(Node originalNode, Node splitParentNode, String key, Value value, int index, int digit,
                                 boolean isNewNodeLeftChild) {
 
-            // The current node maintains as characters the substring before the split point
-            if (index < node.characters.length()) {
-                String remainingCharacters = node.characters.substring(index, node.characters.length());
+            // The current node will have as characters the substring before the split point
+            if (index < originalNode.characters.length()) {
+                String remainingCharacters = originalNode.characters.substring(index, originalNode.characters.length());
                 Node middleChild = new Node();
                 middleChild.characters = remainingCharacters;
                 middleChild.size = 1;
-                middleChild.value = node.value;
+                middleChild.value = originalNode.value;
 
-                currentNode.middle = middleChild;
+                splitParentNode.middle = middleChild;
             } else {
-                if (node.value != null) {
-                    currentNode.value = node.value;
+                if (originalNode.value != null) {
+                    splitParentNode.value = originalNode.value;
                 }
             }
 
-            // The other node maintains as characters the substring on and after the split point
+            // The other node will have as characters the substring on and after the split point
             if (index + digit < key.length()) {
                 String otherChildKey = key.substring(index + digit, key.length());
                 Node newChild = new Node();
@@ -1075,15 +1056,15 @@ public class Exercise11_ExternalOneWayBranching {
                 newChild.size = 1;
                 newChild.value = value;
 
-                if (currentNode.middle == null) {
-                    currentNode.middle = newChild;
+                if (splitParentNode.middle == null) {
+                    splitParentNode.middle = newChild;
                 } else if (isNewNodeLeftChild) {
-                    currentNode.middle.left = newChild;
+                    splitParentNode.middle.left = newChild;
                 } else {
-                    currentNode.middle.right = newChild;
+                    splitParentNode.middle.right = newChild;
                 }
             } else {
-                currentNode.value = value;
+                splitParentNode.value = value;
             }
         }
 
@@ -1895,7 +1876,7 @@ public class Exercise11_ExternalOneWayBranching {
             StdOut.println(key);
         }
 
-        // Note that Re node is now a composite node
+        // Note that "Re" node is now a composite node
 
         trieNoExternalOneWayBranching.delete("Re");
 
@@ -2137,7 +2118,7 @@ public class Exercise11_ExternalOneWayBranching {
             StdOut.println(key);
         }
 
-        // Note that Re node is now a composite node
+        // Note that "Re" node is now a composite node
 
         ternarySearchTrieNoExternalOneWayBranching.delete("Re");
 
