@@ -980,7 +980,7 @@ public class Exercise5 {
                 char nextChar = query.charAt(currentDigit);
 
                 if (currentNode.value != null) {
-                    length = currentDigit;
+                    length = currentDigit + 1;
                 }
 
                 if (nextChar < currentNode.character && currentNode.left != null) {
@@ -992,7 +992,7 @@ public class Exercise5 {
                         if (currentDigit < query.length() - 1 && currentNode.middle != null) {
                             stack.push(new NodeWithInformation(currentNode.middle, currentDigit + 1));
                         } else {
-                            return length + 1;
+                            return length;
                         }
                     }
                 }

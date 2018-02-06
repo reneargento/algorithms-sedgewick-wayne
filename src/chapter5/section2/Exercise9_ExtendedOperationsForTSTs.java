@@ -104,7 +104,7 @@ public class Exercise9_ExtendedOperationsForTSTs {
             }
 
             if (node.value != null) {
-                length = digit;
+                length = digit + 1;
             }
 
             char nextChar = query.charAt(digit);
@@ -116,7 +116,7 @@ public class Exercise9_ExtendedOperationsForTSTs {
             } else if (digit < query.length() - 1) {
                 return search(node.middle, query, digit + 1, length);
             } else {
-                return length + 1;
+                return length;
             }
         }
 

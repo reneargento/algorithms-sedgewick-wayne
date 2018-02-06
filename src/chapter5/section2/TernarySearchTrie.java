@@ -264,7 +264,7 @@ public class TernarySearchTrie<Value> {
         }
 
         if (node.value != null) {
-            length = digit;
+            length = digit + 1;
         }
 
         char nextChar = query.charAt(digit);
@@ -276,7 +276,7 @@ public class TernarySearchTrie<Value> {
         } else if (digit < query.length() - 1) {
             return search(node.middle, query, digit + 1, length);
         } else {
-            return length + 1;
+            return length;
         }
     }
 
