@@ -43,4 +43,36 @@ public class FileUtil {
         return words;
     }
 
+    public static String getAllCharactersFromFile(String filePath, boolean includeWhitespacesAndLineBreaks) {
+        List<String> lines;
+
+        try {
+            lines = Files.readAllLines(Paths.get(filePath));
+        } catch (IOException e) {
+            StdOut.println(e.getMessage());
+            return null;
+        }
+
+        StringBuilder allCharacters = new StringBuilder();
+        int lineNumber = 0;
+
+        for(String line : lines) {
+            if (lineNumber != 0 && includeWhitespacesAndLineBreaks) {
+                allCharacters.append("\n");
+            }
+
+            for (char currentChar : line.toCharArray()) {
+                if (currentChar == ' ' && !includeWhitespacesAndLineBreaks) {
+                    continue;
+                }
+
+                allCharacters.append(currentChar);
+            }
+
+            lineNumber++;
+        }
+
+        return allCharacters.toString();
+    }
+
 }
