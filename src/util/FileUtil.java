@@ -75,4 +75,17 @@ public class FileUtil {
         return allCharacters.toString();
     }
 
+    public static List<String> getAllLinesFromFile(String filePath) {
+        List<String> lines;
+
+        try {
+            lines = Files.readAllLines(Paths.get(filePath));
+        } catch (IOException e) {
+            StdOut.println(e.getMessage());
+            return null;
+        }
+
+        return lines;
+    }
+
 }
