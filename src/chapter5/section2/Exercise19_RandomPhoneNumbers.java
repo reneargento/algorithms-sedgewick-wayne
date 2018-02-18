@@ -68,6 +68,7 @@ public class Exercise19_RandomPhoneNumbers {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
+            // No need for delete() in this exercise
             if (value == null) {
                 return;
             }

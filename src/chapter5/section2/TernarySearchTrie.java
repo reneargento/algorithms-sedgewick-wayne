@@ -102,7 +102,7 @@ public class TernarySearchTrie<Value> {
             node.left = put(node.left, key, value, digit, isNewKey);
         } else if (currentChar > node.character) {
             node.right = put(node.right, key, value, digit, isNewKey);
-        } else if (digit < key.length() - 1){
+        } else if (digit < key.length() - 1) {
             node.middle = put(node.middle, key, value, digit + 1, isNewKey);
 
             if (isNewKey) {

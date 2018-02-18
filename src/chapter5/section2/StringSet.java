@@ -2,22 +2,19 @@ package chapter5.section2;
 
 import chapter3.section4.SeparateChainingHashTable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringJoiner;
+import java.util.*;
 
 /**
  * Created by Rene Argento on 08/02/18.
  */
 public class StringSet {
 
-    private class Node {
-        private SeparateChainingHashTable<Character, Node> next = new SeparateChainingHashTable<>();
-        boolean isKey;
+    protected class Node {
+        protected Map<Character, Node> next = new HashMap<>();
+        protected boolean isKey;
     }
 
-    private Node root = new Node();
+    protected Node root = new Node();
     private int size;
 
     public int size() {
@@ -46,12 +43,7 @@ public class StringSet {
         }
 
         char nextChar = key.charAt(digit);
-
-        if (node.next.contains(nextChar)) {
-            return contains(node.next.get(nextChar), key, digit + 1);
-        } else {
-            return false;
-        }
+        return contains(node.next.get(nextChar), key, digit + 1);
     }
 
     public void add(String key) {
@@ -134,7 +126,7 @@ public class StringSet {
             keys.add(prefix.toString());
         }
 
-        for (Character character : node.next.keys()) {
+        for (Character character : node.next.keySet()) {
             keys(node.next.get(character), new StringBuilder(prefix).append(character), keys);
         }
     }

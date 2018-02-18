@@ -13,14 +13,14 @@ public class Exercise30_DuplicatesRevisited {
 
     private class DistinctCounter {
         public int deDupWithIntegerValues(int numberOfValues, int maxValue) {
-            //Using Java's super optimized Set and HashSet since we are dealing with very large numbers
+            // Using Java's super optimized Set and HashSet since we are dealing with very large numbers
             // and every optimization counts
             java.util.Set<Integer> set = new java.util.HashSet<>();
 
             for(int i = 0; i < numberOfValues; i++) {
                 int key = StdRandom.uniform(maxValue);
 
-                if(!set.contains(key)) {
+                if (!set.contains(key)) {
                     set.add(key);
                 }
             }
@@ -29,14 +29,14 @@ public class Exercise30_DuplicatesRevisited {
         }
 
         public long deDupWithLongValues(int numberOfValues, long maxValue) {
-            //Using Java's super optimized Set and HashSet since we are dealing with very large numbers
+            // Using Java's super optimized Set and HashSet since we are dealing with very large numbers
             // and every optimization counts
             java.util.Set<Long> set = new java.util.HashSet<>();
 
             for(int i = 0; i < numberOfValues; i++) {
                 long key = ThreadLocalRandom.current().nextLong(maxValue);
 
-                if(!set.contains(key)) {
+                if (!set.contains(key)) {
                     set.add(key);
                 }
             }
@@ -66,7 +66,7 @@ public class Exercise30_DuplicatesRevisited {
         private long countDistinctLongValuesUsingIndex(int numberOfValues, int maxValue) {
             long[] values = new long[maxValue];
 
-            for(int i = 0; i < numberOfValues; i++) {
+            for (int i = 0; i < numberOfValues; i++) {
                 long key = ThreadLocalRandom.current().nextLong(maxValue);
                 values[(int) key]++; //Ok to cast since the max value is 2x 10^9
             }
@@ -90,12 +90,12 @@ public class Exercise30_DuplicatesRevisited {
         int[] initialValues = {1000, 10000, 100000, 1000000};
         int[] bigValues = {10000000, 100000000, 1000000000};
 
-        //Generating integer values
+        // Generating integer values
         countDistinctValues(false, false, initialValues);
         countDistinctValues(true, false, initialValues);
         countDistinctValues(true, false, bigValues);
 
-        //Generating long values
+        // Generating long values
         countDistinctValues(false, true, initialValues);
         countDistinctValues(true, true, initialValues);
         countDistinctValues(true, true, bigValues);
@@ -144,7 +144,7 @@ public class Exercise30_DuplicatesRevisited {
 
                 for(int trial = 0; trial < numberOfTrials; trial++) {
 
-                    //Count the distinct values, but will not be used in this exercise since we are interested
+                    // Count the distinct values, but will not be used in this exercise since we are interested
                     // only in the running time
                     long distinctValues;
 
