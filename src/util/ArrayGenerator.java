@@ -66,7 +66,8 @@ public class ArrayGenerator {
             array[i] = new String();
 
             for(int j = 0; j < stringSize; j++) {
-                char randomChar = (char) StdRandom.uniform(65, 122 + 1);
+                char randomChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                        Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                 array[i] = array[i].concat(String.valueOf(randomChar));
             }
         }
@@ -81,7 +82,8 @@ public class ArrayGenerator {
         Set<Character> generatedChars = new HashSet<>();
 
         while (charsIndex < chars.length) {
-            int randomUppercaseCharIntValue = StdRandom.uniform(65, 91);
+            int randomUppercaseCharIntValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                    Constants.ASC_II_UPPERCASE_LETTERS_FINAL_INDEX + 1);
 
             char generatedChar = ((char) randomUppercaseCharIntValue);
 

@@ -36,10 +36,10 @@ public class Exercise33_Indexing {
                 for(int i = 1; i < tokens.length; i++) {
                     String value = tokens[i];
 
-                    if(!symbolTable1.contains(key)) {
+                    if (!symbolTable1.contains(key)) {
                         symbolTable1.put(key, new Queue<>());
                     }
-                    if(!symbolTable2.contains(value)) {
+                    if (!symbolTable2.contains(value)) {
                         symbolTable2.put(value, new Queue<>());
                     }
 
@@ -55,26 +55,26 @@ public class Exercise33_Indexing {
 
             //Queries
             for(int i = 0; i < numberOfQueries; i++) {
-                //Randomly chooses if this will be a key hit or a key miss query
+                //Randomly chooses if this query will be a key hit or a key miss
                 int keyHit = StdRandom.uniform(2);
                 boolean isKeyHit = keyHit == 1;
 
                 String query;
 
-                if(!isKeyHit) {
+                if (!isKeyHit) {
                     query = generateRandomKey();
                 } else {
                     int randomKeyIndex = StdRandom.uniform(keysArray.length);
                     query = keysArray[randomKeyIndex];
                 }
 
-                if(symbolTable1.contains(query)) {
+                if (symbolTable1.contains(query)) {
                     for(String value : symbolTable1.get(query)) {
                         //Loop through values
                     }
                 }
 
-                if(symbolTable2.contains(query)) {
+                if (symbolTable2.contains(query)) {
                     for(String value : symbolTable2.get(query)) {
                         //Loop through values
                     }
@@ -86,7 +86,8 @@ public class Exercise33_Indexing {
             StringBuilder stringBuilder = new StringBuilder();
 
             for(int i = 0; i < 5; i++) {
-                int ascIIRandomValue = StdRandom.uniform(65, 123);
+                int ascIIRandomValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                        Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                 stringBuilder.append(((char) ascIIRandomValue));
             }
 
@@ -95,8 +96,8 @@ public class Exercise33_Indexing {
 
     }
 
-    private static final String LARGE_INPUT_FILE_PATH1 = Constants.FILES_PATH + "surnames.csv";
-    private static final String LARGE_INPUT_FILE_PATH2 = Constants.FILES_PATH + "sdss174052.csv";
+    private static final String LARGE_INPUT_FILE_PATH1 = Constants.FILES_PATH + Constants.SURNAMES_CSV_FILE;
+    private static final String LARGE_INPUT_FILE_PATH2 = Constants.FILES_PATH + Constants.SDSS_CSV_FILE;
     private static final String SEPARATOR = ",";
 
     private void doExperiment() {
@@ -104,17 +105,17 @@ public class Exercise33_Indexing {
 
         int[] numberOfQueries = {100000, 1000000, 10000000, 100000000, 1000000000};
         String[] filePaths = {LARGE_INPUT_FILE_PATH1, LARGE_INPUT_FILE_PATH2};
-        String[] fileNames = {"surnames.csv", "sdss174052.csv"};
+        String[] fileNames = {Constants.SURNAMES_CSV_FILE, Constants.SDSS_CSV_FILE};
 
         StdOut.printf("%18s %20s %10s\n", "Large input | ", "Number of queries | ", "Time spent");
 
-        for(int i = 0; i < numberOfQueries.length; i++) {
-            for(int j = 0; j < filePaths.length; j++) {
+        for(int q = 0; q < numberOfQueries.length; q++) {
+            for(int f = 0; f < filePaths.length; f++) {
                 Stopwatch stopwatch = new Stopwatch();
-                lookupIndex.lookupIndex(filePaths[j], SEPARATOR, numberOfQueries[i]);
+                lookupIndex.lookupIndex(filePaths[f], SEPARATOR, numberOfQueries[q]);
                 double timeSpent = stopwatch.elapsedTime();
 
-                printResults(fileNames[j], numberOfQueries[i], timeSpent);
+                printResults(fileNames[f], numberOfQueries[q], timeSpent);
             }
         }
     }

@@ -4,20 +4,21 @@ import chapter3.section3.RedBlackBST;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import util.Constants;
 
 /**
  * Created by Rene Argento on 06/08/17.
  */
 public class Exercise13 {
 
-    //Arguments: 0: /Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/csv_file.txt
-    //           1: 0
-    //           2: 1
+    // Parameters example: 0: csv_file.txt
+    //                     1: 0
+    //                     2: 1
 
-    //Queries: arnold fzkey
-    //         rachel wrong
+    // Queries: arnold fzkey
+    //          rachel wrong
 
-    //Output expected:
+    // Output expected:
     // arnold 200
     // dijkstra 10
     // dwayne 201
@@ -28,7 +29,9 @@ public class Exercise13 {
     // wayne 10
 
     private void rangeLookupCSV(String[] args) {
-        In in = new In(args[0]);
+        String filePath = Constants.FILES_PATH + args[0];
+
+        In in = new In(filePath);
         int keyField = Integer.parseInt(args[1]);
         int valueField = Integer.parseInt(args[2]);
 

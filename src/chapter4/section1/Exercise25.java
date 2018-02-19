@@ -2,17 +2,13 @@ package chapter4.section1;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import util.Constants;
 
 import java.util.Calendar;
 
 /**
  * Created by Rene Argento on 19/09/17.
  */
-// args[0] - The file path
-// args[1] - The lines separator
-// args[2] - The source movie
-// args[3] - Years - Ignore movies that are more than Years years old
-//Arguments example: "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/movies.txt" / "Altered States (1980)" 15
 public class Exercise25 {
 
     private class DegreesOfSeparationRecentMovies {
@@ -61,8 +57,14 @@ public class Exercise25 {
 
     }
 
+    // args[0] - The file name
+    // args[1] - The lines separator
+    // args[2] - The source movie
+    // args[3] - Years - Ignore movies that are more than Years years old
+    //Arguments example: movies.txt / "Altered States (1980)" 15
     public static void main(String[] args) {
-        new Exercise25().new DegreesOfSeparationRecentMovies().buildGraphAndGetInput(args[0], args[1], args[2], args[3]);
+        String filePath = Constants.FILES_PATH + args[0];
+        new Exercise25().new DegreesOfSeparationRecentMovies().buildGraphAndGetInput(filePath, args[1], args[2], args[3]);
     }
 
 }

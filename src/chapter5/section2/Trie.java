@@ -6,7 +6,7 @@ import chapter1.section3.Queue;
  * Created by Rene Argento on 20/01/18.
  */
 @SuppressWarnings("unchecked")
-public class Trie<Value> {
+public class Trie<Value> implements TrieInterface<Value> {
 
     protected static final int R = 256; // radix
     protected Node root = new Node();

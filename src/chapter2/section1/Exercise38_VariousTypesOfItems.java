@@ -3,6 +3,7 @@ package chapter2.section1;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
+import util.Constants;
 
 import java.util.*;
 
@@ -147,11 +148,13 @@ public class Exercise38_VariousTypesOfItems {
 
         for(int i=0; i < chars.length; i++) {
 
-            int randomCharIntValue = StdRandom.uniform(65, 122 + 1);
+            int randomCharIntValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                    Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
 
             //Not valid characters
             while(randomCharIntValue >= 91 && randomCharIntValue <= 96) {
-                randomCharIntValue = StdRandom.uniform(65, 122 + 1);
+                randomCharIntValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                        Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
             }
 
             char randomCharValue = (char) randomCharIntValue;

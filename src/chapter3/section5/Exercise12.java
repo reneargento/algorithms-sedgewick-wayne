@@ -4,6 +4,7 @@ import chapter3.section3.RedBlackBST;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +14,15 @@ import java.util.List;
  */
 public class Exercise12 {
 
-    //Arguments: 0: /Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/csv_file.txt
-    //           1: 0
-    //           2: 1
+    // Parameters example: 0: csv_file.txt
+    //                     1: 0
+    //                     2: 1
 
-    //Queries: rene
+    // Queries: rene
     //         sedgewick
     //         wayne
 
-    //Output expected:
+    // Output expected:
     // rene
     // 1 3 5
     // sedgewick
@@ -29,7 +30,9 @@ public class Exercise12 {
     // wayne
     // 9 10
     private void lookupCSV(String[] args) {
-        In in = new In(args[0]);
+        String filePath = Constants.FILES_PATH + args[0];
+
+        In in = new In(filePath);
         int keyField = Integer.parseInt(args[1]);
         int valueField = Integer.parseInt(args[2]);
 

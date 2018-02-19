@@ -2,6 +2,7 @@ package chapter4.section4;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,8 @@ public class Exercise58_ArbitrageModel {
         StringBuilder currencyName = new StringBuilder();
 
         for(int letter = 0; letter < currencyNameLength; letter++) {
-            char randomChar = (char) StdRandom.uniform(65, 90 + 1);
+            char randomChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                    Constants.ASC_II_UPPERCASE_LETTERS_FINAL_INDEX + 1);
             currencyName.append(randomChar);
         }
 

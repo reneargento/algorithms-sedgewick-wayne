@@ -19,7 +19,7 @@ public class Exercise32_Dictionary {
 
             LinearProbingHashTable<String, String> symbolTable = new LinearProbingHashTable<>(997);
 
-            //Using Java's set to avoid duplicate keys and to transform it in an array with the toArray() method later
+            // Using Java's set to avoid duplicate keys and to transform it in an array with the toArray() method later
             java.util.Set<String> keys = new java.util.HashSet<>();
 
             boolean isTitleRow = true;
@@ -42,9 +42,9 @@ public class Exercise32_Dictionary {
 
             String[] keysArray = keys.toArray(new String[keys.size()]);
 
-            //Queries
+            // Queries
             for(int i = 0; i < numberOfQueries; i++) {
-                //Randomly chooses if this will be a key hit or a key miss query
+                // Randomly chooses if this will be a key hit or a key miss query
                 int keyHit = StdRandom.uniform(2);
                 boolean isKeyHit = keyHit == 1;
 
@@ -67,7 +67,8 @@ public class Exercise32_Dictionary {
             StringBuilder stringBuilder = new StringBuilder();
 
             for(int i = 0; i < 5; i++) {
-                int ascIIRandomValue = StdRandom.uniform(65, 123);
+                int ascIIRandomValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                        Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                 stringBuilder.append(((char) ascIIRandomValue));
             }
 
@@ -76,21 +77,21 @@ public class Exercise32_Dictionary {
 
     }
 
-    private static final String LARGE_INPUT_FILE_PATH1 = Constants.FILES_PATH + "surnames.csv";
-    private static final String LARGE_INPUT_FILE_PATH2 = Constants.FILES_PATH + "sdss174052.csv";
+    private static final String LARGE_INPUT_FILE_PATH1 = Constants.FILES_PATH + Constants.SURNAMES_CSV_FILE;
+    private static final String LARGE_INPUT_FILE_PATH2 = Constants.FILES_PATH + Constants.SDSS_CSV_FILE;
 
     private void doExperiment() {
         LookupCSV lookupCSV = new LookupCSV();
 
         int[] numberOfQueries = {100000, 1000000, 10000000, 100000000, 1000000000};
         String[] filePaths = {LARGE_INPUT_FILE_PATH1, LARGE_INPUT_FILE_PATH2};
-        String[] fileNames = {"surnames.csv", "sdss174052.csv"};
+        String[] fileNames = {Constants.SURNAMES_CSV_FILE, Constants.SDSS_CSV_FILE};
 
         StdOut.printf("%18s %20s %10s\n", "Large input | ", "Number of queries | ", "Time spent");
 
-        for(int i = 0; i < numberOfQueries.length; i++) {
-            for(int j = 0; j < filePaths.length; j++) {
-                In in = new In(filePaths[j]);
+        for(int q = 0; q < numberOfQueries.length; q++) {
+            for(int f = 0; f < filePaths.length; f++) {
+                In in = new In(filePaths[f]);
                 String line = in.readLine();
                 String[] tokens = line.split(",");
 
@@ -98,10 +99,10 @@ public class Exercise32_Dictionary {
                 int randomValueIndex = StdRandom.uniform(tokens.length);
 
                 Stopwatch stopwatch = new Stopwatch();
-                lookupCSV.lookup(filePaths[j], randomKeyIndex, randomValueIndex, numberOfQueries[i]);
+                lookupCSV.lookup(filePaths[f], randomKeyIndex, randomValueIndex, numberOfQueries[q]);
                 double timeSpent = stopwatch.elapsedTime();
 
-                printResults(fileNames[j], numberOfQueries[i], timeSpent);
+                printResults(fileNames[f], numberOfQueries[q], timeSpent);
             }
         }
     }

@@ -3,6 +3,7 @@ package chapter3.section5;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import util.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,8 +69,9 @@ public class Exercise22_FullyIndexedCSV {
         }
     }
 
+    // Parameters example: csv_file.txt
     public static void main(String[] args) {
-        //CSV file - "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/csv_file.txt"
+        //CSV file - csv_file.txt
         // rene,1,abc
         // sedgewick,9,aaa
         // dijkstra,10,dgs
@@ -99,9 +101,11 @@ public class Exercise22_FullyIndexedCSV {
         // 9
         // fenwick
 
+        String csvFilePath = Constants.FILES_PATH + args[0];
+
         Exercise22_FullyIndexedCSV fullyIndexedCSV = new Exercise22_FullyIndexedCSV();
         FullLookupCSV fullLookupCSV = fullyIndexedCSV.new FullLookupCSV();
-        fullLookupCSV.buildHashMapArray(args[0]);
+        fullLookupCSV.buildHashMapArray(csvFilePath);
 
         while (StdIn.hasNextLine()) {
             String line = StdIn.readLine();

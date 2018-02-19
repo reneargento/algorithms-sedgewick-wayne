@@ -2,6 +2,7 @@ package chapter3.section4;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import util.Constants;
 
 /**
  * Created by Rene Argento on 27/07/17.
@@ -82,7 +83,8 @@ public class Exercise35_ChiSquareTest extends Exercise30_ChiSquareStatistic {
 
             for(int c = 0; c < 10; c++) {
                 //Generate random char between 'A' and 'z'
-                char currentChar = (char) StdRandom.uniform(65, 122);
+                char currentChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                        Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                 string.append(currentChar);
             }
 

@@ -1,15 +1,16 @@
 package chapter4.section1;
 
 import chapter1.section3.Stack;
+import com.sun.tools.internal.jxc.ap.Const;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+import util.Constants;
 
 import java.util.Iterator;
 
 /**
  * Created by Rene Argento on 19/09/17.
  */
-//Arguments example: "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th ed. - Exercises/Data/movies.txt" / "Bacon, Kevin"
 @SuppressWarnings("unchecked")
 public class Exercise26 {
 
@@ -81,8 +82,8 @@ public class Exercise26 {
 
         }
 
-        private void degreesOfSeparationDFS(String fileName, String separator, String sourcePerformer) {
-            SymbolGraph symbolGraph = new SymbolGraph(fileName, separator);
+        private void degreesOfSeparationDFS(String filePath, String separator, String sourcePerformer) {
+            SymbolGraph symbolGraph = new SymbolGraph(filePath, separator);
 
             Graph graph = symbolGraph.graph();
 
@@ -112,11 +113,12 @@ public class Exercise26 {
                 }
             }
         }
-
     }
 
+    //Arguments example: movies.txt / "Bacon, Kevin"
     public static void main(String[] args) {
-        new Exercise26().new DegreesOfSeparationDFS().degreesOfSeparationDFS(args[0], args[1], args[2]);
+        String movieFilePath = Constants.FILES_PATH + args[0];
+        new Exercise26().new DegreesOfSeparationDFS().degreesOfSeparationDFS(movieFilePath, args[1], args[2]);
     }
 
 }

@@ -5,7 +5,7 @@ import chapter1.section3.Queue;
 /**
  * Created by Rene Argento on 21/01/18.
  */
-public class TernarySearchTrie<Value> {
+public class TernarySearchTrie<Value> implements TrieInterface<Value> {
 
     private int size;
     protected Node root;
