@@ -1,7 +1,5 @@
 package chapter5.section2;
 
-import chapter3.section4.SeparateChainingHashTable;
-
 import java.util.*;
 
 /**
@@ -96,7 +94,12 @@ public class StringSet {
         } else {
             char nextChar = key.charAt(digit);
             Node childNode = delete(node.next.get(nextChar), key, digit + 1);
-            node.next.put(nextChar, childNode);
+
+            if (childNode != null) {
+                node.next.put(nextChar, childNode);
+            } else {
+                node.next.remove(nextChar);
+            }
         }
 
         if (node.isKey || node.next.size() > 0) {
