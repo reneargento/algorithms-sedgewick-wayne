@@ -1,0 +1,183 @@
+5.2.3
+
+R-way trie after insertion of keys:
+now is the time for all good people to come to the aid of
+
+Empty trie:
+O
+
+Insert: now
+O
+|
+n
+|
+o
+|
+w
+
+Insert: is
+  O
+ / \
+i   n
+|   |
+s   o
+    |
+    w
+
+Insert: the
+   O
+ / | \
+i  n  t
+|  |  |
+s  o  h
+   |  |
+   w  e
+
+Insert: time
+   O
+ / |  \
+i  n    t
+|  |   /|
+s  o  h i
+   |  | |
+   w  e m
+        |
+        e
+
+Insert: for
+      O
+  / / |  \
+ f i  n    t
+ | |  |   /|
+ o s  o  h i
+ |    |  | |
+ r    w  e m
+           |
+           e
+
+Insert: all
+        O
+  / / / |  \
+ a f i  n    t
+ | | |  |   /|
+ l o s  o  h i
+ | |    |  | |
+ l r    w  e m
+             |
+             e
+
+Insert: good
+          O
+  / / / / |  \
+ a f g i  n    t
+ | | | |  |   /|
+ l o o s  o  h i
+ | | |    |  | |
+ l r o    w  e m
+     |         |
+     d         e
+
+Insert: people
+          O
+  / / / / | \   \
+ a f g i  n  p   t
+ | | | |  |  |  /|
+ l o o s  o  e h i
+ | | |    |  | | |
+ l r o    w  o e m
+     |       |   |
+     d       p   e
+             |
+             l
+             |
+             e
+
+Insert: to
+          O
+  / / / / | \   \
+ a f g i  n  p   t
+ | | | |  |  |  /|\
+ l o o s  o  e h i o
+ | | |    |  | | |
+ l r o    w  o e m
+     |       |   |
+     d       p   e
+             |
+             l
+             |
+             e
+
+Insert: come
+            O
+  / / / / / | \   \
+ a c f g i  n  p   t
+ | | | | |  |  |  /|\
+ l o o o s  o  e h i o
+ | | | |    |  | | |
+ l m r o    w  o e m
+   |   |       |   |
+   e   d       p   e
+               |
+               l
+               |
+               e
+
+Insert: to
+            O
+  / / / / / | \   \
+ a c f g i  n  p   t
+ | | | | |  |  |  /|\
+ l o o o s  o  e h i o
+ | | | |    |  | | |
+ l m r o    w  o e m
+   |   |       |   |
+   e   d       p   e
+               |
+               l
+               |
+               e
+
+Insert: the
+            O
+  / / / / / | \   \
+ a c f g i  n  p   t
+ | | | | |  |  |  /|\
+ l o o o s  o  e h i o
+ | | | |    |  | | |
+ l m r o    w  o e m
+   |   |       |   |
+   e   d       p   e
+               |
+               l
+               |
+               e
+
+Insert: aid
+             O
+   / / / / / | \   \
+  a c f g i  n  p   t
+ /| | | | |  |  |  /|\
+i l o o o s  o  e h i o
+| | | | |    |  | | |
+d l m r o    w  o e m
+    |   |       |   |
+    e   d       p   e
+                |
+                l
+                |
+                e
+
+Insert: of
+             O
+   / / / / / | \ \   \
+  a c f g i  n  o p   t
+ /| | | | |  |  | |  /|\
+i l o o o s  o  f e h i o
+| | | | |    |    | | |
+d l m r o    w    o e m
+    |   |         |   |
+    e   d         p   e
+                  |
+                  l
+                  |
+                  e

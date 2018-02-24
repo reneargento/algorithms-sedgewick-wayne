@@ -1,0 +1,110 @@
+5.2.23 - Duplicates (revisited again)
+
+Results:
+
+            Method |   Data structure |   Values type |  Values Generated |     Max Value |  Time spent
+ Array index count              Array         Integer                1000             500          0.01
+ Array index count              Array         Integer                1000            1000          0.00
+ Array index count              Array         Integer                1000            2000          0.00
+ Array index count              Array         Integer               10000            5000          0.00
+ Array index count              Array         Integer               10000           10000          0.00
+ Array index count              Array         Integer               10000           20000          0.00
+ Array index count              Array         Integer              100000           50000          0.02
+ Array index count              Array         Integer              100000          100000          0.02
+ Array index count              Array         Integer              100000          200000          0.03
+ Array index count              Array         Integer             1000000          500000          0.28
+ Array index count              Array         Integer             1000000         1000000          0.35
+ Array index count              Array         Integer             1000000         2000000          0.37
+             DeDup            HashSet         Integer                1000             500          0.00
+             DeDup            HashSet         Integer                1000            1000          0.00
+             DeDup            HashSet         Integer                1000            2000          0.00
+             DeDup            HashSet         Integer               10000            5000          0.01
+             DeDup            HashSet         Integer               10000           10000          0.01
+             DeDup            HashSet         Integer               10000           20000          0.01
+             DeDup            HashSet         Integer              100000           50000          0.05
+             DeDup            HashSet         Integer              100000          100000          0.06
+             DeDup            HashSet         Integer              100000          200000          0.06
+             DeDup            HashSet         Integer             1000000          500000          1.30
+             DeDup            HashSet         Integer             1000000         1000000          1.34
+             DeDup            HashSet         Integer             1000000         2000000          2.18
+             DeDup          StringSet         Integer                1000             500          0.01
+             DeDup          StringSet         Integer                1000            1000          0.00
+             DeDup          StringSet         Integer                1000            2000          0.00
+             DeDup          StringSet         Integer               10000            5000          0.02
+             DeDup          StringSet         Integer               10000           10000          0.02
+             DeDup          StringSet         Integer               10000           20000          0.03
+             DeDup          StringSet         Integer              100000           50000          0.29
+             DeDup          StringSet         Integer              100000          100000          0.35
+             DeDup          StringSet         Integer              100000          200000          0.46
+             DeDup          StringSet         Integer             1000000          500000          6.23
+             DeDup          StringSet         Integer             1000000         1000000          7.20
+             DeDup          StringSet         Integer             1000000         2000000          8.13
+ Array index count              Array            Long                1000             500          0.00
+ Array index count              Array            Long                1000            1000          0.00
+ Array index count              Array            Long                1000            2000          0.00
+ Array index count              Array            Long               10000            5000          0.00
+ Array index count              Array            Long               10000           10000          0.00
+ Array index count              Array            Long               10000           20000          0.00
+ Array index count              Array            Long              100000           50000          0.02
+ Array index count              Array            Long              100000          100000          0.02
+ Array index count              Array            Long              100000          200000          0.02
+ Array index count              Array            Long             1000000          500000          0.24
+ Array index count              Array            Long             1000000         1000000          0.38
+ Array index count              Array            Long             1000000         2000000          0.39
+             DeDup            HashSet            Long                1000             500          0.00
+             DeDup            HashSet            Long                1000            1000          0.00
+             DeDup            HashSet            Long                1000            2000          0.00
+             DeDup            HashSet            Long               10000            5000          0.01
+             DeDup            HashSet            Long               10000           10000          0.01
+             DeDup            HashSet            Long               10000           20000          0.01
+             DeDup            HashSet            Long              100000           50000          0.06
+             DeDup            HashSet            Long              100000          100000          0.08
+             DeDup            HashSet            Long              100000          200000          0.09
+             DeDup            HashSet            Long             1000000          500000          1.51
+             DeDup            HashSet            Long             1000000         1000000          1.57
+             DeDup            HashSet            Long             1000000         2000000          2.20
+             DeDup          StringSet            Long                1000             500          0.02
+             DeDup          StringSet            Long                1000            1000          0.01
+             DeDup          StringSet            Long                1000            2000          0.00
+             DeDup          StringSet            Long               10000            5000          0.03
+             DeDup          StringSet            Long               10000           10000          0.03
+             DeDup          StringSet            Long               10000           20000          0.03
+             DeDup          StringSet            Long              100000           50000          0.30
+             DeDup          StringSet            Long              100000          100000          0.40
+             DeDup          StringSet            Long              100000          200000          0.43
+             DeDup          StringSet            Long             1000000          500000          6.40
+             DeDup          StringSet            Long             1000000         1000000          7.29
+             DeDup          StringSet            Long             1000000         2000000          8.19
+
+Results for DeDup with 10^7 and 10^8 values generated (10^9 configuration was not used due to operational system limitations)
+
+            Method |   Data structure |   Values type |  Values Generated |     Max Value |  Time spent
+             DeDup            HashSet         Integer            10000000         5000000         19.15
+             DeDup            HashSet         Integer            10000000        10000000         24.70
+             DeDup            HashSet         Integer            10000000        20000000         30.05
+             DeDup            HashSet         Integer           100000000        50000000        513.71
+             DeDup            HashSet         Integer           100000000       100000000        823.40
+             DeDup            HashSet         Integer           100000000       200000000       2362.58
+             DeDup          StringSet         Integer            10000000         5000000        106.45
+             DeDup          StringSet         Integer            10000000        10000000        115.64
+             DeDup          StringSet         Integer            10000000        20000000        128.20
+             DeDup          StringSet         Integer           100000000        50000000       2131.47
+             DeDup          StringSet         Integer           100000000       100000000       5311.38
+             DeDup          StringSet         Integer           100000000       200000000      11004.70
+             DeDup            HashSet            Long            10000000         5000000        126.06
+             DeDup            HashSet            Long            10000000        10000000         39.92
+             DeDup            HashSet            Long            10000000        20000000         29.64
+             DeDup            HashSet            Long           100000000        50000000        530.19
+             DeDup            HashSet            Long           100000000       100000000        890.28
+             DeDup            HashSet            Long           100000000       200000000       1556.39
+             DeDup          StringSet            Long            10000000         5000000        151.01
+             DeDup          StringSet            Long            10000000        10000000        122.93
+             DeDup          StringSet            Long            10000000        20000000        141.92
+             DeDup          StringSet            Long           100000000        50000000       2610.32
+             DeDup          StringSet            Long           100000000       100000000       3423.40
+             DeDup          StringSet            Long           100000000       200000000       9592.43
+
+Dedup using a string set takes longer (more than 4 times more) to compute the distinct values than dedup using a hash set. The main reason for this seems to be because string sets only allow strings to be stored and every int and long key must be cast to a String before being inserted into the data structure. Casting is a costly operation, especially when it is done thousands or millions of times.
+As seen on exercise 3.5.30, dedup using a hash set takes longer to compute the distinct values than the method counting frequencies in the array for both random integer and random long values. This is expected because even though hash sets and arrays have constant search time, the hash set requires autoboxing and unboxing for the int and long keys, which adds time in the operations.
+Also, dedup does up to two operations per value generated: one to check if the set contains the value and (if it does not contain the value) another operation to insert it in the set whereas the array simply increases the value's index count. The dedup implementation in the book could be improved since the extra check to see if the set contains the value is not necessary. Sets do not allow duplicates, so it would internally ignore any attempts to insert a duplicate value.
+As expected, the experiments with dedup for N = 10^7 and 10^8 using a string set are also slower to compute the distinct values than with dedup using a hash set.

@@ -1,0 +1,119 @@
+5.2.1
+
+R-way trie after insertion of keys:
+no is th ti fo al go pe to co to th ai of th pa
+
+Empty trie:
+O
+
+Insert: no
+O
+|
+n
+|
+o
+
+Insert: is
+  O
+ / \
+i   n
+|   |
+s   o
+
+Insert: th
+   O
+ / | \
+i  n  t
+|  |  |
+s  o  h
+
+Insert: ti
+   O
+ / |  \
+i  n    t
+|  |   /|
+s  o  h i
+
+Insert: fo
+      O
+  / / |  \
+ f i  n    t
+ | |  |   /|
+ o s  o  h i
+
+Insert: al
+        O
+  / / / |  \
+ a f i  n    t
+ | | |  |   /|
+ l o s  o  h i
+
+Insert: go
+          O
+  / / / / |  \
+ a f g i  n    t
+ | | | |  |   /|
+ l o o s  o  h i
+
+Insert: pe
+          O
+  / / / / | \   \
+ a f g i  n  p   t
+ | | | |  |  |  /|
+ l o o s  o  e h i
+
+Insert: to
+          O
+  / / / / | \   \
+ a f g i  n  p   t
+ | | | |  |  |  /|\
+ l o o s  o  e h i o
+
+Insert: co
+            O
+  / / / / / | \   \
+ a c f g i  n  p   t
+ | | | | |  |  |  /|\
+ l o o o s  o  e h i o
+
+Insert: to
+            O
+  / / / / / | \   \
+ a c f g i  n  p   t
+ | | | | |  |  |  /|\
+ l o o o s  o  e h i o
+
+Insert: th
+            O
+  / / / / / | \   \
+ a c f g i  n  p   t
+ | | | | |  |  |  /|\
+ l o o o s  o  e h i o
+
+Insert: ai
+             O
+   / / / / / | \   \
+  a c f g i  n  p   t
+ /| | | | |  |  |  /|\
+i l o o o s  o  e h i o
+
+Insert: of
+             O
+   / / / / / | \ \   \
+  a c f g i  n  o p   t
+ /| | | | |  |  | |  /|\
+i l o o o s  o  f e h i o
+
+Insert: th
+             O
+   / / / / / | \ \   \
+  a c f g i  n  o p   t
+ /| | | | |  |  | |  /|\
+i l o o o s  o  f e h i o
+
+Insert: pa
+             O
+   / / / / / | \  \    \
+  a c f g i  n  o  p    t
+ /| | | | |  |  |  /|  /|\
+i l o o o s  o  f a e h i o

@@ -1,0 +1,32 @@
+5.2.25 - Dictionary
+
+Results:
+
+     Data structure |      Large input |  Number of queries |  Time spent
+               Trie       surnames.csv               100000          0.45
+               Trie     sdss174052.csv               100000          3.30
+               Trie       surnames.csv              1000000          0.84
+               Trie     sdss174052.csv              1000000          3.07
+               Trie       surnames.csv             10000000          1.57
+               Trie     sdss174052.csv             10000000         12.99
+               Trie       surnames.csv            100000000         10.84
+               Trie     sdss174052.csv            100000000        106.88
+               Trie       surnames.csv           1000000000        106.96
+               Trie     sdss174052.csv           1000000000       1058.09
+Ternary Search Trie       surnames.csv               100000          0.31
+Ternary Search Trie     sdss174052.csv               100000          0.64
+Ternary Search Trie       surnames.csv              1000000          0.42
+Ternary Search Trie     sdss174052.csv              1000000          1.19
+Ternary Search Trie       surnames.csv             10000000          2.06
+Ternary Search Trie     sdss174052.csv             10000000          5.09
+Ternary Search Trie       surnames.csv            100000000         18.49
+Ternary Search Trie     sdss174052.csv            100000000         55.80
+Ternary Search Trie       surnames.csv           1000000000        172.63
+Ternary Search Trie     sdss174052.csv           1000000000        540.73
+
+The tests show that when using tries and ternary search tries and dealing with large inputs and a large number of queries the performance of LookupCSV is good up to a certain point.
+In the experiments two large CSV files were used (both with over 150,000 rows).
+With tries, when doing 10^5 or 10^6 queries the time spent was less than or equal to 3.3 seconds. 10^7 queries took up to 12.99 seconds, 10^8 queries took up to 106.88 seconds and 10^9 queries took up to 1058.09 seconds (17.7 minutes). 
+With ternary search tries, when doing 10^5 or 10^6 queries the time spent was less than 1.2 seconds. 10^7 queries took up to 5.09 seconds, 10^8 queries took up to 55.8 seconds and 10^9 queries took up to 540.73 seconds (9 minutes).
+For tries the LookupCSV performance was good up to 10^6 queries while for ternary search tries the LookupCSV performance was good up to 10^7 queries.
+Just like in the experiment in exercise 5.2.24, ternary search tries had an overall (in almost all experiments) better performance than tries. Also, when taking into account the results obtained in the experiments in exercise 3.5.32, linear probing hash tables are faster than both tries and ternary search tries for a client like LookupCSV (with 10^9 queries taking up to 240.42 seconds).

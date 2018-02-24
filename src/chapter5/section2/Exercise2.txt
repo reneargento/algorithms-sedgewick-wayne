@@ -1,0 +1,194 @@
+5.2.2
+
+Ternary search trie after insertion of keys:
+no is th ti fo al go pe to co to th ai of th pa
+
+Empty TST:
+
+Insert: no
+ n
+/|\
+ o
+/|\
+
+Insert: is
+       n
+    /  |  \
+   i   o
+  /|\ /|\
+   s
+  /|\
+
+Insert: th
+       n
+    /  |   \
+   i   o    t
+  /|\ /|\  /|\
+   s        h
+  /|\      /|\
+
+Insert: ti
+       n
+    /  |   \
+   i   o    t
+  /|\ /|\  /|\
+   s        h
+  /|\      /|\
+              i
+             /|\
+
+Insert: fo
+          n
+     /    |   \
+    i     o    t
+  / | \  /|\  /|\
+ f   s         h
+/|\ /|\       /|\
+ o               i
+/|\             /|\
+
+Insert: al
+              n
+         /    |   \
+        i     o    t
+      / | \  /|\  /|\
+     f   s         h
+  /  |\ /|\       /|\
+ a   o               i
+/|\ /|\             /|\
+ l
+/|\
+
+Insert: go
+                  n
+             /    |   \
+            i     o    t
+      /     | \  /|\  /|\
+     f       s         h
+  /  | \    /|\       /|\
+ a   o   g               i
+/|\ /|\ /|\             /|\
+ l       o
+/|\     /|\
+
+Insert: pe
+                  n
+             /    |     \
+            i     o       t
+      /     | \  /|\   /  | \
+     f       s        p   h
+  /  | \    /|\      /|\ /|\
+ a   o   g            e     i
+/|\ /|\ /|\          /|\   /|\
+ l       o
+/|\     /|\
+
+Insert: to
+                  n
+             /    |     \
+            i     o       t
+      /     | \  /|\   /  | \
+     f       s        p   h
+  /  | \    /|\      /|\ /|\
+ a   o   g            e     i
+/|\ /|\ /|\          /|\   /|\
+ l       o                    o
+/|\     /|\                  /|\
+
+Insert: co
+                      n
+                 /    |     \
+                i     o       t
+          /     | \  /|\   /  | \
+         f       s        p   h
+  /      | \    /|\      /|\ /|\
+ a       o   g            e     i
+/| \    /|\ /|\          /|\   /|\
+ l   c      o                     o
+/|\ /|\    /|\                   /|\
+     o
+    /|\
+
+Insert: to
+                      n
+                 /    |     \
+                i     o       t
+          /     | \  /|\   /  | \
+         f       s        p   h
+  /      | \    /|\      /|\ /|\
+ a       o   g            e     i
+/| \    /|\ /|\          /|\   /|\
+ l   c      o                     o
+/|\ /|\    /|\                   /|\
+     o
+    /|\
+
+Insert: th
+                      n
+                 /    |     \
+                i     o       t
+          /     | \  /|\   /  | \
+         f       s        p   h
+  /      | \    /|\      /|\ /|\
+ a       o   g            e     i
+/| \    /|\ /|\          /|\   /|\
+ l   c      o                     o
+/|\ /|\    /|\                   /|\
+     o
+    /|\
+
+Insert: ai
+                        n
+                   /    |     \
+                  i     o       t
+            /     | \  /|\   /  | \
+           f       s        p   h
+    /      | \    /|\      /|\ /|\
+   a       o   g            e     i
+  /| \    /|\ /|\          /|\   /|\
+   l   c      o                     o
+  /|\ /|\    /|\                   /|\
+ i     o
+/|\   /|\
+
+Insert: of
+                        n
+                   /    |        \
+                  i     o          t
+            /     | \  /|\     /    | \
+           f       s          p     h
+    /      | \    /|\      /  |\   /|\
+   a       o   g          o   e       i
+  /| \    /|\ /|\        /|\ /|\     /|\
+   l   c      o           f             o
+  /|\ /|\    /|\         /|\           /|\
+ i     o
+/|\   /|\
+
+Insert: th
+                        n
+                   /    |        \
+                  i     o          t
+            /     | \  /|\     /    | \
+           f       s          p     h
+    /      | \    /|\      /  |\   /|\
+   a       o   g          o   e       i
+  /| \    /|\ /|\        /|\ /|\     /|\
+   l   c      o           f             o
+  /|\ /|\    /|\         /|\           /|\
+ i     o
+/|\   /|\
+
+Insert: pa
+                        n
+                   /    |          \
+                  i     o            t
+            /     | \  /|\       /    | \
+           f       s            p     h
+    /      | \    /|\      /    |\   /|\
+   a       o   g          o     e       i
+  /| \    /|\ /|\        /|\   /|\     /|\
+   l   c      o           f   a           o
+  /|\ /|\    /|\         /|\ /|\         /|\
+ i     o
+/|\   /|\

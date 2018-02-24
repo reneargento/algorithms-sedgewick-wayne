@@ -1,0 +1,19 @@
+5.2.7 - Empty string in TSTs
+
+At the beginning of the put() method the algorithm tries to read the key's char at index 0.
+Since the string is empty, it throws a StringIndexOutOfBoundsException.
+
+A correction would be to use a unique character such as Character.MIN_VALUE '\u0000' to represent an empty string.
+When putting, deleting or querying for an empty string the algorithm would map the empty string to the this character and would store it in this format. When returning from a query, the character would be decoded back to an empty string.
+
+For the other methods:
+* Contains would map the empty string to the unique character chosen and would verify if it is present in the TST.
+* KeysWithPrefix would check if the unique character is in the TST, and would map it to the empty string. The empty string would be returned for all parameters, since it is a prefix of all strings.
+* LongestPrefixOf would consider the empty string as a prefix of all search keys, if the unique character that represents it is present in the TST.
+* Floor would return the empty string if the search key and any of its other prefixes were not in the TST (and the empty string, represented by the unique chosen character, were present).
+* Ceiling would return the empty string when the search key were the empty string, if the unique character that represents it were present in the TST.
+* Select and rank would consider the empty string (if present) as having the rank 0. In this case, all keys with rank lower than the chosen unique character would need to have their rank increased by 1. The other keys would already have the correct rank in the TST. Also, the chosen unique character would have to be ignored in the methods.
+* Min would return the empty string if it were present, since it is considered to be the lowest possible key. DeleteMin would delete the empty string in this case.
+* Max would return the empty string if it were the only key in the TST. DeleteMax would delete the empty string in this case.
+
+This assumes that the character '\u0000' is not used in other parts of the application and will not be inserted in the TST. If it will, then any other character that is not used in the application can be selected to internally represent the empty string.

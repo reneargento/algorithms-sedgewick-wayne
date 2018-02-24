@@ -1,0 +1,10 @@
+5.2.24 - Spell checker
+
+Results:
+
+ Time spent trie |  Time spent TST
+            0.71              0.44
+
+The ternary search trie had the best result, computing misspelled words in almost half the time required by the trie (the TST took 0.44 seconds against the 0.71 seconds taken by the trie).
+This is an unexpected result because tries make a constant number of character compares during the search for words, while ternary search tries make a logarithmic number of character compares during these same searches.
+One possible explanation for this result is that whenever a new node is created in the trie, an array of size 256 is also created. The cumulative time needed for the creation of these arrays may take a performance hit when dealing with many operations.

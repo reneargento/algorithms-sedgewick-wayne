@@ -1,0 +1,216 @@
+5.2.4
+
+Ternary search trie after insertion of keys:
+now is the time for all good people to come to the aid of
+
+Empty TST:
+
+Insert: now
+ n
+/|\
+ o
+/|\
+ w
+/|\
+
+Insert: is
+       n
+    /  |  \
+   i   o
+  /|\ /|\
+   s   w
+  /|\ /|\
+
+Insert: the
+       n
+    /  |   \
+   i   o    t
+  /|\ /|\  /|\
+   s   w    h
+  /|\ /|\  /|\
+            e
+           /|\
+
+Insert: time
+        n
+    /   |    \
+   i    o     t
+  /|\  /|\   /|\
+   s    w     h
+  /|\  /|\  / |  \
+              e   i
+             /|\ /|\
+                  m
+                 /|\
+                  e
+                 /|\
+
+Insert: for
+          n
+      /   |    \
+     i    o     t
+  /  |\  /|\   /|\
+ f   s    w     h
+/|\ /|\  /|\  / |  \
+ o              e   i
+/|\            /|\ /|\
+ r                  m
+/|\                /|\
+                    e
+                   /|\
+
+Insert: all
+              n
+          /   |    \
+         i    o     t
+      /  |\  /|\   /|\
+     f   s    w     h
+  /  |\ /|\  /|\  / |  \
+ a   o              e   i
+/|\ /|\            /|\ /|\
+ l   r                  m
+/|\ /|\                /|\
+ l                      e
+/|\                    /|\
+
+Insert: good
+                  n
+              /   |    \
+             i    o     t
+       /     |\  /|\   /|\
+     f       s    w     h
+  /  |  \   /|\  /|\  / |  \
+ a   o   g              e   i
+/|\ /|\ /|\            /|\ /|\
+ l   r   o                  m
+/|\ /|\ /|\                /|\
+ l       o                  e
+/|\     /|\                /|\
+         d
+        /|\
+
+Insert: people
+                  n
+              /   |       \
+             i    o         t
+       /     |\  /|\    /   |\
+     f       s    w    p    h
+  /  |  \   /|\  /|\  /|\ / |  \
+ a   o   g             e    e   i
+/|\ /|\ /|\           /|\  /|\ /|\
+ l   r   o             o        m
+/|\ /|\ /|\           /|\      /|\
+ l       o             p        e
+/|\     /|\           /|\      /|\
+         d             l
+        /|\           /|\
+                       e
+                      /|\
+
+Insert: to
+                  n
+              /   |       \
+             i    o         t
+       /     |\  /|\    /   |\
+     f       s    w    p    h
+  /  |  \   /|\  /|\  /|\ / |  \
+ a   o   g             e    e    i
+/|\ /|\ /|\           /|\  /|\ / |  \
+ l   r   o             o         m   o
+/|\ /|\ /|\           /|\       /|\ /|\
+ l       o             p         e
+/|\     /|\           /|\       /|\
+         d             l
+        /|\           /|\
+                       e
+                      /|\
+
+Insert: come
+                      n
+                  /   |       \
+                 i    o         t
+           /     |\  /|\    /   |\
+         f       s    w    p    h
+  /      |  \   /|\  /|\  /|\ / |  \
+ a       o   g             e    e    i
+/|  \   /|\ /|\           /|\  /|\ / |  \
+ l   c   r   o             o         m   o
+/|\  |  /|\ /|\           /|\       /|\ /|\
+ l   o       o             p         e
+/|\ /|\     /|\           /|\       /|\
+     m       d             l
+    /|\     /|\           /|\
+     e                     e
+    /|\                   /|\
+
+Insert: to
+                      n
+                  /   |       \
+                 i    o         t
+           /     |\  /|\    /   |\
+         f       s    w    p    h
+  /      |  \   /|\  /|\  /|\ / |  \
+ a       o   g             e    e    i
+/|  \   /|\ /|\           /|\  /|\ / |  \
+ l   c   r   o             o         m   o
+/|\  |  /|\ /|\           /|\       /|\ /|\
+ l   o       o             p         e
+/|\ /|\     /|\           /|\       /|\
+     m       d             l
+    /|\     /|\           /|\
+     e                     e
+    /|\                   /|\
+
+Insert: the
+                      n
+                  /   |       \
+                 i    o         t
+           /     |\  /|\    /   |\
+         f       s    w    p    h
+  /      |  \   /|\  /|\  /|\ / |  \
+ a       o   g             e    e    i
+/|  \   /|\ /|\           /|\  /|\ / |  \
+ l   c   r   o             o         m   o
+/|\  |  /|\ /|\           /|\       /|\ /|\
+ l   o       o             p         e
+/|\ /|\     /|\           /|\       /|\
+     m       d             l
+    /|\     /|\           /|\
+     e                     e
+    /|\                   /|\
+
+Insert: aid
+                          n
+                      /   |       \
+                     i    o         t
+               /     |\  /|\    /   |\
+             f       s    w    p    h
+      /      |  \   /|\  /|\  /|\ / |  \
+     a       o   g             e    e    i
+   / |  \   /|\ /|\           /|\  /|\ / |  \
+ i   l   c   r   o             o         m   o
+/|\ /|\  |  /|\ /|\           /|\       /|\ /|\
+ d   l   o       o             p         e
+/|\ /|\ /|\     /|\           /|\       /|\
+         m       d             l
+        /|\     /|\           /|\
+         e                     e
+        /|\                   /|\
+
+Insert: of
+                          n
+                      /   |           \
+                     i    o             t
+               /     |\  /|\        /   |\
+             f       s    w        p    h
+      /      |  \   /|\  /|\   /   |\ / |  \
+     a       o   g            o    e    e    i
+   / |  \   /|\ /|\          /|\  /|\  /|\ / |  \
+ i   l   c   r   o            f    o         m   o
+/|\ /|\  |  /|\ /|\          /|\  /|\       /|\ /|\
+ d   l   o       o                 p         e
+/|\ /|\ /|\     /|\               /|\       /|\
+         m       d                 l
+        /|\     /|\               /|\
+         e                         e
+        /|\                       /|\

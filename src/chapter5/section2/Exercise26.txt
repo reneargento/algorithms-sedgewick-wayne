@@ -1,0 +1,32 @@
+5.2.26 - Indexing
+
+Results:
+
+     Data structure |      Large input |  Number of queries |  Time spent
+               Trie       surnames.csv               100000          2.77
+               Trie     sdss174052.csv               100000         23.97
+               Trie       surnames.csv              1000000          2.67
+               Trie     sdss174052.csv              1000000         19.42
+               Trie       surnames.csv             10000000         12.05
+               Trie     sdss174052.csv             10000000         30.85
+               Trie       surnames.csv            100000000         79.48
+               Trie     sdss174052.csv            100000000        168.52
+               Trie       surnames.csv           1000000000        723.32
+               Trie     sdss174052.csv           1000000000       1259.36
+Ternary Search Trie       surnames.csv               100000          2.04
+Ternary Search Trie     sdss174052.csv               100000          3.70
+Ternary Search Trie       surnames.csv              1000000          2.11
+Ternary Search Trie     sdss174052.csv              1000000          4.84
+Ternary Search Trie       surnames.csv             10000000         11.44
+Ternary Search Trie     sdss174052.csv             10000000         11.79
+Ternary Search Trie       surnames.csv            100000000         82.00
+Ternary Search Trie     sdss174052.csv            100000000         84.68
+Ternary Search Trie       surnames.csv           1000000000        800.03
+Ternary Search Trie     sdss174052.csv           1000000000        806.24
+
+The tests show that the performance of LookupIndex is, in general, better when a ternary search trie is used than when a trie is used.
+In the experiments two large CSV files were used (both with over 150,000 rows).
+With tries, 10^5 queries took up to 23.97 seconds, 10^6 queries took up to 19.42 seconds, 10^7 queries took up to 30.85 seconds, 10^8 queries took up to 168.52 seconds and 10^9 queries took up to 1259.36 seconds.
+With ternary search tries, 10^5 queries took up to 3.7 seconds, 10^6 queries took up to 4.84 seconds, 10^7 queries took up to 11.79 seconds, 10^8 queries took up to 84.68 seconds and 10^9 queries took up to 806.24 seconds.
+Also, when taking into account the results obtained in the experiments in exercise 3.5.33, linear probing hash tables are faster than both tries and ternary search tries for a client like LookupIndex (with 10^9 queries taking up to 549.57 seconds).
+Both the runtime results obtained with ternary search tries and with linear probing hash tables (but not the results obtained with tries) are good results considering the flexibility that LookupIndex provides with all parameters indexed.
