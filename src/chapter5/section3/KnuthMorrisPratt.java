@@ -1,5 +1,6 @@
 package chapter5.section3;
 
+import chapter1.section3.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
@@ -8,7 +9,7 @@ import edu.princeton.cs.algs4.StdOut;
 // Runs in O(N + M)
 // Extra space: R * M
 // Does not require backup in the input text
-public class KnuthMorrisPratt {
+public class KnuthMorrisPratt implements SubstringSearch {
 
     protected String pattern;
     protected int[][] dfa;  // deterministic-finite-automaton
@@ -71,25 +72,24 @@ public class KnuthMorrisPratt {
         return count;
     }
 
-    // Prints all the occurrences of pattern in the text
-    public void searchAll(String text) {
+    // Finds all the occurrences of pattern in the text
+    public Iterable<Integer> findAll(String text) {
+        Queue<Integer> offsets = new Queue<>();
+
         int occurrenceIndex = searchFromIndex(text, 0);
 
-        if (occurrenceIndex == text.length()) {
-            StdOut.println("No occurrences");
-            return;
-        }
-
         while (occurrenceIndex != text.length()) {
-            StdOut.println("Pattern found at index " + occurrenceIndex);
+            offsets.enqueue(occurrenceIndex);
             occurrenceIndex = searchFromIndex(text, occurrenceIndex + 1);
         }
+
+        return offsets;
     }
 
     // Searches for the pattern in the text starting at specified index.
     // Most of the code is copied from search() method instead of making search() call this method with textStartIndex 0
     // in order to keep the methods separated for educational purposes.
-    private int searchFromIndex(String text, int textStartIndex) {
+    protected int searchFromIndex(String text, int textStartIndex) {
         int textIndex;
         int patternIndex;
         int textLength = text.length();

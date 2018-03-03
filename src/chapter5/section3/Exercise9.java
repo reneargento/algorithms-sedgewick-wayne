@@ -43,7 +43,7 @@ public class Exercise9 {
         }
 
         // Searches for the pattern in the text starting at specified index
-        private int searchFromIndex(String text, int textStartIndex) {
+        protected int searchFromIndex(String text, int textStartIndex) {
             int textLength = text.length();
             int patternLength = pattern.length();
 

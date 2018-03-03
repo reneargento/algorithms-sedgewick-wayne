@@ -1,5 +1,6 @@
 package chapter5.section3;
 
+import chapter1.section3.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.math.BigInteger;
@@ -19,7 +20,7 @@ import java.util.Random;
 // Extra space: 1
 // Requires backup in the input text
 // Always gives the correct output
-public class RabinKarp {
+public class RabinKarp implements SubstringSearch {
 
     protected String pattern;        // Only needed in the Las Vegas version
     protected long patternHash;
@@ -122,17 +123,14 @@ public class RabinKarp {
         return count;
     }
 
-    // Prints all the occurrences of pattern in the text
-    public void searchAll(String text) {
+    // Finds all the occurrences of pattern in the text
+    public Iterable<Integer> findAll(String text) {
+        Queue<Integer> offsets = new Queue<>();
+
         int occurrenceIndex = searchFromIndex(text, 0);
 
-        if (occurrenceIndex == text.length()) {
-            StdOut.println("No occurrences");
-            return;
-        }
-
         while (occurrenceIndex != text.length()) {
-            StdOut.println("Pattern found at index " + occurrenceIndex);
+            offsets.enqueue(occurrenceIndex);
 
             if (occurrenceIndex + 1 >= text.length()) {
                 break;
@@ -140,10 +138,12 @@ public class RabinKarp {
 
             occurrenceIndex = searchFromIndex(text, occurrenceIndex + 1);
         }
+
+        return offsets;
     }
 
     // Searches for the pattern in the text starting at specified index
-    private int searchFromIndex(String text, int textStartIndex) {
+    protected int searchFromIndex(String text, int textStartIndex) {
         String eligibleText = text.substring(textStartIndex);
 
         int textLength = eligibleText.length();
