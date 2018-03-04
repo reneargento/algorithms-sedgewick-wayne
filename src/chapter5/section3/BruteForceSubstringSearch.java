@@ -5,6 +5,7 @@ import chapter1.section3.Queue;
 /**
  * Created by Rene Argento on 24/02/18.
  */
+// Runs in O(N * M), but the typical running time is N + M
 public class BruteForceSubstringSearch implements SubstringSearch {
 
     protected String pattern;

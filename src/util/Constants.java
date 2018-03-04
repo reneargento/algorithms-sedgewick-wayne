@@ -21,6 +21,7 @@ public class Constants {
     public static final String RATES_FILE = "rates.txt";
     public static final String REAL_WORLD_RATES_FILE = "4.4.20_rates.txt";
     public static final String TINY_EWD_FILE = "tinyEWD.txt";
+    public static final String STREAMING_FILE = "streaming.txt";
     public static final int ASC_II_LOWERCASE_LETTERS_INITIAL_INDEX = 97;
     public static final int ASC_II_LOWERCASE_LETTERS_FINAL_INDEX = 122;
     public static final int ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX = 65;

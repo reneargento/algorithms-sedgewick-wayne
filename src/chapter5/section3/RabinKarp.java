@@ -16,7 +16,8 @@ import java.util.Random;
 // Has a probabilistic guarantee of giving the correct output
 
 // Las Vegas version
-// Runs in O(N + M) -> Has a probabilistic guarantee of running in this time.
+// Typical running time is O(N + M) -> Has a probabilistic guarantee of running in this time.
+// Worst case is O(N * M)
 // Extra space: 1
 // Requires backup in the input text
 // Always gives the correct output
@@ -82,6 +83,11 @@ public class RabinKarp implements SubstringSearch {
     // Returns the index of the first occurrence of the pattern string in the text string or textLength if no such match.
     public int search(String text) {
         int textLength = text.length();
+
+        if (textLength < patternLength) {
+            return textLength;
+        }
+
         long textHash = hash(text);
 
         if (patternHash == textHash && check(text, 0)) {
@@ -147,6 +153,11 @@ public class RabinKarp implements SubstringSearch {
         String eligibleText = text.substring(textStartIndex);
 
         int textLength = eligibleText.length();
+
+        if (textLength < patternLength) {
+            return textLength;
+        }
+
         long textHash = hash(eligibleText);
 
         if (patternHash == textHash && check(eligibleText, 0)) {

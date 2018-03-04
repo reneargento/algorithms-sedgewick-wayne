@@ -57,6 +57,11 @@ public class Exercise10 {
             String eligibleText = text.substring(textStartIndex);
 
             int textLength = eligibleText.length();
+
+            if (textLength < patternLength) {
+                return textLength;
+            }
+
             long textHash = hash(eligibleText);
 
             if (patternHash == textHash && check(eligibleText, 0)) {
