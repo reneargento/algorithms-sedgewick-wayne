@@ -61,7 +61,7 @@ public class Exercise25_Streaming {
             }
 
             for (textIndex = patternLength; inputStream.hasNextChar(); textIndex++) {
-                // Remove leading digit, add trailing digit, check for match
+                // Remove leading character, add trailing character, check for match
                 int leadingDigitIndex;
 
                 if (endBufferIndex + 1 - patternLength < 0) {

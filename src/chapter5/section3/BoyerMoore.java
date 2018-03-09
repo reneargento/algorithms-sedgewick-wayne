@@ -15,6 +15,10 @@ public class BoyerMoore implements SubstringSearch {
     protected String pattern;
 
     public BoyerMoore(String pattern) {
+        if (pattern == null) {
+            throw new IllegalArgumentException("Invalid pattern");
+        }
+
         this.pattern = pattern;
         int alphabetSize = 256;
 

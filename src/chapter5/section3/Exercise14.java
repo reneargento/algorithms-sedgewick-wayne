@@ -369,7 +369,7 @@ public class Exercise14 {
             }
 
             for (int textIndex = patternLength; textIndex < textLength; textIndex++) {
-                // Remove leading digit, add trailing digit, check for match
+                // Remove leading character, add trailing character, check for match
                 textHash = (textHash + largePrimeNumber - rm * eligibleText[textIndex - patternLength] % largePrimeNumber)
                         % largePrimeNumber;
                 textHash = (textHash * alphabetSize + eligibleText[textIndex]) % largePrimeNumber;

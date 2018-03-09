@@ -32,6 +32,11 @@ public class RabinKarp implements SubstringSearch {
     private boolean isMonteCarloVersion;
 
     public RabinKarp(String pattern, boolean isMonteCarloVersion) {
+
+        if (pattern == null) {
+            throw new IllegalArgumentException("Invalid pattern");
+        }
+
         this.pattern = pattern;
         patternLength = pattern.length();
         this.isMonteCarloVersion = isMonteCarloVersion;
@@ -95,7 +100,7 @@ public class RabinKarp implements SubstringSearch {
         }
 
         for (int textIndex = patternLength; textIndex < textLength; textIndex++) {
-            // Remove leading digit, add trailing digit, check for match
+            // Remove leading character, add trailing character, check for match
             textHash = (textHash + largePrimeNumber - rm * text.charAt(textIndex - patternLength) % largePrimeNumber)
                     % largePrimeNumber;
             textHash = (textHash * alphabetSize + text.charAt(textIndex)) % largePrimeNumber;
@@ -165,7 +170,7 @@ public class RabinKarp implements SubstringSearch {
         }
 
         for (int textIndex = patternLength; textIndex < textLength; textIndex++) {
-            // Remove leading digit, add trailing digit, check for match
+            // Remove leading character, add trailing character, check for match
             textHash = (textHash + largePrimeNumber - rm * eligibleText.charAt(textIndex - patternLength) % largePrimeNumber)
                     % largePrimeNumber;
             textHash = (textHash * alphabetSize + eligibleText.charAt(textIndex)) % largePrimeNumber;

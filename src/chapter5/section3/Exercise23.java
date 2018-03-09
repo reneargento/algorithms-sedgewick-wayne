@@ -67,8 +67,8 @@ public class Exercise23 {
             }
 
             if (patternLength % 2 == 0) {
-                // Left string -> add trailing digit in left half
-                // Right string -> add trailing digit in right half
+                // Left string -> add trailing character in left half
+                // Right string -> add trailing character in right half
                 char characterToBeAddedInLeftString = currentString.charAt((patternLength - 1) / 2);
 
                 leftStringReverse.insert(0, characterToBeAddedInLeftString);
@@ -80,7 +80,7 @@ public class Exercise23 {
                 rightHalfHash = (rightHalfHash * alphabetSize + character) % largePrimeNumber;
             } else {
                 // Left string -> no changes
-                // Right string -> remove leading digit and add trailing digit
+                // Right string -> remove leading character and add trailing character
                 char characterToRemove = rightString.charAt(0);
 
                 rightString.deleteCharAt(0);
