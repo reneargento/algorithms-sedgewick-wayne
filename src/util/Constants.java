@@ -6,6 +6,7 @@ package util;
 public class Constants {
 
     public static final String FILES_PATH = "/Users/rene/Desktop/Algorithms/Books/Algorithms, 4th edition/Data/";
+    public static final String TALE_OF_TWO_CITIES_FILE = "tale_of_two_cities.txt";
     public static final String SURNAMES_CSV_FILE = "surnames.csv";
     public static final String SDSS_CSV_FILE = "sdss174052.csv";
     public static final String WAR_AND_PEACE_FILE = "war_and_peace.txt";

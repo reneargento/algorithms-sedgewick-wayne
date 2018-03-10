@@ -59,7 +59,7 @@ public class Exercise10 {
             int textLength = eligibleText.length();
 
             if (textLength < patternLength) {
-                return textLength;
+                return textStartIndex + textLength;  // no match
             }
 
             long textHash = hash(eligibleText);

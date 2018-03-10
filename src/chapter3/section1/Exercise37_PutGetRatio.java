@@ -11,7 +11,7 @@ import util.FileUtil;
  */
 public class Exercise37_PutGetRatio {
 
-    private static final String TALE_FILE_PATH = Constants.FILES_PATH + "tale_of_two_cities.txt";
+    private static final String TALE_FILE_PATH = Constants.FILES_PATH + Constants.TALE_OF_TWO_CITIES_FILE;
 
     public static void main(String[] args) {
         new Exercise37_PutGetRatio().doExperiments();

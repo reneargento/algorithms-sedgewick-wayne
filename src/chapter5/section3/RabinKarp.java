@@ -160,7 +160,7 @@ public class RabinKarp implements SubstringSearch {
         int textLength = eligibleText.length();
 
         if (textLength < patternLength) {
-            return textLength;
+            return textStartIndex + textLength;  // no match
         }
 
         long textHash = hash(eligibleText);

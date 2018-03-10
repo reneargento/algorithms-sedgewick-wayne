@@ -10,6 +10,11 @@ public interface SubstringSearch {
     int BOYER_MOORE = 2;
     int RABIN_KARP = 3;
 
+    String BRUTEFORCE_METHOD = "Bruteforce";
+    String KNUTH_MORRIS_PRATT_METHOD = "Knuth-Morris-Pratt";
+    String BOYER_MOORE_METHOD = "Boyer-Moore";
+    String RABIN_KARP_METHOD = "Rabin-Karp";
+
     int search(String text);
     int count(String text);
     Iterable<Integer> findAll(String text);

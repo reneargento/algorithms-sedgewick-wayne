@@ -359,7 +359,7 @@ public class Exercise14 {
             int textLength = eligibleText.length;
 
             if (textLength < patternLength) {
-                return textLength;
+                return textStartIndex + textLength;  // no match
             }
 
             long textHash = hash(eligibleText);

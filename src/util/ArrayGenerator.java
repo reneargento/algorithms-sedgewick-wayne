@@ -62,17 +62,38 @@ public class ArrayGenerator {
         String[] array = new String[length];
 
         for(int i = 0; i < length; i++) {
-            int stringSize = StdRandom.uniform(minStringLength, maxStringLength + 1);
-            array[i] = new String();
-
-            for(int j = 0; j < stringSize; j++) {
-                char randomChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
-                        Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
-                array[i] = array[i].concat(String.valueOf(randomChar));
-            }
+            array[i] = generateRandomString(minStringLength, maxStringLength);
         }
 
         return array;
+    }
+
+    public static String generateRandomString(int minStringLength, int maxStringLength) {
+
+        StringBuilder randomString = new StringBuilder();
+
+        int stringSize = StdRandom.uniform(minStringLength, maxStringLength + 1);
+
+        for(int i = 0; i < stringSize; i++) {
+            char randomChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                    Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
+            randomString.append(randomChar);
+        }
+
+        return randomString.toString();
+    }
+
+    public static String generateRandomStringOfSpecifiedLength(int length) {
+
+        StringBuilder randomString = new StringBuilder();
+
+        for(int i = 0; i < length; i++) {
+            char randomChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
+                    Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
+            randomString.append(randomChar);
+        }
+
+        return randomString.toString();
     }
 
     public static char[] generateRandomUniqueUppercaseChars(int numberOfChars) {
