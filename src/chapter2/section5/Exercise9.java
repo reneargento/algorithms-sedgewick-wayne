@@ -53,6 +53,10 @@ public class Exercise9 {
             StdOut.println(volumesPerDay);
         }
 
+        StdOut.println("\nExpected:\n" +
+                "2-Oct-28   500\n" +
+                "3-Oct-28   1000\n" +
+                "1-Oct-28   2775559936");
     }
 
 }

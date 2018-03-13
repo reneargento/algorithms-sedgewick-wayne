@@ -13,9 +13,10 @@ import java.util.Map;
  */
 public class Exercise17_Sentinels {
 
+    // Parameters example: 8 131072
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 8
-        int initialArraySize = Integer.parseInt(args[1]); // 131072
+        int numberOfExperiments = Integer.parseInt(args[0]);
+        int initialArraySize = Integer.parseInt(args[1]);
 
         Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
 
@@ -28,7 +29,7 @@ public class Exercise17_Sentinels {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
@@ -60,7 +61,7 @@ public class Exercise17_Sentinels {
         //Place biggest item on the right end
         Comparable maxValue = array[0];
         int maxValueIndex = 0;
-        for(int i=1; i < array.length; i++) {
+        for(int i = 1; i < array.length; i++) {
             if(ArrayUtil.less(maxValue, array[i])) {
                 maxValue = array[i];
                 maxValueIndex = i;

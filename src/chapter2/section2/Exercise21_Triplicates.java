@@ -14,7 +14,7 @@ public class Exercise21_Triplicates {
         String name1 = checkIfThereAreCommonNames(names1);
 
         StdOut.print("Check 1: ");
-        if(name1 == null) {
+        if (name1 == null) {
             StdOut.println("No common name");
         } else {
             StdOut.println(name1);
@@ -27,7 +27,7 @@ public class Exercise21_Triplicates {
         String name2 = checkIfThereAreCommonNames(names2);
 
         StdOut.print("Check 2: ");
-        if(name2 == null) {
+        if (name2 == null) {
             StdOut.println("No common name");
         } else {
             StdOut.println(name2);
@@ -100,7 +100,7 @@ public class Exercise21_Triplicates {
 
     private static String checkIfThereAreCommonNames(Comparable[][] names) {
 
-        if(names == null || names.length == 0) {
+        if (names == null || names.length == 0) {
             return null;
         }
 
@@ -116,7 +116,7 @@ public class Exercise21_Triplicates {
         boolean[] incrementIndex = new boolean[3];
 
         while (list1Index < numberOfNames && list2Index < numberOfNames && list3Index < numberOfNames) {
-            if(names[0][list1Index].equals(names[1][list2Index])
+            if (names[0][list1Index].equals(names[1][list2Index])
                     && names[1][list2Index].equals(names[2][list3Index])) {
                 commonName = names[0][list1Index].toString();
                 break;
@@ -126,31 +126,31 @@ public class Exercise21_Triplicates {
                     incrementIndex[i] = false;
                 }
 
-                if(names[0][list1Index].compareTo(names[1][list2Index]) < 0) {
+                if (names[0][list1Index].compareTo(names[1][list2Index]) < 0) {
                     incrementIndex[0] = true;
                 } else if(names[0][list1Index].compareTo(names[2][list3Index]) < 0) {
                     incrementIndex[0] = true;
                 }
 
-                if(names[1][list2Index].compareTo(names[0][list1Index]) < 0) {
+                if (names[1][list2Index].compareTo(names[0][list1Index]) < 0) {
                     incrementIndex[1] = true;
-                } else if(names[1][list2Index].compareTo(names[2][list3Index]) < 0) {
+                } else if (names[1][list2Index].compareTo(names[2][list3Index]) < 0) {
                     incrementIndex[1] = true;
                 }
 
-                if(names[2][list3Index].compareTo(names[0][list1Index]) < 0) {
+                if (names[2][list3Index].compareTo(names[0][list1Index]) < 0) {
                     incrementIndex[2] = true;
-                } else if(names[2][list3Index].compareTo(names[1][list2Index]) < 0) {
+                } else if (names[2][list3Index].compareTo(names[1][list2Index]) < 0) {
                     incrementIndex[2] = true;
                 }
 
-                if(incrementIndex[0]) {
+                if (incrementIndex[0]) {
                     list1Index++;
                 }
-                if(incrementIndex[1]) {
+                if (incrementIndex[1]) {
                     list2Index++;
                 }
-                if(incrementIndex[2]) {
+                if (incrementIndex[2]) {
                     list3Index++;
                 }
             }
@@ -171,7 +171,7 @@ public class Exercise21_Triplicates {
 
     private static void mergesort(Comparable[] names, Comparable[] aux, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -185,7 +185,7 @@ public class Exercise21_Triplicates {
 
     private static void merge(Comparable[] names, Comparable[] aux, int low, int middle, int high) {
 
-        for(int i=low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             aux[i] = names[i];
         }
 
@@ -194,7 +194,7 @@ public class Exercise21_Triplicates {
         int arrayIndex = low;
 
         while (leftIndex <= middle && rightIndex <= high) {
-            if(aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
+            if (aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
                 names[arrayIndex] = aux[leftIndex];
                 leftIndex++;
             } else {
@@ -204,7 +204,7 @@ public class Exercise21_Triplicates {
             arrayIndex++;
         }
 
-        while(leftIndex <= middle) {
+        while (leftIndex <= middle) {
             names[arrayIndex] = aux[leftIndex];
 
             leftIndex++;

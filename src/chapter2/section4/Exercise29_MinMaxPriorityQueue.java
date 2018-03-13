@@ -46,7 +46,7 @@ public class Exercise29_MinMaxPriorityQueue  {
 
         public void insert(Key key) {
 
-            if(size == minPriorityQueue.length - 1) {
+            if (size == minPriorityQueue.length - 1) {
                 resize(minPriorityQueue.length * 2);
             }
 
@@ -73,7 +73,7 @@ public class Exercise29_MinMaxPriorityQueue  {
 
         //O(1)
         public Comparable findMin() {
-            if(size == 0) {
+            if (size == 0) {
                 return null;
             }
 
@@ -82,7 +82,7 @@ public class Exercise29_MinMaxPriorityQueue  {
 
         //O(1)
         public Comparable findMax() {
-            if(size == 0) {
+            if (size == 0) {
                 return null;
             }
 
@@ -92,7 +92,7 @@ public class Exercise29_MinMaxPriorityQueue  {
         //O(lg N)
         public Comparable deleteMax() {
 
-            if(size == 0) {
+            if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
             }
 
@@ -103,7 +103,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             deleteTopItem(maxPriorityQueue, Orientation.MAX);
             deleteItem(minPriorityQueue, Orientation.MIN, max.minHeapIndex);
 
-            if(size == minPriorityQueue.length / 4) {
+            if (size == minPriorityQueue.length / 4) {
                 resize(minPriorityQueue.length / 2);
             }
 
@@ -113,7 +113,7 @@ public class Exercise29_MinMaxPriorityQueue  {
         //O(lg N)
         public Comparable deleteMin() {
 
-            if(size == 0) {
+            if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
             }
 
@@ -124,7 +124,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             deleteTopItem(minPriorityQueue, Orientation.MIN);
             deleteItem(maxPriorityQueue, Orientation.MAX, min.maxHeapIndex);
 
-            if(size == minPriorityQueue.length / 4) {
+            if (size == minPriorityQueue.length / 4) {
                 resize(minPriorityQueue.length / 2);
             }
 
@@ -139,7 +139,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             ArrayUtil.exchange(priorityQueue, index, size + 1);
             priorityQueue[size + 1] = null;
 
-            if(index == size + 1) {
+            if (index == size + 1) {
                 //We deleted the last value, so no need to sink
                 return;
             }
@@ -149,11 +149,11 @@ public class Exercise29_MinMaxPriorityQueue  {
 
         private void swim(PQNode[] priorityQueue, int index, Orientation orientation) {
             while(index / 2 >= 1) {
-                if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))
+                if ((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))
                         || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index / 2], priorityQueue[index]))) {
                     ArrayUtil.exchange(priorityQueue, index / 2, index);
 
-                    if(orientation == Orientation.MIN) {
+                    if (orientation == Orientation.MIN) {
                         priorityQueue[index].minHeapIndex = index;
                         priorityQueue[index / 2].minHeapIndex = index / 2;
                     } else {
@@ -168,7 +168,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             }
 
             //Even if there were no exchanges, we still need to update the index
-            if(orientation == Orientation.MIN) {
+            if (orientation == Orientation.MIN) {
                 priorityQueue[index].minHeapIndex = index;
             } else {
                 priorityQueue[index].maxHeapIndex = index;
@@ -179,7 +179,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             while (index * 2 <= size) {
                 int selectedChildIndex = index * 2;
 
-                if(index * 2 + 1 <= size &&
+                if (index * 2 + 1 <= size &&
                         (
                          (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
                               || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
@@ -188,11 +188,11 @@ public class Exercise29_MinMaxPriorityQueue  {
                     selectedChildIndex = index * 2 + 1;
                 }
 
-                if((orientation == Orientation.MAX && ArrayUtil.more(priorityQueue[selectedChildIndex], priorityQueue[index]))
+                if ((orientation == Orientation.MAX && ArrayUtil.more(priorityQueue[selectedChildIndex], priorityQueue[index]))
                         || (orientation == Orientation.MIN && ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))) {
                     ArrayUtil.exchange(priorityQueue, index, selectedChildIndex);
 
-                    if(orientation == Orientation.MIN) {
+                    if (orientation == Orientation.MIN) {
                         priorityQueue[index].minHeapIndex = index;
                         priorityQueue[selectedChildIndex].minHeapIndex = selectedChildIndex;
                     } else {
@@ -207,7 +207,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             }
 
             //Even if there were no exchanges, we still need to update the index
-            if(orientation == Orientation.MIN) {
+            if (orientation == Orientation.MIN) {
                 priorityQueue[index].minHeapIndex = index;
             } else {
                 priorityQueue[index].maxHeapIndex = index;
@@ -215,7 +215,6 @@ public class Exercise29_MinMaxPriorityQueue  {
         }
 
         private void resize(int newSize) {
-
             //Min heap
             PQNode[] newMinPriorityQueue = new PQNode[newSize];
             System.arraycopy(minPriorityQueue, 1, newMinPriorityQueue, 1, size);

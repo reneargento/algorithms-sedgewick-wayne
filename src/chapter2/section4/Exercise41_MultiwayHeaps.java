@@ -97,7 +97,7 @@ public class Exercise41_MultiwayHeaps {
         StdOut.printf("%13s %25s %25s %25s\n", "Array Size | ","Number of Compares Std Impl | ", "Number of Compares 3-Ary Heap | "
                 , "Number of Compares 4-Ary Heap");
 
-        for(int i=0; i < allInputArrays.size(); i++) {
+        for(int i = 0; i < allInputArrays.size(); i++) {
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] arrayCopy1 = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, arrayCopy1, 0, originalArray.length);

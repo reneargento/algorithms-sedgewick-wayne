@@ -16,7 +16,7 @@ public class Exercise28_EqualKeys {
     private static Comparable[] createArrayWithAnyValues(int size) {
         Comparable[] array = new Comparable[size];
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             array[i] = StdRandom.uniform(100000);
         }
 
@@ -26,7 +26,7 @@ public class Exercise28_EqualKeys {
     private static Comparable[] createArrayWith2Values(int size) {
         Comparable[] array = new Comparable[size];
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             array[i] = StdRandom.uniform(2);
         }
 
@@ -72,7 +72,7 @@ public class Exercise28_EqualKeys {
     public static double time(SortTypes sortType, Comparable[] array) {
         Stopwatch timer = new Stopwatch();
 
-        if(sortType == SortTypes.SELECTION) {
+        if (sortType == SortTypes.SELECTION) {
             SelectionSort.selectionSort(array);
         } else if (sortType == SortTypes.INSERTION) {
             InsertionSort.insertionSort(array);

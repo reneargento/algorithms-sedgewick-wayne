@@ -12,9 +12,10 @@ import java.util.Map;
 @SuppressWarnings("unchecked")
 public class Exercise36_PerformanceDriverI {
 
+    // Parameters example: 7 10
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 7
-        int initialArraySize = Integer.parseInt(args[1]); // 10
+        int numberOfExperiments = Integer.parseInt(args[0]);
+        int initialArraySize = Integer.parseInt(args[1]);
 
         Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 10);
         doExperiment(numberOfExperiments, allInputArrays);
@@ -24,14 +25,14 @@ public class Exercise36_PerformanceDriverI {
 
         StdOut.printf("%13s %12s\n", "Array Size | ", "Average Running Time");
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] array = allInputArrays.get(i);
             PriorityQueue<Double> priorityQueue = new PriorityQueue<>(array.length, PriorityQueue.Orientation.MAX);
 
             double totalTime = 0;
 
-            for(int trial=0; trial < 5; trial++) {
+            for(int trial = 0; trial < 5; trial++) {
                 Stopwatch timer = new Stopwatch();
                 performanceTest(priorityQueue, array);
                 double runningTime = timer.elapsedTime();

@@ -25,7 +25,7 @@ public class Exercise6 {
     }
 
     private Comparable recursiveSelect(Comparable[] array, int index) {
-        if(index >= array.length) {
+        if (index >= array.length) {
             throw new IllegalArgumentException("Index must be smaller than array size");
         }
 
@@ -35,15 +35,15 @@ public class Exercise6 {
     }
 
     private Comparable recursiveSelect(Comparable[] array, int index, int low, int high) {
-        if(low == high) {
+        if (low == high) {
             return low;
         }
 
         int pivotIndex = partition(array, low, high);
-        if(pivotIndex == index) {
+        if (pivotIndex == index) {
             return array[index];
         } else {
-            if(pivotIndex < index) {
+            if (pivotIndex < index) {
                 return recursiveSelect(array, index, pivotIndex + 1, high);
             } else {
                 return recursiveSelect(array, index, low, pivotIndex - 1);
@@ -59,18 +59,18 @@ public class Exercise6 {
 
         while (true) {
             while(ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while (ArrayUtil.more(array[--j], pivot)) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
             }
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

@@ -54,7 +54,7 @@ public class Exercise30_CornerCases {
 
         StdOut.printf("%13s %25s %23s %30s\n", "Array Size | ", "Type | ","QuickSort W/ Random Shuffle |", "QuickSort W/O Random Shuffle");
 
-        for(int i=0; i < allInputArrays.size(); i++) {
+        for(int i = 0; i < allInputArrays.size(); i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
@@ -105,7 +105,7 @@ public class Exercise30_CornerCases {
 
     private static void quickSort(Comparable[] array, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -122,18 +122,18 @@ public class Exercise30_CornerCases {
 
         while(true) {
             while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while(ArrayUtil.less(pivot, array[--j])) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
             }
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

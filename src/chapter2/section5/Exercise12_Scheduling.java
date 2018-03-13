@@ -23,7 +23,7 @@ public class Exercise12_Scheduling {
         @Override
         //Shortest processing time first rule
         public int compareTo(Job that) {
-            if(this.processingTime < that.processingTime) {
+            if (this.processingTime < that.processingTime) {
                 return -1;
             } else if (this.processingTime > that.processingTime) {
                 return 1;

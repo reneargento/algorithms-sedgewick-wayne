@@ -33,7 +33,7 @@ public class Exercise4 {
     }
 
     private String[] dedup(String[] strings) {
-        if(strings == null || strings.length == 0) {
+        if (strings == null || strings.length == 0) {
             return new String[0];
         }
 
@@ -44,7 +44,7 @@ public class Exercise4 {
         String currentString = strings[0];
         dedupStringList.add(strings[0]);
 
-        for(int i=1; i < strings.length; i++) {
+        for(int i = 1; i < strings.length; i++) {
             if(strings[i].equals(currentString)) {
                 continue;
             } else {
@@ -55,7 +55,7 @@ public class Exercise4 {
         }
 
         String[] dedupStringArray = new String[dedupStringList.size()];
-        for(int i=0; i < dedupStringArray.length; i++) {
+        for(int i = 0; i < dedupStringArray.length; i++) {
             dedupStringArray[i] = dedupStringList.get(i);
         }
 

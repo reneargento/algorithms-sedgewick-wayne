@@ -18,15 +18,16 @@ public class Exercise23_TukeysNinther {
     private static final int SIZE_REQUIRED_FOR_TUKEY_NINTHER = 9;
     private static final int INSERTION_SORT_CUTOFF = 9;
 
+    // Parameters example: 8 1048576
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 8
-        int initialArraySize = Integer.parseInt(args[1]); // 1048576
+        int numberOfExperiments = Integer.parseInt(args[0]);
+        int initialArraySize = Integer.parseInt(args[1]);
 
         Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
             Comparable[] array = ArrayGenerator.generateRandomArrayWith3Values(arraySize);
             allInputArrays.put(i, array);
 
@@ -43,7 +44,7 @@ public class Exercise23_TukeysNinther {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] arrayCopy1 = new Comparable[originalArray.length];
@@ -87,11 +88,11 @@ public class Exercise23_TukeysNinther {
     @SuppressWarnings("unchecked")
     private static void quickSort(Comparable[] array, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
-        if(high - low + 1 < INSERTION_SORT_CUTOFF) {
+        if (high - low + 1 < INSERTION_SORT_CUTOFF) {
             InsertionSort.insertionSort(array, low, high);
             return;
         }
@@ -108,30 +109,30 @@ public class Exercise23_TukeysNinther {
 
         while (true) {
 
-            if(i > low && array[i].compareTo(pivot) == 0) {
+            if (i > low && array[i].compareTo(pivot) == 0) {
                 ArrayUtil.exchange(array, ++p, i);
             }
-            if(j <= high && array[j].compareTo(pivot) == 0) {
+            if (j <= high && array[j].compareTo(pivot) == 0) {
                 ArrayUtil.exchange(array, --q, j);
             }
 
             while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while (ArrayUtil.less(pivot, array[--j])) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
             }
 
             //pointers cross
-            if(i == j && array[i].compareTo(pivot) == 0) {
+            if (i == j && array[i].compareTo(pivot) == 0) {
                 ArrayUtil.exchange(array, ++p, i);
             }
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

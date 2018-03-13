@@ -21,7 +21,7 @@ public class Exercise25_MultiwayMergesort {
 
         Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
 
-        for(int k=2; k<= 10; k++) {
+        for(int k = 2; k <= 10; k++) {
             String text = k + "-WAY MERGESORT";
             StdOut.println(text);
 
@@ -38,7 +38,7 @@ public class Exercise25_MultiwayMergesort {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
@@ -72,7 +72,7 @@ public class Exercise25_MultiwayMergesort {
         int[] startIndexes = indexes.get(0);
         int[] endIndexes = indexes.get(1);
 
-        for(int i=0; i < k; i++) {
+        for(int i = 0; i < k; i++) {
             kWayMergeSort(array, aux, k, startIndexes[i], endIndexes[i]);
         }
 
@@ -89,7 +89,7 @@ public class Exercise25_MultiwayMergesort {
         int[] startIndexes = new int[k];
         int[] endIndexes = new int[k];
 
-        for(int i=0; i < startIndexes.length; i++) {
+        for(int i = 0; i < startIndexes.length; i++) {
             if(i == 0) {
                 startIndexes[i] = low;
             } else {
@@ -119,30 +119,30 @@ public class Exercise25_MultiwayMergesort {
         int high = -1;
 
         //We may not have all arrays filled
-        for(int i=0; i < endIndexes.length; i++) {
-            if(endIndexes[i] > high) {
+        for(int i = 0; i < endIndexes.length; i++) {
+            if (endIndexes[i] > high) {
                 high = endIndexes[i];
             }
         }
 
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             Comparable bestValue = -1;
             int bestIndex = -1;
 
-            for(int j=0; j < startIndexes.length; j++) {
+            for(int j = 0; j < startIndexes.length; j++) {
                 int index = startIndexes[j];
 
-                if(index <= endIndexes[j] && (bestIndex == -1 || aux[index].compareTo(bestValue) < 0)) {
+                if (index <= endIndexes[j] && (bestIndex == -1 || aux[index].compareTo(bestValue) < 0)) {
                     bestValue = aux[index];
                     bestIndex = j;
                 }
             }
 
-            if(bestIndex != -1) {
+            if (bestIndex != -1) {
                 array[i] = bestValue;
                 startIndexes[bestIndex]++;
             }

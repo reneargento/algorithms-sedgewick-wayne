@@ -20,7 +20,7 @@ public class Exercise30_GeometricIncrements {
         int arrayLength = 1000000;
         int numberOfExperiments = 10;
 
-        for(int i=0; i < minimumTimes.length; i++) {
+        for(int i = 0; i < minimumTimes.length; i++) {
             minimumTimes[i] = Double.MAX_VALUE;
             bestIncrementSequences.add(new Integer[]{});
         }
@@ -38,7 +38,7 @@ public class Exercise30_GeometricIncrements {
 
             Comparable[] array = new Comparable[arrayLength];
 
-            for(int i=0; i < arrayLength; i++) {
+            for(int i = 0; i < arrayLength; i++) {
                 array[i] = StdRandom.uniform();
             }
 
@@ -57,13 +57,13 @@ public class Exercise30_GeometricIncrements {
         int timeToReplace = -1;
 
         for(int i = 0; i < minimumTimes.length; i++) {
-            if(currentTime < minimumTimes[i]) {
+            if (currentTime < minimumTimes[i]) {
                 timeToReplace = i;
                 break;
             }
         }
 
-        if(timeToReplace == -1) {
+        if (timeToReplace == -1) {
             return;
         }
 
@@ -111,7 +111,7 @@ public class Exercise30_GeometricIncrements {
         for(int increment : incrementSequence) {
 
             //h-sort the array
-            for(int j=increment; j < array.length; j++) {
+            for(int j = increment; j < array.length; j++) {
                 int currentIndex = j;
 
                 while(currentIndex >= increment && array[currentIndex].compareTo(array[currentIndex - increment]) < 0) {
@@ -127,12 +127,12 @@ public class Exercise30_GeometricIncrements {
 
     private static void showBestTValueAndIncrementSequence() {
 
-        for(int i=0; i < bestTValues.length; i++) {
-            StdOut.printf("Best %d tValue: %d \n", i+1, bestTValues[i]);
-            StdOut.printf("Best %d sequence:\n", i+1);
+        for(int i = 0; i < bestTValues.length; i++) {
+            StdOut.printf("Best %d tValue: %d \n", i + 1, bestTValues[i]);
+            StdOut.printf("Best %d sequence:\n", i + 1);
 
             Integer[] incrementSequence = bestIncrementSequences.get(i);
-            for(int j=0; j < incrementSequence.length; j++) {
+            for(int j = 0; j < incrementSequence.length; j++) {
                 StdOut.print(incrementSequence[j] + " ");
             }
 

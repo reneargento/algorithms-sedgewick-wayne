@@ -30,7 +30,7 @@ public class PriorityQueue<Key extends Comparable<Key>> {
     }
 
     public void insert(Key key) {
-        if(size != priorityQueue.length - 1) {
+        if (size != priorityQueue.length - 1) {
             size++;
 
             priorityQueue[size] = key;
@@ -39,7 +39,7 @@ public class PriorityQueue<Key extends Comparable<Key>> {
     }
 
     public Key deleteTop() {
-        if(size == 0) {
+        if (size == 0) {
             throw new RuntimeException("Priority queue underflow");
         }
 
@@ -56,7 +56,7 @@ public class PriorityQueue<Key extends Comparable<Key>> {
 
     private void swim(int index) {
         while(index / 2 >= 1) {
-            if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))
+            if ((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))
                     || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index / 2], priorityQueue[index]))) {
                 ArrayUtil.exchange(priorityQueue, index / 2, index);
             } else {
@@ -71,7 +71,7 @@ public class PriorityQueue<Key extends Comparable<Key>> {
         while (index * 2 <= size) {
             int selectedChildIndex = index * 2;
 
-            if(index * 2 + 1 <= size &&
+            if (index * 2 + 1 <= size &&
                     (
                     (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
                     || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
@@ -80,7 +80,7 @@ public class PriorityQueue<Key extends Comparable<Key>> {
                 selectedChildIndex = index * 2 + 1;
             }
 
-            if((orientation == Orientation.MAX && ArrayUtil.more(priorityQueue[selectedChildIndex], priorityQueue[index]))
+            if ((orientation == Orientation.MAX && ArrayUtil.more(priorityQueue[selectedChildIndex], priorityQueue[index]))
                 || (orientation == Orientation.MIN && ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[index]))) {
                 ArrayUtil.exchange(priorityQueue, index, selectedChildIndex);
             } else {

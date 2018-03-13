@@ -80,7 +80,7 @@ public class Exercise36_NonuniformData {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = i % 2 == 0? 0 : 1;
         }
 
@@ -115,7 +115,7 @@ public class Exercise36_NonuniformData {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength / 2; i++) {
+        for(int i = 0; i < arrayLength / 2; i++) {
             array[i] = 0;
         }
 

@@ -32,12 +32,12 @@ public class HeapSort {
         while (index * 2 <= endIndex) {
             int biggestChildIndex = index * 2;
 
-            if(index * 2 + 1 <= endIndex
+            if (index * 2 + 1 <= endIndex
                     && ArrayUtil.more(array[index * 2 + 1], array[index * 2])) {
                 biggestChildIndex = index * 2 + 1;
             }
 
-            if(ArrayUtil.less(array[index], array[biggestChildIndex])) {
+            if (ArrayUtil.less(array[index], array[biggestChildIndex])) {
                 ArrayUtil.exchange(array, index, biggestChildIndex);
             } else {
                 break;

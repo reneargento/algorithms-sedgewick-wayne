@@ -26,7 +26,7 @@ public class Exercise33_RandomTransactions {
 
         int numberOfObjects = 0;
 
-        if(args.length > 0) {
+        if (args.length > 0) {
             numberOfObjects = Integer.parseInt(args[0]);
         }
 
@@ -36,7 +36,7 @@ public class Exercise33_RandomTransactions {
     private void doExperiment(int numberOfObjects) {
 
         int[] values;
-        if(numberOfObjects != 0) {
+        if (numberOfObjects != 0) {
             values = new int[]{numberOfObjects};
         } else {
             values = new int[]{1000, 10000, 100000, 1000000};
@@ -49,7 +49,7 @@ public class Exercise33_RandomTransactions {
         for(int n = 0; n < values.length; n++) {
             Exercise21_ComparableTransactions[] transactions = generateRandomTransactions(values[n]);
 
-            for(int i=0; i < sortAlgorithms.length; i++) {
+            for(int i = 0; i < sortAlgorithms.length; i++) {
                 Exercise21_ComparableTransactions[] transactionsCopy = new Exercise21_ComparableTransactions[transactions.length];
                 System.arraycopy(transactions, 0, transactionsCopy, 0, transactions.length);
 
@@ -79,7 +79,7 @@ public class Exercise33_RandomTransactions {
     private Exercise21_ComparableTransactions[] generateRandomTransactions(int numberOfObjects) {
         Exercise21_ComparableTransactions[] transactions = new Exercise21_ComparableTransactions[numberOfObjects];
 
-        for(int i=0; i < numberOfObjects; i++) {
+        for(int i = 0; i < numberOfObjects; i++) {
             String who = "Client " + (i + 1);
 
             int month = StdRandom.uniform(12) + 1;

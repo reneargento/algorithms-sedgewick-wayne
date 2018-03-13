@@ -16,6 +16,8 @@ public class Exercise16_BestCase {
 
         int[] array = bestCaseArray(arraySize);
 
+        StdOut.print("Best-case array: ");
+
         for (int i = 0; i < arraySize; i++) {
             StdOut.print(alphabet.charAt(array[i]));
         }
@@ -26,7 +28,7 @@ public class Exercise16_BestCase {
     private static int[] bestCaseArray(int arraySize) {
         int[] bestCaseArray = new int[arraySize];
 
-        for(int i=0; i < arraySize; i++) {
+        for(int i = 0; i < arraySize; i++) {
             bestCaseArray[i] = i;
         }
 

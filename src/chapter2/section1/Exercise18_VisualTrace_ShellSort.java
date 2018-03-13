@@ -15,7 +15,7 @@ public class Exercise18_VisualTrace_ShellSort {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -24,7 +24,7 @@ public class Exercise18_VisualTrace_ShellSort {
 
         // Set canvas size
         StdDraw.setCanvasSize(30 * (arraySize + 3), 30 * arraySize);
-        StdDraw.setXscale(-0.5, arraySize/3 + 1);
+        StdDraw.setXscale(-0.5, arraySize / 3 + 1);
         StdDraw.setYscale(-0.5, numberOfIncrements + 0.8 + 1); //+1 to draw the input array
         StdDraw.setFont(new Font("SansSerif", Font.PLAIN, 13));
 
@@ -49,10 +49,10 @@ public class Exercise18_VisualTrace_ShellSort {
 
         while (incrementSequence > 0) {
 
-            for(int i=incrementSequence; i < array.length; i++) {
+            for(int i = incrementSequence; i < array.length; i++) {
                 int j;
 
-                for(j=i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0; j -= incrementSequence) {
+                for(j = i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0; j -= incrementSequence) {
                     Comparable temp = array[j];
                     array[j] = array[j - incrementSequence];
                     array[j - incrementSequence] = temp;
@@ -91,7 +91,7 @@ public class Exercise18_VisualTrace_ShellSort {
             double barHalfWidth = 0.08;
             double barHalfHeight = Double.parseDouble(String.valueOf(array[i])) / 2;
 
-            StdDraw.filledRectangle(((double)i)/3, barHalfHeight + rowToDraw - 0.2, barHalfWidth, barHalfHeight);
+            StdDraw.filledRectangle(((double) i) / 3, barHalfHeight + rowToDraw - 0.2, barHalfWidth, barHalfHeight);
         }
     }
 }

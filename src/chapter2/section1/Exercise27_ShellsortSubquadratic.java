@@ -34,7 +34,7 @@ public class Exercise27_ShellsortSubquadratic {
         for(int experiment = 0; experiment < numberOfExperiments; experiment++) {
             Comparable[] array = new Comparable[length];
 
-            for(int i=0; i < length; i++) {
+            for(int i = 0; i < length; i++) {
                 array[i] = StdRandom.uniform();
             }
 
@@ -49,7 +49,7 @@ public class Exercise27_ShellsortSubquadratic {
     public static double time(SortTypes sortType, Comparable[] array) {
         Stopwatch timer = new Stopwatch();
 
-        if(sortType == SortTypes.SELECTION) {
+        if (sortType == SortTypes.SELECTION) {
             SelectionSort.selectionSort(array);
         } else if (sortType == SortTypes.INSERTION) {
             InsertionSort.insertionSort(array);

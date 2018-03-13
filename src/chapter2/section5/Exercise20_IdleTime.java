@@ -21,12 +21,12 @@ public class Exercise20_IdleTime {
 
         @Override
         public int compareTo(Job that) {
-            if(this.startTime < that.startTime) {
+            if (this.startTime < that.startTime) {
                 return -1;
             } else if (this.startTime > that.startTime) {
                 return 1;
             } else {
-                if(this.endTime < that.endTime) {
+                if (this.endTime < that.endTime) {
                     return -1;
                 } else if (this.endTime > that.endTime) {
                     return 1;
@@ -79,7 +79,7 @@ public class Exercise20_IdleTime {
 
     private int[] getAsynchronousJobsIntervals(Job[] jobs) {
 
-        if(jobs == null || jobs.length == 0) {
+        if (jobs == null || jobs.length == 0) {
             return new int[]{0, 0, 0, 0};
         }
 
@@ -97,12 +97,12 @@ public class Exercise20_IdleTime {
 
         int maxIdleTime = jobs[0].startTime;
 
-        for(int i=0; i < jobs.length; i++) {
+        for(int i = 0; i < jobs.length; i++) {
 
             if(i != 0 && jobs[i].startTime > currentMaxEndTime) {
 
                 //A new interval is beginning
-                if(jobs[i].startTime - currentMaxEndTime > maxIdleTime) {
+                if (jobs[i].startTime - currentMaxEndTime > maxIdleTime) {
                     largestIdleTimeEndIndex = i;
                     largestIdleTimeStartIndex = currentMaxEndTimeIndex;
 
@@ -112,13 +112,13 @@ public class Exercise20_IdleTime {
                 currentIntervalStartIndex = i;
             }
 
-            if(jobs[i].endTime - jobs[currentIntervalStartIndex].startTime >
+            if (jobs[i].endTime - jobs[currentIntervalStartIndex].startTime >
                     jobs[largestBusyTimeEndIndex].endTime - jobs[largestBusyTimeStartIndex].startTime) {
                 largestBusyTimeStartIndex = currentIntervalStartIndex;
                 largestBusyTimeEndIndex = i;
             }
 
-            if(jobs[i].endTime > currentMaxEndTime) {
+            if (jobs[i].endTime > currentMaxEndTime) {
                 currentMaxEndTime = jobs[i].endTime;
                 currentMaxEndTimeIndex = i;
             }
@@ -128,7 +128,7 @@ public class Exercise20_IdleTime {
         int largestIdleTimeEnd = jobs[largestIdleTimeEndIndex].startTime;
 
         //Edge case - when the largest idle interval is from time 0 to the beginning of the first job
-        if(largestIdleTimeStart > largestIdleTimeEnd) {
+        if (largestIdleTimeStart > largestIdleTimeEnd) {
             largestIdleTimeStart = 0;
         }
 
@@ -141,7 +141,7 @@ public class Exercise20_IdleTime {
     //Only used for synchronous jobs
     private int[] getSynchronousJobsIntervals(Job[] jobs) {
 
-        if(jobs == null || jobs.length == 0) {
+        if (jobs == null || jobs.length == 0) {
             return new int[]{0, 0, 0, 0};
         }
 
@@ -158,10 +158,10 @@ public class Exercise20_IdleTime {
 
         for(int i=0; i < jobs.length; i++) {
 
-            if(i != 0 && jobs[i].startTime > jobs[i - 1].endTime) {
+            if (i != 0 && jobs[i].startTime > jobs[i - 1].endTime) {
 
                 //A new interval is beginning
-                if(jobs[i].startTime - jobs[i - 1].endTime > maxIdleTime) {
+                if (jobs[i].startTime - jobs[i - 1].endTime > maxIdleTime) {
                     largestIdleTimeEndIndex = i;
                     largestIdleTimeStartIndex = i-1;
 
@@ -171,7 +171,7 @@ public class Exercise20_IdleTime {
                 currentIntervalStartIndex = i;
             }
 
-            if(jobs[i].endTime - jobs[currentIntervalStartIndex].startTime >
+            if (jobs[i].endTime - jobs[currentIntervalStartIndex].startTime >
                     jobs[largestBusyTimeEndIndex].endTime - jobs[largestBusyTimeStartIndex].startTime) {
                 largestBusyTimeStartIndex = currentIntervalStartIndex;
                 largestBusyTimeEndIndex = i;
@@ -182,7 +182,7 @@ public class Exercise20_IdleTime {
         int largestIdleTimeEnd = jobs[largestIdleTimeEndIndex].startTime;
 
         //Edge case - when the largest idle interval is from time 0 to the beginning of the first job
-        if(largestIdleTimeStart > largestIdleTimeEnd) {
+        if (largestIdleTimeStart > largestIdleTimeEnd) {
             largestIdleTimeStart = 0;
         }
 

@@ -94,7 +94,7 @@ public class Exercise35_NonuniformDistributions {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.gaussian();
         }
 
@@ -105,7 +105,7 @@ public class Exercise35_NonuniformDistributions {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.poisson(2);
         }
 
@@ -116,7 +116,7 @@ public class Exercise35_NonuniformDistributions {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.geometric(0.3);
         }
 
@@ -127,7 +127,7 @@ public class Exercise35_NonuniformDistributions {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = i % 2 == 0? 0 : 1;
         }
 

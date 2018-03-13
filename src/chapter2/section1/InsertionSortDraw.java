@@ -15,7 +15,7 @@ public class InsertionSortDraw {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -38,12 +38,12 @@ public class InsertionSortDraw {
 
     public static void insertionSort(Comparable[] array) {
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             int j;
-            for(j = i; j > 0 && array[j-1].compareTo(array[j]) > 0; j--) {
+            for(j = i; j > 0 && array[j - 1].compareTo(array[j]) > 0; j--) {
                 Comparable temp = array[j];
-                array[j] = array[j-1];
-                array[j-1] = temp;
+                array[j] = array[j - 1];
+                array[j - 1] = temp;
             }
             draw(array, i, i, j);
         }
@@ -52,7 +52,7 @@ public class InsertionSortDraw {
     // Display header
     private static void header(Comparable[] array) {
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(array.length/2.0, -2.7, "array[ ]");
+        StdDraw.text(array.length / 2.0, -2.7, "array[ ]");
 
         for (int i = 0; i < array.length; i++) {
             StdDraw.text(i, -2, String.valueOf(i));

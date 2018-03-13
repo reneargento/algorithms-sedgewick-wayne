@@ -28,7 +28,7 @@ public class Exercise3_PriorityQueueOrderedArray {
 
         //O(N)
         public void insert(Key key) {
-            if(size == priorityQueue.length) {
+            if (size == priorityQueue.length) {
                 throw new RuntimeException("Priority queue is full");
             }
 
@@ -45,7 +45,7 @@ public class Exercise3_PriorityQueueOrderedArray {
 
         //O(1)
         public Key removeMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new RuntimeException("Priority queue underflow");
             }
 

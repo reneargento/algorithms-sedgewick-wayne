@@ -37,7 +37,7 @@ public class Exercise22_ArrayResizing {
             totalArrayAccesses = 0;
             totalItemsInserted++;
 
-            if(size == priorityQueue.length - 1) {
+            if (size == priorityQueue.length - 1) {
                 resize(priorityQueue.length * 2, true);
             }
 
@@ -54,7 +54,7 @@ public class Exercise22_ArrayResizing {
             totalArrayAccesses = 0;
             totalItemsRemoved++;
 
-            if(size == 0) {
+            if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
             }
 
@@ -74,7 +74,7 @@ public class Exercise22_ArrayResizing {
 
             sink(1);
 
-            if(size == priorityQueue.length / 4) {
+            if (size == priorityQueue.length / 4) {
                 resize(priorityQueue.length / 2, false);
             }
 
@@ -86,7 +86,7 @@ public class Exercise22_ArrayResizing {
 
                 totalArrayAccesses += 2;
                 totalArrayAccessesForInsert += 2;
-                if(ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index])) {
+                if (ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index])) {
                     ArrayUtil.exchange(priorityQueue, index / 2, index);
                     totalArrayAccesses += 4;
                     totalArrayAccessesForInsert += 4;
@@ -104,13 +104,13 @@ public class Exercise22_ArrayResizing {
 
                 totalArrayAccesses += 2;
                 totalArrayAccessesForRemoveMaximum += 2;
-                if(index * 2 + 1 <= size && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1])) {
+                if (index * 2 + 1 <= size && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1])) {
                     highestChildIndex = index * 2 + 1;
                 }
 
                 totalArrayAccesses += 2;
                 totalArrayAccessesForRemoveMaximum += 2;
-                if(ArrayUtil.more(priorityQueue[highestChildIndex], priorityQueue[index])) {
+                if (ArrayUtil.more(priorityQueue[highestChildIndex], priorityQueue[index])) {
                     ArrayUtil.exchange(priorityQueue, index, highestChildIndex);
                     totalArrayAccesses += 4;
                     totalArrayAccessesForRemoveMaximum += 4;
@@ -128,7 +128,7 @@ public class Exercise22_ArrayResizing {
             System.arraycopy(priorityQueue, 1, newPriorityQueue, 1, size);
 
             totalArrayAccesses += 2 * size;
-            if(increasing) {
+            if (increasing) {
                 totalArrayAccessesForInsert += 2 * size;
             } else {
                 totalArrayAccessesForRemoveMaximum += 2 * size;

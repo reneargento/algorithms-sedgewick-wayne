@@ -24,7 +24,7 @@ public class Exercise11 {
 
         double previousRunningTime = initialTimer.elapsedTime();
 
-        for(int i=0; i < 6; i++) {
+        for(int i = 0; i < 6; i++) {
 
             Comparable[] array = ArrayGenerator.generateRandomArrayWith3Values(arraySize);
 
@@ -68,18 +68,18 @@ public class Exercise11 {
 
         while(true) {
             while (array[++i].compareTo(pivot) <= 0) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while(pivot.compareTo(array[--j]) <= 0) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
             }
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

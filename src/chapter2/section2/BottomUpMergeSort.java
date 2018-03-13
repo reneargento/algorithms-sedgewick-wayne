@@ -21,7 +21,7 @@ public class BottomUpMergeSort {
 
     @SuppressWarnings("unchecked")
     public static void merge (Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -30,7 +30,7 @@ public class BottomUpMergeSort {
         int arrayIndex = low;
 
         while(leftIndex <= middle && rightIndex <= high) {
-            if(aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
+            if (aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
                 array[arrayIndex] = aux[leftIndex];
                 leftIndex++;
             } else {

@@ -16,7 +16,7 @@ public class Exercise23_Improvements3_AvoidCopy {
 
     private static void sort(Comparable[] array, Comparable[] aux, int low, int high) {
 
-        if(high <= low) {
+        if (high <= low) {
             return;
         }
 

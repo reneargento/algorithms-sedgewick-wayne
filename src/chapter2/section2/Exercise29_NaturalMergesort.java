@@ -32,7 +32,7 @@ public class Exercise29_NaturalMergesort {
         Long[] array = new Long[length];
         Random random = new Random();
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = random.nextLong();
         }
 
@@ -43,12 +43,13 @@ public class Exercise29_NaturalMergesort {
 
         int numberOfExperiments = arrays.size();
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
             Long[] currentArray = arrays.get(i);
 
             long numberOfPasses = naturalMergesort(currentArray);
 
-            StdOut.printf("Number of passes needed for an array of %d random Long keys: %d \n", currentArray.length, numberOfPasses);
+            StdOut.printf("Number of passes needed for an array of %d random Long keys: %d \n", currentArray.length,
+                    numberOfPasses);
         }
     }
 
@@ -68,10 +69,10 @@ public class Exercise29_NaturalMergesort {
 
         boolean secondSubArray = false;
 
-        for(int i=1; i < array.length; i++) {
+        for(int i = 1; i < array.length; i++) {
 
-            if(array[i].compareTo(array[i-1]) < 0) {
-                if(!secondSubArray) {
+            if (array[i].compareTo(array[i - 1]) < 0) {
+                if (!secondSubArray) {
                     middle = i - 1;
 
                     secondSubArray = true;
@@ -89,7 +90,7 @@ public class Exercise29_NaturalMergesort {
             }
         }
 
-        if(high != array.length - 1) {
+        if (high != array.length - 1) {
             BottomUpMergeSort.merge(array, aux, low, middle, array.length - 1);
             numberOfPasses++;
         }

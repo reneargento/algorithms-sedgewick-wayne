@@ -26,7 +26,7 @@ public class Exercise7 {
 
         List<Double> values = new ArrayList<>();
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             double randomValue = StdRandom.uniform();
             values.add(randomValue);
@@ -38,7 +38,7 @@ public class Exercise7 {
 
             topDownMergeSort(array);
 
-            if(numberOfCompares <= previousNumberOfCompares) {
+            if (numberOfCompares <= previousNumberOfCompares) {
                 return false;
             } else {
                 previousNumberOfCompares = numberOfCompares;
@@ -56,7 +56,7 @@ public class Exercise7 {
 
     private static void topDownMergeSort(Comparable[] array, Comparable[] aux, int low, int high) {
 
-        if(high <= low) {
+        if (high <= low) {
             return;
         }
 
@@ -70,7 +70,7 @@ public class Exercise7 {
 
     @SuppressWarnings("unchecked")
     private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -79,7 +79,7 @@ public class Exercise7 {
         int arrayIndex = low;
 
         while (indexLeft <= middle && indexRight <= high) {
-            if(aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
+            if (aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
                 array[arrayIndex] = aux[indexLeft];
                 indexLeft++;
             } else {

@@ -23,7 +23,7 @@ public class Exercise29_SortFilesBySizeAndDate {
 
         //Input example: -s -d -n -t
         File[] sortedFiles = new Exercise29_SortFilesBySizeAndDate().readFlagsAndSortFiles(directory, args);
-        if(sortedFiles == null) {
+        if (sortedFiles == null) {
             return;
         }
 
@@ -35,13 +35,13 @@ public class Exercise29_SortFilesBySizeAndDate {
     private File[] readFlagsAndSortFiles(File directory, String[] flags) {
 
         File[] filesInCurrentDirectory = directory.listFiles();
-        if(filesInCurrentDirectory == null) {
+        if (filesInCurrentDirectory == null) {
             return null;
         }
 
         List<File> allFiles = new ArrayList<>();
         for(File file : filesInCurrentDirectory) {
-            if(!file.isDirectory()) {
+            if (!file.isDirectory()) {
                 allFiles.add(file);
             }
         }
@@ -66,7 +66,7 @@ public class Exercise29_SortFilesBySizeAndDate {
 
             boolean isDecreasing = flag.equals("-d");
 
-            if(isDecreasing && i > 0) {
+            if (isDecreasing && i > 0) {
                 i--;
                 flag = flags[i];
             } else if(isDecreasing) {
@@ -75,21 +75,21 @@ public class Exercise29_SortFilesBySizeAndDate {
 
             switch (flag) {
                 case "-s":
-                    if(!isDecreasing) {
+                    if (!isDecreasing) {
                         Arrays.sort(files, fileSizeIncreasingComparator());
                     } else {
                         Arrays.sort(files, fileSizeDecreasingComparator());
                     }
                     break;
                 case "-t":
-                    if(!isDecreasing) {
+                    if (!isDecreasing) {
                         Arrays.sort(files, fileModifiedDateIncreasingComparator());
                     } else {
                         Arrays.sort(files, fileModifiedDateDecreasingComparator());
                     }
                     break;
                 case "-n":
-                    if(!isDecreasing) {
+                    if (!isDecreasing) {
                         Arrays.sort(files, fileNameIncreasingComparator());
                     } else {
                         Arrays.sort(files, fileNameDecreasingComparator());
@@ -109,9 +109,9 @@ public class Exercise29_SortFilesBySizeAndDate {
                 long size1 = file1.length();
                 long size2 = file2.length();
 
-                if(size1 < size2) {
+                if (size1 < size2) {
                     return -1;
-                } else if(size1 > size2) {
+                } else if (size1 > size2) {
                     return 1;
                 }
                 return 0;
@@ -126,9 +126,9 @@ public class Exercise29_SortFilesBySizeAndDate {
                 long size1 = file1.length();
                 long size2 = file2.length();
 
-                if(size1 > size2) {
+                if (size1 > size2) {
                     return -1;
-                } else if(size1 < size2) {
+                } else if (size1 < size2) {
                     return 1;
                 }
                 return 0;
@@ -151,9 +151,9 @@ public class Exercise29_SortFilesBySizeAndDate {
             public int compare(File file1, File file2) {
                 int increasingCompare = file1.getName().compareTo(file2.getName());
 
-                if(increasingCompare < 0) {
+                if (increasingCompare < 0) {
                     return 1;
-                } else if(increasingCompare > 0) {
+                } else if (increasingCompare > 0) {
                     return -1;
                 }
 
@@ -169,9 +169,9 @@ public class Exercise29_SortFilesBySizeAndDate {
                 long lastModified1 = file1.lastModified();
                 long lastModified2 = file2.lastModified();
 
-                if(lastModified1 < lastModified2) {
+                if (lastModified1 < lastModified2) {
                     return -1;
-                } else if(lastModified1 > lastModified2) {
+                } else if (lastModified1 > lastModified2) {
                     return 1;
                 }
                 return 0;
@@ -186,9 +186,9 @@ public class Exercise29_SortFilesBySizeAndDate {
                 long lastModified1 = file1.lastModified();
                 long lastModified2 = file2.lastModified();
 
-                if(lastModified1 > lastModified2) {
+                if (lastModified1 > lastModified2) {
                     return -1;
-                } else if(lastModified1 < lastModified2) {
+                } else if (lastModified1 < lastModified2) {
                     return 1;
                 }
                 return 0;

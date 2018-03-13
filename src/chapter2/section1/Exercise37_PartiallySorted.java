@@ -84,7 +84,7 @@ public class Exercise37_PartiallySorted {
 
         int lastFivePercentStartIndex = (int) (arrayLength * 0.95);
 
-        for(int i=0; i <= lastFivePercentStartIndex; i++) {
+        for(int i = 0; i <= lastFivePercentStartIndex; i++) {
             array[i] = i;
         }
 
@@ -102,7 +102,7 @@ public class Exercise37_PartiallySorted {
         //Used to guarantee that all values are unique and that they will be within 10 positions of their final place in the array
         Set<Integer> generatedValues = new HashSet<>();
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             int randomValue = StdRandom.uniform(i - 10, i + 10 + 1);
 
             while (generatedValues.contains(randomValue)) {
@@ -123,12 +123,12 @@ public class Exercise37_PartiallySorted {
 
         int fivePercentLength = (int) (arrayLength * 0.05);
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = i;
         }
 
         //Shuffle 5% of values
-        for(int i=0; i <= fivePercentLength / 2; i++) {
+        for(int i = 0; i <= fivePercentLength / 2; i++) {
             int randomIndex1 = StdRandom.uniform(0, arrayLength);
             int randomIndex2 = StdRandom.uniform(0, arrayLength);
 

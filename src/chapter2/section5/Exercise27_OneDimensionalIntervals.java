@@ -16,7 +16,7 @@ public class Exercise27_OneDimensionalIntervals {
         private double right;
 
         Interval1D(double left, double right) {
-            if(right < left) {
+            if (right < left) {
                 throw new IllegalArgumentException("Right cannot be smaller than left");
             }
 
@@ -41,10 +41,10 @@ public class Exercise27_OneDimensionalIntervals {
         }
 
         public boolean intersects(Interval1D that) {
-            if(this.right < that.left) {
+            if (this.right < that.left) {
                 return false;
             }
-            if(this.left > that.right) {
+            if (this.left > that.right) {
                 return false;
             }
             return true;
@@ -60,9 +60,9 @@ public class Exercise27_OneDimensionalIntervals {
         return new Comparator<Interval1D>() {
             @Override
             public int compare(Interval1D interval1, Interval1D interval2) {
-                if(interval1.left < interval2.left) {
+                if (interval1.left < interval2.left) {
                     return -1;
-                } else if(interval1.left > interval2.left) {
+                } else if (interval1.left > interval2.left) {
                     return 1;
                 }
 
@@ -75,9 +75,9 @@ public class Exercise27_OneDimensionalIntervals {
         return new Comparator<Interval1D>() {
             @Override
             public int compare(Interval1D interval1, Interval1D interval2) {
-                if(interval1.right < interval2.right) {
+                if (interval1.right < interval2.right) {
                     return -1;
-                } else if(interval1.right > interval2.right) {
+                } else if (interval1.right > interval2.right) {
                     return 1;
                 }
 
@@ -90,9 +90,9 @@ public class Exercise27_OneDimensionalIntervals {
         return new Comparator<Interval1D>() {
             @Override
             public int compare(Interval1D interval1, Interval1D interval2) {
-                if(interval1.length() < interval2.length()) {
+                if (interval1.length() < interval2.length()) {
                     return -1;
-                } else if(interval1.length() > interval2.length()) {
+                } else if (interval1.length() > interval2.length()) {
                     return 1;
                 }
 

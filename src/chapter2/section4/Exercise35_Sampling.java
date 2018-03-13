@@ -18,21 +18,21 @@ public class Exercise35_Sampling {
     private Node[] nodes;
     private double sum = 0;
 
-    private Exercise35_Sampling(double[] p) {
+    private Exercise35_Sampling(double[] probabilities) {
 
-        nodes = new Node[p.length + 1];
+        nodes = new Node[probabilities.length + 1];
 
         //Used to initialize the nodes with highest weights on the top
-        Arrays.sort(p);
+        Arrays.sort(probabilities);
 
         int nodesIndex = 1;
-        for(int i = p.length; i >= 1; i--) {
+        for(int i = probabilities.length; i >= 1; i--) {
             Node node = new Node();
-            node.weight = p[i - 1];
-            node.cumulativeWeight = p[i - 1];
+            node.weight = probabilities[i - 1];
+            node.cumulativeWeight = probabilities[i - 1];
             nodes[nodesIndex++] = node;
 
-            sum += p[i - 1];
+            sum += probabilities[i - 1];
         }
 
         computeCumulativeWeights();
@@ -55,23 +55,23 @@ public class Exercise35_Sampling {
             double distanceFromLeftChild = Math.abs(nodes[currentIndex * 2].cumulativeWeight - randomNumber);
             double distanceFromRightChild = Double.MAX_VALUE;
 
-            if(currentIndex * 2 + 1 < nodes.length) {
+            if (currentIndex * 2 + 1 < nodes.length) {
                 distanceFromRightChild = Math.abs(nodes[currentIndex * 2 + 1].cumulativeWeight - randomNumber);
             }
 
             int closestChildIndex;
             double distanceFromClosestChild;
 
-            if(distanceFromLeftChild < distanceFromRightChild) {
+            if (distanceFromLeftChild < distanceFromRightChild) {
                 closestChildIndex = currentIndex * 2;
                 distanceFromClosestChild = distanceFromLeftChild;
-            } else if(distanceFromRightChild < distanceFromLeftChild) {
+            } else if (distanceFromRightChild < distanceFromLeftChild) {
                 closestChildIndex = currentIndex * 2 + 1;
                 distanceFromClosestChild = distanceFromRightChild;
             } else {
                 //Distance is the same, choose any child randomly
                 int randomChild = StdRandom.uniform(2);
-                if(randomChild == 0) {
+                if (randomChild == 0) {
                     closestChildIndex = currentIndex * 2;
                     distanceFromClosestChild = distanceFromLeftChild;
                 } else {
@@ -80,7 +80,7 @@ public class Exercise35_Sampling {
                 }
             }
 
-            if(distanceFromParent < distanceFromClosestChild) {
+            if (distanceFromParent < distanceFromClosestChild) {
                 //If the parent is closer to the random number, select it
                 return currentIndex;
             } else {
@@ -124,7 +124,7 @@ public class Exercise35_Sampling {
 
         StdOut.println("Random generated indices:");
 
-        for(int i=0; i < 20; i++) {
+        for(int i = 0; i < 20; i++) {
             StdOut.println(sampling.random());
         }
     }

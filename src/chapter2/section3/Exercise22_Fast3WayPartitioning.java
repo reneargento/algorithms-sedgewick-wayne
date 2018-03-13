@@ -15,15 +15,16 @@ import java.util.Map;
 //Based on: http://algs4.cs.princeton.edu/23quicksort/QuickX.java.html
 public class Exercise22_Fast3WayPartitioning {
 
+    // Parameters example: 8 1048576
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 8
-        int initialArraySize = Integer.parseInt(args[1]); // 1048576
+        int numberOfExperiments = Integer.parseInt(args[0]);
+        int initialArraySize = Integer.parseInt(args[1]);
 
         Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
             Comparable[] array = ArrayGenerator.generateRandomArrayWith3Values(arraySize);
             allInputArrays.put(i, array);
 
@@ -39,7 +40,7 @@ public class Exercise22_Fast3WayPartitioning {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
@@ -73,7 +74,7 @@ public class Exercise22_Fast3WayPartitioning {
     @SuppressWarnings("unchecked")
     private static void quickSort(Comparable[] array, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -87,30 +88,30 @@ public class Exercise22_Fast3WayPartitioning {
 
         while (true) {
 
-            if(i > low && array[i].compareTo(pivot) == 0) {
+            if (i > low && array[i].compareTo(pivot) == 0) {
                 ArrayUtil.exchange(array, ++p, i);
             }
-            if(j <= high && array[j].compareTo(pivot) == 0) {
+            if (j <= high && array[j].compareTo(pivot) == 0) {
                 ArrayUtil.exchange(array, --q, j);
             }
 
             while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while (ArrayUtil.less(pivot, array[--j])) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
             }
 
             //pointers cross
-            if(i == j && array[i].compareTo(pivot) == 0) {
+            if (i == j && array[i].compareTo(pivot) == 0) {
                 ArrayUtil.exchange(array, ++p, i);
             }
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

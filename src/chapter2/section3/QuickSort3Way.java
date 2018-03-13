@@ -15,7 +15,7 @@ public class QuickSort3Way {
 
     @SuppressWarnings("unchecked")
     private static void quickSort3Way(Comparable[] array, int low, int high) {
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -28,11 +28,11 @@ public class QuickSort3Way {
         while (i <= greaterThan) {
             int compare = array[i].compareTo(pivot);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 ArrayUtil.exchange(array, lowerThan, i);
                 lowerThan++;
                 i++;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 ArrayUtil.exchange(array, i, greaterThan);
                 greaterThan--;
             } else {

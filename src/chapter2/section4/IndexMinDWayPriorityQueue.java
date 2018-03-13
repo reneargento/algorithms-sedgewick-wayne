@@ -50,11 +50,11 @@ public class IndexMinDWayPriorityQueue<Key extends Comparable<Key>> {
     }
 
     public void insert(int index, Key key) {
-        if(contains(index)) {
+        if (contains(index)) {
             throw new IllegalArgumentException("Index is already in the priority queue");
         }
 
-        if(size != keys.length - 1) {
+        if (size != keys.length - 1) {
             size++;
 
             keys[index] = key;
@@ -67,7 +67,7 @@ public class IndexMinDWayPriorityQueue<Key extends Comparable<Key>> {
 
     // Remove a minimal key and return its index
     public int deleteMin() {
-        if(size == 0) {
+        if (size == 0) {
             throw new NoSuchElementException("Priority queue underflow");
         }
 
@@ -83,7 +83,7 @@ public class IndexMinDWayPriorityQueue<Key extends Comparable<Key>> {
     }
 
     public void delete(int i) {
-        if(!contains(i)) {
+        if (!contains(i)) {
             throw new NoSuchElementException("Index is not in the priority queue");
         }
 
@@ -101,7 +101,7 @@ public class IndexMinDWayPriorityQueue<Key extends Comparable<Key>> {
 
     // Change the key associated with index to key argument
     public void changeKey(int index, Key key) {
-        if(!contains(index)) {
+        if (!contains(index)) {
             throw new NoSuchElementException("Index is not in the priority queue");
         }
 

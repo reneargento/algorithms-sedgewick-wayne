@@ -31,11 +31,11 @@ public class Exercise32_8Puzzle {
 
         @Override
         public boolean equals(Object that) {
-            if(this == that) {
+            if (this == that) {
                 return true;
             }
 
-            if(!(that instanceof Node)) {
+            if (!(that instanceof Node)) {
                 return false;
             }
 
@@ -60,7 +60,7 @@ public class Exercise32_8Puzzle {
         //Heuristic 1 - Tiles in wrong position
         List<String> solutionHeuristic1 = puzzle.solve8Puzzle(grid, Heuristic.TILES_IN_WRONG_POSITION);
 
-        if(solutionHeuristic1 != null) {
+        if (solutionHeuristic1 != null) {
             StdOut.println("Using tiles in wrong position as heuristic:");
             puzzle.printSolution(solutionHeuristic1);
         } else {
@@ -98,8 +98,8 @@ public class Exercise32_8Puzzle {
         StdRandom.shuffle(values);
         int valuesIndex = 0;
 
-        for(int i=0; i < grid.length; i++) {
-            for(int j=0; j < grid[0].length; j++) {
+        for(int i = 0; i < grid.length; i++) {
+            for(int j = 0; j < grid[0].length; j++) {
                 //Leave the first cell empty
                 if(i == 0 && j == 0) {
                     continue;
@@ -139,7 +139,7 @@ public class Exercise32_8Puzzle {
 
             for(Node neighbor : getNeighbors(current)) {
 
-                if(closedSet.contains(neighbor)) {
+                if (closedSet.contains(neighbor)) {
                     continue;
                 }
 
@@ -156,7 +156,7 @@ public class Exercise32_8Puzzle {
             current = openSet.poll();
         }
 
-        if(current == null) {
+        if (current == null) {
             return null;
         }
 
@@ -168,8 +168,8 @@ public class Exercise32_8Puzzle {
     private String getState(int[][] grid) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int i=0; i < grid.length; i++) {
-            for(int j=0; j < grid[0].length; j++) {
+        for(int i = 0; i < grid.length; i++) {
+            for(int j = 0; j < grid[0].length; j++) {
                 stringBuilder.append(grid[i][j]);
             }
         }
@@ -379,8 +379,8 @@ public class Exercise32_8Puzzle {
         for(String state : states) {
             int index = 0;
 
-            for(int i=0; i < 3; i++) {
-                for(int j=0; j < 3; j++) {
+            for(int i = 0; i < 3; i++) {
+                for(int j = 0; j < 3; j++) {
                     StdOut.print(state.charAt(index++));
                 }
                 StdOut.println();

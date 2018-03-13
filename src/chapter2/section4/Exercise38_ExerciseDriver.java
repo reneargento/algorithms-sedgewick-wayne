@@ -18,9 +18,10 @@ public class Exercise38_ExerciseDriver {
     private static final String SAME_KEYS_INPUT = "Same Keys";
     private static final String KEYS_WITH_ONLY_2_VALUES_INPUT = "Keys with only 2 Values";
 
+    // Parameters example: 6 1000000
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 6
-        int initialArraySize = Integer.parseInt(args[1]); // 1000000
+        int numberOfExperiments = Integer.parseInt(args[0]);
+        int initialArraySize = Integer.parseInt(args[1]);
 
         doExperiment(numberOfExperiments, initialArraySize);
     }
@@ -33,7 +34,7 @@ public class Exercise38_ExerciseDriver {
         for(int input = 0; input < 4; input++) {
             Map<Integer, Comparable[]> allInputArrays = generateAllArrays(inputType[input], numberOfExperiments, initialArraySize);
 
-            for(int i=0; i < numberOfExperiments; i++) {
+            for(int i = 0; i < numberOfExperiments; i++) {
                 Comparable[] originalArray = allInputArrays.get(i);
                 Comparable[] array = new Comparable[originalArray.length];
                 System.arraycopy(originalArray, 0, array, 0, originalArray.length);
@@ -54,7 +55,7 @@ public class Exercise38_ExerciseDriver {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] array;
 
@@ -82,7 +83,7 @@ public class Exercise38_ExerciseDriver {
 
     private static void testInput(PriorityQueue<Integer> priorityQueue, Comparable[] keys) {
         //Fill the priority queue
-        for(int i=0; i < keys.length; i++) {
+        for(int i = 0; i < keys.length; i++) {
             priorityQueue.insert((int) keys[i]);
         }
 

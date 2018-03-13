@@ -14,11 +14,12 @@ public class Exercise11 {
         for(int value : array) {
             StdOut.print(value + " ");
         }
+        StdOut.println("\nExpected: -99 -30 -3 -1 0 2 4 4 4 5 6 8 20 30 ");
     }
 
     private static void shellsort(int[] array) {
 
-        if(array == null || array.length == 0) {
+        if (array == null || array.length == 0) {
             return;
         }
 
@@ -44,12 +45,12 @@ public class Exercise11 {
         }
 
         //Shellsort
-        for(int i=0; i < incrementSequence.length; i++) {
+        for(int i = 0; i < incrementSequence.length; i++) {
 
             int increment = incrementSequence[i];
 
             //h-sort the array
-            for(int j=increment; j < array.length; j++) {
+            for(int j = increment; j < array.length; j++) {
                 int currentIndex = j;
 
                 while(currentIndex >= increment && array[currentIndex] < array[currentIndex - increment]) {

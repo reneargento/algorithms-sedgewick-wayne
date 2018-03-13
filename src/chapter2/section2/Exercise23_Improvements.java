@@ -53,7 +53,7 @@ public class Exercise23_Improvements {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
@@ -84,11 +84,11 @@ public class Exercise23_Improvements {
 
         StdOut.printf("%10s %13s %12s\n", "Cutoff | ", "Array Size | ", "Running Time");
 
-        for(int cutoff=5; cutoff <= 30; cutoff += 5) {
+        for(int cutoff = 5; cutoff <= 30; cutoff += 5) {
             int arraySize = initialArraySize;
             Exercise23_Improvements1_Cutoff improvements1 = new Exercise23_Improvements1_Cutoff(cutoff);
 
-            for(int i=0; i < numberOfExperiments; i++) {
+            for(int i = 0; i < numberOfExperiments; i++) {
 
                 Comparable[] originalArray = allInputArrays.get(i);
                 Comparable[] array = new Comparable[originalArray.length];
@@ -112,7 +112,7 @@ public class Exercise23_Improvements {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
             Comparable[] array = generateArray(arraySize);
             allArrays.put(i, array);
 
@@ -125,7 +125,7 @@ public class Exercise23_Improvements {
     private static Comparable[] generateArray(int length) {
         Comparable[] array = new Comparable[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             array[i] = StdRandom.uniform();
         }
 

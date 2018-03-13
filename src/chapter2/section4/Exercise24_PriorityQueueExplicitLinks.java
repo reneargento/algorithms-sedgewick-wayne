@@ -45,7 +45,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             int[] pathToParentNode = generatePathToNode(parentIndex);
             PQNode parentNode = getNode(pathToParentNode);
 
-            if(parentNode.leftChild == null) {
+            if (parentNode.leftChild == null) {
                 parentNode.leftChild = newNode;
             } else {
                 parentNode.rightChild = newNode;
@@ -57,7 +57,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
 
         //O(lg N)
         public Key deleteMax() {
-            if(size == 0) {
+            if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
             }
 
@@ -65,7 +65,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             int parentNodeIndex = size / 2; //The index of the parent of the last node
 
             //If we are deleting the root
-            if(parentNodeIndex == 0) {
+            if (parentNodeIndex == 0) {
                 priorityQueue.leftChild = null;
                 return max;
             }
@@ -75,7 +75,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
 
             Key lastItemValue;
 
-            if(lastNodeParent.rightChild != null) {
+            if (lastNodeParent.rightChild != null) {
                 lastItemValue = lastNodeParent.rightChild.value;
                 lastNodeParent.rightChild.parent = null;
                 lastNodeParent.rightChild = null;
@@ -115,8 +115,8 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             while (node != null && node.leftChild != null) {
 
                 //Check which child is bigger
-                if(node.rightChild != null) {
-                    if(ArrayUtil.less(node.leftChild.value, node.rightChild.value)) {
+                if (node.rightChild != null) {
+                    if (ArrayUtil.less(node.leftChild.value, node.rightChild.value)) {
                         isTheLeftChildTheHighestItem = false;
                         highestItemValue = node.rightChild.value;
                     } else {
@@ -129,10 +129,10 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
                 }
 
                 //Compare highest value child and parent
-                if(ArrayUtil.less(node.value, highestItemValue)) {
+                if (ArrayUtil.less(node.value, highestItemValue)) {
                     Key temp = node.value;
 
-                    if(isTheLeftChildTheHighestItem) {
+                    if (isTheLeftChildTheHighestItem) {
                         node.value = node.leftChild.value;
                         node.leftChild.value = temp;
 
@@ -153,7 +153,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
         private int[] generatePathToNode(int nodeIndex) {
             int pathSize = (int) Math.ceil(Math.log10(nodeIndex) / Math.log10(2)) + 1;
 
-            if(pathSize <= 0) {
+            if (pathSize <= 0) {
                 return new int[0];
             }
 
@@ -174,10 +174,10 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             PQNode currentNode = priorityQueue.leftChild;
 
             for(int i=0; i < pathToNode.length && currentNode != null; i++) {
-                if(pathToNode[i] == currentIndex * 2) {
+                if (pathToNode[i] == currentIndex * 2) {
                     currentNode = currentNode.leftChild;
                     currentIndex = currentIndex * 2;
-                } else if(pathToNode[i] == currentIndex * 2 + 1) {
+                } else if (pathToNode[i] == currentIndex * 2 + 1) {
                     currentNode = currentNode.rightChild;
                     currentIndex = currentIndex * 2 + 1;
                 }

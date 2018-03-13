@@ -85,7 +85,7 @@ public class Exercise38_VariousTypesOfItems {
 
         Map[] array = new HashMap[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             Map<String, Double> keyValues = new HashMap<>();
 
             String randomKey = generate10CharRandomString();
@@ -103,13 +103,13 @@ public class Exercise38_VariousTypesOfItems {
 
         Map[] array = new HashMap[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             Map<Double, String[]> keyValues = new HashMap<>();
 
             double randomKey = StdRandom.uniform();
             String[] randomValue = new String[10];
 
-            for(int j=0; j < randomValue.length; j++) {
+            for(int j = 0; j < randomValue.length; j++) {
                 randomValue[j] = generate10CharRandomString();
             }
 
@@ -125,13 +125,13 @@ public class Exercise38_VariousTypesOfItems {
 
         Map[] array = new HashMap[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             Map<Integer, Integer[]> keyValues = new HashMap<>();
 
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             Integer[] randomValue = new Integer[20];
 
-            for(int j=0; j < randomValue.length; j++) {
+            for(int j = 0; j < randomValue.length; j++) {
                 randomValue[j] = StdRandom.uniform(Integer.MAX_VALUE);
             }
 
@@ -146,7 +146,7 @@ public class Exercise38_VariousTypesOfItems {
     private static String generate10CharRandomString() {
         char[] chars = new char[10];
 
-        for(int i=0; i < chars.length; i++) {
+        for(int i = 0; i < chars.length; i++) {
 
             int randomCharIntValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                     Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
@@ -180,10 +180,10 @@ public class Exercise38_VariousTypesOfItems {
     }
 
     private static void selectionSort(Map[] array, KeyType keyType) {
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             int minIndex = i;
 
-            for(int j=i+1; j < array.length; j++) {
+            for(int j = i + 1; j < array.length; j++) {
                 if(isLower(array, j, minIndex, keyType)) {
                     minIndex = j;
                 }
@@ -195,9 +195,9 @@ public class Exercise38_VariousTypesOfItems {
 
     private static void insertionSort(Map[] array, KeyType keyType) {
 
-        for(int i=0; i < array.length; i++) {
-            for(int j = i; j > 0 && isLower(array, j-1, j, keyType); j--) {
-                swapElements(array, j, j-1);
+        for(int i = 0; i < array.length; i++) {
+            for(int j = i; j > 0 && isLower(array, j - 1, j, keyType); j--) {
+                swapElements(array, j, j - 1);
             }
         }
     }
@@ -212,7 +212,7 @@ public class Exercise38_VariousTypesOfItems {
 
         while (incrementSequence > 0) {
 
-            for(int i=incrementSequence; i < array.length; i++) {
+            for(int i = incrementSequence; i < array.length; i++) {
                 for(int j = i; j >= incrementSequence && isLower(array, j, j - incrementSequence, keyType); j -= incrementSequence) {
                     swapElements(array, j, j - incrementSequence);
                 }
@@ -245,19 +245,19 @@ public class Exercise38_VariousTypesOfItems {
                     stringKeyObject2 = (String) key;
                 }
 
-                if(stringKeyObject1 == null || stringKeyObject2 == null) {
+                if (stringKeyObject1 == null || stringKeyObject2 == null) {
                     return false;
                 }
 
                 //Compare both Strings
-                for(int c=0; c < stringKeyObject2.toCharArray().length; c++) {
-                    if(stringKeyObject1.length() == c) {
+                for(int c = 0; c < stringKeyObject2.toCharArray().length; c++) {
+                    if (stringKeyObject1.length() == c) {
                         return true;
                     }
 
-                    if(stringKeyObject1.charAt(c) < stringKeyObject2.charAt(c)) {
+                    if (stringKeyObject1.charAt(c) < stringKeyObject2.charAt(c)) {
                         return true;
-                    } else if(stringKeyObject1.charAt(c) > stringKeyObject2.charAt(c)) {
+                    } else if (stringKeyObject1.charAt(c) > stringKeyObject2.charAt(c)) {
                         return false;
                     }
                 }
@@ -275,11 +275,11 @@ public class Exercise38_VariousTypesOfItems {
                     doubleKeyObject2 = (double) key;
                 }
 
-                if(doubleKeyObject1 == null || doubleKeyObject2 == null) {
+                if (doubleKeyObject1 == null || doubleKeyObject2 == null) {
                     return false;
                 }
 
-                if(doubleKeyObject1 < doubleKeyObject2) {
+                if (doubleKeyObject1 < doubleKeyObject2) {
                     return true;
                 }
                 break;
@@ -296,11 +296,11 @@ public class Exercise38_VariousTypesOfItems {
                     integerKeyObject2 = (int) key;
                 }
 
-                if(integerKeyObject1 == null || integerKeyObject2 == null) {
+                if (integerKeyObject1 == null || integerKeyObject2 == null) {
                     return false;
                 }
 
-                if(integerKeyObject1 < integerKeyObject2) {
+                if (integerKeyObject1 < integerKeyObject2) {
                     return true;
                 }
                 break;

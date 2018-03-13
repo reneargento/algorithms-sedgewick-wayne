@@ -13,7 +13,8 @@ public class Exercise16_Certification {
 
     public static void main(String[] args) {
         Comparable[] array = {2, 20, -1, -30, 30, 5, 6, 8, -99, -3, 0, 4, 4, 4};
-        StdOut.println(check(array));
+        StdOut.println("Check: " + check(array));
+        StdOut.println("Expected: true");
     }
 
     @SuppressWarnings("unchecked")
@@ -25,7 +26,7 @@ public class Exercise16_Certification {
         for(Comparable value : array) {
             int count = 0;
 
-            if(valuesMap.containsKey(value)) {
+            if (valuesMap.containsKey(value)) {
                 count = valuesMap.get(value);
             }
 
@@ -36,19 +37,19 @@ public class Exercise16_Certification {
         Arrays.sort(array);
 
         //Check if array is sorted
-        for(int i=0; i < array.length - 1; i++) {
-            if(array[i].compareTo(array[i+1]) > 0) {
+        for(int i = 0; i < array.length - 1; i++) {
+            if (array[i].compareTo(array[i + 1]) > 0) {
                 return false;
             }
         }
 
         //Check if the initial set of objects is still in the array
         for(Comparable value : array) {
-            if(valuesMap.containsKey(value)) {
+            if (valuesMap.containsKey(value)) {
                 int count = valuesMap.get(value);
                 count--;
 
-                if(count == 0) {
+                if (count == 0) {
                     valuesMap.remove(value);
                 } else {
                     valuesMap.put(value, count);
@@ -58,7 +59,7 @@ public class Exercise16_Certification {
             }
         }
 
-        if(valuesMap.size() > 0) {
+        if (valuesMap.size() > 0) {
             return false;
         }
 

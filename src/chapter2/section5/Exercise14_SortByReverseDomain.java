@@ -51,7 +51,7 @@ public class Exercise14_SortByReverseDomain {
         String[] domainNames = StdIn.readAllLines();
         Domain[] domains = new Domain[domainNames.length];
 
-        for(int i=0; i < domainNames.length; i++) {
+        for(int i = 0; i < domainNames.length; i++) {
             Domain domain = sortByReverseDomain.new Domain(domainNames[i]);
             domains[i] = domain;
         }

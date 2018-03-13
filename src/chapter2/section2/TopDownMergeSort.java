@@ -13,7 +13,7 @@ public class TopDownMergeSort {
 
     private static void sort(Comparable[] array, Comparable[] aux, int low, int high) {
 
-        if(high <= low) {
+        if (high <= low) {
             return;
         }
 
@@ -27,7 +27,7 @@ public class TopDownMergeSort {
 
     @SuppressWarnings("unchecked")
     private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i=low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -36,7 +36,7 @@ public class TopDownMergeSort {
         int arrayIndex = low;
 
         while (indexLeft <= middle && indexRight <= high) {
-            if(aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
+            if (aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
                 array[arrayIndex] = aux[indexLeft];
                 indexLeft++;
             } else {
@@ -56,21 +56,21 @@ public class TopDownMergeSort {
 
     //Other possible merge implementation
 //    private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-//        for(int i=low; i <= high; i++) {
+//        for(int i = low; i <= high; i++) {
 //            aux[i] = array[i];
 //        }
 //
 //        int leftIndex = low;
 //        int rightIndex = middle + 1;
 //
-//        for(int i=low; i <= high; i++) {
-//            if(leftIndex > middle) {
+//        for(int i = low; i <= high; i++) {
+//            if (leftIndex > middle) {
 //                array[i] = aux[rightIndex];
 //                rightIndex++;
-//            } else if(rightIndex > high) {
+//            } else if (rightIndex > high) {
 //                array[i] = aux[leftIndex];
 //                leftIndex++;
-//            } else if(aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
+//            } else if (aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
 //                array[i] = aux[leftIndex];
 //                leftIndex++;
 //            } else {

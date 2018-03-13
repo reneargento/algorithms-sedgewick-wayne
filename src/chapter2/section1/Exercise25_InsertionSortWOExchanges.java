@@ -31,12 +31,12 @@ public class Exercise25_InsertionSortWOExchanges {
 
     private static void insertionSortWithoutExchanges(Comparable[] array) {
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             Comparable aux = array[i];
 
             int j;
 
-            for(j=i; j > 0 && aux.compareTo(array[j - 1]) < 0; j--) {
+            for(j = i; j > 0 && aux.compareTo(array[j - 1]) < 0; j--) {
                 array[j] = array[j - 1];
             }
 
@@ -60,8 +60,8 @@ public class Exercise25_InsertionSortWOExchanges {
         double total = 0;
         Comparable[] array = new Comparable[length];
 
-        for(int experiment=0; experiment < numberOfExperiments; experiment++) {
-            for(int i=0; i < length; i++) {
+        for(int experiment = 0; experiment < numberOfExperiments; experiment++) {
+            for(int i = 0; i < length; i++) {
                 array[i] = StdRandom.uniform();
             }
 

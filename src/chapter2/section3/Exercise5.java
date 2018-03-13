@@ -3,6 +3,8 @@ package chapter2.section3;
 import edu.princeton.cs.algs4.StdOut;
 import util.ArrayGenerator;
 
+import java.util.StringJoiner;
+
 /**
  * Created by Rene Argento on 04/03/17.
  */
@@ -13,13 +15,19 @@ public class Exercise5 {
         int arrayLength = Integer.parseInt(args[0]);
         Comparable array[] = ArrayGenerator.generateRandomArrayWith2Values(arrayLength);
 
+        StringJoiner originalArray = new StringJoiner(" ");
+        for (Comparable element : array) {
+            originalArray.add(String.valueOf(element));
+        }
+        StdOut.println("Original array: " + originalArray);
+
         sort3WayPartitioning(array);
 
-        for (int i=0; i < arrayLength; i++) {
-            StdOut.print(array[i] + " ");
+        StringJoiner sortedArray = new StringJoiner(" ");
+        for (Comparable element : array) {
+            sortedArray.add(String.valueOf(element));
         }
-
-        StdOut.println();
+        StdOut.println("Sorted array: " + sortedArray);
     }
 
     @SuppressWarnings("unchecked")
@@ -34,7 +42,7 @@ public class Exercise5 {
         while(i <= gt) {
             int comparison = array[i].compareTo(pivot);
 
-            if(comparison < 0) {
+            if (comparison < 0) {
                 exchange(array, lt, i);
                 lt++;
                 i++;

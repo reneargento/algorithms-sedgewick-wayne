@@ -109,7 +109,7 @@ public class Exercise34_CornerCases {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = i;
         }
 
@@ -120,7 +120,7 @@ public class Exercise34_CornerCases {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = arrayLength - i;
         }
 
@@ -133,7 +133,7 @@ public class Exercise34_CornerCases {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = equalKey;
         }
 
@@ -144,8 +144,8 @@ public class Exercise34_CornerCases {
 
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
-            if(i % 2 == 0) {
+        for(int i = 0; i < arrayLength; i++) {
+            if (i % 2 == 0) {
                 array[i] = 0;
             } else {
                 array[i] = 1;

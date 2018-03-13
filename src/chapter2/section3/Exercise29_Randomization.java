@@ -22,7 +22,7 @@ public class Exercise29_Randomization {
 
         int arraySize = 1000;
 
-        for(int i=0; i < NUMBER_OF_EXPERIMENTS; i++) {
+        for(int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
             Comparable[] array = ArrayGenerator.generateDistinctValuesShuffledArray(arraySize);
             allInputArrays.put(i, array);
 
@@ -40,7 +40,7 @@ public class Exercise29_Randomization {
                 "QuickSort W/ Random Pivot");
 
         for(int cutoffSize : cutoffSizes) {
-            for(int i=0; i < NUMBER_OF_EXPERIMENTS; i++) {
+            for(int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
 
                 Comparable[] originalArray = allInputArrays.get(i);
                 Comparable[] arrayCopy1 = new Comparable[originalArray.length];
@@ -70,13 +70,13 @@ public class Exercise29_Randomization {
 
     private static void quickSort(Comparable[] array, int low, int high, int cutoffSize) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
         int subArraySize = high - low + 1;
 
-        if(subArraySize < cutoffSize) {
+        if (subArraySize < cutoffSize) {
             InsertionSort.insertionSort(array, low, high);
             return;
         }
@@ -97,18 +97,18 @@ public class Exercise29_Randomization {
 
         while(true) {
             while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while(ArrayUtil.less(pivot, array[--j])) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
             }
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

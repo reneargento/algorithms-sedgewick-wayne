@@ -16,7 +16,7 @@ public class Exercise9 {
     private static Comparable[] generateRandomArray(int arrayLength) {
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.uniform();
         }
 
@@ -31,7 +31,7 @@ public class Exercise9 {
 
     private static void topDownMergeSort(Comparable[] array, Comparable[] aux, int low, int high) {
 
-        if(high <= low) {
+        if (high <= low) {
             return;
         }
 
@@ -45,7 +45,7 @@ public class Exercise9 {
 
     @SuppressWarnings("unchecked")
     private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -54,7 +54,7 @@ public class Exercise9 {
         int arrayIndex = low;
 
         while (indexLeft <= middle && indexRight <= high) {
-            if(aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
+            if (aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
                 array[arrayIndex] = aux[indexLeft];
                 indexLeft++;
             } else {

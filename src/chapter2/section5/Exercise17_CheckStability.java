@@ -41,7 +41,7 @@ public class Exercise17_CheckStability {
 
         Wrapper[] wrappedKeys = new Wrapper[array.length];
         int wrappedKeysIndex = 0;
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             Wrapper wrapper = new Wrapper(array[i], i);
             wrappedKeys[wrappedKeysIndex++] = wrapper;
         }
@@ -60,7 +60,7 @@ public class Exercise17_CheckStability {
             valuesMap.put(value, count);
         }
 
-        if(stable) {
+        if (stable) {
             //Mergesort
             Arrays.sort(array);
             Arrays.sort(wrappedKeys);
@@ -70,19 +70,19 @@ public class Exercise17_CheckStability {
         }
 
         //Check if array is sorted
-        for(int i=0; i < array.length - 1; i++) {
-            if(array[i].compareTo(array[i+1]) > 0) {
+        for(int i = 0; i < array.length - 1; i++) {
+            if (array[i].compareTo(array[i+1]) > 0) {
                 return false;
             }
         }
 
         //Check if the initial set of objects is still in the array
         for(Comparable value : array) {
-            if(valuesMap.containsKey(value)) {
+            if (valuesMap.containsKey(value)) {
                 int count = valuesMap.get(value);
                 count--;
 
-                if(count == 0) {
+                if (count == 0) {
                     valuesMap.remove(value);
                 } else {
                     valuesMap.put(value, count);
@@ -92,12 +92,12 @@ public class Exercise17_CheckStability {
             }
         }
 
-        if(valuesMap.size() > 0) {
+        if (valuesMap.size() > 0) {
             return false;
         }
 
         //Check if the elements were sorted in a stable manner
-        for(int i=0; i < wrappedKeys.length - 1; i++) {
+        for(int i = 0; i < wrappedKeys.length - 1; i++) {
             if(wrappedKeys[i].keyValue.compareTo(wrappedKeys[i+1].keyValue) == 0 &&
                     wrappedKeys[i].originalIndex > wrappedKeys[i+1].originalIndex) {
                 return false;

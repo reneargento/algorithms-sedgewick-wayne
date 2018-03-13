@@ -2,8 +2,6 @@ package chapter2.section2;
 
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.Arrays;
-
 /**
  * Created by Rene Argento on 18/02/17.
  */
@@ -21,6 +19,7 @@ public class Exercise20_IndexSort {
         } else {
             StdOut.println("Index sorted NOT OK");
         }
+        StdOut.println("Expected: Index sorted OK\n");
 
         Comparable[] array2 = generateArray2();
         int[] indexSortedArray2 = indexSort(array2);
@@ -31,6 +30,7 @@ public class Exercise20_IndexSort {
         } else {
             StdOut.println("Index sorted NOT OK");
         }
+        StdOut.println("Expected: Index sorted OK");
     }
 
     private static Comparable[] generateArray1() {
@@ -70,7 +70,7 @@ public class Exercise20_IndexSort {
         int[] aux = new int[array.length];
         int[] indexSort = new int[array.length];
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             indexSort[i] = i;
         }
 
@@ -96,7 +96,7 @@ public class Exercise20_IndexSort {
     @SuppressWarnings("unchecked")
     private static void merge(Comparable[] array, int[] aux, int[] indexSort, int low, int middle, int high) {
 
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = indexSort[i];
         }
 
@@ -104,9 +104,9 @@ public class Exercise20_IndexSort {
         int rightIndex = middle + 1;
         int arrayIndex = low;
 
-        while(leftIndex <= middle && rightIndex <= high) {
+        while (leftIndex <= middle && rightIndex <= high) {
 
-            if(array[aux[leftIndex]].compareTo(array[aux[rightIndex]]) <= 0) {
+            if (array[aux[leftIndex]].compareTo(array[aux[rightIndex]]) <= 0) {
                 indexSort[arrayIndex] = aux[leftIndex];
 
                 leftIndex++;
@@ -126,11 +126,11 @@ public class Exercise20_IndexSort {
     }
 
     private static boolean validate(int[] expectedIndexSortedArray, int[] indexSortedArray) {
-        if(expectedIndexSortedArray.length != indexSortedArray.length) {
+        if (expectedIndexSortedArray.length != indexSortedArray.length) {
             return false;
         }
 
-        for(int i=0; i < expectedIndexSortedArray.length; i++) {
+        for(int i = 0; i < expectedIndexSortedArray.length; i++) {
             if(expectedIndexSortedArray[i] != indexSortedArray[i]) {
                 return false;
             }

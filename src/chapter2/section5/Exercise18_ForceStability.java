@@ -25,12 +25,12 @@ public class Exercise18_ForceStability {
             int compare = this.keyValue.compareTo(that.keyValue);
 
             //Different keys
-            if(compare != 0) {
+            if (compare != 0) {
                 return compare;
             }
 
             //Equal keys
-            if(this.originalIndex < that.originalIndex) {
+            if (this.originalIndex < that.originalIndex) {
                 return -1;
             } else if(this.originalIndex > that.originalIndex) {
                 return 1;
@@ -42,26 +42,28 @@ public class Exercise18_ForceStability {
 
     public static void main(String[] args) {
         Comparable[] array = {2, 20, -1, -30, 30, 5, 6, 8, -99, -3, 0, 4, 4, 4};
+
+        String originalArray = Arrays.toString(array);
+        StdOut.println("Original array: " + originalArray);
+
         new Exercise18_ForceStability().sortInAStableWay(array);
 
-        StdOut.println("Sorted array");
-        for(Comparable key : array) {
-            StdOut.print(key + " ");
-        }
+        String sortedArray = Arrays.toString(array);
+        StdOut.println("Sorted array: " + sortedArray);
     }
 
     private void sortInAStableWay(Comparable[] array) {
 
         Wrapper[] wrappedKeys = new Wrapper[array.length];
         int wrappedKeysIndex = 0;
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             Wrapper wrapper = new Wrapper(array[i], i);
             wrappedKeys[wrappedKeysIndex++] = wrapper;
         }
 
         Arrays.sort(wrappedKeys);
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             array[i] = wrappedKeys[i].keyValue;
         }
     }

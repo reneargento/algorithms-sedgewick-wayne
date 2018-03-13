@@ -35,7 +35,7 @@ public class Exercise28_TopDownVSBottomUp {
 
         int numberOfExperiments = 4;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
             Comparable[] currentArray = arrays.get(i);
 
             double timeTopDownMergeSort = time(MergeSortType.TOP_DOWN, currentArray);
@@ -53,7 +53,7 @@ public class Exercise28_TopDownVSBottomUp {
 
         Stopwatch timer = new Stopwatch();
 
-        if(mergeSortType == MergeSortType.TOP_DOWN) {
+        if (mergeSortType == MergeSortType.TOP_DOWN) {
             TopDownMergeSort.mergeSort(copyArray);
         } else if (mergeSortType == MergeSortType.BOTTOM_UP) {
             BottomUpMergeSort.mergeSort(copyArray);

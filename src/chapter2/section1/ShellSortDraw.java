@@ -17,7 +17,7 @@ public class ShellSortDraw {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -25,9 +25,9 @@ public class ShellSortDraw {
         // number of rows needed
         int rows = 0;
         int h = 1;
-        while (h < arraySize/3) {
+        while (h < arraySize / 3) {
             rows += (arraySize - h + 1);
-            h = 3*h + 1;
+            h = 3 * h + 1;
         }
         rows += (arraySize - h + 1);
 
@@ -55,10 +55,10 @@ public class ShellSortDraw {
 
         while (incrementSequence > 0) {
 
-            for(int i=incrementSequence; i < array.length; i++) {
+            for(int i = incrementSequence; i < array.length; i++) {
                 int j;
 
-                for(j=i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0; j -= incrementSequence) {
+                for(j = i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0; j -= incrementSequence) {
                     Comparable temp = array[j];
                     array[j] = array[j - incrementSequence];
                     array[j - incrementSequence] = temp;
@@ -76,7 +76,7 @@ public class ShellSortDraw {
     // Display header
     private static void header(Comparable[] array) {
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(array.length/2.0, -3, "array[ ]");
+        StdDraw.text(array.length / 2.0, -3, "array[ ]");
 
         for (int i = 0; i < array.length; i++) {
             StdDraw.text(i, -2, String.valueOf(i));

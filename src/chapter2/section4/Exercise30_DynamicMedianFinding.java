@@ -24,13 +24,13 @@ public class Exercise30_DynamicMedianFinding {
         //O(lg N)
         public void insert(Key key) {
 
-            if(size == 0 || ArrayUtil.less(key, maxPriorityQueue.peek())) {
+            if (size == 0 || ArrayUtil.less(key, maxPriorityQueue.peek())) {
                 maxPriorityQueue.insert(key);
             } else {
                 minPriorityQueue.insert(key);
             }
 
-            if(minPriorityQueue.size() > maxPriorityQueue.size() + 1) {
+            if (minPriorityQueue.size() > maxPriorityQueue.size() + 1) {
                 Key keyToBeMoved = minPriorityQueue.deleteTop();
                 maxPriorityQueue.insert(keyToBeMoved);
             } else if(maxPriorityQueue.size() > minPriorityQueue.size() + 1) {
@@ -45,7 +45,7 @@ public class Exercise30_DynamicMedianFinding {
         public Key findTheMedian() {
             Key median;
 
-            if(minPriorityQueue.size() > maxPriorityQueue.size()) {
+            if (minPriorityQueue.size() > maxPriorityQueue.size()) {
                 median = minPriorityQueue.peek();
             } else {
                 median = maxPriorityQueue.peek();
@@ -58,7 +58,7 @@ public class Exercise30_DynamicMedianFinding {
         public Key deleteMedian() {
             Key median;
 
-            if(minPriorityQueue.size() > maxPriorityQueue.size()) {
+            if (minPriorityQueue.size() > maxPriorityQueue.size()) {
                 median = minPriorityQueue.deleteTop();
             } else {
                 median = maxPriorityQueue.deleteTop();

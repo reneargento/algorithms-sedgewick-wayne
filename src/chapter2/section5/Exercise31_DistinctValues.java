@@ -12,11 +12,12 @@ import java.util.Set;
  */
 public class Exercise31_DistinctValues {
 
+    // Parameters example: 500000 1000000 10
     public static void main(String[] args) {
 
         Exercise31_DistinctValues distinctValues = new Exercise31_DistinctValues();
 
-        if(args.length == 3) {
+        if (args.length == 3) {
             int maxValue = Integer.parseInt(args[0]);
             int numberOfValues = Integer.parseInt(args[1]);
             int numberOfTrials = Integer.parseInt(args[2]);
@@ -24,7 +25,7 @@ public class Exercise31_DistinctValues {
             int distinct[] = new int[numberOfTrials];
             int distinctArrayIndex = 0;
 
-            for(int i=0; i < numberOfTrials; i++) {
+            for(int i = 0; i < numberOfTrials; i++) {
                 int numberOfDistinctValues = distinctValues.countDistinctValues(numberOfValues, maxValue);
                 distinct[distinctArrayIndex++] = numberOfDistinctValues;
             }
@@ -82,18 +83,6 @@ public class Exercise31_DistinctValues {
                 printResults(numberOfValues, maxValue, distinctValuesMean, expectedValue);
             }
         }
-    }
-
-    //This method will be used on exercise 3.5.30
-    private int countDistinctValuesUsingSet(int numberOfValues, int maxValue) {
-        Set<Integer> distinctValues = new HashSet<>();
-
-        for(int i = 0; i < numberOfValues; i++) {
-            int generatedValue = StdRandom.uniform(maxValue);
-            distinctValues.add(generatedValue);
-        }
-
-        return distinctValues.size();
     }
 
     private int countDistinctValues(int numberOfValues, int maxValue) {

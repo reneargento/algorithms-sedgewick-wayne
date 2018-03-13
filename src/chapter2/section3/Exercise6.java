@@ -18,7 +18,7 @@ public class Exercise6 {
 
         StdOut.printf("%13s %12s %17s\n", "Array Size | ", "Compares | ", "Expected Compares");
 
-        for(int i=0; i < arraySizes.length; i++) {
+        for(int i = 0; i < arraySizes.length; i++) {
 
             int arraySize = arraySizes[i];
 
@@ -42,7 +42,7 @@ public class Exercise6 {
 
     private static void quickSort(Comparable[] array, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -61,7 +61,7 @@ public class Exercise6 {
             numberOfCompares++;
 
             while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
                 numberOfCompares++;
@@ -69,13 +69,13 @@ public class Exercise6 {
 
             numberOfCompares++;
             while(ArrayUtil.less(pivot, array[--j])) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
                 numberOfCompares++;
             }
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

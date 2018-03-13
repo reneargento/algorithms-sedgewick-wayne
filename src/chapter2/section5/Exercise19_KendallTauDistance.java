@@ -23,12 +23,12 @@ public class Exercise19_KendallTauDistance {
         }
 
         int[] array1Inverted = new int[array1.length];
-        for(int i=0; i < array1.length; i++) {
+        for(int i = 0; i < array1.length; i++) {
             array1Inverted[array1[i]] = i;
         }
 
         int[] inversions = new int[array2.length];
-        for(int i=0; i < array2.length; i++) {
+        for(int i = 0; i < array2.length; i++) {
             inversions[i] = array1Inverted[array2[i]];
         }
 
@@ -42,7 +42,7 @@ public class Exercise19_KendallTauDistance {
 
     private int splitArrayAndCountInversions(int[] array, int[] aux, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return 0;
         }
 
@@ -60,7 +60,7 @@ public class Exercise19_KendallTauDistance {
         int rightIndex = middle + 1;
         int arrayIndex = low;
 
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -68,7 +68,7 @@ public class Exercise19_KendallTauDistance {
 
         while (leftIndex <= middle && rightIndex <= high) {
 
-            if(aux[leftIndex] <= aux[rightIndex]) {
+            if (aux[leftIndex] <= aux[rightIndex]) {
                 array[arrayIndex] = aux[leftIndex++];
             } else {
                 inversions += middle - leftIndex + 1;

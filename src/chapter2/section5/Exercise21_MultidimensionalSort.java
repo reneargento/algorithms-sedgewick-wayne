@@ -24,7 +24,7 @@ public class Exercise21_MultidimensionalSort {
 
         //Constructors
         Vector(int[] values1d) {
-            if(values1d == null) {
+            if (values1d == null) {
                 throw new IllegalArgumentException("Array cannot be null");
             }
 
@@ -33,7 +33,7 @@ public class Exercise21_MultidimensionalSort {
         }
 
         Vector(int[][] values2d) {
-            if(values2d == null) {
+            if (values2d == null) {
                 throw new IllegalArgumentException("Array cannot be null");
             }
 
@@ -42,7 +42,7 @@ public class Exercise21_MultidimensionalSort {
         }
 
         Vector(int[][][] values3d) {
-            if(values3d == null) {
+            if (values3d == null) {
                 throw new IllegalArgumentException("Array cannot be null");
             }
 
@@ -51,7 +51,7 @@ public class Exercise21_MultidimensionalSort {
         }
 
         Vector(int[][][][] values4d) {
-            if(values4d == null) {
+            if (values4d == null) {
                 throw new IllegalArgumentException("Array cannot be null");
             }
 
@@ -60,7 +60,7 @@ public class Exercise21_MultidimensionalSort {
         }
 
         Vector(int[][][][][] values5d) {
-            if(values5d == null) {
+            if (values5d == null) {
                 throw new IllegalArgumentException("Array cannot be null");
             }
 
@@ -84,23 +84,23 @@ public class Exercise21_MultidimensionalSort {
         }
 
         private int compare1D(Vector that) {
-            if(this.values1d == null || that.values1d == null) {
+            if (this.values1d == null || that.values1d == null) {
                 throw new IllegalArgumentException("Both vectors must exist");
             }
 
             int smallestSize = Math.min(this.values1d.length, that.values1d.length);
 
-            for(int i=0; i < smallestSize; i++) {
-                if(this.values1d[i] < that.values1d[i]) {
+            for(int i = 0; i < smallestSize; i++) {
+                if (this.values1d[i] < that.values1d[i]) {
                     return -1;
-                } else if(this.values1d[i] > that.values1d[i]) {
+                } else if (this.values1d[i] > that.values1d[i]) {
                     return 1;
                 }
             }
 
-            if(this.values1d.length < that.values1d.length) {
+            if (this.values1d.length < that.values1d.length) {
                 return -1;
-            } else if(this.values1d.length > that.values1d.length) {
+            } else if (this.values1d.length > that.values1d.length) {
                 return 1;
             }
 
@@ -108,32 +108,32 @@ public class Exercise21_MultidimensionalSort {
         }
 
         private int compare2D(Vector that) {
-            if(this.values2d == null || that.values2d == null) {
+            if (this.values2d == null || that.values2d == null) {
                 throw new IllegalArgumentException("Both vectors must exist");
             }
 
             int smallestSize1d = Math.min(this.values2d.length, that.values2d.length);
             int smallestSize2d = Math.min(this.values2d[0].length, that.values2d[0].length);
 
-            for(int i=0; i < smallestSize1d; i++) {
-                for(int j=0; j < smallestSize2d; j++) {
-                    if(this.values2d[i][j] < that.values2d[i][j]) {
+            for(int i = 0; i < smallestSize1d; i++) {
+                for(int j = 0; j < smallestSize2d; j++) {
+                    if (this.values2d[i][j] < that.values2d[i][j]) {
                         return -1;
-                    } else if(this.values2d[i][j] > that.values2d[i][j]) {
+                    } else if (this.values2d[i][j] > that.values2d[i][j]) {
                         return 1;
                     }
                 }
             }
 
-            if(this.values2d.length < that.values2d.length) {
+            if (this.values2d.length < that.values2d.length) {
                 return -1;
             } else if(this.values2d.length > that.values2d.length) {
                 return 1;
             }
             for (int j = 0; j < smallestSize2d; j++) {
-                if(this.values2d[j].length < that.values2d[j].length) {
+                if (this.values2d[j].length < that.values2d[j].length) {
                     return -1;
-                } else if(this.values2d[j].length > that.values2d[j].length) {
+                } else if (this.values2d[j].length > that.values2d[j].length) {
                     return 1;
                 }
             }
@@ -142,7 +142,7 @@ public class Exercise21_MultidimensionalSort {
         }
 
         private int compare3D(Vector that) {
-            if(this.values3d == null || that.values3d == null) {
+            if (this.values3d == null || that.values3d == null) {
                 throw new IllegalArgumentException("Both vectors must exist");
             }
 
@@ -150,34 +150,34 @@ public class Exercise21_MultidimensionalSort {
             int smallestSize2d = Math.min(this.values3d[0].length, that.values3d[0].length);
             int smallestSize3d = Math.min(this.values3d[0][0].length, that.values3d[0][0].length);
 
-            for(int i=0; i < smallestSize1d; i++) {
-                for(int j=0; j < smallestSize2d; j++) {
-                    for(int k=0; k < smallestSize3d; k++) {
-                        if(this.values3d[i][j][k] < that.values3d[i][j][k]) {
+            for(int i = 0; i < smallestSize1d; i++) {
+                for(int j = 0; j < smallestSize2d; j++) {
+                    for(int k = 0; k < smallestSize3d; k++) {
+                        if (this.values3d[i][j][k] < that.values3d[i][j][k]) {
                             return -1;
-                        } else if(this.values3d[i][j][k] > that.values3d[i][j][k]) {
+                        } else if (this.values3d[i][j][k] > that.values3d[i][j][k]) {
                             return 1;
                         }
                     }
                 }
             }
 
-            if(this.values3d.length < that.values3d.length) {
+            if (this.values3d.length < that.values3d.length) {
                 return -1;
-            } else if(this.values3d.length > that.values3d.length) {
+            } else if (this.values3d.length > that.values3d.length) {
                 return 1;
             }
             for (int j = 0; j < smallestSize2d; j++) {
-                if(this.values3d[j].length < that.values3d[j].length) {
+                if (this.values3d[j].length < that.values3d[j].length) {
                     return -1;
-                } else if(this.values3d[j].length > that.values3d[j].length) {
+                } else if (this.values3d[j].length > that.values3d[j].length) {
                     return 1;
                 }
             }
             for (int k = 0; k < smallestSize3d; k++) {
-                if(this.values3d[0][k].length < that.values3d[0][k].length) {
+                if (this.values3d[0][k].length < that.values3d[0][k].length) {
                     return -1;
-                } else if(this.values3d[0][k].length > that.values3d[0][k].length) {
+                } else if (this.values3d[0][k].length > that.values3d[0][k].length) {
                     return 1;
                 }
             }
@@ -186,7 +186,7 @@ public class Exercise21_MultidimensionalSort {
         }
 
         private int compare4D(Vector that) {
-            if(this.values4d == null || that.values4d == null) {
+            if (this.values4d == null || that.values4d == null) {
                 throw new IllegalArgumentException("Both vectors must exist");
             }
 
@@ -195,13 +195,13 @@ public class Exercise21_MultidimensionalSort {
             int smallestSize3d = Math.min(this.values4d[0][0].length, that.values4d[0][0].length);
             int smallestSize4d = Math.min(this.values4d[0][0][0].length, that.values4d[0][0][0].length);
 
-            for(int i=0; i < smallestSize1d; i++) {
-                for(int j=0; j < smallestSize2d; j++) {
-                    for(int k=0; k < smallestSize3d; k++) {
-                        for(int l=0; l < smallestSize4d; l++) {
-                            if(this.values4d[i][j][k][l] < that.values4d[i][j][k][l]) {
+            for(int i = 0; i < smallestSize1d; i++) {
+                for(int j = 0; j < smallestSize2d; j++) {
+                    for(int k = 0; k < smallestSize3d; k++) {
+                        for(int l = 0; l < smallestSize4d; l++) {
+                            if (this.values4d[i][j][k][l] < that.values4d[i][j][k][l]) {
                                 return -1;
-                            } else if(this.values4d[i][j][k][l] > that.values4d[i][j][k][l]) {
+                            } else if (this.values4d[i][j][k][l] > that.values4d[i][j][k][l]) {
                                 return 1;
                             }
                         }
@@ -209,29 +209,29 @@ public class Exercise21_MultidimensionalSort {
                 }
             }
 
-            if(this.values4d.length < that.values4d.length) {
+            if (this.values4d.length < that.values4d.length) {
                 return -1;
-            } else if(this.values4d.length > that.values4d.length) {
+            } else if (this.values4d.length > that.values4d.length) {
                 return 1;
             }
             for (int j = 0; j < smallestSize2d; j++) {
-                if(this.values4d[j].length < that.values4d[j].length) {
+                if (this.values4d[j].length < that.values4d[j].length) {
                     return -1;
-                } else if(this.values4d[j].length > that.values4d[j].length) {
+                } else if (this.values4d[j].length > that.values4d[j].length) {
                     return 1;
                 }
             }
             for (int k = 0; k < smallestSize3d; k++) {
-                if(this.values4d[0][k].length < that.values4d[0][k].length) {
+                if (this.values4d[0][k].length < that.values4d[0][k].length) {
                     return -1;
-                } else if(this.values4d[0][k].length > that.values4d[0][k].length) {
+                } else if (this.values4d[0][k].length > that.values4d[0][k].length) {
                     return 1;
                 }
             }
             for (int l = 0; l < smallestSize4d; l++) {
-                if(this.values4d[0][0][l].length < that.values4d[0][0][l].length) {
+                if (this.values4d[0][0][l].length < that.values4d[0][0][l].length) {
                     return -1;
-                } else if(this.values4d[0][0][l].length > that.values4d[0][0][l].length) {
+                } else if (this.values4d[0][0][l].length > that.values4d[0][0][l].length) {
                     return 1;
                 }
             }
@@ -250,14 +250,14 @@ public class Exercise21_MultidimensionalSort {
             int smallestSize4d = Math.min(this.values5d[0][0][0].length, that.values5d[0][0][0].length);
             int smallestSize5d = Math.min(this.values5d[0][0][0][0].length, that.values5d[0][0][0][0].length);
 
-            for(int i=0; i < smallestSize1d; i++) {
-                for(int j=0; j < smallestSize2d; j++) {
-                    for(int k=0; k < smallestSize3d; k++) {
-                        for(int l=0; l < smallestSize4d; l++) {
-                            for(int m=0; m < smallestSize5d; m++) {
-                                if(this.values5d[i][j][k][l][m] < that.values5d[i][j][k][l][m]) {
+            for(int i = 0; i < smallestSize1d; i++) {
+                for(int j = 0; j < smallestSize2d; j++) {
+                    for(int k = 0; k < smallestSize3d; k++) {
+                        for(int l = 0; l < smallestSize4d; l++) {
+                            for(int m = 0; m < smallestSize5d; m++) {
+                                if (this.values5d[i][j][k][l][m] < that.values5d[i][j][k][l][m]) {
                                     return -1;
-                                } else if(this.values5d[i][j][k][l][m] > that.values5d[i][j][k][l][m]) {
+                                } else if (this.values5d[i][j][k][l][m] > that.values5d[i][j][k][l][m]) {
                                     return 1;
                                 }
                             }
@@ -266,36 +266,36 @@ public class Exercise21_MultidimensionalSort {
                 }
             }
 
-            if(this.values5d.length < that.values5d.length) {
+            if (this.values5d.length < that.values5d.length) {
                 return -1;
-            } else if(this.values5d.length > that.values5d.length) {
+            } else if (this.values5d.length > that.values5d.length) {
                 return 1;
             }
             for (int j = 0; j < smallestSize2d; j++) {
-                if(this.values5d[j].length < that.values5d[j].length) {
+                if (this.values5d[j].length < that.values5d[j].length) {
                     return -1;
-                } else if(this.values5d[j].length > that.values5d[j].length) {
+                } else if (this.values5d[j].length > that.values5d[j].length) {
                     return 1;
                 }
             }
             for (int k = 0; k < smallestSize3d; k++) {
                 if(this.values5d[0][k].length < that.values5d[0][k].length) {
                     return -1;
-                } else if(this.values5d[0][k].length > that.values5d[0][k].length) {
+                } else if (this.values5d[0][k].length > that.values5d[0][k].length) {
                     return 1;
                 }
             }
             for (int l = 0; l < smallestSize4d; l++) {
-                if(this.values5d[0][0][l].length < that.values5d[0][0][l].length) {
+                if (this.values5d[0][0][l].length < that.values5d[0][0][l].length) {
                     return -1;
-                } else if(this.values5d[0][0][l].length > that.values5d[0][0][l].length) {
+                } else if (this.values5d[0][0][l].length > that.values5d[0][0][l].length) {
                     return 1;
                 }
             }
             for (int m = 0; m < smallestSize5d; m++) {
-                if(this.values5d[0][0][0][m].length < that.values5d[0][0][0][m].length) {
+                if (this.values5d[0][0][0][m].length < that.values5d[0][0][0][m].length) {
                     return -1;
-                } else if(this.values5d[0][0][0][m].length > that.values5d[0][0][0][m].length) {
+                } else if (this.values5d[0][0][0][m].length > that.values5d[0][0][0][m].length) {
                     return 1;
                 }
             }
@@ -325,7 +325,7 @@ public class Exercise21_MultidimensionalSort {
 
         Arrays.sort(vectors);
 
-        for(int i=0; i < vectors.length; i++) {
+        for(int i = 0; i < vectors.length; i++) {
             StdOut.print(vectors[i].values1d[0] + " ");
         }
 
@@ -342,7 +342,7 @@ public class Exercise21_MultidimensionalSort {
 
         Arrays.sort(vectors2d);
 
-        for(int i=0; i < vectors2d.length; i++) {
+        for(int i = 0; i < vectors2d.length; i++) {
             StdOut.print(vectors2d[i].values2d[0][0] + " ");
         }
 
@@ -361,7 +361,7 @@ public class Exercise21_MultidimensionalSort {
 
         Arrays.sort(vectors3d);
 
-        for(int i=0; i < vectors3d.length; i++) {
+        for(int i = 0; i < vectors3d.length; i++) {
             StdOut.print(vectors3d[i].values3d[0][0][0] + " ");
         }
 
@@ -380,7 +380,7 @@ public class Exercise21_MultidimensionalSort {
 
         Arrays.sort(vectors4d);
 
-        for(int i=0; i < vectors4d.length; i++) {
+        for(int i = 0; i < vectors4d.length; i++) {
             StdOut.print(vectors4d[i].values4d[0][0][0][0] + " ");
         }
 
@@ -397,7 +397,7 @@ public class Exercise21_MultidimensionalSort {
 
         Arrays.sort(vectors5d);
 
-        for(int i=0; i < vectors5d.length; i++) {
+        for(int i = 0; i < vectors5d.length; i++) {
             StdOut.print(vectors5d[i].values5d[0][0][0][0][0] + " ");
         }
 

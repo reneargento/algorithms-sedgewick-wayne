@@ -24,7 +24,7 @@ public class Exercise29_ShellsortIncrements {
 
         int maxSize = initialArrayLength;
 
-        for(int i=0; i < numberOfExperiments - 1; i++) {
+        for(int i = 0; i < numberOfExperiments - 1; i++) {
             maxSize *= 2;
         }
 
@@ -41,7 +41,7 @@ public class Exercise29_ShellsortIncrements {
 
             Comparable[] array = new Comparable[length];
 
-            for(int i=0; i < length; i++) {
+            for(int i = 0; i < length; i++) {
                 array[i] = StdRandom.uniform();
             }
 
@@ -104,10 +104,10 @@ public class Exercise29_ShellsortIncrements {
 
         while(currentIncrementSet1 < maxSize || currentIncrementSet2 < maxSize) {
 
-            if(currentIncrementSet1 < maxSize) {
+            if (currentIncrementSet1 < maxSize) {
                 numberOfIncrements++;
             }
-            if(currentIncrementSet2 < maxSize) {
+            if (currentIncrementSet2 < maxSize) {
                 numberOfIncrements++;
             }
 
@@ -116,7 +116,7 @@ public class Exercise29_ShellsortIncrements {
             currentIncrementSet2 = (int) (Math.pow(4, incrementIndex + 2) - 3 * Math.pow(2, incrementIndex + 2) + 1);
         }
 
-        if(numberOfIncrements == 0) {
+        if (numberOfIncrements == 0) {
             sedgewicksIncrementSequence = new int[]{};
         }
 
@@ -127,7 +127,7 @@ public class Exercise29_ShellsortIncrements {
         currentIncrementSet1 = (int) (9 * Math.pow(4, incrementIndex) - 9 * Math.pow(2, incrementIndex) + 1);
         currentIncrementSet2 = (int) (Math.pow(4, incrementIndex + 2) - 3 * Math.pow(2, incrementIndex + 2) + 1);
 
-        for(int i=numberOfIncrements - 1; i >= 0; i--) {
+        for(int i = numberOfIncrements - 1; i >= 0; i--) {
 
             sedgewicksIncrementSequence[i] = currentIncrementSet1;
 
@@ -149,9 +149,9 @@ public class Exercise29_ShellsortIncrements {
     private static int[] getIncrementSequence(IncrementType incrementType, int arraySize) {
 
         int[] incrementSequence = null;
-        if(incrementType == IncrementType.ThreeNPlusOne) {
+        if (incrementType == IncrementType.ThreeNPlusOne) {
             incrementSequence = threeNPlus1IncrementSequence;
-        } else if(incrementType == IncrementType.Sedgewicks) {
+        } else if (incrementType == IncrementType.Sedgewicks) {
             incrementSequence = sedgewicksIncrementSequence;
         }
 
@@ -166,23 +166,23 @@ public class Exercise29_ShellsortIncrements {
         while(low <= high) {
             middle = low + (high - low) / 2;
 
-            if(incrementSequence[middle] > arraySize) {
+            if (incrementSequence[middle] > arraySize) {
                 low = middle + 1;
-            } else if(incrementSequence[middle] < arraySize) {
+            } else if (incrementSequence[middle] < arraySize) {
                 high = middle - 1;
-            } else if(incrementSequence[middle] == arraySize) {
+            } else if (incrementSequence[middle] == arraySize) {
                 break;
             }
         }
 
         //Check if we are still within the array bounds
-        if(incrementSequence[middle] >= arraySize) {
+        if (incrementSequence[middle] >= arraySize) {
             middle++;
         }
 
         int[] incrementSequenceToBeUsed = new int[incrementSequence.length - middle];
         int index = 0;
-        for(int i=middle; i < incrementSequence.length; i++){
+        for(int i = middle; i < incrementSequence.length; i++){
             incrementSequenceToBeUsed[index] = incrementSequence[i];
             index++;
         }
@@ -196,7 +196,7 @@ public class Exercise29_ShellsortIncrements {
         for(int increment : incrementSequence) {
 
             //h-sort the array
-            for(int j=increment; j < array.length; j++) {
+            for(int j = increment; j < array.length; j++) {
                 int currentIndex = j;
 
                 while(currentIndex >= increment && array[currentIndex].compareTo(array[currentIndex - increment]) < 0) {

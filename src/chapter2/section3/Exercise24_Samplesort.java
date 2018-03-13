@@ -14,11 +14,12 @@ import java.util.Map;
  */
 public class Exercise24_Samplesort {
 
+    // Parameters example: 8 131072 5
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 8
-        int initialArraySize = Integer.parseInt(args[1]); // 131072
+        int numberOfExperiments = Integer.parseInt(args[0]);
+        int initialArraySize = Integer.parseInt(args[1]);
 
-        int k = Integer.parseInt(args[2]); // 5
+        int k = Integer.parseInt(args[2]);
         int sampleSize = (int) Math.pow(2, k) - 1;
 
         Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
@@ -33,7 +34,7 @@ public class Exercise24_Samplesort {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
@@ -66,7 +67,7 @@ public class Exercise24_Samplesort {
 
     private static void sampleSort(Comparable[] array, int low, int high, int sampleSize) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -77,7 +78,7 @@ public class Exercise24_Samplesort {
 
     private static int partition(Comparable[] array, int low, int high, int sampleSize) {
 
-        if(sampleSize <= high - low + 1) {
+        if (sampleSize <= high - low + 1) {
             InsertionSort.insertionSort(array, low, low + sampleSize - 1);
             int pivotIndex = low + sampleSize / 2; // Median of the sample
             ArrayUtil.exchange(array, low, pivotIndex);
@@ -90,18 +91,18 @@ public class Exercise24_Samplesort {
 
         while(true) {
             while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while(ArrayUtil.less(pivot, array[--j])) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
             }
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

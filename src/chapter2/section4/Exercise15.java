@@ -18,14 +18,14 @@ public class Exercise15 {
 
     private static boolean certification(Comparable[] pq) {
 
-        for(int i=1; i < pq.length; i++) {
+        for(int i = 1; i < pq.length; i++) {
             //Check left child
-            if(i * 2 < pq.length && !ArrayUtil.less(pq[i], pq[i * 2])) {
+            if (i * 2 < pq.length && !ArrayUtil.less(pq[i], pq[i * 2])) {
                 return false;
             }
 
             //Check right child
-            if(i * 2 + 1 < pq.length && !ArrayUtil.less(pq[i], pq[i * 2 + 1])) {
+            if (i * 2 + 1 < pq.length && !ArrayUtil.less(pq[i], pq[i * 2 + 1])) {
                 return false;
             }
         }

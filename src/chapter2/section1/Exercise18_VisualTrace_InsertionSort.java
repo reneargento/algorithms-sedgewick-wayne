@@ -13,14 +13,14 @@ public class Exercise18_VisualTrace_InsertionSort {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
 
         // Set canvas size
         StdDraw.setCanvasSize(30 * (arraySize + 3), 30 * arraySize);
-        StdDraw.setXscale(-0.5, arraySize/3 + 1);
+        StdDraw.setXscale(-0.5, arraySize / 3 + 1);
         StdDraw.setYscale(0, arraySize + 2);
 
         insertionSort(array);
@@ -28,12 +28,12 @@ public class Exercise18_VisualTrace_InsertionSort {
 
     private static void insertionSort(Comparable[] array) {
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             int j;
             for(j = i; j > 0 && array[j].compareTo(array[j - 1]) < 0; j--) {
                 Comparable temp = array[j];
-                array[j] = array[j-1];
-                array[j-1] = temp;
+                array[j] = array[j - 1];
+                array[j - 1] = temp;
             }
             draw(array, array.length - i, i, j);
         }
@@ -53,7 +53,7 @@ public class Exercise18_VisualTrace_InsertionSort {
             double barHalfWidth = 0.08;
             double barHalfHeight = Double.parseDouble(String.valueOf(array[i])) / 2;
 
-            StdDraw.filledRectangle(((double)i)/3, barHalfHeight + row, barHalfWidth, barHalfHeight);
+            StdDraw.filledRectangle(((double) i) / 3, barHalfHeight + row, barHalfWidth, barHalfHeight);
         }
     }
 }

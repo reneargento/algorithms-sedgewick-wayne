@@ -33,14 +33,14 @@ public class Exercise3_PriorityQueueOrderedLinkedList {
         public void insert(Key key) {
 
             //0 or 1 elements in the list
-            if(size == 0 || ArrayUtil.less(key, priorityQueue.key)) {
+            if (size == 0 || ArrayUtil.less(key, priorityQueue.key)) {
                 Node oldFirst = priorityQueue;
 
                 priorityQueue = new Node();
                 priorityQueue.key = key;
                 priorityQueue.next = oldFirst;
 
-                if(oldFirst != null) {
+                if (oldFirst != null) {
                     oldFirst.previous = priorityQueue;
                 }
 
@@ -60,7 +60,7 @@ public class Exercise3_PriorityQueueOrderedLinkedList {
                 current.next = newNode;
                 newNode.previous = current;
 
-                if(newNode.next == null) {
+                if (newNode.next == null) {
                     last = newNode;
                 } else {
                     newNode.next.previous = newNode;
@@ -72,7 +72,7 @@ public class Exercise3_PriorityQueueOrderedLinkedList {
 
         //O(1)
         public Key removeMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new RuntimeException("Priority queue underflow");
             }
 
@@ -80,7 +80,7 @@ public class Exercise3_PriorityQueueOrderedLinkedList {
 
             last = last.previous;
 
-            if(last != null) {
+            if (last != null) {
                 last.next = null;
             }
 

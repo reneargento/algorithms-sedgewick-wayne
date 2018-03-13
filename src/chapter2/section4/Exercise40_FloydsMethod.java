@@ -20,7 +20,7 @@ public class Exercise40_FloydsMethod {
         int[] arraySizes = {1000, 1000000, 100000000};
 
         Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
-        for(int i=0; i < 3; i++) {
+        for(int i = 0; i < 3; i++) {
             Comparable[] array = ArrayGenerator.generateDistinctValuesShuffledArray(arraySizes[i]);
             array[0] = null; //0 index is not used on heaps
             allInputArrays.put(i, array);
@@ -33,7 +33,7 @@ public class Exercise40_FloydsMethod {
 
         StdOut.printf("%13s %25s %20s\n", "Array Size | ","Number of Compares Std Impl | ", "Number of Compares Floyd Enhancement");
 
-        for(int i=0; i < 3; i++) {
+        for(int i = 0; i < 3; i++) {
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
@@ -65,11 +65,11 @@ public class Exercise40_FloydsMethod {
     private static void sortdown(Comparable[] array, boolean useFloydEnhancement) {
         int endIndex = array.length - 1;
 
-        for(int i=1; i < array.length; i++) {
+        for(int i = 1; i < array.length; i++) {
             ArrayUtil.exchange(array, 1, endIndex);
             endIndex--;
 
-            if(!useFloydEnhancement) {
+            if (!useFloydEnhancement) {
                 sink(array, 1, endIndex);
             } else {
                 sinkToTheBottomAndSwim(array, 1, endIndex);
@@ -81,7 +81,7 @@ public class Exercise40_FloydsMethod {
         while (index * 2 <= endIndex) {
             int biggestChildIndex = index * 2;
 
-            if(index * 2 + 1 <= endIndex) {
+            if (index * 2 + 1 <= endIndex) {
                 numberOfCompares++;
                 if(ArrayUtil.more(array[index * 2 + 1], array[index * 2])) {
                     biggestChildIndex = index * 2 + 1;
@@ -89,7 +89,7 @@ public class Exercise40_FloydsMethod {
             }
 
             numberOfCompares++;
-            if(ArrayUtil.less(array[index], array[biggestChildIndex])) {
+            if (ArrayUtil.less(array[index], array[biggestChildIndex])) {
                 ArrayUtil.exchange(array, index, biggestChildIndex);
             } else {
                 break;
@@ -107,9 +107,9 @@ public class Exercise40_FloydsMethod {
         while (index * 2 <= endIndex) {
             int biggestChildIndex = index * 2;
 
-            if(index * 2 + 1 <= endIndex) {
+            if (index * 2 + 1 <= endIndex) {
                 numberOfCompares++;
-                if(ArrayUtil.more(array[index * 2 + 1], array[index * 2])) {
+                if (ArrayUtil.more(array[index * 2 + 1], array[index * 2])) {
                     biggestChildIndex = index * 2 + 1;
                 }
             }
@@ -128,7 +128,7 @@ public class Exercise40_FloydsMethod {
     private static void swim(Comparable[] array, int index) {
         while(index / 2 >= 1) {
             numberOfCompares++;
-            if(ArrayUtil.less(array[index / 2], array[index])) {
+            if (ArrayUtil.less(array[index / 2], array[index])) {
                 ArrayUtil.exchange(array, index / 2, index);
             } else {
                 break;

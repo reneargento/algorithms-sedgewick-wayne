@@ -76,16 +76,16 @@ public class Exercise25_PointsInThePlane {
 
         @Override
         public int compareTo(Point2D that) {
-            if(this.y < that.y) {
+            if (this.y < that.y) {
                 return -1;
             }
-            if(this.y > that.y) {
+            if (this.y > that.y) {
                 return 1;
             }
-            if(this.x < that.x) {
+            if (this.x < that.x) {
                 return -1;
             }
-            if(this.x > that.x) {
+            if (this.x > that.x) {
                 return 1;
             }
             return 0;
@@ -97,9 +97,9 @@ public class Exercise25_PointsInThePlane {
                 double distanceFromThisPoint1 = distance(point2D1);
                 double distanceFromThisPoint2 = distance(point2D2);
 
-                if(distanceFromThisPoint1 < distanceFromThisPoint2) {
+                if (distanceFromThisPoint1 < distanceFromThisPoint2) {
                     return -1;
-                } else if(distanceFromThisPoint1 > distanceFromThisPoint2) {
+                } else if (distanceFromThisPoint1 > distanceFromThisPoint2) {
                     return 1;
                 } else {
                     return 0;
@@ -150,9 +150,9 @@ public class Exercise25_PointsInThePlane {
     private static class XOrder implements Comparator<Point2D>{
         @Override
         public int compare(Point2D point2D1, Point2D point2D2) {
-            if(point2D1.x < point2D2.x) {
+            if (point2D1.x < point2D2.x) {
                 return -1;
-            } else if(point2D1.x > point2D2.x) {
+            } else if (point2D1.x > point2D2.x) {
                 return 1;
             } else {
                 return 0;
@@ -163,9 +163,9 @@ public class Exercise25_PointsInThePlane {
     private static class YOrder implements Comparator<Point2D>{
         @Override
         public int compare(Point2D point2D1, Point2D point2D2) {
-            if(point2D1.y < point2D2.y) {
+            if (point2D1.y < point2D2.y) {
                 return -1;
-            } else if(point2D1.y > point2D2.y) {
+            } else if (point2D1.y > point2D2.y) {
                 return 1;
             } else {
                 return 0;
@@ -179,9 +179,9 @@ public class Exercise25_PointsInThePlane {
             double distanceFromOriginPoint2D1 = point2D1.distance(new Point2D(0, 0));
             double distanceFromOriginPoint2D2 = point2D2.distance(new Point2D(0, 0));
 
-            if(distanceFromOriginPoint2D1 < distanceFromOriginPoint2D2) {
+            if (distanceFromOriginPoint2D1 < distanceFromOriginPoint2D2) {
                 return -1;
-            } else if(distanceFromOriginPoint2D1 > distanceFromOriginPoint2D2) {
+            } else if (distanceFromOriginPoint2D1 > distanceFromOriginPoint2D2) {
                 return 1;
             } else {
                 return 0;

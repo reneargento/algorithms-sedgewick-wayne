@@ -26,7 +26,7 @@ public class Exercise23_Improvements2_TestSorted {
         sort(array, aux, middle + 1, high);
 
         //Improvement #2 - Skip merge if the array is already in order
-        if(array[middle].compareTo(array[middle + 1]) <= 0) {
+        if (array[middle].compareTo(array[middle + 1]) <= 0) {
             return;
         }
 
@@ -35,7 +35,7 @@ public class Exercise23_Improvements2_TestSorted {
 
     @SuppressWarnings("unchecked")
     private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -44,7 +44,7 @@ public class Exercise23_Improvements2_TestSorted {
         int arrayIndex = low;
 
         while (indexLeft <= middle && indexRight <= high) {
-            if(aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
+            if (aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
                 array[arrayIndex] = aux[indexLeft];
                 indexLeft++;
             } else {

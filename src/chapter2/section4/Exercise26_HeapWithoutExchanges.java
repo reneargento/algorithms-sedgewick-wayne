@@ -33,7 +33,7 @@ public class Exercise26_HeapWithoutExchanges {
         }
 
         public void insert(Key key) {
-            if(size != priorityQueue.length - 1) {
+            if (size != priorityQueue.length - 1) {
                 size++;
 
                 priorityQueue[size] = key;
@@ -42,7 +42,7 @@ public class Exercise26_HeapWithoutExchanges {
         }
 
         Key deleteTop() {
-            if(size == 0) {
+            if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
             }
 
@@ -63,7 +63,7 @@ public class Exercise26_HeapWithoutExchanges {
             boolean exchangeRequired = false;
 
             while(index / 2 >= 1) {
-                if((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], aux))
+                if ((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], aux))
                         || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index / 2], aux))) {
                     priorityQueue[index] = priorityQueue[index / 2];
                     exchangeRequired = true;
@@ -74,7 +74,7 @@ public class Exercise26_HeapWithoutExchanges {
                 index = index / 2;
             }
 
-            if(exchangeRequired) {
+            if (exchangeRequired) {
                 priorityQueue[index] = aux;
             }
         }
@@ -86,7 +86,7 @@ public class Exercise26_HeapWithoutExchanges {
             while (index * 2 <= size) {
                 int selectedChildIndex = index * 2;
 
-                if(index * 2 + 1 <= size &&
+                if (index * 2 + 1 <= size &&
                         (
                          (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
                                || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
@@ -95,7 +95,7 @@ public class Exercise26_HeapWithoutExchanges {
                     selectedChildIndex = index * 2 + 1;
                 }
 
-                if((orientation == Orientation.MAX && ArrayUtil.more(priorityQueue[selectedChildIndex], aux))
+                if ((orientation == Orientation.MAX && ArrayUtil.more(priorityQueue[selectedChildIndex], aux))
                         || (orientation == Orientation.MIN && ArrayUtil.less(priorityQueue[selectedChildIndex], aux))) {
                     priorityQueue[index] = priorityQueue[selectedChildIndex];
                 } else {

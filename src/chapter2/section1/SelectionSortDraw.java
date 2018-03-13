@@ -15,7 +15,7 @@ public class SelectionSortDraw {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -23,7 +23,7 @@ public class SelectionSortDraw {
         // Set canvas size
         StdDraw.setCanvasSize(30 * (arraySize + 3), 30 * (arraySize + 3));
         StdDraw.setXscale(-3, arraySize + 1);
-        StdDraw.setYscale(arraySize+1, -3);
+        StdDraw.setYscale(arraySize + 1, -3);
         StdDraw.setFont(new Font("SansSerif", Font.PLAIN, 13));
 
         // draw the header
@@ -37,10 +37,10 @@ public class SelectionSortDraw {
     }
 
     public static void selectionSort(Comparable[] array) {
-        for(int i=0; i < array.length; i++) {
+        for(int i = 0; i < array.length; i++) {
             int minIndex = i;
 
-            for(int j=i+1; j < array.length; j++) {
+            for(int j = i + 1; j < array.length; j++) {
                 if(array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
@@ -57,7 +57,7 @@ public class SelectionSortDraw {
     // Display header
     private static void header(Comparable[] array) {
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(array.length/2.0, -2.7, "array[ ]");
+        StdDraw.text(array.length / 2.0, -2.7, "array[ ]");
 
         for (int i = 0; i < array.length; i++) {
             StdDraw.text(i, -2, String.valueOf(i));

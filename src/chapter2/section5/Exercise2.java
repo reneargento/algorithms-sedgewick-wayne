@@ -44,7 +44,7 @@ public class Exercise2 {
         Set<String> wordsSet = new HashSet<>();
 
         String[] words = new String[wordList.size()];
-        for(int i=0; i < wordList.size(); i++) {
+        for(int i = 0; i < wordList.size(); i++) {
             words[i] = wordList.get(i);
             wordsSet.add(words[i]);
         }
@@ -53,10 +53,10 @@ public class Exercise2 {
 
         List<String> compoundWords = new ArrayList<>();
 
-        for(int i=0; i < words.length; i++) {
-            for(int j=i + 1; j < words.length; j++) {
+        for(int i = 0; i < words.length; i++) {
+            for(int j = i + 1; j < words.length; j++) {
                 //Does words[j] contain words[i] in its beginning?
-                if(words[j].length() >= words[i].length()
+                if (words[j].length() >= words[i].length()
                         && words[j].substring(0, words[i].length()).equals(words[i])) {
 
                     String restOfTheWord = words[j].substring(words[i].length(), words[j].length());

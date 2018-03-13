@@ -41,7 +41,7 @@ public class Exercise3_PriorityQueueUnorderedLinkedList {
 
         //O(N)
         public Key removeMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new RuntimeException("Priority queue underflow");
             }
 
@@ -59,7 +59,7 @@ public class Exercise3_PriorityQueueUnorderedLinkedList {
                 currentNode = currentNode.next;
             }
 
-            if(maxValue == priorityQueue.key) {
+            if (maxValue == priorityQueue.key) {
                 //First element is the max value
                 priorityQueue = priorityQueue.next;
             } else {
@@ -69,7 +69,7 @@ public class Exercise3_PriorityQueueUnorderedLinkedList {
                     currentNode = currentNode.next;
                 }
 
-                if(currentNode.next.next == null) {
+                if (currentNode.next.next == null) {
                     currentNode.next = null;
                 } else {
                     currentNode.next = currentNode.next.next;

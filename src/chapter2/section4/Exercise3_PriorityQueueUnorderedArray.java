@@ -28,7 +28,7 @@ public class Exercise3_PriorityQueueUnorderedArray {
 
         //O(1)
         public void insert(Key key) {
-            if(size == priorityQueue.length) {
+            if (size == priorityQueue.length) {
                 throw new RuntimeException("Priority queue is full");
             }
 
@@ -38,14 +38,14 @@ public class Exercise3_PriorityQueueUnorderedArray {
 
         //O(N)
         public Key removeMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new RuntimeException("Priority queue underflow");
             }
 
             int maxValueIndex = 0;
 
             for(int i=1; i < size; i++) {
-                if(ArrayUtil.less(priorityQueue[maxValueIndex], priorityQueue[i])) {
+                if (ArrayUtil.less(priorityQueue[maxValueIndex], priorityQueue[i])) {
                     maxValueIndex = i;
                 }
             }

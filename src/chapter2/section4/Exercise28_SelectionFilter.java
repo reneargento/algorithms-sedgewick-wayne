@@ -25,9 +25,10 @@ public class Exercise28_SelectionFilter {
         public int compareTo(Point other) {
             //Distance to 0,0 (origin)
             double euclideanDistance = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
-            double otherPointEuclideanDistance = Math.sqrt(Math.pow(other.x, 2) + Math.pow(other.y, 2) + Math.pow(other.z, 2));
+            double otherPointEuclideanDistance = Math.sqrt(Math.pow(other.x, 2) + Math.pow(other.y, 2) +
+                    Math.pow(other.z, 2));
 
-            if(euclideanDistance < otherPointEuclideanDistance) {
+            if (euclideanDistance < otherPointEuclideanDistance) {
                 return -1;
             } else if (euclideanDistance > otherPointEuclideanDistance) {
                 return 1;
@@ -42,6 +43,7 @@ public class Exercise28_SelectionFilter {
         }
     }
 
+    // Parameter example: 10000
     public static void main(String[] args) {
 
         int m = Integer.parseInt(args[0]);
@@ -59,7 +61,7 @@ public class Exercise28_SelectionFilter {
             Point point = new Exercise28_SelectionFilter().new Point(x, y, z);
             priorityQueue.insert(point);
 
-            if(priorityQueue.size() > m) {
+            if (priorityQueue.size() > m) {
                 priorityQueue.deleteTop();
             }
         }
@@ -93,7 +95,7 @@ public class Exercise28_SelectionFilter {
 
         int m = 10000; //10^4
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             PriorityQueue<Point> priorityQueue = new PriorityQueue<>(m + 1, PriorityQueue.Orientation.MAX);
 
@@ -104,7 +106,7 @@ public class Exercise28_SelectionFilter {
             for(Point point : pointArray) {
                 priorityQueue.insert(point);
 
-                if(priorityQueue.size() > m) {
+                if (priorityQueue.size() > m) {
                     priorityQueue.deleteTop();
                 }
             }
@@ -122,7 +124,7 @@ public class Exercise28_SelectionFilter {
     private static Point[] generateRandomPointsArray(int length) {
         Point[] array = new Point[length];
 
-        for(int i=0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             double x = StdRandom.uniform();
             double y = StdRandom.uniform();
             double z = StdRandom.uniform();

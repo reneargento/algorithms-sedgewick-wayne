@@ -19,11 +19,11 @@ public class Exercise16_UnbiasedElection {
         public int compare(String name1, String name2) {
             int minimumLength = Math.min(name1.length(), name2.length());
 
-            for(int i=0; i < minimumLength; i++) {
+            for(int i = 0; i < minimumLength; i++) {
                 char currentChar1 = name1.charAt(i);
                 char currentChar2 = name2.charAt(i);
 
-                if(order.indexOf(currentChar1) < order.indexOf(currentChar2)) {
+                if (order.indexOf(currentChar1) < order.indexOf(currentChar2)) {
                     return -1;
                 } else if(order.indexOf(currentChar1) > order.indexOf(currentChar2)) {
                     return 1;

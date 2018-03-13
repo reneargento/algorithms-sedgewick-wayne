@@ -10,11 +10,12 @@ import java.util.Arrays;
  */
 public class Exercise28_SortFilesByName {
 
+    // Parameter example: [any file path]
     public static void main(String[] args) {
         String directoryPath = args[0];
         String[] sortedFiles = new Exercise28_SortFilesByName().fileSorter(directoryPath);
 
-        if(sortedFiles == null) {
+        if (sortedFiles == null) {
             return;
         }
 
@@ -34,12 +35,12 @@ public class Exercise28_SortFilesByName {
         }
 
         File[] allFiles = directory.listFiles();
-        if(allFiles == null || allFiles.length == 0) {
+        if (allFiles == null || allFiles.length == 0) {
             return null;
         }
 
         String[] fileNames = new String[allFiles.length];
-        for(int i=0; i < fileNames.length; i++) {
+        for(int i = 0; i < fileNames.length; i++) {
             fileNames[i] = allFiles[i].getName();
         }
 

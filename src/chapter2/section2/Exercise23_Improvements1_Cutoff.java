@@ -22,12 +22,12 @@ public class Exercise23_Improvements1_Cutoff {
 
     private void sort(Comparable[] array, Comparable[] aux, int low, int high) {
 
-        if(high <= low) {
+        if (high <= low) {
             return;
         }
 
         //Improvement #1 - Cutoff for small arrays
-        if(high - low <= cutoff) {
+        if (high - low <= cutoff) {
             insertionSort(array, low, high);
             return;
         }
@@ -41,7 +41,7 @@ public class Exercise23_Improvements1_Cutoff {
     }
 
     private void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -50,7 +50,7 @@ public class Exercise23_Improvements1_Cutoff {
         int arrayIndex = low;
 
         while (indexLeft <= middle && indexRight <= high) {
-            if(aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
+            if (aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
                 array[arrayIndex] = aux[indexLeft];
                 indexLeft++;
             } else {
@@ -70,8 +70,8 @@ public class Exercise23_Improvements1_Cutoff {
 
     private void insertionSort(Comparable[] array, int low, int high) {
 
-        for(int i=low; i <= high; i++) {
-            for(int j=i; j > low && array[j - 1].compareTo(array[j]) > 0; j--) {
+        for(int i = low; i <= high; i++) {
+            for(int j = i; j > low && array[j - 1].compareTo(array[j]) > 0; j--) {
 
                 Comparable temp = array[j - 1];
                 array[j - 1] = array[j];

@@ -14,6 +14,8 @@ public class Exercise15_BottomUpQueueMergesort {
         Comparable[] array = generateRandomArray(10);
 
         Queue<Queue<Comparable>> mergedQueue = bottomUpQueueMergesort(array);
+
+        StdOut.println("Merged queues:");
         for(Comparable item : mergedQueue.peek()) {
             StdOut.print(item + " ");
         }
@@ -22,7 +24,7 @@ public class Exercise15_BottomUpQueueMergesort {
     private static Comparable[] generateRandomArray(int arrayLength) {
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.uniform();
         }
 

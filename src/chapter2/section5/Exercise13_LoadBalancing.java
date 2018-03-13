@@ -27,7 +27,7 @@ public class Exercise13_LoadBalancing {
         @Override
         //Longest processing time first rule
         public int compareTo(Job that) {
-            if(this.processingTime > that.processingTime) {
+            if (this.processingTime > that.processingTime) {
                 return -1;
             } else if (this.processingTime < that.processingTime) {
                 return 1;
@@ -59,7 +59,7 @@ public class Exercise13_LoadBalancing {
 
         @Override
         public int compareTo(Processor that) {
-            if(this.sumOfJobsAssignedProcessingTime < that.sumOfJobsAssignedProcessingTime) {
+            if (this.sumOfJobsAssignedProcessingTime < that.sumOfJobsAssignedProcessingTime) {
                 return -1;
             } else if (this.sumOfJobsAssignedProcessingTime > that.sumOfJobsAssignedProcessingTime) {
                 return 1;
@@ -107,7 +107,7 @@ public class Exercise13_LoadBalancing {
         Arrays.sort(jobs);
 
         PriorityQueue<Processor> heap = new PriorityQueue<>();
-        for(int i=0; i < numberOfProcessors; i++) {
+        for(int i = 0; i < numberOfProcessors; i++) {
             Processor processor = new Processor("Processor " + i);
             heap.add(processor);
         }
@@ -126,7 +126,7 @@ public class Exercise13_LoadBalancing {
 
     private void loadBalanceAndPrintSchedule(Job[] jobs, PriorityQueue<Processor> heap) {
 
-        for(int i=0; i < jobs.length; i++) {
+        for(int i = 0; i < jobs.length; i++) {
             Processor nextProcessorAvailable = heap.remove();
             //Assign job to the next available processor
             nextProcessorAvailable.assignJob(jobs[i]);

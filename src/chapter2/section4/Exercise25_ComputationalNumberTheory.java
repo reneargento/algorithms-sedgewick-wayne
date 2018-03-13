@@ -31,7 +31,7 @@ public class Exercise25_ComputationalNumberTheory {
 
         Exercise25_ComputationalNumberTheory computationalNumberTheory = new Exercise25_ComputationalNumberTheory();
 
-        int n = 1000;//1000000;
+        int n = 1000; //1000000;
         PriorityQueue<ValueForComputation> priorityQueue = new PriorityQueue<>(n, PriorityQueue.Orientation.MIN);
 
         computationalNumberTheory.initPriorityQueue(priorityQueue, n);
@@ -40,7 +40,7 @@ public class Exercise25_ComputationalNumberTheory {
 
     private void initPriorityQueue(PriorityQueue<ValueForComputation> priorityQueue, int n) {
 
-        for(int i=0; i <= n; i++) {
+        for(int i = 0; i <= n; i++) {
             BigInteger iValue = BigInteger.valueOf(i);
             BigInteger value = iValue.multiply(iValue).multiply(iValue);
 
@@ -57,11 +57,9 @@ public class Exercise25_ComputationalNumberTheory {
         while (!priorityQueue.isEmpty()) {
             ValueForComputation smallestValue = priorityQueue.deleteTop();
 
-            StdOut.println("Smallest Item: " + smallestValue.value);
-
             checkSumOfDistinctValues(valuesMap, smallestValue);
 
-            if(smallestValue.j < n) {
+            if (smallestValue.j < n) {
                 BigInteger iValue = BigInteger.valueOf(smallestValue.i);
                 BigInteger jValue = BigInteger.valueOf(smallestValue.j + 1);
 
@@ -77,14 +75,14 @@ public class Exercise25_ComputationalNumberTheory {
     private void checkSumOfDistinctValues(Map<BigInteger, List<ValueForComputation>> valuesMap, ValueForComputation smallestValue) {
         List<ValueForComputation> values = new ArrayList<>();
 
-        if(valuesMap.containsKey(smallestValue.value)) {
+        if (valuesMap.containsKey(smallestValue.value)) {
             values = valuesMap.get(smallestValue.value);
         }
 
         //Check if values are distinct and a^3 + b^3 = c^3 + d^3
         for(ValueForComputation valueForComputation : values) {
 
-            if(valueForComputation.value.equals(smallestValue.value)
+            if (valueForComputation.value.equals(smallestValue.value)
                     && valueForComputation.i != valueForComputation.j
                     && valueForComputation.i != smallestValue.i
                     && valueForComputation.i != smallestValue.j

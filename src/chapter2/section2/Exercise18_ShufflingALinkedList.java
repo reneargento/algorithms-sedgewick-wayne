@@ -4,6 +4,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 18/02/17.
@@ -39,7 +40,6 @@ public class Exercise18_ShufflingALinkedList<Item> {
         newNode.next = first;
 
         first = newNode;
-
         size++;
     }
 
@@ -66,22 +66,34 @@ public class Exercise18_ShufflingALinkedList<Item> {
     public static void main(String[] args) {
         Exercise18_ShufflingALinkedList<Comparable> linkedList = createList();
 
+        StringJoiner initialList = new StringJoiner(" ");
+        Exercise18_ShufflingALinkedList<Comparable>.Node currentNode = linkedList.first;
+
+        while (currentNode != null) {
+            initialList.add(String.valueOf(currentNode.item));
+            currentNode = currentNode.next;
+        }
+
+        StdOut.println("Initial list: " + initialList.toString());
+
         Exercise18_ShufflingALinkedList<Comparable>.Node newHead = shuffle(linkedList.first);
         linkedList.first = newHead;
 
         Exercise18_ShufflingALinkedList.Node current = newHead;
 
-        while(current != null) {
-            StdOut.print(current.item + " ");
+        StringJoiner shuffledList = new StringJoiner(" ");
 
+        while(current != null) {
+            shuffledList.add(String.valueOf(current.item));
             current = current.next;
         }
+        StdOut.println("Shuffled list: " + shuffledList.toString());
     }
 
     private static Exercise18_ShufflingALinkedList<Comparable> createList() {
         Exercise18_ShufflingALinkedList<Comparable> linkedList = new Exercise18_ShufflingALinkedList<>();
 
-        for(int i=10; i >= 0; i--) {
+        for(int i = 10; i >= 0; i--) {
             linkedList.add(i);
         }
 
@@ -90,7 +102,7 @@ public class Exercise18_ShufflingALinkedList<Item> {
 
     private static Exercise18_ShufflingALinkedList.Node shuffle(Exercise18_ShufflingALinkedList.Node firstHalf) {
 
-        if(firstHalf == null || firstHalf.next == null) {
+        if (firstHalf == null || firstHalf.next == null) {
             return firstHalf;
         }
 
@@ -104,7 +116,7 @@ public class Exercise18_ShufflingALinkedList<Item> {
 
     private static Exercise18_ShufflingALinkedList.Node getMiddle(Exercise18_ShufflingALinkedList<Comparable>.Node source) {
 
-        if(source == null) {
+        if (source == null) {
             return null;
         }
 
@@ -119,7 +131,8 @@ public class Exercise18_ShufflingALinkedList<Item> {
         return slow;
     }
 
-    private static Exercise18_ShufflingALinkedList.Node shuffleItems(Exercise18_ShufflingALinkedList.Node firstHalf, Exercise18_ShufflingALinkedList.Node secondHalf) {
+    private static Exercise18_ShufflingALinkedList.Node shuffleItems(Exercise18_ShufflingALinkedList.Node firstHalf,
+                                                                     Exercise18_ShufflingALinkedList.Node secondHalf) {
 
         Exercise18_ShufflingALinkedList.Node dummyHead = new Exercise18_ShufflingALinkedList().new Node();
         Exercise18_ShufflingALinkedList.Node current = dummyHead;
@@ -127,7 +140,7 @@ public class Exercise18_ShufflingALinkedList<Item> {
         while(firstHalf != null && secondHalf != null) {
             int random = StdRandom.uniform(2); //Returns 0 or 1
 
-            if(random == 0) {
+            if (random == 0) {
                 current.next = firstHalf;
                 firstHalf = firstHalf.next;
             } else {

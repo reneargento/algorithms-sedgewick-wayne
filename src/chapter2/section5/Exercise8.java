@@ -72,7 +72,7 @@ public class Exercise8 {
         for(String string : strings) {
             int frequency = 0;
 
-            if(occurrenciesMap.containsKey(string)) {
+            if (occurrenciesMap.containsKey(string)) {
                 frequency = occurrenciesMap.get(string);
             }
 
@@ -105,8 +105,8 @@ public class Exercise8 {
         String currentString = strings.get(0);
         int frequency = 1;
 
-        for(int i=1; i < strings.size(); i++) {
-            if(!currentString.equals(strings.get(i))) {
+        for(int i = 1; i < strings.size(); i++) {
+            if (!currentString.equals(strings.get(i))) {
                 stringFrequencies[stringFrequenciesIndex++] = new StringFrequency(currentString, frequency);
                 currentString = strings.get(i);
                 frequency = 1;

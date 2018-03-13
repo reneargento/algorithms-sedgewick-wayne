@@ -15,7 +15,7 @@ public class QuickSort {
 
     private static void quickSort(Comparable[] array, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -38,12 +38,12 @@ public class QuickSort {
             }
 
             while(ArrayUtil.less(pivot, array[--highIndex])) {
-                if(highIndex == low) {
+                if (highIndex == low) {
                     break;
                 }
             }
 
-            if(lowIndex >= highIndex) {
+            if (lowIndex >= highIndex) {
                 break;
             }
 

@@ -20,7 +20,7 @@ public class Exercise39_CostOfConstruction {
         int[] arraySizes = {1000, 1000000, 100000000};
 
         Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
-        for(int i=0; i < 3; i++) {
+        for(int i = 0; i < 3; i++) {
             Comparable[] array = ArrayGenerator.generateRandomArray(arraySizes[i]);
             array[0] = null; //0 index is not used on heaps
             allInputArrays.put(i, array);
@@ -33,7 +33,7 @@ public class Exercise39_CostOfConstruction {
 
         StdOut.printf("%13s %12s\n", "Array Size | ","% of Time Spent on Construction");
 
-        for(int i=0; i < 3; i++) {
+        for(int i = 0; i < 3; i++) {
             Comparable[] array = allInputArrays.get(i);
 
             Stopwatch constructHeapTimer = new Stopwatch();
@@ -60,7 +60,7 @@ public class Exercise39_CostOfConstruction {
     private static void sortdown(Comparable[] array) {
         int endIndex = array.length - 1;
 
-        for(int i=1; i < array.length; i++) {
+        for(int i = 1; i < array.length; i++) {
             ArrayUtil.exchange(array, 1, endIndex);
             endIndex--;
             sink(array, 1, endIndex);

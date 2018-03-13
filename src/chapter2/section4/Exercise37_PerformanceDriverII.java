@@ -13,9 +13,10 @@ import java.util.Map;
 @SuppressWarnings("unchecked")
 public class Exercise37_PerformanceDriverII {
 
+    // Parameters example: 7 10
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 7
-        int initialArraySize = Integer.parseInt(args[1]); // 10
+        int numberOfExperiments = Integer.parseInt(args[0]);
+        int initialArraySize = Integer.parseInt(args[1]);
 
         Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 10);
         doExperiment(numberOfExperiments, allInputArrays);
@@ -25,14 +26,14 @@ public class Exercise37_PerformanceDriverII {
 
         StdOut.printf("%13s %12s\n", "Array Size | ", "Average Number of Remove Max");
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] array = allInputArrays.get(i);
             PriorityQueue<Double> priorityQueue = new PriorityQueue<>(array.length, PriorityQueue.Orientation.MAX);
 
             int totalNumberOfRemoveMax = 0;
 
-            for(int trial=0; trial < 5; trial++) {
+            for(int trial = 0; trial < 5; trial++) {
 
                 int numberOfRemoveMaxIn1Second = insertsAndRemovesIn1Second(priorityQueue, array);
                 totalNumberOfRemoveMax += numberOfRemoveMaxIn1Second;
@@ -45,7 +46,7 @@ public class Exercise37_PerformanceDriverII {
 
     private static int insertsAndRemovesIn1Second(PriorityQueue<Double> priorityQueue, Comparable[] keys) {
         //Fill the priority queue
-        for(int i=0; i < keys.length; i++) {
+        for(int i = 0; i < keys.length; i++) {
             priorityQueue.insert((double) keys[i]);
         }
 

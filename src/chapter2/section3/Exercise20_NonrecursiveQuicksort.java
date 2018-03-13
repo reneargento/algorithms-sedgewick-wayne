@@ -24,9 +24,10 @@ public class Exercise20_NonrecursiveQuicksort {
         }
     }
 
+    // Parameters example: 8 131072
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 8
-        int initialArraySize = Integer.parseInt(args[1]); // 131072
+        int numberOfExperiments = Integer.parseInt(args[0]);
+        int initialArraySize = Integer.parseInt(args[1]);
 
         Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
 
@@ -39,7 +40,7 @@ public class Exercise20_NonrecursiveQuicksort {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] arrayCopy1 = new Comparable[originalArray.length];
@@ -90,19 +91,19 @@ public class Exercise20_NonrecursiveQuicksort {
 
             //Push the larger sub array first to guarantee that the stack will have at most lg N entries
             if(leftSubArraySize > rightSubArraySize) {
-                if(leftSubArraySize > 1 && leftQuickSortRange.low < leftQuickSortRange.high) {
+                if (leftSubArraySize > 1 && leftQuickSortRange.low < leftQuickSortRange.high) {
                     stack.push(leftQuickSortRange);
                 }
 
-                if(rightSubArraySize > 1 && rightQuickSortRange.low < rightQuickSortRange.high) {
+                if (rightSubArraySize > 1 && rightQuickSortRange.low < rightQuickSortRange.high) {
                     stack.push(rightQuickSortRange);
                 }
             } else {
-                if(rightSubArraySize > 1 && rightQuickSortRange.low < rightQuickSortRange.high) {
+                if (rightSubArraySize > 1 && rightQuickSortRange.low < rightQuickSortRange.high) {
                     stack.push(rightQuickSortRange);
                 }
 
-                if(leftSubArraySize > 1 && leftQuickSortRange.low < leftQuickSortRange.high) {
+                if (leftSubArraySize > 1 && leftQuickSortRange.low < leftQuickSortRange.high) {
                     stack.push(leftQuickSortRange);
                 }
             }
@@ -117,18 +118,18 @@ public class Exercise20_NonrecursiveQuicksort {
 
         while(true) {
             while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while(ArrayUtil.less(pivot, array[--j])) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
             }
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

@@ -40,7 +40,7 @@ public class Exercise6 {
     private static void doExperiments(SortType sortType, int arrayLength, int numberOfExperiments,
                                       Map<Integer, Comparable[]> allInputArrays) {
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             numberOfArrayAccesses = 0;
 
@@ -48,7 +48,7 @@ public class Exercise6 {
             Comparable[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
-            if(sortType == SortType.TOP_DOWN_MERGESORT) {
+            if (sortType == SortType.TOP_DOWN_MERGESORT) {
                 topDownMergeSort(array);
             } else if (sortType == SortType.BOTTOM_UP_MERGESORT) {
                 bottomUpMergeSort(array);
@@ -66,7 +66,7 @@ public class Exercise6 {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
             Comparable[] array = generateRandomArray(arraySize);
             allArrays.put(i, array);
 
@@ -79,7 +79,7 @@ public class Exercise6 {
     private static Comparable[] generateRandomArray(int arrayLength) {
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.uniform();
         }
 
@@ -122,7 +122,7 @@ public class Exercise6 {
 
     @SuppressWarnings("unchecked")
     private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
 
             numberOfArrayAccesses++;
@@ -133,7 +133,7 @@ public class Exercise6 {
         int arrayIndex = low;
 
         while (indexLeft <= middle && indexRight <= high) {
-            if(aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
+            if (aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
                 array[arrayIndex] = aux[indexLeft];
                 indexLeft++;
             } else {

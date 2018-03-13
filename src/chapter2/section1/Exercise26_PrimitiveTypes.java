@@ -56,7 +56,7 @@ public class Exercise26_PrimitiveTypes {
         int[] array = new int[length];
 
         for(int experiment=0; experiment < numberOfExperiments; experiment++) {
-            for(int i=0; i < length; i++) {
+            for(int i = 0; i < length; i++) {
                 array[i] = StdRandom.uniform(100);
             }
 
@@ -71,7 +71,7 @@ public class Exercise26_PrimitiveTypes {
         Integer[] array = new Integer[length];
 
         for(int experiment=0; experiment < numberOfExperiments; experiment++) {
-            for(int i=0; i < length; i++) {
+            for(int i = 0; i < length; i++) {
                 array[i] = StdRandom.uniform(100);
             }
 
@@ -84,7 +84,7 @@ public class Exercise26_PrimitiveTypes {
     public static double time(InsertionSortType insertionSortType, int[] arrayInt, Integer[] arrayInteger) {
         Stopwatch timer = new Stopwatch();
 
-        if(insertionSortType == InsertionSortType.PRIMITIVE) {
+        if (insertionSortType == InsertionSortType.PRIMITIVE) {
             insertionSortPrimitive(arrayInt);
         } else if (insertionSortType == InsertionSortType.NON_PRIMITIVE) {
             insertionSortNonPrimitive(arrayInteger);

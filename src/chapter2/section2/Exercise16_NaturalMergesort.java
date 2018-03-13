@@ -21,7 +21,7 @@ public class Exercise16_NaturalMergesort {
     private static Comparable[] generateRandomArray(int arrayLength) {
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.uniform();
         }
 
@@ -42,10 +42,10 @@ public class Exercise16_NaturalMergesort {
 
         boolean secondSubArray = false;
 
-        for(int i=1; i < array.length; i++) {
+        for(int i = 1; i < array.length; i++) {
 
-            if(array[i].compareTo(array[i-1]) < 0) {
-                if(!secondSubArray) {
+            if(array[i].compareTo(array[i - 1]) < 0) {
+                if (!secondSubArray) {
                     middle = i - 1;
 
                     secondSubArray = true;
@@ -59,7 +59,7 @@ public class Exercise16_NaturalMergesort {
             }
         }
 
-        if(high != array.length - 1) {
+        if (high != array.length - 1) {
             BottomUpMergeSort.merge(array, aux, low, middle, array.length - 1);
         }
     }

@@ -3,6 +3,7 @@ package chapter2.section2;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by Rene Argento on 15/02/17.
@@ -69,11 +70,14 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
         Exercise17_LinkedListSort.Node newSourceNode = mergesort(linkedList.first);
         linkedList.first = newSourceNode;
 
+        StringJoiner sortedList = new StringJoiner(" ");
         while(newSourceNode != null) {
-            StdOut.print(newSourceNode.item + " ");
-
+            sortedList.add(String.valueOf(newSourceNode.item));
             newSourceNode = newSourceNode.next;
         }
+
+        StdOut.println("Sorted list: " + sortedList.toString());
+        StdOut.println("Expected: -10 -9 0 1 5 20 55");
     }
 
     private static Exercise17_LinkedListSort<Comparable> createList() {
@@ -91,8 +95,8 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
     }
 
     //Dave Gamble's answer
-    //Runtime: O(n log n)
-    //Space: CONSTANT
+    // Runtime: O(n log n)
+    // Memory: Constant
     private static Exercise17_LinkedListSort.Node mergesort(Exercise17_LinkedListSort<Comparable>.Node sourceNode) {
 
         if(sourceNode == null || sourceNode.next == null) {
@@ -138,7 +142,7 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
                         next = left;
                         left = left.next;
                         leftSize--;
-                    } else if(left.item.compareTo(right.item) <= 0) {
+                    } else if (left.item.compareTo(right.item) <= 0) {
                         next = left;
                         left = left.next;
                         leftSize--;
@@ -149,7 +153,7 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
                     }
 
                     // Update pointers to keep track of where we are:
-                    if(tail != null) {
+                    if (tail != null) {
                         tail.next = next;
                     } else {
                         sourceNode = next;
@@ -161,24 +165,24 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
                 left = right;
             }
             // Terminate the list, double the list-sort size.
-            if(tail != null) {
+            if (tail != null) {
                 tail.next = null;
             }
 
             listSize *= 2;
-        } while (numberOfMerges > 1); // If we only did one merge, then we just sorted the whole list.
+        } while (numberOfMerges > 1); // If we only did one merge, then we have sorted the whole list.
 
         return sourceNode;
     }
 
-    //Recursive approach:
+    // Recursive approach:
     // Runs faster, but requires log n space due to recursive stack
     //jayadev's answer
-    //Runtime: O(n log n)
-    //Space: log n
+    // Runtime: O(n log n)
+    // Memory: log n
     private static Exercise17_LinkedListSort.Node mergesortRecursive(Exercise17_LinkedListSort<Comparable>.Node sourceNode) {
 
-        if(sourceNode == null || sourceNode.next == null) {
+        if (sourceNode == null || sourceNode.next == null) {
             return sourceNode;
         }
 
@@ -194,7 +198,7 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
     //Finding the middle element of the list for splitting
     private static Exercise17_LinkedListSort.Node getMiddle(Exercise17_LinkedListSort<Comparable>.Node sourceNode) {
 
-        if(sourceNode == null) {
+        if (sourceNode == null) {
             return null;
         }
 
@@ -215,7 +219,7 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
         Exercise17_LinkedListSort<Comparable>.Node current = dummyHead;
 
         while(firstHalf != null && secondHalf != null) {
-            if(firstHalf.item.compareTo(secondHalf.item) <= 0) {
+            if (firstHalf.item.compareTo(secondHalf.item) <= 0) {
                 current.next = firstHalf;
                 firstHalf = firstHalf.next;
             } else {
@@ -226,7 +230,7 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
             current = current.next;
         }
 
-        current.next = firstHalf == null ? secondHalf : firstHalf;
+        current.next = (firstHalf == null) ? secondHalf : firstHalf;
 
         return dummyHead.next;
     }

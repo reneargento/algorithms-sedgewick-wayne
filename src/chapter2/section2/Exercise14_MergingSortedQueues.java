@@ -25,9 +25,12 @@ public class Exercise14_MergingSortedQueues {
         queue2.enqueue(8);
 
         Queue<Comparable> mergedQueue = mergeQueues(queue1, queue2);
+
+        StdOut.print("Merged queues: ");
         for(Comparable item : mergedQueue) {
             StdOut.print(item + " ");
         }
+        StdOut.println("\nExpected: 1 2 3 4 5 6 7 8 9");
     }
 
     public static Queue<Comparable> mergeQueues(Queue<Comparable> queue1, Queue<Comparable> queue2) {
@@ -50,7 +53,7 @@ public class Exercise14_MergingSortedQueues {
         int rightIndex = 0;
 
         while(leftIndex < queue1Array.length && rightIndex < queue2Array.length) {
-            if(queue1Array[leftIndex].compareTo(queue2Array[rightIndex]) <= 0) {
+            if (queue1Array[leftIndex].compareTo(queue2Array[rightIndex]) <= 0) {
                 mergedQueue.enqueue(queue1Array[leftIndex++]);
             } else {
                 mergedQueue.enqueue(queue2Array[rightIndex++]);

@@ -42,7 +42,7 @@ public class Exercise32_PlotRunningTimes {
 
             Comparable[] array = new Comparable[arrayLength];
 
-            for(int i=0; i < arrayLength; i++) {
+            for(int i = 0; i < arrayLength; i++) {
                 array[i] = StdRandom.uniform();
             }
 
@@ -52,7 +52,8 @@ public class Exercise32_PlotRunningTimes {
             arrayLength *= arrayLengthIncrements;
         }
 
-        GraphPanel graphPanel = new GraphPanel("Running Times", "Running Times", "Experiments", "Running Times", runningTimes, 0);
+        GraphPanel graphPanel = new GraphPanel("Running Times", "Running Times",
+                "Experiments", "Running Times", runningTimes, 0);
         graphPanel.createAndShowGui();
     }
 

@@ -42,7 +42,7 @@ public class Exercise33_Distribution {
 
             Comparable[] array = new Comparable[arrayLength];
 
-            for(int i=0; i < arrayLength; i++) {
+            for(int i = 0; i < arrayLength; i++) {
                 array[i] = StdRandom.uniform();
             }
 
@@ -51,12 +51,13 @@ public class Exercise33_Distribution {
 
             experiment++;
 
-            if(experiment == experiments) {
+            if (experiment == experiments) {
                 break;
             }
         }
 
-        GraphPanel graphPanel = new GraphPanel("Running Times", "Running Times", "Experiments", "Running Times", runningTimes, 0);
+        GraphPanel graphPanel = new GraphPanel("Running Times", "Running Times",
+                "Experiments", "Running Times", runningTimes, 0);
         graphPanel.createAndShowGui();
     }
 

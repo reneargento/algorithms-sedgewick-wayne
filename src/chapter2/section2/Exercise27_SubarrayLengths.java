@@ -29,7 +29,7 @@ public class Exercise27_SubarrayLengths {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             totalLengthOfOtherSubArrays = 0;
             totalLengthOfBothSubArrays = 0;
@@ -67,7 +67,7 @@ public class Exercise27_SubarrayLengths {
 
     @SuppressWarnings("unchecked")
     private void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -76,15 +76,15 @@ public class Exercise27_SubarrayLengths {
 
         boolean exhausted = false;
 
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
 
-            if(leftIndex > middle) {
+            if (leftIndex > middle) {
                 array[i] = aux[rightIndex];
                 rightIndex++;
-            } else if(rightIndex > high) {
+            } else if (rightIndex > high) {
                 array[i] = aux[leftIndex];
                 leftIndex++;
-            } else if(aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
+            } else if (aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
                 array[i] = aux[leftIndex];
                 leftIndex++;
             } else {
@@ -92,10 +92,10 @@ public class Exercise27_SubarrayLengths {
                 rightIndex++;
             }
 
-            if(!exhausted && (leftIndex > middle || rightIndex > high)) {
+            if (!exhausted && (leftIndex > middle || rightIndex > high)) {
                 exhausted = true;
 
-                if(leftIndex > middle) {
+                if (leftIndex > middle) {
                     totalLengthOfOtherSubArrays += high - rightIndex + 1;
                 } else {
                     totalLengthOfOtherSubArrays += middle - leftIndex + 1;

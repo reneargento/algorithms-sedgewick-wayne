@@ -13,7 +13,7 @@ public class Exercise10 {
 
         Version(String version) {
             String[] versionSplit = version.split("\\.");
-            if(versionSplit.length < 3) {
+            if (versionSplit.length < 3) {
                 throw new IllegalArgumentException("Incorrect version format. A version requires 3 parts such as 115.10.1");
             }
 
@@ -25,7 +25,7 @@ public class Exercise10 {
             String[] splitVersion = version.split("\\.");
             String[] otherSplitVersion = that.version.split("\\.");
 
-            if(Integer.parseInt(splitVersion[0]) < Integer.parseInt(otherSplitVersion[0])) {
+            if (Integer.parseInt(splitVersion[0]) < Integer.parseInt(otherSplitVersion[0])) {
                 return -1;
             } else if (Integer.parseInt(splitVersion[0]) > Integer.parseInt(otherSplitVersion[0])) {
                 return 1;
@@ -59,12 +59,14 @@ public class Exercise10 {
         } else {
             StdOut.println(version1 + " is more than " + version2 + " - Wrong!");
         }
+        StdOut.println("Expected: Correct!\n");
 
         if(version2.compareTo(version3) < 0) {
             StdOut.println(version2 + " is less than " + version3 + " - Correct!");
         } else {
             StdOut.println(version2 + " is more than " + version3 + " - Wrong!");
         }
+        StdOut.println("Expected: Correct!");
     }
 
 }

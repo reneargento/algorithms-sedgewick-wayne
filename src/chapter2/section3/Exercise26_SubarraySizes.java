@@ -62,13 +62,13 @@ public class Exercise26_SubarraySizes {
 
     private static void quickSort(Comparable[] array, int low, int high, int cutoffSize, List<Integer> subArraySizes) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
         int subArraySize = high - low + 1;
 
-        if(subArraySize < cutoffSize) {
+        if (subArraySize < cutoffSize) {
             subArraySizes.add(subArraySize);
 
             InsertionSort.insertionSort(array, low, high);
@@ -88,18 +88,18 @@ public class Exercise26_SubarraySizes {
 
         while(true) {
             while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while(ArrayUtil.less(pivot, array[--j])) {
-                if(j == low) {
+                if (j == low) {
                     break;
                 }
             }
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 
@@ -116,10 +116,10 @@ public class Exercise26_SubarraySizes {
         double[] sizesArray = new double[subArraySizes.size()];
         double maxCount = 0;
 
-        for(int i=0; i < subArraySizes.size(); i++) {
+        for(int i = 0; i < subArraySizes.size(); i++) {
             sizesArray[i] = subArraySizes.get(i);
 
-            if(sizesArray[i] > maxCount) {
+            if (sizesArray[i] > maxCount) {
                 maxCount = sizesArray[i];
             }
         }
@@ -128,7 +128,7 @@ public class Exercise26_SubarraySizes {
         StdDraw.setXscale(0, sizesArray.length);
 
         //Labels
-        if(cutoff != 50) {
+        if (cutoff != 50) {
             StdDraw.setYscale(-1, maxCount + 2);
             StdDraw.text(200, maxCount + 0.5, String.valueOf(maxCount));
             StdDraw.text(200, -0.5, String.valueOf(2));

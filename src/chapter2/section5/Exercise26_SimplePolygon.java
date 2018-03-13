@@ -32,7 +32,7 @@ public class Exercise26_SimplePolygon {
         StdDraw.setPenRadius(0.005);
         StdDraw.enableDoubleBuffering();
 
-        for(int i=0; i < point2Ds.length; i++) {
+        for(int i = 0; i < point2Ds.length; i++) {
             point2Ds[i].draw();
         }
 
@@ -47,7 +47,7 @@ public class Exercise26_SimplePolygon {
         StdDraw.setPenRadius();
         StdDraw.setPenColor(StdDraw.BLUE);
 
-        for(int i=1; i < point2Ds.length; i++) {
+        for(int i = 1; i < point2Ds.length; i++) {
             StdDraw.line(point2Ds[i - 1].x(), point2Ds[i - 1].y(), point2Ds[i].x(), point2Ds[i].y());
             StdDraw.show();
             StdDraw.pause(100);

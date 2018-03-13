@@ -42,7 +42,7 @@ public class Exercise24_StablePriorityQueue {
 
         public void insert(Key key) {
 
-            if(size == priorityQueue.length - 1) {
+            if (size == priorityQueue.length - 1) {
                 resize(priorityQueue.length * 2);
             }
 
@@ -55,7 +55,7 @@ public class Exercise24_StablePriorityQueue {
 
         public Key deleteTop() {
 
-            if(size == 0) {
+            if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
             }
 
@@ -69,7 +69,7 @@ public class Exercise24_StablePriorityQueue {
 
             sink(1);
 
-            if(size == priorityQueue.length / 4) {
+            if (size == priorityQueue.length / 4) {
                 resize(priorityQueue.length / 2);
             }
 
@@ -78,7 +78,7 @@ public class Exercise24_StablePriorityQueue {
 
         private void swim(int index) {
             while(index / 2 >= 1) {
-                if((orientation == Orientation.MAX && less(index / 2, index))
+                if ((orientation == Orientation.MAX && less(index / 2, index))
                         || (orientation == Orientation.MIN && more(index / 2, index))) {
                     exchange(index / 2, index);
                 } else {
@@ -93,13 +93,13 @@ public class Exercise24_StablePriorityQueue {
             while (index * 2 <= size) {
                 int selectedChildIndex = index * 2;
 
-                if(index * 2 + 1 <= size &&
+                if (index * 2 + 1 <= size &&
                         ((orientation == Orientation.MAX && less(index * 2, index * 2 + 1))
                                 || (orientation == Orientation.MIN && more(index * 2, index * 2 + 1)))){
                     selectedChildIndex = index * 2 + 1;
                 }
 
-                if((orientation == Orientation.MAX && more(selectedChildIndex, index))
+                if ((orientation == Orientation.MAX && more(selectedChildIndex, index))
                         || (orientation == Orientation.MIN && less(selectedChildIndex, index))) {
                     exchange(index, selectedChildIndex);
                 } else {
@@ -123,9 +123,9 @@ public class Exercise24_StablePriorityQueue {
         private boolean less(int key1Index, int key2Index) {
             int compare = priorityQueue[key1Index].compareTo(priorityQueue[key2Index]);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 return true;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return false;
             } else {
                 return timestamp[key1Index] < timestamp[key2Index];
@@ -135,9 +135,9 @@ public class Exercise24_StablePriorityQueue {
         private boolean more(int key1Index, int key2Index) {
             int compare = priorityQueue[key1Index].compareTo(priorityQueue[key2Index]);
 
-            if(compare > 0) {
+            if (compare > 0) {
                 return true;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 return false;
             } else {
                 return timestamp[key1Index] > timestamp[key2Index];

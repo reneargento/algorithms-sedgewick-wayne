@@ -37,7 +37,7 @@ public class Exercise26_ArrayCreation {
     private static double timeRandomInput(MergeSortType mergeSortType, Map<Integer, Comparable[]> allInputArrays, int numberOfExperiments) {
         double total = 0;
 
-        for(int experiment=0; experiment < numberOfExperiments; experiment++) {
+        for(int experiment = 0; experiment < numberOfExperiments; experiment++) {
             Comparable[] originalArray = allInputArrays.get(experiment);
             Comparable[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
@@ -51,7 +51,7 @@ public class Exercise26_ArrayCreation {
     public static double time(MergeSortType mergeSortType, Comparable[] array) {
         Stopwatch timer = new Stopwatch();
 
-        if(mergeSortType == MergeSortType.CREATE_AUX_IN_SORT) {
+        if (mergeSortType == MergeSortType.CREATE_AUX_IN_SORT) {
             TopDownMergeSort.mergeSort(array);
         } else if (mergeSortType == MergeSortType.CREATE_AUX_IN_MERGE) {
             Exercise26_ArrayCreationMergeSort.mergeSort(array);

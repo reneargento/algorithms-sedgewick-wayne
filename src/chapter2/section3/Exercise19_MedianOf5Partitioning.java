@@ -14,9 +14,10 @@ import java.util.Map;
  */
 public class Exercise19_MedianOf5Partitioning {
 
+    // Parameters example: 8 131072
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 8
-        int initialArraySize = Integer.parseInt(args[1]); // 131072
+        int numberOfExperiments = Integer.parseInt(args[0]);
+        int initialArraySize = Integer.parseInt(args[1]);
 
         Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
 
@@ -30,7 +31,7 @@ public class Exercise19_MedianOf5Partitioning {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] arrayCopy1 = new Comparable[originalArray.length];
@@ -99,14 +100,14 @@ public class Exercise19_MedianOf5Partitioning {
                 //Since we are using a random sample, we cannot guarantee that we will always have a higher element than the pivot
                 // on the right end.
                 //So this check is necessary
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }
 
             while(ArrayUtil.less(pivot, array[--j]));
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

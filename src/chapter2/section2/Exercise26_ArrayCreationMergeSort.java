@@ -11,7 +11,7 @@ public class Exercise26_ArrayCreationMergeSort {
 
     private static void sort(Comparable[] array, int low, int high) {
 
-        if(high <= low) {
+        if (high <= low) {
             return;
         }
 
@@ -27,7 +27,7 @@ public class Exercise26_ArrayCreationMergeSort {
     private static void merge(Comparable[] array, int low, int middle, int high) {
         Comparable[] aux = new Comparable[array.length];
 
-        for(int i=low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -36,7 +36,7 @@ public class Exercise26_ArrayCreationMergeSort {
         int arrayIndex = low;
 
         while (indexLeft <= middle && indexRight <= high) {
-            if(aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
+            if (aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
                 array[arrayIndex] = aux[indexLeft];
                 indexLeft++;
             } else {

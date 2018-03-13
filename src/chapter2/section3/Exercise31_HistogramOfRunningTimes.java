@@ -17,8 +17,9 @@ public class Exercise31_HistogramOfRunningTimes {
 
     private static final int NUMBER_OF_ARRAYS = 4;
 
+    // Parameter example: 20 0
     public static void main(String[] args) {
-        int numberOfExperiments = Integer.parseInt(args[0]); // 20
+        int numberOfExperiments = Integer.parseInt(args[0]);
 
         // This value is irrelevant since the exercise description tells us to use 10^3, 10^4, 10^5 and 10^6
         int initialArraySize = Integer.parseInt(args[1]);
@@ -26,7 +27,7 @@ public class Exercise31_HistogramOfRunningTimes {
 
         Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
 
-        for(int i=0; i < NUMBER_OF_ARRAYS; i++) {
+        for(int i = 0; i < NUMBER_OF_ARRAYS; i++) {
             Comparable[] array = ArrayGenerator.generateRandomArray(realArraySize);
             allInputArrays.put(i, array);
 
@@ -40,9 +41,9 @@ public class Exercise31_HistogramOfRunningTimes {
 
         List<Double> runningTimes = new ArrayList<>();
 
-        for(int i=0; i < NUMBER_OF_ARRAYS; i++) {
+        for(int i = 0; i < NUMBER_OF_ARRAYS; i++) {
 
-            for(int j=0; j < numberOfExperiments; j++) {
+            for(int j = 0; j < numberOfExperiments; j++) {
                 Comparable[] originalArray = allInputArrays.get(i);
                 Comparable[] array = new Comparable[originalArray.length];
                 System.arraycopy(originalArray, 0, array, 0, originalArray.length);
@@ -63,7 +64,7 @@ public class Exercise31_HistogramOfRunningTimes {
         double[] runningTimesArray = new double[runningTimes.size()];
         double maxCount = 0;
 
-        for(int i=0; i < runningTimes.size(); i++) {
+        for(int i = 0; i < runningTimes.size(); i++) {
             runningTimesArray[i] = runningTimes.get(i);
 
             if(runningTimesArray[i] > maxCount) {
@@ -84,7 +85,7 @@ public class Exercise31_HistogramOfRunningTimes {
         int horizontalSpace = runningTimes.size() / NUMBER_OF_ARRAYS;
         int leftOffset = (horizontalSpace / 2) * -1;
 
-        for(int i=0; i < NUMBER_OF_ARRAYS; i++) {
+        for(int i = 0; i < NUMBER_OF_ARRAYS; i++) {
             StdDraw.text(leftOffset + (i + 1) * horizontalSpace, maxCount + 0.2, "10^" + (i+3));
         }
 

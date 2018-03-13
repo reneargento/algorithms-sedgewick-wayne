@@ -14,7 +14,7 @@ public class Exercise12_SublinearExtraSpace {
         int arraySize = Integer.parseInt(args[0]);
         int blockSize = Integer.parseInt(args[1]);
 
-        if(arraySize % blockSize != 0) {
+        if (arraySize % blockSize != 0) {
             throw new RuntimeException("Array size needs to be a multiple of block size");
         }
 
@@ -23,7 +23,7 @@ public class Exercise12_SublinearExtraSpace {
         selectionSortBlocks(array, blockSize);
 
         //O (N^2)
-        for(int i=0; i < arraySize / blockSize; i++) {
+        for(int i = 0; i < arraySize / blockSize; i++) {
             mergeBlocks(array, blockSize);
         }
     }
@@ -31,7 +31,7 @@ public class Exercise12_SublinearExtraSpace {
     private static Comparable[] generateRandomArray(int arrayLength) {
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i=0; i < arrayLength; i++) {
+        for(int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.uniform();
         }
 
@@ -39,13 +39,13 @@ public class Exercise12_SublinearExtraSpace {
     }
 
     private static void selectionSortBlocks(Comparable[] array, int blockSize) {
-        for(int i=0; i < array.length; i += blockSize) {
+        for(int i = 0; i < array.length; i += blockSize) {
             selectionSort(array, i, i + blockSize - 1);
         }
     }
 
     private static void selectionSort(Comparable[] array, int low, int high) {
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             int minIndex = i;
 
             for(int j = i + 1; j <= high; j++) {
@@ -85,7 +85,7 @@ public class Exercise12_SublinearExtraSpace {
 
         int auxIndex = 0;
 
-        for(int i=low; i <= middle; i++) {
+        for(int i = low; i <= middle; i++) {
             aux[auxIndex] = array[i];
             auxIndex++;
         }
@@ -95,7 +95,7 @@ public class Exercise12_SublinearExtraSpace {
         int arrayIndex = low;
 
         while (indexLeft < aux.length && indexRight <= high) {
-            if(aux[indexLeft].compareTo(array[indexRight]) <= 0) {
+            if (aux[indexLeft].compareTo(array[indexRight]) <= 0) {
                 array[arrayIndex] = aux[indexLeft];
                 indexLeft++;
             } else {

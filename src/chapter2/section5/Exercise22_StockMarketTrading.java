@@ -53,7 +53,7 @@ public class Exercise22_StockMarketTrading {
         PriorityQueueResize<Order> buyersPQ = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MAX);
         PriorityQueueResize<Order> sellersPQ = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
 
-        for(int i=0; i < orders.length; i++) {
+        for(int i = 0; i < orders.length; i++) {
             String[] values = orders[i].split(" ");
             int orderValue = Integer.parseInt(values[1]);
             int quantityOfShares = Integer.parseInt(values[2]);
@@ -61,13 +61,13 @@ public class Exercise22_StockMarketTrading {
             Order order = new Order(orderValue, quantityOfShares);
             int sharesRemaining;
 
-            if(values[0].charAt(0) == 'B') {
+            if (values[0].charAt(0) == 'B') {
 
                 while(quantityOfShares > 0) {
-                    if(sellersPQ.size() > 0) {
+                    if (sellersPQ.size() > 0) {
                         Order lowestPriceOrder = sellersPQ.peek();
 
-                        if(lowestPriceOrder.value <= orderValue) {
+                        if (lowestPriceOrder.value <= orderValue) {
                             int numberOfSharesSold = Math.min(lowestPriceOrder.shares, quantityOfShares);
 
                             StdOut.println(numberOfSharesSold + " shares sold for " + lowestPriceOrder.value);
@@ -88,16 +88,16 @@ public class Exercise22_StockMarketTrading {
                     }
                 }
 
-                if(quantityOfShares > 0) {
+                if (quantityOfShares > 0) {
                     order.shares = quantityOfShares;
                     buyersPQ.insert(order);
                 }
             } else {
                 while(quantityOfShares > 0) {
-                    if(buyersPQ.size() > 0) {
+                    if (buyersPQ.size() > 0) {
                         Order highestPriceOrder = buyersPQ.peek();
 
-                        if(highestPriceOrder.value >= orderValue) {
+                        if (highestPriceOrder.value >= orderValue) {
                             int numberOfSharesSold = Math.min(highestPriceOrder.shares, quantityOfShares);
 
                             StdOut.println(numberOfSharesSold + " shares sold for " + highestPriceOrder.value);
@@ -118,7 +118,7 @@ public class Exercise22_StockMarketTrading {
                     }
                 }
 
-                if(quantityOfShares > 0) {
+                if (quantityOfShares > 0) {
                     order.shares = quantityOfShares;
                     sellersPQ.insert(order);
                 }

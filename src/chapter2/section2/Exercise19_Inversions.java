@@ -8,7 +8,7 @@ import java.util.Arrays;
  * Created by Rene Argento on 18/02/17.
  */
 //Good explanation here: http://www.geeksforgeeks.org/counting-inversions/
-    //Related to the Kendall tau distance: https://en.wikipedia.org/wiki/Kendall_tau_distance
+//Related to the Kendall tau distance: https://en.wikipedia.org/wiki/Kendall_tau_distance
 public class Exercise19_Inversions {
 
     public static void main(String[] args) {
@@ -17,14 +17,14 @@ public class Exercise19_Inversions {
 
         int numberOfInversions1 = countInversions(array1);
 
-        StdOut.println("Number of inversions: " + numberOfInversions1
+        StdOut.println("Number of inversions 1: " + numberOfInversions1
         + "\nExpected: 25");
 
         Comparable[] array2 = generateArray2();
 
         int numberOfInversions2 = countInversions(array2);
 
-        StdOut.println("Number of inversions: " + numberOfInversions2
+        StdOut.println("Number of inversions 2: " + numberOfInversions2
                 + "\nExpected: 6");
     }
 
@@ -72,7 +72,7 @@ public class Exercise19_Inversions {
 
     private static int splitArrayAndCountInversions(Comparable[] array, Comparable[] aux, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return 0;
         }
 
@@ -85,9 +85,10 @@ public class Exercise19_Inversions {
     }
 
     @SuppressWarnings("unchecked")
-    private static int countInversionsComparingBothParts(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
+    private static int countInversionsComparingBothParts(Comparable[] array, Comparable[] aux, int low, int middle,
+                                                         int high) {
 
-        for(int i=low; i <= high; i++) {
+        for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -98,7 +99,7 @@ public class Exercise19_Inversions {
         int inversions = 0;
 
         while (leftIndex <= middle && rightIndex <= high) {
-            if(aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
+            if (aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
                 array[arrayIndex] = aux[leftIndex];
                 leftIndex++;
             } else {
