@@ -135,7 +135,7 @@ public class Exercise34_All23Trees {
 
         Set<RedBlackBST<Integer, Integer>> treesOfHeight1 = new HashSet<>();
         RedBlackBST<Integer, Integer> height1Tree = new RedBlackBST<>();
-        for(int i=0; i < 3; i++) {
+        for(int i = 0; i < 3; i++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             height1Tree.put(randomKey, randomKey);
             keysInTree.add(randomKey);

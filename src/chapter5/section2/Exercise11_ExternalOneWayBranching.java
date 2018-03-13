@@ -660,7 +660,7 @@ public class Exercise11_ExternalOneWayBranching {
         }
 
         public String select(int index) {
-            if(index < 0 || index >= size()) {
+            if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Index cannot be negative and must be lower than trie size");
             }
 
@@ -712,7 +712,7 @@ public class Exercise11_ExternalOneWayBranching {
         }
 
         private int rank(Node node, String key, int digit, int size, StringBuilder currentPrefix) {
-            if (node == null){
+            if (node == null) {
                 return size;
             }
 
@@ -1111,7 +1111,7 @@ public class Exercise11_ExternalOneWayBranching {
             if (node.size == 0) {
                 if (node.left == null && node.right == null) {
                     return null;
-                } else if(node.left == null) {
+                } else if (node.left == null) {
                     return node.right;
                 } else if (node.right == null) {
                     return node.left;
@@ -1457,7 +1457,7 @@ public class Exercise11_ExternalOneWayBranching {
         }
 
         public String select(int index) {
-            if(index < 0 || index >= size()) {
+            if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Index cannot be negative and must be lower than TST size");
             }
 

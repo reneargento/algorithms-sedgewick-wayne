@@ -32,7 +32,7 @@ public class Exercise15 {
             int edges = in.readInt(); //Not used
             in.readLine(); //Move to next line
 
-            while (in.hasNextLine()){
+            while (in.hasNextLine()) {
                 String[] vertices = in.readLine().split(" ");
 
                 int vertex = Integer.parseInt(vertices[0]);

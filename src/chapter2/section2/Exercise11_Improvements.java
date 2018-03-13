@@ -36,7 +36,7 @@ public class Exercise11_Improvements {
     private static void topDownMergeSort(Comparable[] array, Comparable[] aux, int low, int high) {
 
         //Improvement #1 - Cutoff for small arrays
-        if(high - low <= CUTOFF) {
+        if (high - low <= CUTOFF) {
             insertionSort(aux, low, high);
             return;
         }

@@ -77,7 +77,7 @@ public class Exercise19_MedianOf5Partitioning {
 
     private static void quickSort(Comparable[] array, int low, int high, Comparable[] medianOf5Array) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -123,7 +123,7 @@ public class Exercise19_MedianOf5Partitioning {
     private static void medianOf5Partition(Comparable[] array, int low, int high, Comparable[] medianOf5Array) {
 
         //If we have less than 5 items, no need to partition on the median of 5, just pick the first item
-        if(high - low + 1 < 5) {
+        if (high - low + 1 < 5) {
             return;
         }
 

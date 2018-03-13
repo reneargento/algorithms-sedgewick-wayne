@@ -19,7 +19,7 @@ public class Exercise9 {
         String[] words = FileUtil.getAllStringsFromFile(filePath);
 
         StdOut.printf("%12s %16s %16s\n", "Length cutoff", "Last word inserted", "Words processed");
-        for(int i=0; i < minLengths.length; i++) {
+        for(int i = 0; i < minLengths.length; i++) {
             frequencyCounter(words, minLengths[i]);
         }
     }

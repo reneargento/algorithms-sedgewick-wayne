@@ -47,7 +47,7 @@ public class Exercise14 {
         redBlackBST.put("Mixed Bag", mixedBag);
 
         RedBlackBST<String, Bag<String>> inverseSymbolTable = Exercise14.invert(redBlackBST);
-        for(String key : inverseSymbolTable.keys()){
+        for(String key : inverseSymbolTable.keys()) {
             StdOut.println(key);
 
             for(String value : inverseSymbolTable.get(key)) {

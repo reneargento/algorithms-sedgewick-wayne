@@ -21,13 +21,13 @@ public class Exercise39_ImageProcessing {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
-                    if(isValidCell(image, neighborRow, neighborColumn)) {
-                        if(image[row][column] == image[neighborRow][neighborColumn]) {
+                    if (isValidCell(image, neighborRow, neighborColumn)) {
+                        if (image[row][column] == image[neighborRow][neighborColumn]) {
                             int vertexId1 = getCellIndex(row, column, image[0].length);
                             int vertexId2 = getCellIndex(neighborRow, neighborColumn, image[0].length);
 
                             //Used to avoid connecting vertices more than once
-                            if(vertexId1 < vertexId2) {
+                            if (vertexId1 < vertexId2) {
                                 graph.addEdge(vertexId1, vertexId2);
                             }
                         }
@@ -40,7 +40,7 @@ public class Exercise39_ImageProcessing {
         boolean[] visited = new boolean[graph.vertices()];
 
         for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-            if(!visited[vertex]) {
+            if (!visited[vertex]) {
                 components++;
                 depthFirstSearch(graph, vertex, visited);
             }
@@ -53,7 +53,7 @@ public class Exercise39_ImageProcessing {
         visited[currentVertex] = true;
 
         for(int neighbor : graph.adjacent(currentVertex)) {
-            if(!visited[neighbor]) {
+            if (!visited[neighbor]) {
                 depthFirstSearch(graph, neighbor, visited);
             }
         }

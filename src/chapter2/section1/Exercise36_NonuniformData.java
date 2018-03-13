@@ -98,13 +98,13 @@ public class Exercise36_NonuniformData {
 
     private static void generateHalfIncrementingValuesArray(Comparable[] array, int startIndex, int value) {
 
-        if(startIndex == array.length) {
+        if (startIndex == array.length) {
             return;
         }
 
         int endIndex = startIndex + (array.length - startIndex) / 2;
 
-        for(int i=startIndex; i <= endIndex; i++) {
+        for(int i = startIndex; i <= endIndex; i++) {
             array[i] = value;
         }
 
@@ -119,7 +119,7 @@ public class Exercise36_NonuniformData {
             array[i] = 0;
         }
 
-        for(int i=arrayLength / 2; i < arrayLength; i++) {
+        for(int i = arrayLength / 2; i < arrayLength; i++) {
             array[i] = StdRandom.uniform(Integer.MAX_VALUE);
         }
 

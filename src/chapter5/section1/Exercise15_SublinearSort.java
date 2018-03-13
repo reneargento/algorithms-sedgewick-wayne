@@ -83,7 +83,7 @@ public class Exercise15_SublinearSort {
             // It exists if the number is negative, but must be added if it is not.
             // Here we invert the leading bit value so that during the sort, negative values have a lower position
             // than positive values.
-            if(value >= 0) {
+            if (value >= 0) {
                 binaryString.insert(0, "1");
             } else {
                 binaryString.replace(0, 1, "0");

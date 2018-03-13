@@ -127,7 +127,7 @@ public class Exercise21_MultidimensionalSort {
 
             if (this.values2d.length < that.values2d.length) {
                 return -1;
-            } else if(this.values2d.length > that.values2d.length) {
+            } else if (this.values2d.length > that.values2d.length) {
                 return 1;
             }
             for (int j = 0; j < smallestSize2d; j++) {
@@ -240,7 +240,7 @@ public class Exercise21_MultidimensionalSort {
         }
 
         private int compare5D(Vector that) {
-            if(this.values5d == null || that.values5d == null) {
+            if (this.values5d == null || that.values5d == null) {
                 throw new IllegalArgumentException("Both vectors must exist");
             }
 
@@ -279,7 +279,7 @@ public class Exercise21_MultidimensionalSort {
                 }
             }
             for (int k = 0; k < smallestSize3d; k++) {
-                if(this.values5d[0][k].length < that.values5d[0][k].length) {
+                if (this.values5d[0][k].length < that.values5d[0][k].length) {
                     return -1;
                 } else if (this.values5d[0][k].length > that.values5d[0][k].length) {
                     return 1;

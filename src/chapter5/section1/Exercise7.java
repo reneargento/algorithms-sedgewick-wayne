@@ -42,7 +42,7 @@ public class Exercise7 {
 
             // Copy back
             int indexArray = 0;
-            while (!auxQueue.isEmpty()){
+            while (!auxQueue.isEmpty()) {
                 array[indexArray++] = auxQueue.dequeue();
             }
         }

@@ -45,7 +45,7 @@ public class Exercise10 {
 		StdDraw.point(totalOperations, counter);
 	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Exercise10 visualCounter = new Exercise10(6, 4);
 		
 		visualCounter.increment();

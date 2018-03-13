@@ -79,7 +79,7 @@ public class Exercise39_AverageCase {
             long totalSquareDeviationFromTheMeanSearchMisses = 0;
 
             //Standard deviation for search hits
-            for(int j=0; j < numberOfComparesSearchHits.size(); j++) {
+            for(int j = 0; j < numberOfComparesSearchHits.size(); j++) {
                 long numberOfCompares = numberOfComparesSearchHits.get(j);
 
                 long squareDeviationFromTheMean = (long) Math.pow((numberOfCompares - averageNumberOfCompareSearchHits), 2);
@@ -89,7 +89,7 @@ public class Exercise39_AverageCase {
             double standardDeviationSearchHits = Math.sqrt(varianceForSearchHits);
 
             //Standard deviation for search misses
-            for(int j=0; j < numberOfComparesSearchMisses.size(); j++) {
+            for(int j = 0; j < numberOfComparesSearchMisses.size(); j++) {
                 long numberOfCompares = numberOfComparesSearchMisses.get(j);
 
                 long squareDeviationFromTheMean = (long) Math.pow((numberOfCompares - averageNumberOfCompareSearchMisses), 2);
@@ -115,12 +115,12 @@ public class Exercise39_AverageCase {
         int maxValue = 1000000;
         BinarySearchTreeCompareCount<Integer, Integer> binarySearchTree = new BinarySearchTreeCompareCount<>();
 
-        for(int i=0; i < treeSize; i++) {
+        for(int i = 0; i < treeSize; i++) {
             int randomValue = StdRandom.uniform(maxValue);
             binarySearchTree.put(randomValue, randomValue);
         }
 
-        for(int i=0; i < numberOfSearches; i++) {
+        for(int i = 0; i < numberOfSearches; i++) {
             int randomValue = StdRandom.uniform(maxValue);
             BinarySearchTreeCompareCount.SearchAnalysis searchAnalysis = binarySearchTree.getKey(randomValue);
 

@@ -38,7 +38,7 @@ public class Exercise41_MultiwayHeaps {
         private void sortdown() {
             int endIndex = array.length - 1;
 
-            while (endIndex > 1){
+            while (endIndex > 1) {
                 ArrayUtil.exchange(array, 1, endIndex);
                 endIndex--;
                 sink(array, 1, endIndex);
@@ -82,7 +82,7 @@ public class Exercise41_MultiwayHeaps {
         int[] arraySizes = {1000, 1000000, 100000000};
 
         Map<Integer, Comparable[] > allInputArrays = new HashMap<>();
-        for(int i=0; i < arraySizes.length; i++) {
+        for(int i = 0; i < arraySizes.length; i++) {
             Comparable[] array = ArrayGenerator.generateDistinctValuesShuffledArray(arraySizes[i]);
             array[0] = null; //0 index is not used on heaps
             allInputArrays.put(i, array);

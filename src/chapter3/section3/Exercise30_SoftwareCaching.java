@@ -14,16 +14,16 @@ public class Exercise30_SoftwareCaching {
         private Node cacheItem;
 
         public void put(Key key, Value value) {
-            if(key == null) {
+            if (key == null) {
                 return;
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(cacheItem != null && cacheItem.key.compareTo(key) == 0) {
+            if (cacheItem != null && cacheItem.key.compareTo(key) == 0) {
                 cacheItem.value = value;
                 StdOut.println("Cache hit");
                 return;
@@ -35,7 +35,7 @@ public class Exercise30_SoftwareCaching {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 Node newNode = new Node(key, value, 1, RED);
                 cacheItem = newNode;
                 return newNode;
@@ -43,22 +43,22 @@ public class Exercise30_SoftwareCaching {
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
                 cacheItem = node;
             }
 
-            if(isRed(node.right) && !isRed(node.left)) {
+            if (isRed(node.right) && !isRed(node.left)) {
                 node = rotateLeft(node);
             }
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -67,11 +67,11 @@ public class Exercise30_SoftwareCaching {
         }
 
         public Value get(Key key) {
-            if(key == null) {
+            if (key == null) {
                 return null;
             }
 
-            if(cacheItem != null && cacheItem.key.compareTo(key) == 0) {
+            if (cacheItem != null && cacheItem.key.compareTo(key) == 0) {
                 StdOut.println("Cache hit");
                 return cacheItem.value;
             }
@@ -81,14 +81,14 @@ public class Exercise30_SoftwareCaching {
         }
 
         private Value get(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return get(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return get(node.right, key);
             } else {
                 cacheItem = node;
@@ -97,7 +97,7 @@ public class Exercise30_SoftwareCaching {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -105,7 +105,7 @@ public class Exercise30_SoftwareCaching {
         }
 
         protected Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 cacheItem = node;
                 return node;
             }
@@ -114,7 +114,7 @@ public class Exercise30_SoftwareCaching {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -122,7 +122,7 @@ public class Exercise30_SoftwareCaching {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 cacheItem = node;
                 return node;
             }
@@ -133,7 +133,7 @@ public class Exercise30_SoftwareCaching {
         //Returns the highest key in the symbol table smaller than or equal to key.
         public Key floor(Key key) {
             Node node = floor(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -142,19 +142,19 @@ public class Exercise30_SoftwareCaching {
         }
 
         private Node floor(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 return floor(node.left, key);
             } else {
                 Node rightNode = floor(node.right, key);
-                if(rightNode != null) {
+                if (rightNode != null) {
                     return rightNode;
                 } else {
                     return node;
@@ -165,7 +165,7 @@ public class Exercise30_SoftwareCaching {
         //Returns the smallest key in the symbol table greater than or equal to key.
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -174,19 +174,19 @@ public class Exercise30_SoftwareCaching {
         }
 
         private Node ceiling(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return ceiling(node.right, key);
             } else {
                 Node leftNode = ceiling(node.left, key);
-                if(leftNode != null) {
+                if (leftNode != null) {
                     return leftNode;
                 } else {
                     return node;
@@ -195,7 +195,7 @@ public class Exercise30_SoftwareCaching {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -205,7 +205,7 @@ public class Exercise30_SoftwareCaching {
         private Node select(Node node, int index) {
             int leftSubtreeSize = size(node.left);
 
-            if(leftSubtreeSize == index) {
+            if (leftSubtreeSize == index) {
                 cacheItem = node;
                 return node;
             } else if (leftSubtreeSize > index) {
@@ -220,15 +220,15 @@ public class Exercise30_SoftwareCaching {
         }
 
         private int rank(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
             //Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return rank(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return size(node.left) + 1 + rank(node.right, key);
             } else {
                 cacheItem = node;
@@ -237,31 +237,31 @@ public class Exercise30_SoftwareCaching {
         }
 
         public void deleteMin() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = deleteMin(root);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         protected Node deleteMin(Node node) {
-            if(node.left == null) {
-                if(cacheItem != null && cacheItem == node) {
+            if (node.left == null) {
+                if (cacheItem != null && cacheItem == node) {
                     invalidateCache();
                 }
 
                 return null;
             }
 
-            if(!isRed(node.left) && !isRed(node.left.left)) {
+            if (!isRed(node.left) && !isRed(node.left.left)) {
                 node = moveRedLeft(node);
             }
 
@@ -270,35 +270,35 @@ public class Exercise30_SoftwareCaching {
         }
 
         public void deleteMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = deleteMax(root);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node deleteMax(Node node) {
-            if(isRed(node.left)) {
+            if (isRed(node.left)) {
                 node = rotateRight(node);
             }
 
-            if(node.right == null) {
-                if(cacheItem != null && cacheItem == node) {
+            if (node.right == null) {
+                if (cacheItem != null && cacheItem == node) {
                     invalidateCache();
                 }
 
                 return null;
             }
 
-            if(!isRed(node.right) && !isRed(node.right.left)) {
+            if (!isRed(node.right) && !isRed(node.right.left)) {
                 node = moveRedRight(node);
             }
 
@@ -307,54 +307,54 @@ public class Exercise30_SoftwareCaching {
         }
 
         public void delete(Key key) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
-            if(cacheItem != null && cacheItem.key.compareTo(key) == 0) {
+            if (cacheItem != null && cacheItem.key.compareTo(key) == 0) {
                 invalidateCache();
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = delete(root, key);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(key.compareTo(node.key) < 0) {
-                if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+            if (key.compareTo(node.key) < 0) {
+                if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                     node = moveRedLeft(node);
                 }
 
                 node.left = delete(node.left, key);
             } else {
-                if(isRed(node.left)) {
+                if (isRed(node.left)) {
                     node = rotateRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0 && node.right == null) {
+                if (key.compareTo(node.key) == 0 && node.right == null) {
                     return null;
                 }
 
-                if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+                if (!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                     node = moveRedRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0) {
+                if (key.compareTo(node.key) == 0) {
                     Node aux = min(node.right);
                     node.key = aux.key;
                     node.value = aux.value;
@@ -377,7 +377,7 @@ public class Exercise30_SoftwareCaching {
         Exercise30_SoftwareCaching softwareCaching = new Exercise30_SoftwareCaching();
         RedBlackBSTWithCache<Integer, String> redBlackBSTWithCache = softwareCaching.new RedBlackBSTWithCache<>();
 
-        for(int i=0; i < 10; i++) {
+        for(int i = 0; i < 10; i++) {
             redBlackBSTWithCache.put(i, "Value " + i);
         }
 

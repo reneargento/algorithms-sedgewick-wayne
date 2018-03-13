@@ -42,7 +42,7 @@ public class IndexMinDWayPriorityQueue<Key extends Comparable<Key>> {
 
     //Return key associated with index
     public Key keyOf(int index) {
-        if(!contains(index)) {
+        if (!contains(index)) {
             throw new NoSuchElementException("Index is not in the priority queue");
         }
 

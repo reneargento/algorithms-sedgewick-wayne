@@ -19,11 +19,11 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
         rightStack = new Stack<>();
     }
 
-    public boolean isLeftStackEmpty(){
+    public boolean isLeftStackEmpty() {
         return leftStack.size() == 0;
     }
 
-    public boolean isRightStackEmpty(){
+    public boolean isRightStackEmpty() {
         return rightStack.size() == 0;
     }
 
@@ -35,7 +35,7 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
         return rightStack.size();
     }
 
-    public void pushLeft(Item item){
+    public void pushLeft(Item item) {
         leftStack.push(item);
     }
 
@@ -43,8 +43,8 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
         rightStack.push(item);
     }
 
-    public Item popLeft(){
-        if(isLeftStackEmpty()) {
+    public Item popLeft() {
+        if (isLeftStackEmpty()) {
             throw new RuntimeException("Left stack underflow");
         }
 
@@ -52,7 +52,7 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
     }
 
     public Item popRight() {
-        if(isRightStackEmpty()) {
+        if (isRightStackEmpty()) {
             throw new RuntimeException("Right stack underflow");
         }
 
@@ -78,16 +78,16 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
         @Override
         public Item next() {
 
-            if(index == 0 && leftStackSize() > 0) {
+            if (index == 0 && leftStackSize() > 0) {
                 StdOut.println("Left stack");
             }
 
             Item item;
 
-            if (leftStackIterator.hasNext()){
+            if (leftStackIterator.hasNext()) {
                 item = leftStackIterator.next();
             } else {
-                if(index == leftStackSize()) {
+                if (index == leftStackSize()) {
                     StdOut.println("Right stack");
                 }
 

@@ -98,7 +98,7 @@ public class Exercise18_MedianOf3Partitioning {
 
             while(ArrayUtil.less(pivot, array[--j]));
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

@@ -76,7 +76,7 @@ public class PriorityQueue<Key extends Comparable<Key>> {
                     (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
                     || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index * 2], priorityQueue[index * 2 + 1]))
                     )
-                    ){
+                    ) {
                 selectedChildIndex = index * 2 + 1;
             }
 

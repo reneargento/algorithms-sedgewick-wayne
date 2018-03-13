@@ -26,7 +26,7 @@ public class Exercise11 {
         public int compareTo(PermutationNumber that) {
             if (this.value < that.value) {
                 return -1;
-            } else if(this.value > that.value) {
+            } else if (this.value > that.value) {
                 return 1;
             } else {
                 return 0;

@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class Exercise14_4Sum {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         int[] array = {1, 2, 3, 4, -4, -5, -6, 2, 4, -1};
         StdOut.println("4 sum: " + fourSum(array));
@@ -17,19 +17,19 @@ public class Exercise14_4Sum {
     }
 
     //O(n^3 lg n)
-    private static int fourSum(int[] array){
+    private static int fourSum(int[] array) {
 
         Arrays.sort(array);
 
         int count = 0;
 
         for(int i = 0; i < array.length; i++) {
-            for (int j = i + 1; j < array.length; j++){
-                for(int k = j + 1; k < array.length; k++){
+            for (int j = i + 1; j < array.length; j++) {
+                for(int k = j + 1; k < array.length; k++) {
 
                     int searchElement = -1 * (array[i] + array[j] + array[k]);
                     int elementIndex = binarySearch(array, searchElement, 0, array.length);
-                    if(elementIndex > k) {
+                    if (elementIndex > k) {
                         StdOut.println("" + array[i] +  " " + array[j] +  " " + array[k] +  " " + array[elementIndex]);
                         count++;
                     }
@@ -40,7 +40,7 @@ public class Exercise14_4Sum {
         return count;
     }
 
-    private static int binarySearch(int[] array, int key, int low, int high){
+    private static int binarySearch(int[] array, int key, int low, int high) {
 
         if (low >= high) {
             return -1;

@@ -13,7 +13,7 @@ public class Exercise17_RationalNumbersRobust {
 	private final static String ASSERT_AVOIDING_OVERFLOW_MESSAGE = "Operation would cause overflow";
 	
 	public Exercise17_RationalNumbersRobust(int numerator, int denominator) {
-		if(denominator == 0) {
+		if (denominator == 0) {
 			throw new RuntimeException("Denominator cannot be 0");
 		}
 		
@@ -24,13 +24,13 @@ public class Exercise17_RationalNumbersRobust {
 		this.numerator /= gcd;
 		this.denominator /= gcd;
 		
-		if(this.denominator < 0) {
+		if (this.denominator < 0) {
 			this.denominator = -1 * this.denominator;
 			this.numerator = -1 * this.numerator;
 		}
 	}
 	
-	private static int gcd(int numerator, int denominator){
+	private static int gcd(int numerator, int denominator) {
 		if (denominator == 0) {
 			return numerator;
 		} else {
@@ -38,11 +38,11 @@ public class Exercise17_RationalNumbersRobust {
 		}
 	}
 	
-	public int numerator(){
+	public int numerator() {
 		return (int) numerator;
 	}
 	
-	public int denominator(){
+	public int denominator() {
 		return (int) denominator;
 	}
 	

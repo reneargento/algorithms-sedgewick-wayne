@@ -79,7 +79,7 @@ public class Exercise16_LinkedListSort {
         DoublyLinkedList<String>.DoubleNode currentNode;
         int middleIndex = lowIndex + (highIndex - lowIndex) / 2;
 
-        if(pivotIndex <= middleIndex) {
+        if (pivotIndex <= middleIndex) {
             currentNode = lowNode;
             int count = lowIndex;
 
@@ -107,7 +107,7 @@ public class Exercise16_LinkedListSort {
     }
 
     private int charAt(String string, int digit) {
-        if(digit < string.length()) {
+        if (digit < string.length()) {
             return string.charAt(digit);
         } else {
             return -1;

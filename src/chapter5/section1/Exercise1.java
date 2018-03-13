@@ -27,7 +27,7 @@ public class Exercise1 {
 
             for(String string : array) {
                 for(char charValue : string.toCharArray()) {
-                    if(!uniqueKeys.contains(charValue)) {
+                    if (!uniqueKeys.contains(charValue)) {
                         uniqueKeys.add(charValue);
                     }
                 }

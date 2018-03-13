@@ -40,7 +40,7 @@ public class Exercise29_OptimalStorage {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -52,7 +52,7 @@ public class Exercise29_OptimalStorage {
         }
 
         private void swapChildLinks(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return;
             }
 
@@ -63,33 +63,33 @@ public class Exercise29_OptimalStorage {
 
         //This operation now takes O(lg N) time instead of O(1)
         private boolean isRed(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
             //The root is always black if it is the only node in the tree
-            if(node == root && size(root) == 1) {
+            if (node == root && size(root) == 1) {
                 return false;
             }
             //If a node has no sibling, it is red
             //Find the node to check if it has a sibling
             Node current = root;
             while (current != null) {
-                if(current.left == node && current.right == null) {
+                if (current.left == node && current.right == null) {
                     return true;
                 }
-                if(current.right == node && current.left == null) {
+                if (current.right == node && current.left == null) {
                     return true;
                 }
                 //The node has a sibling, so do the default check
-                if(current.left == node || current.right == node) {
+                if (current.left == node || current.right == node) {
                     break;
                 }
 
                 //Continue the search for the node
                 int compare = node.key.compareTo(current.key);
-                if(current.left == null || current.right == null) {
-                    if(current.left == null) {
+                if (current.left == null || current.right == null) {
+                    if (current.left == null) {
                         current = current.right;
                     } else {
                         current = current.left;
@@ -97,18 +97,18 @@ public class Exercise29_OptimalStorage {
                 } else {
                     boolean isRed = current.left.key.compareTo(current.right.key) > 0;
 
-                    if(!isRed) {
-                        if(compare < 0) {
+                    if (!isRed) {
+                        if (compare < 0) {
                             current = current.left;
-                        } else if (compare > 0){
+                        } else if (compare > 0) {
                             current = current.right;
                         } else {
                             break;
                         }
                     } else {
-                        if(compare < 0) {
+                        if (compare < 0) {
                             current = current.right;
-                        } else if (compare > 0){
+                        } else if (compare > 0) {
                             current = current.left;
                         } else {
                             break;
@@ -117,7 +117,7 @@ public class Exercise29_OptimalStorage {
                 }
             }
 
-            if(node.left == null || node.right == null) {
+            if (node.left == null || node.right == null) {
                 return false;
             }
 
@@ -125,26 +125,26 @@ public class Exercise29_OptimalStorage {
         }
 
         private Node rotateLeft(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(!isRed(node)) {
-                if(node.right == null) {
+            if (!isRed(node)) {
+                if (node.right == null) {
                     return node;
                 }
             } else {
-                if(node.left == null) {
+                if (node.left == null) {
                     return node;
                 }
             }
 
-            if(isRed(node)) {
+            if (isRed(node)) {
                 swapChildLinks(node);
             }
 
             boolean isNewRootRed = isRed(node.right);
-            if(isNewRootRed) {
+            if (isNewRootRed) {
                 swapChildLinks(node.right);
             }
 
@@ -153,12 +153,12 @@ public class Exercise29_OptimalStorage {
             node.right = newRoot.left;
             newRoot.left = node;
 
-            if(isRed(node)) {
+            if (isRed(node)) {
                 swapChildLinks(newRoot);
             }
 
             //After a rotation, paint the node red
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 swapChildLinks(node);
             }
 
@@ -169,26 +169,26 @@ public class Exercise29_OptimalStorage {
         }
 
         private Node rotateRight(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(!isRed(node)) {
-                if(node.left == null) {
+            if (!isRed(node)) {
+                if (node.left == null) {
                     return node;
                 }
             } else {
-                if(node.right == null) {
+                if (node.right == null) {
                     return node;
                 }
             }
 
-            if(isRed(node)) {
+            if (isRed(node)) {
                 swapChildLinks(node);
             }
 
             boolean isNewRootRed = isRed(node.left);
-            if(isNewRootRed) {
+            if (isNewRootRed) {
                 swapChildLinks(node.left);
             }
 
@@ -198,12 +198,12 @@ public class Exercise29_OptimalStorage {
             newRoot.right = node;
 
             //After a rotation, paint the node red
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 swapChildLinks(node);
             }
             //Since in this configuration nodes without children are by default black,
             // the new root becomes red and its children become black
-            if(!isRed(newRoot) && newRoot.left != null && newRoot.right != null) {
+            if (!isRed(newRoot) && newRoot.left != null && newRoot.right != null) {
                 swapChildLinks(newRoot);
 
                 swapChildLinks(newRoot.left);
@@ -217,12 +217,12 @@ public class Exercise29_OptimalStorage {
         }
 
         private void flipColors(Node node) {
-            if(node == null || node.left == null || node.right == null) {
+            if (node == null || node.left == null || node.right == null) {
                 return;
             }
 
             //The root must have opposite color of its two children
-            if((isRed(node) && !isRed(node.left) && !isRed(node.right))
+            if ((isRed(node) && !isRed(node.left) && !isRed(node.right))
                     || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
                 swapChildLinks(node);
                 swapChildLinks(node.left);
@@ -231,36 +231,36 @@ public class Exercise29_OptimalStorage {
         }
 
         public void put(Key key, Value value) {
-            if(key == null) {
+            if (key == null) {
                 return;
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
             root = put(root, key, value);
-            if(isRed(root)) {
+            if (isRed(root)) {
                 swapChildLinks(root);
             }
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value, 1);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
-                if(!isRed(node)) {
+            if (compare < 0) {
+                if (!isRed(node)) {
                     node.left = put(node.left, key, value);
                 } else {
                     node.right = put(node.right, key, value);
                 }
-            } else if(compare > 0) {
-                if(!isRed(node)) {
+            } else if (compare > 0) {
+                if (!isRed(node)) {
                     node.right = put(node.right, key, value);
                 } else {
                     node.left = put(node.left, key, value);
@@ -269,39 +269,39 @@ public class Exercise29_OptimalStorage {
                 node.value = value;
             }
 
-            if(!isRed(node)) {
-                if(isRed(node.right) && !isRed(node.left)) {
+            if (!isRed(node)) {
+                if (isRed(node.right) && !isRed(node.left)) {
                     node = rotateLeft(node);
                 }
             } else {
-                if(isRed(node.left) && !isRed(node.right)) {
+                if (isRed(node.left) && !isRed(node.right)) {
                     node = rotateLeft(node);
                 }
             }
 
-            if(!isRed(node)) {
-                if(!isRed(node.left)) {
-                    if(isRed(node.left) && isRed(node.left.left)) {
+            if (!isRed(node)) {
+                if (!isRed(node.left)) {
+                    if (isRed(node.left) && isRed(node.left.left)) {
                         node = rotateRight(node);
                     }
                 } else {
-                    if(isRed(node.left) && isRed(node.left.right)) {
+                    if (isRed(node.left) && isRed(node.left.right)) {
                         node = rotateRight(node);
                     }
                 }
             } else {
-                if(!isRed(node.right)) {
-                    if(isRed(node.right) && isRed(node.right.left)) {
+                if (!isRed(node.right)) {
+                    if (isRed(node.right) && isRed(node.right.left)) {
                         node = rotateRight(node);
                     }
                 } else {
-                    if(isRed(node.right) && isRed(node.right.right)) {
+                    if (isRed(node.right) && isRed(node.right.right)) {
                         node = rotateRight(node);
                     }
                 }
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -310,7 +310,7 @@ public class Exercise29_OptimalStorage {
         }
 
         public Value get(Key key) {
-            if(key == null) {
+            if (key == null) {
                 return null;
             }
 
@@ -318,19 +318,19 @@ public class Exercise29_OptimalStorage {
         }
 
         private Value get(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
-                if(!isRed(node)) {
+            if (compare < 0) {
+                if (!isRed(node)) {
                     return get(node.left, key);
                 } else {
                     return get(node.right, key);
                 }
-            } else if(compare > 0) {
-                if(!isRed(node)) {
+            } else if (compare > 0) {
+                if (!isRed(node)) {
                     return get(node.right, key);
                 } else {
                     return get(node.left, key);
@@ -348,7 +348,7 @@ public class Exercise29_OptimalStorage {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -356,11 +356,11 @@ public class Exercise29_OptimalStorage {
         }
 
         private Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node;
             }
 
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 return min(node.left);
             } else {
                 return min(node.right);
@@ -368,7 +368,7 @@ public class Exercise29_OptimalStorage {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -376,11 +376,11 @@ public class Exercise29_OptimalStorage {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 return node;
             }
 
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 return max(node.right);
             } else {
                 return max(node.left);
@@ -390,7 +390,7 @@ public class Exercise29_OptimalStorage {
         //Returns the highest key in the symbol table smaller than or equal to key.
         public Key floor(Key key) {
             Node node = floor(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -398,15 +398,15 @@ public class Exercise29_OptimalStorage {
         }
 
         private Node floor(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 if(!isRed(node)) {
                     return floor(node.left, key);
                 } else {
@@ -415,13 +415,13 @@ public class Exercise29_OptimalStorage {
             } else {
                 Node rightNode;
 
-                if(!isRed(node)) {
+                if (!isRed(node)) {
                     rightNode = floor(node.right, key);
                 } else {
                     rightNode = floor(node.left, key);
                 }
 
-                if(rightNode != null) {
+                if (rightNode != null) {
                     return rightNode;
                 } else {
                     return node;
@@ -432,7 +432,7 @@ public class Exercise29_OptimalStorage {
         //Returns the smallest key in the symbol table greater than or equal to key.
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -440,16 +440,16 @@ public class Exercise29_OptimalStorage {
         }
 
         private Node ceiling(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare > 0) {
-                if(!isRed(node)) {
+            } else if (compare > 0) {
+                if (!isRed(node)) {
                     return ceiling(node.right, key);
                 } else {
                     return ceiling(node.left, key);
@@ -457,13 +457,13 @@ public class Exercise29_OptimalStorage {
             } else {
                 Node leftNode;
 
-                if(!isRed(node)) {
+                if (!isRed(node)) {
                     leftNode = ceiling(node.left, key);
                 } else {
                     leftNode = ceiling(node.right, key);;
                 }
 
-                if(leftNode != null) {
+                if (leftNode != null) {
                     return leftNode;
                 } else {
                     return node;
@@ -472,7 +472,7 @@ public class Exercise29_OptimalStorage {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -482,22 +482,22 @@ public class Exercise29_OptimalStorage {
         private Node select(Node node, int index) {
             int leftSubtreeSize;
 
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 leftSubtreeSize = size(node.left);
             } else {
                 leftSubtreeSize = size(node.right);
             }
 
-            if(leftSubtreeSize == index) {
+            if (leftSubtreeSize == index) {
                 return node;
             } else if (leftSubtreeSize > index) {
-                if(!isRed(node)) {
+                if (!isRed(node)) {
                     return select(node.left, index);
                 } else {
                     return select(node.right, index);
                 }
             } else {
-                if(!isRed(node)) {
+                if (!isRed(node)) {
                     return select(node.right, index - leftSubtreeSize - 1);
                 } else {
                     return select(node.left, index - leftSubtreeSize - 1);
@@ -510,26 +510,26 @@ public class Exercise29_OptimalStorage {
         }
 
         private int rank(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
             //Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
-                if(!isRed(node)) {
+            if (compare < 0) {
+                if (!isRed(node)) {
                     return rank(node.left, key);
                 } else {
                     return rank(node.right, key);
                 }
             } else if(compare > 0) {
-                if(!isRed(node)) {
+                if (!isRed(node)) {
                     return size(node.left) + 1 + rank(node.right, key);
                 } else {
                     return size(node.right) + 1 + rank(node.left, key);
                 }
             } else {
-                if(!isRed(node)) {
+                if (!isRed(node)) {
                     return size(node.left);
                 } else {
                     return size(node.right);
@@ -538,51 +538,51 @@ public class Exercise29_OptimalStorage {
         }
 
         public void deleteMin() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
-                if(!isRed(root)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
+                if (!isRed(root)) {
                     swapChildLinks(root);
                 }
             }
 
             root = deleteMin(root);
 
-            if(!isEmpty() && isRed(root)) {
+            if (!isEmpty() && isRed(root)) {
                 swapChildLinks(root);
             }
         }
 
         private Node deleteMin(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return null;
             }
 
-            if(!isRed(node)) {
-                if(!isRed(node.left)) {
-                    if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+            if (!isRed(node)) {
+                if (!isRed(node.left)) {
+                    if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                         node = moveRedLeft(node);
                     }
                 } else {
-                    if(!isRed(node.left) && node.left != null && !isRed(node.left.right)) {
+                    if (!isRed(node.left) && node.left != null && !isRed(node.left.right)) {
                         node = moveRedLeft(node);
                     }
                 }
             } else {
-                if(!isRed(node.right)) {
-                    if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+                if (!isRed(node.right)) {
+                    if (!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                         node = moveRedLeft(node);
                     }
                 } else {
-                    if(!isRed(node.right) && node.right != null && !isRed(node.right.right)) {
+                    if (!isRed(node.right) && node.right != null && !isRed(node.right.right)) {
                         node = moveRedLeft(node);
                     }
                 }
             }
 
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 node.left = deleteMin(node.left);
             } else {
                 node.right = deleteMin(node.right);
@@ -592,61 +592,61 @@ public class Exercise29_OptimalStorage {
         }
 
         public void deleteMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
-                if(!isRed(root)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
+                if (!isRed(root)) {
                     swapChildLinks(root);
                 }
             }
 
             root = deleteMax(root);
 
-            if(!isEmpty() && isRed(root)) {
+            if (!isEmpty() && isRed(root)) {
                 swapChildLinks(root);
             }
         }
 
         private Node deleteMax(Node node) {
-            if(!isRed(node)) {
-                if(isRed(node.left)) {
+            if (!isRed(node)) {
+                if (isRed(node.left)) {
                     node = rotateRight(node);
                 }
             } else {
-                if(isRed(node.right)) {
+                if (isRed(node.right)) {
                     node = rotateRight(node);
                 }
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 return null;
             }
 
-            if(!isRed(node)) {
-                if(!isRed(node.right)) {
-                    if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+            if (!isRed(node)) {
+                if (!isRed(node.right)) {
+                    if (!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                         node = moveRedRight(node);
                     }
                 } else {
-                    if(!isRed(node.right) && node.right != null && !isRed(node.right.right)) {
+                    if (!isRed(node.right) && node.right != null && !isRed(node.right.right)) {
                         node = moveRedRight(node);
                     }
                 }
             } else {
-                if(!isRed(node.right)) {
-                    if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+                if (!isRed(node.right)) {
+                    if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                         node = moveRedRight(node);
                     }
                 } else {
-                    if(!isRed(node.left) && node.left != null && !isRed(node.left.right)) {
+                    if (!isRed(node.left) && node.left != null && !isRed(node.left.right)) {
                         node = moveRedRight(node);
                     }
                 }
             }
 
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 node.right = deleteMax(node.right);
             } else {
                 node.left = deleteMax(node.left);
@@ -656,101 +656,101 @@ public class Exercise29_OptimalStorage {
         }
 
         public void delete(Key key) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
-                if(!isRed(root)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
+                if (!isRed(root)) {
                     swapChildLinks(root);
                 }
             }
 
             root = delete(root, key);
 
-            if(!isEmpty() && isRed(root)) {
+            if (!isEmpty() && isRed(root)) {
                 swapChildLinks(root);
             }
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(key.compareTo(node.key) < 0) {
-                if(!isRed(node)) {
-                    if(!isRed(node.left)) {
-                        if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+            if (key.compareTo(node.key) < 0) {
+                if (!isRed(node)) {
+                    if (!isRed(node.left)) {
+                        if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                             node = moveRedLeft(node);
                         }
                     } else {
-                        if(!isRed(node.left) && node.left != null && !isRed(node.left.right)) {
+                        if (!isRed(node.left) && node.left != null && !isRed(node.left.right)) {
                             node = moveRedLeft(node);
                         }
                     }
                 } else {
-                    if(!isRed(node.right)) {
-                        if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+                    if (!isRed(node.right)) {
+                        if (!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                             node = moveRedLeft(node);
                         }
                     } else {
-                        if(!isRed(node.right) && node.right != null && !isRed(node.right.right)) {
+                        if (!isRed(node.right) && node.right != null && !isRed(node.right.right)) {
                             node = moveRedLeft(node);
                         }
                     }
                 }
 
-                if(!isRed(node)) {
+                if (!isRed(node)) {
                     node.left = delete(node.left, key);
                 } else {
                     node.right = delete(node.right, key);
                 }
             } else {
-                if(!isRed(node)) {
-                    if(isRed(node.left)) {
+                if (!isRed(node)) {
+                    if (isRed(node.left)) {
                         node = rotateRight(node);
                     }
                 } else {
-                    if(isRed(node.right)) {
+                    if (isRed(node.right)) {
                         node = rotateRight(node);
                     }
                 }
 
-                if(key.compareTo(node.key) == 0 && node.right == null) {
+                if (key.compareTo(node.key) == 0 && node.right == null) {
                     return null;
                 }
 
-                if(!isRed(node)) {
-                    if(!isRed(node.right)) {
-                        if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+                if (!isRed(node)) {
+                    if (!isRed(node.right)) {
+                        if (!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                             node = moveRedRight(node);
                         }
                     } else {
-                        if(!isRed(node.right) && node.right != null && !isRed(node.right.right)) {
+                        if (!isRed(node.right) && node.right != null && !isRed(node.right.right)) {
                             node = moveRedRight(node);
                         }
                     }
                 } else {
-                    if(!isRed(node.right)) {
-                        if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+                    if (!isRed(node.right)) {
+                        if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                             node = moveRedRight(node);
                         }
                     } else {
-                        if(!isRed(node.left) && node.left != null && !isRed(node.left.right)) {
+                        if (!isRed(node.left) && node.left != null && !isRed(node.left.right)) {
                             node = moveRedRight(node);
                         }
                     }
                 }
 
-                if(key.compareTo(node.key) == 0) {
+                if (key.compareTo(node.key) == 0) {
                     Node aux;
 
-                    if(!isRed(node)) {
+                    if (!isRed(node)) {
                         aux = min(node.right);
                     } else {
                         aux = min(node.left);
@@ -759,13 +759,13 @@ public class Exercise29_OptimalStorage {
                     node.key = aux.key;
                     node.value = aux.value;
 
-                    if(!isRed(node)) {
+                    if (!isRed(node)) {
                         node.right = deleteMin(node.right);
                     } else {
                         node.left = deleteMin(node.left);
                     }
                 } else {
-                    if(!isRed(node)) {
+                    if (!isRed(node)) {
                         node.right = delete(node.right, key);
                     } else {
                         node.left = delete(node.left, key);
@@ -781,29 +781,29 @@ public class Exercise29_OptimalStorage {
             // make node.left or one of its children red
             flipColors(node);
 
-            if(!isRed(node)) {
-                if(!isRed(node.right)) {
-                    if(node.right != null && isRed(node.right.left)) {
+            if (!isRed(node)) {
+                if (!isRed(node.right)) {
+                    if (node.right != null && isRed(node.right.left)) {
                         node.right = rotateRight(node.right);
                         node = rotateLeft(node);
                         flipColors(node);
                     }
                 } else {
-                    if(node.right != null && isRed(node.right.right)) {
+                    if (node.right != null && isRed(node.right.right)) {
                         node.right = rotateRight(node.right);
                         node = rotateLeft(node);
                         flipColors(node);
                     }
                 }
             } else {
-                if(!isRed(node.right)) {
-                    if(node.left != null && isRed(node.left.left)) {
+                if (!isRed(node.right)) {
+                    if (node.left != null && isRed(node.left.left)) {
                         node.left = rotateRight(node.left);
                         node = rotateLeft(node);
                         flipColors(node);
                     }
                 } else {
-                    if(node.left != null && isRed(node.left.right)) {
+                    if (node.left != null && isRed(node.left.right)) {
                         node.left = rotateRight(node.left);
                         node = rotateLeft(node);
                         flipColors(node);
@@ -819,26 +819,26 @@ public class Exercise29_OptimalStorage {
             // make node.right or one of its children red
             flipColors(node);
 
-            if(!isRed(node)) {
-                if(!isRed(node.left)) {
-                    if(node.left != null && isRed(node.left.left)) {
+            if (!isRed(node)) {
+                if (!isRed(node.left)) {
+                    if (node.left != null && isRed(node.left.left)) {
                         node = rotateRight(node);
                         flipColors(node);
                     }
                 } else {
-                    if(node.left != null && isRed(node.left.right)) {
+                    if (node.left != null && isRed(node.left.right)) {
                         node = rotateRight(node);
                         flipColors(node);
                     }
                 }
             } else {
-                if(!isRed(node.left)) {
-                    if(node.right != null && isRed(node.right.left)) {
+                if (!isRed(node.left)) {
+                    if (node.right != null && isRed(node.right.left)) {
                         node = rotateRight(node);
                         flipColors(node);
                     }
                 } else {
-                    if(node.right != null && isRed(node.right.right)) {
+                    if (node.right != null && isRed(node.right.right)) {
                         node = rotateRight(node);
                         flipColors(node);
                     }
@@ -849,43 +849,43 @@ public class Exercise29_OptimalStorage {
         }
 
         private Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 if(isRed(node.right)) {
                     node = rotateLeft(node);
                 }
             } else {
-                if(isRed(node.left)) {
+                if (isRed(node.left)) {
                     node = rotateLeft(node);
                 }
             }
 
-            if(!isRed(node)) {
-                if(!isRed(node.left)) {
-                    if(isRed(node.left) && isRed(node.left.left)) {
+            if (!isRed(node)) {
+                if (!isRed(node.left)) {
+                    if (isRed(node.left) && isRed(node.left.left)) {
                         node = rotateRight(node);
                     }
                 } else {
-                    if(isRed(node.left) && isRed(node.left.right)) {
+                    if (isRed(node.left) && isRed(node.left.right)) {
                         node = rotateRight(node);
                     }
                 }
             } else {
-                if(!isRed(node.right)) {
-                    if(isRed(node.right) && isRed(node.right.left)) {
+                if (!isRed(node.right)) {
+                    if (isRed(node.right) && isRed(node.right.left)) {
                         node = rotateRight(node);
                     }
                 } else {
-                    if(isRed(node.right) && isRed(node.right.right)) {
+                    if (isRed(node.right) && isRed(node.right.right)) {
                         node = rotateRight(node);
                     }
                 }
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -912,27 +912,27 @@ public class Exercise29_OptimalStorage {
         }
 
         private void keys(Node node, Queue<Key> queue, Key low, Key high) {
-            if(node == null) {
+            if (node == null) {
                 return;
             }
 
             int compareLow = low.compareTo(node.key);
             int compareHigh = high.compareTo(node.key);
 
-            if(compareLow < 0) {
-                if(!isRed(node)) {
+            if (compareLow < 0) {
+                if (!isRed(node)) {
                     keys(node.left, queue, low, high);
                 } else {
                     keys(node.right, queue, low, high);
                 }
             }
 
-            if(compareLow <= 0 && compareHigh >= 0) {
+            if (compareLow <= 0 && compareHigh >= 0) {
                 queue.enqueue(node.key);
             }
 
-            if(compareHigh > 0) {
-                if(!isRed(node)) {
+            if (compareHigh > 0) {
+                if (!isRed(node)) {
                     keys(node.right, queue, low, high);
                 } else {
                     keys(node.left, queue, low, high);
@@ -964,19 +964,19 @@ public class Exercise29_OptimalStorage {
         }
 
         private boolean isSubtreeCountConsistent(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return true;
             }
 
             int totalSubtreeCount = 0;
-            if(node.left != null) {
+            if (node.left != null) {
                 totalSubtreeCount += node.left.size;
             }
-            if(node.right != null) {
+            if (node.right != null) {
                 totalSubtreeCount += node.right.size;
             }
 
-            if(node.size != totalSubtreeCount + 1) {
+            if (node.size != totalSubtreeCount + 1) {
                 return false;
             }
 
@@ -988,41 +988,41 @@ public class Exercise29_OptimalStorage {
         }
 
         private boolean isValid23Tree(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return true;
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 return false;
             }
 
             if(!isRed(node)) {
-                if(!isRed(node.left) && isRed(node.right)) {
+                if (!isRed(node.left) && isRed(node.right)) {
                     return false;
                 }
             } else {
-                if(!isRed(node.right) && isRed(node.left)) {
+                if (!isRed(node.right) && isRed(node.left)) {
                     return false;
                 }
             }
 
-            if(!isRed(node)) {
-                if(!isRed(node.left)) {
-                    if(isRed(node.left) && isRed(node.left.left)) {
+            if (!isRed(node)) {
+                if (!isRed(node.left)) {
+                    if (isRed(node.left) && isRed(node.left.left)) {
                         return false;
                     }
                 } else {
-                    if(isRed(node.left) && isRed(node.left.right)) {
+                    if (isRed(node.left) && isRed(node.left.right)) {
                         return false;
                     }
                 }
             } else {
-                if(!isRed(node.left)) {
-                    if(isRed(node.right) && isRed(node.right.left)) {
+                if (!isRed(node.left)) {
+                    if (isRed(node.right) && isRed(node.right.left)) {
                         return false;
                     }
                 } else {
-                    if(isRed(node.right) && isRed(node.right.right)) {
+                    if (isRed(node.right) && isRed(node.right.right)) {
                         return false;
                     }
                 }
@@ -1036,7 +1036,7 @@ public class Exercise29_OptimalStorage {
 
             Node currentNode = root;
             while (currentNode != null) {
-                if(!isRed(currentNode)) {
+                if (!isRed(currentNode)) {
                     blackNodes++;
                 }
 
@@ -1047,11 +1047,11 @@ public class Exercise29_OptimalStorage {
         }
 
         private boolean isBalanced(Node node, int blackNodes) {
-            if(node == null) {
+            if (node == null) {
                 return blackNodes == 0;
             }
 
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 blackNodes--;
             }
 

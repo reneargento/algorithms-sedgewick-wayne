@@ -52,7 +52,7 @@ public class Exercise3_PriorityQueueUnorderedLinkedList {
 
             //Find out max value
             while (currentNode != null) {
-                if(ArrayUtil.less(maxValue, currentNode.key)) {
+                if (ArrayUtil.less(maxValue, currentNode.key)) {
                     maxValue = currentNode.key;
                 }
 

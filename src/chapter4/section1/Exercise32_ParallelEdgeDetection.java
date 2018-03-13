@@ -14,7 +14,7 @@ public class Exercise32_ParallelEdgeDetection {
             boolean[] neighbors = new boolean[graph.vertices()];
 
             for(int neighbor : graph.adjacent(vertex)) {
-                if(!neighbors[neighbor]) {
+                if (!neighbors[neighbor]) {
                     neighbors[neighbor] = true;
                 } else {
                     parallelEdges++;

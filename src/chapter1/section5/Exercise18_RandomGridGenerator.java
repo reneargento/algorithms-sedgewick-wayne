@@ -29,7 +29,7 @@ public class Exercise18_RandomGridGenerator {
         }
     }
 
-    public Connection[] generate(int numberOfSites){
+    public Connection[] generate(int numberOfSites) {
         Exercise34_RandomBag<Connection> randomBag = new Exercise34_RandomBag<>();
 
         //Considering the NxN grid as
@@ -42,7 +42,7 @@ public class Exercise18_RandomGridGenerator {
          */
         for(int i = 0; i < numberOfSites; i++) {
             for(int j = 0; j < numberOfSites; j++) {
-                if(i != j) {
+                if (i != j) {
                     Connection connection = new Connection(i, j);
                     randomBag.add(connection);
                 }

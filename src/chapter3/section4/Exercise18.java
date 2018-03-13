@@ -33,7 +33,7 @@ public class Exercise18 {
             this.averageListSize = averageListSize;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i=0; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable();
             }
 
@@ -115,7 +115,7 @@ public class Exercise18 {
         SeparateChainingHashTableResize<Integer, Integer> separateChainingHashTableResize =
                 exercise18.new SeparateChainingHashTableResize<>(5, 2);
 
-        for(int i=0; i < 20; i++) {
+        for(int i = 0; i < 20; i++) {
             separateChainingHashTableResize.put(i, i);
         }
 

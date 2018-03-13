@@ -55,45 +55,45 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
 
     public void enqueue(Item item) {
 
-        if(!isPerformingRecopy) {
+        if (!isPerformingRecopy) {
             tail.push(item);
         } else {
             tempTail.push(item);
 
-            if(waitingSecondRecopyPass) {
+            if (waitingSecondRecopyPass) {
                 new Thread(this::performSecondRecopyPass).run();
             }
         }
 
         size++;
 
-        if(!isPerformingRecopy && tail.size() > head.size()) {
+        if (!isPerformingRecopy && tail.size() > head.size()) {
             new Thread(this::performFirstRecopyPass).run();
         }
     }
 
-    public Item dequeue(){
+    public Item dequeue() {
 
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Queue underflow");
         }
 
         Item item;
 
-        if(!isPerformingRecopy) {
+        if (!isPerformingRecopy) {
             item = head.pop();
         } else {
             item = tempHead.pop();
             numberOfItemsDeletedDuringRecopy++;
 
-            if(waitingSecondRecopyPass) {
+            if (waitingSecondRecopyPass) {
                 new Thread(this::performSecondRecopyPass).run();
             }
         }
 
         size--;
 
-        if(!isPerformingRecopy && tail.size() > head.size()) {
+        if (!isPerformingRecopy && tail.size() > head.size()) {
             new Thread(this::performFirstRecopyPass).run();
         }
 
@@ -135,7 +135,7 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
         tempTail = temp2;
 
         //Clear reverseHead and tempHead stacks
-        while (reverseHead.size() > 0){
+        while (reverseHead.size() > 0) {
             reverseHead.pop();
         }
         while (tempHead.size() > 0) {
@@ -164,7 +164,7 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
             index = 0;
             reverseTailCopy = new Stack<>();
 
-            if(!isPerformingRecopy) {
+            if (!isPerformingRecopy) {
                 for(Item item : tail) {
                     reverseTailCopy.push(item);
                 }
@@ -190,7 +190,7 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
         public Item next() {
             Item item;
 
-            if(headIterator.hasNext()) {
+            if (headIterator.hasNext()) {
                 item = headIterator.next();
             } else  {
                 item = reverseTailCopyIterator.next();

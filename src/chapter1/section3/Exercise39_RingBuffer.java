@@ -38,20 +38,20 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
         return size;
     }
 
-    public void produce(Item item){
+    public void produce(Item item) {
 
-        if (dataCountToBeConsumed > 0){
+        if (dataCountToBeConsumed > 0) {
             //There is data to be consumed
             consumeData(item);
             dataCountToBeConsumed--;
         } else{
-            if(isEmpty()) {
+            if (isEmpty()) {
                 ringBuffer[size] = item;
                 first = 0;
                 last = 0;
                 size++;
             } else {
-                if(size < ringBuffer.length) {
+                if (size < ringBuffer.length) {
                     if (last == ringBuffer.length - 1) {
                         last = 0; //wrap around
                     } else{
@@ -67,12 +67,12 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
         }
     }
 
-    private void consumeData(Item item){
+    private void consumeData(Item item) {
         //Consumer consumes the item
         StdOut.print("Data consumed: " + item);
     }
 
-    public Item consume(){
+    public Item consume() {
         if (isEmpty()) {
             dataCountToBeConsumed++;
             return null;
@@ -81,7 +81,7 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
         Item item = ringBuffer[first];
         ringBuffer[first] = null; //avoid loitering
 
-        if(first == ringBuffer.length - 1){
+        if (first == ringBuffer.length - 1) {
             first = 0; //wrap around
         } else{
             first++;
@@ -89,7 +89,7 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
 
         size--;
 
-        if(!producerAuxBuffer.isEmpty()) {
+        if (!producerAuxBuffer.isEmpty()) {
             produce(producerAuxBuffer.dequeue());
         }
 
@@ -115,7 +115,7 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
         public Item next() {
             Item item = ringBuffer[current];
 
-            if(current == ringBuffer.length - 1){
+            if (current == ringBuffer.length - 1) {
                 current = 0; //Wrap around
             } else{
                 current++;
@@ -127,7 +127,7 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Exercise39_RingBuffer<Integer> ringBuffer = new Exercise39_RingBuffer<>(4);
         ringBuffer.produce(0);
         ringBuffer.produce(1);
@@ -137,13 +137,13 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
         ringBuffer.produce(5);
 
         Integer item1 = ringBuffer.consume();
-        if(item1 != null){
+        if (item1 != null) {
             StdOut.println("Consumed " + item1);
         }
         StdOut.println("Expected: 0\n");
 
         Integer item2 = ringBuffer.consume();
-        if(item2 != null){
+        if (item2 != null) {
             StdOut.println("Consumed " + item2);
         }
         StdOut.println("Expected: 1\n");

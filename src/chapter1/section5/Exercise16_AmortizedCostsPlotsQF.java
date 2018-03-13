@@ -72,7 +72,7 @@ public class Exercise16_AmortizedCostsPlotsQF {
             for(int i = 0; i < id.length; i++) {
                 currentCost++; // 1 access for every site
 
-                if(id[i] == leaderId1) {
+                if (id[i] == leaderId1) {
                     id[i] = leaderId2;
 
                     currentCost++; // 1 access for every component merged
@@ -106,7 +106,7 @@ public class Exercise16_AmortizedCostsPlotsQF {
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
 
-            if(quickFind.connected(randomSite1, randomSite2)) {
+            if (quickFind.connected(randomSite1, randomSite2)) {
                 continue;
             }
 

@@ -101,7 +101,7 @@ public class Exercise32_8Puzzle {
         for(int i = 0; i < grid.length; i++) {
             for(int j = 0; j < grid[0].length; j++) {
                 //Leave the first cell empty
-                if(i == 0 && j == 0) {
+                if (i == 0 && j == 0) {
                     continue;
                 }
 
@@ -301,7 +301,7 @@ public class Exercise32_8Puzzle {
         int numberOfTilesInWrongPosition = 0;
 
         for(int i = 0; i < state.length(); i++) {
-            if(state.charAt(i) != END_STATE.charAt(i)) {
+            if (state.charAt(i) != END_STATE.charAt(i)) {
                 numberOfTilesInWrongPosition++;
             }
         }
@@ -330,7 +330,7 @@ public class Exercise32_8Puzzle {
         //  correct position column = 2
         for(int i = 0; i < grid.length; i++) {
             for(int j = 0; j < grid[0].length; j++) {
-                if(grid[i][j] == 0) {
+                if (grid[i][j] == 0) {
                     manhattanDistance += Math.abs(2 - i) + Math.abs(2 - j);;
                     continue;
                 }
@@ -338,7 +338,7 @@ public class Exercise32_8Puzzle {
                 int correctRow;
                 int correctColumn;
 
-                if(grid[i][j] % 3 != 0) {
+                if (grid[i][j] % 3 != 0) {
                     correctRow = grid[i][j] / 3;
                     correctColumn = grid[i][j] % 3 - 1;
                 } else {

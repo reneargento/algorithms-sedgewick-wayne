@@ -242,7 +242,7 @@ public class Exercise10_Size {
                 node.left = put(node.left, key, value, digit, isNewKey);
             } else if (currentChar > node.character) {
                 node.right = put(node.right, key, value, digit, isNewKey);
-            } else if (digit < key.length() - 1){
+            } else if (digit < key.length() - 1) {
                 node.middle = put(node.middle, key, value, digit + 1, isNewKey);
 
                 if (isNewKey) {
@@ -296,7 +296,7 @@ public class Exercise10_Size {
             if (node.size == 0) {
                 if (node.left == null && node.right == null) {
                     return null;
-                } else if(node.left == null) {
+                } else if (node.left == null) {
                     return node.right;
                 } else if (node.right == null) {
                     return node.left;

@@ -12,7 +12,7 @@ public class Exercise19_2_Parsing {
 	private final Date when;
 	private final double amount;
 	
-	public Exercise19_2_Parsing(String who, Date when, double amount){
+	public Exercise19_2_Parsing(String who, Date when, double amount) {
 		this.who = who;
 		this.when = when;
 		this.amount = amount;

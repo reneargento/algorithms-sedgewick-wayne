@@ -22,7 +22,7 @@ public class Exercise46_CrossoverToBinarySearchTrees {
         for(int i = 1; true; i++) {
 
             double[] keys = new double[i];
-            for(int j=0; j < i; j++) {
+            for(int j = 0; j < i; j++) {
                 keys[j] = StdRandom.uniform();
             }
 
@@ -30,7 +30,7 @@ public class Exercise46_CrossoverToBinarySearchTrees {
             long bstStartTime = System.nanoTime();
             BinarySearchTree<Double, Double> binarySearchTree = new BinarySearchTree<>();
 
-            for(int j=0; j < i; j++) {
+            for(int j = 0; j < i; j++) {
                 binarySearchTree.put(keys[j], keys[j]);
             }
             long bstRunningTime = System.nanoTime() - bstStartTime;
@@ -39,7 +39,7 @@ public class Exercise46_CrossoverToBinarySearchTrees {
             long binarySearchSTStartTime = System.nanoTime();
             BinarySearchSymbolTable<Double, Double> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-            for(int j=0; j < i; j++) {
+            for(int j = 0; j < i; j++) {
                 binarySearchSymbolTable.put(keys[j], keys[j]);
             }
             long binarySearchSTRunningTime = System.nanoTime() - binarySearchSTStartTime;

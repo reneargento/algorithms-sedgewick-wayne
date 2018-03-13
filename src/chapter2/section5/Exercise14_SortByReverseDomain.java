@@ -23,7 +23,7 @@ public class Exercise14_SortByReverseDomain {
             for(int i = reverseDomain.length - 1; i >= 0; i--) {
                 reverseDomainConcatenation.append(reverseDomain[i]);
 
-                if(i != 0) {
+                if (i != 0) {
                     reverseDomainConcatenation.append(".");
                 }
             }

@@ -93,7 +93,7 @@ public class Exercise42_PreorderHeaps {
 
             if (index * 2 + 1 <= endIndex) {
                 numberOfCompares++;
-                if(ArrayUtil.more(array[index * 2 + 1], array[index * 2])) {
+                if (ArrayUtil.more(array[index * 2 + 1], array[index * 2])) {
                     biggestChildIndex = index * 2 + 1;
                 }
             }

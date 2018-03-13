@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise12 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] array1 = {-2, 1, 2, 2, 5, 6, 6, 8, 25};
         int[] array2 = {0, 1, 2, 2, 2, 3, 4, 5, 10, 20, 25};
 
@@ -27,7 +27,7 @@ public class Exercise12 {
             }
 
             if (array1Index < array1.length && array2Index < array2.length &&
-                    array1[array1Index] == array2[array2Index]){
+                    array1[array1Index] == array2[array2Index]) {
                 StdOut.print(array1[array1Index] + " ");
 
                 int equalNumber = array1[array1Index];

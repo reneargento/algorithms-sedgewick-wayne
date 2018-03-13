@@ -432,7 +432,7 @@ public class Exercise25_SoftwareCaching {
         StdOut.println("Sequential Search Symbol Table tests");
         SequentialSearchSymbolTable<Integer, String> sequentialSearchSymbolTable = softwareCaching.new SequentialSearchSymbolTable<>();
 
-        for(int i=0; i < 10; i++) {
+        for(int i = 0; i < 10; i++) {
             sequentialSearchSymbolTable.put(i, "Value " + i);
         }
 
@@ -466,7 +466,7 @@ public class Exercise25_SoftwareCaching {
         StdOut.println("\nBinary Search Symbol Table tests");
         BinarySearchSymbolTable<Integer, String> binarySearchSymbolTable = softwareCaching.new BinarySearchSymbolTable<>();
 
-        for(int i=0; i < 10; i++) {
+        for(int i = 0; i < 10; i++) {
             binarySearchSymbolTable.put(i, "Value " + i);
         }
 

@@ -26,7 +26,7 @@ public class Exercise33_1_Deque<Item> implements Iterable<Item> {
         size = 0;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -76,7 +76,7 @@ public class Exercise33_1_Deque<Item> implements Iterable<Item> {
 
         first = first.next;
 
-        if(first != null) {
+        if (first != null) {
             first.previous = null;
         } else {
             last = null;
@@ -88,7 +88,7 @@ public class Exercise33_1_Deque<Item> implements Iterable<Item> {
     }
 
     public Item popRight() {
-        if(isEmpty()){
+        if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
 
@@ -96,7 +96,7 @@ public class Exercise33_1_Deque<Item> implements Iterable<Item> {
 
         last = last.previous;
 
-        if(last != null) {
+        if (last != null) {
             last.next = null;
         } else {
             first = null;

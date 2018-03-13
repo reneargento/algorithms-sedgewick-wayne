@@ -16,14 +16,15 @@ public class Exercise3 {
 	
 	private static Map<Interval2D, Interval1D[]> intervalMap = new HashMap<>();
 
-	public static void main(String[] args){
+	// Parameters example: 6 3.5 7.2
+	public static void main(String[] args) {
 
-		int n = Integer.parseInt(args[0]); // 6
+		int n = Integer.parseInt(args[0]);
 		
-		double min = Double.parseDouble(args[1]); //3.5
-		double max = Double.parseDouble(args[2]); //7.2
+		double min = Double.parseDouble(args[1]);
+		double max = Double.parseDouble(args[2]);
 		
-		if(min > max){
+		if (min > max) {
 			double temp = min;
 			min = max;
 			max = temp;
@@ -85,11 +86,11 @@ public class Exercise3 {
 		for (int i = 0; i < intervals.length - 1; i++) {
 			for (int j = i + 1; j < intervals.length; j++) {
 				
-				if(intervals[i].intersects(intervals[j]) ) {
+				if (intervals[i].intersects(intervals[j]) ) {
 					intersections++;
 				}
 				
-				if(isContained(intervals[i], intervals[j])) {
+				if (isContained(intervals[i], intervals[j])) {
 					contains++;
 				}
 			}

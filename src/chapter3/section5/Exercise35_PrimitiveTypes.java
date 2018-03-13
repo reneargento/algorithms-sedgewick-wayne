@@ -45,7 +45,7 @@ public class Exercise35_PrimitiveTypes {
             int keyHit = StdRandom.uniform(2);
             boolean isKeyHit = keyHit == 1;
 
-            if(!isKeyHit) {
+            if (!isKeyHit) {
                 int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
                 queriesInt[i] = randomKey;
             } else {
@@ -59,7 +59,7 @@ public class Exercise35_PrimitiveTypes {
             int keyHit = StdRandom.uniform(2);
             boolean isKeyHit = keyHit == 1;
 
-            if(!isKeyHit) {
+            if (!isKeyHit) {
                 double randomKey = StdRandom.uniform();
                 queriesDouble[i] = randomKey;
             } else {

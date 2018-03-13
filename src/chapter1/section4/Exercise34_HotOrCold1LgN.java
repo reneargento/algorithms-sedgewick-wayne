@@ -46,7 +46,7 @@ public class Exercise34_HotOrCold1LgN {
     //This is just in case we fall into one of the 2 "end quarters" and need to go to one of the 2 "middle quarters"
     private int initialSearch(int target, int lastGuess, boolean isNextGuessInLeftEnd, int low, int high) {
 
-        if(low > high) {
+        if (low > high) {
             return -1;
         }
 
@@ -63,7 +63,7 @@ public class Exercise34_HotOrCold1LgN {
 
         if (nextGuess == target) {
             return nextGuess;
-        } else if(isItHotter) {
+        } else if (isItHotter) {
             //We are in one of the 2 end quarters
 
             int middleOfMiddle;
@@ -141,7 +141,7 @@ public class Exercise34_HotOrCold1LgN {
 
         if (nextGuess == target) {
             return nextGuess;
-        } else if(isItHotter) {
+        } else if (isItHotter) {
             if (nextGuess >= high) {
                 return search(target, nextGuess, middle + 1, high);
             } else {
@@ -158,12 +158,12 @@ public class Exercise34_HotOrCold1LgN {
 
     private boolean isItHotter(int lastGuess, int currentGuess, int secret) {
 
-        if(currentGuess == secret) {
+        if (currentGuess == secret) {
             StdOut.println("Found it!");
             return true;
         }
 
-        if(Math.abs(secret - currentGuess) < Math.abs(secret - lastGuess)) {
+        if (Math.abs(secret - currentGuess) < Math.abs(secret - lastGuess)) {
             StdOut.println("Hotter - Last guess: " + lastGuess + " Current guess: " + currentGuess);
             return true;
         } else {

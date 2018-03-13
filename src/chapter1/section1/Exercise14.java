@@ -12,7 +12,7 @@ public class Exercise14 {
 		StdOut.println("\nExpected: 3");
 	}
 
-	private static int lg(int n){
+	private static int lg(int n) {
 		
 		int logInt = 0;
 		

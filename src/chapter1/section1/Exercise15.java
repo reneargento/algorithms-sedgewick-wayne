@@ -29,7 +29,7 @@ public class Exercise15 {
         StdOut.println("\nExpected: 0 1 1 1 0 0 0");
 	}
 
-	private static int[] histogram(int[] a, int m){
+	private static int[] histogram(int[] a, int m) {
 		int[] newArr = new int[m];
 		
 		for (int i = 0; i < a.length; i++) {

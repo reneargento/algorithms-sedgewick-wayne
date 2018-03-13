@@ -16,7 +16,7 @@ public class Exercise43_ListingFiles {
         fileQueue = new Queue<>();
     }
 
-    private void listFiles(File file, int depth){
+    private void listFiles(File file, int depth) {
         if (!file.exists()) {
             return;
         }
@@ -26,22 +26,22 @@ public class Exercise43_ListingFiles {
 
         File[] fileList = file.listFiles();
 
-        if (fileList != null){
-            for(File fileItem : fileList){
+        if (fileList != null) {
+            for(File fileItem : fileList) {
 
-                if(fileItem.isFile()) {
+                if (fileItem.isFile()) {
                     addFileToQueue(fileItem, depth);
-                } else if (fileItem.isDirectory()){
+                } else if (fileItem.isDirectory()) {
                     listFiles(fileItem, depth+1);
                 }
             }
         }
     }
 
-    private void addFileToQueue(File file, int depth){
+    private void addFileToQueue(File file, int depth) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int i=0; i<depth; i++){
+        for(int i = 0; i < depth; i++) {
             stringBuilder.append("  ");
         }
 
@@ -50,7 +50,7 @@ public class Exercise43_ListingFiles {
         fileQueue.enqueue(stringBuilder.toString());
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String folderPath = args[0];
         File folder = new File(folderPath);
 

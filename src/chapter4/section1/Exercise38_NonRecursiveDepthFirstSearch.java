@@ -19,7 +19,7 @@ public class Exercise38_NonRecursiveDepthFirstSearch {
             StdOut.print("Visit order: ");
 
             for(int vertexId = 0; vertexId < graph.vertices(); vertexId++) {
-                if(!visited[vertexId]) {
+                if (!visited[vertexId]) {
                     depthFirstSearchIterative(graph, vertexId, visited);
                 }
             }
@@ -38,7 +38,7 @@ public class Exercise38_NonRecursiveDepthFirstSearch {
             Iterator<Integer>[] adjacentIterators = (Iterator<Integer>[]) new Iterator[graph.vertices()];
 
             for (int vertexId = 0; vertexId < adjacentIterators.length; vertexId++) {
-                if(graph.adjacent(vertexId) != null) {
+                if (graph.adjacent(vertexId) != null) {
                     adjacentIterators[vertexId] = graph.adjacent(vertexId).iterator();
                 }
             }
@@ -46,10 +46,10 @@ public class Exercise38_NonRecursiveDepthFirstSearch {
             while (!stack.isEmpty()) {
                 int currentVertex = stack.peek();
 
-                if(adjacentIterators[currentVertex].hasNext()) {
+                if (adjacentIterators[currentVertex].hasNext()) {
                     int neighbor = adjacentIterators[currentVertex].next();
 
-                    if(!visited[neighbor]) {
+                    if (!visited[neighbor]) {
                         StdOut.print(neighbor + " ");
 
                         stack.push(neighbor);

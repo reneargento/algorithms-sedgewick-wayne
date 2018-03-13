@@ -15,7 +15,7 @@ public class Exercise51_ExpressionEvaluation {
     // ( 1 * 2 + 1 ) -> 3
     // 1 + 2 * ( 3 * 2 - 2 * ( 3 * 2 ) + 1 ) -> -9
     // ( 2 * ( 3 - ( 5 / 2 ) ) + 3 ) -> 4
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         Stack<String> operators = new Stack<>();
         Stack<Double> values = new Stack<>();
@@ -25,14 +25,14 @@ public class Exercise51_ExpressionEvaluation {
             String token = StdIn.readString();
             if (token.equals("(")) {
                 operators.push(token);
-            } else if (token.equals("+")){
-                if(operators.size() > 0) {
+            } else if (token.equals("+")) {
+                if (operators.size() > 0) {
                     checkIfExistsAndSolveLowPrecedenceOperation(operators, values);
                 }
 
                 operators.push(token);
             } else if (token.equals("-")) {
-                if(operators.size() > 0) {
+                if (operators.size() > 0) {
                     checkIfExistsAndSolveLowPrecedenceOperation(operators, values);
                 }
 
@@ -46,7 +46,7 @@ public class Exercise51_ExpressionEvaluation {
             } else if (token.equals(")")) {
                 String operator = operators.pop();
 
-                if (operator.equals("(")){
+                if (operator.equals("(")) {
                     //First case - There was just a number inside the parentheses. E.g. ( 6 )
                     //Check to see if there is any high precedence operation waiting for the expression result
                     checkAndSolveExpressionWaitingParenteshisResult(operators, values);
@@ -66,11 +66,11 @@ public class Exercise51_ExpressionEvaluation {
             } else {
                 String lastOperator = null;
 
-                if(operators.size() > 0) {
+                if (operators.size() > 0) {
                     lastOperator = operators.peek();
                 }
 
-                if(lastOperator != null && (lastOperator.equals("*")
+                if (lastOperator != null && (lastOperator.equals("*")
                         || lastOperator.equals("/")
                         || lastOperator.equals("sqrt"))) {
                     operators.pop();

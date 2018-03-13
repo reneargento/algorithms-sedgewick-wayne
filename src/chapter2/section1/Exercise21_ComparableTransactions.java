@@ -11,7 +11,7 @@ public class Exercise21_ComparableTransactions implements Comparable<Exercise21_
     private final Date when;
     private final double amount;
 
-    public Exercise21_ComparableTransactions(String who, Date when, double amount){
+    public Exercise21_ComparableTransactions(String who, Date when, double amount) {
         this.who = who;
         this.when = when;
         this.amount = amount;
@@ -35,7 +35,7 @@ public class Exercise21_ComparableTransactions implements Comparable<Exercise21_
 
     public int compareTo(Exercise21_ComparableTransactions otherTransaction) {
 
-        if(this.amount > otherTransaction.amount) {
+        if (this.amount > otherTransaction.amount) {
             return 1;
         } else if (this.amount < otherTransaction.amount) {
             return -1;

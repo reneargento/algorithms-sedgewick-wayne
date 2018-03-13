@@ -95,7 +95,7 @@ public class Exercise24_StablePriorityQueue {
 
                 if (index * 2 + 1 <= size &&
                         ((orientation == Orientation.MAX && less(index * 2, index * 2 + 1))
-                                || (orientation == Orientation.MIN && more(index * 2, index * 2 + 1)))){
+                                || (orientation == Orientation.MIN && more(index * 2, index * 2 + 1)))) {
                     selectedChildIndex = index * 2 + 1;
                 }
 

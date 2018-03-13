@@ -349,7 +349,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         }
 
         public String select(int index) {
-            if(index < 0 || index >= size()) {
+            if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Index cannot be negative and must be lower than TST size");
             }
 

@@ -67,10 +67,10 @@ public class Exercise39_RandomMatches {
 		
 		boolean found = false;
 		
-		if (lo <= hi){
+		if (lo <= hi) {
 			int mid = lo + (hi - lo) / 2;
 			
-			if (key < arr[mid]){
+			if (key < arr[mid]) {
 				binarySearch(key, arr, lo, mid - 1);
 			} else if (key > arr[mid]) {
 				binarySearch(key, arr, mid + 1, hi);

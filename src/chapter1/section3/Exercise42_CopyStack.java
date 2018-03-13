@@ -17,12 +17,12 @@ public class Exercise42_CopyStack<Item> extends Stack<Item> {
             temp.push(item);
         }
 
-        for(Item item : temp){
+        for(Item item : temp) {
             push(item);
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Stack<Integer> originalStack = new Stack<>();
         originalStack.push(1);
         originalStack.push(2);

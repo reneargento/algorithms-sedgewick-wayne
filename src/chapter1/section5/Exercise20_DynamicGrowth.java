@@ -37,7 +37,7 @@ public class Exercise20_DynamicGrowth {
                 throw new RuntimeException("Site does not exist");
             }
 
-            while(site != leaders[site]){
+            while(site != leaders[site]) {
                 site = leaders[site];
             }
 
@@ -52,7 +52,7 @@ public class Exercise20_DynamicGrowth {
             int leader1 = leaders[site1];
             int leader2 = leaders[site2];
 
-            if(leader1 == leader2) {
+            if (leader1 == leader2) {
                 return;
             }
 
@@ -120,7 +120,7 @@ public class Exercise20_DynamicGrowth {
             int randomSite1 = StdRandom.uniform(dynamicWeightedQuickUnion.getNumberOfSites());
             int randomSite2 = StdRandom.uniform(dynamicWeightedQuickUnion.getNumberOfSites());
 
-            if(!dynamicWeightedQuickUnion.connected(randomSite1, randomSite2)) {
+            if (!dynamicWeightedQuickUnion.connected(randomSite1, randomSite2)) {
                 dynamicWeightedQuickUnion.union(randomSite1, randomSite2);
 
                 StdOut.println("United sites " + randomSite1 + " and " + randomSite2);

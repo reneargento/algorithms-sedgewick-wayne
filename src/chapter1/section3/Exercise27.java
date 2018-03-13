@@ -67,14 +67,14 @@ public class Exercise27<Item> implements Iterable<Item> {
 			return;
 		}
 		
-		if(k == 1) {
+		if (k == 1) {
 			first = first.next;
 		} else {
 			Node current;
 			int count = 1;
 			
 			for(current = first; current != null; current = current.next) {
-				if(count == k - 1 && current.next != null) {
+				if (count == k - 1 && current.next != null) {
 					current.next = current.next.next;
 					break;
 				}
@@ -84,7 +84,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 	}
 	
 	public void remove(String key) {
-		if(isEmpty() || key == null) {
+		if (isEmpty() || key == null) {
 			return;
 		}
 		
@@ -119,7 +119,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 	
 	public void removeAfter(Node node) {
 		
-		if(isEmpty() || node == null) {
+		if (isEmpty() || node == null) {
 			return;
 		}
 		
@@ -136,7 +136,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 	}
 	
 	public void insertAfter(Node firstNode, Node secondNode) {
-		if(isEmpty() || firstNode == null || secondNode == null) {
+		if (isEmpty() || firstNode == null || secondNode == null) {
 			return;
 		}
 		
@@ -151,7 +151,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 	}
 	
 	public int max() {
-		if(isEmpty()) {
+		if (isEmpty()) {
 			return 0;
 		}
 		

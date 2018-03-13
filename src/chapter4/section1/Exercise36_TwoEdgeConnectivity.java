@@ -38,7 +38,7 @@ public class Exercise36_TwoEdgeConnectivity {
         }
 
         for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-            if(time[vertex] == -1) {
+            if (time[vertex] == -1) {
                 dfs(graph, vertex, vertex, bridges);
             }
         }
@@ -52,16 +52,16 @@ public class Exercise36_TwoEdgeConnectivity {
         count++;
 
         for(int neighbor : graph.adjacent(currentVertex)) {
-            if(time[neighbor] == -1) {
+            if (time[neighbor] == -1) {
                 dfs(graph, neighbor, currentVertex, bridges);
 
                 low[currentVertex] = Math.min(low[currentVertex], low[neighbor]);
 
-                if(low[neighbor] == time[neighbor]) {
+                if (low[neighbor] == time[neighbor]) {
                     bridges.add(new Edge(currentVertex, neighbor));
                 }
 
-            } else if(neighbor != sourceVertex) {
+            } else if (neighbor != sourceVertex) {
                 low[currentVertex] = Math.min(low[currentVertex], time[neighbor]);
             }
         }
@@ -78,7 +78,7 @@ public class Exercise36_TwoEdgeConnectivity {
 
         List<Edge> bridges1 = twoEdgeConnectivity.findBridges(graph1);
 
-        if(bridges1.size() == 0) {
+        if (bridges1.size() == 0) {
             StdOut.println("Graph is two-edge connected");
         } else {
             StdOut.println("Bridges");
@@ -100,7 +100,7 @@ public class Exercise36_TwoEdgeConnectivity {
 
         List<Edge> bridges2 = twoEdgeConnectivity.findBridges(graph2);
 
-        if(bridges2.size() == 0) {
+        if (bridges2.size() == 0) {
             StdOut.println("Graph is two-edge connected");
         } else {
             StdOut.println("Bridges");
@@ -123,7 +123,7 @@ public class Exercise36_TwoEdgeConnectivity {
 
         List<Edge> bridges3 = twoEdgeConnectivity.findBridges(graph3);
 
-        if(bridges3.size() == 0) {
+        if (bridges3.size() == 0) {
             StdOut.println("Graph is two-edge connected");
         } else {
             StdOut.println("Bridges");

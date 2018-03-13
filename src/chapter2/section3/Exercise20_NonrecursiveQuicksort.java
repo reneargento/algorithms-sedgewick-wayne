@@ -90,7 +90,7 @@ public class Exercise20_NonrecursiveQuicksort {
             int rightSubArraySize = currentQuickSortRange.high - partition + 2;
 
             //Push the larger sub array first to guarantee that the stack will have at most lg N entries
-            if(leftSubArraySize > rightSubArraySize) {
+            if (leftSubArraySize > rightSubArraySize) {
                 if (leftSubArraySize > 1 && leftQuickSortRange.low < leftQuickSortRange.high) {
                     stack.push(leftQuickSortRange);
                 }

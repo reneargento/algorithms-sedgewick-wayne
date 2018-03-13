@@ -46,7 +46,7 @@ public class Queue<Item> implements Iterable<Item> {
     }
 
     public Item dequeue() {
-        if (isEmpty()){
+        if (isEmpty()) {
             throw new RuntimeException("Queue underflow");
         }
 
@@ -63,7 +63,7 @@ public class Queue<Item> implements Iterable<Item> {
     }
 
     public Item peek() {
-        if (isEmpty()){
+        if (isEmpty()) {
             throw new RuntimeException("Queue underflow");
         }
 

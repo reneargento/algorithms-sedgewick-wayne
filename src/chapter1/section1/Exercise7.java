@@ -25,7 +25,7 @@ public class Exercise7 {
 	private static void funcB() {
 		int sum = 0;
 		
-		for (int i = 1; i < 1000; i++){
+		for (int i = 1; i < 1000; i++) {
 			for (int j = 0; j < i; j++) {
 				sum++;
 			}
@@ -37,7 +37,7 @@ public class Exercise7 {
 	private static void funcC() {
 		int sum = 0;
 		
-		for (int i = 1; i < 1000; i *= 2){
+		for (int i = 1; i < 1000; i *= 2) {
 			for (int j = 0; j < 1000; j++) {
 				sum++;
 			}

@@ -12,7 +12,7 @@ public class Topological {
     public Topological(Digraph digraph) {
         DirectedCycle cycleFinder = new DirectedCycle(digraph);
 
-        if(!cycleFinder.hasCycle()) {
+        if (!cycleFinder.hasCycle()) {
             DepthFirstOrder depthFirstOrder = new DepthFirstOrder(digraph);
             topologicalOrder = depthFirstOrder.reversePostOrder();
         }

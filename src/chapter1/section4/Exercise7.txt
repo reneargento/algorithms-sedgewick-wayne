@@ -3,7 +3,7 @@
 With a cost model that counts arithmetic operations (and comparisons) involving input numbers, the main "if" from
 ThreeSum involves 4 operations instead of 1.
 
-if(a[i] + a[j] + a[k] == 0)
+if (a[i] + a[j] + a[k] == 0)
 
 One operation for the if check; one operation to sum a[i] and a[j]; one operation to sum the result with a[k]
 and one operation to compare the result with 0.

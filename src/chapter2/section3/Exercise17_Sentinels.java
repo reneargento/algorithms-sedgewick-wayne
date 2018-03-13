@@ -62,7 +62,7 @@ public class Exercise17_Sentinels {
         Comparable maxValue = array[0];
         int maxValueIndex = 0;
         for(int i = 1; i < array.length; i++) {
-            if(ArrayUtil.less(maxValue, array[i])) {
+            if (ArrayUtil.less(maxValue, array[i])) {
                 maxValue = array[i];
                 maxValueIndex = i;
             }
@@ -75,7 +75,7 @@ public class Exercise17_Sentinels {
 
     private static void quickSort(Comparable[] array, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -95,7 +95,7 @@ public class Exercise17_Sentinels {
 
             while(ArrayUtil.less(pivot, array[--j]));
 
-            if(i >= j) {
+            if (i >= j) {
                 break;
             }
 

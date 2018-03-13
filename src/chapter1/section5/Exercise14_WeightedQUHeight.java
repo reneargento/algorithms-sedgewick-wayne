@@ -57,19 +57,19 @@ public class Exercise14_WeightedQUHeight {
             int leader1 = leaders[site1];
             int leader2 = leaders[site2];
 
-            if(leader1 == leader2) {
+            if (leader1 == leader2) {
                 return;
             }
 
-            if(ranks[leader1] < ranks[leader2]) {
+            if (ranks[leader1] < ranks[leader2]) {
                 leaders[leader1] = leader2;
-            } else if (ranks[leader2] < ranks[leader1]){
+            } else if (ranks[leader2] < ranks[leader1]) {
                 leaders[leader2] = leader1;
             } else {
                 leaders[leader1] = leaders[leader2];
                 ranks[leader1]++;
 
-                if(ranks[leader1] > maxHeight) {
+                if (ranks[leader1] > maxHeight) {
                     maxHeight = ranks[leader1];
                 }
             }

@@ -49,7 +49,7 @@ public class Exercise26_SubarraySizes {
                 e.printStackTrace();
             }
 
-            if(i != cutoffSizes.length - 1) {
+            if (i != cutoffSizes.length - 1) {
                 StdDraw.clear();
             }
         }

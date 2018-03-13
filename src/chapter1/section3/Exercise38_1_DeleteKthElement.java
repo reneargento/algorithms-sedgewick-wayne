@@ -35,10 +35,10 @@ public class Exercise38_1_DeleteKthElement<Item> implements Iterable<Item>{
 
     public Item delete(int k) {
 
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Queue underflow");
         }
-        if(k <= 0 || size < k) {
+        if (k <= 0 || size < k) {
             throw new RuntimeException("Invalid index");
         }
 
@@ -47,7 +47,7 @@ public class Exercise38_1_DeleteKthElement<Item> implements Iterable<Item>{
 
         size--;
 
-        if(size == queue.length / 4) {
+        if (size == queue.length / 4) {
             resize(queue.length / 2);
         }
 
@@ -64,7 +64,7 @@ public class Exercise38_1_DeleteKthElement<Item> implements Iterable<Item>{
     private void resize(int capacity) {
         Item[] temp = (Item[]) new Object[capacity];
 
-        for (int i = 0; i<size; i++){
+        for (int i = 0; i < size; i++) {
             temp[i] = queue[i];
         }
 

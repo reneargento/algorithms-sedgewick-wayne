@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class Exercise8 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         In in = new In(args[0]);
         int[] values = in.readAllInts();
 
@@ -25,7 +25,7 @@ public class Exercise8 {
 
         for(int i = 0; i < values.length; i++) {
             int count = 0;
-            if(valuesMap.containsKey(values[i])) {
+            if (valuesMap.containsKey(values[i])) {
                 count = valuesMap.get(values[i]);
             }
             count++;
@@ -33,7 +33,7 @@ public class Exercise8 {
         }
 
         for(int numberKey : valuesMap.keySet()) {
-            if(valuesMap.get(numberKey) > 1) {
+            if (valuesMap.get(numberKey) > 1) {
                 //Quantity of numbers : Quantity of equal pairs
                 //        2                      1
                 //        3                      3

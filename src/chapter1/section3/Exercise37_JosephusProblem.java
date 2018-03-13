@@ -12,13 +12,13 @@ public class Exercise37_JosephusProblem {
 
         Queue<Integer> queue = new Queue<>();
 
-        for(int i = 0; i < numberOfPeople; i++){
+        for(int i = 0; i < numberOfPeople; i++) {
             queue.enqueue(i);
         }
 
         while (numberOfPeople > 0) {
 
-            for (int i = 1; i < personOrder; i++){
+            for (int i = 1; i < personOrder; i++) {
                 queue.enqueue(queue.dequeue());
             }
 

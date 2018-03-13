@@ -44,7 +44,7 @@ public class Exercise3_PriorityQueueOrderedLinkedList {
                     oldFirst.previous = priorityQueue;
                 }
 
-                if(priorityQueue.next == null) {
+                if (priorityQueue.next == null) {
                     last = priorityQueue;
                 }
             } else {

@@ -32,7 +32,7 @@ public class Exercise2 {
 
         Exercise2 exercise2 = new Exercise2();
         List<String> compoundWords = exercise2.getCompoundWords(wordList);
-        if(compoundWords.size() > 0) {
+        if (compoundWords.size() > 0) {
             StdOut.println("Compound words:");
         }
         for(String compoundWord : compoundWords) {
@@ -60,7 +60,7 @@ public class Exercise2 {
                         && words[j].substring(0, words[i].length()).equals(words[i])) {
 
                     String restOfTheWord = words[j].substring(words[i].length(), words[j].length());
-                    if(wordsSet.contains(restOfTheWord)) {
+                    if (wordsSet.contains(restOfTheWord)) {
                         compoundWords.add(words[j]);
                     }
                 } else {

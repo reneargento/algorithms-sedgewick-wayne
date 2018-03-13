@@ -43,11 +43,11 @@ public class Exercise34_SymbolGraph {
         }
 
         public void addEdge(int vertex1, int vertex2) {
-            if(!adjacent.contains(vertex1)) {
+            if (!adjacent.contains(vertex1)) {
                 adjacent.put(vertex1, new Bag<>());
                 vertices++;
             }
-            if(!adjacent.contains(vertex2)) {
+            if (!adjacent.contains(vertex2)) {
                 adjacent.put(vertex2, new Bag<>());
                 vertices++;
             }
@@ -99,7 +99,7 @@ public class Exercise34_SymbolGraph {
 
                 // Create vertices
                 for(int i = 0; i < vertices.length; i++) {
-                    if(!vertexNameToIdMap.contains(vertices[i])) {
+                    if (!vertexNameToIdMap.contains(vertices[i])) {
                         vertexNameToIdMap.put(vertices[i], vertexNameToIdMap.size());
                     }
                 }

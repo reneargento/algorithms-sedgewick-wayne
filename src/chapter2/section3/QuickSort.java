@@ -32,7 +32,7 @@ public class QuickSort {
 
         while(true) {
             while (ArrayUtil.less(array[++lowIndex], pivot)) {
-                if(lowIndex == high) {
+                if (lowIndex == high) {
                     break;
                 }
             }

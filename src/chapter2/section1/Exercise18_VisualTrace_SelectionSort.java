@@ -31,7 +31,7 @@ public class Exercise18_VisualTrace_SelectionSort {
             int minIndex = i;
 
             for(int j = i + 1; j < array.length; j++) {
-                if(array[j].compareTo(array[minIndex]) < 0) {
+                if (array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
             }

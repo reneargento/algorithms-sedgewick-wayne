@@ -22,7 +22,7 @@ public class Exercise31_PerformanceDriver {
 
     public static void main(String[] args) {
         Map<Integer, String[]> allInputArrays = new HashMap<>();
-        for(int i=0; i < NUMBER_OF_EXPERIMENTS; i++) {
+        for(int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
             String[] array = ArrayGenerator.generateRandomStringArray(ARRAY_SIZE, MIN_STRING_LENGTH, MAX_STRING_LENGTH);
             allInputArrays.put(i, array);
         }

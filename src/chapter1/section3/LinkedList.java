@@ -32,7 +32,7 @@ public class LinkedList<Item> implements Iterable<Item> {
     }
 
     public Item get(int index) {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
 
@@ -68,11 +68,11 @@ public class LinkedList<Item> implements Iterable<Item> {
     }
 
     public void remove(int index) {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return;
         }
 
-        if (index < 0 || index >= size()){
+        if (index < 0 || index >= size()) {
             throw new IllegalArgumentException("Index must be between 0 and " + (size() - 1));
         }
 

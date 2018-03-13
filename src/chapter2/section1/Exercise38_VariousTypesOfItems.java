@@ -184,7 +184,7 @@ public class Exercise38_VariousTypesOfItems {
             int minIndex = i;
 
             for(int j = i + 1; j < array.length; j++) {
-                if(isLower(array, j, minIndex, keyType)) {
+                if (isLower(array, j, minIndex, keyType)) {
                     minIndex = j;
                 }
             }

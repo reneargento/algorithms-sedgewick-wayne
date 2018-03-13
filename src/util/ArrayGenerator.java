@@ -108,7 +108,7 @@ public class ArrayGenerator {
 
             char generatedChar = ((char) randomUppercaseCharIntValue);
 
-            if(!generatedChars.contains(generatedChar)) {
+            if (!generatedChars.contains(generatedChar)) {
                 chars[charsIndex++] = generatedChar;
                 generatedChars.add(generatedChar);
             }

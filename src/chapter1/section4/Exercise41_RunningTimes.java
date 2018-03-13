@@ -89,7 +89,7 @@ public class Exercise41_RunningTimes {
     }
 
     private int binarySearch(int[] numbers, int target, int low, int high) {
-        if(low > high) {
+        if (low > high) {
             return -1;
         }
 

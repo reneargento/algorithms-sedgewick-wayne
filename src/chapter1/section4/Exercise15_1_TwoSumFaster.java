@@ -18,7 +18,7 @@ public class Exercise15_1_TwoSumFaster {
     }
 
     //Considering that the array is already sorted
-    private static int twoSumFaster(int[] array){
+    private static int twoSumFaster(int[] array) {
         int start = 0;
         int end = array.length - 1;
 
@@ -26,13 +26,13 @@ public class Exercise15_1_TwoSumFaster {
 
         int count = 0;
 
-        if((array[start] > 0 && array[end] > 0)
+        if ((array[start] > 0 && array[end] > 0)
                 || (array[start] < 0 && array[end] < 0)) {
             return 0;
         }
 
         while(start < end) {
-            if(array[start] + array[end] > 0){
+            if (array[start] + array[end] > 0) {
                 end--;
             } else if (array[start] + array[end] < 0) {
                 start++;

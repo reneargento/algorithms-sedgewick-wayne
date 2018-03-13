@@ -49,7 +49,7 @@ public class Exercise12_SublinearExtraSpace {
             int minIndex = i;
 
             for(int j = i + 1; j <= high; j++) {
-                if(array[j].compareTo(array[minIndex]) < 0) {
+                if (array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
             }

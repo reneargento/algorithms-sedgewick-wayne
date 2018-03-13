@@ -38,15 +38,15 @@ public class Exercise19_1_Parsing {
 		}
 	}
 	
-	public int month(){
+	public int month() {
 		return month;
 	}
 	
-	public int day(){
+	public int day() {
 		return day;
 	}
 	
-	public int year(){
+	public int year() {
 		return year;
 	}
 	
@@ -84,7 +84,7 @@ public class Exercise19_1_Parsing {
 		return days[dayOfWeek - 1];
 	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Exercise19_1_Parsing parsedDate = new Exercise19_1_Parsing("4/18/1989");
 		StdOut.println("Parsed date: " + parsedDate);
 		StdOut.println("Expected: 4/18/1989");

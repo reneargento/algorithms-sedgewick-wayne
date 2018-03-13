@@ -76,7 +76,7 @@ public class Exercise24_FastAlgorithmsErdosRenyi {
                     randomSite1, randomSite2);
             connectionsGenerated.add(connection);
 
-            if(!unionFind.connected(randomSite1, randomSite2)) {
+            if (!unionFind.connected(randomSite1, randomSite2)) {
                 unionFind.union(randomSite1, randomSite2);
             }
         }

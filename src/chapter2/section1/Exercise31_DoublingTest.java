@@ -58,9 +58,9 @@ public class Exercise31_DoublingTest {
              */
 
             double doublingRatio = 0;
-            if(sortType == SortTypes.SELECTION || sortType == SortTypes.INSERTION) {
+            if (sortType == SortTypes.SELECTION || sortType == SortTypes.INSERTION) {
                 doublingRatio = 4;
-            } else if(sortType == SortTypes.SHELL) {
+            } else if (sortType == SortTypes.SHELL) {
                 doublingRatio = 2.82;
             }
 

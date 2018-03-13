@@ -122,11 +122,11 @@ public class Exercise47_AverageSearchTime {
 
             long totalAvgPathLengths = 0;
 
-            for(int t=0; t < numberOfTrials; t++) {
+            for(int t = 0; t < numberOfTrials; t++) {
                 BinarySearchTreeInternalPathLength<Integer, Integer> binarySearchTreeInternalPathLength =
                         new BinarySearchTreeInternalPathLength<>();
 
-                for(int i=0; i < size; i++) {
+                for(int i = 0; i < size; i++) {
                     Integer randomKey = StdRandom.uniform(Integer.MAX_VALUE);
                     binarySearchTreeInternalPathLength.put(randomKey, randomKey);
                 }

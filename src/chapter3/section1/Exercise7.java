@@ -17,7 +17,7 @@ public class Exercise7 {
     private void doExperiment() {
         int[] arraySizes = {10, 100, 1000, 10000, 100000, 1000000};
 
-        for(int i=0; i < arraySizes.length; i++) {
+        for(int i = 0; i < arraySizes.length; i++) {
             int[] randomArray = ArrayGenerator.generateRandomIntegerArray(arraySizes[i], UPPER_BOUND_EXCLUSIVE);
             int distinctKeys = frequencyCounter(randomArray);
 

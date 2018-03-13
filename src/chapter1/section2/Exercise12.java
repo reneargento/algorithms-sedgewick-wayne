@@ -27,15 +27,15 @@ public class Exercise12 {
 		this.year = year;
 	}
 	
-	public int month(){
+	public int month() {
 		return month;
 	}
 	
-	public int day(){
+	public int day() {
 		return day;
 	}
 	
-	public int year(){
+	public int year() {
 		return year;
 	}
 	
@@ -73,7 +73,7 @@ public class Exercise12 {
 		return days[dayOfWeek - 1];
 	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Exercise12 smartDate1 = new Exercise12(4, 18, 1989);
 		StdOut.println(smartDate1.dayOfTheWeek() + " Expected: Tuesday");
 		

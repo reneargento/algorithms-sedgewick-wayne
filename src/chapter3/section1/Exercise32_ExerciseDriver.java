@@ -32,7 +32,7 @@ public class Exercise32_ExerciseDriver {
         for(int input = 0; input < 4; input++) {
             Map<Integer, Comparable[]> allInputArrays = generateAllArrays(inputType[input], numberOfExperiments, initialArraySize);
 
-            for(int i=0; i < numberOfExperiments; i++) {
+            for(int i = 0; i < numberOfExperiments; i++) {
                 Comparable[] array = allInputArrays.get(i);
 
                 Stopwatch timer = new Stopwatch();
@@ -49,7 +49,7 @@ public class Exercise32_ExerciseDriver {
 
         int arraySize = initialArraySize;
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] array;
 
@@ -78,7 +78,7 @@ public class Exercise32_ExerciseDriver {
     private static void testInput(Comparable[] keys, boolean verbose) {
         BinarySearchSymbolTable<Integer, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(int i=0; i < keys.length; i++) {
+        for(int i = 0; i < keys.length; i++) {
             binarySearchSymbolTable.put((Integer) keys[i], i);
         }
 

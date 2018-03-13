@@ -26,7 +26,7 @@ public class Exercise38_2_DeleteKthElement<Item> implements Iterable<Item>{
         size = 0;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -36,7 +36,7 @@ public class Exercise38_2_DeleteKthElement<Item> implements Iterable<Item>{
         last.item = item;
         last.previous = oldLast;
 
-        if(last.previous != null) {
+        if (last.previous != null) {
             last.previous.next = last;
         } else{
             first = last;
@@ -46,7 +46,7 @@ public class Exercise38_2_DeleteKthElement<Item> implements Iterable<Item>{
     }
 
     public Item delete(int k) {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Queue underflow");
         }
         if (k <= 0 || k > size) {
@@ -58,20 +58,20 @@ public class Exercise38_2_DeleteKthElement<Item> implements Iterable<Item>{
 
         Node current;
 
-        if(startFromBeginning) {
+        if (startFromBeginning) {
             count = 1;
             for(current = first; count < k; current = current.next) {
                 count++;
             }
         } else {
             count = size;
-            for(current = last; count > k; current = current.previous){
+            for(current = last; count > k; current = current.previous) {
                 count--;
             }
         }
 
         Item item = current.item;
-        if(current.previous != null) {
+        if (current.previous != null) {
             current.previous.next = current.next;
         } else {
             first = current.next;

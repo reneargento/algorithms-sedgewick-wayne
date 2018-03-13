@@ -143,7 +143,7 @@ public class Exercise23_DuplicatesRevisitedAgain {
         String dataStructure;
         String valuesType;
 
-        if(useDedup) {
+        if (useDedup) {
             method = "DeDup";
 
             if (!useStringSet) {
@@ -156,7 +156,7 @@ public class Exercise23_DuplicatesRevisitedAgain {
             dataStructure = "Array";
         }
 
-        if(!generateLongValues) {
+        if (!generateLongValues) {
             valuesType = "Integer";
         } else {
             valuesType = "Long";
@@ -177,9 +177,9 @@ public class Exercise23_DuplicatesRevisitedAgain {
                 int maxValue = 0;
                 if (m == 0) {
                     maxValue = numberOfValues / 2;
-                } else if (m == 1){
+                } else if (m == 1) {
                     maxValue = numberOfValues;
-                } else if (m == 2){
+                } else if (m == 2) {
                     maxValue = 2 * numberOfValues;
                 }
 

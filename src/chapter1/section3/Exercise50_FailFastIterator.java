@@ -47,7 +47,7 @@ public class Exercise50_FailFastIterator<Item> implements Iterable<Item>{
 
     public Item pop() {
 
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Stack underflow exception");
         }
 
@@ -77,7 +77,7 @@ public class Exercise50_FailFastIterator<Item> implements Iterable<Item>{
 
         @Override
         public boolean hasNext() {
-            if(currentOperationsCounter != operationsCounter) {
+            if (currentOperationsCounter != operationsCounter) {
                 throw new ConcurrentModificationException();
             }
 
@@ -86,7 +86,7 @@ public class Exercise50_FailFastIterator<Item> implements Iterable<Item>{
 
         @Override
         public Item next() {
-            if(currentOperationsCounter != operationsCounter) {
+            if (currentOperationsCounter != operationsCounter) {
                 throw new ConcurrentModificationException();
             }
 

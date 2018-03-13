@@ -98,7 +98,7 @@ public class Exercise37_AutoboxingPerformance {
 
         //Trials only do a push and a pop operation
         for(int i = 0; i < trials; i++) {
-            if(!useGenericStack) {
+            if (!useGenericStack) {
                 fixedCapacityInteger.push(i);
                 fixedCapacityInteger.pop();
             } else {

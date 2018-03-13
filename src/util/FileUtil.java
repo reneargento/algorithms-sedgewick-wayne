@@ -29,7 +29,7 @@ public class FileUtil {
             String[] wordsInCurrentLine = line.split(" ");
 
             for(String wordInCurrentLine : wordsInCurrentLine) {
-                if(wordInCurrentLine.equals("")) {
+                if (wordInCurrentLine.equals("")) {
                     continue;
                 }
 

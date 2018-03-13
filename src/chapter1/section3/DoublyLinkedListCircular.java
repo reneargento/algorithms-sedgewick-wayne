@@ -26,7 +26,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public DoubleNode first() {
-        if(size == 0) {
+        if (size == 0) {
             return null;
         }
 
@@ -34,7 +34,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public DoubleNode last() {
-        if(size == 0) {
+        if (size == 0) {
             return null;
         }
 
@@ -235,7 +235,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public Item removeFromTheBeginning() {
-        if (isEmpty()){
+        if (isEmpty()) {
             return null;
         }
 
@@ -248,7 +248,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
         }
 
         if (first.previous != null) {
-            if(size > 2) {
+            if (size > 2) {
                 first.previous.next = first.next;
             } else {
                 first.previous.next = null;
@@ -262,7 +262,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
         return item;
     }
 
-    public Item removeFromTheEnd(){
+    public Item removeFromTheEnd() {
         if (isEmpty()) {
             return null;
         }
@@ -270,7 +270,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
         Item item = last.item;
 
         if (last.previous != null) {
-            if(size > 2) {
+            if (size > 2) {
                 last.previous.next = last.next;
             } else {
                 last.previous.next = null;
@@ -280,7 +280,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
         }
 
         if (last.next != null) {
-            if(size > 2) {
+            if (size > 2) {
                 last.next.previous = last.previous;
             } else {
                 last.next.previous = null;
@@ -295,14 +295,14 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public void removeItem(Item item) {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return;
         }
 
         DoubleNode currentNode = first;
 
         while (currentNode != null) {
-            if(currentNode.item.equals(item)) {
+            if (currentNode.item.equals(item)) {
                 removeItemWithNode(currentNode);
                 break;
             }
@@ -312,11 +312,11 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public void removeItemWithNode(DoubleNode doubleNode) {
-        if(doubleNode == null) {
+        if (doubleNode == null) {
             throw new IllegalArgumentException("Node cannot be null");
         }
 
-        if(isEmpty()) {
+        if (isEmpty()) {
             return;
         }
 

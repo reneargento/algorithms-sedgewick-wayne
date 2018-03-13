@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise20_BitonicSearch_3lgN {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] array1 = {1, 2, 3, 4, -1, -2, -3};
         int[] array2 = {1, 5, 4, 3, 2, 0};
         int[] array3 = {2, 4, 8, 16, 32, 1};
@@ -34,7 +34,7 @@ public class Exercise20_BitonicSearch_3lgN {
 
     private static int bitonicSearch(int[] array, int value) {
 
-        if(array == null || array.length == 0) {
+        if (array == null || array.length == 0) {
             return -1;
         }
 
@@ -45,7 +45,7 @@ public class Exercise20_BitonicSearch_3lgN {
 
         int increasingSequenceSearchIndex = ascendingBinarySearch(array, value, low, high);
 
-        if(increasingSequenceSearchIndex != -1) {
+        if (increasingSequenceSearchIndex != -1) {
             return increasingSequenceSearchIndex;
         }
 

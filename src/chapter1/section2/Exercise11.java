@@ -20,15 +20,15 @@ public class Exercise11 {
 		this.year = year;
 	}
 	
-	public int month(){
+	public int month() {
 		return month;
 	}
 	
-	public int day(){
+	public int day() {
 		return day;
 	}
 	
-	public int year(){
+	public int year() {
 		return year;
 	}
 	
@@ -49,7 +49,7 @@ public class Exercise11 {
 		return valid;
 	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Exercise11 smartDate1 = new Exercise11(4, 18, 1989);
 		Exercise11 invalidDate = new Exercise11(2, 30, 2016);
 	}

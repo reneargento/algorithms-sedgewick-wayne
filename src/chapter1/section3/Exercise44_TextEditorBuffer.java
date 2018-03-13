@@ -43,7 +43,7 @@ public class Exercise44_TextEditorBuffer<Item> {
     }
 
     public Item get() {
-        if(sizeRight == 0){
+        if (sizeRight == 0) {
             return null;
         }
 
@@ -51,7 +51,7 @@ public class Exercise44_TextEditorBuffer<Item> {
     }
 
     public Item delete() {
-        if(sizeRight == 0) {
+        if (sizeRight == 0) {
             return null;
         }
 

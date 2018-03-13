@@ -27,7 +27,7 @@ public class Exercise29<Item> implements Iterable<Item> {
 	}
 	
 	public void enqueue(Item item) {
-		if (isEmpty()){
+		if (isEmpty()) {
 			last = new Node();
 			last.item = item;
 			last.next = last;
@@ -67,7 +67,7 @@ public class Exercise29<Item> implements Iterable<Item> {
 		return item;
 	}
 	
-	public Iterator<Item> iterator(){
+	public Iterator<Item> iterator() {
 		return new QueueIterator();
 	}
 	
@@ -92,12 +92,12 @@ public class Exercise29<Item> implements Iterable<Item> {
 			return item;
 		}
 		
-		public boolean hasNext(){
+		public boolean hasNext() {
 			return count < size;
 		}
 	}
 	
-	public static void main (String[] args){
+	public static void main (String[] args) {
 		Exercise29<Integer> queue = new Exercise29<>();
 		queue.enqueue(1);
 		queue.enqueue(2);

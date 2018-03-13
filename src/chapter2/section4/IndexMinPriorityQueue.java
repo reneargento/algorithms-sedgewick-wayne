@@ -50,7 +50,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
             throw new IllegalArgumentException("Index is already in the priority queue");
         }
 
-        if(size != keys.length - 1) {
+        if (size != keys.length - 1) {
             size++;
 
             keys[index] = key;
@@ -158,7 +158,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
         while (index * 2 <= size) {
             int selectedChildIndex = index * 2;
 
-            if (index * 2 + 1 <= size && more(index * 2, index * 2 + 1)){
+            if (index * 2 + 1 <= size && more(index * 2, index * 2 + 1)) {
                 selectedChildIndex = index * 2 + 1;
             }
 

@@ -99,7 +99,7 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
     // Memory: Constant
     private static Exercise17_LinkedListSort.Node mergesort(Exercise17_LinkedListSort<Comparable>.Node sourceNode) {
 
-        if(sourceNode == null || sourceNode.next == null) {
+        if (sourceNode == null || sourceNode.next == null) {
             return sourceNode;
         }
 
@@ -134,7 +134,7 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
                 // Run through the lists appending onto what we have so far.
                 while(leftSize > 0 || (rightSize > 0 && right != null)) {
                     // Left empty, take right OR Right empty, take left, OR compare.
-                    if(leftSize == 0) {
+                    if (leftSize == 0) {
                         next = right;
                         right = right.next;
                         rightSize--;

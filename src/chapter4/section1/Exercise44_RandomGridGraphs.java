@@ -25,7 +25,7 @@ public class Exercise44_RandomGridGraphs {
 
     public List<Exercise37_EuclideanGraphs.EuclideanGraph> generateRandomGridGraphs(int numberOfGraphs,
                                                                                     int vertices, int extraEdges) {
-        if(numberOfGraphs < 0) {
+        if (numberOfGraphs < 0) {
             throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 
@@ -41,7 +41,7 @@ public class Exercise44_RandomGridGraphs {
 
     public Exercise37_EuclideanGraphs.EuclideanGraph randomGridGraph(int vertices, int extraEdges) {
 
-        if(Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
+        if (Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
             throw new IllegalArgumentException("Vertex number must have an integer square root");
         }
 
@@ -79,7 +79,7 @@ public class Exercise44_RandomGridGraphs {
         vertices = shrinkResult[2];
 
         // Update vertex IDs in the grid if any shrink occurred
-        if(shrinkTimes > 0) {
+        if (shrinkTimes > 0) {
             updateVerticesIds(vertexNumberSqrt, allVertices, verticesGrid);
         }
 
@@ -118,7 +118,7 @@ public class Exercise44_RandomGridGraphs {
                     allVertices[randomVertexId2].yCoordinate);
 
             boolean shouldConnect = 1 - StdRandom.uniform() >= distance;
-            if(shouldConnect) {
+            if (shouldConnect) {
                 extraEdgesList.add(new Edge(randomVertexId1, randomVertexId2));
                 extraEdges--;
             }
@@ -149,7 +149,7 @@ public class Exercise44_RandomGridGraphs {
 
             // We are assuming that the "about 2V" in the exercise description is within 20% of 2V.
             // If R is too large, we shrink the grid to decrease the number of vertices and edges.
-            if(totalEdges > 1.2 * (2 * vertices)) {
+            if (totalEdges > 1.2 * (2 * vertices)) {
                 vertexNumberSqrt--;
                 vertices = vertexNumberSqrt * vertexNumberSqrt;
                 shrinkTimes++;
@@ -174,7 +174,7 @@ public class Exercise44_RandomGridGraphs {
 
                 List<Edge> extraEdgesToRemoveAfterShrinking = new ArrayList<>();
                 for(Edge extraEdge : extraEdgesList) {
-                    if(removedVertices.contains(extraEdge.vertex1) || removedVertices.contains(extraEdge.vertex2)) {
+                    if (removedVertices.contains(extraEdge.vertex1) || removedVertices.contains(extraEdge.vertex2)) {
                         extraEdgesToRemoveAfterShrinking.add(extraEdge);
                     }
                 }
@@ -185,7 +185,7 @@ public class Exercise44_RandomGridGraphs {
             }
 
             // The smallest grid we can have is a 2x2 grid, so if we reach this grid dimensions we break
-            if(vertexNumberSqrt == 2) {
+            if (vertexNumberSqrt == 2) {
                 shouldCheckIfNeedsToShrink = false;
             }
         }
@@ -220,12 +220,12 @@ public class Exercise44_RandomGridGraphs {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
-                    if(isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
+                    if (isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
                         int vertexId1 = getVertexId(row, column, vertexNumberSqrt);
                         int vertexId2 = getVertexId(neighborRow, neighborColumn, vertexNumberSqrt);
 
                         //Used to avoid connecting vertices more than once
-                        if(vertexId1 < vertexId2) {
+                        if (vertexId1 < vertexId2) {
                             randomEuclideanGridGraph.addEdge(vertexId1, vertexId2);
                         }
                     }

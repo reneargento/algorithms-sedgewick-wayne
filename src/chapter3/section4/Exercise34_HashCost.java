@@ -156,7 +156,7 @@ public class Exercise34_HashCost {
             this.averageListSize = averageListSize;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i=0; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable();
             }
 
@@ -505,7 +505,7 @@ public class Exercise34_HashCost {
 
             if(!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-                for(int i=0; i < keysToBeSorted.length; i++) {
+                for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keySet.dequeue();
                 }
 

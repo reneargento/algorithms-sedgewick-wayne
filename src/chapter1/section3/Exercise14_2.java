@@ -64,7 +64,7 @@ public class Exercise14_2 {
 			}
 			n--;
 			
-			if(n > 0 && n == items.length/4) {
+			if (n > 0 && n == items.length/4) {
 				resize(items.length / 2);
 			}
 			

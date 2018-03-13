@@ -28,7 +28,7 @@ public class Exercise47_RandomTransportationGraphs {
                 String[] vertices = in.readLine().split(separator);
 
                 for(int i = 0; i < vertices.length; i++) {
-                    if(!vertexNameToIdMap.contains(vertices[i])) {
+                    if (!vertexNameToIdMap.contains(vertices[i])) {
                         vertexNameToIdMap.put(vertices[i], vertexNameToIdMap.size());
                     }
                 }

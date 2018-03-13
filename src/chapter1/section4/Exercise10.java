@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise10 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] testArray = {3, 4, 4, 5, 6, 10, 15, 20, 20, 20, 20, 21};
         int elementToSearch1 = 4;
         int elementToSearch2 = 20;
@@ -36,7 +36,7 @@ public class Exercise10 {
         } else {
 
             int possibleSmallestIndex = binarySearch(array, element, 0, middle - 1);
-            if(possibleSmallestIndex == -1){
+            if (possibleSmallestIndex == -1) {
                 return middle;
             } else{
                 return binarySearch(array, element, 0, middle - 1);

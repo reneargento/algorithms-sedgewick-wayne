@@ -52,7 +52,7 @@ public class Exercise17_CheckStability {
         for(Comparable value : array) {
             int count = 0;
 
-            if(valuesMap.containsKey(value)) {
+            if (valuesMap.containsKey(value)) {
                 count = valuesMap.get(value);
             }
 
@@ -98,7 +98,7 @@ public class Exercise17_CheckStability {
 
         //Check if the elements were sorted in a stable manner
         for(int i = 0; i < wrappedKeys.length - 1; i++) {
-            if(wrappedKeys[i].keyValue.compareTo(wrappedKeys[i+1].keyValue) == 0 &&
+            if (wrappedKeys[i].keyValue.compareTo(wrappedKeys[i+1].keyValue) == 0 &&
                     wrappedKeys[i].originalIndex > wrappedKeys[i+1].originalIndex) {
                 return false;
             }

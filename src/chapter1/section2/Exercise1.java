@@ -12,7 +12,7 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class Exercise1 {
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 
 		int n = Integer.parseInt(args[0]); // 10
 
@@ -30,7 +30,7 @@ public class Exercise1 {
         StdDraw.setXscale(0, 1);
         StdDraw.setYscale(0, 1);
 		
-		for (int i = 0; i<points.length; i++) {
+		for (int i = 0; i < points.length; i++) {
 
 			double pointX = StdRandom.uniform();
 			double pointY = StdRandom.uniform();

@@ -81,7 +81,7 @@ public class Exercise20_IndexSort {
 
     private static void indexSort(Comparable[] array, int[] aux, int[] indexSort, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -131,7 +131,7 @@ public class Exercise20_IndexSort {
         }
 
         for(int i = 0; i < expectedIndexSortedArray.length; i++) {
-            if(expectedIndexSortedArray[i] != indexSortedArray[i]) {
+            if (expectedIndexSortedArray[i] != indexSortedArray[i]) {
                 return false;
             }
         }

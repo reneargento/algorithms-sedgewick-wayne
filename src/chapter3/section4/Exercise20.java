@@ -23,7 +23,7 @@ public class Exercise20 {
             LinearProbingHashTableAvgSearchHitCost<Key, Value> tempHashTable =
                     new LinearProbingHashTableAvgSearchHitCost<>(newSize);
 
-            for(int i=0; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 if(keys[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }

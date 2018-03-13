@@ -11,7 +11,7 @@ public class Exercise16_RationalNumbers {
 	private long denominator;
 	
 	public Exercise16_RationalNumbers(int numerator, int denominator) {
-		if(denominator == 0) {
+		if (denominator == 0) {
 			throw new RuntimeException("Denominator cannot be 0");
 		}
 		
@@ -22,13 +22,13 @@ public class Exercise16_RationalNumbers {
 		this.numerator /= gcd;
 		this.denominator /= gcd;
 		
-		if(this.denominator < 0) {
+		if (this.denominator < 0) {
 			this.denominator = -1 * this.denominator;
 			this.numerator = -1 * this.numerator;
 		}
 	}
 	
-	private static int gcd(int numerator, int denominator){
+	private static int gcd(int numerator, int denominator) {
 		if (denominator == 0) {
 			return numerator;
 		} else {
@@ -36,11 +36,11 @@ public class Exercise16_RationalNumbers {
 		}
 	}
 	
-	public int numerator(){
+	public int numerator() {
 		return (int) numerator;
 	}
 	
-	public int denominator(){
+	public int denominator() {
 		return (int) denominator;
 	}
 	

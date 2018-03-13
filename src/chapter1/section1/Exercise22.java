@@ -32,7 +32,7 @@ public class Exercise22 {
 			StdOut.println();
 		}
 		
-		for (int i = 0; i < depth; i++){
+		for (int i = 0; i < depth; i++) {
 			StdOut.print(" ");
 		}
 		

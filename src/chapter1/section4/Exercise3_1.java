@@ -61,22 +61,22 @@ public class Exercise3_1 {
 
     private static void drawPointAndLine(double x, double y, List<Point2D> pointList, boolean isStandard, boolean isRescale) {
 
-        if(y == Double.NEGATIVE_INFINITY) {
+        if (y == Double.NEGATIVE_INFINITY) {
             y = 0;
         }
 
         Point2D point = new Point2D(x, y);
-        if(!isRescale) {
+        if (!isRescale) {
             pointList.add(point);
         }
 
-        if(isStandard) {
+        if (isStandard) {
             StdDraw.setPenColor(Color.BLUE);
         } else {
             StdDraw.setPenColor(Color.GREEN);
         }
 
-        if(pointList.size() > 1) {
+        if (pointList.size() > 1) {
             Point2D previousPoint = pointList.get(pointList.size() - 2);
             StdDraw.line(previousPoint.x(), previousPoint.y(), point.x(), point.y());
         }
@@ -84,16 +84,16 @@ public class Exercise3_1 {
         StdDraw.point(x, y);
     }
 
-    private static void rescaleIfNecessary(int n, double time){
-        if(n > currentXMaxScale || time > currentYMaxScale) {
-            if(n > currentXMaxScale) {
-                if(currentXMaxScale * 2 > n) {
+    private static void rescaleIfNecessary(int n, double time) {
+        if (n > currentXMaxScale || time > currentYMaxScale) {
+            if (n > currentXMaxScale) {
+                if (currentXMaxScale * 2 > n) {
                     currentXMaxScale = currentXMaxScale * 2;
                 } else {
                     currentXMaxScale = (int) (1.5 * n);
                 }
             }
-            if(time > currentYMaxScale) {
+            if (time > currentYMaxScale) {
                 currentYMaxScale = currentYMaxScale * 2;
             }
 

@@ -38,7 +38,7 @@ public class Exercise16_BestCase {
 
     private static void bestCaseArray(int[] array, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 

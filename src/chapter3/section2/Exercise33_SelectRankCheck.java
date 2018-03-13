@@ -11,7 +11,7 @@ public class Exercise33_SelectRankCheck {
         int size = binarySearchTree.size();
 
         //Check rank
-        for(int i=0; i < size; i++) {
+        for(int i = 0; i < size; i++) {
             if(i != binarySearchTree.rank(binarySearchTree.select(i))) {
                 return false;
             }

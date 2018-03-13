@@ -18,7 +18,7 @@ public class Exercise15_2_ThreeSumFaster {
     }
 
     //Considering that the array is already sorted
-    private static int threeSumFaster(int[] array){
+    private static int threeSumFaster(int[] array) {
         int start = 0;
         int end = array.length - 1;
 
@@ -26,7 +26,7 @@ public class Exercise15_2_ThreeSumFaster {
 
         int count = 0;
 
-        if((array[start] > 0 && array[end] > 0)
+        if ((array[start] > 0 && array[end] > 0)
                 || (array[start] < 0 && array[end] < 0)) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class Exercise15_2_ThreeSumFaster {
             end = array.length - 1;
 
             while(start < end) {
-                if (array[i] + array[start] + array[end] > 0){
+                if (array[i] + array[start] + array[end] > 0) {
                     end--;
                 } else if (array[i] + array[start] + array[end] < 0) {
                     start++;

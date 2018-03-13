@@ -63,7 +63,7 @@ public class Exercise11 {
             }
 
             for(int i = 0; i < id.length; i++) {
-                if(id[i] == parentIdToUpdate) {
+                if (id[i] == parentIdToUpdate) {
                     id[i] = newParentId;
                 }
             }

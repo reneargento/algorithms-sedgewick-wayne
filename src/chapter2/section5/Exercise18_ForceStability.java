@@ -32,7 +32,7 @@ public class Exercise18_ForceStability {
             //Equal keys
             if (this.originalIndex < that.originalIndex) {
                 return -1;
-            } else if(this.originalIndex > that.originalIndex) {
+            } else if (this.originalIndex > that.originalIndex) {
                 return 1;
             } else {
                 return 0;

@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise25_Throwing2Eggs {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] array = {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1};
 
@@ -66,7 +66,7 @@ public class Exercise25_Throwing2Eggs {
 
             int separator = sqrt * searchLevel;
 
-            if(separator >= array.length){
+            if (separator >= array.length) {
                 separator = array.length - 1;
             }
 
@@ -78,7 +78,7 @@ public class Exercise25_Throwing2Eggs {
                 //We broke 1 out of 2 eggs, now we do a linear search starting from a floor in which we know that the egg
                 // does not break
 
-                if(searchLevel != 0) {
+                if (searchLevel != 0) {
                     searchLevel = searchLevel - 1;
                 }
 
@@ -87,7 +87,7 @@ public class Exercise25_Throwing2Eggs {
                 for(int i = lastFloorThatDidNotBreak; i <= separator; i++) {
                     StdOut.println("Debug - current index: " + i);
 
-                    if(array[i] == 1) {
+                    if (array[i] == 1) {
                         //2 out of 2 eggs broken, but we now have the floor number
                         return i;
                     }
@@ -113,7 +113,7 @@ public class Exercise25_Throwing2Eggs {
 
             searchElement = searchElement + increment;
 
-            if (searchElement >= array.length){
+            if (searchElement >= array.length) {
                 searchElement = array.length - 1;
             }
 
@@ -131,7 +131,7 @@ public class Exercise25_Throwing2Eggs {
                 for(int i = lastFloorThatDidNotBreak; i <= searchElement + increment; i++) {
                     StdOut.println("Debug - current index: " + i);
 
-                    if(array[i] == 1) {
+                    if (array[i] == 1) {
                         //2 out of 2 eggs broken, but we now have the floor number
                         return i;
                     }

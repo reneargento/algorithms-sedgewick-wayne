@@ -33,7 +33,7 @@ public class Exercise30_DynamicMedianFinding {
             if (minPriorityQueue.size() > maxPriorityQueue.size() + 1) {
                 Key keyToBeMoved = minPriorityQueue.deleteTop();
                 maxPriorityQueue.insert(keyToBeMoved);
-            } else if(maxPriorityQueue.size() > minPriorityQueue.size() + 1) {
+            } else if (maxPriorityQueue.size() > minPriorityQueue.size() + 1) {
                 Key keyToBeMoved = maxPriorityQueue.deleteTop();
                 minPriorityQueue.insert(keyToBeMoved);
             }

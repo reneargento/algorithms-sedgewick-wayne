@@ -14,14 +14,14 @@ public class Exercise33_Certification {
         }
 
         private boolean is23(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return true;
             }
 
-            if(isRed(node.right)) {
+            if (isRed(node.right)) {
                 return false;
             }
-            if(isRed(node) && isRed(node.left)) {
+            if (isRed(node) && isRed(node.left)) {
                 return false;
             }
 
@@ -33,7 +33,7 @@ public class Exercise33_Certification {
 
             Node currentNode = root;
             while (currentNode != null) {
-                if(!isRed(currentNode)) {
+                if (!isRed(currentNode)) {
                     blackNodes++;
                 }
 
@@ -44,11 +44,11 @@ public class Exercise33_Certification {
         }
 
         private boolean isBalanced(Node node, int blackNodes) {
-            if(node == null) {
+            if (node == null) {
                 return blackNodes == 0;
             }
 
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 blackNodes--;
             }
 
@@ -60,14 +60,14 @@ public class Exercise33_Certification {
         }
 
         private boolean isBST(Node node, Comparable low, Comparable high) {
-            if(node == null) {
+            if (node == null) {
                 return true;
             }
 
-            if(low != null && low.compareTo(node.key) >= 0) {
+            if (low != null && low.compareTo(node.key) >= 0) {
                 return false;
             }
-            if(high != null && high.compareTo(node.key) <= 0) {
+            if (high != null && high.compareTo(node.key) <= 0) {
                 return false;
             }
 

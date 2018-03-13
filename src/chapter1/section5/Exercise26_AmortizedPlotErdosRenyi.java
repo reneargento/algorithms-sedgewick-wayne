@@ -60,7 +60,7 @@ public class Exercise26_AmortizedPlotErdosRenyi {
         public int find(int site) {
             currentCost++;
 
-            if(site == leaders[site]) {
+            if (site == leaders[site]) {
                 return site;
             }
 
@@ -79,7 +79,7 @@ public class Exercise26_AmortizedPlotErdosRenyi {
                 return;
             }
 
-            if(ranks[leader1] < ranks[leader2]) {
+            if (ranks[leader1] < ranks[leader2]) {
                 leaders[leader1] = leader2;
             } else if (ranks[leader2] < ranks[leader1]) {
                 leaders[leader2] = leader1;

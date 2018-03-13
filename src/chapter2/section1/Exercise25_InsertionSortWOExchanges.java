@@ -74,7 +74,7 @@ public class Exercise25_InsertionSortWOExchanges {
     public static double time(InsertionSortType insertionSortType, Comparable[] array) {
         Stopwatch timer = new Stopwatch();
 
-        if(insertionSortType == InsertionSortType.DEFAULT) {
+        if (insertionSortType == InsertionSortType.DEFAULT) {
             insertionSort(array);
         } else if (insertionSortType == InsertionSortType.WITHOUT_EXCHANGES) {
             insertionSortWithoutExchanges(array);

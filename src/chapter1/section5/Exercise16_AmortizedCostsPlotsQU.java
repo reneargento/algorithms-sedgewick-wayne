@@ -105,7 +105,7 @@ public class Exercise16_AmortizedCostsPlotsQU {
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
 
-            if(quickUnion.connected(randomSite1, randomSite2)) {
+            if (quickUnion.connected(randomSite1, randomSite2)) {
                 continue;
             }
 

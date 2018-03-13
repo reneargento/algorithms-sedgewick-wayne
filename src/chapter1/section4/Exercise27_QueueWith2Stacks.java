@@ -35,7 +35,7 @@ public class Exercise27_QueueWith2Stacks<Item> {
     //Amortized O(1)
     public Item dequeue() {
 
-        if(headStack.isEmpty()) {
+        if (headStack.isEmpty()) {
             moveAllItemsFromTailToHead();
         }
 

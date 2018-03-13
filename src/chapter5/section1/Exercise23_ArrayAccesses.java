@@ -208,7 +208,7 @@ public class Exercise23_ArrayAccesses {
         }
 
         private int charAt(String string, int digit) {
-            if(digit < string.length()) {
+            if (digit < string.length()) {
                 return string.charAt(digit);
             } else {
                 return -1;

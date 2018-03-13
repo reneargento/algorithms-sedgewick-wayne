@@ -102,7 +102,7 @@ public class Exercise22_DoublingTestErdosRenyi {
 
             connectionsGenerated++;
 
-            if(!unionFind.connected(randomSite1, randomSite2)) {
+            if (!unionFind.connected(randomSite1, randomSite2)) {
                 unionFind.union(randomSite1, randomSite2);
             }
         }

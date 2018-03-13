@@ -88,7 +88,7 @@ public class Exercise37_PartiallySorted {
             array[i] = i;
         }
 
-        for(int i=lastFivePercentStartIndex; i < arrayLength; i++) {
+        for(int i =lastFivePercentStartIndex; i < arrayLength; i++) {
             array[i] = StdRandom.uniform(Integer.MAX_VALUE);
         }
 

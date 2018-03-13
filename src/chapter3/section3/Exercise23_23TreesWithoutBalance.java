@@ -716,7 +716,7 @@ public class Exercise23_23TreesWithoutBalance {
         for(int experiment = 0; experiment < 6; experiment++) {
             TwoThreeTreeNonBalanced<Integer, Integer> twoThreeTreeNonBalanced = new TwoThreeTreeNonBalanced<>();
 
-            for(int i=0; i < redBlackTreeSize; i++) {
+            for(int i = 0; i < redBlackTreeSize; i++) {
                 int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
                 twoThreeTreeNonBalanced.put(randomKey, randomKey);
             }

@@ -41,7 +41,7 @@ public class SelectionSortDraw {
             int minIndex = i;
 
             for(int j = i + 1; j < array.length; j++) {
-                if(array[j].compareTo(array[minIndex]) < 0) {
+                if (array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
             }

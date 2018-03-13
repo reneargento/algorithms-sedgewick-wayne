@@ -28,7 +28,7 @@ public class Exercise28_RemoveDuplicates {
 		newWhitelist[0] = whitelist[0];
 		int count = 0;
 		
-		for (int i = 1; i < whitelist.length; i++){
+		for (int i = 1; i < whitelist.length; i++) {
 			if (whitelist[i] != newWhitelist[count]) {
 				count++;
 				
@@ -64,14 +64,14 @@ public class Exercise28_RemoveDuplicates {
 		
 	}
 	
-	private static int rank(int key, int[] arr, int lo, int hi){
+	private static int rank(int key, int[] arr, int lo, int hi) {
 		
 		if (lo <= hi) {
 			int mid = lo + (hi - lo) / 2;
 			
 			if (key < arr[mid]) {
 				return rank(key, arr, lo, mid - 1);
-			} else if (key > arr[mid]){
+			} else if (key > arr[mid]) {
 				return rank(key, arr, mid + 1, hi);
 			} else {
 				return mid;

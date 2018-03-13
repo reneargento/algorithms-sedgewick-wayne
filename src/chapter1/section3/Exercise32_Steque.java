@@ -20,7 +20,7 @@ public class Exercise32_Steque<Item> implements Iterable<Item> {
     private Node last;
     private int size;
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -51,7 +51,7 @@ public class Exercise32_Steque<Item> implements Iterable<Item> {
         Item item = first.item;
         first = first.next;
 
-        if(first != null) {
+        if (first != null) {
             first.previous = null;
         } else {
             last = null;
@@ -67,7 +67,7 @@ public class Exercise32_Steque<Item> implements Iterable<Item> {
         last.item = item;
         last.previous = oldLast;
 
-        if(oldLast != null) {
+        if (oldLast != null) {
             oldLast.next = last;
         } else {
             first = last;
@@ -101,7 +101,7 @@ public class Exercise32_Steque<Item> implements Iterable<Item> {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Exercise32_Steque<Integer> steque = new Exercise32_Steque<>();
         steque.push(1);
         steque.push(2);

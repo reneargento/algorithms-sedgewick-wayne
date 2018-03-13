@@ -67,7 +67,7 @@ public class Exercise31_HistogramOfRunningTimes {
         for(int i = 0; i < runningTimes.size(); i++) {
             runningTimesArray[i] = runningTimes.get(i);
 
-            if(runningTimesArray[i] > maxCount) {
+            if (runningTimesArray[i] > maxCount) {
                 maxCount = runningTimesArray[i];
             }
         }

@@ -25,8 +25,8 @@ public class Exercise33_Matrix_Operations {
 		double[][] c = mult(a, b);
 		
 		StdOut.println("Matrix multiplication:");
-		for (int i = 0; i < c.length; i++){
-			for (int j = 0; j < c[0].length; j++){
+		for (int i = 0; i < c.length; i++) {
+			for (int j = 0; j < c[0].length; j++) {
 				StdOut.print(c[i][j] + " ");
 			}
 			StdOut.println();
@@ -41,8 +41,8 @@ public class Exercise33_Matrix_Operations {
 		double[][] e = transpose(d);
 		
 		StdOut.println("Transpose:");
-		for (int i = 0; i < e.length; i++){
-			for (int j = 0; j < e[0].length; j++){
+		for (int i = 0; i < e.length; i++) {
+			for (int j = 0; j < e[0].length; j++) {
 				StdOut.print(e[i][j] + " ");
 			}
 			StdOut.println();
@@ -59,7 +59,7 @@ public class Exercise33_Matrix_Operations {
 		double[] h = mult(f, g);
 		
 		StdOut.println("Matrix-vector product:");
-		for (int i=0; i<h.length; i++){
+		for (int i = 0; i < h.length; i++) {
 			StdOut.print(h[i] + " ");
 		}
 		
@@ -76,7 +76,7 @@ public class Exercise33_Matrix_Operations {
 		double[] k = mult(i, j);
 		
 		StdOut.println("Vector-matrix product:");
-		for (int l = 0; l < k.length; l++){
+		for (int l = 0; l < k.length; l++) {
 			StdOut.print(k[l] + " ");
 		}
 	}
@@ -84,13 +84,13 @@ public class Exercise33_Matrix_Operations {
 	//Vector dot product
 	private static double dot(double[] x, double[] y) {
 		
-		if(x == null || y == null || x.length != y.length) {
+		if (x == null || y == null || x.length != y.length) {
 			throw new IllegalArgumentException();
 		}
 		
 		double result = 0;
 		
-		for (int i = 0; i < x.length; i++){
+		for (int i = 0; i < x.length; i++) {
 			result += x[i] * y[i];
 		}
 		
@@ -134,8 +134,8 @@ public class Exercise33_Matrix_Operations {
 		
 		double[][] b = new double[a[0].length][a.length];
 		
-		for (int i = 0; i < a.length; i++){
-			for (int j = 0; j < a[0].length; j++){
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < a[0].length; j++) {
 				b[j][i] = a[i][j];
 			}
 		}

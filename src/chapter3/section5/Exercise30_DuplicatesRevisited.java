@@ -134,9 +134,9 @@ public class Exercise30_DuplicatesRevisited {
                 int maxValue = 0;
                 if(m == 0) {
                     maxValue = numberOfValues / 2;
-                } else if(m == 1){
+                } else if(m == 1) {
                     maxValue = numberOfValues;
-                } else if(m == 2){
+                } else if(m == 2) {
                     maxValue = 2 * numberOfValues;
                 }
 

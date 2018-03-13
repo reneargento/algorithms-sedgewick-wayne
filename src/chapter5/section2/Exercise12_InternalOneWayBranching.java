@@ -485,7 +485,7 @@ public class Exercise12_InternalOneWayBranching {
             if (node.size == 0) {
                 if (node.left == null && node.right == null) {
                     return null;
-                } else if(node.left == null) {
+                } else if (node.left == null) {
                     return node.right;
                 } else if (node.right == null) {
                     return node.left;

@@ -76,7 +76,7 @@ public class Exercise31_DequeWith3Stacks<Item> {
 
     //Amortized O(1)
     public Item popRight() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
 

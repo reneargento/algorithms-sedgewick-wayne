@@ -20,9 +20,9 @@ private void sink(int k) {
     }
 
     //If we reached the n-1 level of the heap and it only has 1 child (the left child), we need one more verification
-    if(2 * k == N) {
+    if (2 * k == N) {
         //If the current element is smaller than its child, exchange them
-        if(less(k, 2 * k)) {
+        if (less(k, 2 * k)) {
             exch(k, 2 * k);
         }
     }

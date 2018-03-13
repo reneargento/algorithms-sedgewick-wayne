@@ -34,7 +34,7 @@ public class Exercise13_WeightedQUPathCompression {
 
         //O(lg n)
         public int find(int site) {
-            if(site == id[site]) {
+            if (site == id[site]) {
                 return site;
             }
 

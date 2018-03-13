@@ -94,7 +94,7 @@ public class Exercise6 {
 
     private static void topDownMergeSort(Comparable[] array, Comparable[] aux, int low, int high) {
 
-        if(high <= low) {
+        if (high <= low) {
             return;
         }
 

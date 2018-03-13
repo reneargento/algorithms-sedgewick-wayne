@@ -69,7 +69,7 @@ public class Exercise29_SortFilesBySizeAndDate {
             if (isDecreasing && i > 0) {
                 i--;
                 flag = flags[i];
-            } else if(isDecreasing) {
+            } else if (isDecreasing) {
                 throw new IllegalArgumentException("Missing flag (-s -t or -n)");
             }
 

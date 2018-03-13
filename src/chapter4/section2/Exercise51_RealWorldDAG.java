@@ -217,7 +217,7 @@ public class Exercise51_RealWorldDAG {
         SeparateChainingHashTable<Integer, Integer> realDAGToFullDAGMap =
                 new SeparateChainingHashTable<>();
 
-        while (in.hasNextLine()){
+        while (in.hasNextLine()) {
             String[] connection = in.readLine().split(separator);
 
             int paper1 = Integer.parseInt(connection[0]);

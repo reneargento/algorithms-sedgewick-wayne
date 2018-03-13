@@ -47,7 +47,7 @@ public class Exercise18_LocalMinimum {
 
         // N = 2
         if (array.length == 2) {
-            if(array[0] < array[1]) {
+            if (array[0] < array[1]) {
                 return array[0];
             } else {
                 return array[1];
@@ -59,7 +59,7 @@ public class Exercise18_LocalMinimum {
 
             //Corner case
             if (middle == 0) {
-                if (array[middle] < array[middle+1]){
+                if (array[middle] < array[middle+1]) {
                     return array[middle];
                 } else {
                     return NOT_FOUND;
@@ -68,7 +68,7 @@ public class Exercise18_LocalMinimum {
 
             //Corner case
             if (middle == array.length - 1) {
-                if (array[middle] < array[middle - 1]){
+                if (array[middle] < array[middle - 1]) {
                     return array[middle];
                 } else {
                     return NOT_FOUND;
@@ -78,7 +78,7 @@ public class Exercise18_LocalMinimum {
             if (array[middle - 1] > array[middle]
                     && array[middle + 1] > array[middle]) {
                 return array[middle];
-            } else if(array[middle - 1] < array[middle]){
+            } else if (array[middle - 1] < array[middle]) {
                 high = middle - 1;
             } else if (array[middle + 1] < array[middle]) {
                 low = middle + 1;

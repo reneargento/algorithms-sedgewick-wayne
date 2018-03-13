@@ -83,7 +83,7 @@ public class Exercise45_CouponCollectorProblem {
 
     private float getHarmonicNumber(int number) {
 
-        if(dpHarmonicNumbers[number] != 0) {
+        if (dpHarmonicNumbers[number] != 0) {
             return dpHarmonicNumbers[number];
         }
 

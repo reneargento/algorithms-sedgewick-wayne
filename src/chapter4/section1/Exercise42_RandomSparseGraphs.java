@@ -13,7 +13,7 @@ public class Exercise42_RandomSparseGraphs {
     //A graph is considered sparse if its number of different edges is within a small constant factor of V
     public List<Graph> randomSparseGraph(int numberOfGraphs) {
 
-        if(numberOfGraphs < 0) {
+        if (numberOfGraphs < 0) {
             throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 

@@ -45,7 +45,7 @@ public class Exercise7 {
             }
 
             for(int i = 0; i < id.length; i++) {
-                if(id[i] == leaderId1) {
+                if (id[i] == leaderId1) {
                     id[i] = leaderId2;
                 }
             }
@@ -63,7 +63,7 @@ public class Exercise7 {
             id = new int[n];
             count = n;
 
-            for(int i=0; i < id.length; i++) {
+            for(int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
         }

@@ -26,7 +26,7 @@ public class Exercise4 {
 		for (char parenthesis : parentheses) {
 			if (parenthesis == '('
 					|| parenthesis == '['
-					|| parenthesis == '{'){
+					|| parenthesis == '{') {
 				stack.push(parenthesis);
 			} else {
 				if (stack.isEmpty()) {

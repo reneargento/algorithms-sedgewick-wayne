@@ -47,17 +47,17 @@ public class Exercise36_PerformanceDriverI {
 
     private static void performanceTest(PriorityQueue<Double> priorityQueue, Comparable[] keys) {
         //Fill the priority queue
-        for(int i=0; i < keys.length; i++) {
+        for(int i = 0; i < keys.length; i++) {
             priorityQueue.insert((double) keys[i]);
         }
 
         //Remove half the keys
-        for(int i=0; i < keys.length / 2; i++) {
+        for(int i = 0; i < keys.length / 2; i++) {
             priorityQueue.deleteTop();
         }
 
         //Fill the priority queue again
-        for(int i=keys.length / 2; i < keys.length; i++) {
+        for(int i = keys.length / 2; i < keys.length; i++) {
             priorityQueue.insert((double) keys[i]);
         }
 

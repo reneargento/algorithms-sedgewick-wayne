@@ -53,7 +53,7 @@ public class Exercise27_SubarrayLengths {
 
     private void mergesort(Comparable[] array, Comparable[] aux, int low, int high) {
 
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 

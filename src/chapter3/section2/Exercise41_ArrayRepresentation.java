@@ -28,7 +28,7 @@ public class Exercise41_ArrayRepresentation {
             leftLinks = new int[size];
             rightLinks = new int[size];
 
-            for(int i=0; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 leftLinks[i] = -1;
                 rightLinks[i] = -1;
             }
@@ -506,17 +506,17 @@ public class Exercise41_ArrayRepresentation {
         int[] valuesToSearch = new int[maxSize];
         int[] valuesToDelete = new int[maxSize];
 
-        for(int i=0; i < maxSize; i++) {
+        for(int i = 0; i < maxSize; i++) {
             int randomValue = StdRandom.uniform(maxSize);
             valuesToInsert[i] = randomValue;
         }
 
-        for(int i=0; i < maxSize; i++) {
+        for(int i = 0; i < maxSize; i++) {
             int randomValue = StdRandom.uniform(maxSize);
             valuesToSearch[i] = randomValue;
         }
 
-        for(int i=0; i < maxSize; i++) {
+        for(int i = 0; i < maxSize; i++) {
             int randomValue = StdRandom.uniform(maxSize);
             valuesToDelete[i] = randomValue;
         }

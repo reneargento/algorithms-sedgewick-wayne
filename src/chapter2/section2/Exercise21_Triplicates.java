@@ -122,13 +122,13 @@ public class Exercise21_Triplicates {
                 break;
             } else {
 
-                for(int i=0; i < incrementIndex.length; i++) {
+                for(int i = 0; i < incrementIndex.length; i++) {
                     incrementIndex[i] = false;
                 }
 
                 if (names[0][list1Index].compareTo(names[1][list2Index]) < 0) {
                     incrementIndex[0] = true;
-                } else if(names[0][list1Index].compareTo(names[2][list3Index]) < 0) {
+                } else if (names[0][list1Index].compareTo(names[2][list3Index]) < 0) {
                     incrementIndex[0] = true;
                 }
 

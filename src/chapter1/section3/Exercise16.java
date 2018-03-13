@@ -21,7 +21,7 @@ public class Exercise16 {
 		int n = queue.size();
 		Date[] dates = new Date[n];
 		
-		for (int i = 0; i< n; i++) {
+		for (int i = 0; i < n; i++) {
 			dates[i] = queue.dequeue();
 		}
 

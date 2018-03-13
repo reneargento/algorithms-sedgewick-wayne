@@ -13,13 +13,13 @@ public class Exercise45_StackGenerability {
         int itemsCount = 0;
 
         for(String input : inputValues) {
-            if(input.equals("-")){
+            if (input.equals("-")) {
                 itemsCount--;
             } else {
                 itemsCount++;
             }
 
-            if(itemsCount < 0){
+            if (itemsCount < 0) {
                 return true;
             }
         }

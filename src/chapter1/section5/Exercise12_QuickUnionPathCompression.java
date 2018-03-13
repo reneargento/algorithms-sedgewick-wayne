@@ -27,7 +27,7 @@ public class Exercise12_QuickUnionPathCompression {
 
         //amortized O(lg n)
         public int find(int site) {
-            if(site == id[site]) {
+            if (site == id[site]) {
                 return site;
             }
 
@@ -44,7 +44,7 @@ public class Exercise12_QuickUnionPathCompression {
             int leaderId1 = find(site1);
             int leaderId2 = find(site2);
 
-            if(leaderId1 == leaderId2) {
+            if (leaderId1 == leaderId2) {
                 return;
             }
 

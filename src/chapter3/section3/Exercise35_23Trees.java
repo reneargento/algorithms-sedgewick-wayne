@@ -1278,7 +1278,7 @@ public class Exercise35_23Trees {
                     return new TwoNode(threeNode.rightKey, threeNode.rightValue, threeNode.size);
                 } else if (leftSubtreeSize > index) {
                     return select(node.left, index);
-                } else if(leftSubtreeSize + 1 + middleSubtreeSize > index){
+                } else if(leftSubtreeSize + 1 + middleSubtreeSize > index) {
                     return select(threeNode.middle, index - leftSubtreeSize - 1);
                 } else {
                     return select(node.right, index - leftSubtreeSize - 1 - middleSubtreeSize - 1);

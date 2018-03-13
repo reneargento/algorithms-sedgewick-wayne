@@ -54,14 +54,14 @@ public class Exercise10 {
         Version version2 = exercise10.new Version("115.10.1");
         Version version3 = exercise10.new Version("115.10.2");
 
-        if(version1.compareTo(version2) < 0) {
+        if (version1.compareTo(version2) < 0) {
             StdOut.println(version1 + " is less than " + version2 + " - Correct!");
         } else {
             StdOut.println(version1 + " is more than " + version2 + " - Wrong!");
         }
         StdOut.println("Expected: Correct!\n");
 
-        if(version2.compareTo(version3) < 0) {
+        if (version2.compareTo(version3) < 0) {
             StdOut.println(version2 + " is less than " + version3 + " - Correct!");
         } else {
             StdOut.println(version2 + " is more than " + version3 + " - Wrong!");

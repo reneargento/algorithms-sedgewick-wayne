@@ -23,10 +23,10 @@ public class Exercise36_EmpiricalShuffleCheck {
 		arr[3] = 3;
 		arr[4] = 4;
 		
-		for (int i=0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			shuffle(arr);
 			
-			for (int j=0; j< arr.length; j++) {
+			for (int j = 0; j < arr.length; j++) {
 				positions[j][(int)arr[j]]++;
 			}
 		}
@@ -38,7 +38,7 @@ public class Exercise36_EmpiricalShuffleCheck {
 	public static void shuffle(double[] a) {
 		int n = a.length;
 		
-		for (int  i= 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			int r = i + StdRandom.uniform(n - i);
 			double temp = a[i];
 			a[i] = a[r];

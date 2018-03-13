@@ -24,7 +24,7 @@ public class Stack<Item> implements Iterable<Item> {
     }
 
     public void push(Item item) {
-        if(item == null) {
+        if (item == null) {
             throw new IllegalArgumentException("Item cannot be null");
         }
 

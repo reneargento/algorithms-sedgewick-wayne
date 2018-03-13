@@ -12,7 +12,7 @@ public class Exercise14 {
 	private final Date when;
 	private final double amount;
 	
-	public Exercise14(String who, Date when, double amount){
+	public Exercise14(String who, Date when, double amount) {
 		this.who = who;
 		this.when = when;
 		this.amount = amount;

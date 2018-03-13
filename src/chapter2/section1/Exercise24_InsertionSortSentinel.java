@@ -35,7 +35,7 @@ public class Exercise24_InsertionSortSentinel {
         int minimumIndex = -1;
 
         for(int i = 0; i < array.length; i++) {
-            if(array[i].compareTo(minimumElement) < 0) {
+            if (array[i].compareTo(minimumElement) < 0) {
                 minimumElement = array[i];
                 minimumIndex = i;
             }
@@ -84,7 +84,7 @@ public class Exercise24_InsertionSortSentinel {
     public static double time(InsertionSortType insertionSortType, Comparable[] array) {
         Stopwatch timer = new Stopwatch();
 
-        if(insertionSortType == InsertionSortType.DEFAULT) {
+        if (insertionSortType == InsertionSortType.DEFAULT) {
             insertionSort(array);
         } else if (insertionSortType == InsertionSortType.SENTINEL) {
             insertionSortSentinel(array);

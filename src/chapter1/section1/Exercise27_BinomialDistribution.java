@@ -29,9 +29,9 @@ public class Exercise27_BinomialDistribution {
 	
 	public static void binomial2Start(int N, int k, double p) {
 		
-		double[][] arr = new double[N+1][k+1];
+		double[][] arr = new double[N + 1][k + 1];
 		
-		for (int i = 0; i < arr.length; i++){
+		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr[0].length; j++) {
 				arr[i][j] = -1;
 			}

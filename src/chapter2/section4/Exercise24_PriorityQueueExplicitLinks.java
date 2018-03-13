@@ -173,7 +173,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             int currentIndex = 1;
             PQNode currentNode = priorityQueue.leftChild;
 
-            for(int i=0; i < pathToNode.length && currentNode != null; i++) {
+            for(int i = 0; i < pathToNode.length && currentNode != null; i++) {
                 if (pathToNode[i] == currentIndex * 2) {
                     currentNode = currentNode.leftChild;
                     currentIndex = currentIndex * 2;
@@ -183,7 +183,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
                 }
             }
 
-            if(currentNode == null) {
+            if (currentNode == null) {
                 return priorityQueue;
             }
 

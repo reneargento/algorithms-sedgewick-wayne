@@ -16,7 +16,7 @@ public class Exercise9 {
 		String[] inputValues = input.split("\\s");
 		
 		for (String value : inputValues) {
-			if (value.equals("(")){
+			if (value.equals("(")) {
 				//do nothing
 			} else if (value.equals("+") 
 					|| value.equals("-") 

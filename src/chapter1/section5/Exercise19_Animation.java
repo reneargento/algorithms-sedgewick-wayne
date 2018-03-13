@@ -47,7 +47,7 @@ public class Exercise19_Animation {
         UnionFind unionFind = new UnionFind(numberOfSites);
 
         for(int i = 0; i < 10; i++) {
-            if(unionFind.connected(connections[i].p, connections[i].q)) {
+            if (unionFind.connected(connections[i].p, connections[i].q)) {
                 continue;
             }
 

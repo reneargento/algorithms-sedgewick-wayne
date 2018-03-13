@@ -46,14 +46,14 @@ public class Exercise30<Item> implements Iterable<Item> {
 			return;
 		}
 		
-		if(k == 1) {
+		if (k == 1) {
 			first = first.next;
 		} else {
 			Node current;
 			int count = 1;
 			
 			for(current = first; current != null; current = current.next) {
-				if(count == k-1 && current.next != null) {
+				if (count == k-1 && current.next != null) {
 					current.next = current.next.next;
 					break;
 				}
@@ -64,7 +64,7 @@ public class Exercise30<Item> implements Iterable<Item> {
 	
 	//First implementation
 	public Node reverse() {
-		if(isEmpty()) {
+		if (isEmpty()) {
 			return null;
 		}
 		

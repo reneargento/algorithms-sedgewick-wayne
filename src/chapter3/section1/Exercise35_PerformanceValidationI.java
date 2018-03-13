@@ -32,7 +32,7 @@ public class Exercise35_PerformanceValidationI {
         frequencyCounter(currentWords, minLength);
         double previousRunningTime = initialTimer.elapsedTime();
 
-        for(int i=0; i < numberOfExperiments; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
 
             currentWords = new String[numberOfWords];
             System.arraycopy(words, 0, currentWords, 0, currentWords.length);

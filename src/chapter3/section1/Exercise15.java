@@ -23,7 +23,7 @@ public class Exercise15 {
 
         StdOut.printf("%13s %25s\n", "Searches", "Percentage of total time spent on insertions");
 
-        for(int i=0; i < numberOfSearches.length; i++) {
+        for(int i = 0; i < numberOfSearches.length; i++) {
             int numberOfInsertions = numberOfSearches[i] / 1000;
 
             Stopwatch totalTimeTimer = new Stopwatch();

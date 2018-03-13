@@ -19,7 +19,7 @@ public class KosarajuSharirSCC {
         DepthFirstOrder depthFirstOrder = new DepthFirstOrder(digraph.reverse());
 
         for(int vertex : depthFirstOrder.reversePostOrder()) {
-            if(!visited[vertex]) {
+            if (!visited[vertex]) {
                 dfs(digraph, vertex);
                 count++;
             }
@@ -31,7 +31,7 @@ public class KosarajuSharirSCC {
         id[vertex] = count;
 
         for(int neighbor : digraph.adjacent(vertex)) {
-            if(!visited[neighbor]) {
+            if (!visited[neighbor]) {
                 dfs(digraph, neighbor);
             }
         }
@@ -42,7 +42,7 @@ public class KosarajuSharirSCC {
 
         for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
             for(int neighbor : digraph.adjacent(vertex)) {
-                if(id(vertex) != id(neighbor)) {
+                if (id(vertex) != id(neighbor)) {
                     kernelDAG.addEdge(id(vertex), id(neighbor));
                 }
             }

@@ -83,7 +83,7 @@ public class Exercise40_FloydsMethod {
 
             if (index * 2 + 1 <= endIndex) {
                 numberOfCompares++;
-                if(ArrayUtil.more(array[index * 2 + 1], array[index * 2])) {
+                if (ArrayUtil.more(array[index * 2 + 1], array[index * 2])) {
                     biggestChildIndex = index * 2 + 1;
                 }
             }

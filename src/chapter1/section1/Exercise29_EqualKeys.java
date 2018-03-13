@@ -49,7 +49,7 @@ public static void main(String[] args) {
 		}
 	}
 	
-	private static int rank(int key, int[] arr, int lo, int hi, boolean count){
+	private static int rank(int key, int[] arr, int lo, int hi, boolean count) {
 		boolean found = false;
 		int mid = -1;
 		
@@ -58,7 +58,7 @@ public static void main(String[] args) {
 			
 			if (key < arr[mid]) {
 				return rank(key, arr, lo, mid-1, count);
-			} else if (key > arr[mid]){
+			} else if (key > arr[mid]) {
 				return rank(key, arr, mid+1, hi, count);
 			} else {
 				found = true;

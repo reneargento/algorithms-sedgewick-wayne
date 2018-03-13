@@ -17,7 +17,7 @@ public class Exercise15_FileInput {
 	public static void main(String...args) {
 		int[] ints = readAllInts(FILE_PATH);
 		
-		for(int i : ints){
+		for(int i : ints) {
 			StdOut.print(i + " ");
 		}
 	}
@@ -40,7 +40,7 @@ public class Exercise15_FileInput {
 		
 		int[] ints = new int[intList.size()];
 		
-		for (int i = 0; i < intList.size(); i++){
+		for (int i = 0; i < intList.size(); i++) {
 			ints[i] = intList.get(i);
 		}
 		

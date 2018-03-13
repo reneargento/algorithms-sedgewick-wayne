@@ -49,7 +49,7 @@ public class Exercise34_HotOrCold2LgN {
             }
         }
 
-        if(low > high) {
+        if (low > high) {
             return -1;
         }
 
@@ -57,7 +57,7 @@ public class Exercise34_HotOrCold2LgN {
 
         // Guess middle
         boolean isItHotterFirstHalf = isItHotter(lastGuess, middle, target);
-        if(isItHotterFirstHalf && middle == target) {
+        if (isItHotterFirstHalf && middle == target) {
             return middle;
         }
 

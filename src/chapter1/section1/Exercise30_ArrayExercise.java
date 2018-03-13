@@ -35,7 +35,7 @@ public class Exercise30_ArrayExercise {
 		
 		for (int k = 2; k <= biggestValue; k++) {
 			
-			if (i % k == 0 && j % k == 0){
+			if (i % k == 0 && j % k == 0) {
 				isPrime = false;
 				break;
 			}

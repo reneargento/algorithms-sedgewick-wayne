@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class Exercise11 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] array = {2, 4, 8, 16, 16, 16, 32, 64, 128, 128};
         Exercise11 exercise11 = new Exercise11(array);
 
@@ -24,7 +24,7 @@ public class Exercise11 {
     public Exercise11(int[] keys) {
         array = new int[keys.length];
 
-        for(int i = 0; i<keys.length; i++) {
+        for(int i = 0; i < keys.length; i++) {
             array[i] = keys[i]; //defensive copy
         }
         Arrays.sort(array);
@@ -64,7 +64,7 @@ public class Exercise11 {
 
         if (array[middle] > key) {
             return recursiveRank(key, low, middle - 1);
-        } else if(array[middle] < key) {
+        } else if (array[middle] < key) {
             return recursiveRank(key, middle + 1, high);
         } else {
             return middle;
@@ -75,7 +75,7 @@ public class Exercise11 {
     private int howMany(int key) {
         int indexFromRank = rank(key);
 
-        if(indexFromRank == -1) {
+        if (indexFromRank == -1) {
             return 0;
         }
 
@@ -89,7 +89,7 @@ public class Exercise11 {
         while(currentPreviousIndex != -1) {
             currentPreviousIndex = recursiveRank(key, 0, currentPreviousIndex-1);
 
-            if(currentPreviousIndex != -1) {
+            if (currentPreviousIndex != -1) {
                 previousIndex = currentPreviousIndex;
             }
         }
@@ -98,7 +98,7 @@ public class Exercise11 {
         while(currentNextIndex != -1) {
             currentNextIndex = recursiveRank(key, currentNextIndex+1, array.length-1);
 
-            if(currentNextIndex != -1) {
+            if (currentNextIndex != -1) {
                 nextIndex = currentNextIndex;
             }
         }

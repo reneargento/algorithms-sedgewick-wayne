@@ -109,7 +109,7 @@ public class Exercise8_OrderedOperationsForTries {
         }
 
         public String select(int index) {
-            if(index < 0 || index >= size()) {
+            if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Index cannot be negative and must be lower than trie size");
             }
 
@@ -370,7 +370,7 @@ public class Exercise8_OrderedOperationsForTries {
         }
 
         public String select(int index) {
-            if(index < 0 || index >= size()) {
+            if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Index cannot be negative and must be lower than TST size");
             }
 

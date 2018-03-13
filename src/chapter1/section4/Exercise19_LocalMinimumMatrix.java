@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise19_LocalMinimumMatrix {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int matrix1[][] = {{1}};
         int matrix2[][] = {{4, 1},
                            {3, -2}};
@@ -37,10 +37,10 @@ public class Exercise19_LocalMinimumMatrix {
     }
 
     private static int localMinimumMatrix(int[][] matrix) {
-        if(matrix == null) {
+        if (matrix == null) {
             throw new RuntimeException("Matrix cannot be null");
         }
-        if(matrix.length != matrix[0].length) {
+        if (matrix.length != matrix[0].length) {
             throw new RuntimeException("Matrix must be NxN");
         }
 
@@ -55,10 +55,10 @@ public class Exercise19_LocalMinimumMatrix {
                     && matrix[0][0] < matrix[1][0]) {
                 return matrix[0][0];
             } else if (matrix[0][1] < matrix[0][0]
-                    && matrix[0][1] < matrix[1][1]){
+                    && matrix[0][1] < matrix[1][1]) {
                 return matrix[0][1];
             } else if (matrix[1][0] < matrix[0][0]
-                    && matrix[1][0] < matrix[1][1]){
+                    && matrix[1][0] < matrix[1][1]) {
                 return matrix[1][0];
             } else {
                 return matrix[1][1];
@@ -72,7 +72,7 @@ public class Exercise19_LocalMinimumMatrix {
     //O(n)
     private static int localMinimumMatrix(int[][] matrix, int firstRow, int endRow, int firstColumn, int endColumn) {
 
-        if (firstRow == endRow && firstColumn == endColumn){
+        if (firstRow == endRow && firstColumn == endColumn) {
             return matrix[firstRow][firstColumn];
         }
 
@@ -87,13 +87,13 @@ public class Exercise19_LocalMinimumMatrix {
 
         //O(2n) = O(n) - check rows
         for(int i = firstColumn; i <= endColumn; i++) {
-            if (matrix[firstRow][i] < currentMinimumElement){
+            if (matrix[firstRow][i] < currentMinimumElement) {
                 currentMinimumElement = matrix[firstRow][i];
                 currentMinimumElementRow = firstRow;
                 currentMinimumElementColumn = i;
             }
 
-            if (matrix[endRow][i] < currentMinimumElement){
+            if (matrix[endRow][i] < currentMinimumElement) {
                 currentMinimumElement = matrix[endRow][i];
                 currentMinimumElementRow = endRow;
                 currentMinimumElementColumn = i;
@@ -102,13 +102,13 @@ public class Exercise19_LocalMinimumMatrix {
 
         //O(2n) = O(n) - check columns
         for(int i = firstRow; i <= endRow; i++) {
-            if (matrix[i][firstColumn] < currentMinimumElement){
+            if (matrix[i][firstColumn] < currentMinimumElement) {
                 currentMinimumElement = matrix[i][firstColumn];
                 currentMinimumElementRow = i;
                 currentMinimumElementColumn = firstColumn;
             }
 
-            if (matrix[i][endColumn] < currentMinimumElement){
+            if (matrix[i][endColumn] < currentMinimumElement) {
                 currentMinimumElement = matrix[i][endColumn];
                 currentMinimumElementRow = i;
                 currentMinimumElementColumn = endColumn;
@@ -116,8 +116,8 @@ public class Exercise19_LocalMinimumMatrix {
         }
 
         //O(n) - check center row
-        for(int i = firstColumn; i <= endColumn; i++){
-            if (matrix[centerRow][i] < currentMinimumElement){
+        for(int i = firstColumn; i <= endColumn; i++) {
+            if (matrix[centerRow][i] < currentMinimumElement) {
                 currentMinimumElement = matrix[centerRow][i];
                 currentMinimumElementRow = centerRow;
                 currentMinimumElementColumn = i;
@@ -125,8 +125,8 @@ public class Exercise19_LocalMinimumMatrix {
         }
 
         //O(n) - check center column
-        for(int i = firstRow; i <= endRow; i++){
-            if (matrix[i][centerColumn] < currentMinimumElement){
+        for(int i = firstRow; i <= endRow; i++) {
+            if (matrix[i][centerColumn] < currentMinimumElement) {
                 currentMinimumElement = matrix[i][centerColumn];
                 currentMinimumElementRow = i;
                 currentMinimumElementColumn = centerColumn;
@@ -136,7 +136,7 @@ public class Exercise19_LocalMinimumMatrix {
         //Check if minimum element is a local minimum
         //If not, recurse
 
-        if(currentMinimumElementRow - 1 >= 0
+        if (currentMinimumElementRow - 1 >= 0
                 && matrix[currentMinimumElementRow][currentMinimumElementColumn] > matrix[currentMinimumElementRow - 1][currentMinimumElementColumn]) {
             //Element above is smaller
             if (currentMinimumElementRow - 1 <= centerRow) {
@@ -150,7 +150,7 @@ public class Exercise19_LocalMinimumMatrix {
                 firstColumn = centerColumn;
             }
             return localMinimumMatrix(matrix, firstRow, endRow, firstColumn, endColumn);
-        } else if(currentMinimumElementRow + 1 < matrix.length
+        } else if (currentMinimumElementRow + 1 < matrix.length
                 && matrix[currentMinimumElementRow][currentMinimumElementColumn] > matrix[currentMinimumElementRow + 1][currentMinimumElementColumn]) {
             //Element below is smaller
             if (currentMinimumElementRow + 1 <= centerRow) {

@@ -15,7 +15,7 @@ public class Exercise43_RandomEuclideanGraphs {
 
     public List<Exercise37_EuclideanGraphs.EuclideanGraph> generateRandomEuclideanGraphs(int numberOfGraphs,
                                                                                          int vertices, double radius) {
-        if(numberOfGraphs < 0) {
+        if (numberOfGraphs < 0) {
             throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 
@@ -52,7 +52,7 @@ public class Exercise43_RandomEuclideanGraphs {
                         allVertices[vertexId].yCoordinate, allVertices[otherVertex].xCoordinate,
                         allVertices[otherVertex].yCoordinate);
 
-                if(distance <= radius) {
+                if (distance <= radius) {
                     randomEuclideanGraph.addEdge(vertexId, otherVertex);
                 }
             }

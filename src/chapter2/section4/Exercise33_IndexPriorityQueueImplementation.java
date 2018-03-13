@@ -23,7 +23,7 @@ public class Exercise33_IndexPriorityQueueImplementation {
             pq = new int[size + 1];
             qp = new int[size + 1];
 
-            for(int i=0; i < qp.length; i++) {
+            for(int i = 0; i < qp.length; i++) {
                 qp[i] = -1;
             }
         }
@@ -102,7 +102,7 @@ public class Exercise33_IndexPriorityQueueImplementation {
             while (index * 2 <= size) {
                 int selectedChildIndex = index * 2;
 
-                if (index * 2 + 1 <= size && more(index * 2, index * 2 + 1)){
+                if (index * 2 + 1 <= size && more(index * 2, index * 2 + 1)) {
                     selectedChildIndex = index * 2 + 1;
                 }
 

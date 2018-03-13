@@ -16,7 +16,7 @@ public class Exercise41_CopyQueue<Item> extends Queue<Item>{
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Queue<Integer> originalQueue = new Queue<>();
         originalQueue.enqueue(1);
         originalQueue.enqueue(2);

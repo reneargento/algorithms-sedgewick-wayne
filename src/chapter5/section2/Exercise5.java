@@ -431,7 +431,7 @@ public class Exercise5 {
         }
 
         public String select(int index) {
-            if(index < 0 || index >= size()) {
+            if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Index cannot be negative and must be lower than trie size");
             }
 
@@ -736,7 +736,7 @@ public class Exercise5 {
                 } else if (currentChar > currentNode.character) {
                     currentNode = currentNode.right;
                     direction = Direction.RIGHT;
-                } else if (digit < key.length() - 1){
+                } else if (digit < key.length() - 1) {
                     if (isNewKey) {
                         currentNode.size = currentNode.size + 1;
                     }
@@ -1118,7 +1118,7 @@ public class Exercise5 {
         }
 
         public String select(int index) {
-            if(index < 0 || index >= size()) {
+            if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Index cannot be negative and must be lower than TST size");
             }
 

@@ -131,7 +131,7 @@ public class Exercise29_ShellsortIncrements {
 
             sedgewicksIncrementSequence[i] = currentIncrementSet1;
 
-            if(i - 1 < 0) {
+            if (i - 1 < 0) {
                 break;
             }
 
@@ -155,7 +155,7 @@ public class Exercise29_ShellsortIncrements {
             incrementSequence = sedgewicksIncrementSequence;
         }
 
-        if(incrementSequence == null) {
+        if (incrementSequence == null) {
             return new int[]{};
         }
 
@@ -182,7 +182,7 @@ public class Exercise29_ShellsortIncrements {
 
         int[] incrementSequenceToBeUsed = new int[incrementSequence.length - middle];
         int index = 0;
-        for(int i = middle; i < incrementSequence.length; i++){
+        for(int i = middle; i < incrementSequence.length; i++) {
             incrementSequenceToBeUsed[index] = incrementSequence[i];
             index++;
         }

@@ -29,7 +29,7 @@ public class Exercise34_RandomBag<Item> implements Iterable<Item>{
     }
 
     public void add(Item item) {
-        if(size() == array.length){
+        if (size() == array.length) {
             resize(array.length * 2);
         }
 
@@ -38,11 +38,11 @@ public class Exercise34_RandomBag<Item> implements Iterable<Item>{
     }
 
     @SuppressWarnings("unchecked")
-    private void resize(int capacity){
+    private void resize(int capacity) {
 
         Item[] temp = (Item[]) new Object[capacity];
 
-        for(int i = 0; i < size(); i++){
+        for(int i = 0; i < size(); i++) {
             temp[i] = array[i];
         }
 
@@ -60,11 +60,11 @@ public class Exercise34_RandomBag<Item> implements Iterable<Item>{
         int index;
         Item[] arrayCopy;
 
-        public RandomBagIterator(){
+        public RandomBagIterator() {
             index = 0;
             arrayCopy = (Item[]) new Object[size];
 
-            for(int i = 0; i < size; i++){
+            for(int i = 0; i < size; i++) {
                 arrayCopy[i] = array[i];
             }
 
@@ -84,7 +84,7 @@ public class Exercise34_RandomBag<Item> implements Iterable<Item>{
         }
 
         private void sortArrayCopy() {
-            for(int i = 0; i < size; i++){
+            for(int i = 0; i < size; i++) {
 
                 int randomIndex = StdRandom.uniform(0, size - 1);
 
@@ -96,7 +96,7 @@ public class Exercise34_RandomBag<Item> implements Iterable<Item>{
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Exercise34_RandomBag<Integer> randomBag = new Exercise34_RandomBag<>();
         randomBag.add(1);
         randomBag.add(2);

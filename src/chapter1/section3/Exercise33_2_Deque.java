@@ -32,15 +32,15 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
     }
 
     public void pushLeft(Item item) {
-        if(size == array.length) {
+        if (size == array.length) {
             resize(size * 2);
         }
 
-        if(first == 0) {
+        if (first == 0) {
             moveArrayRight();
         }
 
-        if(isEmpty()) {
+        if (isEmpty()) {
             first = 0;
             last = 0;
             array[first] = item;
@@ -53,15 +53,15 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
     }
 
     public void pushRight(Item item) {
-        if (size == array.length){
+        if (size == array.length) {
             resize(size * 2);
         }
 
-        if(last == array.length - 1){
+        if (last == array.length - 1) {
             moveArrayLeft();
         }
 
-        if(isEmpty()){
+        if (isEmpty()) {
             first = 0;
             last = 0;
             array[last] = item;
@@ -74,7 +74,7 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
     }
 
     public Item popLeft() {
-        if(isEmpty()){
+        if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
 
@@ -83,22 +83,22 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
 
         size--;
 
-        if(isEmpty()){
+        if (isEmpty()) {
             first = -1;
             last = -1;
         } else {
             first = first + 1;
         }
 
-        if(size == array.length / 4) {
+        if (size == array.length / 4) {
             resize(array.length / 2);
         }
 
         return item;
     }
 
-    public Item popRight(){
-        if(isEmpty()){
+    public Item popRight() {
+        if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
 
@@ -107,14 +107,14 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
 
         size--;
 
-        if(isEmpty()){
+        if (isEmpty()) {
             first = -1;
             last = -1;
         } else {
             last = last - 1;
         }
 
-        if(size == array.length / 4){
+        if (size == array.length / 4) {
             resize(array.length / 2);
         }
 
@@ -126,7 +126,7 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
         Item[] newArray = (Item[]) new Object[newSize];
 
         int j = 0;
-        for(int i=first; i <= last; i++) {
+        for(int i = first; i <= last; i++) {
             newArray[j] = array[i];
             j++;
         }
@@ -138,7 +138,7 @@ public class Exercise33_2_Deque<Item> implements Iterable<Item>{
     }
 
     private void moveArrayRight() {
-        for (int i=last; i >= first; i--){
+        for (int i = last; i >= first; i--) {
             array[i + 1] = array[i];
         }
         first++;

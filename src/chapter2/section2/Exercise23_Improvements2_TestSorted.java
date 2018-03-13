@@ -16,7 +16,7 @@ public class Exercise23_Improvements2_TestSorted {
 
     private static void sort(Comparable[] array, Comparable[] aux, int low, int high) {
 
-        if(high <= low) {
+        if (high <= low) {
             return;
         }
 

@@ -65,7 +65,7 @@ public class Exercise37_EuclideanGraphs {
         }
 
         public void addEdge(int vertexId1, int vertexId2) {
-            if(allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
+            if (allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
                 throw new IllegalArgumentException("Vertex id not found");
             }
 
@@ -86,7 +86,7 @@ public class Exercise37_EuclideanGraphs {
                 for(int neighbor : adjacent(vertexId)) {
                     Vertex neighborVertex = allVertices[neighbor];
 
-                    if(neighbor >= vertexId) {
+                    if (neighbor >= vertexId) {
                         StdDraw.line(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
                                 neighborVertex.xCoordinate, neighborVertex.yCoordinate);
                     }
@@ -94,7 +94,7 @@ public class Exercise37_EuclideanGraphs {
             }
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                if(allVertices[vertexId] != null) {
+                if (allVertices[vertexId] != null) {
 
                     StdDraw.setPenColor(Color.WHITE);
                     StdDraw.filledCircle(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,

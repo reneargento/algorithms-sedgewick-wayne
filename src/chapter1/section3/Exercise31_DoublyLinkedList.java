@@ -100,7 +100,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 	}
 
 	public void insertAfterNode(Item afterNode, Item item) {
-		if(isEmpty()) {
+		if (isEmpty()) {
 			return;
 		}
 
@@ -112,7 +112,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 			}
 		}
 
-		if(currentNode != null) {
+		if (currentNode != null) {
 			DoubleNode newNode = new DoubleNode();
 			newNode.item = item;
 
@@ -121,7 +121,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 			newNode.previous = currentNode;
 			newNode.next = nextNode;
 
-			if(newNode.next == null) {
+			if (newNode.next == null) {
 				//This is the last node
 				last = newNode;
 			} else {
@@ -133,13 +133,13 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 	}
 	
 	public Item removeFromTheBeginning() {
-		if (isEmpty()){
+		if (isEmpty()) {
 			return null;
 		}
 		
 		Item item = first.item;
 		
-		if(first.next != null) {
+		if (first.next != null) {
 			first.next.previous = null;
 		} else { // There is only 1 element in the list
 			last = null;
@@ -152,14 +152,14 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 		return item;
 	}
 	
-	public Item removeFromTheEnd(){
+	public Item removeFromTheEnd() {
 		if (isEmpty()) {
 			return null;
 		}
 
 		Item item = last.item;
 
-		if(last.previous != null) {
+		if (last.previous != null) {
 			last.previous.next = null;
 		} else { // There is only 1 element in the list
 			first = null;
@@ -173,7 +173,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 	}
 
 	public Item removeItemWithIndex(int nodeIndex) {
-		if (isEmpty() || nodeIndex <= 0 || nodeIndex > size()){
+		if (isEmpty() || nodeIndex <= 0 || nodeIndex > size()) {
 			return null;
 		}
 
@@ -184,11 +184,11 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 		DoubleNode currentNode = startFromTheBeginning? first : last;
 
 		while (currentNode != null) {
-			if(nodeIndex == index) {
+			if (nodeIndex == index) {
 				break;
 			}
 
-			if(startFromTheBeginning) {
+			if (startFromTheBeginning) {
 				index++;
 			} else{
 				index--;
@@ -210,7 +210,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 			nextNode.previous = previousNode;
 		}
 
-		if(currentNode == first) {
+		if (currentNode == first) {
 			first = nextNode;
 		}
 		if (currentNode == last) {
@@ -248,7 +248,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 		}
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Exercise31_DoublyLinkedList<Integer> doublyLinkedList = new Exercise31_DoublyLinkedList<>();
 		doublyLinkedList.insertAtTheBeginning(10);
 		doublyLinkedList.insertAtTheBeginning(30);

@@ -11,9 +11,9 @@ import java.util.StringJoiner;
  */
 public class Exercise47_CatenableCollections<Item> {
 
-    public void catenationQueues(Queue<Item> queue1, Queue<Item> queue2){
+    public void catenationQueues(Queue<Item> queue1, Queue<Item> queue2) {
 
-        if(queue1 == null || queue2 == null){
+        if (queue1 == null || queue2 == null) {
             return;
         }
 
@@ -25,7 +25,7 @@ public class Exercise47_CatenableCollections<Item> {
 
     public void catenationStacks(Stack<Item> stack1, Stack<Item> stack2) {
 
-        if(stack1 == null || stack2 == null) {
+        if (stack1 == null || stack2 == null) {
             return;
         }
 
@@ -44,7 +44,7 @@ public class Exercise47_CatenableCollections<Item> {
 
     public void catenationSteques(Exercise32_Steque<Item> steque1, Exercise32_Steque<Item> steque2) {
 
-        if(steque1 == null || steque2 == null) {
+        if (steque1 == null || steque2 == null) {
             return;
         }
 
@@ -54,7 +54,7 @@ public class Exercise47_CatenableCollections<Item> {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         Exercise47_CatenableCollections<Integer> catenableCollections = new Exercise47_CatenableCollections<>();
 

@@ -65,7 +65,7 @@ public class Exercise40_Height {
         int maxValue = 10000000;
         BinarySearchTreeHeight<Integer, Integer> binarySearchTree = new BinarySearchTreeHeight<>();
 
-        for(int i=0; i < treeSize; i++) {
+        for(int i = 0; i < treeSize; i++) {
             int randomValue = StdRandom.uniform(maxValue);
             binarySearchTree.put(randomValue, randomValue);
         }

@@ -63,7 +63,7 @@ public class Exercise25_MultiwayMergesort {
     }
 
     private void kWayMergeSort(Comparable[] array, Comparable[] aux, int k, int low, int high) {
-        if(low >= high) {
+        if (low >= high) {
             return;
         }
 
@@ -90,7 +90,7 @@ public class Exercise25_MultiwayMergesort {
         int[] endIndexes = new int[k];
 
         for(int i = 0; i < startIndexes.length; i++) {
-            if(i == 0) {
+            if (i == 0) {
                 startIndexes[i] = low;
             } else {
                 startIndexes[i] = Math.min(endIndexes[i - 1] + 1, high);
@@ -98,7 +98,7 @@ public class Exercise25_MultiwayMergesort {
 
             int extraValue = 0;
 
-            if(remainingValues > 0) {
+            if (remainingValues > 0) {
                 extraValue = 1;
                 remainingValues--;
             }

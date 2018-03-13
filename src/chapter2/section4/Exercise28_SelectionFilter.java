@@ -86,7 +86,7 @@ public class Exercise28_SelectionFilter {
     }
 
     private static void printPoints(Stack<Point> pointsStack) {
-        while (pointsStack.size() > 0){
+        while (pointsStack.size() > 0) {
             StdOut.println(pointsStack.pop());
         }
     }

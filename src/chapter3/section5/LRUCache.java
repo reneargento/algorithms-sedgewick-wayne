@@ -24,7 +24,7 @@ public class LRUCache<Item> {
     //O(1)
     public void access(Item item) {
 
-        if(hashTable.contains(item)) {
+        if (hashTable.contains(item)) {
             DoublyLinkedList.DoubleNode itemNodeInList = hashTable.get(item);
             doublyLinkedList.removeItemWithNode(itemNodeInList);
         }
@@ -38,7 +38,7 @@ public class LRUCache<Item> {
     public Item remove() {
         Item leastRecentlyAccessedItem = doublyLinkedList.removeFromTheEnd();
 
-        if(leastRecentlyAccessedItem != null) {
+        if (leastRecentlyAccessedItem != null) {
             hashTable.delete(leastRecentlyAccessedItem);
         }
 

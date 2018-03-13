@@ -23,7 +23,7 @@ public class Exercise35_RandomQueue {
         }
 
         public void enqueue(Item item) {
-            if(size == items.length) {
+            if (size == items.length) {
                 resize(items.length * 2);
             }
 
@@ -32,7 +32,7 @@ public class Exercise35_RandomQueue {
         }
 
         public Item dequeue() {
-            if(isEmpty()){
+            if (isEmpty()) {
                 throw new RuntimeException("Queue underflow");
             }
 
@@ -44,7 +44,7 @@ public class Exercise35_RandomQueue {
             items[size - 1] = null;
             size--;
 
-            if(size > 0 && size == items.length / 4) {
+            if (size > 0 && size == items.length / 4) {
                 resize(items.length / 2);
             }
 
@@ -100,7 +100,7 @@ public class Exercise35_RandomQueue {
     private static void fillQueueWithBridgeHandsCards(RandomQueue randomQueue) {
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
 
-        for (int i = 0; i < suits.length; i++){
+        for (int i = 0; i < suits.length; i++) {
             randomQueue.enqueue(new Card("A", suits[i]));
             randomQueue.enqueue(new Card("2", suits[i]));
             randomQueue.enqueue(new Card("3", suits[i]));

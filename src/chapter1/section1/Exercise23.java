@@ -30,7 +30,7 @@ public class Exercise23 {
 	
 	private static void binarySearch(int[] arr, int[] numbers, char operation) {
 		
-		if (operation == '+'){
+		if (operation == '+') {
 			StdOut.println("Numbers NOT in whitelist:");
 		} else {
 			StdOut.println("Numbers IN whitelist:");
@@ -63,7 +63,7 @@ public class Exercise23 {
 		
 	}
 	
-	private static int rank(int key, int[] arr, int lo, int hi){
+	private static int rank(int key, int[] arr, int lo, int hi) {
 		
 		if (lo <= hi) {
 			int mid = lo + (hi - lo) / 2;

@@ -24,7 +24,7 @@ public class Exercise37_PutGetRatio {
 
         StdOut.printf("%21s %20s %20s %8s\n", "Input | ","Running Time Put | ", "Running Time Get | ", "Ratio");
 
-        for(int i=0; i < numberOfBits.length; i++) {
+        for(int i = 0; i < numberOfBits.length; i++) {
             int lowerBoundValue = 0;
             int higherBoundValue = 0;
 

@@ -40,7 +40,7 @@ public class QuickSortWithCutoff {
 
         while(true) {
             while (ArrayUtil.less(array[++i], pivot)) {
-                if(i == high) {
+                if (i == high) {
                     break;
                 }
             }

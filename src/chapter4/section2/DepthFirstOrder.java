@@ -21,7 +21,7 @@ public class DepthFirstOrder {
         visited = new boolean[digraph.vertices()];
 
         for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            if(!visited[vertex]) {
+            if (!visited[vertex]) {
                 dfs(digraph, vertex);
             }
         }
@@ -33,7 +33,7 @@ public class DepthFirstOrder {
         visited[vertex] = true;
 
         for(int neighbor : digraph.adjacent(vertex)) {
-            if(!visited[neighbor]) {
+            if (!visited[neighbor]) {
                 dfs(digraph, neighbor);
             }
         }

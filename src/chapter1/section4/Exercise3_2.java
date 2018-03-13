@@ -60,16 +60,16 @@ public class Exercise3_2 {
 
     private static void drawPointAndLine(double x, double y, List<Point2D> pointList, boolean isRescale) {
 
-        if(y == Double.NEGATIVE_INFINITY) {
+        if (y == Double.NEGATIVE_INFINITY) {
             y = 0;
         }
 
         Point2D point = new Point2D(x, y);
-        if(!isRescale) {
+        if (!isRescale) {
             pointList.add(point);
         }
 
-        if(pointList.size() > 1) {
+        if (pointList.size() > 1) {
             Point2D previousPoint = pointList.get(pointList.size() - 2);
             StdDraw.line(previousPoint.x(), previousPoint.y(), point.x(), point.y());
         }
@@ -77,16 +77,16 @@ public class Exercise3_2 {
         StdDraw.point(x, y);
     }
 
-    private static void rescaleIfNecessary(double nLog, double timeLog){
-        if(nLog > currentXMaxScale || timeLog > currentYMaxScale) {
-            if(nLog > currentXMaxScale) {
-                if(currentXMaxScale * 2 > nLog) {
+    private static void rescaleIfNecessary(double nLog, double timeLog) {
+        if (nLog > currentXMaxScale || timeLog > currentYMaxScale) {
+            if (nLog > currentXMaxScale) {
+                if (currentXMaxScale * 2 > nLog) {
                     currentXMaxScale = currentXMaxScale * 2;
                 } else {
                     currentXMaxScale = (int) (1.5 * nLog);
                 }
             }
-            if(timeLog > currentYMaxScale) {
+            if (timeLog > currentYMaxScale) {
                 currentYMaxScale = currentYMaxScale * 2;
             }
 

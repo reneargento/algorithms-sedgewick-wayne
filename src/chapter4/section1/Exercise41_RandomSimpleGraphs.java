@@ -74,7 +74,7 @@ public class Exercise41_RandomSimpleGraphs {
         //A complete graph has n * (n - 1) / 2 edges
         int maxNumberOfEdges = (vertices * (vertices - 1)) / 2;
 
-        if(edges > maxNumberOfEdges) {
+        if (edges > maxNumberOfEdges) {
             throw new IllegalArgumentException("The maximum number of edges a simple graph with " + vertices
                     + " vertices may have is " + maxNumberOfEdges);
         }
@@ -96,7 +96,7 @@ public class Exercise41_RandomSimpleGraphs {
         int shuffleIndex = 0;
 
         for(int edge = 0; edge < edges; edge++) {
-            if(shuffleIndex == shuffledVerticesArray1.length) {
+            if (shuffleIndex == shuffledVerticesArray1.length) {
                 StdRandom.shuffle(shuffledVerticesArray1);
                 StdRandom.shuffle(shuffledVerticesArray2);
 
@@ -107,7 +107,7 @@ public class Exercise41_RandomSimpleGraphs {
             int vertexId2 = shuffledVerticesArray2[shuffleIndex];
             shuffleIndex++;
 
-            if(randomSimpleGraph.adjacentSetOfValues(vertexId1).contains(vertexId2)
+            if (randomSimpleGraph.adjacentSetOfValues(vertexId1).contains(vertexId2)
                     || vertexId1 == vertexId2) {
                 edge--;
                 continue;

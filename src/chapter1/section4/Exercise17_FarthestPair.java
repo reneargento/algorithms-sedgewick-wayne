@@ -24,7 +24,7 @@ public class Exercise17_FarthestPair {
     private static double[] farthestPair(double[] array) {
         double[] farthestPair = new double[2];
 
-        if(array.length == 0){
+        if (array.length == 0) {
             throw new RuntimeException("Array cannot be null");
         }
 
@@ -34,7 +34,7 @@ public class Exercise17_FarthestPair {
         farthestPair[0] = array[0];
         farthestPair[1] = array[0];
 
-        for(int i = 1; i<array.length; i++){
+        for(int i = 1; i < array.length; i++) {
             if (array[i] < currentMin) {
                 currentMin = array[i];
                 farthestPair[0] = array[i];

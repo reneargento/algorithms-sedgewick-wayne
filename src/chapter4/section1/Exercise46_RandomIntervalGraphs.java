@@ -35,13 +35,13 @@ public class Exercise46_RandomIntervalGraphs {
         }
 
         public void addEdge(IntervalBinarySearchTree.Interval interval1, IntervalBinarySearchTree.Interval interval2) {
-            if(!intervalToIdHashMap.contains(interval1)) {
+            if (!intervalToIdHashMap.contains(interval1)) {
                 int newVertexId = intervalToIdHashMap.size();
 
                 intervalToIdHashMap.put(interval1, newVertexId);
                 keys[newVertexId] = interval1;
             }
-            if(!intervalToIdHashMap.contains(interval2)) {
+            if (!intervalToIdHashMap.contains(interval2)) {
                 int newVertexId = intervalToIdHashMap.size();
 
                 intervalToIdHashMap.put(interval2, newVertexId);
@@ -109,7 +109,7 @@ public class Exercise46_RandomIntervalGraphs {
             while (!randomIntervalGenerated) {
                 randomIntervalStart = StdRandom.uniform();
 
-                if(randomIntervalStart + length <= 1) {
+                if (randomIntervalStart + length <= 1) {
                     randomIntervalGenerated = true;
                 }
             }
@@ -144,7 +144,7 @@ public class Exercise46_RandomIntervalGraphs {
         int vertices = Integer.parseInt(args[0]);
         double length = Double.parseDouble(args[1]);
 
-        if(length < 0 || length >= 1) {
+        if (length < 0 || length >= 1) {
             throw new IllegalArgumentException("Intervals length must be higher than 0 and less than 1");
         }
 

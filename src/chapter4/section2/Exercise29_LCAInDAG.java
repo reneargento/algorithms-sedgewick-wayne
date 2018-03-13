@@ -31,7 +31,7 @@ public class Exercise29_LCAInDAG {
         }
 
         for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            if(indegrees[vertex] == 0) {
+            if (indegrees[vertex] == 0) {
                 sources.add(vertex);
             }
         }
@@ -52,7 +52,7 @@ public class Exercise29_LCAInDAG {
             sourceDistanceQueue.enqueue(source);
             distanceFromCurrentSource[source] = 0;
 
-            if(distanceFromCurrentSource[source] > maxDistances[source]) {
+            if (distanceFromCurrentSource[source] > maxDistances[source]) {
                 maxDistances[source] = distanceFromCurrentSource[source];
             }
 
@@ -63,7 +63,7 @@ public class Exercise29_LCAInDAG {
                     distanceFromCurrentSource[neighbor] = distanceFromCurrentSource[currentVertex] + 1;
                     sourceDistanceQueue.enqueue(neighbor);
 
-                    if(distanceFromCurrentSource[neighbor] > maxDistances[neighbor]) {
+                    if (distanceFromCurrentSource[neighbor] > maxDistances[neighbor]) {
                         maxDistances[neighbor] = distanceFromCurrentSource[neighbor];
                     }
                 }
@@ -74,7 +74,7 @@ public class Exercise29_LCAInDAG {
     //O(V + E)
     public int getLCA(int vertex1, int vertex2) {
         DirectedCycle directedCycle = new DirectedCycle(digraph);
-        if(directedCycle.hasCycle()) {
+        if (directedCycle.hasCycle()) {
             throw new IllegalArgumentException("Digraph is not a DAG");
         }
 
@@ -105,7 +105,7 @@ public class Exercise29_LCAInDAG {
         while (!queue.isEmpty()) {
             int currentVertex = queue.dequeue();
 
-            if(vertex1Ancestors.contains(currentVertex)) {
+            if (vertex1Ancestors.contains(currentVertex)) {
                 commonAncestors.add(currentVertex);
             }
 
@@ -120,7 +120,7 @@ public class Exercise29_LCAInDAG {
         int lowestCommonAncestor = -1;
 
         for(int commonAncestor : commonAncestors.keys()) {
-            if(maxDistances[commonAncestor] > maxDistance) {
+            if (maxDistances[commonAncestor] > maxDistance) {
                 maxDistance = maxDistances[commonAncestor];
                 lowestCommonAncestor = commonAncestor;
             }
@@ -138,7 +138,7 @@ public class Exercise29_LCAInDAG {
 
         Exercise29_LCAInDAG lcaInDAG1 = new Exercise29_LCAInDAG(digraph1);
         int lca1 = lcaInDAG1.getLCA(2, 4);
-        if(lca1 == -1) {
+        if (lca1 == -1) {
             StdOut.print("LCA in digraph 1: There is no LCA in this DAG");
         } else {
             StdOut.print("LCA in digraph 1: " + lca1);
@@ -153,7 +153,7 @@ public class Exercise29_LCAInDAG {
 
         Exercise29_LCAInDAG lcaInDAG2 = new Exercise29_LCAInDAG(digraph2);
         int lca2 = lcaInDAG2.getLCA(3, 4);
-        if(lca2 == -1) {
+        if (lca2 == -1) {
             StdOut.print("LCA in digraph 2: There is no LCA in this DAG");
         } else {
             StdOut.print("LCA in digraph 2: " + lca2);
@@ -175,7 +175,7 @@ public class Exercise29_LCAInDAG {
 
         Exercise29_LCAInDAG lcaInDAG3 = new Exercise29_LCAInDAG(digraph3);
         int lca3 = lcaInDAG3.getLCA(2, 3);
-        if(lca3 == -1) {
+        if (lca3 == -1) {
             StdOut.print("LCA in digraph 3: There is no LCA in this DAG");
         } else {
             StdOut.print("LCA in digraph 3: " + lca3);
@@ -197,7 +197,7 @@ public class Exercise29_LCAInDAG {
 
         Exercise29_LCAInDAG lcaInDAG4 = new Exercise29_LCAInDAG(digraph4);
         int lca4 = lcaInDAG4.getLCA(2, 3);
-        if(lca4 == -1) {
+        if (lca4 == -1) {
             StdOut.print("LCA in digraph 4: There is no LCA in this DAG");
         } else {
             StdOut.print("LCA in digraph 4: " + lca4);
@@ -211,7 +211,7 @@ public class Exercise29_LCAInDAG {
 
         Exercise29_LCAInDAG lcaInDAG5 = new Exercise29_LCAInDAG(digraph5);
         int lca5 = lcaInDAG5.getLCA(2, 3);
-        if(lca5 == -1) {
+        if (lca5 == -1) {
             StdOut.print("LCA in digraph 5: There is no LCA in this DAG");
         } else {
             StdOut.print("LCA in digraph 5: " + lca5);

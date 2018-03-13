@@ -99,7 +99,7 @@ public class Exercise20_IdleTime {
 
         for(int i = 0; i < jobs.length; i++) {
 
-            if(i != 0 && jobs[i].startTime > currentMaxEndTime) {
+            if (i != 0 && jobs[i].startTime > currentMaxEndTime) {
 
                 //A new interval is beginning
                 if (jobs[i].startTime - currentMaxEndTime > maxIdleTime) {
@@ -156,7 +156,7 @@ public class Exercise20_IdleTime {
 
         int maxIdleTime = jobs[0].startTime;
 
-        for(int i=0; i < jobs.length; i++) {
+        for(int i = 0; i < jobs.length; i++) {
 
             if (i != 0 && jobs[i].startTime > jobs[i - 1].endTime) {
 

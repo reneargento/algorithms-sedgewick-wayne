@@ -25,7 +25,7 @@ public class Exercise16_UnbiasedElection {
 
                 if (order.indexOf(currentChar1) < order.indexOf(currentChar2)) {
                     return -1;
-                } else if(order.indexOf(currentChar1) > order.indexOf(currentChar2)) {
+                } else if (order.indexOf(currentChar1) > order.indexOf(currentChar2)) {
                     return 1;
                 }
             }

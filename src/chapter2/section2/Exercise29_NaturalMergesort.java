@@ -57,7 +57,7 @@ public class Exercise29_NaturalMergesort {
 
         int numberOfPasses = 1;
 
-        if(array == null || array.length == 1) {
+        if (array == null || array.length == 1) {
             return numberOfPasses;
         }
 

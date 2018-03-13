@@ -38,7 +38,7 @@ public class Exercise2 {
                 return;
             }
 
-            for(int i=0; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 if(keys[i].equals(key)) {
                     values[i] = value;
                     return;
@@ -59,7 +59,7 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            for(int i=0; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 if(keys[i].equals(key)) {
                     return values[i];
                 }
@@ -73,8 +73,8 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            for(int i=0; i < size; i++) {
-                if(keys[i].equals(key)) {
+            for(int i = 0; i < size; i++) {
+                if (keys[i].equals(key)) {
                     keys[i] = keys[size - 1];
                     values[i] = values[size - 1];
 
@@ -93,7 +93,7 @@ public class Exercise2 {
         }
 
         public boolean contains(Key key) {
-            for(int i=0; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 if(keys[i].equals(key)) {
                     return true;
                 }
@@ -105,7 +105,7 @@ public class Exercise2 {
         public Iterable<Key> keys() {
             Queue<Key> queue = new Queue<>();
 
-            for(int i=0; i < size; i++) {
+            for(int i = 0; i < size; i++) {
                 queue.enqueue(keys[i]);
             }
 

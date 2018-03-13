@@ -24,7 +24,7 @@ public class Exercise30_EulerianHamiltonianCycles {
         }
 
         public int otherVertex(int vertex) {
-            if(vertex == vertex1) {
+            if (vertex == vertex1) {
                 return vertex2;
             } else {
                 return vertex1;
@@ -37,7 +37,7 @@ public class Exercise30_EulerianHamiltonianCycles {
         public Stack<Integer> getEulerCycle(Graph graph) {
 
             // A graph with no edges is considered to have an Eulerian cycle
-            if(graph.edges() == 0) {
+            if (graph.edges() == 0) {
                 return new Stack<>();
             }
 
@@ -45,7 +45,7 @@ public class Exercise30_EulerianHamiltonianCycles {
             // (this test is needed or it might find an Eulerian path instead of an Eulerian cycle)
             // An Eulerian path have exactly 2 vertices with even degrees
             for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-                if(graph.degree(vertex) % 2 != 0) {
+                if (graph.degree(vertex) % 2 != 0) {
                     return null;
                 }
             }
@@ -61,8 +61,8 @@ public class Exercise30_EulerianHamiltonianCycles {
 
                 for(int neighbor : graph.adjacent(vertex)) {
                     //Careful with self-loops
-                    if(vertex == neighbor) {
-                        if(selfLoops % 2 == 0) {
+                    if (vertex == neighbor) {
+                        if (selfLoops % 2 == 0) {
                             Edge edge = new Edge(vertex, neighbor);
                             adjacent[vertex].enqueue(edge);
                             adjacent[neighbor].enqueue(edge);
@@ -70,7 +70,7 @@ public class Exercise30_EulerianHamiltonianCycles {
 
                         selfLoops++;
                     } else {
-                        if(vertex < neighbor) {
+                        if (vertex < neighbor) {
                             Edge edge = new Edge(vertex, neighbor);
                             adjacent[vertex].enqueue(edge);
                             adjacent[neighbor].enqueue(edge);
@@ -91,7 +91,7 @@ public class Exercise30_EulerianHamiltonianCycles {
 
                 while (!adjacent[vertex].isEmpty()) {
                     Edge edge = adjacent[vertex].dequeue();
-                    if(edge.isUsed) {
+                    if (edge.isUsed) {
                         continue;
                     }
                     edge.isUsed = true;
@@ -105,7 +105,7 @@ public class Exercise30_EulerianHamiltonianCycles {
             }
 
             // For each edge visited, we visited a vertex. Add 1 because the first and last vertices are the same.
-            if(eulerCycle.size() == graph.edges + 1) {
+            if (eulerCycle.size() == graph.edges + 1) {
                 return eulerCycle;
             } else {
                 return null;
@@ -116,7 +116,7 @@ public class Exercise30_EulerianHamiltonianCycles {
             int nonIsolatedVertex = -1;
 
             for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-                if(graph.degree(vertex) > 0) {
+                if (graph.degree(vertex) > 0) {
                     nonIsolatedVertex = vertex;
                     break;
                 }
@@ -139,7 +139,7 @@ public class Exercise30_EulerianHamiltonianCycles {
 
         Stack<Integer> eulerCycle1 = eulerCycle.getEulerCycle(graphWithEulerPath1);
 
-        if(eulerCycle1 != null) {
+        if (eulerCycle1 != null) {
             exercise30.printCycle(eulerCycle1);
         } else {
             StdOut.println("There is no Eulerian cycle");
@@ -154,7 +154,7 @@ public class Exercise30_EulerianHamiltonianCycles {
 
         Stack<Integer> eulerCycle2 = eulerCycle.getEulerCycle(graphWithEulerCycle1);
 
-        if(eulerCycle2 != null) {
+        if (eulerCycle2 != null) {
             exercise30.printCycle(eulerCycle2);
         } else {
             StdOut.println("There is no Eulerian cycle");
@@ -187,7 +187,7 @@ public class Exercise30_EulerianHamiltonianCycles {
 
         Stack<Integer> eulerCycle3 = eulerCycle.getEulerCycle(graphWithEulerCycle2);
 
-        if(eulerCycle3 != null) {
+        if (eulerCycle3 != null) {
             exercise30.printCycle(eulerCycle3);
         } else {
             StdOut.println("There is no Eulerian cycle");
@@ -203,7 +203,7 @@ public class Exercise30_EulerianHamiltonianCycles {
 
         Stack<Integer> eulerCycle4 = eulerCycle.getEulerCycle(graphWithEulerPath2);
 
-        if(eulerCycle4 != null) {
+        if (eulerCycle4 != null) {
             exercise30.printCycle(eulerCycle4);
         } else {
             StdOut.println("There is no Eulerian cycle");
@@ -217,10 +217,10 @@ public class Exercise30_EulerianHamiltonianCycles {
         while (!eulerCycle.isEmpty()) {
             int vertex = eulerCycle.pop();
 
-            if(!eulerCycle.isEmpty()) {
+            if (!eulerCycle.isEmpty()) {
                 StdOut.print(vertex + "-" + eulerCycle.peek());
 
-                if(eulerCycle.size() > 1) {
+                if (eulerCycle.size() > 1) {
                     StdOut.print(" ");
                 }
             }

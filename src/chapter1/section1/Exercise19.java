@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise19 {
 
 	public static void main(String[] args) {
-//		for (int n = 0; n < 90; n++){
+//		for (int n = 0; n < 90; n++) {
 //			StdOut.println(n + " - " + F(n));
 //		}
 		

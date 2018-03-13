@@ -21,9 +21,9 @@ public class Exercise9 {
 
         @Override
         public int compareTo(VolumesPerDay that) {
-            if(this.volume < that.volume) {
+            if (this.volume < that.volume) {
                 return -1;
-            } else if(this.volume > that.volume) {
+            } else if (this.volume > that.volume) {
                 return 1;
             } else {
                 return 0;

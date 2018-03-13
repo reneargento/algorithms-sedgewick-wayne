@@ -207,7 +207,7 @@ public class Exercise44_AverageSearchTime {
                 RedBlackBSTInternalPathLength<Integer, Integer> redBlackBSTInternalPathLength =
                         new RedBlackBSTInternalPathLength<>();
 
-                for(int i=0; i < size; i++) {
+                for(int i = 0; i < size; i++) {
                     Integer randomKey = StdRandom.uniform(Integer.MAX_VALUE);
                     redBlackBSTInternalPathLength.put(randomKey, randomKey);
                 }

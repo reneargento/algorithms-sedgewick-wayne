@@ -91,7 +91,7 @@ public class Exercise17_InPlaceKeyIndexedCounting {
 //                return;
 //            }
 
-            if(low > high) {
+            if (low > high) {
                 return;
             }
 

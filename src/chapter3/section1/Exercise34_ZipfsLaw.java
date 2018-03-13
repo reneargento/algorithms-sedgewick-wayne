@@ -17,7 +17,7 @@ public class Exercise34_ZipfsLaw {
         int[] arraySizes = {1000, 10000, 100000, 1000000};
 
         Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
-        for(int i=0; i < arraySizes.length; i++) {
+        for(int i = 0; i < arraySizes.length; i++) {
             Comparable[] array = ArrayGenerator.generateOrderedArray(arraySizes[i]);
             allInputArrays.put(i, array);
         }

@@ -7,7 +7,7 @@ package util;
 public class ArrayUtil {
 
     public static boolean less(Comparable value1, Comparable value2) {
-        if(value1.compareTo(value2) < 0) {
+        if (value1.compareTo(value2) < 0) {
             return true;
         } else {
             return false;
@@ -15,7 +15,7 @@ public class ArrayUtil {
     }
 
     public static boolean more(Comparable value1, Comparable value2) {
-        if(value1.compareTo(value2) > 0) {
+        if (value1.compareTo(value2) > 0) {
             return true;
         } else {
             return false;

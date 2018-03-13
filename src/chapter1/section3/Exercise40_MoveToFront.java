@@ -32,12 +32,12 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item>{
         return size == 0;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
     public void insert(Item item) {
-        if(existingCharactersHashTable.containsKey(item)){
+        if (existingCharactersHashTable.containsKey(item)) {
             delete(item);
         }
 
@@ -51,23 +51,23 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item>{
     }
 
     private void delete(Item item) {
-        if(isEmpty()){
+        if (isEmpty()) {
             return;
         }
 
         Node current = first;
 
-        if(current.item.equals(item)){
+        if (current.item.equals(item)) {
             first = current.next;
             size--;
         } else{
             for(current = first; current.next != null; current = current.next) {
-                if(current.next.item.equals(item)){
+                if (current.next.item.equals(item)) {
                     break;
                 }
             }
 
-            if(current.next != null) {
+            if (current.next != null) {
                 current.next = current.next.next;
                 size--;
             }
@@ -100,7 +100,7 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item>{
     public static void main (String[] args) {
         Exercise40_MoveToFront<Character> moveToFront = new Exercise40_MoveToFront<>();
 
-        while (StdIn.hasNextChar()){
+        while (StdIn.hasNextChar()) {
             moveToFront.insert(StdIn.readChar());
         }
 

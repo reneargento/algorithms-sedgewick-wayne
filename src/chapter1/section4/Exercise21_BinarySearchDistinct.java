@@ -61,9 +61,9 @@ public class Exercise21_BinarySearchDistinct {
         while (low <= high) {
             int middle = low + (high - low) / 2;
 
-            if(key < array[middle]){
+            if (key < array[middle]) {
                 high = middle - 1;
-            } else if (key > array[middle]){
+            } else if (key > array[middle]) {
                 low = middle + 1;
             } else {
                 return middle;

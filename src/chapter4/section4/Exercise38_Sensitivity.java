@@ -20,7 +20,7 @@ public class Exercise38_Sensitivity {
 
         @Override
         public boolean equals(Object object) {
-            if(!(object instanceof EdgeInformation)) {
+            if (!(object instanceof EdgeInformation)) {
                 return false;
             }
 
@@ -63,7 +63,7 @@ public class Exercise38_Sensitivity {
 
         for(int i = 0; i < sensitivity.length; i++) {
             for(int j = 0; j < sensitivity[0].length; j++) {
-                if(!edgesInformation.contains(new EdgeInformation(i, j))) {
+                if (!edgesInformation.contains(new EdgeInformation(i, j))) {
                     sensitivity[i][j] = true;
                 }
             }
@@ -77,14 +77,14 @@ public class Exercise38_Sensitivity {
             int[] downwardCriticalEdgesCount = new int[edgeWeightedDigraph.vertices()];
 
             for(DirectedEdge edge : edgeWeightedDigraph.edges()) {
-                if(dijkstraSP.distTo(edge.from()) + edge.weight() == dijkstraSP.distTo(edge.to())) {
+                if (dijkstraSP.distTo(edge.from()) + edge.weight() == dijkstraSP.distTo(edge.to())) {
                     downwardCriticalEdgesCount[edge.to()]++;
                 }
             }
 
             // 3- Check which edges adjacent to the source vertex are not upwards critical edges
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(source)) {
-                if(downwardCriticalEdgesCount[edge.to()] != 1) {
+                if (downwardCriticalEdgesCount[edge.to()] != 1) {
                     sensitivity[source][edge.to()] = true;
                 }
             }
@@ -112,7 +112,7 @@ public class Exercise38_Sensitivity {
         StdOut.print("Upwards critical edges 1: ");
         for(int i = 0; i < sensitivity1.length; i++) {
             for(int j = 0; j < sensitivity1[0].length; j++) {
-                if(!sensitivity1[i][j]) {
+                if (!sensitivity1[i][j]) {
                     StdOut.print(i + "->" + j + " ");
                 }
             }
@@ -133,7 +133,7 @@ public class Exercise38_Sensitivity {
         StdOut.print("\nUpwards critical edges 2: ");
         for(int i = 0; i < sensitivity2.length; i++) {
             for(int j = 0; j < sensitivity2[0].length; j++) {
-                if(!sensitivity2[i][j]) {
+                if (!sensitivity2[i][j]) {
                     StdOut.print(i + "->" + j + " ");
                 }
             }

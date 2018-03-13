@@ -45,7 +45,7 @@ public class Exercise4 {
         dedupStringList.add(strings[0]);
 
         for(int i = 1; i < strings.length; i++) {
-            if(strings[i].equals(currentString)) {
+            if (strings[i].equals(currentString)) {
                 continue;
             } else {
                 currentString = strings[i];
