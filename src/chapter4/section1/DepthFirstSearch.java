@@ -18,7 +18,7 @@ public class DepthFirstSearch {
         count++;
 
         for(int neighbor : graph.adjacent(vertex)) {
-            if(!visited[neighbor]) {
+            if (!visited[neighbor]) {
                 dfs(graph, neighbor);
             }
         }

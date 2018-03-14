@@ -44,7 +44,7 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
             //There is data to be consumed
             consumeData(item);
             dataCountToBeConsumed--;
-        } else{
+        } else {
             if (isEmpty()) {
                 ringBuffer[size] = item;
                 first = 0;
@@ -54,7 +54,7 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
                 if (size < ringBuffer.length) {
                     if (last == ringBuffer.length - 1) {
                         last = 0; //wrap around
-                    } else{
+                    } else {
                         last++;
                     }
                     ringBuffer[last] = item;
@@ -83,7 +83,7 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
 
         if (first == ringBuffer.length - 1) {
             first = 0; //wrap around
-        } else{
+        } else {
             first++;
         }
 
@@ -117,7 +117,7 @@ public class Exercise39_RingBuffer<Item> implements Iterable<Item>{
 
             if (current == ringBuffer.length - 1) {
                 current = 0; //Wrap around
-            } else{
+            } else {
                 current++;
             }
 

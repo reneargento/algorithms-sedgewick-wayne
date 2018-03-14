@@ -38,7 +38,7 @@ public class Exercise10 {
             int possibleSmallestIndex = binarySearch(array, element, 0, middle - 1);
             if (possibleSmallestIndex == -1) {
                 return middle;
-            } else{
+            } else {
                 return binarySearch(array, element, 0, middle - 1);
             }
 

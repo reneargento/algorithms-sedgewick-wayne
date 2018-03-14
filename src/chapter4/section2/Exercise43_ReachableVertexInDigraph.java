@@ -38,7 +38,7 @@ public class Exercise43_ReachableVertexInDigraph {
 
         // 4- If all vertices were visited, then the vertex is reachable from every other vertex
         for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            if(!visited[vertex]) {
+            if (!visited[vertex]) {
                 return false;
             }
         }
@@ -50,7 +50,7 @@ public class Exercise43_ReachableVertexInDigraph {
         visited[vertex] = true;
 
         for(int neighbor : digraph.adjacent(vertex)) {
-            if(!visited[neighbor]) {
+            if (!visited[neighbor]) {
                 dfs(digraph, neighbor, visited);
             }
         }
@@ -71,7 +71,7 @@ public class Exercise43_ReachableVertexInDigraph {
         int sinks = 0;
 
         for(int vertex = 0; vertex < kernelDAG.vertices(); vertex++) {
-            if(kernelDAG.outdegree(vertex) == 0) {
+            if (kernelDAG.outdegree(vertex) == 0) {
                 sinks++;
             }
         }

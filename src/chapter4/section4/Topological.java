@@ -10,7 +10,7 @@ public class Topological {
     public Topological(EdgeWeightedDigraph edgeWeightedDigraph) {
         EdgeWeightedDirectedCycle cycleFinder = new EdgeWeightedDirectedCycle(edgeWeightedDigraph);
 
-        if(!cycleFinder.hasCycle()) {
+        if (!cycleFinder.hasCycle()) {
             DepthFirstOrder depthFirstOrder = new DepthFirstOrder(edgeWeightedDigraph);
             topologicalOrder = depthFirstOrder.reversePostOrder();
         }

@@ -10,31 +10,31 @@ public class Exercise40_DeleteTheMaximum {
     private class RedBlackBSTDeleteMax<Key extends Comparable<Key>, Value>  extends RedBlackBST<Key, Value> {
 
         public void deleteMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = deleteMax(root);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node deleteMax(Node node) {
-            if(isRed(node.left)) {
+            if (isRed(node.left)) {
                 node = rotateRight(node);
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 return null;
             }
 
-            if(!isRed(node.right) && !isRed(node.right.left)) {
+            if (!isRed(node.right) && !isRed(node.right.left)) {
                 node = moveRedRight(node);
             }
 
@@ -47,7 +47,7 @@ public class Exercise40_DeleteTheMaximum {
             // make node.right or one of its children red
             flipColors(node);
 
-            if(node.left != null && isRed(node.left.left)) {
+            if (node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
                 flipColors(node);
             }
@@ -56,19 +56,19 @@ public class Exercise40_DeleteTheMaximum {
         }
 
         protected Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(isRed(node.right)) {
+            if (isRed(node.right)) {
                 node = rotateLeft(node);
             }
 
-            if(isRed(node.left) && node.left != null && isRed(node.left.left)) {
+            if (isRed(node.left) && node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -78,13 +78,13 @@ public class Exercise40_DeleteTheMaximum {
         }
 
         protected void flipColors(Node node) {
-            if(node != null) {
+            if (node != null) {
                 node.color = !node.color;
 
-                if(node.left != null) {
+                if (node.left != null) {
                     node.left.color = !node.left.color;
                 }
-                if(node.right != null) {
+                if (node.right != null) {
                     node.right.color = !node.right.color;
                 }
             }

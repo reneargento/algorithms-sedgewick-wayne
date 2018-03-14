@@ -33,7 +33,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private int size(Node node) {
-        if(node == null) {
+        if (node == null) {
             return 0;
         }
 
@@ -45,7 +45,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private int height(Node node) {
-        if(node == null) {
+        if (node == null) {
             return -1;
         }
 
@@ -57,7 +57,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node rotateLeft(Node node) {
-        if(node == null || node.right == null) {
+        if (node == null || node.right == null) {
             return node;
         }
 
@@ -76,7 +76,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node rotateRight(Node node) {
-        if(node == null || node.left == null) {
+        if (node == null || node.left == null) {
             return node;
         }
 
@@ -95,11 +95,11 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     public void put(Key key, Value value) {
-        if(key == null) {
+        if (key == null) {
             return;
         }
 
-        if(value == null) {
+        if (value == null) {
             delete(key);
             return;
         }
@@ -108,15 +108,15 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node put(Node node, Key key, Value value) {
-        if(node == null) {
+        if (node == null) {
             return new Node(key, value, 1, 0);
         }
 
         int compare = key.compareTo(node.key);
 
-        if(compare < 0) {
+        if (compare < 0) {
             node.left = put(node.left, key, value);
-        } else if(compare > 0) {
+        } else if (compare > 0) {
             node.right = put(node.right, key, value);
         } else {
             node.value = value;
@@ -130,17 +130,17 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
 
     private Node balance(Node node) {
 
-        if(balanceFactor(node) < -1) {
+        if (balanceFactor(node) < -1) {
             //right-left case
-            if(balanceFactor(node.right) > 0) {
+            if (balanceFactor(node.right) > 0) {
                 node.right = rotateRight(node.right);
             }
             node = rotateLeft(node);
         }
 
-        if(balanceFactor(node) > 1) {
+        if (balanceFactor(node) > 1) {
             //left-right case
-            if(balanceFactor(node.left) < 0) {
+            if (balanceFactor(node.left) < 0) {
                 node.left = rotateLeft(node.left);
             }
             node = rotateRight(node);
@@ -157,14 +157,14 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
      * most one.
      */
     private int balanceFactor(Node node) {
-        if(node == null) {
+        if (node == null) {
             return 0;
         }
         return height(node.left) - height(node.right);
     }
 
     public Value get(Key key) {
-        if(key == null) {
+        if (key == null) {
             return null;
         }
 
@@ -172,14 +172,14 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Value get(Node node, Key key) {
-        if(node == null) {
+        if (node == null) {
             return null;
         }
 
         int compare = key.compareTo(node.key);
-        if(compare < 0) {
+        if (compare < 0) {
             return get(node.left, key);
-        } else if(compare > 0) {
+        } else if (compare > 0) {
             return get(node.right, key);
         } else {
             return node.value;
@@ -194,7 +194,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     public Key min() {
-        if(root == null) {
+        if (root == null) {
             throw new NoSuchElementException("Empty binary search tree");
         }
 
@@ -202,7 +202,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node min(Node node) {
-        if(node.left == null) {
+        if (node.left == null) {
             return node;
         }
 
@@ -210,7 +210,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     public Key max() {
-        if(root == null) {
+        if (root == null) {
             throw new NoSuchElementException("Empty binary search tree");
         }
 
@@ -218,7 +218,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node max(Node node) {
-        if(node.right == null) {
+        if (node.right == null) {
             return node;
         }
 
@@ -228,7 +228,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     //Returns the highest key in the symbol table smaller than or equal to key.
     public Key floor(Key key) {
         Node node = floor(root, key);
-        if(node == null) {
+        if (node == null) {
             return null;
         }
 
@@ -236,19 +236,19 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node floor(Node node, Key key) {
-        if(node == null) {
+        if (node == null) {
             return null;
         }
 
         int compare = key.compareTo(node.key);
 
-        if(compare == 0) {
+        if (compare == 0) {
             return node;
-        } else if(compare < 0) {
+        } else if (compare < 0) {
             return floor(node.left, key);
         } else {
             Node rightNode = floor(node.right, key);
-            if(rightNode != null) {
+            if (rightNode != null) {
                 return rightNode;
             } else {
                 return node;
@@ -259,7 +259,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     //Returns the smallest key in the symbol table greater than or equal to key.
     public Key ceiling(Key key) {
         Node node = ceiling(root, key);
-        if(node == null) {
+        if (node == null) {
             return null;
         }
 
@@ -267,19 +267,19 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node ceiling(Node node, Key key) {
-        if(node == null) {
+        if (node == null) {
             return null;
         }
 
         int compare = key.compareTo(node.key);
 
-        if(compare == 0) {
+        if (compare == 0) {
             return node;
-        } else if(compare > 0) {
+        } else if (compare > 0) {
             return ceiling(node.right, key);
         } else {
             Node leftNode = ceiling(node.left, key);
-            if(leftNode != null) {
+            if (leftNode != null) {
                 return leftNode;
             } else {
                 return node;
@@ -288,7 +288,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     public Key select(int index) {
-        if(index >= size()) {
+        if (index >= size()) {
             throw new IllegalArgumentException("Index is higher than tree size");
         }
 
@@ -298,7 +298,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     private Node select(Node node, int index) {
         int leftSubtreeSize = size(node.left);
 
-        if(leftSubtreeSize == index) {
+        if (leftSubtreeSize == index) {
             return node;
         } else if (leftSubtreeSize > index) {
             return select(node.left, index);
@@ -312,15 +312,15 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private int rank(Node node, Key key) {
-        if(node == null) {
+        if (node == null) {
             return 0;
         }
 
         //Returns the number of keys less than node.key in the subtree rooted at node
         int compare = key.compareTo(node.key);
-        if(compare < 0) {
+        if (compare < 0) {
             return rank(node.left, key);
-        } else if(compare > 0) {
+        } else if (compare > 0) {
             return size(node.left) + 1 + rank(node.right, key);
         } else {
             return size(node.left);
@@ -328,7 +328,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     public void deleteMin() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return;
         }
 
@@ -336,7 +336,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node deleteMin(Node node) {
-        if(node.left == null) {
+        if (node.left == null) {
             return node.right;
         }
 
@@ -348,7 +348,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     public void deleteMax() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return;
         }
 
@@ -356,7 +356,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node deleteMax(Node node) {
-        if(node.right == null) {
+        if (node.right == null) {
             return node.left;
         }
 
@@ -368,11 +368,11 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     public void delete(Key key) {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return;
         }
 
-        if(!contains(key)) {
+        if (!contains(key)) {
             return;
         }
 
@@ -380,20 +380,20 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private Node delete(Node node, Key key) {
-        if(node == null) {
+        if (node == null) {
             return null;
         }
 
         int compare = key.compareTo(node.key);
 
-        if(compare < 0) {
+        if (compare < 0) {
             node.left = delete(node.left, key);
-        } else if(compare > 0) {
+        } else if (compare > 0) {
             node.right = delete(node.right, key);
         } else {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node.right;
-            } else if(node.right == null) {
+            } else if (node.right == null) {
                 return node.left;
             } else {
                 Node aux = min(node.right);
@@ -426,22 +426,22 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
     }
 
     private void keys(Node node, Queue<Key> queue, Key low, Key high) {
-        if(node == null) {
+        if (node == null) {
             return;
         }
 
         int compareLow = low.compareTo(node.key);
         int compareHigh = high.compareTo(node.key);
 
-        if(compareLow < 0) {
+        if (compareLow < 0) {
             keys(node.left, queue, low, high);
         }
 
-        if(compareLow <= 0 && compareHigh >= 0) {
+        if (compareLow <= 0 && compareHigh >= 0) {
             queue.enqueue(node.key);
         }
 
-        if(compareHigh > 0) {
+        if (compareHigh > 0) {
             keys(node.right, queue, low, high);
         }
     }

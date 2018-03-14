@@ -58,7 +58,7 @@ public class Exercise33_DriverSelfOrganizingSearch {
                 for(int p = 0; p < probabilityDistribution.length; p++) {
                     keyProbabilityToSearch -= probabilityDistribution[p];
 
-                    if(keyProbabilityToSearch <= 0) {
+                    if (keyProbabilityToSearch <= 0) {
                         //Search hit
                         arraySTSelfOrganizing.get((int) array[p]);
                         break;
@@ -83,7 +83,7 @@ public class Exercise33_DriverSelfOrganizingSearch {
                 for(int p = 0; p < probabilityDistribution.length; p++) {
                     keyProbabilityToSearch -= probabilityDistribution[p];
 
-                    if(keyProbabilityToSearch <= 0) {
+                    if (keyProbabilityToSearch <= 0) {
                         //Search hit
                         binarySearchSymbolTable.get((int) array[p]);
                         break;

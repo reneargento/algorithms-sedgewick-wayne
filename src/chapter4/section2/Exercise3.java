@@ -38,7 +38,7 @@ public class Exercise3 {
         }
 
         public CopyDigraph(Digraph digraph) {
-            if(digraph == null) {
+            if (digraph == null) {
                 vertices = 0;
             } else {
                 this.vertices = digraph.vertices();

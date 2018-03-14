@@ -10,27 +10,27 @@ public class Exercise39_DeleteTheMinimum {
     private class RedBlackBSTDeleteMin<Key extends Comparable<Key>, Value> extends RedBlackBST<Key, Value> {
 
         public void deleteMin() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = deleteMin(root);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         protected Node deleteMin(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return null;
             }
 
-            if(!isRed(node.left) && !isRed(node.left.left)) {
+            if (!isRed(node.left) && !isRed(node.left.left)) {
                 node = moveRedLeft(node);
             }
 
@@ -43,7 +43,7 @@ public class Exercise39_DeleteTheMinimum {
             // make node.left or one of its children red
             flipColors(node);
 
-            if(node.right != null && isRed(node.right.left)) {
+            if (node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
                 flipColors(node);
@@ -53,19 +53,19 @@ public class Exercise39_DeleteTheMinimum {
         }
 
         protected Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(isRed(node.right)) {
+            if (isRed(node.right)) {
                 node = rotateLeft(node);
             }
 
-            if(isRed(node.left) && node.left != null && isRed(node.left.left)) {
+            if (isRed(node.left) && node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -75,13 +75,13 @@ public class Exercise39_DeleteTheMinimum {
         }
 
         protected void flipColors(Node node) {
-            if(node != null) {
+            if (node != null) {
                 node.color = !node.color;
 
-                if(node.left != null) {
+                if (node.left != null) {
                     node.left.color = !node.left.color;
                 }
-                if(node.right != null) {
+                if (node.right != null) {
                     node.right.color = !node.right.color;
                 }
             }

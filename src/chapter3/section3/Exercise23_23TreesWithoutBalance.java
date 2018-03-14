@@ -42,7 +42,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -54,7 +54,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private boolean isRed(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
@@ -62,7 +62,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private Node rotateLeft(Node node) {
-            if(node == null || node.right == null) {
+            if (node == null || node.right == null) {
                 return node;
             }
 
@@ -81,7 +81,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private Node rotateRight(Node node) {
-            if(node == null || node.left == null) {
+            if (node == null || node.left == null) {
                 return node;
             }
 
@@ -100,12 +100,12 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private void flipColors(Node node) {
-            if(node == null || node.left == null || node.right == null) {
+            if (node == null || node.left == null || node.right == null) {
                 return;
             }
 
             //The root must have opposite color of its two children
-            if((isRed(node) && !isRed(node.left) && !isRed(node.right))
+            if ((isRed(node) && !isRed(node.left) && !isRed(node.right))
                     || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
                 node.color = !node.color;
                 node.left.color = !node.left.color;
@@ -114,11 +114,11 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         public void put(Key key, Value value) {
-            if(key == null) {
+            if (key == null) {
                 return;
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -128,20 +128,20 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private Node put(Node node, Key key, Value value, Node parent) {
-            if(node == null) {
+            if (node == null) {
                 boolean isTwoThreeNode = true;
 
                 //If the parent is red, it is a 3-node
                 //Otherwise, check the node sibling's color
-                if(parent != null && !isRed(parent)) {
+                if (parent != null && !isRed(parent)) {
                     boolean isLeftChild = key.compareTo(parent.key) < 0;
 
-                    if(isLeftChild) {
-                        if(!isRed(parent.right)) {
+                    if (isLeftChild) {
+                        if (!isRed(parent.right)) {
                             isTwoThreeNode = false;
                         }
                     } else {
-                        if(!isRed(parent.left)) {
+                        if (!isRed(parent.left)) {
                             isTwoThreeNode = false;
                         }
                     }
@@ -152,9 +152,9 @@ public class Exercise23_23TreesWithoutBalance {
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value, node);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value, node);
             } else {
                 node.value = value;
@@ -165,7 +165,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         public Value get(Key key) {
-            if(key == null) {
+            if (key == null) {
                 return null;
             }
 
@@ -173,14 +173,14 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private Value get(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return get(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return get(node.right, key);
             } else {
                 return node.value;
@@ -195,7 +195,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -203,7 +203,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         protected Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node;
             }
 
@@ -211,7 +211,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -219,7 +219,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 return node;
             }
 
@@ -229,7 +229,7 @@ public class Exercise23_23TreesWithoutBalance {
         //Returns the highest key in the symbol table smaller than or equal to key.
         public Key floor(Key key) {
             Node node = floor(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -237,19 +237,19 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private Node floor(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 return floor(node.left, key);
             } else {
                 Node rightNode = floor(node.right, key);
-                if(rightNode != null) {
+                if (rightNode != null) {
                     return rightNode;
                 } else {
                     return node;
@@ -260,7 +260,7 @@ public class Exercise23_23TreesWithoutBalance {
         //Returns the smallest key in the symbol table greater than or equal to key.
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -268,19 +268,19 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private Node ceiling(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return ceiling(node.right, key);
             } else {
                 Node leftNode = ceiling(node.left, key);
-                if(leftNode != null) {
+                if (leftNode != null) {
                     return leftNode;
                 } else {
                     return node;
@@ -289,7 +289,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -299,7 +299,7 @@ public class Exercise23_23TreesWithoutBalance {
         private Node select(Node node, int index) {
             int leftSubtreeSize = size(node.left);
 
-            if(leftSubtreeSize == index) {
+            if (leftSubtreeSize == index) {
                 return node;
             } else if (leftSubtreeSize > index) {
                 return select(node.left, index);
@@ -313,15 +313,15 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private int rank(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
             //Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return rank(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return size(node.left) + 1 + rank(node.right, key);
             } else {
                 return size(node.left);
@@ -329,27 +329,27 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         public void deleteMin() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = deleteMin(root);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node deleteMin(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node.right;
             }
 
-            if(!isRed(node.left) && !isRed(node.left.left)) {
+            if (!isRed(node.left) && !isRed(node.left.left)) {
                 node = moveRedLeft(node);
             }
 
@@ -358,31 +358,31 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         public void deleteMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = deleteMax(root);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node deleteMax(Node node) {
-            if(isRed(node.left)) {
+            if (isRed(node.left)) {
                 node = rotateRight(node);
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 return node.left;
             }
 
-            if(!isRed(node.right) && !isRed(node.right.left)) {
+            if (!isRed(node.right) && !isRed(node.right.left)) {
                 node = moveRedRight(node);
             }
 
@@ -391,50 +391,50 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         public void delete(Key key) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = delete(root, key);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(key.compareTo(node.key) < 0) {
-                if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+            if (key.compareTo(node.key) < 0) {
+                if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                     node = moveRedLeft(node);
                 }
 
                 node.left = delete(node.left, key);
             } else {
-                if(isRed(node.left)) {
+                if (isRed(node.left)) {
                     node = rotateRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0 && node.right == null) {
+                if (key.compareTo(node.key) == 0 && node.right == null) {
                     return node.left;
                 }
 
-                if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+                if (!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                     node = moveRedRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0) {
+                if (key.compareTo(node.key) == 0) {
                     Node aux = min(node.right);
                     node.key = aux.key;
                     node.value = aux.value;
@@ -452,7 +452,7 @@ public class Exercise23_23TreesWithoutBalance {
             // make node.left or one of its children red
             flipColors(node);
 
-            if(node.right != null && isRed(node.right.left)) {
+            if (node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
                 flipColors(node);
@@ -466,7 +466,7 @@ public class Exercise23_23TreesWithoutBalance {
             // make node.right or one of its children red
             flipColors(node);
 
-            if(node.left != null && isRed(node.left.left)) {
+            if (node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
                 flipColors(node);
             }
@@ -475,19 +475,19 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(isRed(node.right) && isRed(node.right.right)) {
+            if (isRed(node.right) && isRed(node.right.right)) {
                 node = rotateLeft(node);
             }
 
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -514,22 +514,22 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private void keys(Node node, Queue<Key> queue, Key low, Key high) {
-            if(node == null) {
+            if (node == null) {
                 return;
             }
 
             int compareLow = low.compareTo(node.key);
             int compareHigh = high.compareTo(node.key);
 
-            if(compareLow < 0) {
+            if (compareLow < 0) {
                 keys(node.left, queue, low, high);
             }
 
-            if(compareLow <= 0 && compareHigh >= 0) {
+            if (compareLow <= 0 && compareHigh >= 0) {
                 queue.enqueue(node.key);
             }
 
-            if(compareHigh > 0) {
+            if (compareHigh > 0) {
                 keys(node.right, queue, low, high);
             }
         }
@@ -554,7 +554,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private int internalPathLength() {
-            if(root == null) {
+            if (root == null) {
                 return 0;
             }
 
@@ -568,11 +568,11 @@ public class Exercise23_23TreesWithoutBalance {
                 Node current = queue.dequeue();
                 internalPathLength += current.depth;
 
-                if(current.left != null) {
+                if (current.left != null) {
                     current.left.depth = current.depth + 1;
                     queue.enqueue(current.left);
                 }
-                if(current.right != null) {
+                if (current.right != null) {
                     current.right.depth = current.depth + 1;
                     queue.enqueue(current.right);
                 }
@@ -582,7 +582,7 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         public int averagePathLength() {
-            if(size() == 0) {
+            if (size() == 0) {
                 return 0;
             }
 
@@ -594,15 +594,15 @@ public class Exercise23_23TreesWithoutBalance {
         }
 
         private boolean isTwoThreeTree(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return true;
             }
 
-            if(isRed(node.left) && (isRed(node.left.left) || isRed(node.left.right))) {
+            if (isRed(node.left) && (isRed(node.left.left) || isRed(node.left.right))) {
                 return false;
             }
 
-            if(isRed(node.right) && (isRed(node.right.left) || isRed(node.right.right))) {
+            if (isRed(node.right) && (isRed(node.right.left) || isRed(node.right.right))) {
                 return false;
             }
 

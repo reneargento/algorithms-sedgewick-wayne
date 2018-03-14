@@ -28,7 +28,7 @@ public class Exercise20 {
         String filePath = Constants.FILES_PATH + Constants.REAL_WORLD_RATES_FILE;
         String[] allValues = FileUtil.getAllStringsFromFile(filePath);
 
-        if(allValues == null) {
+        if (allValues == null) {
             throw new IllegalArgumentException("File not found");
         }
 
@@ -38,7 +38,7 @@ public class Exercise20 {
 
         double[][] adjacencyMatrix = new double[vertices][vertices];
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
             name[vertex] = allValues[valueId++];
 
             for(int neighbor = 0; neighbor < vertices; neighbor++) {
@@ -72,7 +72,7 @@ public class Exercise20 {
                 sum += adjacencyMatrix[vertexFrom][vertexTo];
             }
 
-            if(sum < 0) {
+            if (sum < 0) {
                 for(int i = 0; i < cycle.length() - 1; i++) {
                     int currencyId = Character.getNumericValue(cycle.charAt(i));
                     int nextCurrencyId = Character.getNumericValue(cycle.charAt(i + 1));

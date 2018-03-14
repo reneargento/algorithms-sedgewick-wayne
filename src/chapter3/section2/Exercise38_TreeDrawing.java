@@ -31,7 +31,7 @@ public class Exercise38_TreeDrawing {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -43,15 +43,15 @@ public class Exercise38_TreeDrawing {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;

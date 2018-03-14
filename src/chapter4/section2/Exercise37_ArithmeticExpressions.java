@@ -9,7 +9,7 @@ public class Exercise37_ArithmeticExpressions {
 
     public double evaluateDAG(Digraph digraph, String[] values) {
         DirectedCycle directedCycle = new DirectedCycle(digraph);
-        if(directedCycle.hasCycle()) {
+        if (directedCycle.hasCycle()) {
             throw new IllegalArgumentException("Digraph is not a DAG");
         }
 
@@ -18,7 +18,7 @@ public class Exercise37_ArithmeticExpressions {
 
     private double dfs(Digraph digraph, int sourceVertex, String[] values) {
         // the values array works as a visited array
-        if(!values[sourceVertex].equals("+")
+        if (!values[sourceVertex].equals("+")
                 && !values[sourceVertex].equals("-")
                 && !values[sourceVertex].equals("*")
                 && !values[sourceVertex].equals("/")) {
@@ -28,26 +28,26 @@ public class Exercise37_ArithmeticExpressions {
         double result = Double.MIN_VALUE;
 
         for(int neighbor : digraph.adjacent(sourceVertex)) {
-            if(values[sourceVertex].equals("+")) {
-                if(result == Double.MIN_VALUE) {
+            if (values[sourceVertex].equals("+")) {
+                if (result == Double.MIN_VALUE) {
                     result = 0;
                 }
 
                 result += dfs(digraph, neighbor, values);
-            } else if(values[sourceVertex].equals("-")) {
-                if(result == Double.MIN_VALUE) {
+            } else if (values[sourceVertex].equals("-")) {
+                if (result == Double.MIN_VALUE) {
                     result = 0;
                 }
 
                 result -= dfs(digraph, neighbor, values);
-            } else if(values[sourceVertex].equals("*")) {
-                if(result == Double.MIN_VALUE) {
+            } else if (values[sourceVertex].equals("*")) {
+                if (result == Double.MIN_VALUE) {
                     result = 1;
                 }
 
                 result *= dfs(digraph, neighbor, values);
-            } else if(values[sourceVertex].equals("/")) {
-                if(result == Double.MIN_VALUE) {
+            } else if (values[sourceVertex].equals("/")) {
+                if (result == Double.MIN_VALUE) {
                     result = dfs(digraph, neighbor, values);
                 } else {
                     result /= dfs(digraph, neighbor, values);

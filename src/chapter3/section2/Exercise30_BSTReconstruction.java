@@ -36,7 +36,7 @@ public class Exercise30_BSTReconstruction {
     private int postIndex;
 
     private BinarySearchTree.Node constructBSTWithPreorder(int[] pre) {
-        if(pre == null || pre.length == 0) {
+        if (pre == null || pre.length == 0) {
             return null;
         }
 
@@ -46,14 +46,14 @@ public class Exercise30_BSTReconstruction {
     }
 
     private BinarySearchTree.Node constructBSTWithPreorder(int[] pre, int min, int max) {
-        if(preIndex >= pre.length) {
+        if (preIndex >= pre.length) {
             return null;
         }
 
         BinarySearchTree.Node root = null;
 
         //Check if the key is in range
-        if(min < pre[preIndex] && pre[preIndex] < max) {
+        if (min < pre[preIndex] && pre[preIndex] < max) {
             root = new BinarySearchTree().new Node(pre[preIndex], pre[preIndex], 1);
             preIndex++;
 
@@ -61,10 +61,10 @@ public class Exercise30_BSTReconstruction {
             root.right = constructBSTWithPreorder(pre, pre[preIndex - 1], max);
 
             //Update node's size
-            if(root.left != null) {
+            if (root.left != null) {
                 root.size += root.left.size;
             }
-            if(root.right != null) {
+            if (root.right != null) {
                 root.size += root.right.size;
             }
         }
@@ -73,7 +73,7 @@ public class Exercise30_BSTReconstruction {
     }
 
     private BinarySearchTree.Node constructBSTWithPostorder(int[] post) {
-        if(post == null || post.length == 0) {
+        if (post == null || post.length == 0) {
             return null;
         }
 
@@ -88,14 +88,14 @@ public class Exercise30_BSTReconstruction {
     }
 
     private BinarySearchTree.Node constructBSTWithPostorder(int[] post, int min, int max) {
-        if(postIndex >= post.length) {
+        if (postIndex >= post.length) {
             return null;
         }
 
         BinarySearchTree.Node root = null;
 
         //Check if the key is in range
-        if(min < post[postIndex] && post[postIndex] < max) {
+        if (min < post[postIndex] && post[postIndex] < max) {
             root = new BinarySearchTree().new Node(post[postIndex], post[postIndex], 1);
             postIndex++;
 
@@ -103,10 +103,10 @@ public class Exercise30_BSTReconstruction {
             root.left = constructBSTWithPostorder(post, min, post[postIndex - 1]);
 
             //Update node's size
-            if(root.left != null) {
+            if (root.left != null) {
                 root.size += root.left.size;
             }
-            if(root.right != null) {
+            if (root.right != null) {
                 root.size += root.right.size;
             }
         }
@@ -115,7 +115,7 @@ public class Exercise30_BSTReconstruction {
     }
 
     private void printBSTInOrder(BinarySearchTree.Node node) {
-        if(node == null) {
+        if (node == null) {
             return;
         }
 

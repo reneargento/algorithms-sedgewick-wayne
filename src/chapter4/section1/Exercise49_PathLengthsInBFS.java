@@ -79,7 +79,7 @@ public class Exercise49_PathLengthsInBFS {
         BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, randomSourceVertex);
         boolean foundPath = breadthFirstPaths.hasPathTo(randomDestinationVertex);
 
-        if(foundPath) {
+        if (foundPath) {
             for(int vertexInPath : breadthFirstPaths.pathTo(randomDestinationVertex)) {
                 totalPathLength++;
             }

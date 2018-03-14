@@ -21,7 +21,7 @@ public class Exercise51_TwoColorable {
             edgesExamined = 0;
 
             for(int source = 0; source < graph.vertices(); source++) {
-                if(!visited[source]) {
+                if (!visited[source]) {
                     dfs(graph, source);
                 }
             }
@@ -31,14 +31,14 @@ public class Exercise51_TwoColorable {
             visited[vertex] = true;
 
             for(int neighbor : graph.adjacent(vertex)) {
-                if(isTwoColorable) {
+                if (isTwoColorable) {
                     edgesExamined++;
                 }
 
-                if(!visited[neighbor]) {
+                if (!visited[neighbor]) {
                     color[neighbor] = !color[vertex];
                     dfs(graph, neighbor);
-                } else if(color[neighbor] == color[vertex]) {
+                } else if (color[neighbor] == color[vertex]) {
                     isTwoColorable = false;
                 }
             }

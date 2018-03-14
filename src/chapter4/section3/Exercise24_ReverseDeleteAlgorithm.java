@@ -38,7 +38,7 @@ public class Exercise24_ReverseDeleteAlgorithm {
             ConnectedComponentsEdgeWeightedGraph connectedComponentsEdgeWeightedGraph =
                     new ConnectedComponentsEdgeWeightedGraph(edgeWeightedGraph);
             // If deleting the edge disconnected the graph, re-add it
-            if(connectedComponentsEdgeWeightedGraph.count() > 1) {
+            if (connectedComponentsEdgeWeightedGraph.count() > 1) {
                 edgeWeightedGraph.addEdge(edge);
             }
         }

@@ -73,12 +73,12 @@ public class Exercise24 {
         for(int componentId = 0; componentId < componentSizes.length; componentId++) {
             int currentComponentSize = componentSizes[componentId];
 
-            if(currentComponentSize > largestComponentSize) {
+            if (currentComponentSize > largestComponentSize) {
                 largestComponentSize = currentComponentSize;
                 largestComponentId = componentId;
             }
 
-            if(currentComponentSize < 10) {
+            if (currentComponentSize < 10) {
                 numberOfComponentsOfSizeLessThan10++;
             }
         }
@@ -138,7 +138,7 @@ public class Exercise24 {
 
         boolean doesTheLargestComponentContainKevinBacon = connectedComponents.id(kevinBaconId) == largestComponentId;
         StdOut.print("Does the largest component contain Kevin Bacon: ");
-        if(doesTheLargestComponentContainKevinBacon) {
+        if (doesTheLargestComponentContainKevinBacon) {
             StdOut.println("Yes");
         } else {
             StdOut.println("No");
@@ -153,8 +153,8 @@ public class Exercise24 {
         ExtendedGraph largestComponentSubGraph = new ExtendedGraph(largestComponentSize);
 
         for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-            if(connectedComponents.id(vertex) == largestComponentId) {
-                if(!graphToSubGraphVertexMap.contains(vertex)) {
+            if (connectedComponents.id(vertex) == largestComponentId) {
+                if (!graphToSubGraphVertexMap.contains(vertex)) {
                     int subGraphVertexId = graphToSubGraphVertexMap.size();
 
                     graphToSubGraphVertexMap.put(vertex, subGraphVertexId);
@@ -165,7 +165,7 @@ public class Exercise24 {
 
         //Create subGraph
         for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-            if(connectedComponents.id(vertex) == largestComponentId) {
+            if (connectedComponents.id(vertex) == largestComponentId) {
                 int subGraphVertexId = graphToSubGraphVertexMap.get(vertex);
 
                 for(int adjacentVertex : graph.adjacent(vertex)) {
@@ -193,12 +193,12 @@ public class Exercise24 {
             int kevinBaconNumber = breadthFirstPaths.distTo(vertex);
 
             //The subGraph is connected, so this should never happen
-            if(kevinBaconNumber == Integer.MAX_VALUE) {
+            if (kevinBaconNumber == Integer.MAX_VALUE) {
                 throw new RuntimeException("Graph is not connected");
             }
 
             histogram[kevinBaconNumber]++;
-            if(kevinBaconNumber > maxDistance) {
+            if (kevinBaconNumber > maxDistance) {
                 maxDistance = kevinBaconNumber;
             }
         }
@@ -206,7 +206,7 @@ public class Exercise24 {
         int[] verticesFurthestFromTheCenter = new int[histogram[maxDistance]];
         int farAwayVerticesIndex = 0;
         for(int vertex = 0; vertex < largestComponentSubGraph.vertices(); vertex++) {
-            if(breadthFirstPaths.distTo(vertex) == maxDistance) {
+            if (breadthFirstPaths.distTo(vertex) == maxDistance) {
                 verticesFurthestFromTheCenter[farAwayVerticesIndex++] = vertex;
             }
         }
@@ -240,7 +240,7 @@ public class Exercise24 {
 
         boolean doesTheLargestComponentContainKevinBacon = connectedComponents.id(kevinBaconId) == largestComponentId;
         StdOut.print("Does the largest component contain Kevin Bacon: ");
-        if(doesTheLargestComponentContainKevinBacon) {
+        if (doesTheLargestComponentContainKevinBacon) {
             StdOut.println("Yes");
         } else {
             StdOut.println("No");

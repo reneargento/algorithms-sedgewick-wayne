@@ -55,7 +55,7 @@ public class Exercise44_WebCrawler {
             while (matcher.find()) {
                 String webPage = matcher.group();
 
-                if(!visited.contains(webPage)) {
+                if (!visited.contains(webPage)) {
                     webPagesQueue.enqueue(webPage);
                     visited.add(webPage);
                 }

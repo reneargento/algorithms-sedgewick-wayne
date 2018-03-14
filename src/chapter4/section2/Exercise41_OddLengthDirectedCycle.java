@@ -52,14 +52,14 @@ public class Exercise41_OddLengthDirectedCycle {
 
             for(int vertex : strongComponents[scc]) {
                 for(int neighbor : digraph.adjacent(vertex)) {
-                    if(strongComponents[scc].contains(neighbor)) {
+                    if (strongComponents[scc].contains(neighbor)) {
                         subGraph.addEdge(vertex, neighbor);
                     }
                 }
             }
 
             TwoColor twoColor = new TwoColor(subGraph);
-            if(!twoColor.isBipartite()) {
+            if (!twoColor.isBipartite()) {
                 return true;
             }
         }

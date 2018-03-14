@@ -28,12 +28,12 @@ public class DrawUtilities {
         double arrowWidth = padding * 2;
 
         // Edges pointing up
-        if(vertex.yCoordinate < neighborVertex.yCoordinate) {
-            if(vertex.xCoordinate < neighborVertex.xCoordinate) {
+        if (vertex.yCoordinate < neighborVertex.yCoordinate) {
+            if (vertex.xCoordinate < neighborVertex.xCoordinate) {
                 // Edge pointing diagonally up and right
                 drawArrowLine(vertex.xCoordinate, vertex.yCoordinate + padding,
                         neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
-            } else if(vertex.xCoordinate > neighborVertex.xCoordinate) {
+            } else if (vertex.xCoordinate > neighborVertex.xCoordinate) {
                 // Edge pointing diagonally up and left
                 drawArrowLine(vertex.xCoordinate, vertex.yCoordinate + padding,
                         neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
@@ -42,13 +42,13 @@ public class DrawUtilities {
                 drawArrowLine(vertex.xCoordinate, vertex.yCoordinate + padding * 2,
                         neighborVertex.xCoordinate, neighborVertex.yCoordinate - padding, arrowWidth, arrowLength);
             }
-        } if(vertex.yCoordinate > neighborVertex.yCoordinate) {
+        } if (vertex.yCoordinate > neighborVertex.yCoordinate) {
             //Edges pointing down
-            if(vertex.xCoordinate < neighborVertex.xCoordinate) {
+            if (vertex.xCoordinate < neighborVertex.xCoordinate) {
                 // Edge pointing diagonally down and right
                 drawArrowLine(vertex.xCoordinate, vertex.yCoordinate - padding * 2,
                         neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 4, arrowWidth, arrowLength);
-            } else if(vertex.xCoordinate > neighborVertex.xCoordinate) {
+            } else if (vertex.xCoordinate > neighborVertex.xCoordinate) {
                 // Edge pointing diagonally down and left
                 drawArrowLine(vertex.xCoordinate, vertex.yCoordinate - padding * 2,
                         neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 4, arrowWidth, arrowLength);
@@ -57,13 +57,13 @@ public class DrawUtilities {
                 drawArrowLine(vertex.xCoordinate, vertex.yCoordinate - padding * 2,
                         neighborVertex.xCoordinate, neighborVertex.yCoordinate + padding * 2, arrowWidth, arrowLength);
             }
-        } else if(vertex.yCoordinate == neighborVertex.yCoordinate) {
+        } else if (vertex.yCoordinate == neighborVertex.yCoordinate) {
             // Horizontal edges
-            if(vertex.xCoordinate < neighborVertex.xCoordinate) {
+            if (vertex.xCoordinate < neighborVertex.xCoordinate) {
                 // Edge pointing right
                 drawArrowLine(vertex.xCoordinate + padding * 2, vertex.yCoordinate,
                         neighborVertex.xCoordinate - padding * 2, neighborVertex.yCoordinate, arrowWidth, arrowLength);
-            } else if(vertex.xCoordinate > neighborVertex.xCoordinate) {
+            } else if (vertex.xCoordinate > neighborVertex.xCoordinate) {
                 // Edge pointing left
                 drawArrowLine(vertex.xCoordinate - padding * 2, vertex.yCoordinate,
                         neighborVertex.xCoordinate + padding * 2, neighborVertex.yCoordinate, arrowWidth, arrowLength);

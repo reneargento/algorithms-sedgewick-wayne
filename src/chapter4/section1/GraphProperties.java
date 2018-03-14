@@ -25,13 +25,13 @@ public class GraphProperties {
 
         ConnectedComponents connectedComponents;
 
-        if(useIterativeDFS) {
+        if (useIterativeDFS) {
             connectedComponents = new ConnectedComponentsIterativeDFS(graph);
         } else {
             connectedComponents = new ConnectedComponentsRecursiveDFS(graph);
         }
 
-        if(connectedComponents.count() != 1) {
+        if (connectedComponents.count() != 1) {
             throw new RuntimeException("Graph must be connected");
         }
 
@@ -48,17 +48,17 @@ public class GraphProperties {
             BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, vertex);
 
             for(int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
-                if(otherVertex == vertex) {
+                if (otherVertex == vertex) {
                     continue;
                 }
 
                 eccentricities[vertex] = Math.max(eccentricities[vertex], breadthFirstPaths.distTo(otherVertex));
             }
 
-            if(eccentricities[vertex] > diameter) {
+            if (eccentricities[vertex] > diameter) {
                 diameter = eccentricities[vertex];
             }
-            if(eccentricities[vertex] < radius) {
+            if (eccentricities[vertex] < radius) {
                 radius = eccentricities[vertex];
                 center = vertex;
             }
@@ -78,17 +78,17 @@ public class GraphProperties {
             BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, vertices[vertex]);
 
             for(int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
-                if(otherVertex == vertices[vertex]) {
+                if (otherVertex == vertices[vertex]) {
                     continue;
                 }
 
                 eccentricities[vertices[vertex]] = Math.max(eccentricities[vertices[vertex]], breadthFirstPaths.distTo(otherVertex));
             }
 
-            if(eccentricities[vertices[vertex]] > diameter) {
+            if (eccentricities[vertices[vertex]] > diameter) {
                 diameter = eccentricities[vertices[vertex]];
             }
-            if(eccentricities[vertices[vertex]] < radius) {
+            if (eccentricities[vertices[vertex]] < radius) {
                 radius = eccentricities[vertices[vertex]];
                 center = vertices[vertex];
             }
@@ -115,7 +115,7 @@ public class GraphProperties {
             int shortestCycle = bfsToGetShortestCycle(graph, vertex);
             girth = Math.min(girth, shortestCycle);
 
-            if(girth <= girthToSearchFor) {
+            if (girth <= girthToSearchFor) {
                 break;
             }
         }
@@ -136,7 +136,7 @@ public class GraphProperties {
 
         //Compute distTo and edgeTo values
         for(int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
-            if(otherVertex == sourceVertex) {
+            if (otherVertex == sourceVertex) {
                 continue;
             }
 
@@ -155,10 +155,10 @@ public class GraphProperties {
             int currentVertex = queue.dequeue();
 
             for(int neighbor : graph.adjacent(currentVertex)) {
-                if(!visited[neighbor]) {
+                if (!visited[neighbor]) {
                     visited[neighbor] = true;
                     queue.enqueue(neighbor);
-                } else if(neighbor != edgeTo[currentVertex]) {
+                } else if (neighbor != edgeTo[currentVertex]) {
                     //Cycle found
                     int cycleLength = distTo[currentVertex] + distTo[neighbor] + 1;
                     shortestCycle = Math.min(shortestCycle, cycleLength);
@@ -170,7 +170,7 @@ public class GraphProperties {
     }
 
     public int diameter() {
-        if(!propertiesComputed) {
+        if (!propertiesComputed) {
             computeProperties();
         }
 
@@ -178,7 +178,7 @@ public class GraphProperties {
     }
 
     public int radius() {
-        if(!propertiesComputed) {
+        if (!propertiesComputed) {
             computeProperties();
         }
 
@@ -186,7 +186,7 @@ public class GraphProperties {
     }
 
     public int center() {
-        if(!propertiesComputed) {
+        if (!propertiesComputed) {
             computeProperties();
         }
 
@@ -194,7 +194,7 @@ public class GraphProperties {
     }
 
     public int eccentricity(int vertexId) {
-        if(!propertiesComputed) {
+        if (!propertiesComputed) {
             computeProperties();
         }
 
@@ -202,7 +202,7 @@ public class GraphProperties {
     }
 
     public int girth() {
-        if(!girthComputed) {
+        if (!girthComputed) {
             computeGirth();
         }
 

@@ -20,7 +20,7 @@ public class Exercise33_Certification {
             int vertex1 = edge.either();
             int vertex2 = edge.other(vertex1);
 
-            if(unionFind.connected(vertex1, vertex2)) {
+            if (unionFind.connected(vertex1, vertex2)) {
                 return false; // Cycle found
             }
             unionFind.union(vertex1, vertex2);
@@ -28,7 +28,7 @@ public class Exercise33_Certification {
 
         // Check that it is connected
         // O(1)
-        if(unionFind.count() != 1) {
+        if (unionFind.count() != 1) {
             return false;
         }
 
@@ -39,7 +39,7 @@ public class Exercise33_Certification {
 
             // Add all edges in the MST except edgeInMST
             for(Edge edge : proposedMinimumSpanningTree) {
-                if(edge != edgeInMST) {
+                if (edge != edgeInMST) {
                     int vertex1 = edge.either();
                     int vertex2 = edge.other(vertex1);
 
@@ -52,8 +52,8 @@ public class Exercise33_Certification {
                 int vertex1 = edge.either();
                 int vertex2 = edge.other(vertex1);
 
-                if(!unionFind.connected(vertex1, vertex2)) {
-                    if(edge.weight() < edgeInMST.weight()) {
+                if (!unionFind.connected(vertex1, vertex2)) {
+                    if (edge.weight() < edgeInMST.weight()) {
                         return false;
                     }
                 }

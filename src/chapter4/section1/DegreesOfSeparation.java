@@ -14,7 +14,7 @@ public class DegreesOfSeparation {
         Graph graph = symbolGraph.graph();
 
         String source = args[2];
-        if(!symbolGraph.contains(source)) {
+        if (!symbolGraph.contains(source)) {
             StdOut.println(source + " not in database.");
             return;
         }
@@ -25,10 +25,10 @@ public class DegreesOfSeparation {
         while (!StdIn.isEmpty()) {
             String sink = StdIn.readLine();
 
-            if(symbolGraph.contains(sink)) {
+            if (symbolGraph.contains(sink)) {
                 int destinationVertex = symbolGraph.index(sink);
 
-                if(breadthFirstPaths.hasPathTo(destinationVertex)) {
+                if (breadthFirstPaths.hasPathTo(destinationVertex)) {
                     for(int vertexInPath : breadthFirstPaths.pathTo(destinationVertex)) {
                         StdOut.println("    " + symbolGraph.name(vertexInPath));
                     }

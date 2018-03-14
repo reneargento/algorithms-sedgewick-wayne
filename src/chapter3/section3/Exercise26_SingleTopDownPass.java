@@ -42,7 +42,7 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -54,7 +54,7 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private boolean isRed(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
@@ -62,7 +62,7 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private Node rotateLeft(Node node) {
-            if(node == null || node.right == null) {
+            if (node == null || node.right == null) {
                 return node;
             }
 
@@ -81,7 +81,7 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private Node rotateRight(Node node) {
-            if(node == null || node.left == null) {
+            if (node == null || node.left == null) {
                 return node;
             }
 
@@ -100,12 +100,12 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private void flipColors(Node node) {
-            if(node == null || node.left == null || node.right == null) {
+            if (node == null || node.left == null || node.right == null) {
                 return;
             }
 
             //The root must have opposite color of its two children
-            if((isRed(node) && !isRed(node.left) && !isRed(node.right))
+            if ((isRed(node) && !isRed(node.left) && !isRed(node.right))
                     || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
                 node.color = !node.color;
                 node.left.color = !node.left.color;
@@ -114,11 +114,11 @@ public class Exercise26_SingleTopDownPass {
         }
 
         public void put(Key key, Value value) {
-            if(key == null) {
+            if (key == null) {
                 return;
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -132,42 +132,42 @@ public class Exercise26_SingleTopDownPass {
 
             Node currentNode = root;
 
-            if(root == null) {
+            if (root == null) {
                 root = new Node(key, value, 1, RED);
             } else {
 
                 while (currentNode != null) {
-                    if(isANewNode) {
+                    if (isANewNode) {
                         currentNode.size = currentNode.size + 1;
                     }
 
                     //Flip colors on the way down
-                    if(isRed(currentNode.left) && isRed(currentNode.right)) {
+                    if (isRed(currentNode.left) && isRed(currentNode.right)) {
                         flipColors(currentNode);
                     }
 
                     //Check if parent needs to be balanced after color flip
-                    if(grandparentNode != null && isRed(grandparentNode.left) && isRed(grandparentNode.left.left)) {
+                    if (grandparentNode != null && isRed(grandparentNode.left) && isRed(grandparentNode.left.left)) {
                         grandparentNode = rotateRight(grandparentNode);
                         updateParentReference(godparentNode, grandparentNode);
                     }
 
                     //Balance on the way down
-                    if(isRed(currentNode.right) && !isRed(currentNode.left)) {
+                    if (isRed(currentNode.right) && !isRed(currentNode.left)) {
                         currentNode = rotateLeft(currentNode);
                         updateParentReference(parentNode, currentNode);
                     }
 
-                    if(isRed(currentNode.left) && isRed(currentNode.left.left)) {
+                    if (isRed(currentNode.left) && isRed(currentNode.left.left)) {
                         currentNode = rotateRight(currentNode);
                         updateParentReference(parentNode, currentNode);
                     }
 
                     int compare = key.compareTo(currentNode.key);
 
-                    if(compare < 0) {
+                    if (compare < 0) {
 
-                        if(currentNode.left == null) {
+                        if (currentNode.left == null) {
                             currentNode.left = new Node(key, value, 1, RED);
                             break;
                         }
@@ -177,9 +177,9 @@ public class Exercise26_SingleTopDownPass {
                         parentNode = currentNode;
 
                         currentNode = currentNode.left;
-                    } else if(compare > 0) {
+                    } else if (compare > 0) {
 
-                        if(currentNode.right == null) {
+                        if (currentNode.right == null) {
                             currentNode.right = new Node(key, value, 1, RED);
                             break;
                         }
@@ -199,17 +199,17 @@ public class Exercise26_SingleTopDownPass {
             //Extra color flipping and balancing on the last node
             //currentNode is the new node's parent
             //parentNode is the new node's grandparent
-            if(currentNode != null) {
-                if(isRed(currentNode.left) && isRed(currentNode.right)) {
+            if (currentNode != null) {
+                if (isRed(currentNode.left) && isRed(currentNode.right)) {
                     flipColors(currentNode);
                 }
 
-                if(isRed(currentNode.right) && !isRed(currentNode.left)) {
+                if (isRed(currentNode.right) && !isRed(currentNode.left)) {
                     currentNode = rotateLeft(currentNode);
                     updateParentReference(parentNode, currentNode);
                 }
 
-                if(parentNode != null && isRed(parentNode.left) && isRed(parentNode.left.left)) {
+                if (parentNode != null && isRed(parentNode.left) && isRed(parentNode.left.left)) {
                     parentNode = rotateRight(parentNode);
                     updateParentReference(grandparentNode, parentNode);
                 }
@@ -224,9 +224,9 @@ public class Exercise26_SingleTopDownPass {
             while (current != null) {
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     current = current.right;
                 } else {
                     return current.value;
@@ -244,14 +244,14 @@ public class Exercise26_SingleTopDownPass {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
             Node current = root;
 
             while (current != null) {
-                if(current.left == null) {
+                if (current.left == null) {
                     return current.key;
                 } else {
                     current = current.left;
@@ -263,14 +263,14 @@ public class Exercise26_SingleTopDownPass {
 
         //Used for delete
         public Node min(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             Node current = node;
 
             while (current != null) {
-                if(current.left == null) {
+                if (current.left == null) {
                     return current;
                 } else {
                     current = current.left;
@@ -281,14 +281,14 @@ public class Exercise26_SingleTopDownPass {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
             Node current = root;
 
             while (current != null) {
-                if(current.right == null) {
+                if (current.right == null) {
                     return current.key;
                 } else {
                     current = current.right;
@@ -307,9 +307,9 @@ public class Exercise26_SingleTopDownPass {
             while (current != null) {
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     currentFloor = current.key;
                     current = current.right;
                 } else {
@@ -330,10 +330,10 @@ public class Exercise26_SingleTopDownPass {
             while (current != null) {
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     currentCeiling = current.key;
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     current = current.right;
                 } else {
                     currentCeiling = current.key;
@@ -345,7 +345,7 @@ public class Exercise26_SingleTopDownPass {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -354,7 +354,7 @@ public class Exercise26_SingleTopDownPass {
             while (current != null) {
                 int leftSubtreeSize = size(current.left);
 
-                if(leftSubtreeSize == index) {
+                if (leftSubtreeSize == index) {
                     return current.key;
                 } else if (leftSubtreeSize > index) {
                     current = current.left;
@@ -376,9 +376,9 @@ public class Exercise26_SingleTopDownPass {
             while (current != null) {
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     rank += size(current.left) + 1;
                     current = current.right;
                 } else {
@@ -396,15 +396,15 @@ public class Exercise26_SingleTopDownPass {
 
         //Needs a Node parameter because it is used in delete()
         private Node deleteMin(Node subtreeRoot, boolean isDelete) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
-            if(subtreeRoot.left == null) {
+            if (subtreeRoot.left == null) {
                 return subtreeRoot.right;
             }
 
-            if(!isRed(subtreeRoot.left) && !isRed(subtreeRoot.right)) {
+            if (!isRed(subtreeRoot.left) && !isRed(subtreeRoot.right)) {
                 subtreeRoot.color = RED;
             }
 
@@ -418,28 +418,28 @@ public class Exercise26_SingleTopDownPass {
 
             while (currentNode != null) {
 
-                if(!nodeDeleted) {
+                if (!nodeDeleted) {
                     currentNode.size = currentNode.size - 1;
                 }
 
-                if(!isRed(currentNode.left) && currentNode.left != null && !isRed(currentNode.left.left)) {
+                if (!isRed(currentNode.left) && currentNode.left != null && !isRed(currentNode.left.left)) {
 
                     //Check if subtree root will be updated
                     boolean updateSubtreeRoot = false;
-                    if(currentNode == subtreeRoot) {
+                    if (currentNode == subtreeRoot) {
                         updateSubtreeRoot = true;
                     }
 
                     currentNode = moveRedLeft(currentNode);
                     updateParentReference(parent, currentNode);
 
-                    if(updateSubtreeRoot) {
+                    if (updateSubtreeRoot) {
                         subtreeRoot = currentNode;
                     }
                 }
 
                 //Delete node
-                if(currentNode.left != null && currentNode.left.left == null) {
+                if (currentNode.left != null && currentNode.left.left == null) {
                     currentNode.left = currentNode.left.right;
                     nodeDeleted = true;
                 }
@@ -447,22 +447,22 @@ public class Exercise26_SingleTopDownPass {
                 //Balance on the way down
                 Node oldParent = parent;
 
-                if(parent != null) {
+                if (parent != null) {
                     parent = balance(parent);
 
-                    if(grandparent == null && !isDelete) {
+                    if (grandparent == null && !isDelete) {
                         root = parent;
-                    } else if(grandparent != null) {
+                    } else if (grandparent != null) {
                         grandparent.left = parent;
                     }
 
-                    if(parent.left == subtreeRoot || parent.right == subtreeRoot) {
+                    if (parent.left == subtreeRoot || parent.right == subtreeRoot) {
                         subtreeRoot = parent;
                     }
                 }
 
                 grandparent = parent;
-                if(oldParent != parent) {
+                if (oldParent != parent) {
                     parent = oldParent;
                 } else {
                     parent = currentNode;
@@ -473,29 +473,29 @@ public class Exercise26_SingleTopDownPass {
 
             //Balance on the bottom
             //Balance parent
-            if(parent != grandparent) {
+            if (parent != grandparent) {
                 parent = balance(parent);
 
-                if(grandparent == null && !isDelete) {
+                if (grandparent == null && !isDelete) {
                     root = parent;
-                } else if(grandparent != null) {
+                } else if (grandparent != null) {
                     grandparent.left = parent;
                 }
-                if(parent.left == subtreeRoot || parent.right == subtreeRoot) {
+                if (parent.left == subtreeRoot || parent.right == subtreeRoot) {
                     subtreeRoot = parent;
                 }
             }
 
             //Balance bottom node (if different from parent)
-            if(parent.left != null) {
+            if (parent.left != null) {
                 parent.left = balance(parent.left);
 
-                if(parent.left.left == subtreeRoot || parent.left.right == subtreeRoot) {
+                if (parent.left.left == subtreeRoot || parent.left.right == subtreeRoot) {
                     subtreeRoot = parent;
                 }
             }
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
 
@@ -503,18 +503,18 @@ public class Exercise26_SingleTopDownPass {
         }
 
         public void deleteMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
             updateSizeOfNodesInPath(max());
 
-            if(root.right == null) {
+            if (root.right == null) {
                 root = root.left;
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
@@ -524,14 +524,14 @@ public class Exercise26_SingleTopDownPass {
 
             while (currentNode != null) {
 
-                if(!isRed(currentNode.right) && isRed(currentNode.left)) {
+                if (!isRed(currentNode.right) && isRed(currentNode.left)) {
                     currentNode = rotateRight(currentNode);
                     updateParentReference(parent, currentNode);
                 }
 
                 //Delete node
-                if(currentNode.right == null) {
-                    if(parent == null) {
+                if (currentNode.right == null) {
+                    if (parent == null) {
                         root = currentNode.left;
                     } else {
                         parent.right = currentNode.left;
@@ -539,16 +539,16 @@ public class Exercise26_SingleTopDownPass {
                     currentNode = parent;
                 }
 
-                if(!isRed(currentNode.right) && currentNode.right != null && !isRed(currentNode.right.left)) {
+                if (!isRed(currentNode.right) && currentNode.right != null && !isRed(currentNode.right.left)) {
                     currentNode = moveRedRight(currentNode);
                     updateParentReference(parent, currentNode);
                 }
 
                 //Balance on the way down
-                if(parent != null) {
+                if (parent != null) {
                     parent = balance(parent);
 
-                    if(grandparent == null) {
+                    if (grandparent == null) {
                         root = parent;
                     } else  {
                         grandparent.right = parent;
@@ -562,38 +562,38 @@ public class Exercise26_SingleTopDownPass {
 
             //Balance on the bottom
             //Balance parent
-            if(parent != grandparent) {
+            if (parent != grandparent) {
                 parent = balance(parent);
 
-                if(grandparent == null) {
+                if (grandparent == null) {
                     root = parent;
-                } else  {
+                } else {
                     grandparent.right = parent;
                 }
             }
 
             //Balance bottom node (if different from parent)
-            if(parent.right != null) {
+            if (parent.right != null) {
                 parent.right = balance(parent.right);
             }
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         public void delete(Key key) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
             updateSizeOfNodesInPath(key);
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
@@ -603,9 +603,9 @@ public class Exercise26_SingleTopDownPass {
 
             while (currentNode != null) {
 
-                if(key.compareTo(currentNode.key) < 0) {
+                if (key.compareTo(currentNode.key) < 0) {
 
-                    if(!isRed(currentNode.left) && currentNode.left != null && !isRed(currentNode.left.left)) {
+                    if (!isRed(currentNode.left) && currentNode.left != null && !isRed(currentNode.left.left)) {
                         currentNode = moveRedLeft(currentNode);
                         updateParentReference(parent, currentNode);
                     }
@@ -613,7 +613,7 @@ public class Exercise26_SingleTopDownPass {
                     //Balance on the way down
                     Node oldParent = parent;
 
-                    if(parent != null) {
+                    if (parent != null) {
                         parent = balance(parent);
                         updateParentReference(grandparent, parent);
                     }
@@ -622,19 +622,19 @@ public class Exercise26_SingleTopDownPass {
                     parent = currentNode;
                     currentNode = currentNode.left;
                 } else {
-                    if(!isRed(currentNode.right) && isRed(currentNode.left)) {
+                    if (!isRed(currentNode.right) && isRed(currentNode.left)) {
                         currentNode = rotateRight(currentNode);
                         updateParentReference(parent, currentNode);
                     }
 
                     //Delete node
-                    if(key.compareTo(currentNode.key) == 0 && currentNode.right == null) {
-                        if(parent == null) {
+                    if (key.compareTo(currentNode.key) == 0 && currentNode.right == null) {
+                        if (parent == null) {
                             root = currentNode.left;
                         } else {
                             boolean isCurrentNodeLeftChild = currentNode.key.compareTo(parent.key) < 0;
 
-                            if(isCurrentNodeLeftChild) {
+                            if (isCurrentNodeLeftChild) {
                                 parent.left = currentNode.left;
                             } else {
                                 parent.right = currentNode.left;
@@ -644,13 +644,13 @@ public class Exercise26_SingleTopDownPass {
                         break;
                     }
 
-                    if(!isRed(currentNode.right) && currentNode.right != null && !isRed(currentNode.right.left)) {
+                    if (!isRed(currentNode.right) && currentNode.right != null && !isRed(currentNode.right.left)) {
                         currentNode = moveRedRight(currentNode);
                         updateParentReference(parent, currentNode);
                     }
 
                     //Delete node
-                    if(key.compareTo(currentNode.key) == 0) {
+                    if (key.compareTo(currentNode.key) == 0) {
                         Node aux = min(currentNode.right);
                         currentNode.key = aux.key;
                         currentNode.value = aux.value;
@@ -659,7 +659,7 @@ public class Exercise26_SingleTopDownPass {
                         break;
                     } else {
                         //Balance parent
-                        if(parent != null) {
+                        if (parent != null) {
                             parent = balance(parent);
                             updateParentReference(grandparent, parent);
                         }
@@ -672,12 +672,12 @@ public class Exercise26_SingleTopDownPass {
             }
 
             //Balance on the bottom
-            if(parent != null) {
+            if (parent != null) {
                 parent = balance(parent);
                 updateParentReference(grandparent, parent);
             }
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
@@ -690,9 +690,9 @@ public class Exercise26_SingleTopDownPass {
 
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     current = current.right;
                 } else {
                     break;
@@ -701,12 +701,12 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private void updateParentReference(Node parent, Node child) {
-            if(parent == null) {
+            if (parent == null) {
                 root = child;
             } else {
                 boolean isCurrentNodeLeftChild = child.key.compareTo(parent.key) < 0;
 
-                if(isCurrentNodeLeftChild) {
+                if (isCurrentNodeLeftChild) {
                     parent.left = child;
                 } else {
                     parent.right = child;
@@ -719,7 +719,7 @@ public class Exercise26_SingleTopDownPass {
             // make node.left or one of its children red
             flipColors(node);
 
-            if(node.right != null && isRed(node.right.left)) {
+            if (node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
                 flipColors(node);
@@ -733,7 +733,7 @@ public class Exercise26_SingleTopDownPass {
             // make node.right or one of its children red
             flipColors(node);
 
-            if(node.left != null && isRed(node.left.left)) {
+            if (node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
                 flipColors(node);
             }
@@ -742,19 +742,19 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(isRed(node.right)) {
+            if (isRed(node.right)) {
                 node = rotateLeft(node);
             }
 
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -785,12 +785,12 @@ public class Exercise26_SingleTopDownPass {
             Stack<Node> stack = new Stack<>();
 
             while (node != null || !stack.isEmpty()) {
-                if(node != null) {
-                    if(low.compareTo(node.key) <= 0 && node.key.compareTo(high) <= 0) {
+                if (node != null) {
+                    if (low.compareTo(node.key) <= 0 && node.key.compareTo(high) <= 0) {
                         stack.push(node);
                     }
 
-                    if(low.compareTo(node.key) <= 0) {
+                    if (low.compareTo(node.key) <= 0) {
                         node = node.left;
                     } else {
                         node = node.right;
@@ -799,7 +799,7 @@ public class Exercise26_SingleTopDownPass {
                     node = stack.pop();
                     queue.enqueue(node.key);
 
-                    if(high.compareTo(node.key) >= 0) {
+                    if (high.compareTo(node.key) >= 0) {
                         node = node.right;
                     }
                 }
@@ -828,7 +828,7 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private boolean isBST() {
-            if(root == null) {
+            if (root == null) {
                 return true;
             }
 
@@ -838,14 +838,14 @@ public class Exercise26_SingleTopDownPass {
             while (queue.size() > 0) {
                 Node current = queue.dequeue();
 
-                if(current.left != null) {
-                    if(current.key.compareTo(current.left.key) < 0) {
+                if (current.left != null) {
+                    if (current.key.compareTo(current.left.key) < 0) {
                         return false;
                     }
                     queue.enqueue(current.left);
                 }
-                if(current.right != null) {
-                    if(current.key.compareTo(current.right.key) > 0) {
+                if (current.right != null) {
+                    if (current.key.compareTo(current.right.key) > 0) {
                         return false;
                     }
                     queue.enqueue(current.right);
@@ -856,7 +856,7 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private boolean isSubtreeCountConsistent() {
-            if(root == null) {
+            if (root == null) {
                 return true;
             }
 
@@ -870,16 +870,16 @@ public class Exercise26_SingleTopDownPass {
 
                 totalSubtreeCount = 0;
 
-                if(current.left != null) {
+                if (current.left != null) {
                     queue.enqueue(current.left);
                     totalSubtreeCount += current.left.size;
                 }
-                if(current.right != null) {
+                if (current.right != null) {
                     queue.enqueue(current.right);
                     totalSubtreeCount += current.right.size;
                 }
 
-                if(current.size != totalSubtreeCount + 1) {
+                if (current.size != totalSubtreeCount + 1) {
                     return false;
                 }
             }
@@ -887,7 +887,7 @@ public class Exercise26_SingleTopDownPass {
         }
 
         private boolean isValid234Tree() {
-            if(root == null) {
+            if (root == null) {
                 return true;
             }
 
@@ -897,26 +897,26 @@ public class Exercise26_SingleTopDownPass {
             while (queue.size() > 0) {
                 Node current = queue.dequeue();
 
-                if(!isRed(current.left) && isRed(current.right)) {
+                if (!isRed(current.left) && isRed(current.right)) {
                     return false;
                 }
-                if(isRed(current.left) && isRed(current.left.left)) {
+                if (isRed(current.left) && isRed(current.left.left)) {
                     return false;
                 }
-                if(isRed(current.left) && isRed(current.left.right)) {
+                if (isRed(current.left) && isRed(current.left.right)) {
                     return false;
                 }
-                if(isRed(current.right) && isRed(current.right.right)) {
+                if (isRed(current.right) && isRed(current.right.right)) {
                     return false;
                 }
-                if(isRed(current.right) && isRed(current.right.left)) {
+                if (isRed(current.right) && isRed(current.right.left)) {
                     return false;
                 }
 
-                if(current.left != null) {
+                if (current.left != null) {
                     queue.enqueue(current.left);
                 }
-                if(current.right != null) {
+                if (current.right != null) {
                     queue.enqueue(current.right);
                 }
             }
@@ -925,7 +925,7 @@ public class Exercise26_SingleTopDownPass {
         }
 
         public boolean isBalanced() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return true;
             }
 
@@ -933,7 +933,7 @@ public class Exercise26_SingleTopDownPass {
 
             Node currentNode = root;
             while (currentNode != null) {
-                if(!isRed(currentNode)) {
+                if (!isRed(currentNode)) {
                     blackNodes++;
                 }
 
@@ -951,24 +951,24 @@ public class Exercise26_SingleTopDownPass {
             while (!queue.isEmpty()) {
                 Node current = queue.dequeue();
 
-                if(!isRed(current)) {
+                if (!isRed(current)) {
                     current.numberOfBlackNodesInPath++;
                 }
 
-                if(current.left != null) {
+                if (current.left != null) {
                     current.left.numberOfBlackNodesInPath = current.numberOfBlackNodesInPath;
                     queue.enqueue(current.left);
                 } else {
-                    if(current.numberOfBlackNodesInPath != blackNodes) {
+                    if (current.numberOfBlackNodesInPath != blackNodes) {
                         return false;
                     }
                 }
 
-                if(current.right != null) {
+                if (current.right != null) {
                     current.right.numberOfBlackNodesInPath = current.numberOfBlackNodesInPath;
                     queue.enqueue(current.right);
                 } else {
-                    if(current.numberOfBlackNodesInPath != blackNodes) {
+                    if (current.numberOfBlackNodesInPath != blackNodes) {
                         return false;
                     }
                 }

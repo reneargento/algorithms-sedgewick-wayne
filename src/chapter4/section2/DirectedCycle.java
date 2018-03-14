@@ -18,7 +18,7 @@ public class DirectedCycle {
         visited = new boolean[digraph.vertices()];
 
         for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            if(!visited[vertex]) {
+            if (!visited[vertex]) {
                 dfs(digraph, vertex);
             }
         }
@@ -29,12 +29,12 @@ public class DirectedCycle {
         visited[vertex] = true;
 
         for(int neighbor : digraph.adjacent(vertex)) {
-            if(hasCycle()) {
+            if (hasCycle()) {
                 return;
-            } else if(!visited[neighbor]) {
+            } else if (!visited[neighbor]) {
                 edgeTo[neighbor] = vertex;
                 dfs(digraph, neighbor);
-            } else if(onStack[neighbor]) {
+            } else if (onStack[neighbor]) {
                 cycle = new Stack<>();
 
                 for(int currentVertex = vertex; currentVertex != neighbor; currentVertex = edgeTo[currentVertex]) {

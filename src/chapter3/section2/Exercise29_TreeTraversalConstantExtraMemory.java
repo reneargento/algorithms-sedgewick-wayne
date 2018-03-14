@@ -30,7 +30,7 @@ public class Exercise29_TreeTraversalConstantExtraMemory {
 
         while (current != null) {
 
-            if(current.left == null) {
+            if (current.left == null) {
                 StdOut.print(current.key + " ");
 
                 current = current.right;
@@ -42,7 +42,7 @@ public class Exercise29_TreeTraversalConstantExtraMemory {
                     pre = pre.right;
                 }
 
-                if(pre.right == null) {
+                if (pre.right == null) {
                     /* Make current as right child of its inorder predecessor */
                     pre.right = current;
                     current = current.left;

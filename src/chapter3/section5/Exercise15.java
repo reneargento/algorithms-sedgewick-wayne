@@ -10,7 +10,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise15 {
 
     private RedBlackBST<String, Integer> produceKGrams(String string, int k) {
-        if(k > string.length()) {
+        if (k > string.length()) {
             throw new IllegalArgumentException("k cannot be higher than string length");
         }
 

@@ -24,7 +24,7 @@ public class Exercise49_RandomSparseEdgeWeightedDigraphs {
                 DirectedEdge newEdge;
 
                 int randomDirection = StdRandom.uniform(2);
-                if(randomDirection == 0) {
+                if (randomDirection == 0) {
                     newEdge = new DirectedEdge(vertexId1, vertexId2, uniformRandomWeight);
                 } else {
                     newEdge = new DirectedEdge(vertexId2, vertexId1, uniformRandomWeight);
@@ -47,7 +47,7 @@ public class Exercise49_RandomSparseEdgeWeightedDigraphs {
                 DirectedEdge newEdge;
 
                 int randomDirection = StdRandom.uniform(2);
-                if(randomDirection == 0) {
+                if (randomDirection == 0) {
                     newEdge = new DirectedEdge(vertexId1, vertexId2, gaussianRandomWeight);
                 } else {
                     newEdge = new DirectedEdge(vertexId2, vertexId1, gaussianRandomWeight);
@@ -63,7 +63,7 @@ public class Exercise49_RandomSparseEdgeWeightedDigraphs {
     //A graph is considered sparse if its number of edges is within a small constant factor of V
     public List<EdgeWeightedDigraphInterface> randomSparseEdgeWeightedDigraphsGenerator(int numberOfDigraphs,
                                                                                         boolean uniformWeightDistribution) {
-        if(numberOfDigraphs < 0) {
+        if (numberOfDigraphs < 0) {
             throw new IllegalArgumentException("Number of digraphs cannot be negative");
         }
 
@@ -78,7 +78,7 @@ public class Exercise49_RandomSparseEdgeWeightedDigraphs {
 
             EdgeWeightedDigraphInterface randomEdgeWeightedDigraph;
 
-            if(uniformWeightDistribution) {
+            if (uniformWeightDistribution) {
                 randomEdgeWeightedDigraph =
                         randomEdgeWeightedDigraphsGenerator.erdosRenyiDigraphUniformWeights(vertices, edges);
             } else {

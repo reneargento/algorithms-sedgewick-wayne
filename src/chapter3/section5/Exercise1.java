@@ -42,7 +42,7 @@ public class Exercise1 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(set.isEmpty() || !contains(key)) {
+            if (set.isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -50,7 +50,7 @@ public class Exercise1 {
         }
 
         public Key min() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
@@ -58,7 +58,7 @@ public class Exercise1 {
         }
 
         public Key max() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
@@ -74,7 +74,7 @@ public class Exercise1 {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than set size");
             }
 
@@ -107,7 +107,7 @@ public class Exercise1 {
 
         @Override
         public String toString() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return "{ }";
             }
 
@@ -115,7 +115,7 @@ public class Exercise1 {
 
             boolean isFirstKey = true;
             for(Key key : keys()) {
-                if(isFirstKey) {
+                if (isFirstKey) {
                     isFirstKey = false;
                 } else {
                     stringBuilder.append(",");
@@ -163,7 +163,7 @@ public class Exercise1 {
 
         @Override
         public String toString() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return "{ }";
             }
 
@@ -171,7 +171,7 @@ public class Exercise1 {
 
             boolean isFirstKey = true;
             for(Key key : keys()) {
-                if(isFirstKey) {
+                if (isFirstKey) {
                     isFirstKey = false;
                 } else {
                     stringBuilder.append(",");

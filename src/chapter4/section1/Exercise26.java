@@ -39,7 +39,7 @@ public class Exercise26 {
                 Iterator<Integer>[] adjacentIterators = (Iterator<Integer>[]) new Iterator[graph.vertices()];
 
                 for (int vertexId = 0; vertexId < adjacentIterators.length; vertexId++) {
-                    if(graph.getAdjacencyList()[vertexId] != null) {
+                    if (graph.getAdjacencyList()[vertexId] != null) {
                         adjacentIterators[vertexId] = graph.getAdjacencyList()[vertexId].iterator();
                     }
                 }
@@ -47,10 +47,10 @@ public class Exercise26 {
                 while (!stack.isEmpty()) {
                     int currentVertex = stack.peek();
 
-                    if(adjacentIterators[currentVertex].hasNext()) {
+                    if (adjacentIterators[currentVertex].hasNext()) {
                         int neighbor = adjacentIterators[currentVertex].next();
 
-                        if(!visited[neighbor]) {
+                        if (!visited[neighbor]) {
                             stack.push(neighbor);
                             visited[neighbor] = true;
                             edgeTo[neighbor] = currentVertex;
@@ -66,7 +66,7 @@ public class Exercise26 {
             }
 
             public Iterable<Integer> pathTo(int vertex) {
-                if(!hasPathTo(vertex)) {
+                if (!hasPathTo(vertex)) {
                     return null;
                 }
 
@@ -87,7 +87,7 @@ public class Exercise26 {
 
             Graph graph = symbolGraph.graph();
 
-            if(!symbolGraph.contains(sourcePerformer)) {
+            if (!symbolGraph.contains(sourcePerformer)) {
                 StdOut.println(sourcePerformer + " not in database.");
                 return;
             }
@@ -98,10 +98,10 @@ public class Exercise26 {
             while (!StdIn.isEmpty()) {
                 String sink = StdIn.readLine();
 
-                if(symbolGraph.contains(sink)) {
+                if (symbolGraph.contains(sink)) {
                     int destinationVertex = symbolGraph.index(sink);
 
-                    if(depthFirstPathsIterative.hasPathTo(destinationVertex)) {
+                    if (depthFirstPathsIterative.hasPathTo(destinationVertex)) {
                         for(int vertexInPath : depthFirstPathsIterative.pathTo(destinationVertex)) {
                             StdOut.println("    " + symbolGraph.name(vertexInPath));
                         }

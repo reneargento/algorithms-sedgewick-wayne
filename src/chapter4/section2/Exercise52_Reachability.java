@@ -77,7 +77,7 @@ public class Exercise52_Reachability {
         dfs(digraph, randomSourceVertex, visited);
 
         for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            if(visited[vertex]) {
+            if (visited[vertex]) {
                 totalVerticesReached++;
             }
         }
@@ -89,7 +89,7 @@ public class Exercise52_Reachability {
         visited[sourceVertex] = true;
 
         for(int neighbor : digraph.adjacent(sourceVertex)) {
-            if(!visited[neighbor]) {
+            if (!visited[neighbor]) {
                 dfs(digraph, neighbor, visited);
             }
         }

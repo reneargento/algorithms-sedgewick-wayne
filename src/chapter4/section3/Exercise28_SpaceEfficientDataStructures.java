@@ -78,8 +78,8 @@ public class Exercise28_SpaceEfficientDataStructures {
             int vertex1 = edge.either();
             int vertex2 = edge.other(vertex1);
 
-            if(adjacent[vertex1][vertex2] != NO_CONNECTION) {
-                if(adjacent[vertex1][vertex2] <= edge.weight()) {
+            if (adjacent[vertex1][vertex2] != NO_CONNECTION) {
+                if (adjacent[vertex1][vertex2] <= edge.weight()) {
                     return;
                 }
                 edges--;
@@ -99,7 +99,7 @@ public class Exercise28_SpaceEfficientDataStructures {
 
             for(int vertex1 = 0; vertex1 < vertices; vertex1++) {
                 for(int vertex2 = vertex1 + 1; vertex2 < vertices; vertex2++) {
-                    if(adjacent[vertex1][vertex2] != NO_CONNECTION) {
+                    if (adjacent[vertex1][vertex2] != NO_CONNECTION) {
                         edges.add(new Edge(vertex1, vertex2, adjacent[vertex1][vertex2]));
                     }
                 }
@@ -116,7 +116,7 @@ public class Exercise28_SpaceEfficientDataStructures {
                 stringBuilder.append(vertex1).append(": ");
 
                 for(int vertex2 = 0; vertex2 < vertices; vertex2++) {
-                    if(adjacent[vertex1][vertex2] != NO_CONNECTION) {
+                    if (adjacent[vertex1][vertex2] != NO_CONNECTION) {
                         String formattedEdge = String.format("%d-%d %.5f", vertex1, vertex2, adjacent[vertex1][vertex2]);
                         stringBuilder.append(formattedEdge).append(" ");
                     }
@@ -158,11 +158,11 @@ public class Exercise28_SpaceEfficientDataStructures {
                     for(int otherVertex = 0; otherVertex < adjacentEdges.length; otherVertex++) {
                         double edgeWeight = adjacentEdges[otherVertex];
 
-                        if(edgeWeight == NO_CONNECTION) {
+                        if (edgeWeight == NO_CONNECTION) {
                             continue;
                         }
 
-                        if(edgeWeight == minEdgeWeight
+                        if (edgeWeight == minEdgeWeight
                                 && ((marked[vertex] && !marked[otherVertex]) || (marked[otherVertex] && !marked[vertex]))) {
                             isMinWeightEdgeEligible = true;
                             edgeToAddInMST = new Edge(vertex, otherVertex, edgeWeight);
@@ -171,12 +171,12 @@ public class Exercise28_SpaceEfficientDataStructures {
                         }
                     }
 
-                    if(isMinWeightEdgeEligible) {
+                    if (isMinWeightEdgeEligible) {
                         break;
                     }
                 }
 
-                if(!isMinWeightEdgeEligible) {
+                if (!isMinWeightEdgeEligible) {
                     continue;
                 }
 
@@ -188,10 +188,10 @@ public class Exercise28_SpaceEfficientDataStructures {
                 weight += edgeToAddInMST.weight();
 
                 // Add vertex to the minimum spanning tree
-                if(!marked[vertex1]) {
+                if (!marked[vertex1]) {
                     visit(edgeWeightedGraph, vertex1);
                 }
-                if(!marked[vertex2]) {
+                if (!marked[vertex2]) {
                     visit(edgeWeightedGraph, vertex2);
                 }
             }
@@ -203,10 +203,10 @@ public class Exercise28_SpaceEfficientDataStructures {
 
             double[] adjacentEdges = edgeWeightedGraph.adjacent(vertex);
 
-            for(int otherVertex = 0; otherVertex < adjacentEdges.length; otherVertex++) {
+            for (int otherVertex = 0; otherVertex < adjacentEdges.length; otherVertex++) {
                 double edgeWeight = adjacentEdges[otherVertex];
 
-                if(edgeWeight != NO_CONNECTION && !marked[otherVertex]) {
+                if (edgeWeight != NO_CONNECTION && !marked[otherVertex]) {
                     priorityQueue.insert(edgeWeight);
                 }
             }

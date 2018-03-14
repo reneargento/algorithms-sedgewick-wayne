@@ -44,7 +44,7 @@ public class Exercise12 {
             String key = tokens[keyField];
             String value = tokens[valueField];
 
-            if(!symbolTable.contains(key)) {
+            if (!symbolTable.contains(key)) {
                 symbolTable.put(key, new ArrayList<>());
             }
             symbolTable.get(key).add(value);
@@ -55,9 +55,9 @@ public class Exercise12 {
 
             boolean isFirstValue = true;
 
-            if(symbolTable.contains(query)) {
+            if (symbolTable.contains(query)) {
                 for(String value : symbolTable.get(query)) {
-                    if(isFirstValue) {
+                    if (isFirstValue) {
                         isFirstValue = false;
                     } else {
                         StdOut.print(" ");

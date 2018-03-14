@@ -35,11 +35,11 @@ public class Exercise9 {
         for(String word : words) {
             totalWordsProcessed++;
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
-            if(!binarySearchSymbolTable.contains(word)) {
+            if (!binarySearchSymbolTable.contains(word)) {
                 binarySearchSymbolTable.put(word, 1);
             } else {
                 binarySearchSymbolTable.put(word, binarySearchSymbolTable.get(word) + 1);
@@ -52,7 +52,7 @@ public class Exercise9 {
         binarySearchSymbolTable.put(max, 0);
 
         for(String word : binarySearchSymbolTable.keys()) {
-            if(binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
+            if (binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
                 max = word;
             }
         }

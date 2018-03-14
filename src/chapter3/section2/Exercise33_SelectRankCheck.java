@@ -12,14 +12,14 @@ public class Exercise33_SelectRankCheck {
 
         //Check rank
         for(int i = 0; i < size; i++) {
-            if(i != binarySearchTree.rank(binarySearchTree.select(i))) {
+            if (i != binarySearchTree.rank(binarySearchTree.select(i))) {
                 return false;
             }
         }
 
         //Check select
         for(Integer key : binarySearchTree.keys()) {
-            if(key.compareTo(binarySearchTree.select(binarySearchTree.rank(key))) != 0) {
+            if (key.compareTo(binarySearchTree.select(binarySearchTree.rank(key))) != 0) {
                 return false;
             }
         }

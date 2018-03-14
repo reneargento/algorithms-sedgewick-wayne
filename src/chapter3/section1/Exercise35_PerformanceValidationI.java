@@ -57,11 +57,11 @@ public class Exercise35_PerformanceValidationI {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
-            if(!sequentialSearchSymbolTable.contains(word)) {
+            if (!sequentialSearchSymbolTable.contains(word)) {
                 sequentialSearchSymbolTable.put(word, 1);
             } else {
                 sequentialSearchSymbolTable.put(word, sequentialSearchSymbolTable.get(word) + 1);
@@ -72,7 +72,7 @@ public class Exercise35_PerformanceValidationI {
         sequentialSearchSymbolTable.put(max, 0);
 
         for(String word : sequentialSearchSymbolTable.keys()) {
-            if(sequentialSearchSymbolTable.get(word) > sequentialSearchSymbolTable.get(max)) {
+            if (sequentialSearchSymbolTable.get(word) > sequentialSearchSymbolTable.get(max)) {
                 max = word;
             }
         }

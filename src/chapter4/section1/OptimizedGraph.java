@@ -40,10 +40,10 @@ public class OptimizedGraph implements GraphInterface {
     }
 
     public void addEdge(int vertex1, int vertex2) {
-        if(adjacent[vertex1] == null) {
+        if (adjacent[vertex1] == null) {
             adjacent[vertex1] = new Bag<>();
         }
-        if(adjacent[vertex2] == null) {
+        if (adjacent[vertex2] == null) {
             adjacent[vertex2] = new Bag<>();
         }
 

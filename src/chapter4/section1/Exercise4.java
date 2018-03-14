@@ -15,7 +15,7 @@ public class Exercise4 {
 
         public boolean hasEdge(int vertex1, int vertex2) {
             for(int neighbor: adjacent(vertex1)) {
-                if(neighbor == vertex2) {
+                if (neighbor == vertex2) {
                     return true;
                 }
             }

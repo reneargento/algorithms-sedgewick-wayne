@@ -26,7 +26,7 @@ public class SparseVector {
     }
 
     public double get(int key) {
-        if(!hashTable.contains(key)) {
+        if (!hashTable.contains(key)) {
             return 0;
         } else {
             return hashTable.get(key);
@@ -34,7 +34,7 @@ public class SparseVector {
     }
 
     public void put(int key, double value) {
-        if(value == 0) {
+        if (value == 0) {
             hashTable.delete(key);
             return;
         }
@@ -47,7 +47,7 @@ public class SparseVector {
     }
 
     public SparseVector plus(SparseVector sparseVector) {
-        if(dimension != sparseVector.dimension) {
+        if (dimension != sparseVector.dimension) {
             throw new IllegalArgumentException("Sparse vector dimensions must be the same.");
         }
 
@@ -61,7 +61,7 @@ public class SparseVector {
         for(int key : sparseVector.hashTable.keys()) {
             double sum = get(key) + sparseVector.get(key);
 
-            if(sum != 0) {
+            if (sum != 0) {
                 result.put(key, sum);
             } else {
                 result.delete(key);
@@ -72,22 +72,22 @@ public class SparseVector {
     }
 
     public double dot(SparseVector sparseVector) {
-        if(dimension != sparseVector.dimension) {
+        if (dimension != sparseVector.dimension) {
             throw new IllegalArgumentException("Sparse vector dimensions must be the same.");
         }
 
         double sum = 0;
 
         //Iterate over the vector with the fewest nonzeros
-        if(size() <= sparseVector.size()) {
+        if (size() <= sparseVector.size()) {
             for(int key : hashTable.keys()) {
-                if(sparseVector.hashTable.contains(key)) {
+                if (sparseVector.hashTable.contains(key)) {
                     sum += get(key) * sparseVector.get(key);
                 }
             }
         } else {
             for(int key : sparseVector.hashTable.keys()) {
-                if(hashTable.contains(key)) {
+                if (hashTable.contains(key)) {
                     sum += get(key) * sparseVector.get(key);
                 }
             }
@@ -163,7 +163,7 @@ public class SparseVector {
         private int hash(int key) {
             int hash = Integer.valueOf(key).hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -178,7 +178,7 @@ public class SparseVector {
             HashSTintKeysdoubleValues tempHashTable = new HashSTintKeysdoubleValues(newSize);
 
             for(int i = 0; i < size; i++) {
-                if(keys[i] != EMPTY_KEY) {
+                if (keys[i] != EMPTY_KEY) {
                     tempHashTable.put(keys[i], values[i]);
                 }
             }
@@ -194,7 +194,7 @@ public class SparseVector {
             }
 
             for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex] == key) {
+                if (keys[tableIndex] == key) {
                     return true;
                 }
             }
@@ -208,7 +208,7 @@ public class SparseVector {
             }
 
             for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex] == key) {
+                if (keys[tableIndex] == key) {
                     return values[tableIndex];
                 }
             }
@@ -221,14 +221,14 @@ public class SparseVector {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            if(keysSize >= size / (double) 2) {
+            if (keysSize >= size / (double) 2) {
                 resize(size * 2);
                 lgM++;
             }
 
             int tableIndex;
             for(tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex] == key) {
+                if (keys[tableIndex] == key) {
                     values[tableIndex] = value;
                     return;
                 }
@@ -244,7 +244,7 @@ public class SparseVector {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
@@ -271,7 +271,7 @@ public class SparseVector {
                 tableIndex = (tableIndex + 1) % size;
             }
 
-            if(keysSize > 1 && keysSize <= size / (double) 8) {
+            if (keysSize > 1 && keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             }
@@ -281,7 +281,7 @@ public class SparseVector {
             Queue<Integer> keySet = new Queue<>();
 
             for(int key : keys) {
-                if(key != EMPTY_KEY) {
+                if (key != EMPTY_KEY) {
                     keySet.enqueue(key);
                 }
             }

@@ -22,7 +22,7 @@ public class Exercise33_ShortestPathInAGrid {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
-                    if(isValidCell(matrix, neighborRow, neighborColumn)) {
+                    if (isValidCell(matrix, neighborRow, neighborColumn)) {
                         int neighborCellIndex = getCellIndex(matrix, neighborRow, neighborColumn);
                         edgeWeightedDigraph.addEdge(new DirectedEdge(currentCellIndex, neighborCellIndex,
                                 matrix[neighborRow][neighborColumn]));
@@ -52,7 +52,7 @@ public class Exercise33_ShortestPathInAGrid {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
-                    if(isValidCell(matrix, neighborRow, neighborColumn)) {
+                    if (isValidCell(matrix, neighborRow, neighborColumn)) {
                         int neighborCellIndex = getCellIndex(matrix, neighborRow, neighborColumn);
                         edgeWeightedDigraph.addEdge(new DirectedEdge(currentCellIndex, neighborCellIndex,
                                 matrix[neighborRow][neighborColumn]));

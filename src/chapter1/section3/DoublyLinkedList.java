@@ -300,7 +300,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 
             if (startFromTheBeginning) {
                 index++;
-            } else{
+            } else {
                 index--;
             }
 

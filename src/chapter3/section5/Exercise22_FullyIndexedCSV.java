@@ -29,7 +29,7 @@ public class Exercise22_FullyIndexedCSV {
                 String line = in.readLine();
                 String[] tokens = line.split(",");
 
-                if(isFirstLine) {
+                if (isFirstLine) {
                     hashMapArray = (HashMap<String, List<String>>[]) new HashMap[tokens.length];
 
                     for(int i = 0; i < hashMapArray.length; i++) {
@@ -43,7 +43,7 @@ public class Exercise22_FullyIndexedCSV {
                     List<String> values = new ArrayList<>();
 
                     for(int valueField = 0; valueField < tokens.length; valueField++) {
-                        if(valueField != keyField) {
+                        if (valueField != keyField) {
                             values.add(tokens[valueField]);
                         }
                     }
@@ -55,13 +55,13 @@ public class Exercise22_FullyIndexedCSV {
 
         public String get(int keyField, int valueField, String query) {
 
-            if(keyField < 0 || valueField < 0) {
+            if (keyField < 0 || valueField < 0) {
                 throw new IllegalArgumentException("Fields must be equal or higher than 0");
             }
 
-            if(keyField == valueField) {
+            if (keyField == valueField) {
                 return query;
-            } else if(keyField < valueField) {
+            } else if (keyField < valueField) {
                 valueField--;
             }
 

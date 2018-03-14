@@ -22,7 +22,7 @@ public class Exercise19 {
                 }
             }
 
-            if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
                 for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
@@ -49,12 +49,12 @@ public class Exercise19 {
             Queue<Key> keySet = new Queue<>();
 
             for(Object key : keys) {
-                if(key != null) {
+                if (key != null) {
                     keySet.enqueue((Key) key);
                 }
             }
 
-            if(!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
+            if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
                 for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keySet.dequeue();

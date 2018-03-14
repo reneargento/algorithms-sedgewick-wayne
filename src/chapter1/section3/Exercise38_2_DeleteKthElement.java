@@ -38,7 +38,7 @@ public class Exercise38_2_DeleteKthElement<Item> implements Iterable<Item>{
 
         if (last.previous != null) {
             last.previous.next = last;
-        } else{
+        } else {
             first = last;
         }
 

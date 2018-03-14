@@ -60,7 +60,7 @@ public class Exercise3 {
             int toVertex = edge.to();
 
             // Parallel edges are ignored
-            if(hasEdge(fromVertex, toVertex)) {
+            if (hasEdge(fromVertex, toVertex)) {
                 return;
             }
 
@@ -76,7 +76,7 @@ public class Exercise3 {
             Bag<DirectedEdge> adjacentEdges = new Bag<>();
 
             for(int i = 0; i < adjacent.length; i++) {
-                if(hasEdge(vertex, i)) {
+                if (hasEdge(vertex, i)) {
                     adjacentEdges.add(new DirectedEdge(vertex, i, adjacent[vertex][i]));
                 }
             }

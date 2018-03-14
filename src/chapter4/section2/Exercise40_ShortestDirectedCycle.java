@@ -24,10 +24,10 @@ public class Exercise40_ShortestDirectedCycle {
             BreadthFirstDirectedPaths breadthFirstDirectedPaths = new BreadthFirstDirectedPaths(digraph, vertex);
 
             for(int neighbor : reverseDigraph.adjacent(vertex)) {
-                if(breadthFirstDirectedPaths.hasPathTo(neighbor)) {
+                if (breadthFirstDirectedPaths.hasPathTo(neighbor)) {
                     int cycleLength = breadthFirstDirectedPaths.distTo(neighbor) + 1;
 
-                    if(cycleLength < shortestCycleLength) {
+                    if (cycleLength < shortestCycleLength) {
                         shortestCycleLength = cycleLength;
                         cycle = new ArrayList<>();
 
@@ -40,7 +40,7 @@ public class Exercise40_ShortestDirectedCycle {
             }
         }
 
-        if(cycle == null) {
+        if (cycle == null) {
             //There is no cycle in the graph
             return null;
         }
@@ -60,7 +60,7 @@ public class Exercise40_ShortestDirectedCycle {
 
         List<Integer> directedCycle1 = shortestDirectedCycle.getShortestDirectedCycle(digraph1);
 
-        if(directedCycle1 != null) {
+        if (directedCycle1 != null) {
             StdOut.println("Shortest cycle 1 length: " + (directedCycle1.size() - 1));
             for (int vertex : directedCycle1) {
                 StdOut.print(vertex + " ");
@@ -82,7 +82,7 @@ public class Exercise40_ShortestDirectedCycle {
 
         List<Integer> directedCycle2 = shortestDirectedCycle.getShortestDirectedCycle(digraph2);
 
-        if(directedCycle2 != null) {
+        if (directedCycle2 != null) {
             StdOut.println("Shortest cycle 2 length: " + (directedCycle2.size() - 1));
             for (int vertex : directedCycle2) {
                 StdOut.print(vertex + " ");
@@ -105,7 +105,7 @@ public class Exercise40_ShortestDirectedCycle {
 
         List<Integer> directedCycle3 = shortestDirectedCycle.getShortestDirectedCycle(digraph3);
 
-        if(directedCycle3 != null) {
+        if (directedCycle3 != null) {
             StdOut.println("Shortest cycle 3 length: " + (directedCycle3.size() - 1));
             for (int vertex : directedCycle3) {
                 StdOut.print(vertex + " ");
@@ -123,7 +123,7 @@ public class Exercise40_ShortestDirectedCycle {
 
         List<Integer> directedCycle4 = shortestDirectedCycle.getShortestDirectedCycle(digraph4);
 
-        if(directedCycle4 != null) {
+        if (directedCycle4 != null) {
             StdOut.println("Shortest cycle 4 length: " + (directedCycle4.size() - 1));
             for(int vertex : directedCycle4) {
                 StdOut.print(vertex + " ");

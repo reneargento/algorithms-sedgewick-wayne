@@ -16,7 +16,7 @@ public class Exercise35_RandomEuclideanEdgeWeightedGraphs {
     public List<Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph> generateRandomEuclideanEdgeWeightedGraphs(
             int numberOfGraphs, int vertices, double radius) {
 
-        if(numberOfGraphs < 0) {
+        if (numberOfGraphs < 0) {
             throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 
@@ -57,7 +57,7 @@ public class Exercise35_RandomEuclideanEdgeWeightedGraphs {
                         allVertices[vertexId].yCoordinate,
                         allVertices[otherVertexId].xCoordinate, allVertices[otherVertexId].yCoordinate);
 
-                if(distance <= radius) {
+                if (distance <= radius) {
                     Edge edge = new Edge(vertexId, otherVertexId, distance);
                     randomEuclideanEdgeWeightedGraph.addEdge(edge);
                 }

@@ -122,16 +122,16 @@ public class CuckooHashTable<Key, Value> {
             //Try to add all keys and values
             //Hash table 1
             for(Entry entry : oldEntries[0]) {
-                if(entry != null && tryToInsert(entry) != null) {
+                if (entry != null && tryToInsert(entry) != null) {
                     tryToResize = true;
                     break;
                 }
             }
 
             //Hash table 2
-            if(!tryToResize) {
+            if (!tryToResize) {
                 for(Entry entry : oldEntries[1]) {
-                    if(entry != null && tryToInsert(entry) != null) {
+                    if (entry != null && tryToInsert(entry) != null) {
                         tryToResize = true;
                         break;
                     }
@@ -148,7 +148,7 @@ public class CuckooHashTable<Key, Value> {
 
         for(int i = 0; i < 2; i++) {
             for(Entry entry : keysAndValues[i]) {
-                if(entry != null) {
+                if (entry != null) {
                     tempKeysAndValues[tempKeysAndValuesIndex++] = entry;
                 }
             }
@@ -167,7 +167,7 @@ public class CuckooHashTable<Key, Value> {
 
             //Try to add all keys and values
             for(Entry entry : tempKeysAndValues) {
-                if(tryToInsert(entry) != null) {
+                if (tryToInsert(entry) != null) {
                     tryToRehash = true;
                     break;
                 }
@@ -191,7 +191,7 @@ public class CuckooHashTable<Key, Value> {
         for(int hashTableIndex = 0; hashTableIndex < 2; hashTableIndex++) {
             int hash = hashFunctions[hashTableIndex].hash(key);
 
-            if(keysAndValues[hashTableIndex][hash] != null && keysAndValues[hashTableIndex][hash].key.equals(key)) {
+            if (keysAndValues[hashTableIndex][hash] != null && keysAndValues[hashTableIndex][hash].key.equals(key)) {
                 return keysAndValues[hashTableIndex][hash].value;
             }
         }
@@ -204,7 +204,7 @@ public class CuckooHashTable<Key, Value> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        if(value == null) {
+        if (value == null) {
             delete(key);
             return;
         }
@@ -213,7 +213,7 @@ public class CuckooHashTable<Key, Value> {
         for(int hashTableIndex = 0; hashTableIndex < 2; hashTableIndex++) {
             int hash = hashFunctions[hashTableIndex].hash(key);
 
-            if(keysAndValues[hashTableIndex][hash] != null && keysAndValues[hashTableIndex][hash].key.equals(key)) {
+            if (keysAndValues[hashTableIndex][hash] != null && keysAndValues[hashTableIndex][hash].key.equals(key)) {
                 keysAndValues[hashTableIndex][hash].value = value;
                 return;
             }
@@ -221,7 +221,7 @@ public class CuckooHashTable<Key, Value> {
 
         //Key does not exist, let's insert it
         //Check if the number of keys is equal or more than half of the hash table size
-        if(keysSize >= size) {
+        if (keysSize >= size) {
             resize(size * 2);
         }
 
@@ -229,7 +229,7 @@ public class CuckooHashTable<Key, Value> {
         while (entry != null) {
             entry = tryToInsert(entry);
 
-            if(entry != null) {
+            if (entry != null) {
                 rehash();
             }
         }
@@ -251,7 +251,7 @@ public class CuckooHashTable<Key, Value> {
         for(int numberOfTries = 0; numberOfTries < maxTries; numberOfTries++) {
             int hash = hashFunctions[hashTableIndex].hash(entry.key);
 
-            if(keysAndValues[hashTableIndex][hash] == null) {
+            if (keysAndValues[hashTableIndex][hash] == null) {
                 keysAndValues[hashTableIndex][hash] = entry;
                 return null;
             }
@@ -271,14 +271,14 @@ public class CuckooHashTable<Key, Value> {
             throw new IllegalArgumentException("Argument to delete() cannot be null");
         }
 
-        if(!contains(key)) {
+        if (!contains(key)) {
             return;
         }
 
         for(int hashTableIndex = 0; hashTableIndex < 2; hashTableIndex++) {
             int hash = hashFunctions[hashTableIndex].hash(key);
 
-            if(keysAndValues[hashTableIndex][hash] != null && keysAndValues[hashTableIndex][hash].key.equals(key)) {
+            if (keysAndValues[hashTableIndex][hash] != null && keysAndValues[hashTableIndex][hash].key.equals(key)) {
                 keysAndValues[hashTableIndex][hash] = null;
                 break;
             }
@@ -286,7 +286,7 @@ public class CuckooHashTable<Key, Value> {
 
         keysSize--;
 
-        if(keysSize > 1 && keysSize <= size / (double) 8) {
+        if (keysSize > 1 && keysSize <= size / (double) 8) {
             resize(size / 2);
         }
     }
@@ -296,13 +296,13 @@ public class CuckooHashTable<Key, Value> {
 
         for(int hashTableIndex = 0; hashTableIndex < keysAndValues.length; hashTableIndex++) {
             for(Entry entry : keysAndValues[hashTableIndex]) {
-                if(entry != null) {
+                if (entry != null) {
                     keySet.enqueue(entry.key);
                 }
             }
         }
 
-        if(!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
+        if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
             Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
             for(int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keySet.dequeue();

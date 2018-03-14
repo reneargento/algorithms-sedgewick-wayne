@@ -27,7 +27,7 @@ public class Exercise32_Dictionary {
             while (in.hasNextLine()) {
                 String line = in.readLine();
 
-                if(isTitleRow) {
+                if (isTitleRow) {
                     isTitleRow = false;
                     continue;
                 }
@@ -50,14 +50,14 @@ public class Exercise32_Dictionary {
 
                 String query;
 
-                if(!isKeyHit) {
+                if (!isKeyHit) {
                     query = generateRandomKey();
                 } else {
                     int randomKeyIndex = StdRandom.uniform(keysArray.length);
                     query = keysArray[randomKeyIndex];
                 }
 
-                if(symbolTable.contains(query)) {
+                if (symbolTable.contains(query)) {
                     symbolTable.get(query);
                 }
             }

@@ -44,13 +44,13 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
             int[] rankResult = rank(key);
             int rank = rankResult[0];
-            if(rank < size && keys[rank].compareTo(key) == 0) {
+            if (rank < size && keys[rank].compareTo(key) == 0) {
                 return values[rank];
             } else {
                 return null;
@@ -73,7 +73,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 int comparison = key.compareTo(keys[middle]);
                 numberOfArrayAccesses++;
 
-                if(comparison < 0) {
+                if (comparison < 0) {
                     high = middle - 1;
                 } else if (comparison > 0) {
                     low = middle + 1;
@@ -92,7 +92,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return 0; //Delete is not used in the analysis of array accesses
             }
@@ -101,7 +101,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
             int rank = rankResult[0];
             numberOfArrayAccesses += rankResult[1];
 
-            if(rank < size) {
+            if (rank < size) {
                 numberOfArrayAccesses++;
                 if (keys[rank].compareTo(key) == 0) {
                     values[rank] = value;
@@ -109,7 +109,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 }
             }
 
-            if(size == keys.length) {
+            if (size == keys.length) {
                 resize(keys.length * 2);
                 numberOfArrayAccesses += size;
             }
@@ -141,7 +141,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -157,13 +157,13 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
             values[size - 1] = null;
             size--;
 
-            if(size > 0 && size == keys.length / 4) {
+            if (size > 0 && size == keys.length / 4) {
                 resize(keys.length / 2);
             }
         }
 
         public Key min() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -171,7 +171,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
         }
 
         public Key max() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -179,7 +179,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
         }
 
         public Key select(int k) {
-            if(isEmpty() || k >= size) {
+            if (isEmpty() || k >= size) {
                 throw new IllegalArgumentException("Invalid argument: " + k);
             }
 
@@ -190,7 +190,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
             int[] rankResult = rank(key);
             int rank = rankResult[0];
 
-            if(rank == size) {
+            if (rank == size) {
                 return null;
             }
 
@@ -198,14 +198,14 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
         }
 
         public Key floor(Key key) {
-            if(contains(key)) {
+            if (contains(key)) {
                 return key;
             }
 
             int[] rankResult = rank(key);
             int rank = rankResult[0];
 
-            if(rank == 0) {
+            if (rank == 0) {
                 return null;
             }
 
@@ -233,7 +233,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(high.compareTo(low) < 0) {
+            if (high.compareTo(low) < 0) {
                 return 0;
             } else {
                 int[] rankHighResult = rank(high);
@@ -242,7 +242,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 int[] rankLowResult = rank(low);
                 int rankLow = rankLowResult[0];
 
-                if(contains(high)) {
+                if (contains(high)) {
                     return rankHigh - rankLow + 1;
                 } else {
                     return rankHigh - rankLow;
@@ -267,7 +267,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 queue.enqueue(keys[i]);
             }
 
-            if(contains(high)) {
+            if (contains(high)) {
                 queue.enqueue(keys[rankHigh]);
             }
 
@@ -313,12 +313,12 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
             int numberOfArrayAccesses;
-            if(!binarySearchSymbolTable.contains(word)) {
+            if (!binarySearchSymbolTable.contains(word)) {
                 numberOfArrayAccesses = binarySearchSymbolTable.put(word, 1);
             } else {
                 numberOfArrayAccesses = binarySearchSymbolTable.put(word, binarySearchSymbolTable.get(word) + 1);
@@ -331,7 +331,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
         visualAccumulator.addDataValue(numberOfArrayAccesses, true);
 
         for(String word : binarySearchSymbolTable.keys()) {
-            if(binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
+            if (binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
                 max = word;
             }
         }

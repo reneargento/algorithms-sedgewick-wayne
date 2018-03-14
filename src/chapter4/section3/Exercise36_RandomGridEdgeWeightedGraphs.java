@@ -16,7 +16,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
     public List<Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph> generateRandomGridEdgeWeightedGraphs(
             int numberOfGraphs, int vertices, int extraEdges) {
 
-        if(numberOfGraphs < 0) {
+        if (numberOfGraphs < 0) {
             throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 
@@ -34,7 +34,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
 
     public Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph randomGridEdgeWeightedGraph(int vertices,
                                                                                                      int extraEdges) {
-        if(Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
+        if (Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
             throw new IllegalArgumentException("Vertex number must have an integer square root");
         }
 
@@ -72,7 +72,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
         vertices = shrinkResult[2];
 
         // Update vertex IDs in the grid if any shrink occurred
-        if(shrinkTimes > 0) {
+        if (shrinkTimes > 0) {
             updateVerticesIds(vertexNumberSqrt, allVertices, verticesGrid);
         }
 
@@ -112,7 +112,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
                     allVertices[randomVertexId2].yCoordinate);
 
             boolean shouldConnect = 1 - StdRandom.uniform() >= distance;
-            if(shouldConnect) {
+            if (shouldConnect) {
                 double randomEdgeWeight = StdRandom.uniform();
 
                 extraEdgesList.add(new Edge(randomVertexId1, randomVertexId2, randomEdgeWeight));
@@ -145,7 +145,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
 
             // We are assuming that the "about 2V" in the exercise description is within 20% of 2V.
             // If R is too large, we shrink the grid to decrease the number of vertices and edges.
-            if(totalEdges > 1.2 * (2 * vertices)) {
+            if (totalEdges > 1.2 * (2 * vertices)) {
                 vertexNumberSqrt--;
                 vertices = vertexNumberSqrt * vertexNumberSqrt;
                 shrinkTimes++;
@@ -173,7 +173,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
                     int vertexId1 = extraEdge.either();
                     int vertexId2 = extraEdge.other(vertexId1);
 
-                    if(removedVertices.contains(vertexId1) || removedVertices.contains(vertexId2)) {
+                    if (removedVertices.contains(vertexId1) || removedVertices.contains(vertexId2)) {
                         extraEdgesToRemoveAfterShrinking.add(extraEdge);
                     }
                 }
@@ -184,7 +184,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
             }
 
             // The smallest grid we can have is a 2x2 grid, so if we reach this grid dimensions we break
-            if(vertexNumberSqrt == 2) {
+            if (vertexNumberSqrt == 2) {
                 shouldCheckIfNeedsToShrink = false;
             }
         }
@@ -219,12 +219,12 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
-                    if(isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
+                    if (isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
                         int vertexId1 = getVertexId(row, column, vertexNumberSqrt);
                         int vertexId2 = getVertexId(neighborRow, neighborColumn, vertexNumberSqrt);
 
                         //Used to avoid connecting vertices more than once
-                        if(vertexId1 < vertexId2) {
+                        if (vertexId1 < vertexId2) {
                             double randomEdgeWeight = StdRandom.uniform();
                             Edge edge = new Edge(vertexId1, vertexId2, randomEdgeWeight);
                             randomEuclideanGridEdgeWeightedGraph.addEdge(edge);

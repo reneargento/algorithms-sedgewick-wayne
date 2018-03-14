@@ -37,27 +37,27 @@ public class Exercise40_CrossoverToBinarySearch {
             binarySearchSymbolTable.get(searchKeyNotFound);
             long binarySearchRunningTime = System.nanoTime() - binarySearchStart;
 
-            if(sequentialSearchRunningTime == binarySearchRunningTime) {
+            if (sequentialSearchRunningTime == binarySearchRunningTime) {
                 continue;
             }
 
-            if(sequentialSearchRunningTime >= binarySearchRunningTime * 10
+            if (sequentialSearchRunningTime >= binarySearchRunningTime * 10
                     && !tenTimesFasterNFound) {
                 StdOut.println("Value of N for which binary search becomes 10 times faster than sequential search: " + i);
                 tenTimesFasterNFound = true;
             }
-            if(sequentialSearchRunningTime >= binarySearchRunningTime * 100
+            if (sequentialSearchRunningTime >= binarySearchRunningTime * 100
                     && !aHundredTimesFasterNFound) {
                 StdOut.println("Value of N for which binary search becomes 100 times faster than sequential search: " + i);
                 aHundredTimesFasterNFound = true;
             }
-            if(sequentialSearchRunningTime >= binarySearchRunningTime * 1000
+            if (sequentialSearchRunningTime >= binarySearchRunningTime * 1000
                     && !aThousandTimesFasterNFound) {
                 StdOut.println("Value of N for which binary search becomes 1000 times faster than sequential search: " + i);
                 aThousandTimesFasterNFound = true;
             }
 
-            if(aThousandTimesFasterNFound) {
+            if (aThousandTimesFasterNFound) {
                 break;
             }
         }

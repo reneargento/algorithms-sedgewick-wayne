@@ -16,7 +16,7 @@ public class Exercise14 {
             Bag<String> values = symbolTable.get(key);
 
             for(String newKey : values) {
-                if(!inverseSymbolTable.contains(newKey)) {
+                if (!inverseSymbolTable.contains(newKey)) {
                     inverseSymbolTable.put(newKey, new Bag<>());
                 }
                 inverseSymbolTable.get(newKey).add(key);

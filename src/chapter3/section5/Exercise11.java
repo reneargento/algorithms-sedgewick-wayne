@@ -43,7 +43,7 @@ public class Exercise11 {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -55,7 +55,7 @@ public class Exercise11 {
         }
 
         private boolean isRed(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
@@ -63,7 +63,7 @@ public class Exercise11 {
         }
 
         private Node rotateLeft(Node node) {
-            if(node == null || node.right == null) {
+            if (node == null || node.right == null) {
                 return node;
             }
 
@@ -82,7 +82,7 @@ public class Exercise11 {
         }
 
         private Node rotateRight(Node node) {
-            if(node == null || node.left == null) {
+            if (node == null || node.left == null) {
                 return node;
             }
 
@@ -101,12 +101,12 @@ public class Exercise11 {
         }
 
         private void flipColors(Node node) {
-            if(node == null || node.left == null || node.right == null) {
+            if (node == null || node.left == null || node.right == null) {
                 return;
             }
 
             //The root must have opposite color of its two children
-            if((isRed(node) && !isRed(node.left) && !isRed(node.right))
+            if ((isRed(node) && !isRed(node.left) && !isRed(node.right))
                     || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
                 node.color = !node.color;
                 node.left.color = !node.left.color;
@@ -124,7 +124,7 @@ public class Exercise11 {
         }
 
         private Node add(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, 1, RED);
             }
 
@@ -133,19 +133,19 @@ public class Exercise11 {
             //If it is a duplicate key, put it on the left subtree
             //It is important to notice that since we have rotations,
             // the duplicate keys may be on the left or right subtrees later
-            if(compare <= 0) {
+            if (compare <= 0) {
                 node.left = add(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = add(node.right, key);
             }
 
-            if(isRed(node.right) && !isRed(node.left)) {
+            if (isRed(node.right) && !isRed(node.left)) {
                 node = rotateLeft(node);
             }
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -163,9 +163,9 @@ public class Exercise11 {
             while (currentNode != null) {
                 int compare = key.compareTo(currentNode.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     currentNode = currentNode.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     currentNode = currentNode.right;
                 } else {
                     return true;
@@ -176,7 +176,7 @@ public class Exercise11 {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -184,7 +184,7 @@ public class Exercise11 {
         }
 
         private Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node;
             }
 
@@ -192,7 +192,7 @@ public class Exercise11 {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -200,7 +200,7 @@ public class Exercise11 {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 return node;
             }
 
@@ -210,7 +210,7 @@ public class Exercise11 {
         //Returns the highest key in the symbol table smaller than or equal to key.
         public Key floor(Key key) {
             Node node = floor(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -218,19 +218,19 @@ public class Exercise11 {
         }
 
         private Node floor(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 return floor(node.left, key);
             } else {
                 Node rightNode = floor(node.right, key);
-                if(rightNode != null) {
+                if (rightNode != null) {
                     return rightNode;
                 } else {
                     return node;
@@ -241,7 +241,7 @@ public class Exercise11 {
         //Returns the smallest key in the symbol table greater than or equal to key.
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -249,19 +249,19 @@ public class Exercise11 {
         }
 
         private Node ceiling(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return ceiling(node.right, key);
             } else {
                 Node leftNode = ceiling(node.left, key);
-                if(leftNode != null) {
+                if (leftNode != null) {
                     return leftNode;
                 } else {
                     return node;
@@ -270,7 +270,7 @@ public class Exercise11 {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -280,7 +280,7 @@ public class Exercise11 {
         private Node select(Node node, int index) {
             int leftSubtreeSize = size(node.left);
 
-            if(leftSubtreeSize == index) {
+            if (leftSubtreeSize == index) {
                 return node;
             } else if (leftSubtreeSize > index) {
                 return select(node.left, index);
@@ -294,24 +294,24 @@ public class Exercise11 {
         }
 
         private int rankFirst(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
             //Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return rankFirst(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return size(node.left) + 1 + rankFirst(node.right, key);
             } else {
                 boolean hasDuplicateOnLeftSubtree = false;
 
-                if(node.left != null && max(node.left).key.compareTo(key) == 0) {
+                if (node.left != null && max(node.left).key.compareTo(key) == 0) {
                     hasDuplicateOnLeftSubtree = true;
                 }
 
-                if(hasDuplicateOnLeftSubtree) {
+                if (hasDuplicateOnLeftSubtree) {
                     return rankFirst(node.left, key);
                 } else {
                     return size(node.left);
@@ -324,24 +324,24 @@ public class Exercise11 {
         }
 
         private int rankLast(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
             //Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return rankLast(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return size(node.left) + 1 + rankLast(node.right, key);
             } else {
                 boolean hasDuplicateOnRightSubtree = false;
 
-                if(node.right != null && min(node.right).key.compareTo(key) == 0) {
+                if (node.right != null && min(node.right).key.compareTo(key) == 0) {
                     hasDuplicateOnRightSubtree = true;
                 }
 
-                if(hasDuplicateOnRightSubtree) {
+                if (hasDuplicateOnRightSubtree) {
                     return size(node.left) + 1 + rankLast(node.right, key);
                 } else {
                     return size(node.left);
@@ -356,31 +356,31 @@ public class Exercise11 {
 
         //O(n lg n) since we are removing all duplicate min keys
         public void deleteMin() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
             Key minKey = min();
 
             while (contains(minKey)) {
-                if(!isRed(root.left) && !isRed(root.right)) {
+                if (!isRed(root.left) && !isRed(root.right)) {
                     root.color = RED;
                 }
 
                 root = deleteMin(root);
 
-                if(!isEmpty()) {
+                if (!isEmpty()) {
                     root.color = BLACK;
                 }
             }
         }
 
         private Node deleteMin(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return null;
             }
 
-            if(!isRed(node.left) && !isRed(node.left.left)) {
+            if (!isRed(node.left) && !isRed(node.left.left)) {
                 node = moveRedLeft(node);
             }
 
@@ -390,35 +390,35 @@ public class Exercise11 {
 
         //O(n lg n) since we are removing all duplicate max keys
         public void deleteMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
             Key maxKey = max();
 
             while (contains(maxKey)) {
-                if(!isRed(root.left) && !isRed(root.right)) {
+                if (!isRed(root.left) && !isRed(root.right)) {
                     root.color = RED;
                 }
 
                 root = deleteMax(root);
 
-                if(!isEmpty()) {
+                if (!isEmpty()) {
                     root.color = BLACK;
                 }
             }
         }
 
         private Node deleteMax(Node node) {
-            if(isRed(node.left)) {
+            if (isRed(node.left)) {
                 node = rotateRight(node);
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 return null;
             }
 
-            if(!isRed(node.right) && !isRed(node.right.left)) {
+            if (!isRed(node.right) && !isRed(node.right.left)) {
                 node = moveRedRight(node);
             }
 
@@ -432,48 +432,48 @@ public class Exercise11 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
             while (contains(key)) {
-                if(!isRed(root.left) && !isRed(root.right)) {
+                if (!isRed(root.left) && !isRed(root.right)) {
                     root.color = RED;
                 }
 
                 root = delete(root, key);
 
-                if(!isEmpty()) {
+                if (!isEmpty()) {
                     root.color = BLACK;
                 }
             }
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(key.compareTo(node.key) < 0) {
-                if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+            if (key.compareTo(node.key) < 0) {
+                if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                     node = moveRedLeft(node);
                 }
 
                 node.left = delete(node.left, key);
             } else {
-                if(isRed(node.left)) {
+                if (isRed(node.left)) {
                     node = rotateRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0 && node.right == null) {
+                if (key.compareTo(node.key) == 0 && node.right == null) {
                     return null;
                 }
 
-                if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+                if (!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                     node = moveRedRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0) {
+                if (key.compareTo(node.key) == 0) {
                     Node aux = min(node.right);
                     node.key = aux.key;
                     node.right = deleteMin(node.right);
@@ -490,7 +490,7 @@ public class Exercise11 {
             // make node.left or one of its children red
             flipColors(node);
 
-            if(node.right != null && isRed(node.right.left)) {
+            if (node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
                 flipColors(node);
@@ -504,7 +504,7 @@ public class Exercise11 {
             // make node.right or one of its children red
             flipColors(node);
 
-            if(node.left != null && isRed(node.left.left)) {
+            if (node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
                 flipColors(node);
             }
@@ -513,19 +513,19 @@ public class Exercise11 {
         }
 
         private Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(isRed(node.right)) {
+            if (isRed(node.right)) {
                 node = rotateLeft(node);
             }
 
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -552,22 +552,22 @@ public class Exercise11 {
         }
 
         private void keys(Node node, Queue<Key> queue, Key low, Key high) {
-            if(node == null) {
+            if (node == null) {
                 return;
             }
 
             int compareLow = low.compareTo(node.key);
             int compareHigh = high.compareTo(node.key);
 
-            if(compareLow <= 0) {
+            if (compareLow <= 0) {
                 keys(node.left, queue, low, high);
             }
 
-            if(compareLow <= 0 && compareHigh >= 0) {
+            if (compareLow <= 0 && compareHigh >= 0) {
                 queue.enqueue(node.key);
             }
 
-            if(compareHigh >= 0) {
+            if (compareHigh >= 0) {
                 keys(node.right, queue, low, high);
             }
         }

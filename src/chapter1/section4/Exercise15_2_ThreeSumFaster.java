@@ -40,7 +40,7 @@ public class Exercise15_2_ThreeSumFaster {
                     end--;
                 } else if (array[i] + array[start] + array[end] < 0) {
                     start++;
-                } else{
+                } else {
                     StdOut.println(""+ array[i] + " " + array[start] + " " + array[end]);
                     count++;
 

@@ -26,7 +26,7 @@ public class Exercise29 {
                 HashSet<Integer> verticesInNewAdjacencyList = new HashSet<>();
 
                 for(int neighbor : graph.getAdjacencyList()[vertex]) {
-                    if(!verticesInNewAdjacencyList.contains(neighbor) && neighbor != vertex) {
+                    if (!verticesInNewAdjacencyList.contains(neighbor) && neighbor != vertex) {
                         verticesInNewAdjacencyList.add(neighbor);
                         newAdjacencyList.add(neighbor);
                     }
@@ -36,7 +36,7 @@ public class Exercise29 {
             }
 
             for(int source = 0; source < graph.vertices(); source++) {
-                if(!visited[source]) {
+                if (!visited[source]) {
                     dfs(graph, source, source);
                 }
             }
@@ -46,9 +46,9 @@ public class Exercise29 {
             visited[vertex] = true;
 
             for(int neighbor : graph.adjacent(vertex)) {
-                if(!visited[neighbor]) {
+                if (!visited[neighbor]) {
                     dfs(graph, neighbor, vertex);
-                } else if(neighbor != origin) {
+                } else if (neighbor != origin) {
                     hasCycle = true;
                 }
             }

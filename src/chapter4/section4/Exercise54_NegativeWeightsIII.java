@@ -43,7 +43,7 @@ public class Exercise54_NegativeWeightsIII {
 
                     // Count negative cycles
                     int numberOfNegativeCycles = countNegativeCycles(randomEdgeWeightedDigraph);
-                    if(numberOfNegativeCycles <= acceptableNumberOfNegativeCycles) {
+                    if (numberOfNegativeCycles <= acceptableNumberOfNegativeCycles) {
                         digraphsWithNotManyNegativeCycles.add(randomEdgeWeightedDigraph);
                     } else {
                         // Too many negative cycles in the digraph. Try again.
@@ -73,7 +73,7 @@ public class Exercise54_NegativeWeightsIII {
                 totalWeight += edge.weight();
             }
 
-            if(totalWeight < 0) {
+            if (totalWeight < 0) {
                 negativeCycles++;
             }
         }

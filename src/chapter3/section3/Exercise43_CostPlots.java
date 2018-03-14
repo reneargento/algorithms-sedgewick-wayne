@@ -14,11 +14,11 @@ public class Exercise43_CostPlots {
         private int cost;
 
         private int putAndComputeCost(Key key, Value value) {
-            if(key == null) {
+            if (key == null) {
                 return 0;
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return 0;
             }
@@ -32,30 +32,30 @@ public class Exercise43_CostPlots {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value, 1, RED);
             }
 
             int compare = key.compareTo(node.key);
             cost++;
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
             }
 
-            if(isRed(node.right) && !isRed(node.left)) {
+            if (isRed(node.right) && !isRed(node.left)) {
                 cost++;
                 node = rotateLeft(node);
             }
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 cost++;
                 node = rotateRight(node);
             }
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 cost++;
                 flipColors(node);
             }
@@ -88,12 +88,12 @@ public class Exercise43_CostPlots {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
             int cost;
-            if(!redBlackBSTCostPlots.contains(word)) {
+            if (!redBlackBSTCostPlots.contains(word)) {
                 cost = redBlackBSTCostPlots.putAndComputeCost(word, 1);
             } else {
                 cost = redBlackBSTCostPlots.putAndComputeCost(word, redBlackBSTCostPlots.get(word) + 1);
@@ -106,7 +106,7 @@ public class Exercise43_CostPlots {
         visualAccumulator.addDataValue(cost, true);
 
         for(String word : redBlackBSTCostPlots.keys()) {
-            if(redBlackBSTCostPlots.get(word) > redBlackBSTCostPlots.get(max)) {
+            if (redBlackBSTCostPlots.get(word) > redBlackBSTCostPlots.get(max)) {
                 max = word;
             }
         }

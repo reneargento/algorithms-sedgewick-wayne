@@ -35,7 +35,7 @@ public class Exercise23_SparseMatrices {
         }
 
         public double get(int key) {
-            if(!hashTable.contains(key)) {
+            if (!hashTable.contains(key)) {
                 return 0;
             } else {
                 return hashTable.get(key);
@@ -47,7 +47,7 @@ public class Exercise23_SparseMatrices {
         }
 
         public SparseVector plus(SparseVector sparseVector) {
-            if(dimension != sparseVector.dimension) {
+            if (dimension != sparseVector.dimension) {
                 throw new IllegalArgumentException("Sparse vector dimensions must be the same.");
             }
 
@@ -61,7 +61,7 @@ public class Exercise23_SparseMatrices {
             for(int key : sparseVector.hashTable.keys()) {
                 double sum = get(key) + sparseVector.get(key);
 
-                if(sum != 0) {
+                if (sum != 0) {
                     result.put(key, sum);
                 } else {
                     result.delete(key);
@@ -72,22 +72,22 @@ public class Exercise23_SparseMatrices {
         }
 
         public double dot(SparseVector sparseVector) {
-            if(dimension != sparseVector.dimension) {
+            if (dimension != sparseVector.dimension) {
                 throw new IllegalArgumentException("Sparse vector dimensions must be the same.");
             }
 
             double sum = 0;
 
             //Iterate over the vector with the fewest nonzeros
-            if(size() <= sparseVector.size()) {
+            if (size() <= sparseVector.size()) {
                 for(int key : hashTable.keys()) {
-                    if(sparseVector.hashTable.contains(key)) {
+                    if (sparseVector.hashTable.contains(key)) {
                         sum += get(key) * sparseVector.get(key);
                     }
                 }
             } else {
                 for(int key : sparseVector.hashTable.keys()) {
-                    if(hashTable.contains(key)) {
+                    if (hashTable.contains(key)) {
                         sum += get(key) * sparseVector.get(key);
                     }
                 }
@@ -149,10 +149,10 @@ public class Exercise23_SparseMatrices {
 
         @Override
         public double get(int row, int column) {
-            if(row < 0 || row >= rowSize) {
+            if (row < 0 || row >= rowSize) {
                 throw new IllegalArgumentException("Invalid row index");
             }
-            if(column < 0 || column >= columnSize) {
+            if (column < 0 || column >= columnSize) {
                 throw new IllegalArgumentException("Invalid column index");
             }
 
@@ -161,14 +161,14 @@ public class Exercise23_SparseMatrices {
 
         @Override
         public void put(int row, int column, double value) {
-            if(row < 0 || row >= rowSize) {
+            if (row < 0 || row >= rowSize) {
                 throw new IllegalArgumentException("Invalid row index");
             }
-            if(column < 0 || column >= columnSize) {
+            if (column < 0 || column >= columnSize) {
                 throw new IllegalArgumentException("Invalid column index");
             }
 
-            if(value == 0) {
+            if (value == 0) {
                 delete(row, column);
                 return;
             }
@@ -179,10 +179,10 @@ public class Exercise23_SparseMatrices {
 
         @Override
         public void delete(int row, int column) {
-            if(row < 0 || row >= rowSize) {
+            if (row < 0 || row >= rowSize) {
                 throw new IllegalArgumentException("Invalid row index");
             }
-            if(column < 0 || column >= columnSize) {
+            if (column < 0 || column >= columnSize) {
                 throw new IllegalArgumentException("Invalid column index");
             }
 
@@ -192,7 +192,7 @@ public class Exercise23_SparseMatrices {
 
         @Override
         public SparseMatrix sum(SparseMatrix sparseMatrix) {
-            if(rowSize != sparseMatrix.rowSize || columnSize != sparseMatrix.columnSize) {
+            if (rowSize != sparseMatrix.rowSize || columnSize != sparseMatrix.columnSize) {
                 throw new IllegalArgumentException("Matrix A rows and columns number and Matrix B rows and columns " +
                         "number must match");
             }
@@ -208,7 +208,7 @@ public class Exercise23_SparseMatrices {
 
         @Override
         public SparseMatrix dot(SparseMatrix sparseMatrix) {
-            if(columnSize != sparseMatrix.rowSize) {
+            if (columnSize != sparseMatrix.rowSize) {
                 throw new IllegalArgumentException("Matrix A columns number and Matrix B rows number must match");
             }
 
@@ -218,7 +218,7 @@ public class Exercise23_SparseMatrices {
                 for(int j = 0; j < sparseMatrix.columnSize; j++) {
                     double dot = rows[i].dot(sparseMatrix.columns[j]);
 
-                    if(dot != 0) {
+                    if (dot != 0) {
                         result.put(i, j, dot);
                     }
                 }

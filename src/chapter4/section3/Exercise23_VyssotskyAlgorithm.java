@@ -21,13 +21,13 @@ public class Exercise23_VyssotskyAlgorithm {
                 EdgeWeightedCycle edgeWeightedCycle = new EdgeWeightedCycle(putativeTree);
 
                 // If a cycle was formed, delete the maximum-weight edge in it
-                if(edgeWeightedCycle.hasCycle()) {
+                if (edgeWeightedCycle.hasCycle()) {
                     Stack<Edge> cycle = edgeWeightedCycle.cycle();
                     Edge maxWeightEdge = null;
                     double maxWeight = Double.NEGATIVE_INFINITY;
 
                     for(Edge edgeInCycle : cycle) {
-                        if(edgeInCycle.weight() > maxWeight) {
+                        if (edgeInCycle.weight() > maxWeight) {
                             maxWeight = edgeInCycle.weight();
                             maxWeightEdge = edgeInCycle;
                         }

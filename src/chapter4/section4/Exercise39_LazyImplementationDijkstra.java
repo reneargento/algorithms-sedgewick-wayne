@@ -49,7 +49,7 @@ public class Exercise39_LazyImplementationDijkstra {
                 DirectedEdge edge = priorityQueue.poll();
                 int vertexToVisit = edge.to();
 
-                if(!marked[vertexToVisit]) {
+                if (!marked[vertexToVisit]) {
                     relax(edgeWeightedDigraph, vertexToVisit);
                 }
             }
@@ -61,7 +61,7 @@ public class Exercise39_LazyImplementationDijkstra {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(distTo[neighbor] > distTo[vertex] + edge.weight()) {
+                if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
                     distTo[neighbor] = distTo[vertex] + edge.weight();
                     edgeTo[neighbor] = edge;
 
@@ -91,7 +91,7 @@ public class Exercise39_LazyImplementationDijkstra {
         }
 
         public Iterable<DirectedEdge> pathTo(int vertex) {
-            if(!hasPathTo(vertex)) {
+            if (!hasPathTo(vertex)) {
                 return null;
             }
 

@@ -39,7 +39,7 @@ public class Exercise41_ArrayRepresentation {
         }
 
         private int size(int index) {
-            if(index == -1) {
+            if (index == -1) {
                 return 0;
             }
 
@@ -51,14 +51,14 @@ public class Exercise41_ArrayRepresentation {
         }
 
         private Value get(int index, Key key) {
-            if(index == -1 || keys[index] == null) {
+            if (index == -1 || keys[index] == null) {
                 return null;
             }
 
             int compare = key.compareTo(keys[index]);
-            if(compare < 0) {
+            if (compare < 0) {
                 return get(leftLinks[index], key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return get(rightLinks[index], key);
             } else {
                 return values[index];
@@ -66,7 +66,7 @@ public class Exercise41_ArrayRepresentation {
         }
 
         public void put(Key key, Value value) {
-            if(size() == keys.length) {
+            if (size() == keys.length) {
                 StdOut.println("Tree is full");
                 return;
             }
@@ -75,7 +75,7 @@ public class Exercise41_ArrayRepresentation {
         }
 
         private int put(int index, Key key, Value value) {
-            if(index == -1 || keys[index] == null) {
+            if (index == -1 || keys[index] == null) {
                 int nextElementIndex = size();
 
                 keys[nextElementIndex] = key;
@@ -87,9 +87,9 @@ public class Exercise41_ArrayRepresentation {
 
             int compare = key.compareTo(keys[index]);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 leftLinks[index] = put(leftLinks[index], key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 rightLinks[index] = put(rightLinks[index], key, value);
             } else {
                 values[index] = value;
@@ -100,7 +100,7 @@ public class Exercise41_ArrayRepresentation {
         }
 
         public Key min() {
-            if(size() == 0) {
+            if (size() == 0) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -109,7 +109,7 @@ public class Exercise41_ArrayRepresentation {
         }
 
         private int min(int index) {
-            if(leftLinks[index] == -1) {
+            if (leftLinks[index] == -1) {
                 return index;
             }
 
@@ -117,7 +117,7 @@ public class Exercise41_ArrayRepresentation {
         }
 
         public Key max() {
-            if(size() == 0) {
+            if (size() == 0) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -126,7 +126,7 @@ public class Exercise41_ArrayRepresentation {
         }
 
         private int max(int index) {
-            if(rightLinks[index] == -1) {
+            if (rightLinks[index] == -1) {
                 return index;
             }
 
@@ -135,7 +135,7 @@ public class Exercise41_ArrayRepresentation {
 
         public Key floor(Key key) {
             int index = floor(0, key);
-            if(index == -1) {
+            if (index == -1) {
                 return null;
             }
 
@@ -143,19 +143,19 @@ public class Exercise41_ArrayRepresentation {
         }
 
         private int floor(int index, Key key) {
-            if(index == -1 || keys[index] == null) {
+            if (index == -1 || keys[index] == null) {
                 return -1;
             }
 
             int compare = key.compareTo(keys[index]);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return index;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 return floor(leftLinks[index], key);
             } else {
                 int rightKeyIndex = floor(rightLinks[index], key);
-                if(rightKeyIndex != -1) {
+                if (rightKeyIndex != -1) {
                     return rightKeyIndex;
                 } else {
                     return index;
@@ -165,7 +165,7 @@ public class Exercise41_ArrayRepresentation {
 
         public Key ceiling(Key key) {
             int index = ceiling(0, key);
-            if(index == -1) {
+            if (index == -1) {
                 return null;
             }
 
@@ -173,19 +173,19 @@ public class Exercise41_ArrayRepresentation {
         }
 
         private int ceiling(int index, Key key) {
-            if(index == -1 || keys[index] == null) {
+            if (index == -1 || keys[index] == null) {
                 return -1;
             }
 
             int compare = key.compareTo(keys[index]);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return index;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return ceiling(rightLinks[index], key);
             } else {
                 int leftKeyIndex = ceiling(leftLinks[index], key);
-                if(leftKeyIndex != -1) {
+                if (leftKeyIndex != -1) {
                     return leftKeyIndex;
                 } else {
                     return index;
@@ -194,7 +194,7 @@ public class Exercise41_ArrayRepresentation {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -205,7 +205,7 @@ public class Exercise41_ArrayRepresentation {
         private int select(int keyIndex, int index) {
             int leftSubtreeSize = size[leftLinks[keyIndex]];
 
-            if(leftSubtreeSize == index) {
+            if (leftSubtreeSize == index) {
                 return keyIndex;
             } else if (leftSubtreeSize > index) {
                 return select(leftLinks[keyIndex], index);
@@ -219,15 +219,15 @@ public class Exercise41_ArrayRepresentation {
         }
 
         private int rank(int index, Key key) {
-            if(index == -1 || keys[index] == null) {
+            if (index == -1 || keys[index] == null) {
                 return 0;
             }
 
             //Returns the number of keys less than keys[index] in the subtree rooted at node
             int compare = key.compareTo(keys[index]);
-            if(compare < 0) {
+            if (compare < 0) {
                 return rank(leftLinks[index], key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return size(leftLinks[index]) + 1 + rank(rightLinks[index], key);
             } else {
                 return size[leftLinks[index]];
@@ -253,13 +253,13 @@ public class Exercise41_ArrayRepresentation {
         public void deleteMin() {
             int rootIndex = deleteMin(0, true);
 
-            if(rootIndex == -1) {
+            if (rootIndex == -1) {
                 eraseKeyData(0);
                 return;
             }
 
             //Update root
-            if(rootIndex != 0) {
+            if (rootIndex != 0) {
                 copyDataFromOtherKey(0, rootIndex);
                 eraseKeyData(rootIndex);
             }
@@ -267,13 +267,13 @@ public class Exercise41_ArrayRepresentation {
 
         //setKeyNull parameter is used because we do not want to set the key value as null when using deleteMin() inside delete()
         private int deleteMin(int index, boolean setKeyNull) {
-            if(index == -1 || keys[index] == null) {
+            if (index == -1 || keys[index] == null) {
                 return -1;
             }
 
-            if(leftLinks[index] == -1) {
+            if (leftLinks[index] == -1) {
                 int rightKeyLink = rightLinks[index];
-                if(setKeyNull) {
+                if (setKeyNull) {
                     eraseKeyData(index);
                 }
 
@@ -290,24 +290,24 @@ public class Exercise41_ArrayRepresentation {
         public void deleteMax() {
             int rootIndex = deleteMax(0);
 
-            if(rootIndex == -1) {
+            if (rootIndex == -1) {
                 eraseKeyData(0);
                 return;
             }
 
             //Update root
-            if(rootIndex != 0) {
+            if (rootIndex != 0) {
                 copyDataFromOtherKey(0, rootIndex);
                 eraseKeyData(rootIndex);
             }
         }
 
         private int deleteMax(int index) {
-            if(index == -1 || keys[index] == null) {
+            if (index == -1 || keys[index] == null) {
                 return -1;
             }
 
-            if(rightLinks[index] == -1) {
+            if (rightLinks[index] == -1) {
                 int leftKeyLink = leftLinks[index];
                 eraseKeyData(index);
 
@@ -324,28 +324,28 @@ public class Exercise41_ArrayRepresentation {
         public void delete(Key key) {
             int rootIndex = delete(0, key);
 
-            if(rootIndex == -1) {
+            if (rootIndex == -1) {
                 eraseKeyData(0);
                 return;
             }
 
             //Update root
-            if(rootIndex != 0) {
+            if (rootIndex != 0) {
                 copyDataFromOtherKey(0, rootIndex);
                 eraseKeyData(rootIndex);
             }
         }
 
         private int delete(int index, Key key) {
-            if(index == -1 || keys[index] == null) {
+            if (index == -1 || keys[index] == null) {
                 return -1;
             }
 
             int compare = key.compareTo(keys[index]);
-            if(compare < 0) {
+            if (compare < 0) {
                 int leftIndex = delete(leftLinks[index], key);
                 leftLinks[index] = leftIndex;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 int rightIndex = delete(rightLinks[index], key);
                 rightLinks[index] = rightIndex;
             } else {
@@ -353,7 +353,7 @@ public class Exercise41_ArrayRepresentation {
                 values[index] = null;
                 size[index] = 0;
 
-                if(leftLinks[index] == -1) {
+                if (leftLinks[index] == -1) {
                     int rightLinkIndex = rightLinks[index];
                     rightLinks[index] = -1;
 
@@ -390,22 +390,22 @@ public class Exercise41_ArrayRepresentation {
         }
 
         private void keys(int index, Queue<Key> queue, Key low, Key high) {
-            if(index == -1 || keys[index] == null) {
+            if (index == -1 || keys[index] == null) {
                 return;
             }
 
             int compareLow = low.compareTo(keys[index]);
             int compareHigh = high.compareTo(keys[index]);
 
-            if(compareLow < 0) {
+            if (compareLow < 0) {
                 keys(leftLinks[index], queue, low, high);
             }
 
-            if(compareLow <= 0 && compareHigh >= 0) {
+            if (compareLow <= 0 && compareHigh >= 0) {
                 queue.enqueue(keys[index]);
             }
 
-            if(compareHigh > 0) {
+            if (compareHigh > 0) {
                 keys(rightLinks[index], queue, low, high);
             }
         }

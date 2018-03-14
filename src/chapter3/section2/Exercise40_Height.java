@@ -11,7 +11,7 @@ public class Exercise40_Height {
     private class BinarySearchTreeHeight<Key extends Comparable<Key>, Value> extends BinarySearchTree<Key, Value> {
 
         public int height() {
-            if(root == null) {
+            if (root == null) {
                 return -1;
             }
 
@@ -19,19 +19,19 @@ public class Exercise40_Height {
         }
 
         private int height(Node node, int currentHeight) {
-            if(node == null) {
+            if (node == null) {
                 return currentHeight;
             }
 
             int height = currentHeight;
 
             int leftHeight = height(node.left, currentHeight + 1);
-            if(leftHeight > height) {
+            if (leftHeight > height) {
                 height = leftHeight;
             }
 
             int rightHeight = height(node.right, currentHeight + 1);
-            if(rightHeight > height) {
+            if (rightHeight > height) {
                 height = rightHeight;
             }
 

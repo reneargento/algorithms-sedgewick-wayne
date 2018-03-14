@@ -11,7 +11,7 @@ public class Exercise42_ReachableVertexInDAG {
     public boolean hasVertexReachableFromEveryOtherVertex(Digraph digraph) {
         // 0- Check if it is a DAG
         DirectedCycle directedCycle = new DirectedCycle(digraph);
-        if(directedCycle.hasCycle()) {
+        if (directedCycle.hasCycle()) {
             throw new IllegalArgumentException("Digraph is not a DAG");
         }
 
@@ -35,7 +35,7 @@ public class Exercise42_ReachableVertexInDAG {
 
         // 3- Check if it reaches all other vertices
         for(int vertex = 0; vertex < visited.length; vertex++) {
-            if(!visited[vertex]) {
+            if (!visited[vertex]) {
                 return false;
             }
         }
@@ -56,7 +56,7 @@ public class Exercise42_ReachableVertexInDAG {
     public boolean hasVertexReachableFromEveryOtherVertex2(Digraph digraph) {
         // 0- Check if it is a DAG
         DirectedCycle directedCycle = new DirectedCycle(digraph);
-        if(directedCycle.hasCycle()) {
+        if (directedCycle.hasCycle()) {
             throw new IllegalArgumentException("Digraph is not a DAG");
         }
 
@@ -64,7 +64,7 @@ public class Exercise42_ReachableVertexInDAG {
         int sinks = 0;
 
         for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            if(digraph.outdegree(vertex) == 0) {
+            if (digraph.outdegree(vertex) == 0) {
                 sinks++;
             }
         }

@@ -21,7 +21,7 @@ public class Exercise34_2Satisfiability {
             HashSet<Character> variables = new HashSet<>();
             char[] charsInFormula = formula.toCharArray();
             for(int i = 0; i < charsInFormula.length; i++) {
-                if(charsInFormula[i] != '('
+                if (charsInFormula[i] != '('
                         && charsInFormula[i] != ')'
                         && charsInFormula[i] != 'V'
                         && charsInFormula[i] != '^'
@@ -50,7 +50,7 @@ public class Exercise34_2Satisfiability {
                 String variable1Negation;
                 String variable2Negation;
 
-                if(values[i].charAt(1) == '!') {
+                if (values[i].charAt(1) == '!') {
                     variable1 = values[i].substring(2, 3);
                     isVariable1Negation = true;
                 } else {
@@ -61,7 +61,7 @@ public class Exercise34_2Satisfiability {
 
                 i += 2;
 
-                if(values[i].charAt(0) == '!') {
+                if (values[i].charAt(0) == '!') {
                     variable2 = values[i].substring(1, 2);
                     isVariable2Negation = true;
                 } else {
@@ -71,11 +71,11 @@ public class Exercise34_2Satisfiability {
                 variable2Negation = "!" + variable2;
 
                 // Add variables to mappings if they do not exist yet
-                if(!variableToIdMap.contains(variable1)) {
+                if (!variableToIdMap.contains(variable1)) {
                     addVariableToMappings(variable1, variableToIdMap, idToVariableMap);
                     addVariableToMappings(variable1Negation, variableToIdMap, idToVariableMap);
                 }
-                if(!variableToIdMap.contains(variable2)) {
+                if (!variableToIdMap.contains(variable2)) {
                     addVariableToMappings(variable2, variableToIdMap, idToVariableMap);
                     addVariableToMappings(variable2Negation, variableToIdMap, idToVariableMap);
                 }
@@ -88,8 +88,8 @@ public class Exercise34_2Satisfiability {
                 int variable2Id = variableToIdMap.get(variable2);
                 int variable2NegationId = variableToIdMap.get(variable2Negation);
 
-                if(!isVariable1Negation) {
-                    if(!isVariable2Negation) {
+                if (!isVariable1Negation) {
+                    if (!isVariable2Negation) {
                         digraph.addEdge(variable1Id, variable2NegationId);
                         digraph.addEdge(variable2Id, variable1NegationId);
                     } else {
@@ -97,7 +97,7 @@ public class Exercise34_2Satisfiability {
                         digraph.addEdge(variable2NegationId, variable1NegationId);
                     }
                 } else {
-                    if(!isVariable2Negation) {
+                    if (!isVariable2Negation) {
                         digraph.addEdge(variable1NegationId, variable2NegationId);
                         digraph.addEdge(variable2Id, variable1Id);
                     } else {
@@ -111,7 +111,7 @@ public class Exercise34_2Satisfiability {
             KosarajuSharirSCC kosarajuSharirSCC = new KosarajuSharirSCC(digraph);
 
             // Check if formula is satisfiable
-            if(!isFormulaSatisfiable(digraph, kosarajuSharirSCC)) {
+            if (!isFormulaSatisfiable(digraph, kosarajuSharirSCC)) {
                 return null;
             }
 
@@ -142,14 +142,14 @@ public class Exercise34_2Satisfiability {
                     char variable;
 
                     boolean isNegation = vertexVariable.charAt(0) == '!';
-                    if(!isNegation) {
+                    if (!isNegation) {
                         variable = vertexVariable.charAt(0);
                     } else {
                         variable = vertexVariable.charAt(1);
                     }
 
-                    if(!solution.contains(variable)) {
-                        if(!isNegation) {
+                    if (!solution.contains(variable)) {
+                        if (!isNegation) {
                             solution.put(variable, true);
                         } else {
                             solution.put(variable, false);
@@ -171,7 +171,7 @@ public class Exercise34_2Satisfiability {
 
         private boolean isFormulaSatisfiable(Digraph digraph, KosarajuSharirSCC kosarajuSharirSCC) {
             for(int vertex = 0; vertex < digraph.vertices(); vertex += 2) {
-                if(kosarajuSharirSCC.stronglyConnected(vertex, vertex + 1)) {
+                if (kosarajuSharirSCC.stronglyConnected(vertex, vertex + 1)) {
                     return false;
                 }
             }
@@ -187,7 +187,7 @@ public class Exercise34_2Satisfiability {
         StdOut.println("Formula 1: " + formula1);
         SeparateChainingHashTable<Character, Boolean> solution1 = twoSATSolver.solve2SAT(formula1);
 
-        if(solution1 == null) {
+        if (solution1 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
             for(char variable : solution1.keys()) {
@@ -203,7 +203,7 @@ public class Exercise34_2Satisfiability {
         StdOut.println("\nFormula 2: " + formula2);
         SeparateChainingHashTable<Character, Boolean> solution2 = twoSATSolver.solve2SAT(formula2);
 
-        if(solution2 == null) {
+        if (solution2 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
             for(char variable : solution2.keys()) {
@@ -216,7 +216,7 @@ public class Exercise34_2Satisfiability {
         StdOut.println("\nFormula 3: " + formula3);
         SeparateChainingHashTable<Character, Boolean> solution3 = twoSATSolver.solve2SAT(formula3);
 
-        if(solution3 == null) {
+        if (solution3 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
             for(char variable : solution3.keys()) {
@@ -229,7 +229,7 @@ public class Exercise34_2Satisfiability {
         StdOut.println("\nFormula 4: " + formula4);
         SeparateChainingHashTable<Character, Boolean> solution4 = twoSATSolver.solve2SAT(formula4);
 
-        if(solution4 == null) {
+        if (solution4 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
             for(char variable : solution4.keys()) {
@@ -243,7 +243,7 @@ public class Exercise34_2Satisfiability {
         StdOut.println("\nFormula 5: " + formula5);
         SeparateChainingHashTable<Character, Boolean> solution5 = twoSATSolver.solve2SAT(formula5);
 
-        if(solution5 == null) {
+        if (solution5 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
             for(char variable : solution5.keys()) {

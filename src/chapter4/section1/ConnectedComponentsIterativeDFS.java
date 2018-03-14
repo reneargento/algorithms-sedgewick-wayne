@@ -18,7 +18,7 @@ public class ConnectedComponentsIterativeDFS implements ConnectedComponents {
         id = new int[graph.vertices()];
 
         for(int source = 0; source < graph.vertices(); source++) {
-            if(!visited[source]) {
+            if (!visited[source]) {
                 depthFirstSearchIterative(graph, source);
                 count++;
             }
@@ -36,7 +36,7 @@ public class ConnectedComponentsIterativeDFS implements ConnectedComponents {
         Iterator<Integer>[] adjacentIterators = (Iterator<Integer>[]) new Iterator[graph.vertices()];
 
         for (int vertexId = 0; vertexId < adjacentIterators.length; vertexId++) {
-            if(graph.getAdjacencyList()[vertexId] != null) {
+            if (graph.getAdjacencyList()[vertexId] != null) {
                 adjacentIterators[vertexId] = graph.getAdjacencyList()[vertexId].iterator();
             }
         }
@@ -44,10 +44,10 @@ public class ConnectedComponentsIterativeDFS implements ConnectedComponents {
         while (!stack.isEmpty()) {
             int currentVertex = stack.peek();
 
-            if(adjacentIterators[currentVertex].hasNext()) {
+            if (adjacentIterators[currentVertex].hasNext()) {
                 int neighbor = adjacentIterators[currentVertex].next();
 
-                if(!visited[neighbor]) {
+                if (!visited[neighbor]) {
                     stack.push(neighbor);
                     visited[neighbor] = true;
                     id[neighbor] = count;

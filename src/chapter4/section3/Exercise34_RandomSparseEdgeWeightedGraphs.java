@@ -49,7 +49,7 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
     //A graph is considered sparse if its number of edges is within a small constant factor of V
     public List<EdgeWeightedGraph> randomSparseEdgeWeightedGraphsGenerator(int numberOfGraphs,
                                                                            boolean uniformWeightDistribution) {
-        if(numberOfGraphs < 0) {
+        if (numberOfGraphs < 0) {
             throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 
@@ -64,7 +64,7 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
 
             EdgeWeightedGraph randomEdgeWeightedGraph;
 
-            if(uniformWeightDistribution) {
+            if (uniformWeightDistribution) {
                 randomEdgeWeightedGraph =
                         randomEdgeWeightedGraphsGenerator.erdosRenyiGraphUniformWeights(vertices, edges);
             } else {

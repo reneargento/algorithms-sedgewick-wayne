@@ -41,7 +41,7 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
 
         public Value get(Key key) {
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     return node.value;
                 }
             }
@@ -51,7 +51,7 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
 
         public void put(Key key, Value value) {
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     node.value = value;
                     return;
                 }
@@ -62,14 +62,14 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
         }
 
         public void delete(Key key) {
-            if(first.key.equals(key)) {
+            if (first.key.equals(key)) {
                 first = first.next;
                 size--;
                 return;
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null && node.next.key.equals(key)) {
+                if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
                     return;
@@ -143,7 +143,7 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        if(value == null) {
+        if (value == null) {
             delete(key);
             return;
         }
@@ -152,7 +152,7 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
         int currentSize = symbolTable[hashIndex].size;
         symbolTable[hashIndex].put(key, value);
 
-        if(currentSize < symbolTable[hashIndex].size) {
+        if (currentSize < symbolTable[hashIndex].size) {
             keysSize++;
         }
     }
@@ -162,7 +162,7 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
             throw new IllegalArgumentException("Argument to delete() cannot be null");
         }
 
-        if(isEmpty() || !contains(key)) {
+        if (isEmpty() || !contains(key)) {
             return;
         }
 
@@ -179,7 +179,7 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
             }
         }
 
-        if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+        if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
             Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
             for(int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keys.dequeue();

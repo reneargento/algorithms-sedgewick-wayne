@@ -61,9 +61,9 @@ public class KShortestPaths {
 
         @Override
         public int compareTo(Path other) {
-            if(this.weight < other.weight) {
+            if (this.weight < other.weight) {
                 return -1;
-            } else if(this.weight > other.weight) {
+            } else if (this.weight > other.weight) {
                 return 1;
             } else {
                 return 0;
@@ -86,21 +86,21 @@ public class KShortestPaths {
 
             int pathsToCurrentVertex = 0;
 
-            if(countMap.get(lastVertexInPath) != null) {
+            if (countMap.get(lastVertexInPath) != null) {
                 pathsToCurrentVertex = countMap.get(lastVertexInPath);
             }
 
             pathsToCurrentVertex++;
             countMap.put(lastVertexInPath, pathsToCurrentVertex);
 
-            if(lastVertexInPath == target) {
+            if (lastVertexInPath == target) {
                 paths.add(currentPath);
             }
 
-            if(pathsToCurrentVertex <= kPaths) {
+            if (pathsToCurrentVertex <= kPaths) {
                 for(DirectedEdge edge : edgeWeightedDigraph.adjacent(lastVertexInPath)) {
                     // Do not repeat vertices - we are interested in paths and not walks
-                    if(!currentPath.verticesInPath.contains(edge.to())) {
+                    if (!currentPath.verticesInPath.contains(edge.to())) {
                         Path newPath = new Path(currentPath, edge);
                         priorityQueue.insert(newPath);
                     }

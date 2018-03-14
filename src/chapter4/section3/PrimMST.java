@@ -41,13 +41,13 @@ public class PrimMST {
 
         for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
             int otherVertex = edge.other(vertex);
-            if(marked[otherVertex]) {
+            if (marked[otherVertex]) {
                 continue; // vertex-otherVertex is ineligible
             }
 
-            if(edge.weight() < distTo[otherVertex]) {
+            if (edge.weight() < distTo[otherVertex]) {
                 // Edge edge is the new best connection from the minimum spanning tree to otherVertex
-                if(distTo[otherVertex] != Double.POSITIVE_INFINITY) {
+                if (distTo[otherVertex] != Double.POSITIVE_INFINITY) {
                     weight -= distTo[otherVertex];
                 }
                 weight += edge.weight();
@@ -55,7 +55,7 @@ public class PrimMST {
                 edgeTo[otherVertex] = edge;
                 distTo[otherVertex] = edge.weight();
 
-                if(priorityQueue.contains(otherVertex)) {
+                if (priorityQueue.contains(otherVertex)) {
                     priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                 } else {
                     priorityQueue.insert(otherVertex, distTo[otherVertex]);

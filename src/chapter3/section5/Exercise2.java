@@ -37,7 +37,7 @@ public class Exercise2 {
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     return true;
                 }
             }
@@ -51,7 +51,7 @@ public class Exercise2 {
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     node.key = key;
                     return;
                 }
@@ -66,18 +66,18 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(first.key.equals(key)) {
+            if (first.key.equals(key)) {
                 first = first.next;
                 size--;
                 return;
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null && node.next.key.equals(key)) {
+                if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
                     return;
@@ -97,7 +97,7 @@ public class Exercise2 {
 
         @Override
         public String toString() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return "{ }";
             }
 
@@ -105,7 +105,7 @@ public class Exercise2 {
 
             boolean isFirstKey = true;
             for(Key key : keys()) {
-                if(isFirstKey) {
+                if (isFirstKey) {
                     isFirstKey = false;
                 } else {
                     stringBuilder.append(",");

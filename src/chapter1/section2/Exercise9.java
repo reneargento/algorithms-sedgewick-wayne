@@ -42,7 +42,7 @@ public class Exercise9 {
 				hi = mid - 1;
 			} else if (key > a[mid]) {
 				lo = mid + 1;
-			} else{
+			} else {
 				return mid;
 			}
 		}

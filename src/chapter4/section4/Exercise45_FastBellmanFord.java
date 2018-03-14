@@ -55,7 +55,7 @@ public class Exercise45_FastBellmanFord {
             while (!hasNegativeCycle()) {
                 int nextVertexToRelax = getShortestDistanceVertex(lastComputedShortestDistance);
 
-                if(nextVertexToRelax == -1) {
+                if (nextVertexToRelax == -1) {
                     // All shortest distances have been found
                     break;
                 }
@@ -72,7 +72,7 @@ public class Exercise45_FastBellmanFord {
             while (distances[lastComputedShortestDistance].isEmpty()) {
                 lastComputedShortestDistance++;
 
-                if(lastComputedShortestDistance == distances.length) {
+                if (lastComputedShortestDistance == distances.length) {
                     return -1;
                 }
             }
@@ -92,8 +92,8 @@ public class Exercise45_FastBellmanFord {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 Integer neighbor = edge.to();
 
-                if(distTo[neighbor] > distTo[vertex] + edge.weight()) {
-                    if(hasPathTo(neighbor)) {
+                if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
+                    if (hasPathTo(neighbor)) {
                         int distancesIndex = distTo[neighbor] + maxPathDistance;
                         distances[distancesIndex].remove(neighbor);
                     }
@@ -104,12 +104,12 @@ public class Exercise45_FastBellmanFord {
                     int distancesIndex = distTo[neighbor] + maxPathDistance;
                     distances[distancesIndex].add(neighbor);
 
-                    if(distTo[neighbor] + maxPathDistance < lastComputedShortestDistance) {
+                    if (distTo[neighbor] + maxPathDistance < lastComputedShortestDistance) {
                         lastComputedShortestDistance = distTo[neighbor] + maxPathDistance;
                     }
                 }
 
-                if(callsToRelax++ % edgeWeightedDigraph.vertices() == 0) {
+                if (callsToRelax++ % edgeWeightedDigraph.vertices() == 0) {
                     findNegativeCycle();
                 }
             }
@@ -126,7 +126,7 @@ public class Exercise45_FastBellmanFord {
         }
 
         public Iterable<DirectedEdge> pathTo(int vertex) {
-            if(!hasPathTo(vertex)) {
+            if (!hasPathTo(vertex)) {
                 return null;
             }
 
@@ -143,7 +143,7 @@ public class Exercise45_FastBellmanFord {
             EdgeWeightedDigraph shortestPathsTree = new EdgeWeightedDigraph(vertices);
 
             for(int vertex = 0; vertex < vertices; vertex++) {
-                if(edgeTo[vertex] != null) {
+                if (edgeTo[vertex] != null) {
                     shortestPathsTree.addEdge(edgeTo[vertex]);
                 }
             }

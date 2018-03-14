@@ -48,7 +48,7 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     return node.value;
                 }
             }
@@ -63,14 +63,14 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return 0; //Delete is not used in the analysis of node accesses
             }
 
             for(Node node = first; node != null; node = node.next) {
                 numberOfNodeAccesses++;
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     node.value = value;
                     return numberOfNodeAccesses;
                 }
@@ -87,18 +87,18 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(first.key.equals(key)) {
+            if (first.key.equals(key)) {
                 first = first.next;
                 size--;
                 return;
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null && node.next.key.equals(key)) {
+                if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
                     return;
@@ -141,12 +141,12 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
             int numberOfNodeAccesses;
-            if(!sequentialSearchSymbolTable.contains(word)) {
+            if (!sequentialSearchSymbolTable.contains(word)) {
                 numberOfNodeAccesses = sequentialSearchSymbolTable.put(word, 1);
             } else {
                 numberOfNodeAccesses = sequentialSearchSymbolTable.put(word, sequentialSearchSymbolTable.get(word) + 1);
@@ -159,7 +159,7 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
         visualAccumulator.addDataValue(numberOfNodeAccesses, true);
 
         for(String word : sequentialSearchSymbolTable.keys()) {
-            if(sequentialSearchSymbolTable.get(word) > sequentialSearchSymbolTable.get(max)) {
+            if (sequentialSearchSymbolTable.get(word) > sequentialSearchSymbolTable.get(max)) {
                 max = word;
             }
         }

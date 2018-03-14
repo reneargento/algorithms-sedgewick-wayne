@@ -24,7 +24,7 @@ public class Exercise20 {
                     new LinearProbingHashTableAvgSearchHitCost<>(newSize);
 
             for(int i = 0; i < size; i++) {
-                if(keys[i] != null) {
+                if (keys[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
             }
@@ -40,12 +40,12 @@ public class Exercise20 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(keysSize >= size / (double) 2) {
+            if (keysSize >= size / (double) 2) {
                 resize(size * 2);
                 lgM++;
             }
@@ -56,7 +56,7 @@ public class Exercise20 {
             for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 numberOfComparesBeforeFindingKey++;
 
-                if(keys[tableIndex].equals(key)) {
+                if (keys[tableIndex].equals(key)) {
                     values[tableIndex] = value;
                     return;
                 }

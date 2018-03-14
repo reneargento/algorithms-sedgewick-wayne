@@ -50,7 +50,7 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            if(cacheItem != null && cacheItem.key == key) {
+            if (cacheItem != null && cacheItem.key == key) {
                 StdOut.println("Cache hit");
                 return cacheItem.value;
             }
@@ -58,7 +58,7 @@ public class Exercise25_SoftwareCaching {
             StdOut.println("Cache miss");
 
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
 
                     cacheItem = node;
                     return node.value;
@@ -73,12 +73,12 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(cacheItem != null && cacheItem.key == key) {
+            if (cacheItem != null && cacheItem.key == key) {
                 cacheItem.value = value;
 
                 StdOut.println("Cache hit");
@@ -88,7 +88,7 @@ public class Exercise25_SoftwareCaching {
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     node.value = value;
                     return;
                 }
@@ -103,22 +103,22 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(cacheItem != null && cacheItem.key == key) {
+            if (cacheItem != null && cacheItem.key == key) {
                 invalidateCache();
             }
 
-            if(first.key.equals(key)) {
+            if (first.key.equals(key)) {
                 first = first.next;
                 size--;
                 return;
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null && node.next.key.equals(key)) {
+                if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
                     return;
@@ -175,15 +175,15 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
             int rank = getRankFromCacheOrCompute(key);
 
-            if(rank < size && keys[rank].compareTo(key) == 0) {
+            if (rank < size && keys[rank].compareTo(key) == 0) {
 
-                if(cacheKey == null || cacheKey != key) {
+                if (cacheKey == null || cacheKey != key) {
                     cacheKey = key;
                     cacheKeyRank = rank;
                 }
@@ -199,7 +199,7 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(cacheKey != null && cacheKey.compareTo(key) == 0) {
+            if (cacheKey != null && cacheKey.compareTo(key) == 0) {
                 return cacheKeyRank;
             }
 
@@ -210,7 +210,7 @@ public class Exercise25_SoftwareCaching {
                 int middle = low + (high - low) / 2;
 
                 int comparison = key.compareTo(keys[middle]);
-                if(comparison < 0) {
+                if (comparison < 0) {
                     high = middle - 1;
                 } else if (comparison > 0) {
                     low = middle + 1;
@@ -227,23 +227,23 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
             int rank = getRankFromCacheOrCompute(key);
 
-            if(cacheKey != null && key.compareTo(cacheKey) <= 0) {
+            if (cacheKey != null && key.compareTo(cacheKey) <= 0) {
                 invalidateCache();
             }
 
-            if(rank < size && keys[rank].compareTo(key) == 0) {
+            if (rank < size && keys[rank].compareTo(key) == 0) {
                 values[rank] = value;
                 return;
             }
 
-            if(size == keys.length) {
+            if (size == keys.length) {
                 resize(keys.length * 2);
             }
 
@@ -268,13 +268,13 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
             int rank = getRankFromCacheOrCompute(key);
 
-            if(key.compareTo(cacheKey) <= 0) {
+            if (key.compareTo(cacheKey) <= 0) {
                 invalidateCache();
             }
 
@@ -287,13 +287,13 @@ public class Exercise25_SoftwareCaching {
             values[size - 1] = null;
             size--;
 
-            if(size > 1 && size == keys.length / 4) {
+            if (size > 1 && size == keys.length / 4) {
                 resize(keys.length / 2);
             }
         }
 
         public Key min() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -301,7 +301,7 @@ public class Exercise25_SoftwareCaching {
         }
 
         public Key max() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -309,7 +309,7 @@ public class Exercise25_SoftwareCaching {
         }
 
         public Key select(int k) {
-            if(isEmpty() || k >= size) {
+            if (isEmpty() || k >= size) {
                 throw new IllegalArgumentException("Invalid argument: " + k);
             }
 
@@ -319,7 +319,7 @@ public class Exercise25_SoftwareCaching {
         public Key ceiling(Key key) {
             int rank = getRankFromCacheOrCompute(key);
 
-            if(rank == size) {
+            if (rank == size) {
                 return null;
             }
 
@@ -327,13 +327,13 @@ public class Exercise25_SoftwareCaching {
         }
 
         public Key floor(Key key) {
-            if(contains(key)) {
+            if (contains(key)) {
                 return key;
             }
 
             int rank = getRankFromCacheOrCompute(key);
 
-            if(rank == 0) {
+            if (rank == 0) {
                 return null;
             }
 
@@ -361,9 +361,9 @@ public class Exercise25_SoftwareCaching {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(high.compareTo(low) < 0) {
+            if (high.compareTo(low) < 0) {
                 return 0;
-            } else if(contains(high)) {
+            } else if (contains(high)) {
                 return rank(high) - rank(low) + 1;
             } else {
                 return rank(high) - rank(low);
@@ -381,7 +381,7 @@ public class Exercise25_SoftwareCaching {
                 queue.enqueue(keys[i]);
             }
 
-            if(contains(high)) {
+            if (contains(high)) {
                 queue.enqueue(keys[rank(high)]);
             }
 
@@ -407,7 +407,7 @@ public class Exercise25_SoftwareCaching {
 
             int rank;
 
-            if(cacheKey != null && cacheKey.compareTo(key) == 0) {
+            if (cacheKey != null && cacheKey.compareTo(key) == 0) {
                 StdOut.println("Cache hit");
                 rank = cacheKeyRank;
             } else {

@@ -43,7 +43,7 @@ public class Exercise35_ChiSquareTest extends Exercise30_ChiSquareStatistic {
         double probability1 = 1 - (1 / constant1);
 
         StdOut.print("Produces random values: ");
-        if(lowerBound1 <= chiSquareStatistic1 && chiSquareStatistic1 <= upperBound1) {
+        if (lowerBound1 <= chiSquareStatistic1 && chiSquareStatistic1 <= upperBound1) {
             StdOut.println("True");
         } else {
             StdOut.println("False");
@@ -67,7 +67,7 @@ public class Exercise35_ChiSquareTest extends Exercise30_ChiSquareStatistic {
         double probability2 = 1 - (1 / constant2);
 
         StdOut.print("Produces random values: ");
-        if(lowerBound2 <= chiSquareStatistic2 && chiSquareStatistic2 <= upperBound2) {
+        if (lowerBound2 <= chiSquareStatistic2 && chiSquareStatistic2 <= upperBound2) {
             StdOut.println("True");
         } else {
             StdOut.println("False");
@@ -100,7 +100,7 @@ public class Exercise35_ChiSquareTest extends Exercise30_ChiSquareStatistic {
         double probability3 = 1 - (1 / constant3);
 
         StdOut.print("Produces random values: ");
-        if(lowerBound3 <= chiSquareStatistic3 && chiSquareStatistic3 <= upperBound3) {
+        if (lowerBound3 <= chiSquareStatistic3 && chiSquareStatistic3 <= upperBound3) {
             StdOut.println("True");
         } else {
             StdOut.println("False");

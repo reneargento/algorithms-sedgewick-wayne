@@ -20,7 +20,7 @@ public class Exercise8 {
 
     //O(h)
     private static int optCompares(int n) {
-        if(n == 0) {
+        if (n == 0) {
             return 0;
         }
 

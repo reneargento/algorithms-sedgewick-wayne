@@ -10,11 +10,11 @@ public class Exercise27_AllowRightLeaningRedLinks {
     private class RedBlackTopDown234RightLeaningBST<Key extends Comparable<Key>, Value> extends Exercise25_TopDown234Trees.RedBlackTopDown234BST<Key, Value> {
 
         public void put(Key key, Value value) {
-            if(key == null) {
+            if (key == null) {
                 return;
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -24,34 +24,34 @@ public class Exercise27_AllowRightLeaningRedLinks {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value, 1, RED);
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
             }
 
-            if(isRed(node.right) && isRed(node.right.left)) {
+            if (isRed(node.right) && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
             }
-            if(isRed(node.right) && isRed(node.right.right)) {
+            if (isRed(node.right) && isRed(node.right.right)) {
                 node = rotateLeft(node);
             }
-            if(isRed(node.left) && isRed(node.left.right)) {
+            if (isRed(node.left) && isRed(node.left.right)) {
                 node.left = rotateLeft(node.left);
             }
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
 
@@ -60,31 +60,31 @@ public class Exercise27_AllowRightLeaningRedLinks {
         }
 
         public void deleteMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = deleteMax(root);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node deleteMax(Node node) {
-            if(isRed(node.left) && !isRed(node.right)) {
+            if (isRed(node.left) && !isRed(node.right)) {
                 node = rotateRight(node);
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 return null;
             }
 
-            if(!isRed(node.right) && node.right != null && !isRed(node.right.left) && !isRed(node.right.right)) {
+            if (!isRed(node.right) && node.right != null && !isRed(node.right.left) && !isRed(node.right.right)) {
                 node = moveRedRight(node);
             }
 
@@ -93,50 +93,50 @@ public class Exercise27_AllowRightLeaningRedLinks {
         }
 
         public void delete(Key key) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = delete(root, key);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(key.compareTo(node.key) < 0) {
-                if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+            if (key.compareTo(node.key) < 0) {
+                if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                     node = moveRedLeft(node);
                 }
 
                 node.left = delete(node.left, key);
             } else {
-                if(isRed(node.left) && !isRed(node.right)) {
+                if (isRed(node.left) && !isRed(node.right)) {
                     node = rotateRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0 && node.right == null) {
+                if (key.compareTo(node.key) == 0 && node.right == null) {
                     return null;
                 }
 
-                if(!isRed(node.right) && node.right != null && !isRed(node.right.left) && !isRed(node.right.right)) {
+                if (!isRed(node.right) && node.right != null && !isRed(node.right.left) && !isRed(node.right.right)) {
                     node = moveRedRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0) {
+                if (key.compareTo(node.key) == 0) {
                     Node aux = min(node.right);
                     node.key = aux.key;
                     node.value = aux.value;
@@ -154,11 +154,11 @@ public class Exercise27_AllowRightLeaningRedLinks {
             // make node.left or one of its children red
             flipColors(node);
 
-            if(node.right != null && isRed(node.right.left)) {
+            if (node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
                 flipColors(node);
-            } else if(node.right != null && isRed(node.right.right)) {
+            } else if (node.right != null && isRed(node.right.right)) {
                 node.right = rotateLeft(node.right);
                 node = rotateLeft(node);
                 flipColors(node);
@@ -172,10 +172,10 @@ public class Exercise27_AllowRightLeaningRedLinks {
             // make node.right or one of its children red
             flipColors(node);
 
-            if(node.left != null && isRed(node.left.left)) {
+            if (node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
                 flipColors(node);
-            } else if(node.left != null && isRed(node.left.right)) {
+            } else if (node.left != null && isRed(node.left.right)) {
                 node.left = rotateLeft(node.left);
                 node = rotateRight(node);
                 flipColors(node);
@@ -185,24 +185,24 @@ public class Exercise27_AllowRightLeaningRedLinks {
         }
 
         private Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(isRed(node.right) && isRed(node.right.left)) {
+            if (isRed(node.right) && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
             }
-            if(isRed(node.right) && isRed(node.right.right)) {
+            if (isRed(node.right) && isRed(node.right.right)) {
                 node = rotateLeft(node);
             }
-            if(isRed(node.left) && isRed(node.left.right)) {
+            if (isRed(node.left) && isRed(node.left.right)) {
                 node.left = rotateLeft(node.left);
             }
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -216,20 +216,20 @@ public class Exercise27_AllowRightLeaningRedLinks {
         }
 
         private boolean isValid234RightLeaningTree(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return true;
             }
 
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 return false;
             }
-            if(isRed(node.left) && isRed(node.left.right)) {
+            if (isRed(node.left) && isRed(node.left.right)) {
                 return false;
             }
-            if(isRed(node.right) && isRed(node.right.right)) {
+            if (isRed(node.right) && isRed(node.right.right)) {
                 return false;
             }
-            if(isRed(node.right) && isRed(node.right.left)) {
+            if (isRed(node.right) && isRed(node.right.left)) {
                 return false;
             }
 

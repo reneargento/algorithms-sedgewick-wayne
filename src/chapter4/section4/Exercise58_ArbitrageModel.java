@@ -115,7 +115,7 @@ public class Exercise58_ArbitrageModel {
 
         BellmanFordSP bellmanFordSP = new BellmanFordSP(edgeWeightedDigraph, 0);
 
-        if(!bellmanFordSP.hasNegativeCycle()) {
+        if (!bellmanFordSP.hasNegativeCycle()) {
             return null;
         }
 
@@ -149,7 +149,7 @@ public class Exercise58_ArbitrageModel {
                 totalWeight += edge.weight();
             }
 
-            if(totalWeight < smallestWeightInAnyCycle) {
+            if (totalWeight < smallestWeightInAnyCycle) {
                 smallestWeightInAnyCycle = totalWeight;
                 bestArbitrageOpportunity = cycle;
             }

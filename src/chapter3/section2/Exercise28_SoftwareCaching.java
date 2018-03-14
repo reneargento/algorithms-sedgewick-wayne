@@ -37,7 +37,7 @@ public class Exercise28_SoftwareCaching {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -46,7 +46,7 @@ public class Exercise28_SoftwareCaching {
 
         public Value get(Key key) {
 
-            if(cacheItem != null && cacheItem.key == key) {
+            if (cacheItem != null && cacheItem.key == key) {
                 StdOut.println("Cache hit");
                 return cacheItem.value;
             }
@@ -56,14 +56,14 @@ public class Exercise28_SoftwareCaching {
         }
 
         private Value get(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return get(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return get(node.right, key);
             } else {
                 cacheItem = node;
@@ -74,7 +74,7 @@ public class Exercise28_SoftwareCaching {
 
         public void put(Key key, Value value) {
 
-            if(cacheItem != null && cacheItem.key == key) {
+            if (cacheItem != null && cacheItem.key == key) {
                 cacheItem.value = value;
                 StdOut.println("Cache hit");
                 return;
@@ -86,7 +86,7 @@ public class Exercise28_SoftwareCaching {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 Node newNode = new Node(key, value, 1);
                 cacheItem = newNode;
                 return newNode;
@@ -94,9 +94,9 @@ public class Exercise28_SoftwareCaching {
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
@@ -108,7 +108,7 @@ public class Exercise28_SoftwareCaching {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -116,7 +116,7 @@ public class Exercise28_SoftwareCaching {
         }
 
         private Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 cacheItem = node;
                 return node;
             }
@@ -125,7 +125,7 @@ public class Exercise28_SoftwareCaching {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -133,7 +133,7 @@ public class Exercise28_SoftwareCaching {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 cacheItem = node;
                 return node;
             }
@@ -143,7 +143,7 @@ public class Exercise28_SoftwareCaching {
 
         public Key floor(Key key) {
             Node node = floor(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -152,19 +152,19 @@ public class Exercise28_SoftwareCaching {
         }
 
         private Node floor(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 return floor(node.left, key);
             } else {
                 Node rightNode = floor(node.right, key);
-                if(rightNode != null) {
+                if (rightNode != null) {
                     return rightNode;
                 } else {
                     return node;
@@ -174,7 +174,7 @@ public class Exercise28_SoftwareCaching {
 
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -183,19 +183,19 @@ public class Exercise28_SoftwareCaching {
         }
 
         private Node ceiling(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return ceiling(node.right, key);
             } else {
                 Node leftNode = ceiling(node.left, key);
-                if(leftNode != null) {
+                if (leftNode != null) {
                     return leftNode;
                 } else {
                     return node;
@@ -204,7 +204,7 @@ public class Exercise28_SoftwareCaching {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -214,7 +214,7 @@ public class Exercise28_SoftwareCaching {
         private Node select(Node node, int index) {
             int leftSubtreeSize = size(node.left);
 
-            if(leftSubtreeSize == index) {
+            if (leftSubtreeSize == index) {
                 cacheItem = node;
 
                 return node;
@@ -230,15 +230,15 @@ public class Exercise28_SoftwareCaching {
         }
 
         private int rank(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
             //Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return rank(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return size(node.left) + 1 + rank(node.right, key);
             } else {
                 cacheItem = node;
@@ -252,12 +252,12 @@ public class Exercise28_SoftwareCaching {
         }
 
         private Node deleteMin(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.left == null) {
-                if(cacheItem != null && cacheItem == node) {
+            if (node.left == null) {
+                if (cacheItem != null && cacheItem == node) {
                     invalidateCache();
                 }
 
@@ -274,12 +274,12 @@ public class Exercise28_SoftwareCaching {
         }
 
         private Node deleteMax(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.right == null) {
-                if(cacheItem != null && cacheItem == node) {
+            if (node.right == null) {
+                if (cacheItem != null && cacheItem == node) {
                     invalidateCache();
                 }
 
@@ -292,7 +292,7 @@ public class Exercise28_SoftwareCaching {
         }
 
         public void delete(Key key) {
-            if(cacheItem != null && cacheItem.key == key) {
+            if (cacheItem != null && cacheItem.key == key) {
                 invalidateCache();
             }
 
@@ -300,17 +300,17 @@ public class Exercise28_SoftwareCaching {
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = delete(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = delete(node.right, key);
             } else {
-                if(node.left == null) {
+                if (node.left == null) {
                     return node.right;
                 } else if (node.right == null) {
                     return node.left;
@@ -337,22 +337,22 @@ public class Exercise28_SoftwareCaching {
         }
 
         private void keys(Node node, Queue<Key> queue, Key low, Key high) {
-            if(node == null) {
+            if (node == null) {
                 return;
             }
 
             int compareLow = low.compareTo(node.key);
             int compareHigh = high.compareTo(node.key);
 
-            if(compareLow < 0) {
+            if (compareLow < 0) {
                 keys(node.left, queue, low, high);
             }
 
-            if(compareLow <= 0 && compareHigh >= 0) {
+            if (compareLow <= 0 && compareHigh >= 0) {
                 queue.enqueue(node.key);
             }
 
-            if(compareHigh > 0) {
+            if (compareHigh > 0) {
                 keys(node.right, queue, low, high);
             }
         }

@@ -60,15 +60,15 @@ public class Exercise40_ReducedOverhead {
             double[] adjacentEdges = edgeWeightedGraphSpaceEfficient.adjacent(vertex);
 
             for(int otherVertex = 0; otherVertex < adjacentEdges.length; otherVertex++) {
-                if(marked[otherVertex] || adjacentEdges[otherVertex] == NO_CONNECTION) {
+                if (marked[otherVertex] || adjacentEdges[otherVertex] == NO_CONNECTION) {
                     continue; // vertex-otherVertex is ineligible or non-existent
                 }
 
                 double edgeWeight = adjacentEdges[otherVertex];
 
-                if(edgeWeight < distTo[otherVertex]) {
+                if (edgeWeight < distTo[otherVertex]) {
                     // This is the new best connection from the minimum spanning tree to otherVertex
-                    if(distTo[otherVertex] != Double.POSITIVE_INFINITY) {
+                    if (distTo[otherVertex] != Double.POSITIVE_INFINITY) {
                         weight -= distTo[otherVertex];
                     }
                     weight += edgeWeight;
@@ -76,7 +76,7 @@ public class Exercise40_ReducedOverhead {
                     edgeTo[otherVertex] = new Edge(vertex, otherVertex, edgeWeight);
                     distTo[otherVertex] = edgeWeight;
 
-                    if(priorityQueue.contains(otherVertex)) {
+                    if (priorityQueue.contains(otherVertex)) {
                         priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                     } else {
                         priorityQueue.insert(otherVertex, distTo[otherVertex]);
@@ -134,7 +134,7 @@ public class Exercise40_ReducedOverhead {
                 int vertex2 = edge.other(vertex1);
 
                 // Ignore ineligible edges
-                if(unionFind.connected(vertex1, vertex2)) {
+                if (unionFind.connected(vertex1, vertex2)) {
                     continue;
                 }
 
@@ -264,12 +264,12 @@ public class Exercise40_ReducedOverhead {
             int vertexId1 = edge.either();
             int vertexId2 = edge.other(vertexId1);
 
-            if(allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
+            if (allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
                 throw new IllegalArgumentException("Vertex id not found");
             }
 
-            if(adjacent[vertexId1][vertexId2] != NO_CONNECTION) {
-                if(adjacent[vertexId1][vertexId2] <= edge.weight()) {
+            if (adjacent[vertexId1][vertexId2] != NO_CONNECTION) {
+                if (adjacent[vertexId1][vertexId2] <= edge.weight()) {
                     return;
                 }
                 edges--;
@@ -295,13 +295,13 @@ public class Exercise40_ReducedOverhead {
                 for(int otherVertexId = 0; otherVertexId < adjacentEdges.length; otherVertexId++) {
                     double edgeWeight = adjacentEdges[otherVertexId];
 
-                    if(edgeWeight == NO_CONNECTION) {
+                    if (edgeWeight == NO_CONNECTION) {
                         continue;
                     }
 
                     Vertex otherVertex = allVertices[otherVertexId];
 
-                    if(otherVertexId >= vertexId) {
+                    if (otherVertexId >= vertexId) {
                         StdDraw.line(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
                                 otherVertex.xCoordinate, otherVertex.yCoordinate);
                     }
@@ -309,7 +309,7 @@ public class Exercise40_ReducedOverhead {
             }
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                if(allVertices[vertexId] != null) {
+                if (allVertices[vertexId] != null) {
 
                     StdDraw.setPenColor(Color.WHITE);
                     StdDraw.filledCircle(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
@@ -335,7 +335,7 @@ public class Exercise40_ReducedOverhead {
 
             for(int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
                 for(int vertexId2 = vertexId1 + 1; vertexId2 < vertices; vertexId2++) {
-                    if(adjacent[vertexId1][vertexId2] != NO_CONNECTION) {
+                    if (adjacent[vertexId1][vertexId2] != NO_CONNECTION) {
                         edges.add(new Edge(vertexId1, vertexId2, adjacent[vertexId1][vertexId2]));
                     }
                 }
@@ -352,7 +352,7 @@ public class Exercise40_ReducedOverhead {
                 stringBuilder.append(vertexId1).append(": ");
 
                 for(int vertexId2 = 0; vertexId2 < vertices; vertexId2++) {
-                    if(adjacent[vertexId1][vertexId2] != NO_CONNECTION) {
+                    if (adjacent[vertexId1][vertexId2] != NO_CONNECTION) {
                         String formattedEdge = String.format("%d-%d %.5f", vertexId1, vertexId2, adjacent[vertexId1][vertexId2]);
                         stringBuilder.append(formattedEdge).append(" ");
                     }
@@ -437,12 +437,12 @@ public class Exercise40_ReducedOverhead {
 
                 for(int experiment = 0; experiment < experiments; experiment++) {
 
-                    if(graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
+                    if (graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
                         EdgeWeightedGraph randomEdgeWeightedGraphUniformWeights =
                                 randomEdgeWeightedGraphs.erdosRenyiGraphUniformWeights(vertices, edges);
 
                         totalTimeSpent += doExperiment(randomEdgeWeightedGraphUniformWeights, mstAlgorithmType);
-                    } else if(graphTypeSpaceEfficientId == SPACE_EFFICIENT_EDGE_WEIGHTED_GRAPH_ID) {
+                    } else if (graphTypeSpaceEfficientId == SPACE_EFFICIENT_EDGE_WEIGHTED_GRAPH_ID) {
                         Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient
                                 randomEdgeWeightedGraphUniformWeightsSpaceEfficient =
                                 randomEdgeWeightedGraphsSpaceEfficient.erdosRenyiGraphUniformWeights(vertices, edges);
@@ -468,12 +468,12 @@ public class Exercise40_ReducedOverhead {
 
                 for(int experiment = 0; experiment < experiments; experiment++) {
 
-                    if(graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
+                    if (graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
                         EdgeWeightedGraph randomEdgeWeightedGraphUniformWeights =
                                 randomEdgeWeightedGraphs.erdosRenyiGraphGaussianWeights(vertices, edges);
 
                         totalTimeSpent += doExperiment(randomEdgeWeightedGraphUniformWeights, mstAlgorithmType);
-                    } else if(graphTypeSpaceEfficientId == SPACE_EFFICIENT_EDGE_WEIGHTED_GRAPH_ID) {
+                    } else if (graphTypeSpaceEfficientId == SPACE_EFFICIENT_EDGE_WEIGHTED_GRAPH_ID) {
                         Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient
                                 randomEdgeWeightedGraphGaussianWeightsSpaceEfficient =
                                 randomEdgeWeightedGraphsSpaceEfficient.erdosRenyiGraphGaussianWeights(vertices, edges);
@@ -506,7 +506,7 @@ public class Exercise40_ReducedOverhead {
 
                 for(int experiment = 0; experiment < experiments; experiment++) {
 
-                    if(graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
+                    if (graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
                         EdgeWeightedGraphInterface randomEdgeWeightedEuclideanGraph =
                                 randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices,
                                         radius);
@@ -514,7 +514,7 @@ public class Exercise40_ReducedOverhead {
                         edges = randomEdgeWeightedEuclideanGraph.edgesCount();
 
                         totalTimeSpent += doExperiment(randomEdgeWeightedEuclideanGraph, mstAlgorithmType);
-                    } else if(graphTypeSpaceEfficientId == SPACE_EFFICIENT_EDGE_WEIGHTED_GRAPH_ID) {
+                    } else if (graphTypeSpaceEfficientId == SPACE_EFFICIENT_EDGE_WEIGHTED_GRAPH_ID) {
                         Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficientInterface
                                 randomEdgeWeightedEuclideanGraphSpaceEfficient =
                                 randomEuclideanEdgeWeightedGraphSpaceEfficient.randomEuclideanEdgeWeightedGraphSpaceEfficient(euclideanGraphVertices);

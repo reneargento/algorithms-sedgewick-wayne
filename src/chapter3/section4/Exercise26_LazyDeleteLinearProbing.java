@@ -25,7 +25,7 @@ public class Exercise26_LazyDeleteLinearProbing {
             //Resize
             LinearProbingHashTableLazyDelete<Key, Value> tempHashTable = new LinearProbingHashTableLazyDelete<>(newSize);
             for(int i = 0; i < size; i++) {
-                if(values[i] != null) {
+                if (values[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
             }
@@ -40,21 +40,21 @@ public class Exercise26_LazyDeleteLinearProbing {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(keysSize + tombstoneItemCount >= size / (double) 2) {
+            if (keysSize + tombstoneItemCount >= size / (double) 2) {
                 resize(size * 2);
                 lgM++;
             }
 
             int tableIndex;
             for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex].equals(key)) {
+                if (keys[tableIndex].equals(key)) {
 
-                    if(values[tableIndex] == null) {
+                    if (values[tableIndex] == null) {
                         tombstoneItemCount--;
                         keysSize++;
                     }
@@ -74,7 +74,7 @@ public class Exercise26_LazyDeleteLinearProbing {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
@@ -101,7 +101,7 @@ public class Exercise26_LazyDeleteLinearProbing {
                 tableIndex = (tableIndex + 1) % size;
             }
 
-            if(keysSize > 1 && keysSize <= size / (double) 8) {
+            if (keysSize > 1 && keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             }
@@ -112,7 +112,7 @@ public class Exercise26_LazyDeleteLinearProbing {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
@@ -126,7 +126,7 @@ public class Exercise26_LazyDeleteLinearProbing {
 
             keysSize--;
 
-            if(keysSize <= size / (double) 8) {
+            if (keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             }

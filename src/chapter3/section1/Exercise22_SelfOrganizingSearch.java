@@ -33,7 +33,7 @@ public class Exercise22_SelfOrganizingSearch {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -60,8 +60,8 @@ public class Exercise22_SelfOrganizingSearch {
             }
 
             for(int i = 0; i < size; i++) {
-                if(keys[i].equals(key)) {
-                    if(i == 0) {
+                if (keys[i].equals(key)) {
+                    if (i == 0) {
                         return values[i];
                     }
 
@@ -103,14 +103,14 @@ public class Exercise22_SelfOrganizingSearch {
                 }
             }
 
-            if(size > 1 && size == keys.length / 4) {
+            if (size > 1 && size == keys.length / 4) {
                 resize(keys.length / 2);
             }
         }
 
         public boolean contains(Key key) {
             for(int i = 0; i < size; i++) {
-                if(keys[i].equals(key)) {
+                if (keys[i].equals(key)) {
                     return true;
                 }
             }

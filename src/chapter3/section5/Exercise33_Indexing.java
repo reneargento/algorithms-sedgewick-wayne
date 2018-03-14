@@ -26,7 +26,7 @@ public class Exercise33_Indexing {
 
                 String[] tokens = in.readLine().split(separator);
 
-                if(isTitleRow) {
+                if (isTitleRow) {
                     isTitleRow = false;
                     continue;
                 }

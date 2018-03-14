@@ -11,7 +11,7 @@ import java.util.Map;
 public class Exercise25_RegistrarScheduling {
 
     private boolean isThereAConflict(Map<Integer, HashSet<Integer>> instructorsMap, int instructor, int timeToSchedule) {
-        if(timeToSchedule != 9
+        if (timeToSchedule != 9
                 && timeToSchedule != 10
                 && timeToSchedule != 11
                 && timeToSchedule != 13

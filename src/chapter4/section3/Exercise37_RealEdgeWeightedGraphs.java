@@ -40,7 +40,7 @@ public class Exercise37_RealEdgeWeightedGraphs {
         }
 
         public void addVertex(int vertex) {
-            if(!adjacent.contains(vertex)) {
+            if (!adjacent.contains(vertex)) {
                 adjacent.put(vertex, new Bag<>());
                 vertices++;
             }
@@ -50,11 +50,11 @@ public class Exercise37_RealEdgeWeightedGraphs {
             int vertex1 = edge.either();
             int vertex2 = edge.other(vertex1);
 
-            if(!adjacent.contains(vertex1)) {
+            if (!adjacent.contains(vertex1)) {
                 adjacent.put(vertex1, new Bag<>());
                 vertices++;
             }
-            if(!adjacent.contains(vertex2)) {
+            if (!adjacent.contains(vertex2)) {
                 adjacent.put(vertex2, new Bag<>());
                 vertices++;
             }
@@ -72,12 +72,12 @@ public class Exercise37_RealEdgeWeightedGraphs {
             Bag<Edge> edges = new Bag<>();
 
             for(int vertex = 0; vertex < vertices; vertex++) {
-                if(adjacent.get(vertex) == null) {
+                if (adjacent.get(vertex) == null) {
                     continue;
                 }
 
                 for(Edge edge : adjacent.get(vertex)) {
-                    if(edge.other(vertex) > vertex) {
+                    if (edge.other(vertex) > vertex) {
                         edges.add(edge);
                     }
                 }
@@ -93,7 +93,7 @@ public class Exercise37_RealEdgeWeightedGraphs {
             for(int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                if(adjacent.get(vertex) != null) {
+                if (adjacent.get(vertex) != null) {
                     for(Edge edge : adjacent(vertex)) {
                         stringBuilder.append(edge).append(" ");
                     }
@@ -138,7 +138,7 @@ public class Exercise37_RealEdgeWeightedGraphs {
             // Randomly choose a vertex between 1 and vertices
             int randomVertexId = StdRandom.uniform(vertices) + 1;
 
-            if(chosenVertices.contains(randomVertexId)) {
+            if (chosenVertices.contains(randomVertexId)) {
                 continue;
             }
             chosenVertices.add(randomVertexId);
@@ -152,7 +152,7 @@ public class Exercise37_RealEdgeWeightedGraphs {
 
                 int subGraphVertexId2;
 
-                if(!graphToSubGraphMap.contains(vertexId2)) {
+                if (!graphToSubGraphMap.contains(vertexId2)) {
                     subGraphVertexId2 = graphToSubGraphMap.size();
                     graphToSubGraphMap.put(vertexId2, subGraphVertexId2);
                     randomSubGraph.addVertex(subGraphVertexId2);
@@ -165,7 +165,7 @@ public class Exercise37_RealEdgeWeightedGraphs {
         }
 
         // Randomly choose E edges from the subgraph induced by the random vertices
-        if(randomEdgesToChoose > allSubGraphEdges.size()) {
+        if (randomEdgesToChoose > allSubGraphEdges.size()) {
             throw new IllegalArgumentException("Not enough edges to choose from the induced subgraph");
         }
 
@@ -181,7 +181,7 @@ public class Exercise37_RealEdgeWeightedGraphs {
             // Randomly choose an edge
             int randomEdgeId = StdRandom.uniform(allSubGraphEdgesArray.length);
 
-            if(edgesChosen.contains(randomEdgeId)) {
+            if (edgesChosen.contains(randomEdgeId)) {
                 continue;
             }
 

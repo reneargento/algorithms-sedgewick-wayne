@@ -67,7 +67,7 @@ public class Exercise27_Animations_Prim {
                 verticesInMST.add(vertexToVisit);
 
                 // Draw current graph and MST
-                if(!priorityQueue.isEmpty()) {
+                if (!priorityQueue.isEmpty()) {
                     int nextVertexInMST = priorityQueue.minIndex();
                     int vertexConnectedToNextVertexInMST = edgeTo[nextVertexInMST].other(nextVertexInMST);
 
@@ -146,24 +146,24 @@ public class Exercise27_Animations_Prim {
 
             for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                 int otherVertex = edge.other(vertex);
-                if(marked[otherVertex]) {
+                if (marked[otherVertex]) {
                     // Only draw an ineligible edge if this edge is not part of the MST
-                    if(edgeTo[vertex].other(vertex) != otherVertex) {
+                    if (edgeTo[vertex].other(vertex) != otherVertex) {
                         drawIneligibleEdge(vertex, otherVertex, coordinates);
                     }
 
                     continue; // vertex-otherVertex is ineligible
                 }
 
-                if(edge.weight() < distTo[otherVertex]) {
+                if (edge.weight() < distTo[otherVertex]) {
                     // If there is another edge candidate for the MST connected to otherVertex, draw it as ineligible
-                    if(edgeTo[otherVertex] != null) {
+                    if (edgeTo[otherVertex] != null) {
                         int previousBestVertexConnectedToOtherVertex = edgeTo[otherVertex].other(otherVertex);
                         drawIneligibleEdge(previousBestVertexConnectedToOtherVertex, otherVertex, coordinates);
                     }
 
                     // Edge edge is the new best connection from the minimum spanning tree to otherVertex
-                    if(distTo[otherVertex] != Double.POSITIVE_INFINITY) {
+                    if (distTo[otherVertex] != Double.POSITIVE_INFINITY) {
                         weight -= distTo[otherVertex];
                     }
                     weight += edge.weight();
@@ -171,7 +171,7 @@ public class Exercise27_Animations_Prim {
                     edgeTo[otherVertex] = edge;
                     distTo[otherVertex] = edge.weight();
 
-                    if(priorityQueue.contains(otherVertex)) {
+                    if (priorityQueue.contains(otherVertex)) {
                         priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                     } else {
                         priorityQueue.insert(otherVertex, distTo[otherVertex]);
@@ -214,7 +214,7 @@ public class Exercise27_Animations_Prim {
                 for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                     int otherVertex = edge.other(vertex);
 
-                    if(vertex > otherVertex) {
+                    if (vertex > otherVertex) {
                         StdDraw.line(coordinates[vertex].xCoordinate, coordinates[vertex].yCoordinate,
                                 coordinates[otherVertex].xCoordinate, coordinates[otherVertex].yCoordinate);
                     }
@@ -226,19 +226,19 @@ public class Exercise27_Animations_Prim {
 
         private void drawCandidateEdgesToMST(Edge[] edgeTo, Coordinate[] coordinates, int nextVertexInMST) {
             for(Edge edge : edgeTo) {
-                if(edge == null) {
+                if (edge == null) {
                     continue;
                 }
 
                 int vertex1 = edge.either();
                 int vertex2 = edge.other(vertex1);
 
-                if(vertex1 == nextVertexInMST || vertex2 == nextVertexInMST) {
+                if (vertex1 == nextVertexInMST || vertex2 == nextVertexInMST) {
                     //Already colored and in MST
                     continue;
                 }
 
-                if(!marked[vertex1] || !marked[vertex2]) {
+                if (!marked[vertex1] || !marked[vertex2]) {
                     StdDraw.setPenRadius(0.002D);
                     StdDraw.setPenColor(Color.RED);
 

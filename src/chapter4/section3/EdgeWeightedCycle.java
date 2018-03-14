@@ -19,11 +19,11 @@ public class EdgeWeightedCycle {
         initVariables(edgeWeightedGraph);
 
         for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
-            if(cycleFound) {
+            if (cycleFound) {
                 break;
             }
 
-            if(!visited[vertex]) {
+            if (!visited[vertex]) {
                 dfs(edgeWeightedGraph, vertex);
             }
         }
@@ -35,11 +35,11 @@ public class EdgeWeightedCycle {
         initVariables(edgeWeightedGraph);
 
         for(int vertex : vertices.keys()) {
-            if(cycleFound) {
+            if (cycleFound) {
                 break;
             }
 
-            if(!visited[vertex]) {
+            if (!visited[vertex]) {
                 dfs(edgeWeightedGraph, vertex);
             }
         }
@@ -59,19 +59,19 @@ public class EdgeWeightedCycle {
         visited[vertex] = true;
 
         for(Edge neighbor : edgeWeightedGraph.adjacent(vertex)) {
-            if(visitedEdges.contains(neighbor)) {
+            if (visitedEdges.contains(neighbor)) {
                 continue;
             }
 
             visitedEdges.add(neighbor);
             int neighborVertex = neighbor.other(vertex);
 
-            if(hasCycle()) {
+            if (hasCycle()) {
                 return;
-            } else if(!visited[neighborVertex]) {
+            } else if (!visited[neighborVertex]) {
                 edgeTo[neighborVertex] = neighbor;
                 dfs(edgeWeightedGraph, neighborVertex);
-            } else if(onStack[neighborVertex]) {
+            } else if (onStack[neighborVertex]) {
                 cycleFound = true;
                 cycle = new Stack<>();
 

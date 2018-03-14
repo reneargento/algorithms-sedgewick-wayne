@@ -55,7 +55,7 @@ public class VisualAccumulator {
         StdDraw.setPenColor(StdDraw.DARK_GRAY);
         StdDraw.point(size, value);
 
-        if(drawMean) {
+        if (drawMean) {
             StdDraw.setPenColor(StdDraw.RED);
             StdDraw.point(size, mean());
         }

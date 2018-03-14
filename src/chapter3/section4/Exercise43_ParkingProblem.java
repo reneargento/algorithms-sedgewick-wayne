@@ -21,7 +21,7 @@ public class Exercise43_ParkingProblem {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
             }
 
@@ -31,7 +31,7 @@ public class Exercise43_ParkingProblem {
             for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 totalNumberOfCompares++;
 
-                if(keys[tableIndex].equals(key)) {
+                if (keys[tableIndex].equals(key)) {
                     values[tableIndex] = value;
                     return;
                 }

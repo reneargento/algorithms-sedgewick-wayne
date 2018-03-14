@@ -37,7 +37,7 @@ public class Exercise44_AverageSearchTime {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -45,7 +45,7 @@ public class Exercise44_AverageSearchTime {
         }
 
         private boolean isRed(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
@@ -53,7 +53,7 @@ public class Exercise44_AverageSearchTime {
         }
 
         private Node rotateLeft(Node node) {
-            if(node == null || node.right == null) {
+            if (node == null || node.right == null) {
                 return node;
             }
 
@@ -72,7 +72,7 @@ public class Exercise44_AverageSearchTime {
         }
 
         private Node rotateRight(Node node) {
-            if(node == null || node.left == null) {
+            if (node == null || node.left == null) {
                 return node;
             }
 
@@ -91,12 +91,12 @@ public class Exercise44_AverageSearchTime {
         }
 
         private void flipColors(Node node) {
-            if(node == null || node.left == null || node.right == null) {
+            if (node == null || node.left == null || node.right == null) {
                 return;
             }
 
             //The root must have opposite color of its two children
-            if((isRed(node) && !isRed(node.left) && !isRed(node.right))
+            if ((isRed(node) && !isRed(node.left) && !isRed(node.right))
                     || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
                 node.color = !node.color;
                 node.left.color = !node.left.color;
@@ -105,11 +105,11 @@ public class Exercise44_AverageSearchTime {
         }
 
         public void put(Key key, Value value) {
-            if(key == null) {
+            if (key == null) {
                 return;
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -119,27 +119,27 @@ public class Exercise44_AverageSearchTime {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value, 1, RED);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
             }
 
-            if(isRed(node.right) && !isRed(node.left)) {
+            if (isRed(node.right) && !isRed(node.left)) {
                 node = rotateLeft(node);
             }
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -148,7 +148,7 @@ public class Exercise44_AverageSearchTime {
         }
 
         private int internalPathLength() {
-            if(root == null) {
+            if (root == null) {
                 return 0;
             }
 
@@ -162,11 +162,11 @@ public class Exercise44_AverageSearchTime {
                 Node current = queue.dequeue();
                 internalPathLength += current.depth;
 
-                if(current.left != null) {
+                if (current.left != null) {
                     current.left.depth = current.depth + 1;
                     queue.enqueue(current.left);
                 }
-                if(current.right != null) {
+                if (current.right != null) {
                     current.right.depth = current.depth + 1;
                     queue.enqueue(current.right);
                 }
@@ -176,7 +176,7 @@ public class Exercise44_AverageSearchTime {
         }
 
         private double averagePathLength() {
-            if(size() == 0) {
+            if (size() == 0) {
                 return 0;
             }
 
@@ -215,21 +215,21 @@ public class Exercise44_AverageSearchTime {
                 double averagePathLength = redBlackBSTInternalPathLength.averagePathLength();
                 totalAvgPathLengths += averagePathLength;
 
-                if(size % 200 == 0) {
+                if (size % 200 == 0) {
                     visualAccumulator.drawDataValue(size, averagePathLength, StdDraw.GRAY);
                 }
             }
 
             double averageOfAveragesPathLength = totalAvgPathLengths / (double) numberOfTrials;
 
-            if(size % 200 == 0) {
+            if (size % 200 == 0) {
                 visualAccumulator.drawDataValue(size, averageOfAveragesPathLength, StdDraw.RED);
 
                 //Draw the expected average path length -> lg N - .5
                 double expectedAveragePathLength = (Math.log(size) / Math.log(2)) - 0.5;
                 visualAccumulator.drawDataValue(size, expectedAveragePathLength, StdDraw.BLACK);
 
-                if(lastExpectedAveragePathLength != -1) {
+                if (lastExpectedAveragePathLength != -1) {
                     StdDraw.line(size - 200, lastExpectedAveragePathLength, size, expectedAveragePathLength);
                 }
                 lastExpectedAveragePathLength = expectedAveragePathLength;

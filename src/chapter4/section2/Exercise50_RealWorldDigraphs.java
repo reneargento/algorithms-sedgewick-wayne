@@ -57,18 +57,18 @@ public class Exercise50_RealWorldDigraphs {
         }
 
         public void addVertex(int vertex) {
-            if(!adjacent.contains(vertex)) {
+            if (!adjacent.contains(vertex)) {
                 adjacent.put(vertex, new Bag<>());
                 vertices++;
             }
         }
 
         public void addEdge(int vertex1, int vertex2) {
-            if(!adjacent.contains(vertex1)) {
+            if (!adjacent.contains(vertex1)) {
                 adjacent.put(vertex1, new Bag<>());
                 vertices++;
             }
-            if(!adjacent.contains(vertex2)) {
+            if (!adjacent.contains(vertex2)) {
                 adjacent.put(vertex2, new Bag<>());
                 vertices++;
             }
@@ -76,14 +76,14 @@ public class Exercise50_RealWorldDigraphs {
             adjacent.get(vertex1).add(vertex2);
             edges++;
 
-            if(!outdegrees.contains(vertex1)) {
+            if (!outdegrees.contains(vertex1)) {
                 outdegrees.put(vertex1, 0);
             }
             int currentVertex1Outdegree = outdegrees.get(vertex1);
             currentVertex1Outdegree++;
             outdegrees.put(vertex1, currentVertex1Outdegree);
 
-            if(!indegrees.contains(vertex2)) {
+            if (!indegrees.contains(vertex2)) {
                 indegrees.put(vertex2, 0);
             }
             int currentVertex2Indegree = indegrees.get(vertex2);
@@ -122,7 +122,7 @@ public class Exercise50_RealWorldDigraphs {
             for(int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                if(adjacent(vertex) != null) {
+                if (adjacent(vertex) != null) {
                     for(int neighbor : adjacent(vertex)) {
                         stringBuilder.append(neighbor).append(" ");
                     }
@@ -177,7 +177,7 @@ public class Exercise50_RealWorldDigraphs {
             // Randomly choose a vertex between 1 and vertices
             int randomVertexId = StdRandom.uniform(vertices) + 1;
 
-            if(chosenVertices.contains(randomVertexId)) {
+            if (chosenVertices.contains(randomVertexId)) {
                 continue;
             }
             chosenVertices.add(randomVertexId);
@@ -190,7 +190,7 @@ public class Exercise50_RealWorldDigraphs {
             for(int neighbor : fullDigraph.adjacent(randomVertexId)) {
                 int subDigraphVertexId2;
 
-                if(!digraphToSubDigraphMap.contains(neighbor)) {
+                if (!digraphToSubDigraphMap.contains(neighbor)) {
                     subDigraphVertexId2 = digraphToSubDigraphMap.size();
                     digraphToSubDigraphMap.put(neighbor, subDigraphVertexId2);
                     randomSubDigraph.addVertex(subDigraphVertexId2);
@@ -203,7 +203,7 @@ public class Exercise50_RealWorldDigraphs {
         }
 
         // Randomly choose E directed edges from the subdigraph induced by the random vertices
-        if(randomEdgesToChoose > allSubDigraphEdges.size()) {
+        if (randomEdgesToChoose > allSubDigraphEdges.size()) {
             throw new IllegalArgumentException("Not enough edges to choose from the induced subgraph");
         }
 
@@ -219,7 +219,7 @@ public class Exercise50_RealWorldDigraphs {
             // Randomly choose an edge
             int randomEdgeId = StdRandom.uniform(allSubDigraphEdgesArray.length);
 
-            if(edgesChosen.contains(randomEdgeId)) {
+            if (edgesChosen.contains(randomEdgeId)) {
                continue;
             }
 

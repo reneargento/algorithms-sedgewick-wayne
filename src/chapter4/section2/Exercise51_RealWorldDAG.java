@@ -62,18 +62,18 @@ public class Exercise51_RealWorldDAG {
         }
 
         public void addVertex(int vertex) {
-            if(!adjacent.contains(vertex)) {
+            if (!adjacent.contains(vertex)) {
                 adjacent.put(vertex, new Bag<>());
                 vertices++;
             }
         }
 
         public void addEdge(int vertex1, int vertex2) {
-            if(!adjacent.contains(vertex1)) {
+            if (!adjacent.contains(vertex1)) {
                 adjacent.put(vertex1, new Bag<>());
                 vertices++;
             }
-            if(!adjacent.contains(vertex2)) {
+            if (!adjacent.contains(vertex2)) {
                 adjacent.put(vertex2, new Bag<>());
                 vertices++;
             }
@@ -81,14 +81,14 @@ public class Exercise51_RealWorldDAG {
             adjacent.get(vertex1).add(vertex2);
             edges++;
 
-            if(!outdegrees.contains(vertex1)) {
+            if (!outdegrees.contains(vertex1)) {
                 outdegrees.put(vertex1, 0);
             }
             int currentVertex1Outdegree = outdegrees.get(vertex1);
             currentVertex1Outdegree++;
             outdegrees.put(vertex1, currentVertex1Outdegree);
 
-            if(!indegrees.contains(vertex2)) {
+            if (!indegrees.contains(vertex2)) {
                 indegrees.put(vertex2, 0);
             }
             int currentVertex2Indegree = indegrees.get(vertex2);
@@ -127,7 +127,7 @@ public class Exercise51_RealWorldDAG {
             for(int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                if(adjacent(vertex) != null) {
+                if (adjacent(vertex) != null) {
                     for(int neighbor : adjacent(vertex)) {
                         stringBuilder.append(neighbor).append(" ");
                     }
@@ -163,7 +163,7 @@ public class Exercise51_RealWorldDAG {
             visited = new boolean[digraph.vertices()];
 
             for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-                if(!visited[vertex]) {
+                if (!visited[vertex]) {
                     dfs(digraph, vertex);
                 }
             }
@@ -173,14 +173,14 @@ public class Exercise51_RealWorldDAG {
             onStack[vertex] = true;
             visited[vertex] = true;
 
-            if(digraph.adjacent(vertex) != null) {
+            if (digraph.adjacent(vertex) != null) {
                 for(int neighbor : digraph.adjacent(vertex)) {
-                    if(hasCycle()) {
+                    if (hasCycle()) {
                         return;
-                    } else if(!visited[neighbor]) {
+                    } else if (!visited[neighbor]) {
                         edgeTo[neighbor] = vertex;
                         dfs(digraph, neighbor);
-                    } else if(onStack[neighbor]) {
+                    } else if (onStack[neighbor]) {
                         cycle = new Stack<>();
 
                         for(int currentVertex = vertex; currentVertex != neighbor; currentVertex = edgeTo[currentVertex]) {
@@ -223,17 +223,17 @@ public class Exercise51_RealWorldDAG {
             int paper1 = Integer.parseInt(connection[0]);
             int paper2 = Integer.parseInt(connection[1]);
 
-            if(paper1 == paper2 || paper1 > paper2) {
+            if (paper1 == paper2 || paper1 > paper2) {
                 //Ignore self-citations and citations for papers in the future to avoid cycles
                 // and maintain the digraph as a DAG
                 continue;
             }
 
-            if(!realDAGToFullDAGMap.contains(paper1)) {
+            if (!realDAGToFullDAGMap.contains(paper1)) {
                 int paperVertex1Id = realDAGToFullDAGMap.size();
                 realDAGToFullDAGMap.put(paper1, paperVertex1Id);
             }
-            if(!realDAGToFullDAGMap.contains(paper2)) {
+            if (!realDAGToFullDAGMap.contains(paper2)) {
                 int paperVertex2Id = realDAGToFullDAGMap.size();
                 realDAGToFullDAGMap.put(paper2, paperVertex2Id);
             }
@@ -245,7 +245,7 @@ public class Exercise51_RealWorldDAG {
         }
 
         DirectedCycle directedCycle = new DirectedCycle(fullDigraph);
-        if(directedCycle.hasCycle()) {
+        if (directedCycle.hasCycle()) {
             throw new IllegalArgumentException("Digraph is not a DAG");
         }
 
@@ -259,7 +259,7 @@ public class Exercise51_RealWorldDAG {
             // Randomly choose a vertex between 1 and vertices
             int randomVertexId = StdRandom.uniform(fullDigraph.vertices) + 1;
 
-            if(digraphToSubDigraphMap.contains(randomVertexId)) {
+            if (digraphToSubDigraphMap.contains(randomVertexId)) {
                 continue;
             }
 
@@ -274,7 +274,7 @@ public class Exercise51_RealWorldDAG {
         }
 
         // Randomly choose E directed edges from the subdigraph induced by the random vertices
-        if(randomEdgesToChoose > allSubDigraphEdges.size()) {
+        if (randomEdgesToChoose > allSubDigraphEdges.size()) {
             throw new IllegalArgumentException("Not enough edges to choose");
         }
 
@@ -290,7 +290,7 @@ public class Exercise51_RealWorldDAG {
             // Randomly choose an edge
             int randomEdgeId = StdRandom.uniform(allSubDigraphEdgesArray.length);
 
-            if(edgesChosen.contains(randomEdgeId)) {
+            if (edgesChosen.contains(randomEdgeId)) {
                 continue;
             }
 
@@ -298,7 +298,7 @@ public class Exercise51_RealWorldDAG {
 
             DirectedEdge randomEdge = allSubDigraphEdgesArray[randomEdgeId];
 
-            if(!digraphToSubDigraphMap.contains(randomEdge.toVertex)) {
+            if (!digraphToSubDigraphMap.contains(randomEdge.toVertex)) {
                 int subDigraphNeighborVertexId = digraphToSubDigraphMap.size();
                 digraphToSubDigraphMap.put(randomEdge.toVertex, subDigraphNeighborVertexId);
             }

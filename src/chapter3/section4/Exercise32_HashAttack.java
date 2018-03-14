@@ -30,7 +30,7 @@ public class Exercise32_HashAttack {
     }
 
     private void generateStrings(int n, int currentIndex, List<String> strings, String currentString, String[] values) {
-        if(currentIndex == n) {
+        if (currentIndex == n) {
             strings.add(currentString);
             return;
         }

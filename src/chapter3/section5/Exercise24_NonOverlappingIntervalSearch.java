@@ -27,7 +27,7 @@ public class Exercise24_NonOverlappingIntervalSearch {
 
         @Override
         public Value get(Key key) {
-            if(key == null) {
+            if (key == null) {
                 return null;
             }
 
@@ -35,18 +35,18 @@ public class Exercise24_NonOverlappingIntervalSearch {
         }
 
         private Value get(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return get(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 Value value = node.value;
 
                 Value rightValue = get(node.right, key);
-                if(rightValue != null) {
+                if (rightValue != null) {
                     value = rightValue;
                 }
 
@@ -71,7 +71,7 @@ public class Exercise24_NonOverlappingIntervalSearch {
         private int findInterval(int query) {
             Interval possibleInterval = redBlackBSTGetNodeOrPrevious.get(query);
 
-            if(possibleInterval != null && possibleInterval.start <= query && query <= possibleInterval.end) {
+            if (possibleInterval != null && possibleInterval.start <= query && query <= possibleInterval.end) {
                 return possibleInterval.index;
             } else {
                 return -1;

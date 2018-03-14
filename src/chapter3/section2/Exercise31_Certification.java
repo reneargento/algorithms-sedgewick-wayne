@@ -40,14 +40,14 @@ public class Exercise31_Certification {
 
     private boolean isBST(BinarySearchTree.Node node, Comparable low, Comparable high) {
 
-        if(node == null) {
+        if (node == null) {
             return true;
         }
 
-        if(low != null && low.compareTo(node.key) >= 0) {
+        if (low != null && low.compareTo(node.key) >= 0) {
             return false;
         }
-        if(high != null && high.compareTo(node.key) <= 0) {
+        if (high != null && high.compareTo(node.key) <= 0) {
             return false;
         }
 

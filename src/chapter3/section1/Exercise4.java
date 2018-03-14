@@ -14,13 +14,13 @@ public class Exercise4 {
         private int seconds;
 
         public Time(int hours, int minutes, int seconds) {
-            if(hours < 0 || hours > 23) {
+            if (hours < 0 || hours > 23) {
                 throw new IllegalArgumentException("Hours range must be between 0 and 23");
             }
-            if(minutes < 0 || minutes > 59) {
+            if (minutes < 0 || minutes > 59) {
                 throw new IllegalArgumentException("Minutes range must be between 0 and 59");
             }
-            if(seconds < 0 || seconds > 59) {
+            if (seconds < 0 || seconds > 59) {
                 throw new IllegalArgumentException("Seconds range must be between 0 and 59");
             }
 
@@ -31,17 +31,17 @@ public class Exercise4 {
 
         @Override
         public int compareTo(Time that) {
-            if(this.hours < that.hours) {
+            if (this.hours < that.hours) {
                 return -1;
-            } else if(this.hours > that.hours) {
+            } else if (this.hours > that.hours) {
                 return 1;
-            } else if(this.minutes < that.minutes) {
+            } else if (this.minutes < that.minutes) {
                 return -1;
-            } else if(this.minutes > that.minutes) {
+            } else if (this.minutes > that.minutes) {
                 return 1;
-            } else if(this.seconds < that.seconds) {
+            } else if (this.seconds < that.seconds) {
                 return -1;
-            } else if(this.seconds > that.seconds) {
+            } else if (this.seconds > that.seconds) {
                 return 1;
             }
 
@@ -51,17 +51,17 @@ public class Exercise4 {
         @Override
         public String toString() {
             String hourString = String.valueOf(hours);
-            if(hours < 10) {
+            if (hours < 10) {
                 hourString = "0" + hourString;
             }
 
             String minutesString = String.valueOf(minutes);
-            if(minutes < 10) {
+            if (minutes < 10) {
                 minutesString = "0" + minutesString;
             }
 
             String secondsString = String.valueOf(seconds);
-            if(seconds < 10) {
+            if (seconds < 10) {
                 secondsString = "0" + secondsString;
             }
 

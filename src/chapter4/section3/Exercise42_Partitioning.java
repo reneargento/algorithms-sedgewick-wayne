@@ -53,7 +53,7 @@ public class Exercise42_Partitioning {
                 int vertex2 = edge.other(vertex1);
 
                 // Ignore ineligible edges
-                if(unionFind.connected(vertex1, vertex2)) {
+                if (unionFind.connected(vertex1, vertex2)) {
                     continue;
                 }
 
@@ -68,11 +68,11 @@ public class Exercise42_Partitioning {
             int smallestCorrectPivotIndex = pivots.peek();
 
             // Pre-condition: indexToSearch <= smallestCorrectPivotIndex
-            if(indexToSearch > smallestCorrectPivotIndex) {
+            if (indexToSearch > smallestCorrectPivotIndex) {
                 throw new IllegalArgumentException("Searching for an element in the wrong range");
             }
 
-            if(indexToSearch == smallestCorrectPivotIndex) {
+            if (indexToSearch == smallestCorrectPivotIndex) {
                 pivots.pop();
                 return array[indexToSearch];
             }
@@ -88,7 +88,7 @@ public class Exercise42_Partitioning {
         }
 
         private int partition(Comparable[] array, int pivotIndex, int low, int high) {
-            if(low == high) {
+            if (low == high) {
                 return low;
             }
 
@@ -101,18 +101,18 @@ public class Exercise42_Partitioning {
 
             while (true) {
                 while (ArrayUtil.less(array[++lowIndex], pivot)) {
-                    if(lowIndex == high) {
+                    if (lowIndex == high) {
                         break;
                     }
                 }
 
                 while (ArrayUtil.less(pivot, array[--highIndex])) {
-                    if(highIndex == low) {
+                    if (highIndex == low) {
                         break;
                     }
                 }
 
-                if(lowIndex >= highIndex) {
+                if (lowIndex >= highIndex) {
                     break;
                 }
 

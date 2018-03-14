@@ -37,9 +37,9 @@ public class Exercise32_ParentCheckingHeuristic {
                 onQueue[vertex] = false;
 
                 // Parent-checking heuristic: visit vertex v only if its parent is not currently on the queue
-                if(edgeTo[vertex] != null) {
+                if (edgeTo[vertex] != null) {
                     int parentVertex = edgeTo[vertex].from();
-                    if(onQueue[parentVertex]) {
+                    if (onQueue[parentVertex]) {
                         continue;
                     }
                 }
@@ -53,17 +53,17 @@ public class Exercise32_ParentCheckingHeuristic {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(distTo[neighbor] > distTo[vertex] + edge.weight()) {
+                if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
                     distTo[neighbor] = distTo[vertex] + edge.weight();
                     edgeTo[neighbor] = edge;
 
-                    if(!onQueue[neighbor]) {
+                    if (!onQueue[neighbor]) {
                         queue.enqueue(neighbor);
                         onQueue[neighbor] = true;
                     }
                 }
 
-                if(callsToRelax++ % edgeWeightedDigraph.vertices() == 0) {
+                if (callsToRelax++ % edgeWeightedDigraph.vertices() == 0) {
                     findNegativeCycle();
                 }
             }
@@ -82,7 +82,7 @@ public class Exercise32_ParentCheckingHeuristic {
         }
 
         public Iterable<DirectedEdge> pathTo(int vertex) {
-            if(!hasPathTo(vertex)) {
+            if (!hasPathTo(vertex)) {
                 return null;
             }
 
@@ -99,7 +99,7 @@ public class Exercise32_ParentCheckingHeuristic {
             EdgeWeightedDigraph shortestPathsTree = new EdgeWeightedDigraph(vertices);
 
             for(int vertex = 0; vertex < vertices; vertex++) {
-                if(edgeTo[vertex] != null) {
+                if (edgeTo[vertex] != null) {
                     shortestPathsTree.addEdge(edgeTo[vertex]);
                 }
             }

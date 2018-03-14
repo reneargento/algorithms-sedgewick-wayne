@@ -17,7 +17,7 @@ public class Exercise25 {
             SymbolGraph movieSymbolGraph = new SymbolGraph(filePath, separator);
             Graph graph = movieSymbolGraph.graph();
 
-            if(!movieSymbolGraph.contains(sourceMovie)) {
+            if (!movieSymbolGraph.contains(sourceMovie)) {
                 StdOut.println(sourceMovie + " not in database.");
                 return;
             }
@@ -34,15 +34,15 @@ public class Exercise25 {
                 //All movie names in the graph end with "(YYYY)"
                 int movieYear = Integer.parseInt(sink.substring(sink.length() - 5, sink.length() - 1));
 
-                if(currentYear - movieYear > yearsOldToConsider) {
+                if (currentYear - movieYear > yearsOldToConsider) {
                     StdOut.println("Ignoring old movie");
                     continue;
                 }
 
-                if(movieSymbolGraph.contains(sink)) {
+                if (movieSymbolGraph.contains(sink)) {
                     int destinationVertex = movieSymbolGraph.index(sink);
 
-                    if(breadthFirstPaths.hasPathTo(destinationVertex)) {
+                    if (breadthFirstPaths.hasPathTo(destinationVertex)) {
                         for(int vertexInPath : breadthFirstPaths.pathTo(destinationVertex)) {
                             StdOut.println("    " + movieSymbolGraph.name(vertexInPath));
                         }

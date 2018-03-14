@@ -46,7 +46,7 @@ public class Exercise3 {
                 int middle = low + (high - low) / 2;
 
                 int comparison = key.compareTo(keys[middle]);
-                if(comparison < 0) {
+                if (comparison < 0) {
                     high = middle - 1;
                 } else if (comparison > 0) {
                     low = middle + 1;
@@ -65,12 +65,12 @@ public class Exercise3 {
 
             int rank = rank(key);
 
-            if(rank < size && keys[rank].compareTo(key) == 0) {
+            if (rank < size && keys[rank].compareTo(key) == 0) {
                 keys[rank] = key;
                 return;
             }
 
-            if(size == keys.length) {
+            if (size == keys.length) {
                 resize(keys.length * 2);
             }
 
@@ -86,12 +86,12 @@ public class Exercise3 {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return false;
             }
 
             int rank = rank(key);
-            if(rank < size && keys[rank].compareTo(key) == 0) {
+            if (rank < size && keys[rank].compareTo(key) == 0) {
                 return true;
             } else {
                 return false;
@@ -103,7 +103,7 @@ public class Exercise3 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -115,13 +115,13 @@ public class Exercise3 {
             keys[size - 1] = null;
             size--;
 
-            if(size > 1 && size == keys.length / 4) {
+            if (size > 1 && size == keys.length / 4) {
                 resize(keys.length / 2);
             }
         }
 
         public Key min() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty set");
             }
 
@@ -129,7 +129,7 @@ public class Exercise3 {
         }
 
         public Key max() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty set");
             }
 
@@ -137,7 +137,7 @@ public class Exercise3 {
         }
 
         public Key select(int k) {
-            if(isEmpty() || k >= size) {
+            if (isEmpty() || k >= size) {
                 throw new IllegalArgumentException("Invalid argument: " + k);
             }
 
@@ -147,7 +147,7 @@ public class Exercise3 {
         public Key ceiling(Key key) {
             int rank = rank(key);
 
-            if(rank == size) {
+            if (rank == size) {
                 return null;
             }
 
@@ -155,13 +155,13 @@ public class Exercise3 {
         }
 
         public Key floor(Key key) {
-            if(contains(key)) {
+            if (contains(key)) {
                 return key;
             }
 
             int rank = rank(key);
 
-            if(rank == 0) {
+            if (rank == 0) {
                 return null;
             }
 
@@ -189,9 +189,9 @@ public class Exercise3 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(high.compareTo(low) < 0) {
+            if (high.compareTo(low) < 0) {
                 return 0;
-            } else if(contains(high)) {
+            } else if (contains(high)) {
                 return rank(high) - rank(low) + 1;
             } else {
                 return rank(high) - rank(low);
@@ -209,7 +209,7 @@ public class Exercise3 {
                 queue.enqueue(keys[i]);
             }
 
-            if(contains(high)) {
+            if (contains(high)) {
                 queue.enqueue(keys[rank(high)]);
             }
 
@@ -228,7 +228,7 @@ public class Exercise3 {
 
         @Override
         public String toString() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return "{ }";
             }
 
@@ -236,7 +236,7 @@ public class Exercise3 {
 
             boolean isFirstKey = true;
             for(Key key : keys()) {
-                if(isFirstKey) {
+                if (isFirstKey) {
                     isFirstKey = false;
                 } else {
                     stringBuilder.append(",");

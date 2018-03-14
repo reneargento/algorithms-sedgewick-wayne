@@ -98,7 +98,7 @@ public class Exercise46_RandomSimpleDigraphs {
         //A complete digraph has n * (n - 1) edges
         int maxNumberOfEdges = vertices * (vertices - 1);
 
-        if(edges > maxNumberOfEdges) {
+        if (edges > maxNumberOfEdges) {
             throw new IllegalArgumentException("The maximum number of edges a simple digraph with " + vertices
                     + " vertices may have is " + maxNumberOfEdges);
         }
@@ -120,7 +120,7 @@ public class Exercise46_RandomSimpleDigraphs {
         int shuffleIndex = 0;
 
         for(int edge = 0; edge < edges; edge++) {
-            if(shuffleIndex == shuffledVerticesArray1.length) {
+            if (shuffleIndex == shuffledVerticesArray1.length) {
                 StdRandom.shuffle(shuffledVerticesArray1);
                 StdRandom.shuffle(shuffledVerticesArray2);
 
@@ -131,7 +131,7 @@ public class Exercise46_RandomSimpleDigraphs {
             int vertexId2 = shuffledVerticesArray2[shuffleIndex];
             shuffleIndex++;
 
-            if(randomSimpleDigraph.adjacentSetOfValues(vertexId1).contains(vertexId2)
+            if (randomSimpleDigraph.adjacentSetOfValues(vertexId1).contains(vertexId2)
                     || vertexId1 == vertexId2) {
                 edge--;
                 continue;

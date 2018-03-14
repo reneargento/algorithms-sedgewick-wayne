@@ -11,7 +11,7 @@ public class Exercise21 {
     private class BinarySearchTree<Key extends Comparable<Key>, Value> extends chapter3.section2.BinarySearchTree<Key, Value> {
 
         public Key randomKey() {
-            if(size() == 0) {
+            if (size() == 0) {
                 return null;
             }
 
@@ -22,14 +22,14 @@ public class Exercise21 {
                 //0 - Move left
                 //1 - Move right
                 //2 - Choose the current key
-                if(randomMove == 0) {
-                    if(current.left != null) {
+                if (randomMove == 0) {
+                    if (current.left != null) {
                         current = current.left;
                     } else {
                         return current.key;
                     }
-                } else if(randomMove == 1) {
-                    if(current.right != null) {
+                } else if (randomMove == 1) {
+                    if (current.right != null) {
                         current = current.right;
                     } else {
                         return current.key;

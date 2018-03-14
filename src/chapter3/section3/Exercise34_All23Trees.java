@@ -45,7 +45,7 @@ public class Exercise34_All23Trees {
                     nodesToAdd--;
                     insertions++;
 
-                    if((addToLeftSubtree && insertions == insertionsBeforeSwitchToRightSide)
+                    if ((addToLeftSubtree && insertions == insertionsBeforeSwitchToRightSide)
                             || (!addToLeftSubtree && insertions == insertionsBeforeSwitchToLeftSide)) {
                         addToLeftSubtree = !addToLeftSubtree;
                         insertions = 0;
@@ -54,7 +54,7 @@ public class Exercise34_All23Trees {
 
                 generatedTrees.add(currentTree);
                 structuresToGenerate--;
-                if(structuresToGenerate == 0) {
+                if (structuresToGenerate == 0) {
                     break;
                 }
 
@@ -70,7 +70,7 @@ public class Exercise34_All23Trees {
         int lowerBound;
         int higherBound;
 
-        if(addToLeftSubtree) {
+        if (addToLeftSubtree) {
             lowerBound = 0;
             higherBound = median;
         } else {
@@ -91,7 +91,7 @@ public class Exercise34_All23Trees {
     private RedBlackBST<Integer, Integer> copyTree(RedBlackBST<Integer, Integer> tree) {
         RedBlackBST.Node root = tree.root;
 
-        if(root == null) {
+        if (root == null) {
             return null;
         }
 
@@ -106,14 +106,14 @@ public class Exercise34_All23Trees {
             RedBlackBST.Node current = queue.dequeue();
             RedBlackBST.Node currentNewTree = newTreeQueue.dequeue();
 
-            if(current.left != null) {
+            if (current.left != null) {
                 currentNewTree.left = new RedBlackBST().new Node(current.left.key, current.left.value,
                         current.left.size, current.left.color);
 
                 queue.enqueue(current.left);
                 newTreeQueue.enqueue(currentNewTree.left);
             }
-            if(current.right != null) {
+            if (current.right != null) {
                 currentNewTree.right = new RedBlackBST().new Node(current.right.key, current.right.value,
                         current.right.size, current.right.color);
 

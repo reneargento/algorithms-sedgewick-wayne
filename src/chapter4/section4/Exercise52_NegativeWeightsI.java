@@ -57,7 +57,7 @@ public class Exercise52_NegativeWeightsI {
                 DirectedEdge newEdge;
 
                 int randomDirection = StdRandom.uniform(2);
-                if(randomDirection == 0) {
+                if (randomDirection == 0) {
                     newEdge = new DirectedEdge(vertexId1, vertexId2, rescaledEdgeWeight);
                 } else {
                     newEdge = new DirectedEdge(vertexId2, vertexId1, rescaledEdgeWeight);
@@ -76,7 +76,7 @@ public class Exercise52_NegativeWeightsI {
                                                                                             boolean uniformWeightDistribution,
                                                                                             double minWeightInScale,
                                                                                             double maxWeightInScale) {
-            if(numberOfDigraphs < 0) {
+            if (numberOfDigraphs < 0) {
                 throw new IllegalArgumentException("Number of digraphs cannot be negative");
             }
 
@@ -91,7 +91,7 @@ public class Exercise52_NegativeWeightsI {
 
                 EdgeWeightedDigraphInterface randomEdgeWeightedDigraph;
 
-                if(uniformWeightDistribution) {
+                if (uniformWeightDistribution) {
                     randomEdgeWeightedDigraph =
                             randomEdgeWeightedDigraphsGenerator.erdosRenyiDigraphUniformWeights(vertices, edges,
                                     minWeightInScale, maxWeightInScale);
@@ -116,7 +116,7 @@ public class Exercise52_NegativeWeightsI {
                                                                                               double radius,
                                                                                               double minWeightInScale,
                                                                                               double maxWeightInScale) {
-            if(numberOfDigraphs < 0) {
+            if (numberOfDigraphs < 0) {
                 throw new IllegalArgumentException("Number of digraphs cannot be negative");
             }
 
@@ -181,13 +181,13 @@ public class Exercise52_NegativeWeightsI {
                             allVertices[vertexId2].coordinates.getXCoordinate(),
                             allVertices[vertexId2].coordinates.getYCoordinate());
 
-                    if(distance <= radius) {
+                    if (distance <= radius) {
                         DirectedEdge edge;
 
                         double rescaledEdgeWeight = rescaledEdgeWeights.get(rescaledWeightsIndex++);
 
                         int randomDirection = StdRandom.uniform(2);
-                        if(randomDirection == 0) {
+                        if (randomDirection == 0) {
                             edge = new DirectedEdge(vertexId1, vertexId2, rescaledEdgeWeight);
                         } else {
                             edge = new DirectedEdge(vertexId2, vertexId1, rescaledEdgeWeight);
@@ -209,7 +209,7 @@ public class Exercise52_NegativeWeightsI {
                                                                                          int vertices, int extraEdges,
                                                                                          double minWeightInScale,
                                                                                          double maxWeightInScale) {
-            if(numberOfDigraphs < 0) {
+            if (numberOfDigraphs < 0) {
                 throw new IllegalArgumentException("Number of digraphs cannot be negative");
             }
 
@@ -226,7 +226,7 @@ public class Exercise52_NegativeWeightsI {
 
         public EdgeWeightedDigraphInterface randomGridEdgeWeightedDigraph(int vertices, int extraEdges,
                                                                           double minWeightInScale, double maxWeightInScale) {
-            if(Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
+            if (Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
                 throw new IllegalArgumentException("Vertex number must have an integer square root");
             }
 
@@ -271,7 +271,7 @@ public class Exercise52_NegativeWeightsI {
             vertices = shrinkResult[2];
 
             // Update vertex IDs in the grid if any shrink occurred
-            if(shrinkTimes > 0) {
+            if (shrinkTimes > 0) {
                 randomGridEdgeWeightedDigraphs.updateVerticesIds(vertexNumberSqrt, allVertices, verticesGrid);
             }
 
@@ -324,13 +324,13 @@ public class Exercise52_NegativeWeightsI {
                         int neighborRow = row + neighborRows[i];
                         int neighborColumn = column + neighborColumns[i];
 
-                        if(randomGridEdgeWeightedDigraphs.isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
+                        if (randomGridEdgeWeightedDigraphs.isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
                             int vertexId1 = randomGridEdgeWeightedDigraphs.getVertexId(row, column, vertexNumberSqrt);
                             int vertexId2 = randomGridEdgeWeightedDigraphs.getVertexId(neighborRow, neighborColumn,
                                     vertexNumberSqrt);
 
                             // Used to avoid connecting vertices more than once
-                            if(vertexId1 < vertexId2) {
+                            if (vertexId1 < vertexId2) {
                                 DirectedEdge edge = randomGridEdgeWeightedDigraphs.
                                         getRandomWeightedDirectedEdge(vertexId1, vertexId2);
                                 originalWeights.add(edge.weight());
@@ -355,13 +355,13 @@ public class Exercise52_NegativeWeightsI {
                         int neighborRow = row + neighborRows[i];
                         int neighborColumn = column + neighborColumns[i];
 
-                        if(randomGridEdgeWeightedDigraphs.isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
+                        if (randomGridEdgeWeightedDigraphs.isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
                             int vertexId1 = randomGridEdgeWeightedDigraphs.getVertexId(row, column, vertexNumberSqrt);
                             int vertexId2 = randomGridEdgeWeightedDigraphs.getVertexId(neighborRow, neighborColumn,
                                     vertexNumberSqrt);
 
                             // Used to avoid connecting vertices more than once
-                            if(vertexId1 < vertexId2) {
+                            if (vertexId1 < vertexId2) {
                                 double rescaledEdgeWeight = rescaledEdgeWeights.get(rescaledEdgeWeightsIndex++);
 
                                 DirectedEdge edge = new DirectedEdge(vertexId1, vertexId2, rescaledEdgeWeight);
@@ -394,7 +394,7 @@ public class Exercise52_NegativeWeightsI {
 
     // Based on https://stackoverflow.com/questions/5294955/how-to-scale-down-a-range-of-numbers-with-a-known-min-and-max-value
     private List<Double> rescaleWeights(List<Double> weights, double minWeightInScale, double maxWeightInScale) {
-        if(weights == null || weights.isEmpty()) {
+        if (weights == null || weights.isEmpty()) {
             return new ArrayList<>();
         }
 
@@ -402,10 +402,10 @@ public class Exercise52_NegativeWeightsI {
         double maxWeightOriginal = weights.get(0);
 
         for(double weight : weights) {
-            if(weight < minWeightOriginal) {
+            if (weight < minWeightOriginal) {
                 minWeightOriginal = weight;
             }
-            if(weight > maxWeightOriginal) {
+            if (weight > maxWeightOriginal) {
                 maxWeightOriginal = weight;
             }
         }
@@ -456,15 +456,15 @@ public class Exercise52_NegativeWeightsI {
 
         int numberOfDigraphs = Integer.parseInt(args[6]);
 
-        if(minWeightInScale < -1 || minWeightInScale > 1) {
+        if (minWeightInScale < -1 || minWeightInScale > 1) {
             throw new IllegalArgumentException("Min weight in scale must be between -1 and 1");
         }
 
-        if(maxWeightInScale < -1 || maxWeightInScale > 1) {
+        if (maxWeightInScale < -1 || maxWeightInScale > 1) {
             throw new IllegalArgumentException("Max weight in scale must be between -1 and 1");
         }
 
-        if(minWeightInScale > maxWeightInScale) {
+        if (minWeightInScale > maxWeightInScale) {
             throw new IllegalArgumentException("Min weight in scale cannot be higher than max weight in scale");
         }
 

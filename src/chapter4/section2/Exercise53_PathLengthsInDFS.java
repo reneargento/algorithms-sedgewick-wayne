@@ -84,7 +84,7 @@ public class Exercise53_PathLengthsInDFS {
         DepthFirstDirectedPaths depthFirstDirectedPaths = new DepthFirstDirectedPaths(digraph, randomSourceVertex);
         boolean foundPath = depthFirstDirectedPaths.hasPathTo(randomDestinationVertex);
 
-        if(foundPath) {
+        if (foundPath) {
             for(int vertexInPath : depthFirstDirectedPaths.pathTo(randomDestinationVertex)) {
                 totalPathLength++;
             }

@@ -31,7 +31,7 @@ public class Exercise7 {
         BinarySearchSymbolTable<Integer, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
         for(int integer : integers) {
-            if(!binarySearchSymbolTable.contains(integer)) {
+            if (!binarySearchSymbolTable.contains(integer)) {
                 binarySearchSymbolTable.put(integer, 1);
             } else {
                 binarySearchSymbolTable.put(integer, binarySearchSymbolTable.get(integer) + 1);

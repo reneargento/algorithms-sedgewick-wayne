@@ -32,16 +32,16 @@ public class Exercise39_AverageCase {
         }
 
         private SearchAnalysis get(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return new SearchAnalysis(numberOfCompares, false);
             }
 
             numberOfCompares++;
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return get(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return get(node.right, key);
             } else {
                 return new SearchAnalysis(numberOfCompares, true);
@@ -124,7 +124,7 @@ public class Exercise39_AverageCase {
             int randomValue = StdRandom.uniform(maxValue);
             BinarySearchTreeCompareCount.SearchAnalysis searchAnalysis = binarySearchTree.getKey(randomValue);
 
-            if(searchAnalysis.keyFound) {
+            if (searchAnalysis.keyFound) {
                 numberOfComparesSearchHits.add(searchAnalysis.compares);
 
                 numberOfSearchHits++;

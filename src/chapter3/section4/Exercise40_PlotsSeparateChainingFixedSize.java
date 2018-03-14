@@ -46,7 +46,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
 
             public Value get(Key key) {
                 for(Node node = first; node != null; node = node.next) {
-                    if(key.equals(node.key)) {
+                    if (key.equals(node.key)) {
                         return node.value;
                     }
                 }
@@ -60,7 +60,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
                 for(Node node = first; node != null; node = node.next) {
                     costOfPutCompares++;
 
-                    if(key.equals(node.key)) {
+                    if (key.equals(node.key)) {
                         node.value = value;
                         return costOfPutCompares;
                     }
@@ -72,14 +72,14 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
             }
 
             public void delete(Key key) {
-                if(first.key.equals(key)) {
+                if (first.key.equals(key)) {
                     first = first.next;
                     size--;
                     return;
                 }
 
                 for(Node node = first; node != null; node = node.next) {
-                    if(node.next != null && node.next.key.equals(key)) {
+                    if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
                         return;
@@ -152,7 +152,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return 0;
             }
@@ -161,7 +161,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
             int currentSize = symbolTable[hashIndex].size;
             int costOfPutCompares = symbolTable[hashIndex].putAndComputeCost(key, value);
 
-            if(currentSize < symbolTable[hashIndex].size) {
+            if (currentSize < symbolTable[hashIndex].size) {
                 keysSize++;
             }
 
@@ -173,7 +173,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -190,7 +190,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
                 }
             }
 
-            if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
                 for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
@@ -232,12 +232,12 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
             int cost;
-            if(!separateChainingHashTableFixedSizeCost.contains(word)) {
+            if (!separateChainingHashTableFixedSizeCost.contains(word)) {
                 cost = separateChainingHashTableFixedSizeCost.putAndComputeCost(word, 1);
             } else {
                 cost = separateChainingHashTableFixedSizeCost.
@@ -251,7 +251,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
         visualAccumulator.addDataValue(cost, true);
 
         for(String word : separateChainingHashTableFixedSizeCost.keys()) {
-            if(separateChainingHashTableFixedSizeCost.get(word) > separateChainingHashTableFixedSizeCost.get(max)) {
+            if (separateChainingHashTableFixedSizeCost.get(word) > separateChainingHashTableFixedSizeCost.get(max)) {
                 max = word;
             }
         }

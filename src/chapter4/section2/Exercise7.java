@@ -33,15 +33,15 @@ public class Exercise7 {
             }
 
             for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-                if(indegrees[vertex] == 0) {
+                if (indegrees[vertex] == 0) {
                     sources.add(vertex);
                 }
 
-                if(outdegrees[vertex] == 0) {
+                if (outdegrees[vertex] == 0) {
                     sinks.add(vertex);
                 }
 
-                if(outdegrees[vertex] != 1) {
+                if (outdegrees[vertex] != 1) {
                     isMap = false;
                 }
             }

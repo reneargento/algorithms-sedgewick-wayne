@@ -10,50 +10,50 @@ public class Exercise41_Delete {
     private class RedBlackBSTDelete<Key extends Comparable<Key>, Value> extends RedBlackBST<Key, Value> {
 
         public void delete(Key key) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = delete(root, key);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(key.compareTo(node.key) < 0) {
-                if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+            if (key.compareTo(node.key) < 0) {
+                if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                     node = moveRedLeft(node);
                 }
 
                 node.left = delete(node.left, key);
             } else {
-                if(isRed(node.left)) {
+                if (isRed(node.left)) {
                     node = rotateRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0 && node.right == null) {
+                if (key.compareTo(node.key) == 0 && node.right == null) {
                     return null;
                 }
 
-                if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+                if (!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                     node = moveRedRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0) {
+                if (key.compareTo(node.key) == 0) {
                     Node aux = min(node.right);
                     node.key = aux.key;
                     node.value = aux.value;
@@ -69,7 +69,7 @@ public class Exercise41_Delete {
         protected Node moveRedLeft(Node node) {
             flipColors(node);
 
-            if(node.right != null && isRed(node.right.left)) {
+            if (node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
                 flipColors(node);
@@ -81,7 +81,7 @@ public class Exercise41_Delete {
         protected Node moveRedRight(Node node) {
             flipColors(node);
 
-            if(node.left != null && isRed(node.left.left)) {
+            if (node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
                 flipColors(node);
             }
@@ -90,19 +90,19 @@ public class Exercise41_Delete {
         }
 
         protected Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(isRed(node.right)) {
+            if (isRed(node.right)) {
                 node = rotateLeft(node);
             }
 
-            if(isRed(node.left) && node.left != null && isRed(node.left.left)) {
+            if (isRed(node.left) && node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -112,14 +112,14 @@ public class Exercise41_Delete {
         }
 
         protected void flipColors(Node node) {
-            if(node != null) {
+            if (node != null) {
                 node.color = !node.color;
 
-                if(node.left != null) {
+                if (node.left != null) {
                     node.left.color = !node.left.color;
                 }
 
-                if(node.right != null) {
+                if (node.right != null) {
                     node.right.color = !node.right.color;
                 }
             }

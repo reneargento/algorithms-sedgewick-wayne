@@ -31,7 +31,7 @@ public class Exercise38_CostOfLaziness {
             for(int mstAlgorithmType = 0; mstAlgorithmType < 2; mstAlgorithmType++) {
                 boolean isLazyPrim = mstAlgorithmType == 0;
 
-                if(isLazyPrim) {
+                if (isLazyPrim) {
                     totalTimeSpentLazyPrim += doExperiment(randomEdgeWeightedGraphUniformWeights, true);
                 } else {
                     totalTimeSpentEagerPrim += doExperiment(randomEdgeWeightedGraphUniformWeights, false);
@@ -55,7 +55,7 @@ public class Exercise38_CostOfLaziness {
             for(int mstAlgorithmType = 0; mstAlgorithmType < 2; mstAlgorithmType++) {
                 boolean isLazyPrim = mstAlgorithmType == 0;
 
-                if(isLazyPrim) {
+                if (isLazyPrim) {
                     totalTimeSpentLazyPrim += doExperiment(randomEdgeWeightedGraphGaussianWeights, true);
                 } else {
                     totalTimeSpentEagerPrim += doExperiment(randomEdgeWeightedGraphGaussianWeights, false);
@@ -86,7 +86,7 @@ public class Exercise38_CostOfLaziness {
             for(int mstAlgorithmType = 0; mstAlgorithmType < 2; mstAlgorithmType++) {
                 boolean isLazyPrim = mstAlgorithmType == 0;
 
-                if(isLazyPrim) {
+                if (isLazyPrim) {
                     totalTimeSpentLazyPrim += doExperiment(randomEdgeWeightedEuclideanGraph, true);
                 } else {
                     totalTimeSpentEagerPrim += doExperiment(randomEdgeWeightedEuclideanGraph, false);
@@ -101,7 +101,7 @@ public class Exercise38_CostOfLaziness {
     private double doExperiment(EdgeWeightedGraphInterface edgeWeightedGraph, boolean isLazyPrim) {
         Stopwatch stopwatch = new Stopwatch();
 
-        if(isLazyPrim) {
+        if (isLazyPrim) {
             new LazyPrimMST(edgeWeightedGraph);
         } else {
             new PrimMST(edgeWeightedGraph);

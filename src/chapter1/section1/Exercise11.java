@@ -22,7 +22,7 @@ public class Exercise11 {
 				
 				if (array[i][j]) {
 					StdOut.print("*");
-				} else{
+				} else {
 					StdOut.print(" ");
 				}
 				

@@ -60,7 +60,7 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item>{
         if (current.item.equals(item)) {
             first = current.next;
             size--;
-        } else{
+        } else {
             for(current = first; current.next != null; current = current.next) {
                 if (current.next.item.equals(item)) {
                     break;

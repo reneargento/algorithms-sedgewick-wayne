@@ -86,7 +86,7 @@ public class Exercise32_ExerciseDriver {
         int min = binarySearchSymbolTable.min();
         int max = binarySearchSymbolTable.max();
 
-        if(verbose) {
+        if (verbose) {
             StdOut.println("size = " + size);
             StdOut.println("min  = " + min);
             StdOut.println("max  = " + max);
@@ -94,43 +94,43 @@ public class Exercise32_ExerciseDriver {
         }
 
         // Print keys in order using keys()
-        if(verbose) {
+        if (verbose) {
             StdOut.println("Testing keys()");
             StdOut.println("--------------------------------");
         }
         for (int key : binarySearchSymbolTable.keys()) {
             Integer value = binarySearchSymbolTable.get(key);
 
-            if(verbose) {
+            if (verbose) {
                 StdOut.println(key + " " + value);
             }
         }
-        if(verbose) {
+        if (verbose) {
             StdOut.println();
         }
 
         // Print keys in order using select
-        if(verbose) {
+        if (verbose) {
             StdOut.println("Testing select");
             StdOut.println("--------------------------------");
         }
         for (int i = 0; i < binarySearchSymbolTable.size(); i++) {
             int key = binarySearchSymbolTable.select(i);
-            if(verbose) {
+            if (verbose) {
                 StdOut.println(i + " " + key);
             }
         }
-        if(verbose) {
+        if (verbose) {
             StdOut.println();
         }
 
         // Test rank, floor, ceiling
-        if(verbose) {
+        if (verbose) {
             StdOut.println("key rank floor ceil");
             StdOut.println("-------------------");
         }
         for (int key = binarySearchSymbolTable.get(0); key < binarySearchSymbolTable.size(); key *= binarySearchSymbolTable.size() / 5) {
-            if(key == 0) {
+            if (key == 0) {
                 key = 1;
             }
 
@@ -138,38 +138,38 @@ public class Exercise32_ExerciseDriver {
             Integer floor = binarySearchSymbolTable.floor(key);
             Integer ceiling = binarySearchSymbolTable.ceiling(key);
 
-            if(verbose) {
+            if (verbose) {
                 StdOut.printf("%2s %4d %4s %4s\n", key, rank, floor, ceiling);
             }
         }
-        if(verbose) {
+        if (verbose) {
             StdOut.println();
         }
 
         // Test range search and range count
         int[] from = {0, keys.length / 2};
         int[] to   = {keys.length, keys.length};
-        if(verbose) {
+        if (verbose) {
             StdOut.println("range search");
             StdOut.println("-------------------");
         }
         for (int i = 0; i < from.length; i++) {
             int rangeSize = binarySearchSymbolTable.size(from[i], to[i]);
 
-            if(verbose) {
+            if (verbose) {
                 StdOut.printf("%s-%s (%2d) : ", from[i], to[i], rangeSize);
             }
 
             for (int key : binarySearchSymbolTable.keys(from[i], to[i])) {
-                if(verbose) {
+                if (verbose) {
                     StdOut.print(key + " ");
                 }
             }
-            if(verbose) {
+            if (verbose) {
                 StdOut.println();
             }
         }
-        if(verbose) {
+        if (verbose) {
             StdOut.println();
         }
 
@@ -177,7 +177,7 @@ public class Exercise32_ExerciseDriver {
         for (int i = 0; i < binarySearchSymbolTable.size() / 2; i++) {
             binarySearchSymbolTable.deleteMin();
         }
-        if(verbose) {
+        if (verbose) {
             StdOut.println("After deleting the smallest " + binarySearchSymbolTable.size() / 2 + " keys");
             StdOut.println("--------------------------------");
             for (int key : binarySearchSymbolTable.keys()) {
@@ -187,10 +187,10 @@ public class Exercise32_ExerciseDriver {
         }
 
         // Delete the max key
-        if(!binarySearchSymbolTable.isEmpty()) {
+        if (!binarySearchSymbolTable.isEmpty()) {
             binarySearchSymbolTable.deleteMax();
 
-            if(verbose && !binarySearchSymbolTable.isEmpty()) {
+            if (verbose && !binarySearchSymbolTable.isEmpty()) {
                 StdOut.println("After deleting the max key");
                 StdOut.println("--------------------------------");
                 for (int key : binarySearchSymbolTable.keys()) {
@@ -204,7 +204,7 @@ public class Exercise32_ExerciseDriver {
         while (!binarySearchSymbolTable.isEmpty()) {
             binarySearchSymbolTable.delete(binarySearchSymbolTable.select(binarySearchSymbolTable.size() / 2));
         }
-        if(verbose) {
+        if (verbose) {
             StdOut.println("After deleting the remaining keys");
             StdOut.println("Size: " + binarySearchSymbolTable.size());
             StdOut.println();
@@ -217,7 +217,7 @@ public class Exercise32_ExerciseDriver {
             binarySearchSymbolTable.put((Integer) keys[i], i);
         }
 
-        if(verbose) {
+        if (verbose) {
             for (int key : binarySearchSymbolTable.keys()) {
                 StdOut.println(key + " " + binarySearchSymbolTable.get(key));
             }

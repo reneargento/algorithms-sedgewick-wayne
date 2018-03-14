@@ -25,7 +25,7 @@ public class Exercise28_LongestPathsInDAGs {
         }
 
         public double distTo(int vertex) {
-            if(acyclicSP.distTo(vertex) == 0) {
+            if (acyclicSP.distTo(vertex) == 0) {
                 return 0;
             }
 
@@ -59,7 +59,7 @@ public class Exercise28_LongestPathsInDAGs {
         double longestDistance = Double.NEGATIVE_INFINITY;
 
         for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-            if(acyclicLP.distTo(vertex) > longestDistance) {
+            if (acyclicLP.distTo(vertex) > longestDistance) {
                 longestDistance = acyclicLP.distTo(vertex);
                 furthestVertex = vertex;
             }

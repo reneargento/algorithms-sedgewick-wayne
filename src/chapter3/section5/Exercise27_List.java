@@ -28,17 +28,17 @@ public class Exercise27_List {
 
         //O(lg n)
         public void addFront(Item item) {
-            if(item == null) {
+            if (item == null) {
                 throw new IllegalArgumentException("Item cannot be null");
             }
 
-            if(contains(item)) {
+            if (contains(item)) {
                 delete(item);
             }
 
             double minKey;
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 minKey = INITIAL_VALUE;
             } else {
                 minKey = itemsBST.min();
@@ -52,17 +52,17 @@ public class Exercise27_List {
 
         //O(lg n)
         public void addBack(Item item) {
-            if(item == null) {
+            if (item == null) {
                 throw new IllegalArgumentException("Item cannot be null");
             }
 
-            if(contains(item)) {
+            if (contains(item)) {
                 delete(item);
             }
 
             double maxKey;
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 maxKey = INITIAL_VALUE;
             } else {
                 maxKey = itemsBST.max();
@@ -76,7 +76,7 @@ public class Exercise27_List {
 
         //O(lg n)
         public Item deleteFront() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
@@ -90,7 +90,7 @@ public class Exercise27_List {
 
         //O(lg n)
         public Item deleteBack() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
@@ -104,11 +104,11 @@ public class Exercise27_List {
 
         //O(lg n)
         public void delete(Item item) {
-            if(item == null) {
+            if (item == null) {
                 throw new IllegalArgumentException("Item cannot be null");
             }
 
-            if(!contains(item)) {
+            if (!contains(item)) {
                 return;
             }
 
@@ -119,31 +119,31 @@ public class Exercise27_List {
 
         //O(lg n)
         public void add(int index, Item item) {
-            if(item == null) {
+            if (item == null) {
                 throw new IllegalArgumentException("Item cannot be null");
             }
 
-            if(index < 0 || index > size()
+            if (index < 0 || index > size()
                     || (index == size() && contains(item))) {
                 throw new IllegalArgumentException("Invalid index");
             }
 
-            if(contains(item)) {
+            if (contains(item)) {
                 delete(item);
             }
 
             double previousItemIndex = 0;
             double nextItemIndex = size() - 1;
 
-            if(index > 0) {
+            if (index > 0) {
                 previousItemIndex = itemsBST.select(index - 1);
-            } else if(index == 0) {
+            } else if (index == 0) {
                 previousItemIndex = itemsBST.min() - OFFSET;
             }
 
-            if(index < size()) {
+            if (index < size()) {
                 nextItemIndex = itemsBST.select(index);
-            } else if(index == size()) {
+            } else if (index == size()) {
                 nextItemIndex = itemsBST.max() + OFFSET;
             }
 
@@ -155,7 +155,7 @@ public class Exercise27_List {
 
         //O(lg n)
         public Item delete(int index) {
-            if(index < 0 || index >= size()) {
+            if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Invalid index");
             }
 

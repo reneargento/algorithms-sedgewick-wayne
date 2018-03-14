@@ -190,7 +190,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 
 			if (startFromTheBeginning) {
 				index++;
-			} else{
+			} else {
 				index--;
 			}
 

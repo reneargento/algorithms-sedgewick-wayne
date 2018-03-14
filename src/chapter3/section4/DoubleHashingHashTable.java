@@ -48,7 +48,7 @@ public class DoubleHashingHashTable<Key, Value> {
     protected int hash(Key key) {
         int hash = key.hashCode() & 0x7fffffff;
 
-        if(lgM < 26) {
+        if (lgM < 26) {
             hash = hash % PRIMES[lgM + 5];
         }
 
@@ -64,7 +64,7 @@ public class DoubleHashingHashTable<Key, Value> {
         for(int i = 1; i < size; i++) {
             int modHash = (i + hash) % size;
 
-            if(!hashTableSizeFactors.contains(modHash)) {
+            if (!hashTableSizeFactors.contains(modHash)) {
                 hash2 = modHash;
                 break;
             }
@@ -81,10 +81,10 @@ public class DoubleHashingHashTable<Key, Value> {
 
         for(int i = 1; i <= sqrt; i++) {
 
-            if(number % i == 0) {
+            if (number % i == 0) {
                 factors.add(i);
 
-                if(i != number / i) {
+                if (i != number / i) {
                     factors.add(number / i);
                 }
             }
@@ -104,7 +104,7 @@ public class DoubleHashingHashTable<Key, Value> {
         DoubleHashingHashTable<Key, Value> tempHashTable = new DoubleHashingHashTable<>(newSize);
 
         for(int i = 0; i < size; i++) {
-            if(values[i] != null) {
+            if (values[i] != null) {
                 tempHashTable.put(keys[i], values[i]);
             }
         }
@@ -128,7 +128,7 @@ public class DoubleHashingHashTable<Key, Value> {
         }
 
         for(int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
-            if(keys[tableIndex].equals(key)) {
+            if (keys[tableIndex].equals(key)) {
                 return values[tableIndex];
             }
         }
@@ -141,21 +141,21 @@ public class DoubleHashingHashTable<Key, Value> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        if(value == null) {
+        if (value == null) {
             delete(key);
             return;
         }
 
-        if(keysSize + tombstoneItemCount >= size / (double) 2) {
+        if (keysSize + tombstoneItemCount >= size / (double) 2) {
             resize(size * 2);
             lgM++;
         }
 
         int tableIndex;
         for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
-            if(keys[tableIndex].equals(key)) {
+            if (keys[tableIndex].equals(key)) {
 
-                if(values[tableIndex] == null) {
+                if (values[tableIndex] == null) {
                     tombstoneItemCount--;
                     keysSize++;
                 }
@@ -175,7 +175,7 @@ public class DoubleHashingHashTable<Key, Value> {
             throw new IllegalArgumentException("Argument to delete() cannot be null");
         }
 
-        if(!contains(key)) {
+        if (!contains(key)) {
             return;
         }
 
@@ -189,7 +189,7 @@ public class DoubleHashingHashTable<Key, Value> {
         values[tableIndex] = null;
         tombstoneItemCount++;
 
-        if(keysSize <= size / (double) 8) {
+        if (keysSize <= size / (double) 8) {
             resize(size / 2);
             lgM--;
         }
@@ -199,12 +199,12 @@ public class DoubleHashingHashTable<Key, Value> {
         Queue<Key> keySet = new Queue<>();
 
         for(Object key : keys) {
-            if(key != null) {
+            if (key != null) {
                 keySet.enqueue((Key) key);
             }
         }
 
-        if(!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
+        if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
             Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
             for(int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keySet.dequeue();

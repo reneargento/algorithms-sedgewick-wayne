@@ -32,7 +32,7 @@ public class Exercise31_MSTWeights {
                 int vertex2 = edge.other(vertex1);
 
                 // Skip if ineligible
-                if(marked[vertex1] && marked[vertex2]) {
+                if (marked[vertex1] && marked[vertex2]) {
                     continue;
                 }
 
@@ -41,10 +41,10 @@ public class Exercise31_MSTWeights {
                 weight += edge.weight();
 
                 // Add vertex to the minimum spanning tree
-                if(!marked[vertex1]) {
+                if (!marked[vertex1]) {
                     visit(edgeWeightedGraph, vertex1);
                 }
-                if(!marked[vertex2]) {
+                if (!marked[vertex2]) {
                     visit(edgeWeightedGraph, vertex2);
                 }
             }
@@ -55,7 +55,7 @@ public class Exercise31_MSTWeights {
             marked[vertex] = true;
 
             for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
-                if(!marked[edge.other(vertex)]) {
+                if (!marked[edge.other(vertex)]) {
                     priorityQueue.insert(edge);
                 }
             }
@@ -114,13 +114,13 @@ public class Exercise31_MSTWeights {
 
             for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                 int otherVertex = edge.other(vertex);
-                if(marked[otherVertex]) {
+                if (marked[otherVertex]) {
                     continue; // vertex-otherVertex is ineligible
                 }
 
-                if(edge.weight() < distTo[otherVertex]) {
+                if (edge.weight() < distTo[otherVertex]) {
                     // Edge edge is the new best connection from the minimum spanning tree to otherVertex
-                    if(distTo[otherVertex] != Double.POSITIVE_INFINITY) {
+                    if (distTo[otherVertex] != Double.POSITIVE_INFINITY) {
                         weight -= distTo[otherVertex];
                     }
                     weight += edge.weight();
@@ -128,7 +128,7 @@ public class Exercise31_MSTWeights {
                     edgeTo[otherVertex] = edge;
                     distTo[otherVertex] = edge.weight();
 
-                    if(priorityQueue.contains(otherVertex)) {
+                    if (priorityQueue.contains(otherVertex)) {
                         priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                     } else {
                         priorityQueue.insert(otherVertex, distTo[otherVertex]);
@@ -183,7 +183,7 @@ public class Exercise31_MSTWeights {
                 int vertex2 = edge.other(vertex1);
 
                 // Ignore ineligible edges
-                if(unionFind.connected(vertex1, vertex2)) {
+                if (unionFind.connected(vertex1, vertex2)) {
                     continue;
                 }
 

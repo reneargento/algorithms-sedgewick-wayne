@@ -16,7 +16,7 @@ public class Exercise48_RandomEuclideanDigraphs {
     public List<Exercise38_EuclideanDigraphs.EuclideanDigraph> generateRandomEuclideanDigraphs(int numberOfDigraphs,
                                                                                          int vertices, double radius) {
 
-        if(numberOfDigraphs < 0) {
+        if (numberOfDigraphs < 0) {
             throw new IllegalArgumentException("Number of digraphs cannot be negative");
         }
 
@@ -54,9 +54,9 @@ public class Exercise48_RandomEuclideanDigraphs {
                         allVertices[otherVertex].coordinates.getXCoordinate(),
                         allVertices[otherVertex].coordinates.getYCoordinate());
 
-                if(distance <= radius) {
+                if (distance <= radius) {
                     int randomDirection = StdRandom.uniform(2);
-                    if(randomDirection == 0) {
+                    if (randomDirection == 0) {
                         randomEuclideanDigraph.addEdge(vertexId, otherVertex);
                     } else {
                         randomEuclideanDigraph.addEdge(otherVertex, vertexId);

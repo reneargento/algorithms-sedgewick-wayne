@@ -40,7 +40,7 @@ public class Exercise42_CountRedNodes {
     }
 
     private int countRedNodes(RedBlackBST<Integer, Integer> redBlackBST) {
-        if(redBlackBST.isEmpty()) {
+        if (redBlackBST.isEmpty()) {
             return 0;
         }
 
@@ -48,7 +48,7 @@ public class Exercise42_CountRedNodes {
     }
 
     private int countRedNodes(RedBlackBST.Node node) {
-        if(node == null) {
+        if (node == null) {
             return 0;
         }
 

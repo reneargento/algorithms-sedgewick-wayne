@@ -20,16 +20,16 @@ public class Exercise44_CostPlots {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value, 1);
             }
 
             int compare = key.compareTo(node.key);
             cost++;
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
@@ -63,12 +63,12 @@ public class Exercise44_CostPlots {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
             int cost;
-            if(!binarySearchTree.contains(word)) {
+            if (!binarySearchTree.contains(word)) {
                 cost = binarySearchTree.putAndComputeCost(word, 1);
             } else {
                 cost = binarySearchTree.putAndComputeCost(word, binarySearchTree.get(word) + 1);
@@ -81,7 +81,7 @@ public class Exercise44_CostPlots {
         visualAccumulator.addDataValue(cost, true);
 
         for(String word : binarySearchTree.keys()) {
-            if(binarySearchTree.get(word) > binarySearchTree.get(max)) {
+            if (binarySearchTree.get(word) > binarySearchTree.get(max)) {
                 max = word;
             }
         }

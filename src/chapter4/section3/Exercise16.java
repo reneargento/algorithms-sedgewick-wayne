@@ -37,7 +37,7 @@ public class Exercise16 {
         double minWeightInRange = Double.NEGATIVE_INFINITY;
         double maxWeightInRange;
 
-        if(newEdge != edgesInCycle[edgesInCycle.length - 1]) {
+        if (newEdge != edgesInCycle[edgesInCycle.length - 1]) {
             maxWeightInRange = edgesInCycle[edgesInCycle.length - 1].weight() - 0.000001;
         } else {
             maxWeightInRange = edgesInCycle[edgesInCycle.length - 2].weight() - 0.000001;

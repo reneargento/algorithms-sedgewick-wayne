@@ -98,7 +98,7 @@ public class Exercise22 {
         for(String oscarNominee : oscarNominees) {
             int kevinBaconNumber = Integer.MAX_VALUE;
 
-            if(movieSymbolGraph.contains(oscarNominee)) {
+            if (movieSymbolGraph.contains(oscarNominee)) {
                 int nomineeVertexId = movieSymbolGraph.index(oscarNominee);
                 //Divide by 2 because the relation in the graph is
                 // Actor ---- Movie ---- Actor

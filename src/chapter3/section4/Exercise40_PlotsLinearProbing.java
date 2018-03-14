@@ -22,16 +22,16 @@ public class Exercise40_PlotsLinearProbing {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return 0;
             }
 
-            if(resetCostOfPutCompares) {
+            if (resetCostOfPutCompares) {
                 costOfPutCompares = 0;
             }
 
-            if(keysSize >= size / (double) 2) {
+            if (keysSize >= size / (double) 2) {
                 resize(size * 2);
                 lgM++;
             }
@@ -42,7 +42,7 @@ public class Exercise40_PlotsLinearProbing {
             for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 costOfPutCompares++;
 
-                if(keys[tableIndex].equals(key)) {
+                if (keys[tableIndex].equals(key)) {
                     values[tableIndex] = value;
                     return costOfPutCompares;
                 }
@@ -59,7 +59,7 @@ public class Exercise40_PlotsLinearProbing {
             LinearProbingHashTableCost<Key, Value> tempHashTable = new LinearProbingHashTableCost<>(newSize);
 
             for(int i = 0; i < size; i++) {
-                if(keys[i] != null) {
+                if (keys[i] != null) {
                     tempHashTable.putAndComputeCost(keys[i], values[i], false);
                 }
             }
@@ -97,12 +97,12 @@ public class Exercise40_PlotsLinearProbing {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
             int cost;
-            if(!linearProbingHashTableCost.contains(word)) {
+            if (!linearProbingHashTableCost.contains(word)) {
                 cost = linearProbingHashTableCost.putAndComputeCost(word, 1, true);
             } else {
                 cost = linearProbingHashTableCost.
@@ -116,7 +116,7 @@ public class Exercise40_PlotsLinearProbing {
         visualAccumulator.addDataValue(cost, true);
 
         for(String word : linearProbingHashTableCost.keys()) {
-            if(linearProbingHashTableCost.get(word) > linearProbingHashTableCost.get(max)) {
+            if (linearProbingHashTableCost.get(word) > linearProbingHashTableCost.get(max)) {
                 max = word;
             }
         }

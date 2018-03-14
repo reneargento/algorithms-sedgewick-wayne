@@ -30,14 +30,14 @@ public class Exercise21_InvertedConcordance {
                 for(int i = 1; i < concordanceInformation.length; i++) {
                     String noCommaValue = concordanceInformation[i];
 
-                    if(noCommaValue.charAt(noCommaValue.length() - 1) == ',') {
+                    if (noCommaValue.charAt(noCommaValue.length() - 1) == ',') {
                         noCommaValue = noCommaValue.substring(0, noCommaValue.length() - 1);
                     }
 
                     int position = Integer.parseInt(noCommaValue);
                     concordanceMap.get(key).add(position);
 
-                    if(position > numberOfWords) {
+                    if (position > numberOfWords) {
                         numberOfWords = position;
                     }
                 }
@@ -59,7 +59,7 @@ public class Exercise21_InvertedConcordance {
             boolean isFirstWord = true;
 
             for(String word : wordsInText) {
-                if(isFirstWord) {
+                if (isFirstWord) {
                     isFirstWord = false;
                 } else {
                     text.append(" ");

@@ -84,7 +84,7 @@ public class Exercise54_PathLengthsInBFS {
         BreadthFirstDirectedPaths breadthFirstDirectedPaths = new BreadthFirstDirectedPaths(digraph, randomSourceVertex);
         boolean foundPath = breadthFirstDirectedPaths.hasPathTo(randomDestinationVertex);
 
-        if(foundPath) {
+        if (foundPath) {
             for(int vertexInPath : breadthFirstDirectedPaths.pathTo(randomDestinationVertex)) {
                 totalPathLength++;
             }

@@ -23,7 +23,7 @@ public class KosarajuSharirSCCWeighted {
         DepthFirstOrder depthFirstOrder = new DepthFirstOrder(edgeWeightedDigraph.reverse());
 
         for(int vertex : depthFirstOrder.reversePostOrder()) {
-            if(!visited[vertex]) {
+            if (!visited[vertex]) {
                 dfs(edgeWeightedDigraph, vertex);
                 count++;
             }
@@ -37,7 +37,7 @@ public class KosarajuSharirSCCWeighted {
         for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
             int neighbor = edge.to();
 
-            if(!visited[neighbor]) {
+            if (!visited[neighbor]) {
                 dfs(edgeWeightedDigraph, neighbor);
             }
         }
@@ -64,7 +64,7 @@ public class KosarajuSharirSCCWeighted {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(id(vertex) != id(neighbor)) {
+                if (id(vertex) != id(neighbor)) {
                     kernelDAG.addEdge(new DirectedEdge(id(vertex), id(neighbor), edge.weight()));
                 }
             }

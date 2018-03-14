@@ -60,7 +60,7 @@ public class Exercise34_HashCost {
                     boolean isEqualKeys = key.equals(node.key);
                     timeSpent[1] += System.nanoTime() - initTime;
 
-                    if(isEqualKeys) {
+                    if (isEqualKeys) {
                         return node.value;
                     }
                 }
@@ -75,7 +75,7 @@ public class Exercise34_HashCost {
                     boolean isEqualKeys = key.equals(node.key);
                     timeSpent[1] += System.nanoTime() - initTime;
 
-                    if(isEqualKeys) {
+                    if (isEqualKeys) {
                         node.value = value;
                         return;
                     }
@@ -91,19 +91,19 @@ public class Exercise34_HashCost {
                 boolean isEqualKeys = first.key.equals(key);
                 timeSpent[1] += System.nanoTime() - initTime;
 
-                if(isEqualKeys) {
+                if (isEqualKeys) {
                     first = first.next;
                     size--;
                     return;
                 }
 
                 for(Node node = first; node != null; node = node.next) {
-                    if(node.next != null) {
+                    if (node.next != null) {
                         initTime = System.nanoTime();
                         isEqualKeys = node.next.key.equals(key);
                         timeSpent[1] += System.nanoTime() - initTime;
 
-                        if(isEqualKeys) {
+                        if (isEqualKeys) {
                             node.next = node.next.next;
                             size--;
                             return;
@@ -174,7 +174,7 @@ public class Exercise34_HashCost {
         private int hash(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -229,12 +229,12 @@ public class Exercise34_HashCost {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(resetTimers) {
+            if (resetTimers) {
                 resetTimers();
             }
 
@@ -245,11 +245,11 @@ public class Exercise34_HashCost {
             int currentSize = symbolTable[hashIndex].size;
             symbolTable[hashIndex].put(key, value);
 
-            if(currentSize < symbolTable[hashIndex].size) {
+            if (currentSize < symbolTable[hashIndex].size) {
                 keysSize++;
             }
 
-            if(getLoadFactor() > averageListSize) {
+            if (getLoadFactor() > averageListSize) {
                 resize(size * 2);
                 lgM++;
             }
@@ -260,7 +260,7 @@ public class Exercise34_HashCost {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -273,7 +273,7 @@ public class Exercise34_HashCost {
             symbolTable[hash].delete(key);
             keysSize--;
 
-            if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
+            if (size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(size / 2);
                 lgM--;
             }
@@ -293,7 +293,7 @@ public class Exercise34_HashCost {
                 }
             }
 
-            if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
                 for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
@@ -347,7 +347,7 @@ public class Exercise34_HashCost {
         private int hash(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -358,7 +358,7 @@ public class Exercise34_HashCost {
             LinearProbingHashTableHashCost<Key, Value> tempHashTable = new LinearProbingHashTableHashCost<>(newSize);
 
             for(int i = 0; i < size; i++) {
-                if(keys[i] != null) {
+                if (keys[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
             }
@@ -392,7 +392,7 @@ public class Exercise34_HashCost {
                 boolean isEqualKeys = keys[tableIndex].equals(key);
                 timeSpent[1] += System.nanoTime() - initTime;
 
-                if(isEqualKeys) {
+                if (isEqualKeys) {
                     return values[tableIndex];
                 }
             }
@@ -409,17 +409,17 @@ public class Exercise34_HashCost {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(keysSize >= size / (double) 2) {
+            if (keysSize >= size / (double) 2) {
                 resize(size * 2);
                 lgM++;
             }
 
-            if(resetTimer) {
+            if (resetTimer) {
                 resetTimers();
             }
 
@@ -432,7 +432,7 @@ public class Exercise34_HashCost {
                 boolean isEqualKeys = keys[tableIndex].equals(key);
                 timeSpent[1] += System.nanoTime() - initTime;
 
-                if(isEqualKeys) {
+                if (isEqualKeys) {
                     values[tableIndex] = value;
                     return;
                 }
@@ -448,7 +448,7 @@ public class Exercise34_HashCost {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
@@ -488,7 +488,7 @@ public class Exercise34_HashCost {
                 tableIndex = (tableIndex + 1) % size;
             }
 
-            if(keysSize > 1 && keysSize <= size / (double) 8) {
+            if (keysSize > 1 && keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             }
@@ -498,12 +498,12 @@ public class Exercise34_HashCost {
             Queue<Key> keySet = new Queue<>();
 
             for(Object key : keys) {
-                if(key != null) {
+                if (key != null) {
                     keySet.enqueue((Key) key);
                 }
             }
 
-            if(!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
+            if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
                 for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keySet.dequeue();

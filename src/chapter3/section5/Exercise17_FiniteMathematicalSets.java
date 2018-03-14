@@ -23,7 +23,7 @@ public class Exercise17_FiniteMathematicalSets {
         }
 
         public void add(Key key) {
-            if(!universe.contains(key)) {
+            if (!universe.contains(key)) {
                 throw new IllegalArgumentException("Key " + key + " does not belong to the universe");
             }
 
@@ -34,7 +34,7 @@ public class Exercise17_FiniteMathematicalSets {
             MathSET<Key> complement = new MathSET<>(universeArray);
 
             for(Key key : universeArray) {
-                if(!contains(key)) {
+                if (!contains(key)) {
                     complement.add(key);
                 }
             }
@@ -44,7 +44,7 @@ public class Exercise17_FiniteMathematicalSets {
 
         public void union(MathSET<Key> mathSetToUnite) {
             for(Key key : mathSetToUnite.keys()) {
-                if(!contains(key)) {
+                if (!contains(key)) {
                     add(key);
                 }
             }
@@ -54,7 +54,7 @@ public class Exercise17_FiniteMathematicalSets {
             Iterable<Key> keysInMathSet = keys();
 
             for(Key key : keysInMathSet) {
-                if(!mathSetToIntersect.contains(key)) {
+                if (!mathSetToIntersect.contains(key)) {
                     delete(key);
                 }
             }

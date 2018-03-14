@@ -13,7 +13,7 @@ public class Exercise33_UniqueTopologicalOrdering {
     // any pair of consecutive and nonadjacent vertices
     public boolean hasUniqueTopologicalOrdering(Digraph digraph) {
         DirectedCycle directedCycle = new DirectedCycle(digraph);
-        if(directedCycle.hasCycle()) {
+        if (directedCycle.hasCycle()) {
             throw new IllegalArgumentException("Digraph is not a DAG");
         }
 
@@ -29,13 +29,13 @@ public class Exercise33_UniqueTopologicalOrdering {
             boolean hasEdgeToNextVertex = false;
 
             for(int neighbor : digraph.adjacent(topologicalOrder[i])) {
-                if(neighbor == topologicalOrder[i + 1]) {
+                if (neighbor == topologicalOrder[i + 1]) {
                     hasEdgeToNextVertex = true;
                     break;
                 }
             }
 
-            if(!hasEdgeToNextVertex) {
+            if (!hasEdgeToNextVertex) {
                 return false;
             }
         }

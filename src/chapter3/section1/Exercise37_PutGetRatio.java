@@ -28,13 +28,13 @@ public class Exercise37_PutGetRatio {
             int lowerBoundValue = 0;
             int higherBoundValue = 0;
 
-            if(numberOfBits[i] == 10) {
+            if (numberOfBits[i] == 10) {
                 lowerBoundValue = (int) Math.pow(2, 9);
                 higherBoundValue = (int) Math.pow(2, 10) - 1;
-            } else if(numberOfBits[i] == 20) {
+            } else if (numberOfBits[i] == 20) {
                 lowerBoundValue = (int) Math.pow(2, 19);
                 higherBoundValue = (int) Math.pow(2, 20) - 1;
-            } else if(numberOfBits[i] == 30) {
+            } else if (numberOfBits[i] == 30) {
                 lowerBoundValue = (int) Math.pow(2, 29);
                 higherBoundValue = (int) Math.pow(2, 30) - 1;
             }
@@ -66,7 +66,7 @@ public class Exercise37_PutGetRatio {
             boolean containsValue = binarySearchSymbolTable.contains(value); //contains() uses get() internally
             totalTimeSpentInGet += timer.elapsedTime();
 
-            if(!containsValue) {
+            if (!containsValue) {
                 timer = new Stopwatch();
                 binarySearchSymbolTable.put(value, 1);
                 totalTimeSpentInPut += timer.elapsedTime();
@@ -88,7 +88,7 @@ public class Exercise37_PutGetRatio {
 
         for(Integer value : binarySearchSymbolTable.keys()) {
             timer = new Stopwatch();
-            if(binarySearchSymbolTable.get(value) > binarySearchSymbolTable.get(max)) {
+            if (binarySearchSymbolTable.get(value) > binarySearchSymbolTable.get(max)) {
                 totalTimeSpentInGet += timer.elapsedTime();
                 max = value;
             }
@@ -113,11 +113,11 @@ public class Exercise37_PutGetRatio {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
-            if(!binarySearchSymbolTable.contains(word)) {
+            if (!binarySearchSymbolTable.contains(word)) {
                 timer = new Stopwatch();
                 binarySearchSymbolTable.put(word, 1);
                 totalTimeSpentInPut += timer.elapsedTime();
@@ -139,7 +139,7 @@ public class Exercise37_PutGetRatio {
 
         for(String word : binarySearchSymbolTable.keys()) {
             timer = new Stopwatch();
-            if(binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
+            if (binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
                 totalTimeSpentInGet += timer.elapsedTime();
                 max = word;
             }

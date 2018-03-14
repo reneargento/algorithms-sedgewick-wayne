@@ -42,23 +42,23 @@ public class Exercise41_CrossoverToInterpolationSearch {
             interpolationSearchSymbolTable.get(searchKeyNotFound);
             long interpolationSearchRunningTime = System.nanoTime() - interpolationSearchStart;
 
-            if(binarySearchRunningTime >= interpolationSearchRunningTime
+            if (binarySearchRunningTime >= interpolationSearchRunningTime
                     && !oneTimeFasterNFound) {
                 StdOut.println("Value of N for which interpolation search becomes the same speed as binary search: " + i);
                 oneTimeFasterNFound = true;
             }
-            if(binarySearchRunningTime >= interpolationSearchRunningTime * 2
+            if (binarySearchRunningTime >= interpolationSearchRunningTime * 2
                     && !twoTimesFasterNFound) {
                 StdOut.println("Value of N for which interpolation search becomes 2 times faster than binary search: " + i);
                 twoTimesFasterNFound = true;
             }
-            if(binarySearchRunningTime >= interpolationSearchRunningTime * 10
+            if (binarySearchRunningTime >= interpolationSearchRunningTime * 10
                     && !tenTimesFasterNFound) {
                 StdOut.println("Value of N for which interpolation search becomes 10 times faster than binary search: " + i);
                 tenTimesFasterNFound = true;
             }
 
-            if(tenTimesFasterNFound) {
+            if (tenTimesFasterNFound) {
                 break;
             }
         }

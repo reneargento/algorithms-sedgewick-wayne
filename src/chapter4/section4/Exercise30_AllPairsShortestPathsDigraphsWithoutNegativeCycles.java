@@ -55,7 +55,7 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
             // O(V * E)
             BellmanFordSP bellmanFordSP = new BellmanFordSP(edgeWeightedDigraphWithSource, newVertexId);
 
-            if(bellmanFordSP.hasNegativeCycle()) {
+            if (bellmanFordSP.hasNegativeCycle()) {
                 throw new IllegalArgumentException("Graph has a negative cycle");
             }
 
@@ -87,7 +87,7 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
 
                     DirectedEdge currentEdge = dijkstraSP.edgeTo(target);
 
-                    if(currentEdge == null) {
+                    if (currentEdge == null) {
                         continue;
                     }
 
@@ -103,7 +103,7 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
 
         @Override
         public Iterable<DirectedEdge> path(int source, int target) {
-            if(!hasPathTo(source, target)) {
+            if (!hasPathTo(source, target)) {
                 return null;
             }
 
@@ -169,7 +169,7 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
             for(int target = 0; target < edgeWeightedDigraph.vertices(); target++) {
                 StdOut.print("Shortest path from " + source + " to " + target + ": ");
 
-                if(!allPairsShortestPathsDigraphsWithoutNegativeCycles.hasPathTo(source, target)) {
+                if (!allPairsShortestPathsDigraphsWithoutNegativeCycles.hasPathTo(source, target)) {
                     StdOut.println("No path exists");
                     continue;
                 }

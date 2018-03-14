@@ -14,7 +14,7 @@ public class Exercise39_QueueBasedTopologicalSort {
     public int[] topologicalSort(Digraph digraph) {
 
         DirectedCycle directedCycle = new DirectedCycle(digraph);
-        if(directedCycle.hasCycle()) {
+        if (directedCycle.hasCycle()) {
             // Digraph is not a DAG so no topological order exists
             return null;
         }
@@ -34,7 +34,7 @@ public class Exercise39_QueueBasedTopologicalSort {
         }
 
         for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            if(indegree[vertex] == 0) {
+            if (indegree[vertex] == 0) {
                 sources.enqueue(vertex);
             }
         }
@@ -48,7 +48,7 @@ public class Exercise39_QueueBasedTopologicalSort {
             for(int neighbor : digraph.adjacent(currentSource)) {
                 indegree[neighbor]--;
 
-                if(indegree[neighbor] == 0) {
+                if (indegree[neighbor] == 0) {
                     sources.enqueue(neighbor);
                 }
             }

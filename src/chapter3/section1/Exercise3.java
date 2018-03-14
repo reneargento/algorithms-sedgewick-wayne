@@ -40,22 +40,22 @@ public class Exercise3 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 first = new Node(key, value, null);
                 size++;
                 return;
             }
 
             //Check first node
-            if(first.key.compareTo(key) == 0) {
+            if (first.key.compareTo(key) == 0) {
                 first.value = value;
                 return;
-            } else if(first.key.compareTo(key) > 0) {
+            } else if (first.key.compareTo(key) > 0) {
                 first = new Node(key, value, first);
                 size++;
                 return;
@@ -63,11 +63,11 @@ public class Exercise3 {
 
             //Check all other nodes
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null) {
-                    if(node.next.key.compareTo(key) == 0) {
+                if (node.next != null) {
+                    if (node.next.key.compareTo(key) == 0) {
                         node.next.value = value;
                         return;
-                    } else if(node.next.key.compareTo(key) > 0) {
+                    } else if (node.next.key.compareTo(key) > 0) {
                         Node newNode = new Node(key, value, node.next);
                         node.next = newNode;
                         size++;
@@ -88,7 +88,7 @@ public class Exercise3 {
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(node.key.compareTo(key) == 0) {
+                if (node.key.compareTo(key) == 0) {
                     return node.value;
                 }
             }
@@ -101,12 +101,12 @@ public class Exercise3 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
             //Check first node
-            if(first.key.compareTo(key) == 0) {
+            if (first.key.compareTo(key) == 0) {
                 first = first.next;
                 size--;
                 return;
@@ -114,7 +114,7 @@ public class Exercise3 {
 
             //Check all other nodes
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null && node.next.key.compareTo(key) == 0) {
+                if (node.next != null && node.next.key.compareTo(key) == 0) {
                     node.next = node.next.next;
                     size--;
                     return;
@@ -124,7 +124,7 @@ public class Exercise3 {
 
         public boolean contains(Key key) {
             for(Node node = first; node != null; node = node.next) {
-                if(node.key.compareTo(key) == 0) {
+                if (node.key.compareTo(key) == 0) {
                     return true;
                 }
             }
@@ -133,7 +133,7 @@ public class Exercise3 {
         }
 
         public Key min() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -141,12 +141,12 @@ public class Exercise3 {
         }
 
         public Key max() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(node.next == null) {
+                if (node.next == null) {
                     return node.key;
                 }
             }
@@ -155,23 +155,23 @@ public class Exercise3 {
         }
 
         public Key floor(Key key) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
             //Check first node
-            if(first.key.compareTo(key) > 0) {
+            if (first.key.compareTo(key) > 0) {
                 return null;
-            } else if(first.key.compareTo(key) == 0) {
+            } else if (first.key.compareTo(key) == 0) {
                 return first.key;
             }
 
             //Check all other nodes
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null) {
-                    if(node.next.key.compareTo(key) == 0) {
+                if (node.next != null) {
+                    if (node.next.key.compareTo(key) == 0) {
                         return node.next.key;
-                    } else if(node.next.key.compareTo(key) > 0) {
+                    } else if (node.next.key.compareTo(key) > 0) {
                         return node.key;
                     }
                 } else {
@@ -183,20 +183,20 @@ public class Exercise3 {
         }
 
         public Key ceiling(Key key) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
             //Check first node
-            if(first.key.compareTo(key) == 0
+            if (first.key.compareTo(key) == 0
                     || first.key.compareTo(key) > 0) {
                 return first.key;
             }
 
             //Check all other nodes
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null) {
-                    if(node.next.key.compareTo(key) == 0
+                if (node.next != null) {
+                    if (node.next.key.compareTo(key) == 0
                             || node.next.key.compareTo(key) > 0) {
                         return node.next.key;
                     }
@@ -210,7 +210,7 @@ public class Exercise3 {
             int rank = 0;
 
             for(Node node = first; node != null; node = node.next) {
-                if(node.key.compareTo(key) < 0) {
+                if (node.key.compareTo(key) < 0) {
                     rank++;
                 } else {
                     break;
@@ -221,14 +221,14 @@ public class Exercise3 {
         }
 
         public Key select(int rank) {
-            if(rank < 0 || rank >= size) {
+            if (rank < 0 || rank >= size) {
                 throw new IllegalArgumentException("Invalid argument: " + rank);
             }
 
             int currentRank = 0;
 
             for(Node node = first; node != null; node = node.next) {
-                if(currentRank == rank) {
+                if (currentRank == rank) {
                     return node.key;
                 }
 
@@ -259,14 +259,14 @@ public class Exercise3 {
             boolean inTheRange = false;
 
             for(Node node = first; node != null; node = node.next) {
-                if(!inTheRange) {
-                    if(node.key.compareTo(low) == 0
+                if (!inTheRange) {
+                    if (node.key.compareTo(low) == 0
                             || node.key.compareTo(low) > 0) {
                         size++;
                         inTheRange = true;
                     }
                 } else {
-                    if(node.key.compareTo(high) == 0
+                    if (node.key.compareTo(high) == 0
                             || node.key.compareTo(high) < 0) {
                         size++;
                     } else {
@@ -283,14 +283,14 @@ public class Exercise3 {
             boolean inTheRange = false;
 
             for(Node node = first; node != null; node = node.next) {
-                if(!inTheRange) {
-                    if(node.key.compareTo(low) == 0
+                if (!inTheRange) {
+                    if (node.key.compareTo(low) == 0
                             || node.key.compareTo(low) > 0) {
                         keys.enqueue(node.key);
                         inTheRange = true;
                     }
                 } else {
-                    if(node.key.compareTo(high) == 0
+                    if (node.key.compareTo(high) == 0
                             || node.key.compareTo(high) < 0) {
                         keys.enqueue(node.key);
                     } else {

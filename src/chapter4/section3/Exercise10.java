@@ -61,7 +61,7 @@ public class Exercise10 {
             double weight = edge.weight();
 
             // Parallel edges are ignored
-            if(hasEdge(vertex1, vertex2)) {
+            if (hasEdge(vertex1, vertex2)) {
                 return;
             }
 
@@ -78,7 +78,7 @@ public class Exercise10 {
             Bag<Edge> adjacentEdges = new Bag<>();
 
             for(int i = 0; i < vertices; i++) {
-                if(hasEdge(vertex, i)) {
+                if (hasEdge(vertex, i)) {
                     adjacentEdges.add(new Edge(vertex, i, adjacent[vertex][i]));
                 }
             }
@@ -91,7 +91,7 @@ public class Exercise10 {
 
             for(int vertex = 0; vertex < vertices; vertex++) {
                 for(Edge edge : adjacent(vertex)) {
-                    if(edge.other(vertex) > vertex) {
+                    if (edge.other(vertex) > vertex) {
                         edges.add(edge);
                     }
                 }

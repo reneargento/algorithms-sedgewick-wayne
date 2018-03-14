@@ -14,7 +14,7 @@ public class Exercise4 {
         Exercise4 exercise4 = new Exercise4();
         int[] values = exercise4.perfectHashFunction();
 
-        if(values != null) {
+        if (values != null) {
             StdOut.println("a = " + values[0]);
             StdOut.println("m = " + values[1]);
         }
@@ -34,7 +34,7 @@ public class Exercise4 {
                     hashes.add(hash);
                 }
 
-                if(hashes.size() == 10) {
+                if (hashes.size() == 10) {
                     //Perfect hash function found
                     values[0] = a;
                     values[1] = m;

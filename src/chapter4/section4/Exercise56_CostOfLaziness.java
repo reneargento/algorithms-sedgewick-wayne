@@ -36,7 +36,7 @@ public class Exercise56_CostOfLaziness {
 
             for(int dijkstraAlgorithmType = 0; dijkstraAlgorithmType < 2; dijkstraAlgorithmType++) {
 
-                if(dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
+                if (dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
                     totalTimeSpentLazyDijkstra += doExperiment(randomEdgeWeightedDigraphUniformWeights, randomSource,
                             LAZY_DIJKSTRA_ID);
                 } else {
@@ -70,7 +70,7 @@ public class Exercise56_CostOfLaziness {
 
             for(int dijkstraAlgorithmType = 0; dijkstraAlgorithmType < 2; dijkstraAlgorithmType++) {
 
-                if(dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
+                if (dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
                     totalTimeSpentLazyDijkstra += doExperiment(euclideanEdgeWeightedDigraph, randomSource, LAZY_DIJKSTRA_ID);
                 } else {
                     totalTimeSpentEagerDijkstra += doExperiment(euclideanEdgeWeightedDigraph, randomSource, EAGER_DIJKSTRA_ID);
@@ -99,7 +99,7 @@ public class Exercise56_CostOfLaziness {
 
             for(int dijkstraAlgorithmType = 0; dijkstraAlgorithmType < 2; dijkstraAlgorithmType++) {
 
-                if(dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
+                if (dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
                     totalTimeSpentLazyDijkstra += doExperiment(gridEdgeWeightedDigraph, randomSource, LAZY_DIJKSTRA_ID);
                 } else {
                     totalTimeSpentEagerDijkstra += doExperiment(gridEdgeWeightedDigraph, randomSource, EAGER_DIJKSTRA_ID);
@@ -114,7 +114,7 @@ public class Exercise56_CostOfLaziness {
     private double doExperiment(EdgeWeightedDigraphInterface edgeWeightedDigraph, int randomSource, int dijkstraAlgorithmType) {
         Stopwatch stopwatch = new Stopwatch();
 
-        if(dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
+        if (dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
             new Exercise39_LazyImplementationDijkstra().new LazyDijkstraSP(edgeWeightedDigraph, randomSource);
         } else {
             new DijkstraSP(edgeWeightedDigraph, randomSource);

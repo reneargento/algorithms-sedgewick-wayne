@@ -39,7 +39,7 @@ public class Exercise14_1 {
 	public String dequeue() {
 		if (isEmpty()) {
 			throw new RuntimeException("Queue underflow");
-		} else{
+		} else {
 			String item = items[first];
 			items[first] = null; //To avoid loitering
 			first++;

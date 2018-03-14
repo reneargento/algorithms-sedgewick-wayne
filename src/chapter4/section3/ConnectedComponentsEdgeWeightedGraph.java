@@ -14,7 +14,7 @@ public class ConnectedComponentsEdgeWeightedGraph {
         id = new int[graph.vertices()];
 
         for(int source = 0; source < graph.vertices(); source++) {
-            if(!visited[source]) {
+            if (!visited[source]) {
                 dfs(graph, source);
                 count++;
             }
@@ -28,7 +28,7 @@ public class ConnectedComponentsEdgeWeightedGraph {
         for(Edge neighbor : graph.adjacent(vertex)) {
             int neighborVertex = neighbor.other(vertex);
 
-            if(!visited[neighborVertex]) {
+            if (!visited[neighborVertex]) {
                 dfs(graph, neighborVertex);
             }
         }

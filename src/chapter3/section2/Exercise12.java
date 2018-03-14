@@ -38,14 +38,14 @@ public class Exercise12 {
         }
 
         private Value get(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return get(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return get(node.right, key);
             } else {
                 return node.value;
@@ -57,16 +57,16 @@ public class Exercise12 {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 size++;
                 return new Node(key, value);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
@@ -76,7 +76,7 @@ public class Exercise12 {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -84,7 +84,7 @@ public class Exercise12 {
         }
 
         private Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node;
             }
 
@@ -92,7 +92,7 @@ public class Exercise12 {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -100,7 +100,7 @@ public class Exercise12 {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 return node;
             }
 
@@ -109,7 +109,7 @@ public class Exercise12 {
 
         public Key floor(Key key) {
             Node node = floor(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -117,19 +117,19 @@ public class Exercise12 {
         }
 
         private Node floor(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 return floor(node.left, key);
             } else {
                 Node rightNode = floor(node.right, key);
-                if(rightNode != null) {
+                if (rightNode != null) {
                     return rightNode;
                 } else {
                     return node;
@@ -139,7 +139,7 @@ public class Exercise12 {
 
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -147,19 +147,19 @@ public class Exercise12 {
         }
 
         private Node ceiling(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return ceiling(node.right, key);
             } else {
                 Node leftNode = ceiling(node.left, key);
-                if(leftNode != null) {
+                if (leftNode != null) {
                     return leftNode;
                 } else {
                     return node;
@@ -172,11 +172,11 @@ public class Exercise12 {
         }
 
         private Node deleteMin(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.left == null) {
+            if (node.left == null) {
                 size--;
                 return node.right;
             }
@@ -190,11 +190,11 @@ public class Exercise12 {
         }
 
         private Node deleteMax(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 size--;
                 return node.left;
             }
@@ -208,19 +208,19 @@ public class Exercise12 {
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = delete(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = delete(node.right, key);
             } else {
                 size--;
 
-                if(node.left == null) {
+                if (node.left == null) {
                     return node.right;
                 } else if (node.right == null) {
                     return node.left;
@@ -246,22 +246,22 @@ public class Exercise12 {
         }
 
         private void keys(Node node, Queue<Key> queue, Key low, Key high) {
-            if(node == null) {
+            if (node == null) {
                 return;
             }
 
             int compareLow = low.compareTo(node.key);
             int compareHigh = high.compareTo(node.key);
 
-            if(compareLow < 0) {
+            if (compareLow < 0) {
                 keys(node.left, queue, low, high);
             }
 
-            if(compareLow <= 0 && compareHigh >= 0) {
+            if (compareLow <= 0 && compareHigh >= 0) {
                 queue.enqueue(node.key);
             }
 
-            if(compareHigh > 0) {
+            if (compareHigh > 0) {
                 keys(node.right, queue, low, high);
             }
         }

@@ -71,7 +71,7 @@ public class Exercise38_EuclideanDigraphs {
         }
 
         public void addEdge(int vertexId1, int vertexId2) {
-            if(allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
+            if (allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
                 throw new IllegalArgumentException("Vertex id not found");
             }
 
@@ -92,7 +92,7 @@ public class Exercise38_EuclideanDigraphs {
             StdDraw.setPenColor(Color.BLUE);
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                if(allVertices[vertexId] != null) {
+                if (allVertices[vertexId] != null) {
                     double xCoordinate = allVertices[vertexId].coordinates.getXCoordinate();
                     double yCoordinate = allVertices[vertexId].coordinates.getYCoordinate();
 

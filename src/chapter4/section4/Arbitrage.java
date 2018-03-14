@@ -26,7 +26,7 @@ public class Arbitrage {
 
         BellmanFordSP bellmanFordSP = new BellmanFordSP(edgeWeightedDigraph, 0);
 
-        if(bellmanFordSP.hasNegativeCycle()) {
+        if (bellmanFordSP.hasNegativeCycle()) {
             double stake = 1000.0;
 
             for(DirectedEdge edge : bellmanFordSP.negativeCycle()) {

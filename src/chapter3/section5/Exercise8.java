@@ -52,7 +52,7 @@ public class Exercise8 {
         private int hash(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -67,7 +67,7 @@ public class Exercise8 {
             LinearProbingHashTableDuplicateKeys<Key, Value> tempHashTable = new LinearProbingHashTableDuplicateKeys<>(newSize);
 
             for(int i = 0; i < size; i++) {
-                if(keys[i] != null) {
+                if (keys[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
             }
@@ -91,7 +91,7 @@ public class Exercise8 {
             }
 
             for(int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex].equals(key)) {
+                if (keys[tableIndex].equals(key)) {
                     return values[tableIndex];
                 }
             }
@@ -104,12 +104,12 @@ public class Exercise8 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(keysSize >= size / (double) 2) {
+            if (keysSize >= size / (double) 2) {
                 resize(size * 2);
                 lgM++;
             }
@@ -130,7 +130,7 @@ public class Exercise8 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
@@ -153,14 +153,14 @@ public class Exercise8 {
                 values[tableIndex] = null;
                 keysSize--;
 
-                if(!keyToRedo.equals(key)) {
+                if (!keyToRedo.equals(key)) {
                     put(keyToRedo, valueToRedo);
                 }
 
                 tableIndex = (tableIndex + 1) % size;
             }
 
-            if(keysSize > 1 && keysSize <= size / (double) 8) {
+            if (keysSize > 1 && keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             }
@@ -170,12 +170,12 @@ public class Exercise8 {
             Queue<Key> keySet = new Queue<>();
 
             for(Object key : keys) {
-                if(key != null) {
+                if (key != null) {
                     keySet.enqueue((Key) key);
                 }
             }
 
-            if(!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
+            if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
                 for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keySet.dequeue();

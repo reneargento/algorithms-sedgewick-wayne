@@ -34,10 +34,10 @@ public class SparseMatrix {
     }
 
     public double get(int row, int column) {
-        if(row < 0 || row >= rowSize) {
+        if (row < 0 || row >= rowSize) {
             throw new IllegalArgumentException("Invalid row index");
         }
-        if(column < 0 || column >= columnSize) {
+        if (column < 0 || column >= columnSize) {
             throw new IllegalArgumentException("Invalid column index");
         }
 
@@ -45,14 +45,14 @@ public class SparseMatrix {
     }
 
     public void put(int row, int column, double value) {
-        if(row < 0 || row >= rowSize) {
+        if (row < 0 || row >= rowSize) {
             throw new IllegalArgumentException("Invalid row index");
         }
-        if(column < 0 || column >= columnSize) {
+        if (column < 0 || column >= columnSize) {
             throw new IllegalArgumentException("Invalid column index");
         }
 
-        if(value == 0) {
+        if (value == 0) {
             delete(row, column);
             return;
         }
@@ -62,10 +62,10 @@ public class SparseMatrix {
     }
 
     public void delete(int row, int column) {
-        if(row < 0 || row >= rowSize) {
+        if (row < 0 || row >= rowSize) {
             throw new IllegalArgumentException("Invalid row index");
         }
-        if(column < 0 || column >= columnSize) {
+        if (column < 0 || column >= columnSize) {
             throw new IllegalArgumentException("Invalid column index");
         }
 
@@ -75,14 +75,14 @@ public class SparseMatrix {
 
 
     public SparseMatrix sum(SparseMatrix sparseMatrix) {
-        if(rowSize != sparseMatrix.rowSize || columnSize != sparseMatrix.columnSize) {
+        if (rowSize != sparseMatrix.rowSize || columnSize != sparseMatrix.columnSize) {
             throw new IllegalArgumentException("Matrix A rows and columns number and Matrix B rows and columns " +
                     "number must match");
         }
 
         SparseMatrix result = new SparseMatrix(rowSize, columnSize);
 
-        for(int i = 0; i < result.rowSize; i++) {
+        for (int i = 0; i < result.rowSize; i++) {
             result.rows[i] = rows[i].plus(sparseMatrix.rows[i]);
         }
 
@@ -91,7 +91,7 @@ public class SparseMatrix {
 
     //Matrix-matrix multiplication
     public SparseMatrix dot(SparseMatrix sparseMatrix) {
-        if(columnSize != sparseMatrix.rowSize) {
+        if (columnSize != sparseMatrix.rowSize) {
             throw new IllegalArgumentException("Matrix A columns number and Matrix B rows number must match");
         }
 
@@ -101,7 +101,7 @@ public class SparseMatrix {
             for(int j = 0; j < sparseMatrix.columnSize; j++) {
                 double dot = rows[i].dot(sparseMatrix.columns[j]);
 
-                if(dot != 0) {
+                if (dot != 0) {
                     result.put(i, j, dot);
                 }
             }
@@ -112,7 +112,7 @@ public class SparseMatrix {
 
     //Matrix-vector multiplication
     public SparseVector dot(SparseVector sparseVector) {
-        if(columnSize != sparseVector.dimension) {
+        if (columnSize != sparseVector.dimension) {
             throw new IllegalArgumentException("Matrix columns number and vector dimension must match");
         }
 
@@ -121,7 +121,7 @@ public class SparseMatrix {
         for(int i = 0; i < rows.length; i++) {
             double dot = rows[i].dot(sparseVector);
 
-            if(dot != 0) {
+            if (dot != 0) {
                 result.put(i, dot);
             }
         }

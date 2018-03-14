@@ -51,7 +51,7 @@ public class Exercise14_ArraySort {
         }
 
         private int valueAt(int[] array, int index) {
-            if(index < array.length) {
+            if (index < array.length) {
                 return array[index];
             } else {
                 return Integer.MIN_VALUE;

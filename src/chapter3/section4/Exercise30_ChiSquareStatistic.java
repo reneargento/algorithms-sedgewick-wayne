@@ -56,7 +56,7 @@ public class Exercise30_ChiSquareStatistic {
         StdOut.println("Probability = " + String.format("%.2f%%", probability * 100));
 
         StdOut.print("Produces random values: ");
-        if(lowerBound <= chiSquareStatisticValue && chiSquareStatisticValue <= upperBound) {
+        if (lowerBound <= chiSquareStatisticValue && chiSquareStatisticValue <= upperBound) {
             StdOut.print("True");
         } else {
             StdOut.print("False");

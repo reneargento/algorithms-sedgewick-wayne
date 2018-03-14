@@ -48,14 +48,14 @@ public class Exercise23 {
                 // Movie vertex
                 Vertex movieVertex = new Vertex(vertices[0], true);
 
-                if(!vertexToIdMap.contains(movieVertex)) {
+                if (!vertexToIdMap.contains(movieVertex)) {
                     vertexToIdMap.put(movieVertex, vertexToIdMap.size());
                 }
 
                 for(int i = 1; i < vertices.length; i++) {
                     Vertex actorVertex = new Vertex(vertices[i], false);
 
-                    if(!vertexToIdMap.contains(actorVertex)) {
+                    if (!vertexToIdMap.contains(actorVertex)) {
                         vertexToIdMap.put(actorVertex, vertexToIdMap.size());
                     }
                 }
@@ -115,13 +115,13 @@ public class Exercise23 {
         int[] histogram = new int[MAX_BACON + 1];
 
         for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-            if(movieSymbolGraph.vertexInformation(vertex).isMovie) {
+            if (movieSymbolGraph.vertexInformation(vertex).isMovie) {
                 continue;
             }
 
             int kevinBaconNumber = breadthFirstPaths.distTo(vertex);
 
-            if(kevinBaconNumber == Integer.MAX_VALUE) {
+            if (kevinBaconNumber == Integer.MAX_VALUE) {
                 kevinBaconNumber = MAX_BACON;
             } else {
                 //Divide by 2 because the relation in the graph is
@@ -135,7 +135,7 @@ public class Exercise23 {
 
         //Print histogram
         for(int i = 0; i < histogram.length; i++) {
-            if(histogram[i] == 0) {
+            if (histogram[i] == 0) {
                 break;
             }
             StdOut.printf("%3d %8d\n", i, histogram[i]);

@@ -9,19 +9,19 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise32_SubtreeCountCheck {
 
     private boolean isSubtreeCountConsistent(BinarySearchTree.Node node) {
-        if(node == null) {
+        if (node == null) {
             return true;
         }
 
         int totalSubtreeCount = 0;
-        if(node.left != null) {
+        if (node.left != null) {
             totalSubtreeCount += node.left.size;
         }
-        if(node.right != null) {
+        if (node.right != null) {
             totalSubtreeCount += node.right.size;
         }
 
-        if(node.size == totalSubtreeCount + 1) {
+        if (node.size == totalSubtreeCount + 1) {
             return isSubtreeCountConsistent(node.left) && isSubtreeCountConsistent(node.right);
         } else {
             return false;

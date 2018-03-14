@@ -35,13 +35,13 @@ public class Exercise10 {
             boolean areAllNeighborsMarked = true;
 
             for(int neighbor : graph.adjacent(vertex)) {
-                if(!visited[neighbor]) {
+                if (!visited[neighbor]) {
                     areAllNeighborsMarked = false;
                     dfs(graph, neighbor);
                 }
             }
 
-            if(areAllNeighborsMarked) {
+            if (areAllNeighborsMarked) {
                 vertexThatCanBeRemoved = vertex;
             }
         }

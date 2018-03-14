@@ -36,7 +36,7 @@ public class Exercise15_1_TwoSumFaster {
                 end--;
             } else if (array[start] + array[end] < 0) {
                 start++;
-            } else{
+            } else {
                 count++;
 
                 //Compare all following elements with array[end]

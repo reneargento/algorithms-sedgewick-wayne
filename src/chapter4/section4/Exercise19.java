@@ -29,7 +29,7 @@ public class Exercise19 {
         String filePath = Constants.FILES_PATH + Constants.RATES_FILE;
         String[] allValues = FileUtil.getAllStringsFromFile(filePath);
 
-        if(allValues == null) {
+        if (allValues == null) {
             throw new IllegalArgumentException("File not found");
         }
 
@@ -78,7 +78,7 @@ public class Exercise19 {
                 sum += adjacencyMatrix[vertexFrom][vertexTo];
             }
 
-            if(sum < bestArbitrageOpportunity) {
+            if (sum < bestArbitrageOpportunity) {
                 bestArbitrageOpportunity = sum;
                 currenciesForBestArbitrage = cycle;
             }
@@ -112,9 +112,9 @@ public class Exercise19 {
                                 HashSet<Integer> verticesInCycle, int maxValue) {
         StringBuilder cycleCopy = new StringBuilder(currentCycle);
 
-        if(position == size) {
+        if (position == size) {
             // Check if the cycle is composed only of unique vertices
-            if(verticesInCycle.size() == size) {
+            if (verticesInCycle.size() == size) {
                 char initialVertex = cycleCopy.charAt(0);
                 cycleCopy.append(initialVertex); // Complete cycle
                 combinations.add(cycleCopy.toString());

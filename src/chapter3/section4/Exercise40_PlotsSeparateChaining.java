@@ -50,7 +50,7 @@ public class Exercise40_PlotsSeparateChaining {
                 for(Node node = first; node != null; node = node.next) {
                     costOfPutCompares++;
 
-                    if(key.equals(node.key)) {
+                    if (key.equals(node.key)) {
                         return node.value;
                     }
                 }
@@ -64,7 +64,7 @@ public class Exercise40_PlotsSeparateChaining {
                 for(Node node = first; node != null; node = node.next) {
                     costOfCompares++;
 
-                    if(key.equals(node.key)) {
+                    if (key.equals(node.key)) {
                         node.value = value;
                         return costOfCompares;
                     }
@@ -76,14 +76,14 @@ public class Exercise40_PlotsSeparateChaining {
             }
 
             public void delete(Key key) {
-                if(first.key.equals(key)) {
+                if (first.key.equals(key)) {
                     first = first.next;
                     size--;
                     return;
                 }
 
                 for(Node node = first; node != null; node = node.next) {
-                    if(node.next != null && node.next.key.equals(key)) {
+                    if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
                         return;
@@ -155,7 +155,7 @@ public class Exercise40_PlotsSeparateChaining {
         private int hash(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -202,12 +202,12 @@ public class Exercise40_PlotsSeparateChaining {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return 0;
             }
 
-            if(resetCostOfPutCompares) {
+            if (resetCostOfPutCompares) {
                 costOfPutCompares = 0;
             }
 
@@ -215,11 +215,11 @@ public class Exercise40_PlotsSeparateChaining {
             int currentSize = symbolTable[hashIndex].size;
             costOfPutCompares += symbolTable[hashIndex].putAndComputeCost(key, value);
 
-            if(currentSize < symbolTable[hashIndex].size) {
+            if (currentSize < symbolTable[hashIndex].size) {
                 keysSize++;
             }
 
-            if(getLoadFactor() > averageListSize) {
+            if (getLoadFactor() > averageListSize) {
                 resize(size * 2);
                 lgM++;
             }
@@ -232,14 +232,14 @@ public class Exercise40_PlotsSeparateChaining {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
             symbolTable[hash(key)].delete(key);
             keysSize--;
 
-            if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
+            if (size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(size / 2);
                 lgM--;
             }
@@ -254,7 +254,7 @@ public class Exercise40_PlotsSeparateChaining {
                 }
             }
 
-            if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
                 for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
@@ -296,12 +296,12 @@ public class Exercise40_PlotsSeparateChaining {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
             int cost;
-            if(!separateChainingHashTableCost.contains(word)) {
+            if (!separateChainingHashTableCost.contains(word)) {
                 cost = separateChainingHashTableCost.putAndComputeCost(word, 1, true);
             } else {
                 cost = separateChainingHashTableCost.
@@ -315,7 +315,7 @@ public class Exercise40_PlotsSeparateChaining {
         visualAccumulator.addDataValue(cost, true);
 
         for(String word : separateChainingHashTableCost.keys()) {
-            if(separateChainingHashTableCost.get(word) > separateChainingHashTableCost.get(max)) {
+            if (separateChainingHashTableCost.get(word) > separateChainingHashTableCost.get(max)) {
                 max = word;
             }
         }

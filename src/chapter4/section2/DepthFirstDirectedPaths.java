@@ -22,7 +22,7 @@ public class DepthFirstDirectedPaths {
         visited[vertex] = true;
 
         for(int neighbor : graph.adjacent(vertex)) {
-            if(!visited[neighbor]) {
+            if (!visited[neighbor]) {
                 edgeTo[neighbor] = vertex;
                 dfs(graph, neighbor);
             }
@@ -34,7 +34,7 @@ public class DepthFirstDirectedPaths {
     }
 
     public Iterable<Integer> pathTo(int vertex) {
-        if(!hasPathTo(vertex)) {
+        if (!hasPathTo(vertex)) {
             return null;
         }
 

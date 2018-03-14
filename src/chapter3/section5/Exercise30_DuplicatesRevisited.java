@@ -107,13 +107,13 @@ public class Exercise30_DuplicatesRevisited {
         String method;
         String valuesType;
 
-        if(useDedup) {
+        if (useDedup) {
             method = "DeDup";
         } else {
             method = "Array index count";
         }
 
-        if(!generateLongValues) {
+        if (!generateLongValues) {
             valuesType = "Integer";
         } else {
             valuesType = "Long";
@@ -132,11 +132,11 @@ public class Exercise30_DuplicatesRevisited {
                 int numberOfValues = values[n];
 
                 int maxValue = 0;
-                if(m == 0) {
+                if (m == 0) {
                     maxValue = numberOfValues / 2;
-                } else if(m == 1) {
+                } else if (m == 1) {
                     maxValue = numberOfValues;
-                } else if(m == 2) {
+                } else if (m == 2) {
                     maxValue = 2 * numberOfValues;
                 }
 
@@ -148,14 +148,14 @@ public class Exercise30_DuplicatesRevisited {
                     // only in the running time
                     long distinctValues;
 
-                    if(!useDedup) {
-                        if(!generateLongValues) {
+                    if (!useDedup) {
+                        if (!generateLongValues) {
                             distinctValues = distinctCounter.countDistinctIntegerValuesUsingIndex(numberOfValues, maxValue);
                         } else {
                             distinctValues = distinctCounter.countDistinctLongValuesUsingIndex(numberOfValues, maxValue);
                         }
                     } else {
-                        if(!generateLongValues) {
+                        if (!generateLongValues) {
                             distinctValues = distinctCounter.deDupWithIntegerValues(numberOfValues, maxValue);
                         } else {
                             distinctValues = distinctCounter.deDupWithLongValues(numberOfValues, maxValue);

@@ -16,14 +16,14 @@ public class Exercise28_DirectedEulerianCycle {
 
         public Stack<Integer> getDirectedEulerianCycle(Digraph digraph) {
             // A graph with no edges is considered to have an Eulerian cycle
-            if(digraph.edges() == 0) {
+            if (digraph.edges() == 0) {
                 return new Stack<>();
             }
 
             // Check if all vertices have indegree equal to their outdegree
             // If any vertex does not, the algorithm may return an Eulerian path instead
             for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-                if(digraph.indegree(vertex) != digraph.outdegree(vertex)) {
+                if (digraph.indegree(vertex) != digraph.outdegree(vertex)) {
                     return null;
                 }
             }
@@ -54,7 +54,7 @@ public class Exercise28_DirectedEulerianCycle {
             }
 
             // For each edge visited, we visited a vertex. Add 1 because the first and last vertices are the same.
-            if(eulerCycle.size() == digraph.edges() + 1) {
+            if (eulerCycle.size() == digraph.edges() + 1) {
                 return eulerCycle;
             } else {
                 return null;
@@ -65,7 +65,7 @@ public class Exercise28_DirectedEulerianCycle {
             int nonIsolatedVertex = -1;
 
             for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-                if(digraph.outdegree(vertex) > 0) {
+                if (digraph.outdegree(vertex) > 0) {
                     nonIsolatedVertex = vertex;
                 }
             }
@@ -87,7 +87,7 @@ public class Exercise28_DirectedEulerianCycle {
 
         Stack<Integer> eulerCycle1 = directedEulerianCycle.getDirectedEulerianCycle(digraphWithDirectedEulerPath1);
 
-        if(eulerCycle1 != null) {
+        if (eulerCycle1 != null) {
             exercise28.printCycle(eulerCycle1);
         } else {
             StdOut.println("There is no directed Eulerian cycle");
@@ -102,7 +102,7 @@ public class Exercise28_DirectedEulerianCycle {
 
         Stack<Integer> eulerCycle2 = directedEulerianCycle.getDirectedEulerianCycle(digraphWithDirectedEulerCycle1);
 
-        if(eulerCycle2 != null) {
+        if (eulerCycle2 != null) {
             exercise28.printCycle(eulerCycle2);
         } else {
             StdOut.println("There is no directed Eulerian cycle");
@@ -122,7 +122,7 @@ public class Exercise28_DirectedEulerianCycle {
 
         Stack<Integer> eulerCycle3 = directedEulerianCycle.getDirectedEulerianCycle(digraphWithDirectedEulerCycle2);
 
-        if(eulerCycle3 != null) {
+        if (eulerCycle3 != null) {
             exercise28.printCycle(eulerCycle3);
         } else {
             StdOut.println("There is no directed Eulerian cycle");
@@ -138,7 +138,7 @@ public class Exercise28_DirectedEulerianCycle {
 
         Stack<Integer> eulerCycle4 = directedEulerianCycle.getDirectedEulerianCycle(digraphWithDirectedEulerPath2);
 
-        if(eulerCycle4 != null) {
+        if (eulerCycle4 != null) {
             exercise28.printCycle(eulerCycle4);
         } else {
             StdOut.println("There is no directed Eulerian cycle");
@@ -152,10 +152,10 @@ public class Exercise28_DirectedEulerianCycle {
         while (!eulerCycle.isEmpty()) {
             int vertex = eulerCycle.pop();
 
-            if(!eulerCycle.isEmpty()) {
+            if (!eulerCycle.isEmpty()) {
                 StdOut.print(vertex + "->" + eulerCycle.peek());
 
-                if(eulerCycle.size() > 1) {
+                if (eulerCycle.size() > 1) {
                     StdOut.print(" ");
                 }
             }

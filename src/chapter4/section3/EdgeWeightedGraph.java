@@ -67,7 +67,7 @@ public class EdgeWeightedGraph implements EdgeWeightedGraphInterface {
 
         for(int vertex = 0; vertex < vertices; vertex++) {
             for(Edge edge : adjacent[vertex]) {
-                if(edge.other(vertex) > vertex) {
+                if (edge.other(vertex) > vertex) {
                     edges.add(edge);
                 }
             }

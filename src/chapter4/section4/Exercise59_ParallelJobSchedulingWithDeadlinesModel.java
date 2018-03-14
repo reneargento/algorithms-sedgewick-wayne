@@ -76,14 +76,14 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
             int numberOfSuccessors = StdRandom.uniform(maxPrecedences + 1);
 
             // Only add precedence to jobs with higher IDs to avoid cycles and increase chances of problem feasibility
-            if(job + numberOfSuccessors >= numberOfJobs) {
+            if (job + numberOfSuccessors >= numberOfJobs) {
                 numberOfSuccessors = numberOfJobs - 1 - job;
             }
 
             for(int precedence = 0; precedence < numberOfSuccessors; precedence++) {
                 int jobSuccessorId = StdRandom.uniform(job + 1, numberOfJobs);
 
-                if(precedences.get(job).contains(jobSuccessorId)) {
+                if (precedences.get(job).contains(jobSuccessorId)) {
                     // A precedence to this job already exists, try another job
                     precedence--;
                     continue;
@@ -102,7 +102,7 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
         for(int deadline = 0; deadline < deadlines; deadline++) {
             int jobThatMustBeginNotLongAfterTheOther = StdRandom.uniform(numberOfJobs);
 
-            if(jobThatMustBeginNotLongAfterTheOther == 0) {
+            if (jobThatMustBeginNotLongAfterTheOther == 0) {
                 // Try again
                 deadline--;
                 continue;
@@ -215,7 +215,7 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
         for(int job = 0; job < numberOfJobs; job++) {
             double distance = bellmanFordSP.distTo(job);
 
-            if(distance != 0) {
+            if (distance != 0) {
                 distance = distance * -1;
             }
 
@@ -224,7 +224,7 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
 
         double targetDistance = bellmanFordSP.distTo(target);
 
-        if(targetDistance != 0) {
+        if (targetDistance != 0) {
             targetDistance = targetDistance * -1;
         }
 

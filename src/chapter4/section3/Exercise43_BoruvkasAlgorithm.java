@@ -23,7 +23,7 @@ public class Exercise43_BoruvkasAlgorithm {
 
             // Repeats at most lg(V) times or until minimum spanning tree is complete
             for(int stage = 0; stage < edgeWeightedGraph.vertices(); stage = stage + stage) {
-                if(minimumSpanningTree.size() == edgeWeightedGraph.vertices() - 1) {
+                if (minimumSpanningTree.size() == edgeWeightedGraph.vertices() - 1) {
                     break;
                 }
 
@@ -39,14 +39,14 @@ public class Exercise43_BoruvkasAlgorithm {
                     int treeIdentifier2 = unionFind.find(vertex2);
 
                     // Check if vertices are part of the same tree
-                    if(treeIdentifier1 == treeIdentifier2) {
+                    if (treeIdentifier1 == treeIdentifier2) {
                         continue;
                     }
 
-                    if(closestEdges[treeIdentifier1] == null || edge.weight() < closestEdges[treeIdentifier1].weight()) {
+                    if (closestEdges[treeIdentifier1] == null || edge.weight() < closestEdges[treeIdentifier1].weight()) {
                         closestEdges[treeIdentifier1] = edge;
                     }
-                    if(closestEdges[treeIdentifier2] == null || edge.weight() < closestEdges[treeIdentifier2].weight()) {
+                    if (closestEdges[treeIdentifier2] == null || edge.weight() < closestEdges[treeIdentifier2].weight()) {
                         closestEdges[treeIdentifier2] = edge;
                     }
                 }
@@ -55,11 +55,11 @@ public class Exercise43_BoruvkasAlgorithm {
                 for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                     Edge closestEdge = closestEdges[vertex];
 
-                    if(closestEdge != null) {
+                    if (closestEdge != null) {
                         int vertex1 = closestEdge.either();
                         int vertex2 = closestEdge.other(vertex1);
 
-                        if(!unionFind.connected(vertex1, vertex2)) {
+                        if (!unionFind.connected(vertex1, vertex2)) {
                             minimumSpanningTree.enqueue(closestEdge);
                             weight += closestEdge.weight();
                             unionFind.union(vertex1, vertex2);

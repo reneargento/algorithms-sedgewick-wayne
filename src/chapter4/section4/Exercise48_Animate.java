@@ -59,7 +59,7 @@ public class Exercise48_Animate {
 
                 drawVerticesInShortestPath(randomCoordinates);
 
-                if(edgeTo[nextVertexToRelax] != null) {
+                if (edgeTo[nextVertexToRelax] != null) {
                     drawEdgeInShortestPath(edgeTo[nextVertexToRelax].from(), nextVertexToRelax, randomCoordinates);
                 }
 
@@ -76,11 +76,11 @@ public class Exercise48_Animate {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(distTo[neighbor] > distTo[vertex] + edge.weight()) {
+                if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
                     distTo[neighbor] = distTo[vertex] + edge.weight();
                     edgeTo[neighbor] = edge;
 
-                    if(priorityQueue.contains(neighbor)) {
+                    if (priorityQueue.contains(neighbor)) {
                         priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                     } else {
                         priorityQueue.insert(neighbor, distTo[neighbor]);
@@ -106,7 +106,7 @@ public class Exercise48_Animate {
         }
 
         public Iterable<DirectedEdge> pathTo(int vertex) {
-            if(!hasPathTo(vertex)) {
+            if (!hasPathTo(vertex)) {
                 return null;
             }
 
@@ -172,7 +172,7 @@ public class Exercise48_Animate {
             StdDraw.setPenRadius(0.002D);
 
             for(int vertex = 0; vertex < coordinates.length; vertex++) {
-                if(relaxed[vertex]) {
+                if (relaxed[vertex]) {
                     StdDraw.setPenColor(Color.WHITE);
                     StdDraw.filledCircle(coordinates[vertex].getXCoordinate(), coordinates[vertex].getYCoordinate(),
                             radiusOfCircleAroundVertex);
@@ -191,12 +191,12 @@ public class Exercise48_Animate {
         private void drawCandidateEdgesToShortestPath(Coordinate[] coordinates) {
             int nextVertexInShortestPath = -1;
 
-            if(!priorityQueue.isEmpty()) {
+            if (!priorityQueue.isEmpty()) {
                 nextVertexInShortestPath = priorityQueue.minIndex();
             }
 
             for(DirectedEdge edge : edgeTo) {
-                if(edge == null) {
+                if (edge == null) {
                     continue;
                 }
 
@@ -204,11 +204,11 @@ public class Exercise48_Animate {
                 int vertex2 = edge.to();
 
                 // If both vertices are already relaxed, the edge is already in the shortest path
-                if(relaxed[vertex2]) {
+                if (relaxed[vertex2]) {
                     continue;
                 }
 
-                if(nextVertexInShortestPath != -1 && edge == edgeTo[nextVertexInShortestPath]) {
+                if (nextVertexInShortestPath != -1 && edge == edgeTo[nextVertexInShortestPath]) {
                     // Favorite candidate
                     StdDraw.setPenRadius(0.007D);
                 } else {
@@ -234,7 +234,7 @@ public class Exercise48_Animate {
             StdDraw.setPenRadius(0.007D);
 
             for(int vertex = 0; vertex < coordinates.length; vertex++) {
-                if(edgeTo[vertex] != null) {
+                if (edgeTo[vertex] != null) {
                     DrawUtilities.drawArrow(coordinates[edgeTo[vertex].from()], coordinates[vertex], padding, arrowLength);
                 }
             }

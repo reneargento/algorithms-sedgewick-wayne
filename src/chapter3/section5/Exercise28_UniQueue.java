@@ -29,7 +29,7 @@ public class Exercise28_UniQueue {
         }
 
         public void enqueue(Item item) {
-            if(existenceSet.contains(item)) {
+            if (existenceSet.contains(item)) {
                 return;
             }
 

@@ -38,7 +38,7 @@ public class Exercise3 {
         }
 
         public CopyGraph(Graph graph) {
-            if(graph == null) {
+            if (graph == null) {
                 vertices = 0;
             } else {
                 this.vertices = graph.vertices();

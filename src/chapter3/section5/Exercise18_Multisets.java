@@ -108,7 +108,7 @@ public class Exercise18_Multisets {
 
             public boolean contains(Key key) {
                 for(Node node = first; node != null; node = node.next) {
-                    if(key.equals(node.key)) {
+                    if (key.equals(node.key)) {
                         return true;
                     }
                 }
@@ -122,14 +122,14 @@ public class Exercise18_Multisets {
             }
 
             public void delete(Key key) {
-                if(first.key.equals(key)) {
+                if (first.key.equals(key)) {
                     first = first.next;
                     size--;
                     return;
                 }
 
                 for(Node node = first; node != null; node = node.next) {
-                    if(node.next != null && node.next.key.equals(key)) {
+                    if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
                         return;
@@ -199,7 +199,7 @@ public class Exercise18_Multisets {
         private int hash(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -238,7 +238,7 @@ public class Exercise18_Multisets {
             symbolTable[hashIndex].add(key);
             keysSize++;
 
-            if(getLoadFactor() > averageListSize) {
+            if (getLoadFactor() > averageListSize) {
                 resize(size * 2);
                 lgM++;
             }
@@ -249,7 +249,7 @@ public class Exercise18_Multisets {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -257,7 +257,7 @@ public class Exercise18_Multisets {
                 symbolTable[hash(key)].delete(key);
                 keysSize--;
 
-                if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
+                if (size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                     resize(size / 2);
                     lgM--;
                 }
@@ -278,7 +278,7 @@ public class Exercise18_Multisets {
 
         @Override
         public String toString() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return "{ }";
             }
 
@@ -286,7 +286,7 @@ public class Exercise18_Multisets {
 
             boolean isFirstKey = true;
             for(Key key : keys()) {
-                if(isFirstKey) {
+                if (isFirstKey) {
                     isFirstKey = false;
                 } else {
                     stringBuilder.append(",");
@@ -328,12 +328,12 @@ public class Exercise18_Multisets {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return false;
             }
 
             int rank = rankLast(key);
-            if(rank < size && keys[rank].compareTo(key) == 0) {
+            if (rank < size && keys[rank].compareTo(key) == 0) {
                 return true;
             } else {
                 return false;
@@ -354,7 +354,7 @@ public class Exercise18_Multisets {
                 int middle = low + (high - low) / 2;
 
                 int comparison = key.compareTo(keys[middle]);
-                if(comparison < 0) {
+                if (comparison < 0) {
                     high = middle - 1;
                 } else if (comparison > 0) {
                     low = middle + 1;
@@ -364,7 +364,7 @@ public class Exercise18_Multisets {
                 }
             }
 
-            if(rankFound != -1) {
+            if (rankFound != -1) {
                 return rankFound;
             } else {
                 return low;
@@ -385,7 +385,7 @@ public class Exercise18_Multisets {
                 int middle = low + (high - low) / 2;
 
                 int comparison = key.compareTo(keys[middle]);
-                if(comparison < 0) {
+                if (comparison < 0) {
                     high = middle - 1;
                 } else if (comparison > 0) {
                     low = middle + 1;
@@ -395,7 +395,7 @@ public class Exercise18_Multisets {
                 }
             }
 
-            if(rankFound != -1) {
+            if (rankFound != -1) {
                 return rankFound;
             } else {
                 return low;
@@ -407,7 +407,7 @@ public class Exercise18_Multisets {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(size == keys.length) {
+            if (size == keys.length) {
                 resize(keys.length * 2);
             }
 
@@ -425,7 +425,7 @@ public class Exercise18_Multisets {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -438,14 +438,14 @@ public class Exercise18_Multisets {
                 keys[size - 1] = null;
                 size--;
 
-                if(size > 1 && size == keys.length / 4) {
+                if (size > 1 && size == keys.length / 4) {
                     resize(keys.length / 2);
                 }
             }
         }
 
         public Key min() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -453,7 +453,7 @@ public class Exercise18_Multisets {
         }
 
         public Key max() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -461,7 +461,7 @@ public class Exercise18_Multisets {
         }
 
         public Key select(int k) {
-            if(isEmpty() || k >= size) {
+            if (isEmpty() || k >= size) {
                 throw new IllegalArgumentException("Index " + k + " is higher than size");
             }
 
@@ -471,7 +471,7 @@ public class Exercise18_Multisets {
         public Key ceiling(Key key) {
             int rank = rankLast(key);
 
-            if(rank == size) {
+            if (rank == size) {
                 return null;
             }
 
@@ -479,13 +479,13 @@ public class Exercise18_Multisets {
         }
 
         public Key floor(Key key) {
-            if(contains(key)) {
+            if (contains(key)) {
                 return key;
             }
 
             int rank = rankLast(key);
 
-            if(rank == 0) {
+            if (rank == 0) {
                 return null;
             }
 
@@ -521,9 +521,9 @@ public class Exercise18_Multisets {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(high.compareTo(low) < 0) {
+            if (high.compareTo(low) < 0) {
                 return 0;
-            } else if(contains(high)) {
+            } else if (contains(high)) {
                 return rankLast(high) - rankFirst(low) + 1;
             } else {
                 return rankLast(high) - rankFirst(low);
@@ -541,7 +541,7 @@ public class Exercise18_Multisets {
                 queue.enqueue(keys[i]);
             }
 
-            if(contains(high)) {
+            if (contains(high)) {
                 queue.enqueue(keys[rankLast(high)]);
             }
 
@@ -560,7 +560,7 @@ public class Exercise18_Multisets {
 
         @Override
         public String toString() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return "{ }";
             }
 
@@ -568,7 +568,7 @@ public class Exercise18_Multisets {
 
             boolean isFirstKey = true;
             for(Key key : keys()) {
-                if(isFirstKey) {
+                if (isFirstKey) {
                     isFirstKey = false;
                 } else {
                     stringBuilder.append(",");

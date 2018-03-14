@@ -81,7 +81,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
             int vertexId1 = edge.from();
             int vertexId2 = edge.to();
 
-            if(allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
+            if (allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
                 throw new IllegalArgumentException("Vertex id not found");
             }
 
@@ -98,7 +98,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
             StdDraw.setPenRadius(0.002D);
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                if(allVertices[vertexId] != null) {
+                if (allVertices[vertexId] != null) {
                     double xCoordinate = allVertices[vertexId].coordinates.getXCoordinate();
                     double yCoordinate = allVertices[vertexId].coordinates.getYCoordinate();
 
@@ -210,7 +210,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
             while (!priorityQueue.isEmpty()) {
                 int vertexToRelax = priorityQueue.deleteMin();
 
-                if(vertexToRelax == target) {
+                if (vertexToRelax == target) {
                     break;
                 }
 
@@ -234,11 +234,11 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
                 double distanceToTargetPassingThroughNeighbor = distTo[vertex] + edge.weight()
                         + distanceFromNeighborToTarget - distanceFromVertexToTarget;
 
-                if(distTo[neighbor] > distanceToTargetPassingThroughNeighbor) {
+                if (distTo[neighbor] > distanceToTargetPassingThroughNeighbor) {
                     distTo[neighbor] = distanceToTargetPassingThroughNeighbor;
                     edgeTo[neighbor] = edge;
 
-                    if(priorityQueue.contains(neighbor)) {
+                    if (priorityQueue.contains(neighbor)) {
                         priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                     } else {
                         priorityQueue.insert(neighbor, distTo[neighbor]);
@@ -257,7 +257,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
 
         // O(V)
         public double distTo(int vertex) {
-            if(!shortestDistanceComputed[vertex]) {
+            if (!shortestDistanceComputed[vertex]) {
                 computeSourceSinkShortestPath(vertex);
                 shortestDistanceComputed[vertex] = true;
             }
@@ -267,7 +267,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
 
         // O(V)
         public boolean hasPathTo(int vertex) {
-            if(!shortestDistanceComputed[vertex]) {
+            if (!shortestDistanceComputed[vertex]) {
                 computeSourceSinkShortestPath(vertex);
                 shortestDistanceComputed[vertex] = true;
             }
@@ -277,12 +277,12 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
 
         // O(V)
         public Iterable<DirectedEdge> pathTo(int vertex) {
-            if(!shortestDistanceComputed[vertex]) {
+            if (!shortestDistanceComputed[vertex]) {
                 computeSourceSinkShortestPath(vertex);
                 shortestDistanceComputed[vertex] = true;
             }
 
-            if(!hasPathTo(vertex)) {
+            if (!hasPathTo(vertex)) {
                 return null;
             }
 
@@ -364,7 +364,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
         for(int vertex = 0; vertex < euclideanEdgeWeightedDigraph.vertices(); vertex++) {
             StdOut.print("\nPath from vertex 0 to vertex " + vertex + ": ");
 
-            if(dijkstraSPEuclideanGraph.hasPathTo(vertex)) {
+            if (dijkstraSPEuclideanGraph.hasPathTo(vertex)) {
                 for(DirectedEdge edge : dijkstraSPEuclideanGraph.pathTo(vertex)) {
                     StdOut.print(edge.from() + "->" + edge.to() + " ");
                 }

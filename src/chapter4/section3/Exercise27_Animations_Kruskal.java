@@ -57,7 +57,7 @@ public class Exercise27_Animations_Kruskal {
                 int vertex2 = edge.other(vertex1);
 
                 // Ignore ineligible edges
-                if(unionFind.connected(vertex1, vertex2)) {
+                if (unionFind.connected(vertex1, vertex2)) {
                     continue;
                 }
 
@@ -120,7 +120,7 @@ public class Exercise27_Animations_Kruskal {
         private void drawVertices(Coordinate[] coordinates, int cutSet1Vertex, UnionFind unionFind) {
             int cutSet1Id = -1;
 
-            if(cutSet1Vertex != -1) {
+            if (cutSet1Vertex != -1) {
                 cutSet1Id = unionFind.find(cutSet1Vertex);
             }
 
@@ -128,7 +128,7 @@ public class Exercise27_Animations_Kruskal {
 
             for(int vertexId = 0; vertexId < coordinates.length; vertexId++) {
 
-                if(unionFind.find(vertexId) == cutSet1Id) {
+                if (unionFind.find(vertexId) == cutSet1Id) {
                     StdDraw.setPenColor(Color.LIGHT_GRAY);
                 } else {
                     StdDraw.setPenColor(Color.WHITE);
@@ -154,7 +154,7 @@ public class Exercise27_Animations_Kruskal {
                 for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                     int otherVertex = edge.other(vertex);
 
-                    if(vertex > otherVertex) {
+                    if (vertex > otherVertex) {
                         StdDraw.line(coordinates[vertex].xCoordinate, coordinates[vertex].yCoordinate,
                                 coordinates[otherVertex].xCoordinate, coordinates[otherVertex].yCoordinate);
                     }

@@ -28,7 +28,7 @@ public class LazyPrimMST {
             int vertex2 = edge.other(vertex1);
 
             // Skip if ineligible
-            if(marked[vertex1] && marked[vertex2]) {
+            if (marked[vertex1] && marked[vertex2]) {
                 continue;
             }
 
@@ -37,10 +37,10 @@ public class LazyPrimMST {
             weight += edge.weight();
 
             // Add vertex to the minimum spanning tree
-            if(!marked[vertex1]) {
+            if (!marked[vertex1]) {
                 visit(edgeWeightedGraph, vertex1);
             }
-            if(!marked[vertex2]) {
+            if (!marked[vertex2]) {
                 visit(edgeWeightedGraph, vertex2);
             }
         }
@@ -51,7 +51,7 @@ public class LazyPrimMST {
         marked[vertex] = true;
 
         for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
-            if(!marked[edge.other(vertex)]) {
+            if (!marked[edge.other(vertex)]) {
                 priorityQueue.insert(edge);
             }
         }

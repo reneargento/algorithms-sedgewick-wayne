@@ -25,7 +25,7 @@ public class Exercise49_RandomGridDigraph {
 
     public List<Exercise38_EuclideanDigraphs.EuclideanDigraph> generateRandomGridDigraphs(int numberOfDigraphs,
                                                                                           int vertices, int extraEdges) {
-        if(numberOfDigraphs < 0) {
+        if (numberOfDigraphs < 0) {
             throw new IllegalArgumentException("Number of digraphs cannot be negative");
         }
 
@@ -41,7 +41,7 @@ public class Exercise49_RandomGridDigraph {
 
     public Exercise38_EuclideanDigraphs.EuclideanDigraph randomGridDigraph(int vertices, int extraEdges) {
 
-        if(Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
+        if (Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
             throw new IllegalArgumentException("Vertex number must have an integer square root");
         }
 
@@ -79,7 +79,7 @@ public class Exercise49_RandomGridDigraph {
         vertices = shrinkResult[2];
 
         // Update vertex IDs in the grid if any shrink occurred
-        if(shrinkTimes > 0) {
+        if (shrinkTimes > 0) {
             updateVerticesIds(vertexNumberSqrt, allVertices, verticesGrid);
         }
 
@@ -119,10 +119,10 @@ public class Exercise49_RandomGridDigraph {
                     allVertices[randomVertexId2].coordinates.getYCoordinate());
 
             boolean shouldConnect = 1 - StdRandom.uniform() >= distance;
-            if(shouldConnect) {
+            if (shouldConnect) {
                 // Assign random direction to the edge
                 int randomDirection = StdRandom.uniform(2);
-                if(randomDirection == 0) {
+                if (randomDirection == 0) {
                     extraEdgesList.add(new Edge(randomVertexId1, randomVertexId2));
                 } else {
                     extraEdgesList.add(new Edge(randomVertexId2, randomVertexId1));
@@ -157,7 +157,7 @@ public class Exercise49_RandomGridDigraph {
 
             // We are assuming that the "about 2V" in the exercise description is within 20% of 2V.
             // If R is too large, we shrink the grid to decrease the number of vertices and edges.
-            if(totalEdges > 1.2 * (2 * vertices)) {
+            if (totalEdges > 1.2 * (2 * vertices)) {
                 vertexNumberSqrt--;
                 vertices = vertexNumberSqrt * vertexNumberSqrt;
                 shrinkTimes++;
@@ -182,7 +182,7 @@ public class Exercise49_RandomGridDigraph {
 
                 List<Edge> extraEdgesToRemoveAfterShrinking = new ArrayList<>();
                 for(Edge extraEdge : extraEdgesList) {
-                    if(removedVertices.contains(extraEdge.tailVertex) || removedVertices.contains(extraEdge.headVertex)) {
+                    if (removedVertices.contains(extraEdge.tailVertex) || removedVertices.contains(extraEdge.headVertex)) {
                         extraEdgesToRemoveAfterShrinking.add(extraEdge);
                     }
                 }
@@ -193,7 +193,7 @@ public class Exercise49_RandomGridDigraph {
             }
 
             // The smallest grid we can have is a 2x2 grid, so if we reach this grid dimensions we break
-            if(vertexNumberSqrt == 2) {
+            if (vertexNumberSqrt == 2) {
                 shouldCheckIfNeedsToShrink = false;
             }
         }
@@ -228,14 +228,14 @@ public class Exercise49_RandomGridDigraph {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
-                    if(isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
+                    if (isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
                         int vertexId1 = getVertexId(row, column, vertexNumberSqrt);
                         int vertexId2 = getVertexId(neighborRow, neighborColumn, vertexNumberSqrt);
 
                         //Used to avoid connecting vertices more than once
-                        if(vertexId1 < vertexId2) {
+                        if (vertexId1 < vertexId2) {
                             int randomDirection = StdRandom.uniform(2);
-                            if(randomDirection == 0) {
+                            if (randomDirection == 0) {
                                 randomEuclideanGridDigraph.addEdge(vertexId1, vertexId2);
                             } else {
                                 randomEuclideanGridDigraph.addEdge(vertexId2, vertexId1);

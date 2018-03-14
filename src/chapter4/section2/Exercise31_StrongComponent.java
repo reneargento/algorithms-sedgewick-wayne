@@ -19,7 +19,7 @@ public class Exercise31_StrongComponent {
 
         // For every vertex that is not yet in a strong component, compute its strong component
         for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            if(verticesAlreadyInAnotherSCC.contains(vertex)) {
+            if (verticesAlreadyInAnotherSCC.contains(vertex)) {
                 continue;
             }
 
@@ -46,7 +46,7 @@ public class Exercise31_StrongComponent {
 
         // 2- Find vertices that can reach the source vertex
         for(int vertexReachableFromSource : verticesReachableFromSource) {
-            if(vertexReachableFromSource == sourceVertex) {
+            if (vertexReachableFromSource == sourceVertex) {
                 continue;
             }
 
@@ -55,7 +55,7 @@ public class Exercise31_StrongComponent {
                     strongComponent, verticesAlreadyInAnotherSCC, verticesThatCannotReachSource);
 
             // 3- Vertices in the intersection of the two sets are in the strong component
-            if(canReachStrongComponent) {
+            if (canReachStrongComponent) {
                 strongComponent.add(vertexReachableFromSource);
             } else {
                 verticesThatCannotReachSource.addAll(visited);
@@ -69,7 +69,7 @@ public class Exercise31_StrongComponent {
         verticesReached.add(vertex);
 
         for(int neighbor : digraph.adjacent(vertex)) {
-            if(!verticesReached.contains(neighbor)) {
+            if (!verticesReached.contains(neighbor)) {
                 dfsFromSource(digraph, verticesReached, neighbor);
             }
         }
@@ -78,19 +78,19 @@ public class Exercise31_StrongComponent {
     private boolean dfsToReachStrongComponent(Digraph digraph, Set<Integer> visited, int vertex,
                                            Set<Integer> currentStrongComponent, Set<Integer> verticesAlreadyInAnotherSCC,
                                               Set<Integer> verticesThatCannotReachSource) {
-        if(currentStrongComponent.contains(vertex)) {
+        if (currentStrongComponent.contains(vertex)) {
             return true;
         }
 
         visited.add(vertex);
 
         for(int neighbor : digraph.adjacent(vertex)) {
-            if(!visited.contains(neighbor)
+            if (!visited.contains(neighbor)
                     && !verticesAlreadyInAnotherSCC.contains(neighbor)
                     && !verticesThatCannotReachSource.contains(neighbor)) {
                 boolean reachable = dfsToReachStrongComponent(digraph, visited, neighbor,
                         currentStrongComponent, verticesAlreadyInAnotherSCC, verticesThatCannotReachSource);
-                if(reachable) {
+                if (reachable) {
                     return true;
                 }
             }

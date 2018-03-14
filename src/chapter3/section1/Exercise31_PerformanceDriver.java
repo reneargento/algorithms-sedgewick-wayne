@@ -54,7 +54,7 @@ public class Exercise31_PerformanceDriver {
                 //Each key is hit an average of ten times and there is about the same number of misses
                 for(int search = 0; search < 20; search++) {
                     int randomSearchChoice = StdRandom.uniform(0, 2);
-                    if(randomSearchChoice == 0) {
+                    if (randomSearchChoice == 0) {
                         binarySearchSymbolTable.get(SEARCH_MISS_KEY);
                     } else {
                         binarySearchSymbolTable.get(key);

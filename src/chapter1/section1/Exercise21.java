@@ -27,7 +27,7 @@ public class Exercise21 {
 		for (int i = 0; i < splittedValues.length; i++) {
 			if (i % 3 != 0) {
 				StdOut.printf("%8s",splittedValues[i]);
-			} else{
+			} else {
 				StdOut.printf("%7s",splittedValues[i]);
 			}
 			

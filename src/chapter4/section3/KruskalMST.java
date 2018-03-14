@@ -29,7 +29,7 @@ public class KruskalMST {
             int vertex2 = edge.other(vertex1);
 
             // Ignore ineligible edges
-            if(unionFind.connected(vertex1, vertex2)) {
+            if (unionFind.connected(vertex1, vertex2)) {
                 continue;
             }
 

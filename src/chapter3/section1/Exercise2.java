@@ -33,19 +33,19 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
             for(int i = 0; i < size; i++) {
-                if(keys[i].equals(key)) {
+                if (keys[i].equals(key)) {
                     values[i] = value;
                     return;
                 }
             }
 
-            if(size == keys.length) {
+            if (size == keys.length) {
                 resize(keys.length * 2);
             }
 
@@ -60,7 +60,7 @@ public class Exercise2 {
             }
 
             for(int i = 0; i < size; i++) {
-                if(keys[i].equals(key)) {
+                if (keys[i].equals(key)) {
                     return values[i];
                 }
             }
@@ -87,14 +87,14 @@ public class Exercise2 {
                 }
             }
 
-            if(size > 1 && size == keys.length / 4) {
+            if (size > 1 && size == keys.length / 4) {
                 resize(keys.length / 2);
             }
         }
 
         public boolean contains(Key key) {
             for(int i = 0; i < size; i++) {
-                if(keys[i].equals(key)) {
+                if (keys[i].equals(key)) {
                     return true;
                 }
             }

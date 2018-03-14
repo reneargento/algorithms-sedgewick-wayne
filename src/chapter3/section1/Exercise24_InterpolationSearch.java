@@ -47,12 +47,12 @@ public class Exercise24_InterpolationSearch {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
             int rank = rank(key);
-            if(rank < size && keys[rank].compareTo(key) == 0) {
+            if (rank < size && keys[rank].compareTo(key) == 0) {
                 return values[rank];
             } else {
                 return null;
@@ -69,12 +69,12 @@ public class Exercise24_InterpolationSearch {
 
             while (low <= high) {
 
-                if(keys[low] > key) {
+                if (keys[low] > key) {
                     return low;
                 }
 
                 int middle;
-                if(keys[high] - keys[low] == 0) {
+                if (keys[high] - keys[low] == 0) {
                     //Low and high have the same value - avoid division by zero
                     middle = low;
                 } else {
@@ -82,12 +82,12 @@ public class Exercise24_InterpolationSearch {
                     middle = low + ((key - keys[low]) * (high - low) / (keys[high] - keys[low]));
                 }
 
-                if(middle > high) {
+                if (middle > high) {
                     middle = high;
                 }
 
                 int comparison = key.compareTo(keys[middle]);
-                if(comparison < 0) {
+                if (comparison < 0) {
                     high = middle - 1;
                 } else if (comparison > 0) {
                     low = middle + 1;
@@ -104,19 +104,19 @@ public class Exercise24_InterpolationSearch {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
             int rank = rank(key);
 
-            if(rank < size && keys[rank].compareTo(key) == 0) {
+            if (rank < size && keys[rank].compareTo(key) == 0) {
                 values[rank] = value;
                 return;
             }
 
-            if(size == keys.length) {
+            if (size == keys.length) {
                 resize(keys.length * 2);
             }
 
@@ -141,7 +141,7 @@ public class Exercise24_InterpolationSearch {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -155,13 +155,13 @@ public class Exercise24_InterpolationSearch {
             values[size - 1] = null;
             size--;
 
-            if(size > 1 && size == keys.length / 4) {
+            if (size > 1 && size == keys.length / 4) {
                 resize(keys.length / 2);
             }
         }
 
         public Integer min() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -169,7 +169,7 @@ public class Exercise24_InterpolationSearch {
         }
 
         public Integer max() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -177,7 +177,7 @@ public class Exercise24_InterpolationSearch {
         }
 
         public Integer select(int k) {
-            if(isEmpty() || k >= size) {
+            if (isEmpty() || k >= size) {
                 throw new IllegalArgumentException("Invalid argument: " + k);
             }
 
@@ -187,7 +187,7 @@ public class Exercise24_InterpolationSearch {
         public Integer ceiling(Integer key) {
             int rank = rank(key);
 
-            if(rank == size) {
+            if (rank == size) {
                 return null;
             }
 
@@ -195,13 +195,13 @@ public class Exercise24_InterpolationSearch {
         }
 
         public Integer floor(Integer key) {
-            if(contains(key)) {
+            if (contains(key)) {
                 return key;
             }
 
             int rank = rank(key);
 
-            if(rank == 0) {
+            if (rank == 0) {
                 return null;
             }
 
@@ -229,9 +229,9 @@ public class Exercise24_InterpolationSearch {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(high.compareTo(low) < 0) {
+            if (high.compareTo(low) < 0) {
                 return 0;
-            } else if(contains(high)) {
+            } else if (contains(high)) {
                 return rank(high) - rank(low) + 1;
             } else {
                 return rank(high) - rank(low);
@@ -249,7 +249,7 @@ public class Exercise24_InterpolationSearch {
                 queue.enqueue(keys[i]);
             }
 
-            if(contains(high)) {
+            if (contains(high)) {
                 queue.enqueue(keys[rank(high)]);
             }
 
@@ -284,11 +284,11 @@ public class Exercise24_InterpolationSearch {
 
         for(int value : values) {
 
-            if(String.valueOf(value).length() < minLength) {
+            if (String.valueOf(value).length() < minLength) {
                 continue;
             }
 
-            if(!binarySearchSymbolTable.contains(value)) {
+            if (!binarySearchSymbolTable.contains(value)) {
                 binarySearchSymbolTable.put(value, 1);
             } else {
                 binarySearchSymbolTable.put(value, binarySearchSymbolTable.get(value) + 1);
@@ -299,7 +299,7 @@ public class Exercise24_InterpolationSearch {
         binarySearchSymbolTable.put(max, 0);
 
         for(int value : binarySearchSymbolTable.keys()) {
-            if(binarySearchSymbolTable.get(value) > binarySearchSymbolTable.get(max)) {
+            if (binarySearchSymbolTable.get(value) > binarySearchSymbolTable.get(max)) {
                 max = value;
             }
         }

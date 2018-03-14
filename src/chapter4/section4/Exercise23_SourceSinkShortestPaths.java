@@ -38,7 +38,7 @@ public class Exercise23_SourceSinkShortestPaths {
                 int vertexToRelax = priorityQueue.deleteMin();
                 relax(edgeWeightedDigraph, vertexToRelax);
 
-                if(vertexToRelax == target) {
+                if (vertexToRelax == target) {
                     break;
                 }
             }
@@ -48,11 +48,11 @@ public class Exercise23_SourceSinkShortestPaths {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(distTo[neighbor] > distTo[vertex] + edge.weight()) {
+                if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
                     distTo[neighbor] = distTo[vertex] + edge.weight();
                     edgeTo[neighbor] = edge;
 
-                    if(priorityQueue.contains(neighbor)) {
+                    if (priorityQueue.contains(neighbor)) {
                         priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                     } else {
                         priorityQueue.insert(neighbor, distTo[neighbor]);
@@ -73,7 +73,7 @@ public class Exercise23_SourceSinkShortestPaths {
 
         @Override
         public Iterable<DirectedEdge> pathToTarget() {
-            if(!hasPathToTarget()) {
+            if (!hasPathToTarget()) {
                 return null;
             }
 

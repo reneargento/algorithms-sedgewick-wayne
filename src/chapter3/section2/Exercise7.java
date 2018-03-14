@@ -39,7 +39,7 @@ public class Exercise7 {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -47,7 +47,7 @@ public class Exercise7 {
         }
 
         public double avgComparesRecursive() {
-            if(root == null) {
+            if (root == null) {
                 return 0;
             }
 
@@ -57,7 +57,7 @@ public class Exercise7 {
         }
 
         private int avgComparesRecursive(Node node, int numberOfCompares) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -70,7 +70,7 @@ public class Exercise7 {
         }
 
         public double avgComparesConstant() {
-            if(root == null) {
+            if (root == null) {
                 return 0;
             }
 
@@ -78,7 +78,7 @@ public class Exercise7 {
         }
 
         private int totalNumberOfComparesRequired(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -90,14 +90,14 @@ public class Exercise7 {
         }
 
         private Value get(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return get(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return get(node.right, key);
             } else {
                 return node.value;
@@ -109,15 +109,15 @@ public class Exercise7 {
         }
 
         private Node put(Node node, Key key, Value value, int numberOfComparesRequiredToReachNode) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value, 1, numberOfComparesRequiredToReachNode);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value, numberOfComparesRequiredToReachNode + 1);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value, numberOfComparesRequiredToReachNode + 1);
             } else {
                 node.value = value;
@@ -132,7 +132,7 @@ public class Exercise7 {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -140,7 +140,7 @@ public class Exercise7 {
         }
 
         private Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node;
             }
 
@@ -148,7 +148,7 @@ public class Exercise7 {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -156,7 +156,7 @@ public class Exercise7 {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 return node;
             }
 
@@ -165,7 +165,7 @@ public class Exercise7 {
 
         public Key floor(Key key) {
             Node node = floor(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -173,19 +173,19 @@ public class Exercise7 {
         }
 
         private Node floor(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 return floor(node.left, key);
             } else {
                 Node rightNode = floor(node.right, key);
-                if(rightNode != null) {
+                if (rightNode != null) {
                     return rightNode;
                 } else {
                     return node;
@@ -195,7 +195,7 @@ public class Exercise7 {
 
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -203,19 +203,19 @@ public class Exercise7 {
         }
 
         private Node ceiling(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return ceiling(node.right, key);
             } else {
                 Node leftNode = ceiling(node.left, key);
-                if(leftNode != null) {
+                if (leftNode != null) {
                     return leftNode;
                 } else {
                     return node;
@@ -224,7 +224,7 @@ public class Exercise7 {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -234,7 +234,7 @@ public class Exercise7 {
         private Node select(Node node, int index) {
             int leftSubtreeSize = size(node.left);
 
-            if(leftSubtreeSize == index) {
+            if (leftSubtreeSize == index) {
                 return node;
             } else if (leftSubtreeSize > index) {
                 return select(node.left, index);
@@ -248,15 +248,15 @@ public class Exercise7 {
         }
 
         private int rank(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
             //Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return rank(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return size(node.left) + 1 + rank(node.right, key);
             } else {
                 return size(node.left);
@@ -268,11 +268,11 @@ public class Exercise7 {
         }
 
         private Node deleteMin(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.left == null) {
+            if (node.left == null) {
                 return node.right;
             }
 
@@ -291,11 +291,11 @@ public class Exercise7 {
         }
 
         private Node deleteMax(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 return node.left;
             }
 
@@ -314,17 +314,17 @@ public class Exercise7 {
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = delete(node.left, key);
-            } else if(compare > 0) {
+            } else if  (compare > 0) {
                 node.right = delete(node.right, key);
             } else {
-                if(node.left == null) {
+                if (node.left == null) {
                     return node.right;
                 } else if (node.right == null) {
                     return node.left;
@@ -355,22 +355,22 @@ public class Exercise7 {
         }
 
         private void keys(Node node, Queue<Key> queue, Key low, Key high) {
-            if(node == null) {
+            if (node == null) {
                 return;
             }
 
             int compareLow = low.compareTo(node.key);
             int compareHigh = high.compareTo(node.key);
 
-            if(compareLow < 0) {
+            if (compareLow < 0) {
                 keys(node.left, queue, low, high);
             }
 
-            if(compareLow <= 0 && compareHigh >= 0) {
+            if (compareLow <= 0 && compareHigh >= 0) {
                 queue.enqueue(node.key);
             }
 
-            if(compareHigh > 0) {
+            if (compareHigh > 0) {
                 keys(node.right, queue, low, high);
             }
         }

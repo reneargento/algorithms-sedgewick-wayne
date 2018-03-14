@@ -65,7 +65,7 @@ public class Exercise37_Hybrid {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -74,7 +74,7 @@ public class Exercise37_Hybrid {
             int currentSize = symbolTable[hashIndex].size();
             symbolTable[hashIndex].put(key, value);
 
-            if(currentSize < symbolTable[hashIndex].size()) {
+            if (currentSize < symbolTable[hashIndex].size()) {
                 keysSize++;
             }
         }
@@ -84,7 +84,7 @@ public class Exercise37_Hybrid {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 

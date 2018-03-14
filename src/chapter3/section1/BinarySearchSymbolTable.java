@@ -207,7 +207,7 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> impleme
 
         if (high.compareTo(low) < 0) {
             return 0;
-        } else if(contains(high)) {
+        } else if (contains(high)) {
             return rank(high) - rank(low) + 1;
         } else {
             return rank(high) - rank(low);

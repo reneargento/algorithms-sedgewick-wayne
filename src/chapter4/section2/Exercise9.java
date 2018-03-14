@@ -17,7 +17,7 @@ public class Exercise9 {
         public boolean isTopologicalOrder(Digraph digraph, List<Integer> topologicalOrder) {
 
             DirectedCycle directedCycle = new DirectedCycle(digraph);
-            if(directedCycle.hasCycle()) {
+            if (directedCycle.hasCycle()) {
                 throw new IllegalArgumentException("Digraph is not a DAG");
             }
 
@@ -25,7 +25,7 @@ public class Exercise9 {
             for(int vertex : topologicalOrder) {
                 visitedVertices.add(vertex);
 
-                if(!dfs(vertex, digraph, visitedVertices)) {
+                if (!dfs(vertex, digraph, visitedVertices)) {
                     return false;
                 }
             }
@@ -38,12 +38,12 @@ public class Exercise9 {
         private boolean dfs(int vertex, Digraph digraph, HashSet<Integer> visitedVertices) {
 
             for(int neighbor : digraph.adjacent(vertex)) {
-                if(visitedVertices.contains(neighbor)) {
+                if (visitedVertices.contains(neighbor)) {
                     return false;
                 }
 
                 boolean isValid = dfs(neighbor, digraph, visitedVertices);
-                if(!isValid) {
+                if (!isValid) {
                     return false;
                 }
             }

@@ -48,7 +48,7 @@ public class LinearProbingHashTable<Key, Value> {
     protected int hash(Key key) {
         int hash = key.hashCode() & 0x7fffffff;
 
-        if(lgM < 26) {
+        if (lgM < 26) {
             hash = hash % PRIMES[lgM + 5];
         }
 
@@ -63,7 +63,7 @@ public class LinearProbingHashTable<Key, Value> {
         LinearProbingHashTable<Key, Value> tempHashTable = new LinearProbingHashTable<>(newSize);
 
         for(int i = 0; i < size; i++) {
-            if(keys[i] != null) {
+            if (keys[i] != null) {
                 tempHashTable.put(keys[i], values[i]);
             }
         }
@@ -87,7 +87,7 @@ public class LinearProbingHashTable<Key, Value> {
         }
 
         for(int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
-            if(keys[tableIndex].equals(key)) {
+            if (keys[tableIndex].equals(key)) {
                 return values[tableIndex];
             }
         }
@@ -100,19 +100,19 @@ public class LinearProbingHashTable<Key, Value> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        if(value == null) {
+        if (value == null) {
             delete(key);
             return;
         }
 
-        if(keysSize >= size / (double) 2) {
+        if (keysSize >= size / (double) 2) {
             resize(size * 2);
             lgM++;
         }
 
         int tableIndex;
         for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
-            if(keys[tableIndex].equals(key)) {
+            if (keys[tableIndex].equals(key)) {
                 values[tableIndex] = value;
                 return;
             }
@@ -128,7 +128,7 @@ public class LinearProbingHashTable<Key, Value> {
             throw new IllegalArgumentException("Argument to delete() cannot be null");
         }
 
-        if(!contains(key)) {
+        if (!contains(key)) {
             return;
         }
 
@@ -155,7 +155,7 @@ public class LinearProbingHashTable<Key, Value> {
             tableIndex = (tableIndex + 1) % size;
         }
 
-        if(keysSize > 1 && keysSize <= size / (double) 8) {
+        if (keysSize > 1 && keysSize <= size / (double) 8) {
             resize(size / 2);
             lgM--;
         }
@@ -165,12 +165,12 @@ public class LinearProbingHashTable<Key, Value> {
         Queue<Key> keySet = new Queue<>();
 
         for(Object key : keys) {
-            if(key != null) {
+            if (key != null) {
                 keySet.enqueue((Key) key);
             }
         }
 
-        if(!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
+        if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
             Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
             for(int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keySet.dequeue();

@@ -36,7 +36,7 @@ public class Exercise31_TreeDrawing {
         }
 
         protected int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -44,7 +44,7 @@ public class Exercise31_TreeDrawing {
         }
 
         private boolean isRed(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
@@ -52,7 +52,7 @@ public class Exercise31_TreeDrawing {
         }
 
         private Node rotateLeft(Node node) {
-            if(node == null || node.right == null) {
+            if (node == null || node.right == null) {
                 return node;
             }
 
@@ -71,7 +71,7 @@ public class Exercise31_TreeDrawing {
         }
 
         private Node rotateRight(Node node) {
-            if(node == null || node.left == null) {
+            if (node == null || node.left == null) {
                 return node;
             }
 
@@ -90,7 +90,7 @@ public class Exercise31_TreeDrawing {
         }
 
         private void flipColors(Node node) {
-            if(node == null || node.left == null || node.right == null) {
+            if (node == null || node.left == null || node.right == null) {
                 return;
             }
 
@@ -100,7 +100,7 @@ public class Exercise31_TreeDrawing {
         }
 
         public void put(Key key, Value value) {
-            if(key == null) {
+            if (key == null) {
                 return;
             }
 
@@ -109,27 +109,27 @@ public class Exercise31_TreeDrawing {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value, 1, RED);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
             }
 
-            if(isRed(node.right) && !isRed(node.left)) {
+            if (isRed(node.right) && !isRed(node.left)) {
                 node = rotateLeft(node);
             }
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -165,7 +165,7 @@ public class Exercise31_TreeDrawing {
             drawLines(node.left);
 
             if (node.left != null) {
-                if(node.left.color == RED) {
+                if (node.left.color == RED) {
                     setPenToWriteRedLine();
                 }
 
@@ -173,7 +173,7 @@ public class Exercise31_TreeDrawing {
                 resetPen();
             }
             if (node.right != null) {
-                if(node.right.color == RED) {
+                if (node.right.color == RED) {
                     setPenToWriteRedLine();
                 }
 

@@ -71,7 +71,7 @@ public class Exercise2 {
         private int hash(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -127,7 +127,7 @@ public class Exercise2 {
             Node node = buckets.get(hash(key));
 
             while (node != null) {
-                if(node.key.equals(key)) {
+                if (node.key.equals(key)) {
                     return node.value;
                 }
                 node = node.next;
@@ -141,7 +141,7 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -152,7 +152,7 @@ public class Exercise2 {
 
             //Update key value if it already exists
             while (node != null) {
-                if(node.key.equals(key)) {
+                if (node.key.equals(key)) {
                     node.value = value;
                     return;
                 }
@@ -165,7 +165,7 @@ public class Exercise2 {
             Node newNode = new Node(key, value, node);
             buckets.set(bucketIndex, newNode);
 
-            if(getLoadFactor() > averageListSize) {
+            if (getLoadFactor() > averageListSize) {
                 resize(numberOfBuckets * 2);
                 lgM++;
             }
@@ -176,7 +176,7 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -185,11 +185,11 @@ public class Exercise2 {
 
             keysSize--;
 
-            if(node.key.equals(key)) {
+            if (node.key.equals(key)) {
                 buckets.set(bucketIndex, node.next);
             } else {
                 while (node != null) {
-                    if(node.next.key.equals(key)) {
+                    if (node.next.key.equals(key)) {
                         node.next = node.next.next;
                         break;
                     }
@@ -198,7 +198,7 @@ public class Exercise2 {
                 }
             }
 
-            if(numberOfBuckets > 1 && getLoadFactor() <= averageListSize / (double) 4) {
+            if (numberOfBuckets > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(numberOfBuckets / 2);
                 lgM--;
             }
@@ -208,7 +208,7 @@ public class Exercise2 {
             Queue<Key> keys = new Queue<>();
 
             for(int i = 0; i < buckets.size(); i++) {
-                if(buckets.get(i) != null) {
+                if (buckets.get(i) != null) {
                     Node node = buckets.get(i);
 
                     while (node != null) {
@@ -218,7 +218,7 @@ public class Exercise2 {
                 }
             }
 
-            if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
                 for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();

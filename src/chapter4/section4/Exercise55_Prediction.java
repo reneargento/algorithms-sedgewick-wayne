@@ -83,7 +83,7 @@ public class Exercise55_Prediction {
             printResults(vertices, edges, averageTimeSpent);
 
             // Stop when we get close to the target time
-            if(averageTimeSpent >= 9) {
+            if (averageTimeSpent >= 9) {
                 targetTimeReached = true;
             }
         }

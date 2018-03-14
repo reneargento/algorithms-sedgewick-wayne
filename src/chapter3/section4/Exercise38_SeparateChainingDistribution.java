@@ -47,7 +47,7 @@ public class Exercise38_SeparateChainingDistribution {
 
             public Value get(Key key) {
                 for(Node node = first; node != null; node = node.next) {
-                    if(key.equals(node.key)) {
+                    if (key.equals(node.key)) {
                         return node.value;
                     }
                 }
@@ -61,7 +61,7 @@ public class Exercise38_SeparateChainingDistribution {
                 for(Node node = first; node != null; node = node.next) {
                     costOfPutCompares++;
 
-                    if(key.equals(node.key)) {
+                    if (key.equals(node.key)) {
                         node.value = value;
                         return;
                     }
@@ -72,14 +72,14 @@ public class Exercise38_SeparateChainingDistribution {
             }
 
             public void delete(Key key) {
-                if(first.key.equals(key)) {
+                if (first.key.equals(key)) {
                     first = first.next;
                     size--;
                     return;
                 }
 
                 for(Node node = first; node != null; node = node.next) {
-                    if(node.next != null && node.next.key.equals(key)) {
+                    if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
                         return;
@@ -149,7 +149,7 @@ public class Exercise38_SeparateChainingDistribution {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -158,7 +158,7 @@ public class Exercise38_SeparateChainingDistribution {
             int currentSize = symbolTable[hashIndex].size;
             symbolTable[hashIndex].put(key, value);
 
-            if(currentSize < symbolTable[hashIndex].size) {
+            if (currentSize < symbolTable[hashIndex].size) {
                 keysSize++;
             }
         }
@@ -168,7 +168,7 @@ public class Exercise38_SeparateChainingDistribution {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -185,7 +185,7 @@ public class Exercise38_SeparateChainingDistribution {
                 }
             }
 
-            if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
                 for(int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
@@ -230,7 +230,7 @@ public class Exercise38_SeparateChainingDistribution {
 
             totalCostOfPutCompares += separateChainingHashTableFixedSizeCost.costOfPutCompares;
 
-            if(operation % 1000 == 0) {
+            if (operation % 1000 == 0) {
                 double averageCostOfInsert = (totalCostOfPutCompares / (double) 1000);
                 double expectedNumberOfKeysInList =
                         separateChainingHashTableFixedSizeCost.keysSize / (double) separateChainingHashTableFixedSizeCost.size;

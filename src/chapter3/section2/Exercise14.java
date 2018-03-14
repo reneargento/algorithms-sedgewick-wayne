@@ -14,14 +14,14 @@ public class Exercise14 {
     private class BinarySearchTree<Key extends Comparable<Key>, Value> extends chapter3.section2.BinarySearchTree<Key, Value>{
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
             Node current = root;
 
             while (current != null) {
-                if(current.left == null) {
+                if (current.left == null) {
                     return current.key;
                 } else {
                     current = current.left;
@@ -35,7 +35,7 @@ public class Exercise14 {
         public Node min(Node current) {
 
             while (current != null) {
-                if(current.left == null) {
+                if (current.left == null) {
                     return current;
                 } else {
                     current = current.left;
@@ -46,14 +46,14 @@ public class Exercise14 {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
             Node current = root;
 
             while (current != null) {
-                if(current.right == null) {
+                if (current.right == null) {
                     return current.key;
                 } else {
                     current = current.right;
@@ -71,9 +71,9 @@ public class Exercise14 {
             while (current != null) {
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     currentFloor = current.key;
                     current = current.right;
                 } else {
@@ -93,10 +93,10 @@ public class Exercise14 {
             while (current != null) {
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     currentCeiling = current.key;
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     current = current.right;
                 } else {
                     currentCeiling = current.key;
@@ -108,7 +108,7 @@ public class Exercise14 {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -117,7 +117,7 @@ public class Exercise14 {
             while (current != null) {
                 int leftSubtreeSize = size(current.left);
 
-                if(leftSubtreeSize == index) {
+                if (leftSubtreeSize == index) {
                     return current.key;
                 } else if (leftSubtreeSize > index) {
                     current = current.left;
@@ -139,9 +139,9 @@ public class Exercise14 {
             while (current != null) {
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     rank += size(current.left) + 1;
                     current = current.right;
                 } else {
@@ -161,7 +161,7 @@ public class Exercise14 {
             Node current = root;
 
             while (current != null || !stack.isEmpty()) {
-                if(current != null) {
+                if (current != null) {
                     stack.push(current);
                     current = current.left;
                 } else {

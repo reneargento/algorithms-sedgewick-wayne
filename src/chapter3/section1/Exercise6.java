@@ -67,11 +67,11 @@ public class Exercise6 {
         BinarySearchSymbolTable<String, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
         for(String word : words) {
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
-            if(!binarySearchSymbolTable.contains(word)) {
+            if (!binarySearchSymbolTable.contains(word)) {
                 binarySearchSymbolTable.put(word, 1);
             } else {
                 binarySearchSymbolTable.put(word, binarySearchSymbolTable.get(word) + 1);
@@ -86,7 +86,7 @@ public class Exercise6 {
 
         for(String word : binarySearchSymbolTable.keys()) {
             callsToGet += 2;
-            if(binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
+            if (binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
                 max = word;
             }
         }

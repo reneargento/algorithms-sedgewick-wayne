@@ -25,7 +25,7 @@ public class Exercise16 {
         }
 
         public double get(int key) {
-            if(!hashTable.contains(key)) {
+            if (!hashTable.contains(key)) {
                 return 0;
             } else {
                 return hashTable.get(key);
@@ -40,12 +40,12 @@ public class Exercise16 {
 
             int maxKey = 0;
             for(Integer key : hashTable.keys()) {
-                if(key > maxKey) {
+                if (key > maxKey) {
                     maxKey = key;
                 }
             }
             for(Integer key : sparseVectorToSum.hashTable.keys()) {
-                if(key > maxKey) {
+                if (key > maxKey) {
                     maxKey = key;
                 }
             }
@@ -53,7 +53,7 @@ public class Exercise16 {
             for(int key = 0; key <= maxKey; key++) {
                 double sum = get(key) + sparseVectorToSum.get(key);
 
-                if(sum != 0) {
+                if (sum != 0) {
                     put(key, sum);
                 } else {
                     delete(key);
@@ -100,7 +100,7 @@ public class Exercise16 {
         SparseVectorSum sparseVectorSumResult = sparseVector.sum(sparseVectorToSum);
         int maxKey = 0;
         for(Integer key : sparseVectorSumResult.hashTable.keys()) {
-            if(key > maxKey) {
+            if (key > maxKey) {
                 maxKey = key;
             }
         }
@@ -109,7 +109,7 @@ public class Exercise16 {
         for(int i = 0; i <= maxKey; i++) {
             StdOut.printf("%.4f", sparseVectorSumResult.get(i));
 
-            if(i != maxKey) {
+            if (i != maxKey) {
                 StdOut.print(" ");
             }
         }

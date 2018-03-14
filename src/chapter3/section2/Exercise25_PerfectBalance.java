@@ -25,7 +25,7 @@ public class Exercise25_PerfectBalance {
     }
 
     private void insertBalancedValues(int[] values, BinarySearchTree<Integer, Integer> binarySearchTree, int low, int high) {
-        if(low > high) {
+        if (low > high) {
             return;
         }
 

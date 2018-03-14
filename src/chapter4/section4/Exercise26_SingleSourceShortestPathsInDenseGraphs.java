@@ -37,7 +37,7 @@ public class Exercise26_SingleSourceShortestPathsInDenseGraphs {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(distTo[neighbor] > distTo[vertex] + edge.weight()) {
+                if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
                     distTo[neighbor] = distTo[vertex] + edge.weight();
                     edgeTo[neighbor] = edge;
                 }
@@ -47,7 +47,7 @@ public class Exercise26_SingleSourceShortestPathsInDenseGraphs {
             double minimumWeight = Double.POSITIVE_INFINITY;
 
             for(int vertexToCheck = 0; vertexToCheck < edgeWeightedDigraph.vertices(); vertexToCheck++) {
-                if(!visited[vertexToCheck] && distTo[vertexToCheck] < minimumWeight) {
+                if (!visited[vertexToCheck] && distTo[vertexToCheck] < minimumWeight) {
                     nextVertexToRelax = vertexToCheck;
                     minimumWeight = distTo[vertexToCheck];
                 }
@@ -65,7 +65,7 @@ public class Exercise26_SingleSourceShortestPathsInDenseGraphs {
         }
 
         public Iterable<DirectedEdge> pathTo(int vertex) {
-            if(!hasPathTo(vertex)) {
+            if (!hasPathTo(vertex)) {
                 return null;
             }
 

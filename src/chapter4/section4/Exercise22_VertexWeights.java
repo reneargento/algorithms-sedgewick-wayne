@@ -39,11 +39,11 @@ public class Exercise22_VertexWeights {
         }
 
         public void setVertex(WeightedVertex weightedVertex) {
-            if(weightedVertex == null) {
+            if (weightedVertex == null) {
                 throw new IllegalArgumentException("Weighted vertex cannot be null");
             }
 
-            if(weightedVertex.id < 0 || weightedVertex.id >= verticesCount) {
+            if (weightedVertex.id < 0 || weightedVertex.id >= verticesCount) {
                 throw new IllegalArgumentException("Invalid vertex id");
             }
 
@@ -106,7 +106,7 @@ public class Exercise22_VertexWeights {
         private int verticesCount;
 
         DijkstraVertexWeightedDigraph(VertexWeightedDigraph vertexWeightedDigraph, int source) {
-            if(vertexWeightedDigraph == null) {
+            if (vertexWeightedDigraph == null) {
                 throw new IllegalArgumentException("Vertex weighted digraph cannot be null");
             }
 

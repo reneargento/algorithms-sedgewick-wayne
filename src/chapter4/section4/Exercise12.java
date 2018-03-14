@@ -21,7 +21,7 @@ public class Exercise12 {
             visited = new boolean[edgeWeightedDigraph.vertices()];
 
             for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-                if(!visited[vertex]) {
+                if (!visited[vertex]) {
                     dfs(edgeWeightedDigraph, vertex);
                 }
             }
@@ -34,12 +34,12 @@ public class Exercise12 {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(hasCycle()) {
+                if (hasCycle()) {
                     return;
-                } else if(!visited[neighbor]) {
+                } else if (!visited[neighbor]) {
                     edgeTo[neighbor] = edge;
                     dfs(edgeWeightedDigraph, neighbor);
-                } else if(onStack[neighbor]) {
+                } else if (onStack[neighbor]) {
                     cycle = new Stack<>();
 
                     DirectedEdge edgeInCycle = edge;
@@ -73,7 +73,7 @@ public class Exercise12 {
         public Topological(EdgeWeightedDigraph edgeWeightedDigraph) {
             EdgeWeightedDirectedCycle cycleFinder = new EdgeWeightedDirectedCycle(edgeWeightedDigraph);
 
-            if(!cycleFinder.hasCycle()) {
+            if (!cycleFinder.hasCycle()) {
                 DepthFirstOrder depthFirstOrder = new DepthFirstOrder(edgeWeightedDigraph);
                 topologicalOrder = depthFirstOrder.reversePostOrder();
             }

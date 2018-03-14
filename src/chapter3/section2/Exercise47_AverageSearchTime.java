@@ -36,7 +36,7 @@ public class Exercise47_AverageSearchTime {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -48,15 +48,15 @@ public class Exercise47_AverageSearchTime {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value, 1);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
@@ -67,7 +67,7 @@ public class Exercise47_AverageSearchTime {
         }
 
         public int internalPathLength() {
-            if(root == null) {
+            if (root == null) {
                 return 0;
             }
 
@@ -81,11 +81,11 @@ public class Exercise47_AverageSearchTime {
                 Node current = queue.dequeue();
                 internalPathLength += current.depth;
 
-                if(current.left != null) {
+                if (current.left != null) {
                     current.left.depth = current.depth + 1;
                     queue.enqueue(current.left);
                 }
-                if(current.right != null) {
+                if (current.right != null) {
                     current.right.depth = current.depth + 1;
                     queue.enqueue(current.right);
                 }
@@ -95,7 +95,7 @@ public class Exercise47_AverageSearchTime {
         }
 
         public double averagePathLength() {
-            if(size() == 0) {
+            if (size() == 0) {
                 return 0;
             }
 
@@ -134,21 +134,21 @@ public class Exercise47_AverageSearchTime {
                 double averagePathLength = binarySearchTreeInternalPathLength.averagePathLength();
                 totalAvgPathLengths += averagePathLength;
 
-                if(size % 200 == 0) {
+                if (size % 200 == 0) {
                     visualAccumulator.drawDataValue(size, averagePathLength, StdDraw.GRAY);
                 }
             }
 
             double averageOfAveragesPathLength = totalAvgPathLengths / (double) numberOfTrials;
 
-            if(size % 200 == 0) {
+            if (size % 200 == 0) {
                 visualAccumulator.drawDataValue(size, averageOfAveragesPathLength, StdDraw.RED);
 
                 //Draw the expected average path length -> 1.39 lg N - 1.85
                 double expectedAveragePathLength = 1.39 * (Math.log(size) / Math.log(2)) - 1.85;
                 visualAccumulator.drawDataValue(size, expectedAveragePathLength, StdDraw.BLACK);
 
-                if(lastExpectedAveragePathLength != -1) {
+                if (lastExpectedAveragePathLength != -1) {
                     StdDraw.line(size - 200, lastExpectedAveragePathLength, size, expectedAveragePathLength);
                 }
                 lastExpectedAveragePathLength = expectedAveragePathLength;

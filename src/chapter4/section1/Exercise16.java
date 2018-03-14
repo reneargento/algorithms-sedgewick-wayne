@@ -19,7 +19,7 @@ public class Exercise16 {
 
             ConnectedComponentsRecursiveDFS connectedComponents = new ConnectedComponentsRecursiveDFS(graph);
 
-            if(connectedComponents.count() != 1) {
+            if (connectedComponents.count() != 1) {
                 throw new RuntimeException("Graph must be connected");
             }
 
@@ -36,17 +36,17 @@ public class Exercise16 {
                 BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, vertex);
 
                 for(int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
-                    if(otherVertex == vertex) {
+                    if (otherVertex == vertex) {
                         continue;
                     }
 
                     eccentricities[vertex] = Math.max(eccentricities[vertex], breadthFirstPaths.distTo(otherVertex));
                 }
 
-                if(eccentricities[vertex] > diameter) {
+                if (eccentricities[vertex] > diameter) {
                     diameter = eccentricities[vertex];
                 }
-                if(eccentricities[vertex] < radius) {
+                if (eccentricities[vertex] < radius) {
                     radius = eccentricities[vertex];
                     center = vertex;
                 }

@@ -14,7 +14,7 @@ public class Exercise8 {
             DijkstraSP dijkstraSP = new DijkstraSP(edgeWeightedDigraph, vertex);
 
             for(int vertex2 = 0; vertex2 < edgeWeightedDigraph.vertices(); vertex2++) {
-                if(dijkstraSP.distTo(vertex2) > diameter) {
+                if (dijkstraSP.distTo(vertex2) > diameter) {
                     diameter = dijkstraSP.distTo(vertex2);
                 }
             }

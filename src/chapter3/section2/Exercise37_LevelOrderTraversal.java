@@ -16,10 +16,10 @@ public class Exercise37_LevelOrderTraversal {
             BinarySearchTree.Node current = queue.dequeue();
             StdOut.print(current.key + " ");
 
-            if(current.left != null) {
+            if (current.left != null) {
                 queue.enqueue(current.left);
             }
-            if(current.right != null) {
+            if (current.right != null) {
                 queue.enqueue(current.right);
             }
         }

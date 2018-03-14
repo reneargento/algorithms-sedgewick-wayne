@@ -68,7 +68,7 @@ public class Exercise30_EuclideanWeightedGraphs {
             int vertexId1 = edge.either();
             int vertexId2 = edge.other(vertexId1);
 
-            if(allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
+            if (allVertices[vertexId1] == null || allVertices[vertexId2] == null) {
                 throw new IllegalArgumentException("Vertex id not found");
             }
 
@@ -90,7 +90,7 @@ public class Exercise30_EuclideanWeightedGraphs {
                     int otherVertexId = edge.other(vertexId);
                     Vertex otherVertex = allVertices[otherVertexId];
 
-                    if(otherVertexId >= vertexId) {
+                    if (otherVertexId >= vertexId) {
                         StdDraw.line(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
                                 otherVertex.xCoordinate, otherVertex.yCoordinate);
                     }
@@ -98,7 +98,7 @@ public class Exercise30_EuclideanWeightedGraphs {
             }
 
             for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                if(allVertices[vertexId] != null) {
+                if (allVertices[vertexId] != null) {
 
                     StdDraw.setPenColor(Color.WHITE);
                     StdDraw.filledCircle(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
@@ -126,7 +126,7 @@ public class Exercise30_EuclideanWeightedGraphs {
                 for(Edge edge : adjacent[vertex]) {
                     int otherVertex = edge.other(vertex);
 
-                    if(otherVertex > vertex) {
+                    if (otherVertex > vertex) {
                         edges.add(edge);
                     }
                 }

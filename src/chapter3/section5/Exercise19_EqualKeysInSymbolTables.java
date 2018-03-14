@@ -44,7 +44,7 @@ public class Exercise19_EqualKeysInSymbolTables {
 
             public Value get(Key key) {
                 for(Node node = first; node != null; node = node.next) {
-                    if(key.equals(node.key)) {
+                    if (key.equals(node.key)) {
                         return node.value;
                     }
                 }
@@ -56,7 +56,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 Queue<Value> values = new Queue<>();
 
                 for(Node node = first; node != null; node = node.next) {
-                    if(node.key.equals(key)) {
+                    if (node.key.equals(key)) {
                         values.enqueue(node.value);
                     }
                 }
@@ -70,14 +70,14 @@ public class Exercise19_EqualKeysInSymbolTables {
             }
 
             public void delete(Key key) {
-                if(first.key.equals(key)) {
+                if (first.key.equals(key)) {
                     first = first.next;
                     size--;
                     return;
                 }
 
                 for(Node node = first; node != null; node = node.next) {
-                    if(node.next != null && node.next.key.equals(key)) {
+                    if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
                         return;
@@ -147,7 +147,7 @@ public class Exercise19_EqualKeysInSymbolTables {
         private int hash(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -191,7 +191,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 throw new IllegalArgumentException("Argument to getAll() cannot be null");
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return new Queue<>();
             }
 
@@ -204,7 +204,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -213,7 +213,7 @@ public class Exercise19_EqualKeysInSymbolTables {
             symbolTable[hashIndex].put(key, value);
             keysSize++;
 
-            if(getLoadFactor() > averageListSize) {
+            if (getLoadFactor() > averageListSize) {
                 resize(size * 2);
                 lgM++;
             }
@@ -224,7 +224,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -233,7 +233,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 symbolTable[hashIndex].delete(key);
                 keysSize--;
 
-                if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
+                if (size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                     resize(size / 2);
                     lgM--;
                 }
@@ -291,12 +291,12 @@ public class Exercise19_EqualKeysInSymbolTables {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return null;
             }
 
             int rank = rankLast(key);
-            if(rank < size && keys[rank].compareTo(key) == 0) {
+            if (rank < size && keys[rank].compareTo(key) == 0) {
                 return values[rank];
             } else {
                 return null;
@@ -306,7 +306,7 @@ public class Exercise19_EqualKeysInSymbolTables {
         public Iterable<Value> getAll(Key key) {
             Queue<Value> values = new Queue<>();
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return values;
             }
 
@@ -317,7 +317,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 values.enqueue(this.values[index]);
             }
 
-            if(rankLast < size && keys[rankLast].equals(key)) {
+            if (rankLast < size && keys[rankLast].equals(key)) {
                 values.enqueue(this.values[rankLast]);
             }
 
@@ -338,7 +338,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 int middle = low + (high - low) / 2;
 
                 int comparison = key.compareTo(keys[middle]);
-                if(comparison < 0) {
+                if (comparison < 0) {
                     high = middle - 1;
                 } else if (comparison > 0) {
                     low = middle + 1;
@@ -348,7 +348,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 }
             }
 
-            if(rankFound != -1) {
+            if (rankFound != -1) {
                 return rankFound;
             } else {
                 return low;
@@ -369,7 +369,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 int middle = low + (high - low) / 2;
 
                 int comparison = key.compareTo(keys[middle]);
-                if(comparison < 0) {
+                if (comparison < 0) {
                     high = middle - 1;
                 } else if (comparison > 0) {
                     low = middle + 1;
@@ -379,7 +379,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 }
             }
 
-            if(rankFound != -1) {
+            if (rankFound != -1) {
                 return rankFound;
             } else {
                 return low;
@@ -396,12 +396,12 @@ public class Exercise19_EqualKeysInSymbolTables {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(size == keys.length) {
+            if (size == keys.length) {
                 resize(keys.length * 2);
             }
 
@@ -421,7 +421,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -436,14 +436,14 @@ public class Exercise19_EqualKeysInSymbolTables {
                 values[size - 1] = null;
                 size--;
 
-                if(size > 1 && size == keys.length / 4) {
+                if (size > 1 && size == keys.length / 4) {
                     resize(keys.length / 2);
                 }
             }
         }
 
         public Key min() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -451,7 +451,7 @@ public class Exercise19_EqualKeysInSymbolTables {
         }
 
         public Key max() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
@@ -459,7 +459,7 @@ public class Exercise19_EqualKeysInSymbolTables {
         }
 
         public Key select(int k) {
-            if(isEmpty() || k >= size) {
+            if (isEmpty() || k >= size) {
                 throw new IllegalArgumentException("Index " + k + " is higher than size");
             }
 
@@ -469,7 +469,7 @@ public class Exercise19_EqualKeysInSymbolTables {
         public Key ceiling(Key key) {
             int rank = rankLast(key);
 
-            if(rank == size) {
+            if (rank == size) {
                 return null;
             }
 
@@ -477,13 +477,13 @@ public class Exercise19_EqualKeysInSymbolTables {
         }
 
         public Key floor(Key key) {
-            if(contains(key)) {
+            if (contains(key)) {
                 return key;
             }
 
             int rank = rankLast(key);
 
-            if(rank == 0) {
+            if (rank == 0) {
                 return null;
             }
 
@@ -519,9 +519,9 @@ public class Exercise19_EqualKeysInSymbolTables {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(high.compareTo(low) < 0) {
+            if (high.compareTo(low) < 0) {
                 return 0;
-            } else if(contains(high)) {
+            } else if (contains(high)) {
                 return rankLast(high) - rankFirst(low) + 1;
             } else {
                 return rankLast(high) - rankFirst(low);
@@ -542,7 +542,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                 queue.enqueue(keys[i]);
             }
 
-            if(contains(high)) {
+            if (contains(high)) {
                 queue.enqueue(keys[rankLastHigh]);
             }
 

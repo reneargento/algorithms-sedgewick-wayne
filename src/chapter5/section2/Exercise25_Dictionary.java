@@ -47,7 +47,7 @@ public class Exercise25_Dictionary {
 
                 String query;
 
-                if(!isKeyHit) {
+                if (!isKeyHit) {
                     query = generateRandomKey();
                 } else {
                     int randomKeyIndex = StdRandom.uniform(keysArray.length);

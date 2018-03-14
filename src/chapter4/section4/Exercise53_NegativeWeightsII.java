@@ -54,7 +54,7 @@ public class Exercise53_NegativeWeightsII {
                 DirectedEdge newEdge;
 
                 int randomDirection = StdRandom.uniform(2);
-                if(randomDirection == 0) {
+                if (randomDirection == 0) {
                     newEdge = new DirectedEdge(vertexId1, vertexId2, updatedEdgeWeight);
                 } else {
                     newEdge = new DirectedEdge(vertexId2, vertexId1, updatedEdgeWeight);
@@ -72,7 +72,7 @@ public class Exercise53_NegativeWeightsII {
         public List<EdgeWeightedDigraphInterface> randomSparseEdgeWeightedDigraphsGenerator(int numberOfDigraphs,
                                                                                             boolean uniformWeightDistribution,
                                                                                             int percentageToNegate) {
-            if(numberOfDigraphs < 0) {
+            if (numberOfDigraphs < 0) {
                 throw new IllegalArgumentException("Number of digraphs cannot be negative");
             }
 
@@ -87,7 +87,7 @@ public class Exercise53_NegativeWeightsII {
 
                 EdgeWeightedDigraphInterface randomEdgeWeightedDigraph;
 
-                if(uniformWeightDistribution) {
+                if (uniformWeightDistribution) {
                     randomEdgeWeightedDigraph =
                             randomEdgeWeightedDigraphsGenerator.erdosRenyiDigraphUniformWeights(vertices, edges,
                                     percentageToNegate);
@@ -110,7 +110,7 @@ public class Exercise53_NegativeWeightsII {
         public List<EdgeWeightedDigraphInterface> generateRandomEuclideanEdgeWeightedDigraphs(int numberOfDigraphs,
                                                                                               int vertices, double radius,
                                                                                               int percentageToNegate) {
-            if(numberOfDigraphs < 0) {
+            if (numberOfDigraphs < 0) {
                 throw new IllegalArgumentException("Number of digraphs cannot be negative");
             }
 
@@ -173,13 +173,13 @@ public class Exercise53_NegativeWeightsII {
                             allVertices[vertexId2].coordinates.getXCoordinate(),
                             allVertices[vertexId2].coordinates.getYCoordinate());
 
-                    if(distance <= radius) {
+                    if (distance <= radius) {
                         DirectedEdge edge;
 
                         double updatedEdgeWeight = updatedEdgeWeights.get(updatedWeightsIndex++);
 
                         int randomDirection = StdRandom.uniform(2);
-                        if(randomDirection == 0) {
+                        if (randomDirection == 0) {
                             edge = new DirectedEdge(vertexId1, vertexId2, updatedEdgeWeight);
                         } else {
                             edge = new DirectedEdge(vertexId2, vertexId1, updatedEdgeWeight);
@@ -199,7 +199,7 @@ public class Exercise53_NegativeWeightsII {
 
         public List<EdgeWeightedDigraphInterface> generateRandomGridEdgeWeightedDigraphs(int numberOfDigraphs,
                                                                                          int vertices, int extraEdges, int percentageToNegate) {
-            if(numberOfDigraphs < 0) {
+            if (numberOfDigraphs < 0) {
                 throw new IllegalArgumentException("Number of digraphs cannot be negative");
             }
 
@@ -216,7 +216,7 @@ public class Exercise53_NegativeWeightsII {
 
         public EdgeWeightedDigraphInterface randomGridEdgeWeightedDigraph(int vertices, int extraEdges,
                                                                           int percentageToNegate) {
-            if(Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
+            if (Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
                 throw new IllegalArgumentException("Vertex number must have an integer square root");
             }
 
@@ -261,7 +261,7 @@ public class Exercise53_NegativeWeightsII {
             vertices = shrinkResult[2];
 
             // Update vertex IDs in the grid if any shrink occurred
-            if(shrinkTimes > 0) {
+            if (shrinkTimes > 0) {
                 randomGridEdgeWeightedDigraphs.updateVerticesIds(vertexNumberSqrt, allVertices, verticesGrid);
             }
 
@@ -314,13 +314,13 @@ public class Exercise53_NegativeWeightsII {
                         int neighborRow = row + neighborRows[i];
                         int neighborColumn = column + neighborColumns[i];
 
-                        if(randomGridEdgeWeightedDigraphs.isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
+                        if (randomGridEdgeWeightedDigraphs.isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
                             int vertexId1 = randomGridEdgeWeightedDigraphs.getVertexId(row, column, vertexNumberSqrt);
                             int vertexId2 = randomGridEdgeWeightedDigraphs.getVertexId(neighborRow, neighborColumn,
                                     vertexNumberSqrt);
 
                             // Used to avoid connecting vertices more than once
-                            if(vertexId1 < vertexId2) {
+                            if (vertexId1 < vertexId2) {
                                 DirectedEdge edge = randomGridEdgeWeightedDigraphs.
                                         getRandomWeightedDirectedEdge(vertexId1, vertexId2);
                                 originalWeights.add(edge.weight());
@@ -345,13 +345,13 @@ public class Exercise53_NegativeWeightsII {
                         int neighborRow = row + neighborRows[i];
                         int neighborColumn = column + neighborColumns[i];
 
-                        if(randomGridEdgeWeightedDigraphs.isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
+                        if (randomGridEdgeWeightedDigraphs.isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
                             int vertexId1 = randomGridEdgeWeightedDigraphs.getVertexId(row, column, vertexNumberSqrt);
                             int vertexId2 = randomGridEdgeWeightedDigraphs.getVertexId(neighborRow, neighborColumn,
                                     vertexNumberSqrt);
 
                             // Used to avoid connecting vertices more than once
-                            if(vertexId1 < vertexId2) {
+                            if (vertexId1 < vertexId2) {
                                 double updatedEdgeWeight = updatedEdgeWeights.get(updatedEdgeWeightsIndex++);
 
                                 DirectedEdge edge = new DirectedEdge(vertexId1, vertexId2, updatedEdgeWeight);
@@ -391,7 +391,7 @@ public class Exercise53_NegativeWeightsII {
                                                                                       int vertices,
                                                                                       int edges,
                                                                                       int percentageToNegate) {
-            if(numberOfDigraphs < 0) {
+            if (numberOfDigraphs < 0) {
                 throw new IllegalArgumentException("Number of digraphs cannot be negative");
             }
 
@@ -418,7 +418,7 @@ public class Exercise53_NegativeWeightsII {
                     DirectedEdge newEdge;
 
                     int randomDirection = StdRandom.uniform(2);
-                    if(randomDirection == 0) {
+                    if (randomDirection == 0) {
                         newEdge = new DirectedEdge(vertexId1, vertexId2, updatedEdgeWeight);
                     } else {
                         newEdge = new DirectedEdge(vertexId2, vertexId1, updatedEdgeWeight);
@@ -435,7 +435,7 @@ public class Exercise53_NegativeWeightsII {
     }
 
     private List<Double> negateRandomWeights(List<Double> weights, int percentage) {
-        if(weights == null || weights.isEmpty()) {
+        if (weights == null || weights.isEmpty()) {
             return new ArrayList<>();
         }
 
@@ -459,7 +459,7 @@ public class Exercise53_NegativeWeightsII {
         for(int index = 0; index < weights.size(); index++) {
             double originalEdgeWeight = weights.get(index);
 
-            if(edgeIndexesToNegate.contains(index)) {
+            if (edgeIndexesToNegate.contains(index)) {
                 updatedEdgeWeights.add(originalEdgeWeight * -1);
             } else {
                 updatedEdgeWeights.add(originalEdgeWeight);
@@ -500,7 +500,7 @@ public class Exercise53_NegativeWeightsII {
 
         int numberOfDigraphs = Integer.parseInt(args[5]);
 
-        if(percentageToNegate < 0 || percentageToNegate > 100) {
+        if (percentageToNegate < 0 || percentageToNegate > 100) {
             throw new IllegalArgumentException("Percentage to negate must be between 0 and 100");
         }
 

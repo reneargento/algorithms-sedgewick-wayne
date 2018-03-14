@@ -15,7 +15,7 @@ public class Exercise29_Deletion {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
@@ -24,13 +24,13 @@ public class Exercise29_Deletion {
             int hash1 = hash1(key);
             int hash2 = hash2(key);
 
-            if(!symbolTable[hash1].isEmpty() &&
+            if (!symbolTable[hash1].isEmpty() &&
                     (symbolTable[hash1].size <= symbolTable[hash2].size || symbolTable[hash2].isEmpty())) {
                 int symbolTableSize = symbolTable[hash1].size;
 
                 symbolTable[hash1].delete(key);
                 //Key is not on the shorter list
-                if(symbolTableSize == symbolTable[hash1].size) {
+                if (symbolTableSize == symbolTable[hash1].size) {
                     symbolTable[hash2].delete(key);
                 }
             } else {
@@ -38,12 +38,12 @@ public class Exercise29_Deletion {
 
                 symbolTable[hash2].delete(key);
                 //Key is not on the shorter list
-                if(symbolTableSize == symbolTable[hash2].size) {
+                if (symbolTableSize == symbolTable[hash2].size) {
                     symbolTable[hash1].delete(key);
                 }
             }
 
-            if(size > 0 && getLoadFactor() <= averageListSize / (double) 4) {
+            if (size > 0 && getLoadFactor() <= averageListSize / (double) 4) {
                 resize(size / 2);
             }
         }
@@ -61,7 +61,7 @@ public class Exercise29_Deletion {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
@@ -74,7 +74,7 @@ public class Exercise29_Deletion {
             keys[tableIndex] = null;
             values[tableIndex] = null;
 
-            if(keysSize <= size / (double) 8) {
+            if (keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             } else {
@@ -89,7 +89,7 @@ public class Exercise29_Deletion {
                     new DoubleHashingHashTableDelete<>(size);
 
             for(int i = 0; i < keys.length; i++) {
-                if(values[i] != null) {
+                if (values[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
             }

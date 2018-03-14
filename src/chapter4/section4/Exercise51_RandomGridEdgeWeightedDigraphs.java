@@ -16,7 +16,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
     public List<EdgeWeightedDigraphInterface> generateRandomGridEdgeWeightedDigraphs(int numberOfDigraphs,
                                                                                      int vertices, int extraEdges) {
 
-        if(numberOfDigraphs < 0) {
+        if (numberOfDigraphs < 0) {
             throw new IllegalArgumentException("Number of digraphs cannot be negative");
         }
 
@@ -33,7 +33,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
 
     public EdgeWeightedDigraphInterface randomGridEdgeWeightedDigraph(int vertices, int extraEdges) {
 
-        if(Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
+        if (Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
             throw new IllegalArgumentException("Vertex number must have an integer square root");
         }
 
@@ -72,7 +72,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
         vertices = shrinkResult[2];
 
         // Update vertex IDs in the grid if any shrink occurred
-        if(shrinkTimes > 0) {
+        if (shrinkTimes > 0) {
             updateVerticesIds(vertexNumberSqrt, allVertices, verticesGrid);
         }
 
@@ -103,7 +103,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
         DirectedEdge edge;
 
         int randomDirection = StdRandom.uniform(2);
-        if(randomDirection == 0) {
+        if (randomDirection == 0) {
             edge = new DirectedEdge(randomVertexId1, randomVertexId2, randomEdgeWeight);
         } else {
             edge = new DirectedEdge(randomVertexId2, randomVertexId1, randomEdgeWeight);
@@ -128,7 +128,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
                     allVertices[randomVertexId2].coordinates.getYCoordinate());
 
             boolean shouldConnect = 1 - StdRandom.uniform() >= distance;
-            if(shouldConnect) {
+            if (shouldConnect) {
                 DirectedEdge edge = getRandomWeightedDirectedEdge(randomVertexId1, randomVertexId2);
                 extraEdgesList.add(edge);
                 extraEdges--;
@@ -160,7 +160,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
 
             // We are assuming that the "about 2V" in the exercise description is within 20% of 2V.
             // If R is too large, we shrink the grid to decrease the number of vertices and edges.
-            if(totalEdges > 1.2 * (2 * vertices)) {
+            if (totalEdges > 1.2 * (2 * vertices)) {
                 vertexNumberSqrt--;
                 vertices = vertexNumberSqrt * vertexNumberSqrt;
                 shrinkTimes++;
@@ -188,7 +188,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
                     int vertexId1 = extraEdge.from();
                     int vertexId2 = extraEdge.to();
 
-                    if(removedVertices.contains(vertexId1) || removedVertices.contains(vertexId2)) {
+                    if (removedVertices.contains(vertexId1) || removedVertices.contains(vertexId2)) {
                         extraEdgesToRemoveAfterShrinking.add(extraEdge);
                     }
                 }
@@ -199,7 +199,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
             }
 
             // The smallest grid we can have is a 2x2 grid, so if we reach this grid dimension no more shrinks can occur
-            if(vertexNumberSqrt == 2) {
+            if (vertexNumberSqrt == 2) {
                 shouldCheckIfNeedsToShrink = false;
             }
         }
@@ -234,12 +234,12 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
-                    if(isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
+                    if (isValidCell(vertexNumberSqrt, neighborRow, neighborColumn)) {
                         int vertexId1 = getVertexId(row, column, vertexNumberSqrt);
                         int vertexId2 = getVertexId(neighborRow, neighborColumn, vertexNumberSqrt);
 
                         // Used to avoid connecting vertices more than once
-                        if(vertexId1 < vertexId2) {
+                        if (vertexId1 < vertexId2) {
                             DirectedEdge edge = getRandomWeightedDirectedEdge(vertexId1, vertexId2);
                             randomEuclideanGridEdgeWeightedDigraph.addEdge(edge);
                         }

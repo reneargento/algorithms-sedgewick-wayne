@@ -51,9 +51,9 @@ public class Exercise18 {
 
         @Override
         public int compareTo(Path other) {
-            if(this.weight < other.weight) {
+            if (this.weight < other.weight) {
                 return -1;
-            } else if(this.weight > other.weight) {
+            } else if (this.weight > other.weight) {
                 return 1;
             } else {
                 return 0;
@@ -87,7 +87,7 @@ public class Exercise18 {
 
             // Check if there is any cycle
             EdgeWeightedDirectedCycle edgeWeightedDirectedCycle = new EdgeWeightedDirectedCycle(edgeWeightedDigraph);
-            if(edgeWeightedDirectedCycle.hasCycle()) {
+            if (edgeWeightedDirectedCycle.hasCycle()) {
                 throw new IllegalArgumentException("The jobs graph cannot contain cycles.");
             }
 
@@ -104,7 +104,7 @@ public class Exercise18 {
             Queue<Path> queue = new Queue<>();
 
             for(int vertex : topological.order()) {
-                if(isFirstVertexInTopologicalOrder) {
+                if (isFirstVertexInTopologicalOrder) {
                     queue.enqueue(new Path(vertex));
                     isFirstVertexInTopologicalOrder = false;
                 } else {
@@ -117,7 +117,7 @@ public class Exercise18 {
                             Path newPath = new Path(currentPath, edge);
                             newPaths.enqueue(newPath);
 
-                            if(edge.to() == target) {
+                            if (edge.to() == target) {
                                 allPaths.insert(newPath);
                             }
                         }
@@ -133,7 +133,7 @@ public class Exercise18 {
         }
 
         private void printAllCriticalPaths(PriorityQueueResize<Path> allPaths, int target) {
-            if(allPaths == null || allPaths.isEmpty()) {
+            if (allPaths == null || allPaths.isEmpty()) {
                 return;
             }
 
@@ -146,8 +146,8 @@ public class Exercise18 {
 
                 for(DirectedEdge edge : criticalPath.getPath()) {
                     // Avoid printing extra vertices
-                    if(edge.from() < edge.to() && edge.to() != target) {
-                        if(addArrowInPath) {
+                    if (edge.from() < edge.to() && edge.to() != target) {
+                        if (addArrowInPath) {
                             StdOut.print("->");
                         } else {
                             addArrowInPath = true;

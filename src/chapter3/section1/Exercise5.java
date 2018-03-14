@@ -46,7 +46,7 @@ public class Exercise5 {
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     return node.value;
                 }
             }
@@ -59,13 +59,13 @@ public class Exercise5 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     node.value = value;
                     return;
                 }
@@ -80,18 +80,18 @@ public class Exercise5 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(first.key.equals(key)) {
+            if (first.key.equals(key)) {
                 first = first.next;
                 size--;
                 return;
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null && node.next.key.equals(key)) {
+                if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
                     return;

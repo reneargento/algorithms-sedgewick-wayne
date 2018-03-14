@@ -13,7 +13,7 @@ public class Exercise47_RandomSparseDigraphs {
     //A digraph is considered sparse if its number of different edges is within a small constant factor of V
     public List<DigraphInterface> randomSparseDigraph(int numberOfDigraphs) {
 
-        if(numberOfDigraphs < 0) {
+        if (numberOfDigraphs < 0) {
             throw new IllegalArgumentException("Number of digraphs cannot be negative");
         }
 
@@ -36,7 +36,7 @@ public class Exercise47_RandomSparseDigraphs {
     // Used for experiments in exercises 4.2.52, 4.2.53, 4.2.54 and 4.2.55
     public List<DigraphInterface> randomSparseDigraph(int numberOfDigraphs, int vertices) {
 
-        if(numberOfDigraphs < 1) {
+        if (numberOfDigraphs < 1) {
             throw new IllegalArgumentException("Number of digraphs must be positive");
         }
 

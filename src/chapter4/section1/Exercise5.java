@@ -16,7 +16,7 @@ public class Exercise5 {
         @Override
         public void addEdge(int vertex1, int vertex2) {
             //Self-loops and parallel edges not allowed
-            if(vertex1 == vertex2
+            if (vertex1 == vertex2
                     || hasEdge(vertex1, vertex2)) {
                 return;
             }
@@ -26,7 +26,7 @@ public class Exercise5 {
 
         private boolean hasEdge(int vertex1, int vertex2) {
             for(int neighbor: adjacent(vertex1)) {
-                if(neighbor == vertex2) {
+                if (neighbor == vertex2) {
                     return true;
                 }
             }

@@ -28,11 +28,11 @@ public class Exercise36_ListLengthRange {
 
             for(SeparateChainingHashTableFixedSize.SequentialSearchSymbolTable list :
                     separateChainingHashTableFixedSize.symbolTable) {
-                if(list != null) {
-                    if(list.size() < shortestListLength) {
+                if (list != null) {
+                    if (list.size() < shortestListLength) {
                         shortestListLength = list.size();
                     }
-                    if(list.size() > longestListLength) {
+                    if (list.size() > longestListLength) {
                         longestListLength = list.size();
                     }
                 }

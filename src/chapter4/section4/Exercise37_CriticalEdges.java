@@ -26,7 +26,7 @@ public class Exercise37_CriticalEdges {
         // 2- Get shortest paths from source
         DijkstraSP dijkstraSP = new DijkstraSP(edgeWeightedDigraph, source);
 
-        if(!dijkstraSP.hasPathTo(target)) {
+        if (!dijkstraSP.hasPathTo(target)) {
             return null;
         }
 
@@ -56,7 +56,7 @@ public class Exercise37_CriticalEdges {
         int islandId = 0;
 
         for(DirectedEdge edge : dijkstraSP.pathTo(target)) {
-            if(islands[edge.from()] == -1) {
+            if (islands[edge.from()] == -1) {
                 islands[edge.from()] = islandId++;
             }
 
@@ -77,10 +77,10 @@ public class Exercise37_CriticalEdges {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(currentVertex)) {
                 int neighbor = edge.to();
 
-                if(!visited[neighbor]) {
+                if (!visited[neighbor]) {
                     visited[neighbor] = true;
 
-                    if(islands[currentVertex] > islands[neighbor]) {
+                    if (islands[currentVertex] > islands[neighbor]) {
                         islands[neighbor] = islands[currentVertex];
                     }
                     queue.enqueue(edge.to());
@@ -109,18 +109,18 @@ public class Exercise37_CriticalEdges {
         SegmentTree segmentTree = new SegmentTree(bypassPathLengths);
 
         for(DirectedEdge edge : edgeWeightedDigraph.edges()) {
-            if(!edgesInShortestPath.contains(edge)) {
+            if (!edgesInShortestPath.contains(edge)) {
                 int island1 = islands[edge.from()];
                 int island2 = islands[edge.to()];
 
-                if(island1 < island2
+                if (island1 < island2
                         && island1 != -1 && island2 != -1) {
                     double shortestPathLength = dijkstraSP.distTo(edge.from()) + edge.weight()
                             + dijkstraSPFromTarget.distTo(edge.to());
 
                     double currentShortestPathLength = segmentTree.rangeMinQuery(island1, island2 - 1);
 
-                    if(shortestPathLength < currentShortestPathLength) {
+                    if (shortestPathLength < currentShortestPathLength) {
                         segmentTree.update(island1, island2 - 1, shortestPathLength);
                     }
                 }
@@ -144,7 +144,7 @@ public class Exercise37_CriticalEdges {
         double highestBypassPathLength = Double.NEGATIVE_INFINITY;
 
         for(int edgeId = 0; edgeId < edgeIndex; edgeId++) {
-            if(bypassPathLengths.rangeSumQuery(edgeId, edgeId) > highestBypassPathLength) {
+            if (bypassPathLengths.rangeSumQuery(edgeId, edgeId) > highestBypassPathLength) {
                 highestBypassPathLength = bypassPathLengths.rangeSumQuery(edgeId, edgeId);
                 criticalEdgeId = edgeId;
             }
@@ -179,7 +179,7 @@ public class Exercise37_CriticalEdges {
 
         StdOut.print("Critical edge 1: ");
         DirectedEdge criticalEdge1 = criticalEdges.getCriticalEdge(edgeWeightedDigraph1, source1, target1);
-        if(criticalEdge1 == null) {
+        if (criticalEdge1 == null) {
             StdOut.println("There is no path from " + source1 + " to " + target1);
         } else {
             StdOut.println(criticalEdge1);
@@ -191,7 +191,7 @@ public class Exercise37_CriticalEdges {
 
         StdOut.print("\nCritical edge 2: ");
         DirectedEdge criticalEdge2 = criticalEdges.getCriticalEdge(edgeWeightedDigraph1, source2, target2);
-        if(criticalEdge2 == null) {
+        if (criticalEdge2 == null) {
             StdOut.println("There is no path from " + source2 + " to " + target2);
         } else {
             StdOut.println(criticalEdge2);
@@ -223,7 +223,7 @@ public class Exercise37_CriticalEdges {
 
         StdOut.print("\nCritical edge 3: ");
         DirectedEdge criticalEdge3 = criticalEdges.getCriticalEdge(edgeWeightedDigraph2, source3, target3);
-        if(criticalEdge3 == null) {
+        if (criticalEdge3 == null) {
             StdOut.println("There is no path from " + source3 + " to " + target3);
         } else {
             StdOut.println(criticalEdge3);
@@ -249,7 +249,7 @@ public class Exercise37_CriticalEdges {
 
         StdOut.print("\nCritical edge 4: ");
         DirectedEdge criticalEdge4 = criticalEdges.getCriticalEdge(edgeWeightedDigraph3, source4, target4);
-        if(criticalEdge4 == null) {
+        if (criticalEdge4 == null) {
             StdOut.println("There is no path from " + source4 + " to " + target4);
         } else {
             StdOut.println(criticalEdge4);

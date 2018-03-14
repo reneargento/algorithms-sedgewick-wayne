@@ -43,7 +43,7 @@ public class Exercise18 {
         protected int hash(Key key) {
             int hash = key.hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -68,7 +68,7 @@ public class Exercise18 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
@@ -77,11 +77,11 @@ public class Exercise18 {
             int currentSize = symbolTable[hashIndex].size;
             symbolTable[hashIndex].put(key, value);
 
-            if(currentSize < symbolTable[hashIndex].size) {
+            if (currentSize < symbolTable[hashIndex].size) {
                 keysSize++;
             }
 
-            if(getLoadFactor() >= averageListSize) {
+            if (getLoadFactor() >= averageListSize) {
                 StdOut.println("Resize - doubling hash table size");
 
                 resize(size * 2);
@@ -94,14 +94,14 @@ public class Exercise18 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
             symbolTable[hash(key)].delete(key);
             keysSize--;
 
-            if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
+            if (size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
                 StdOut.println("Resize - shrinking hash table size");
 
                 resize(size / 2);

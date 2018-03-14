@@ -25,7 +25,7 @@ public class Exercise30_ShortestAncestralPath {
     //O(V + E)
     public ShortestAncestralPath getShortestAncestralPath(Digraph digraph, int vertex1, int vertex2) {
         DirectedCycle directedCycle = new DirectedCycle(digraph);
-        if(directedCycle.hasCycle()) {
+        if (directedCycle.hasCycle()) {
             throw new IllegalArgumentException("Digraph is not a DAG");
         }
 
@@ -51,7 +51,7 @@ public class Exercise30_ShortestAncestralPath {
         int shortestDistance = Integer.MAX_VALUE;
 
         for(int vertex = 0; vertex < reverseDigraph.vertices(); vertex++) {
-            if(distancesFromVertex1[vertex] != Integer.MAX_VALUE
+            if (distancesFromVertex1[vertex] != Integer.MAX_VALUE
                     && distancesFromVertex2[vertex] != Integer.MAX_VALUE
                     && distancesFromVertex1[vertex] + distancesFromVertex2[vertex] < shortestDistance) {
                 shortestDistance = distancesFromVertex1[vertex] + distancesFromVertex2[vertex];
@@ -59,7 +59,7 @@ public class Exercise30_ShortestAncestralPath {
             }
         }
 
-        if(commonAncestorWithShortestPath == -1) {
+        if (commonAncestorWithShortestPath == -1) {
             return new ShortestAncestralPath(-1, null, null);
         }
 
@@ -100,7 +100,7 @@ public class Exercise30_ShortestAncestralPath {
                 edgeTo[neighbor] = currentVertex;
                 queue.enqueue(neighbor);
 
-                if(neighbor == target) {
+                if (neighbor == target) {
                     Stack<Integer> inversePath = new Stack<>();
 
                     for(int vertex = target; vertex != source; vertex = edgeTo[vertex]) {
@@ -113,12 +113,12 @@ public class Exercise30_ShortestAncestralPath {
                     while (!inversePath.isEmpty()) {
                         int vertexInPath = inversePath.pop();
 
-                        if(!inversePath.isEmpty()) {
+                        if (!inversePath.isEmpty()) {
                             int nextVertexInPath = inversePath.peek();
                             path.append(vertexInPath).append("->").append(nextVertexInPath);
                         }
 
-                        if(inversePath.size() > 1) {
+                        if (inversePath.size() > 1) {
                             path.append(" ");
                         }
                     }
@@ -142,7 +142,7 @@ public class Exercise30_ShortestAncestralPath {
         digraph1.addEdge(3, 4);
 
         ShortestAncestralPath shortestAncestralPath1 = shortestAncestralPath.getShortestAncestralPath(digraph1, 2, 4);
-        if(shortestAncestralPath1.commonAncestor == -1) {
+        if (shortestAncestralPath1.commonAncestor == -1) {
             StdOut.println("Common ancestor in digraph 1: No common ancestor found");
         } else {
             StdOut.println("Common ancestor in digraph 1: " + shortestAncestralPath1.commonAncestor);
@@ -161,7 +161,7 @@ public class Exercise30_ShortestAncestralPath {
         digraph2.addEdge(2, 4);
 
         ShortestAncestralPath shortestAncestralPath2 = shortestAncestralPath.getShortestAncestralPath(digraph2, 3, 4);
-        if(shortestAncestralPath2.commonAncestor == -1) {
+        if (shortestAncestralPath2.commonAncestor == -1) {
             StdOut.println("Common ancestor in digraph 2: Common ancestor not found");
         } else {
             StdOut.println("Common ancestor in digraph 2: " + shortestAncestralPath2.commonAncestor);
@@ -188,7 +188,7 @@ public class Exercise30_ShortestAncestralPath {
         digraph3.addEdge(8, 3);
 
         ShortestAncestralPath shortestAncestralPath3 = shortestAncestralPath.getShortestAncestralPath(digraph3, 2, 3);
-        if(shortestAncestralPath3.commonAncestor == -1) {
+        if (shortestAncestralPath3.commonAncestor == -1) {
             StdOut.println("Common ancestor in digraph 3: Common ancestor not found");
         } else {
             StdOut.println("Common ancestor in digraph 3: " + shortestAncestralPath3.commonAncestor);
@@ -213,7 +213,7 @@ public class Exercise30_ShortestAncestralPath {
         digraph4.addEdge(7, 2);
 
         ShortestAncestralPath shortestAncestralPath4 = shortestAncestralPath.getShortestAncestralPath(digraph4, 2, 3);
-        if(shortestAncestralPath4.commonAncestor == -1) {
+        if (shortestAncestralPath4.commonAncestor == -1) {
             StdOut.println("Common ancestor in digraph 4: Common ancestor not found");
         } else {
             StdOut.println("Common ancestor in digraph 4: " + shortestAncestralPath4.commonAncestor);
@@ -230,7 +230,7 @@ public class Exercise30_ShortestAncestralPath {
         digraph5.addEdge(1, 2);
 
         ShortestAncestralPath shortestAncestralPath5 = shortestAncestralPath.getShortestAncestralPath(digraph5, 2, 3);
-        if(shortestAncestralPath5.commonAncestor == -1) {
+        if (shortestAncestralPath5.commonAncestor == -1) {
             StdOut.println("Common ancestor in digraph 5: Common ancestor not found");
         } else {
             StdOut.println("Common ancestor in digraph 5: " + shortestAncestralPath5.commonAncestor);

@@ -41,7 +41,7 @@ public class DoubleProbingHashTable<Key, Value> {
 
         public Value get(Key key) {
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     return node.value;
                 }
             }
@@ -51,7 +51,7 @@ public class DoubleProbingHashTable<Key, Value> {
 
         public void put(Key key, Value value) {
             for(Node node = first; node != null; node = node.next) {
-                if(key.equals(node.key)) {
+                if (key.equals(node.key)) {
                     node.value = value;
                     return;
                 }
@@ -62,14 +62,14 @@ public class DoubleProbingHashTable<Key, Value> {
         }
 
         public void delete(Key key) {
-            if(first.key.equals(key)) {
+            if (first.key.equals(key)) {
                 first = first.next;
                 size--;
                 return;
             }
 
             for(Node node = first; node != null; node = node.next) {
-                if(node.next != null && node.next.key.equals(key)) {
+                if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
                     return;
@@ -166,16 +166,16 @@ public class DoubleProbingHashTable<Key, Value> {
         int hash2 = hash2(key);
 
         Value value;
-        if(symbolTable[hash1].size <= symbolTable[hash2].size) {
+        if (symbolTable[hash1].size <= symbolTable[hash2].size) {
             value = (Value) symbolTable[hash1].get(key);
 
-            if(value == null && hash1 != hash2) {
+            if (value == null && hash1 != hash2) {
                 value = (Value) symbolTable[hash2].get(key);
             }
         } else {
             value = (Value) symbolTable[hash2].get(key);
 
-            if(value == null) {
+            if (value == null) {
                 value = (Value) symbolTable[hash1].get(key);
             }
         }
@@ -188,7 +188,7 @@ public class DoubleProbingHashTable<Key, Value> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        if(value == null) {
+        if (value == null) {
             delete(key);
             return;
         }
@@ -198,10 +198,10 @@ public class DoubleProbingHashTable<Key, Value> {
         int hash1 = hash1(key);
         int hash2 = hash2(key);
 
-        if(!containsKey) {
+        if (!containsKey) {
             keysSize++;
 
-            if(symbolTable[hash1].size <= symbolTable[hash2].size) {
+            if (symbolTable[hash1].size <= symbolTable[hash2].size) {
                 symbolTable[hash1].put(key, value);
             } else {
                 symbolTable[hash2].put(key, value);
@@ -210,20 +210,20 @@ public class DoubleProbingHashTable<Key, Value> {
             boolean isInList1 = false;
 
             for(Object keyInList1 : symbolTable[hash1].keys()) {
-                if(keyInList1.equals(key)) {
+                if (keyInList1.equals(key)) {
                     isInList1 = true;
                     break;
                 }
             }
 
-            if(isInList1) {
+            if (isInList1) {
                 symbolTable[hash1].put(key, value);
             } else {
                 symbolTable[hash2].put(key, value);
             }
         }
 
-        if(getLoadFactor() > averageListSize) {
+        if (getLoadFactor() > averageListSize) {
             resize(size * 2);
         }
     }
@@ -233,7 +233,7 @@ public class DoubleProbingHashTable<Key, Value> {
             throw new IllegalArgumentException("Argument to delete() cannot be null");
         }
 
-        if(isEmpty() || !contains(key)) {
+        if (isEmpty() || !contains(key)) {
             return;
         }
 
@@ -242,13 +242,13 @@ public class DoubleProbingHashTable<Key, Value> {
         int hash1 = hash1(key);
         int hash2 = hash2(key);
 
-        if(!symbolTable[hash1].isEmpty() &&
+        if (!symbolTable[hash1].isEmpty() &&
                 (symbolTable[hash1].size <= symbolTable[hash2].size || symbolTable[hash2].isEmpty())) {
             int symbolTableSize = symbolTable[hash1].size;
 
             symbolTable[hash1].delete(key);
             //Key is not on the shorter list
-            if(symbolTableSize == symbolTable[hash1].size) {
+            if (symbolTableSize == symbolTable[hash1].size) {
                 symbolTable[hash2].delete(key);
             }
         } else {
@@ -256,12 +256,12 @@ public class DoubleProbingHashTable<Key, Value> {
 
             symbolTable[hash2].delete(key);
             //Key is not on the shorter list
-            if(symbolTableSize == symbolTable[hash2].size) {
+            if (symbolTableSize == symbolTable[hash2].size) {
                 symbolTable[hash1].delete(key);
             }
         }
 
-        if(size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
+        if (size > 1 && getLoadFactor() <= averageListSize / (double) 4) {
             resize(size / 2);
         }
     }
@@ -275,7 +275,7 @@ public class DoubleProbingHashTable<Key, Value> {
             }
         }
 
-        if(!keys.isEmpty() && keys.peek() instanceof Comparable) {
+        if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
             Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
             for(int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keys.dequeue();

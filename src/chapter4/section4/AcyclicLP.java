@@ -21,7 +21,7 @@ public class AcyclicLP {
     }
 
     public double distTo(int vertex) {
-        if(acyclicSP.distTo(vertex) == 0) {
+        if (acyclicSP.distTo(vertex) == 0) {
             return 0;
         }
 

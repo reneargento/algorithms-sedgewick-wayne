@@ -37,7 +37,7 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -49,15 +49,15 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         private Node put(Node node, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, value, 1);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value);
             } else {
                 node.value = value;
@@ -72,17 +72,17 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         private Node deleteWithRandomNodePromotion(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = deleteWithRandomNodePromotion(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = deleteWithRandomNodePromotion(node.right, key);
             } else {
-                if(node.left == null) {
+                if (node.left == null) {
                     return node.right;
                 } else if (node.right == null) {
                     return node.left;
@@ -92,7 +92,7 @@ public class Exercise42_HibbardDeletionDegradation {
 
                     Node aux = node;
 
-                    if(promotePredecessorNode == 0) {
+                    if (promotePredecessorNode == 0) {
                         node = max(aux.left);
                         node.left = deleteMax(aux.left);
                         node.right = aux.right;
@@ -109,7 +109,7 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -117,7 +117,7 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         private Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node;
             }
 
@@ -125,7 +125,7 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -133,7 +133,7 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 return node;
             }
 
@@ -142,11 +142,11 @@ public class Exercise42_HibbardDeletionDegradation {
 
         //Used in delete()
         private Node deleteMin(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.left == null) {
+            if (node.left == null) {
                 return node.right;
             }
 
@@ -157,11 +157,11 @@ public class Exercise42_HibbardDeletionDegradation {
 
         //Used in delete()
         private Node deleteMax(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 return node.left;
             }
 
@@ -175,17 +175,17 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = delete(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = delete(node.right, key);
             } else {
-                if(node.left == null) {
+                if (node.left == null) {
                     return node.right;
                 } else if (node.right == null) {
                     return node.left;
@@ -202,7 +202,7 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -212,7 +212,7 @@ public class Exercise42_HibbardDeletionDegradation {
         private Node select(Node node, int index) {
             int leftSubtreeSize = size(node.left);
 
-            if(leftSubtreeSize == index) {
+            if (leftSubtreeSize == index) {
                 return node;
             } else if (leftSubtreeSize > index) {
                 return select(node.left, index);
@@ -222,7 +222,7 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         public int internalPathLength() {
-            if(root == null) {
+            if (root == null) {
                 return 0;
             }
 
@@ -236,11 +236,11 @@ public class Exercise42_HibbardDeletionDegradation {
                 Node current = queue.dequeue();
                 internalPathLength += current.depth;
 
-                if(current.left != null) {
+                if (current.left != null) {
                     current.left.depth = current.depth + 1;
                     queue.enqueue(current.left);
                 }
-                if(current.right != null) {
+                if (current.right != null) {
                     current.right.depth = current.depth + 1;
                     queue.enqueue(current.right);
                 }
@@ -250,7 +250,7 @@ public class Exercise42_HibbardDeletionDegradation {
         }
 
         public int averagePathLength() {
-            if(size() == 0) {
+            if (size() == 0) {
                 return 0;
             }
 

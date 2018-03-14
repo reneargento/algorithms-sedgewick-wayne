@@ -15,7 +15,7 @@ public class Exercise50_RandomEuclideanEdgeWeightedDigraphs {
 
     public List<EdgeWeightedDigraphInterface> generateRandomEuclideanEdgeWeightedDigraphs(int numberOfDigraphs,
                                                                                           int vertices, double radius) {
-        if(numberOfDigraphs < 0) {
+        if (numberOfDigraphs < 0) {
             throw new IllegalArgumentException("Number of digraphs cannot be negative");
         }
 
@@ -57,11 +57,11 @@ public class Exercise50_RandomEuclideanEdgeWeightedDigraphs {
                         allVertices[vertexId2].coordinates.getXCoordinate(),
                         allVertices[vertexId2].coordinates.getYCoordinate());
 
-                if(distance <= radius) {
+                if (distance <= radius) {
                     DirectedEdge edge;
 
                     int randomDirection = StdRandom.uniform(2);
-                    if(randomDirection == 0) {
+                    if (randomDirection == 0) {
                         edge = new DirectedEdge(vertexId1, vertexId2, distance);
                     } else {
                         edge = new DirectedEdge(vertexId2, vertexId1, distance);

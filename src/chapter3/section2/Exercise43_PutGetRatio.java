@@ -37,7 +37,7 @@ public class Exercise43_PutGetRatio {
             boolean containsValue = binarySearchTree.contains(value); //contains() uses get() internally
             totalTimeSpentInGet += timer.elapsedTime();
 
-            if(!containsValue) {
+            if (!containsValue) {
                 timer = new Stopwatch();
                 binarySearchTree.put(value, 1);
                 totalTimeSpentInPut += timer.elapsedTime();
@@ -59,7 +59,7 @@ public class Exercise43_PutGetRatio {
 
         for(Integer value : binarySearchTree.keys()) {
             timer = new Stopwatch();
-            if(binarySearchTree.get(value) > binarySearchTree.get(max)) {
+            if (binarySearchTree.get(value) > binarySearchTree.get(max)) {
                 totalTimeSpentInGet += timer.elapsedTime();
                 max = value;
             }

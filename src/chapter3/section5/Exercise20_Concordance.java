@@ -24,7 +24,7 @@ public class Exercise20_Concordance {
                 String[] words = wordLine.split(" ");
 
                 for(String word : words) {
-                    if(!concordanceMap.containsKey(word)) {
+                    if (!concordanceMap.containsKey(word)) {
                         concordanceMap.put(word, new ArrayList<>());
                     }
                     concordanceMap.get(word).add(wordIndex);
@@ -42,7 +42,7 @@ public class Exercise20_Concordance {
                 boolean isFirstValue = true;
 
                 for(Integer positionInText : concordance.get(word)) {
-                    if(isFirstValue) {
+                    if (isFirstValue) {
                         isFirstValue = false;
                     } else {
                         StdOut.print(",");

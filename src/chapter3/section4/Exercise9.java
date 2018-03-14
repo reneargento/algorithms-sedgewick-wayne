@@ -15,18 +15,18 @@ public class Exercise9 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
             symbolTable[hash(key)].delete(key);
             keysSize--;
 
-            if(getLoadFactor() <= averageListSize / (double) 4) {
+            if (getLoadFactor() <= averageListSize / (double) 4) {
                 resize(size / 2);
             }
         }

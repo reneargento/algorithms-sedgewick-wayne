@@ -50,7 +50,7 @@ public class Exercise26_FrequencyCountDictionary {
 
         String[] wordsInDictionary = FileUtil.getAllStringsFromFile(dictionaryFile);
 
-        if(wordsInDictionary == null) {
+        if (wordsInDictionary == null) {
             return;
         }
 
@@ -63,13 +63,13 @@ public class Exercise26_FrequencyCountDictionary {
 
         for(String word : words) {
 
-            if(!wordsSet.contains(word)) {
+            if (!wordsSet.contains(word)) {
                 continue;
             }
 
             Word newWord = new Word(word);
 
-            if(!binarySearchSymbolTable.contains(newWord)) {
+            if (!binarySearchSymbolTable.contains(newWord)) {
                 newWord.orderFoundInFile = orderOfWordsFound;
                 orderOfWordsFound++;
 

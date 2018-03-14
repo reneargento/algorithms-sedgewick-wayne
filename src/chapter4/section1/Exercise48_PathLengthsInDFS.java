@@ -79,7 +79,7 @@ public class Exercise48_PathLengthsInDFS {
         DepthFirstPaths depthFirstPaths = new DepthFirstPaths(graph, randomSourceVertex);
         boolean foundPath = depthFirstPaths.hasPathTo(randomDestinationVertex);
 
-        if(foundPath) {
+        if (foundPath) {
             for(int vertexInPath : depthFirstPaths.pathTo(randomDestinationVertex)) {
                 totalPathLength++;
             }

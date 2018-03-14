@@ -15,7 +15,7 @@ public class Exercise46_Height {
     }
 
     private int bstHeight(RedBlackBST.Node node) {
-        if(node == null) {
+        if (node == null) {
             return 0;
         }
 
@@ -48,11 +48,11 @@ public class Exercise46_Height {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
-            if(!redBlackBST.contains(word)) {
+            if (!redBlackBST.contains(word)) {
                 redBlackBST.put(word, 1);
             } else {
                 redBlackBST.put(word, redBlackBST.get(word) + 1);
@@ -67,7 +67,7 @@ public class Exercise46_Height {
         visualAccumulator.addDataValue(height, true);
 
         for(String word : redBlackBST.keys()) {
-            if(redBlackBST.get(word) > redBlackBST.get(max)) {
+            if (redBlackBST.get(word) > redBlackBST.get(max)) {
                 max = word;
             }
         }

@@ -37,7 +37,7 @@ public class Exercise34_Threading {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -45,7 +45,7 @@ public class Exercise34_Threading {
         }
 
         public Key next(Key key) {
-            if(key == null) {
+            if (key == null) {
                 return null;
             }
 
@@ -54,12 +54,12 @@ public class Exercise34_Threading {
 
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     current = current.right;
                 } else {
-                    if(current.succ != null) {
+                    if (current.succ != null) {
                         return current.succ.key;
                     } else {
                         return null;
@@ -71,7 +71,7 @@ public class Exercise34_Threading {
         }
 
         public Key prev(Key key) {
-            if(key == null) {
+            if (key == null) {
                 return null;
             }
 
@@ -80,12 +80,12 @@ public class Exercise34_Threading {
 
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     current = current.right;
                 } else {
-                    if(current.pred != null) {
+                    if (current.pred != null) {
                         return current.pred.key;
                     } else {
                         return null;
@@ -98,7 +98,7 @@ public class Exercise34_Threading {
 
         //Used by delete() method
         private Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node;
             }
 
@@ -111,14 +111,14 @@ public class Exercise34_Threading {
         }
 
         private Node put(Node node, Key key, Value value, Node predecessor, Node successor) {
-            if(node == null) {
+            if (node == null) {
                 Node newNode = new Node(key, value, 1);
 
-                if(predecessor != null) {
+                if (predecessor != null) {
                     predecessor.succ = newNode;
                     newNode.pred = predecessor;
                 }
-                if(successor != null) {
+                if (successor != null) {
                     newNode.succ = successor;
                     successor.pred = newNode;
                 }
@@ -128,9 +128,9 @@ public class Exercise34_Threading {
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key, value, predecessor, node);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key, value, node, successor);
             } else {
                 node.value = value;
@@ -147,12 +147,12 @@ public class Exercise34_Threading {
         //updatePredAndSucc parameter is used because we don't want to update pred and succ fields
         // when using deleteMin() inside delete()
         private Node deleteMin(Node node, boolean updatePredAndSucc) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.left == null) {
-                if(updatePredAndSucc && node.succ != null) {
+            if (node.left == null) {
+                if (updatePredAndSucc && node.succ != null) {
                     node.succ.pred = null;
                 }
 
@@ -169,12 +169,12 @@ public class Exercise34_Threading {
         }
 
         private Node deleteMax(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(node.right == null) {
-                if(node.pred != null) {
+            if (node.right == null) {
+                if (node.pred != null) {
                     node.pred.succ = null;
                 }
 
@@ -191,28 +191,28 @@ public class Exercise34_Threading {
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = delete(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = delete(node.right, key);
             } else {
-                if(node.left == null || node.right == null) {
+                if (node.left == null || node.right == null) {
 
-                    if(node.pred != null) {
+                    if (node.pred != null) {
                         node.pred.succ = node.succ;
                     }
-                    if(node.succ != null) {
+                    if (node.succ != null) {
                         node.succ.pred = node.pred;
                     }
 
-                    if(node.left == null) {
+                    if (node.left == null) {
                         return node.right;
-                    } else if(node.right == null) { //Always true when we get here, but leaving it here for legibility
+                    } else if (node.right == null) { //Always true when we get here, but leaving it here for legibility
                         return node.left;
                     }
                 } else {
@@ -222,7 +222,7 @@ public class Exercise34_Threading {
                     node.left = aux.left;
 
                     node.pred = aux.pred;
-                    if(node.pred != null) {
+                    if (node.pred != null) {
                         node.pred.succ = node;
                     }
                     //The deleted node's successor's (the new root of this subtree) pred and succ fields were already updated

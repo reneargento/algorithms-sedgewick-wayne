@@ -31,7 +31,7 @@ public class Exercise29<Item> implements Iterable<Item> {
 			last = new Node();
 			last.item = item;
 			last.next = last;
-		} else{
+		} else {
 			Node node = new Node();
 			node.item = item;
 			

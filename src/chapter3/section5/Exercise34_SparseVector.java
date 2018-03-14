@@ -36,7 +36,7 @@ public class Exercise34_SparseVector {
 
                 double value = 0;
 
-                if(isNonzeroValue) {
+                if (isNonzeroValue) {
                     value = StdRandom.uniform();
                 }
 
@@ -55,7 +55,7 @@ public class Exercise34_SparseVector {
 
                 double value = 0;
 
-                if(isNonzeroValue) {
+                if (isNonzeroValue) {
                     value = StdRandom.uniform();
                 }
 
@@ -74,7 +74,7 @@ public class Exercise34_SparseVector {
 
             double value = 0;
 
-            if(isNonzeroValue) {
+            if (isNonzeroValue) {
                 value = StdRandom.uniform();
             }
 
@@ -91,7 +91,7 @@ public class Exercise34_SparseVector {
 
             double value = 0;
 
-            if(isNonzeroValue) {
+            if (isNonzeroValue) {
                 value = StdRandom.uniform();
             }
 
@@ -153,7 +153,7 @@ public class Exercise34_SparseVector {
     }
 
     private double[] dot(double[][] matrix, double[] array) {
-        if(matrix[0].length != array.length) {
+        if (matrix[0].length != array.length) {
             throw new IllegalArgumentException("Matrix columns number and vector dimension must match");
         }
 

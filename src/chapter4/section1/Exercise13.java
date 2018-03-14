@@ -26,7 +26,7 @@ public class Exercise13 {
 
             distTo[source] = 0;
             for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-                if(vertex == source) {
+                if (vertex == source) {
                     continue;
                 }
                 distTo[vertex] = Integer.MAX_VALUE;
@@ -45,7 +45,7 @@ public class Exercise13 {
                 int currentVertex = queue.dequeue();
 
                 for(int neighbor : graph.adjacent(currentVertex)) {
-                    if(!visited[neighbor]) {
+                    if (!visited[neighbor]) {
                         visited[neighbor] = true;
 
                         edgeTo[neighbor] = currentVertex;
@@ -72,7 +72,7 @@ public class Exercise13 {
         }
 
         public Iterable<Integer> pathTo(int vertex) {
-            if(!hasPathTo(vertex)) {
+            if (!hasPathTo(vertex)) {
                 return null;
             }
 

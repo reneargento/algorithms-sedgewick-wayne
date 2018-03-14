@@ -30,7 +30,7 @@ public class Exercise29_SymbolTableWithRandomAccess {
         }
 
         public Key deleteRandomKey() {
-            if(separateChainingHashTable.isEmpty()) {
+            if (separateChainingHashTable.isEmpty()) {
                 throw new RuntimeException("Empty symbol table");
             }
 

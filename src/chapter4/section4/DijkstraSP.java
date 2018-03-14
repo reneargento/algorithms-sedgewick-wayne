@@ -33,11 +33,11 @@ public class DijkstraSP {
         for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
             int neighbor = edge.to();
 
-            if(distTo[neighbor] > distTo[vertex] + edge.weight()) {
+            if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
                 distTo[neighbor] = distTo[vertex] + edge.weight();
                 edgeTo[neighbor] = edge;
 
-                if(priorityQueue.contains(neighbor)) {
+                if (priorityQueue.contains(neighbor)) {
                     priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                 } else {
                     priorityQueue.insert(neighbor, distTo[neighbor]);
@@ -59,7 +59,7 @@ public class DijkstraSP {
     }
 
     public Iterable<DirectedEdge> pathTo(int vertex) {
-        if(!hasPathTo(vertex)) {
+        if (!hasPathTo(vertex)) {
             return null;
         }
 

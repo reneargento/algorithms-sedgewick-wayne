@@ -12,7 +12,7 @@ public class Cycle {
         visited = new boolean[graph.vertices()];
 
         for(int source = 0; source < graph.vertices(); source++) {
-            if(!visited[source]) {
+            if (!visited[source]) {
                 dfs(graph, source, source);
             }
         }
@@ -22,9 +22,9 @@ public class Cycle {
         visited[vertex] = true;
 
         for(int neighbor : graph.adjacent(vertex)) {
-            if(!visited[neighbor]) {
+            if (!visited[neighbor]) {
                 dfs(graph, neighbor, vertex);
-            } else if(neighbor != origin) {
+            } else if (neighbor != origin) {
                 hasCycle = true;
             }
         }

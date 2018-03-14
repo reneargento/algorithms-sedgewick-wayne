@@ -36,7 +36,7 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -48,7 +48,7 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private boolean isRed(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
@@ -56,7 +56,7 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private Node rotateLeft(Node node) {
-            if(node == null || node.right == null) {
+            if (node == null || node.right == null) {
                 return node;
             }
 
@@ -75,7 +75,7 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private Node rotateRight(Node node) {
-            if(node == null || node.left == null) {
+            if (node == null || node.left == null) {
                 return node;
             }
 
@@ -94,12 +94,12 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private void flipColors(Node node) {
-            if(node == null || node.left == null || node.right == null) {
+            if (node == null || node.left == null || node.right == null) {
                 return;
             }
 
             //The root must have opposite color of its two children
-            if((isRed(node) && !isRed(node.left) && !isRed(node.right))
+            if ((isRed(node) && !isRed(node.left) && !isRed(node.right))
                     || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
                 node.color = !node.color;
                 node.left.color = !node.left.color;
@@ -117,27 +117,27 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private Node put(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return new Node(key, 1, RED);
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare < 0) {
+            if (compare < 0) {
                 node.left = put(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 node.right = put(node.right, key);
             } else {
                 node.key = key;
             }
 
-            if(isRed(node.right) && !isRed(node.left)) {
+            if (isRed(node.right) && !isRed(node.left)) {
                 node = rotateLeft(node);
             }
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -156,9 +156,9 @@ public class Set<Key extends Comparable<Key>> {
             while (node != null) {
                 int compare = key.compareTo(node.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     node = node.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     node = node.right;
                 } else {
                     return true;
@@ -169,7 +169,7 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -177,7 +177,7 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node;
             }
 
@@ -185,7 +185,7 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
@@ -193,7 +193,7 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 return node;
             }
 
@@ -203,7 +203,7 @@ public class Set<Key extends Comparable<Key>> {
         //Returns the highest key in the symbol table smaller than or equal to key.
         public Key floor(Key key) {
             Node node = floor(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -211,19 +211,19 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private Node floor(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare < 0) {
+            } else if (compare < 0) {
                 return floor(node.left, key);
             } else {
                 Node rightNode = floor(node.right, key);
-                if(rightNode != null) {
+                if (rightNode != null) {
                     return rightNode;
                 } else {
                     return node;
@@ -234,7 +234,7 @@ public class Set<Key extends Comparable<Key>> {
         //Returns the smallest key in the symbol table greater than or equal to key.
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
@@ -242,19 +242,19 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private Node ceiling(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             int compare = key.compareTo(node.key);
 
-            if(compare == 0) {
+            if (compare == 0) {
                 return node;
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return ceiling(node.right, key);
             } else {
                 Node leftNode = ceiling(node.left, key);
-                if(leftNode != null) {
+                if (leftNode != null) {
                     return leftNode;
                 } else {
                     return node;
@@ -263,7 +263,7 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -273,7 +273,7 @@ public class Set<Key extends Comparable<Key>> {
         private Node select(Node node, int index) {
             int leftSubtreeSize = size(node.left);
 
-            if(leftSubtreeSize == index) {
+            if (leftSubtreeSize == index) {
                 return node;
             } else if (leftSubtreeSize > index) {
                 return select(node.left, index);
@@ -287,15 +287,15 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private int rank(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
             //Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
-            if(compare < 0) {
+            if (compare < 0) {
                 return rank(node.left, key);
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 return size(node.left) + 1 + rank(node.right, key);
             } else {
                 return size(node.left);
@@ -303,27 +303,27 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         public void deleteMin() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = deleteMin(root);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node deleteMin(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return null;
             }
 
-            if(!isRed(node.left) && !isRed(node.left.left)) {
+            if (!isRed(node.left) && !isRed(node.left.left)) {
                 node = moveRedLeft(node);
             }
 
@@ -332,31 +332,31 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         public void deleteMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = deleteMax(root);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node deleteMax(Node node) {
-            if(isRed(node.left)) {
+            if (isRed(node.left)) {
                 node = rotateRight(node);
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 return null;
             }
 
-            if(!isRed(node.right) && !isRed(node.right.left)) {
+            if (!isRed(node.right) && !isRed(node.right.left)) {
                 node = moveRedRight(node);
             }
 
@@ -369,46 +369,46 @@ public class Set<Key extends Comparable<Key>> {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            if(isEmpty() || !contains(key)) {
+            if (isEmpty() || !contains(key)) {
                 return;
             }
 
-            if(!isRed(root.left) && !isRed(root.right)) {
+            if (!isRed(root.left) && !isRed(root.right)) {
                 root.color = RED;
             }
 
             root = delete(root, key);
 
-            if(!isEmpty()) {
+            if (!isEmpty()) {
                 root.color = BLACK;
             }
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(key.compareTo(node.key) < 0) {
-                if(!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
+            if (key.compareTo(node.key) < 0) {
+                if (!isRed(node.left) && node.left != null && !isRed(node.left.left)) {
                     node = moveRedLeft(node);
                 }
 
                 node.left = delete(node.left, key);
             } else {
-                if(isRed(node.left)) {
+                if (isRed(node.left)) {
                     node = rotateRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0 && node.right == null) {
+                if (key.compareTo(node.key) == 0 && node.right == null) {
                     return null;
                 }
 
-                if(!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
+                if (!isRed(node.right) && node.right != null && !isRed(node.right.left)) {
                     node = moveRedRight(node);
                 }
 
-                if(key.compareTo(node.key) == 0) {
+                if (key.compareTo(node.key) == 0) {
                     Node aux = min(node.right);
                     node.key = aux.key;
                     node.right = deleteMin(node.right);
@@ -425,7 +425,7 @@ public class Set<Key extends Comparable<Key>> {
             // make node.left or one of its children red
             flipColors(node);
 
-            if(node.right != null && isRed(node.right.left)) {
+            if (node.right != null && isRed(node.right.left)) {
                 node.right = rotateRight(node.right);
                 node = rotateLeft(node);
                 flipColors(node);
@@ -439,7 +439,7 @@ public class Set<Key extends Comparable<Key>> {
             // make node.right or one of its children red
             flipColors(node);
 
-            if(node.left != null && isRed(node.left.left)) {
+            if (node.left != null && isRed(node.left.left)) {
                 node = rotateRight(node);
                 flipColors(node);
             }
@@ -448,19 +448,19 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(isRed(node.right)) {
+            if (isRed(node.right)) {
                 node = rotateLeft(node);
             }
 
-            if(isRed(node.left) && isRed(node.left.left)) {
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rotateRight(node);
             }
 
-            if(isRed(node.left) && isRed(node.right)) {
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
             }
 
@@ -487,22 +487,22 @@ public class Set<Key extends Comparable<Key>> {
         }
 
         private void keys(Node node, Queue<Key> queue, Key low, Key high) {
-            if(node == null) {
+            if (node == null) {
                 return;
             }
 
             int compareLow = low.compareTo(node.key);
             int compareHigh = high.compareTo(node.key);
 
-            if(compareLow < 0) {
+            if (compareLow < 0) {
                 keys(node.left, queue, low, high);
             }
 
-            if(compareLow <= 0 && compareHigh >= 0) {
+            if (compareLow <= 0 && compareHigh >= 0) {
                 queue.enqueue(node.key);
             }
 
-            if(compareHigh > 0) {
+            if (compareHigh > 0) {
                 keys(node.right, queue, low, high);
             }
         }
@@ -558,7 +558,7 @@ public class Set<Key extends Comparable<Key>> {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        if(set.isEmpty() || !contains(key)) {
+        if (set.isEmpty() || !contains(key)) {
             return;
         }
 
@@ -566,7 +566,7 @@ public class Set<Key extends Comparable<Key>> {
     }
 
     public Key min() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
 
@@ -574,7 +574,7 @@ public class Set<Key extends Comparable<Key>> {
     }
 
     public Key max() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
 
@@ -590,7 +590,7 @@ public class Set<Key extends Comparable<Key>> {
     }
 
     public Key select(int index) {
-        if(index >= size()) {
+        if (index >= size()) {
             throw new IllegalArgumentException("Index is higher than set size");
         }
 
@@ -623,7 +623,7 @@ public class Set<Key extends Comparable<Key>> {
 
     @Override
     public String toString() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return "{ }";
         }
 
@@ -631,7 +631,7 @@ public class Set<Key extends Comparable<Key>> {
 
         boolean isFirstKey = true;
         for(Key key : keys()) {
-            if(isFirstKey) {
+            if (isFirstKey) {
                 isFirstKey = false;
             } else {
                 stringBuilder.append(",");

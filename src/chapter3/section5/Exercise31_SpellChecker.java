@@ -34,7 +34,7 @@ public class Exercise31_SpellChecker {
             }
 
             for(String word : allWords) {
-                if(!redBlackBST.contains(word)) {
+                if (!redBlackBST.contains(word)) {
                     filteredWords.add(word);
                 }
             }
@@ -60,7 +60,7 @@ public class Exercise31_SpellChecker {
             }
 
             for(String word : allWords) {
-                if(!separateChainingHashTable.contains(word)) {
+                if (!separateChainingHashTable.contains(word)) {
                     filteredWords.add(word);
                 }
             }
@@ -86,7 +86,7 @@ public class Exercise31_SpellChecker {
             }
 
             for(String word : allWords) {
-                if(!linearProbingHashTable.contains(word)) {
+                if (!linearProbingHashTable.contains(word)) {
                     filteredWords.add(word);
                 }
             }

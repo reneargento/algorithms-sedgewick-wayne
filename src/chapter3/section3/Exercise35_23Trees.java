@@ -86,12 +86,12 @@ public class Exercise35_23Trees {
         private int getNodePositionValue(Node parent, NodePosition nodePosition) {
             int value = 0;
 
-            if(is2Node(parent)) {
+            if (is2Node(parent)) {
                 switch (nodePosition) {
                     case LEFT: value = 0; break;
                     case RIGHT: value = 1; break;
                 }
-            } else if(is3Node(parent)) {
+            } else if (is3Node(parent)) {
                 switch (nodePosition) {
                     case LEFT: value = 0; break;
                     case MIDDLE1: value = 1; break;
@@ -114,7 +114,7 @@ public class Exercise35_23Trees {
         }
 
         private int size(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
@@ -126,7 +126,7 @@ public class Exercise35_23Trees {
         }
 
         private boolean is2Node(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
@@ -134,7 +134,7 @@ public class Exercise35_23Trees {
         }
 
         private boolean is3Node(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
@@ -142,7 +142,7 @@ public class Exercise35_23Trees {
         }
 
         private boolean is4Node(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return false;
             }
 
@@ -207,7 +207,7 @@ public class Exercise35_23Trees {
 
             ThreeNode newThreeNode;
             int newSize = parentNode.size;
-            if(isLeftNode) {
+            if (isLeftNode) {
                 newThreeNode = new ThreeNode(newNode.key, newNode.value, parentNode.key,
                         parentNode.value, newSize);
                 newThreeNode.left = newNode.left;
@@ -231,14 +231,14 @@ public class Exercise35_23Trees {
             //Create temporary 4-node
             FourNode newFourNode;
             int newSize = parentNode.size;
-            if(isLeftNode) {
+            if (isLeftNode) {
                 newFourNode = new FourNode(newNode.key, newNode.value, parentNode.leftKey, parentNode.leftValue,
                         parentNode.rightKey, parentNode.rightValue, newSize);
                 newFourNode.left = newNode.left;
                 newFourNode.middle1 = newNode.right;
                 newFourNode.middle2 = parentNode.middle;
                 newFourNode.right = parentNode.right;
-            } else if(isRightNode) {
+            } else if (isRightNode) {
                 newFourNode = new FourNode(parentNode.leftKey, parentNode.leftValue,
                         parentNode.rightKey, parentNode.rightValue, newNode.key, newNode.value, newSize);
                 newFourNode.left = parentNode.left;
@@ -266,13 +266,13 @@ public class Exercise35_23Trees {
             int destination = getNodePositionValue(parent, destinationNodePosition);
             boolean isMoveLeft = source > destination;
 
-            if(isMoveLeft) {
+            if (isMoveLeft) {
                 while (destination < source) {
                     //Default values for 2-node
                     Node temporarySource = parent.right;
                     Node temporaryDestination = parent.left;
 
-                    if(is3Node(parent)) {
+                    if (is3Node(parent)) {
                         ThreeNode threeNodeParent = (ThreeNode) parent;
 
                         switch (source) {
@@ -291,7 +291,7 @@ public class Exercise35_23Trees {
                                 destinationNodePosition = NodePosition.LEFT;
                                 break;
                         }
-                    } else if(is4Node(parent)) {
+                    } else if (is4Node(parent)) {
                         FourNode fourNode = (FourNode) parent;
 
                         switch (source) {
@@ -330,7 +330,7 @@ public class Exercise35_23Trees {
                     Node temporarySource = parent.left;
                     Node temporaryDestination = parent.right;
 
-                    if(is3Node(parent)) {
+                    if (is3Node(parent)) {
                         ThreeNode threeNodeParent = (ThreeNode) parent;
 
                         switch (source) {
@@ -349,7 +349,7 @@ public class Exercise35_23Trees {
                                 destinationNodePosition = NodePosition.RIGHT;
                                 break;
                         }
-                    } else if(is4Node(parent)) {
+                    } else if (is4Node(parent)) {
                         FourNode fourNode = (FourNode) parent;
 
                         switch (source) {
@@ -393,18 +393,18 @@ public class Exercise35_23Trees {
 
             boolean isMoveLeft = source > destination;
 
-            if(isMoveLeft) {
-                if(is2Node(rightChild)) {
+            if (isMoveLeft) {
+                if (is2Node(rightChild)) {
                     //No point in moving a 2-node
                     return parent;
-                } else if(is3Node(rightChild)) {
+                } else if (is3Node(rightChild)) {
                     ThreeNode rightChildThreeNode = (ThreeNode) rightChild;
                     Node newLeftChild;
 
-                    if(is2Node(parent)) {
+                    if (is2Node(parent)) {
                         TwoNode twoNodeParent = (TwoNode) parent;
 
-                        if(leftChild != null) {
+                        if (leftChild != null) {
                             TwoNode twoNodeLeftChild = (TwoNode) leftChild;
                             newLeftChild = new ThreeNode(twoNodeLeftChild.key, twoNodeLeftChild.value,
                                     twoNodeParent.key, twoNodeParent.value, leftChild.size + 1 + size(rightChild.left));
@@ -426,13 +426,13 @@ public class Exercise35_23Trees {
 
                         twoNodeParent.left = newLeftChild;
                         twoNodeParent.right = newRightChild;
-                    } else if(is3Node(parent)) {
+                    } else if (is3Node(parent)) {
                         ThreeNode threeNodeParent = (ThreeNode) parent;
                         TwoNode newRightChild;
 
                         switch (source) {
                             case 1:
-                                if(leftChild != null) {
+                                if (leftChild != null) {
                                     TwoNode twoNodeLeftChild = (TwoNode) leftChild;
                                     newLeftChild = new ThreeNode(twoNodeLeftChild.key, twoNodeLeftChild.value,
                                             threeNodeParent.leftKey, threeNodeParent.leftValue, leftChild.size + 1
@@ -458,7 +458,7 @@ public class Exercise35_23Trees {
 
                                 break;
                             case 2:
-                                if(leftChild != null) {
+                                if (leftChild != null) {
                                     TwoNode twoNodeLeftChild = (TwoNode) leftChild;
                                     newLeftChild = new ThreeNode(twoNodeLeftChild.key, twoNodeLeftChild.value,
                                             threeNodeParent.rightKey, threeNodeParent.rightValue, leftChild.size + 1
@@ -484,13 +484,13 @@ public class Exercise35_23Trees {
 
                                 break;
                         }
-                    } else if(is4Node(parent)) {
+                    } else if (is4Node(parent)) {
                         FourNode fourNodeParent = (FourNode) parent;
                         TwoNode newRightChild;
 
                         switch (source) {
                             case 1:
-                                if(leftChild != null) {
+                                if (leftChild != null) {
                                     TwoNode twoNodeLeftChild = (TwoNode) leftChild;
                                     newLeftChild = new ThreeNode(twoNodeLeftChild.key, twoNodeLeftChild.value,
                                             fourNodeParent.leftKey, fourNodeParent.leftValue, leftChild.size + 1
@@ -516,7 +516,7 @@ public class Exercise35_23Trees {
 
                                 break;
                             case 2:
-                                if(leftChild != null) {
+                                if (leftChild != null) {
                                     TwoNode twoNodeLeftChild = (TwoNode) leftChild;
                                     newLeftChild = new ThreeNode(twoNodeLeftChild.key, twoNodeLeftChild.value,
                                             fourNodeParent.middleKey, fourNodeParent.middleValue, leftChild.size + 1
@@ -542,7 +542,7 @@ public class Exercise35_23Trees {
 
                                 break;
                             case 3:
-                                if(leftChild != null) {
+                                if (leftChild != null) {
                                     TwoNode twoNodeLeftChild = (TwoNode) leftChild;
                                     newLeftChild = new ThreeNode(twoNodeLeftChild.key, twoNodeLeftChild.value,
                                             fourNodeParent.rightKey, fourNodeParent.rightValue, leftChild.size + 1
@@ -571,17 +571,17 @@ public class Exercise35_23Trees {
                     }
                 }
             } else {
-                if(is2Node(leftChild)) {
+                if (is2Node(leftChild)) {
                     //No point in moving a 2-node
                     return parent;
-                } else if(is3Node(leftChild)) {
+                } else if (is3Node(leftChild)) {
                     ThreeNode leftChildThreeNode = (ThreeNode) leftChild;
                     Node newRightChild;
 
-                    if(is2Node(parent)) {
+                    if (is2Node(parent)) {
                         TwoNode twoNodeParent = (TwoNode) parent;
 
-                        if(rightChild != null) {
+                        if (rightChild != null) {
                             TwoNode twoNodeRightChild = (TwoNode) rightChild;
                             newRightChild = new ThreeNode(twoNodeParent.key, twoNodeParent.value,
                                     twoNodeRightChild.key, twoNodeRightChild.value,rightChild.size + 1
@@ -604,13 +604,13 @@ public class Exercise35_23Trees {
 
                         twoNodeParent.left = newLeftChild;
                         twoNodeParent.right = newRightChild;
-                    } else if(is3Node(parent)) {
+                    } else if (is3Node(parent)) {
                         ThreeNode threeNodeParent = (ThreeNode) parent;
                         TwoNode newLeftChild;
 
                         switch (source) {
                             case 0:
-                                if(rightChild != null) {
+                                if (rightChild != null) {
                                     TwoNode twoNodeRightChild = (TwoNode) rightChild;
                                     newRightChild = new ThreeNode(threeNodeParent.leftKey, threeNodeParent.leftValue,
                                             twoNodeRightChild.key, twoNodeRightChild.value,rightChild.size + 1
@@ -636,7 +636,7 @@ public class Exercise35_23Trees {
 
                                 break;
                             case 1:
-                                if(rightChild != null) {
+                                if (rightChild != null) {
                                     TwoNode twoNodeRightChild = (TwoNode) rightChild;
                                     newRightChild = new ThreeNode(threeNodeParent.rightKey, threeNodeParent.rightValue,
                                             twoNodeRightChild.key, twoNodeRightChild.value,rightChild.size + 1
@@ -662,13 +662,13 @@ public class Exercise35_23Trees {
 
                                 break;
                         }
-                    } else if(is4Node(parent)) {
+                    } else if (is4Node(parent)) {
                         FourNode fourNodeParent = (FourNode) parent;
                         TwoNode newLeftChild;
 
                         switch (source) {
                             case 0:
-                                if(rightChild != null) {
+                                if (rightChild != null) {
                                     TwoNode twoNodeRightChild = (TwoNode) rightChild;
                                     newRightChild = new ThreeNode(fourNodeParent.leftKey, fourNodeParent.leftValue,
                                             twoNodeRightChild.key, twoNodeRightChild.value, rightChild.size + 1
@@ -694,7 +694,7 @@ public class Exercise35_23Trees {
 
                                 break;
                             case 2:
-                                if(rightChild != null) {
+                                if (rightChild != null) {
                                     TwoNode twoNodeRightChild = (TwoNode) rightChild;
                                     newRightChild = new ThreeNode(fourNodeParent.middleKey, fourNodeParent.middleValue,
                                             twoNodeRightChild.key, twoNodeRightChild.value,rightChild.size + 1
@@ -720,7 +720,7 @@ public class Exercise35_23Trees {
 
                                 break;
                             case 3:
-                                if(rightChild != null) {
+                                if (rightChild != null) {
                                     TwoNode twoNodeRightChild = (TwoNode) rightChild;
                                     newRightChild = new ThreeNode(fourNodeParent.rightKey, fourNodeParent.rightValue,
                                             twoNodeRightChild.key, twoNodeRightChild.value, rightChild.size + 1
@@ -756,7 +756,7 @@ public class Exercise35_23Trees {
         private Node mergeParentKeyInto4NodeChild(Node parent, Node leftChild, Node rightChild, NodePosition destinationNode) {
             Node newParent = null;
 
-            if(!is2Node(leftChild) || !is2Node(rightChild)) {
+            if (!is2Node(leftChild) || !is2Node(rightChild)) {
                 return parent;
             }
 
@@ -767,7 +767,7 @@ public class Exercise35_23Trees {
 
             FourNode newChild = null;
 
-            if(is2Node(parent)) {
+            if (is2Node(parent)) {
                 TwoNode parentTwoNode = (TwoNode) parent;
 
                 newChild = new FourNode(childLeftTwoNode.key, childLeftTwoNode.value,
@@ -775,11 +775,11 @@ public class Exercise35_23Trees {
                         newChildSize);
 
                 newParent = newChild;
-            } else if(is3Node(parent)) {
+            } else if (is3Node(parent)) {
                 ThreeNode parentThreeNode = (ThreeNode) parent;
 
                 //Go left
-                if(destinationNode == NodePosition.LEFT) {
+                if (destinationNode == NodePosition.LEFT) {
                     newChild = new FourNode(childLeftTwoNode.key, childLeftTwoNode.value,
                             parentThreeNode.leftKey, parentThreeNode.leftValue, childRightTwoNode.key, childRightTwoNode.value,
                             newChildSize);
@@ -801,7 +801,7 @@ public class Exercise35_23Trees {
                 FourNode parentFourNode = (FourNode) parent;
 
                 //Go left
-                if(destinationNode == NodePosition.LEFT) {
+                if (destinationNode == NodePosition.LEFT) {
                     newChild = new FourNode(childLeftTwoNode.key, childLeftTwoNode.value,
                             parentFourNode.leftKey, parentFourNode.leftValue, childRightTwoNode.key, childRightTwoNode.value,
                             newChildSize);
@@ -811,7 +811,7 @@ public class Exercise35_23Trees {
                     newParent.left = newChild;
                     ((ThreeNode) newParent).middle = parentFourNode.middle2;
                     newParent.right = parent.right;
-                } else if(destinationNode == NodePosition.MIDDLE1) {
+                } else if (destinationNode == NodePosition.MIDDLE1) {
                     //Go to the middle
                     newChild = new FourNode(childLeftTwoNode.key, childLeftTwoNode.value,
                             parentFourNode.middleKey, parentFourNode.middleValue, childRightTwoNode.key, childRightTwoNode.value,
@@ -822,7 +822,7 @@ public class Exercise35_23Trees {
                     newParent.left = parent.left;
                     ((ThreeNode) newParent).middle = newChild;
                     newParent.right = parent.right;
-                } else if(destinationNode == NodePosition.RIGHT) {
+                } else if (destinationNode == NodePosition.RIGHT) {
                     //Go right
                     newChild = new FourNode(childLeftTwoNode.key, childLeftTwoNode.value,
                             parentFourNode.rightKey, parentFourNode.rightValue, childRightTwoNode.key, childRightTwoNode.value,
@@ -845,28 +845,28 @@ public class Exercise35_23Trees {
         }
 
         public void put(Key key, Value value) {
-            if(key == null) {
+            if (key == null) {
                 return;
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
             root = put(root, null, key, value);
-            if(is4Node(root)) {
+            if (is4Node(root)) {
                 root = split4Node((FourNode) root);
             }
         }
 
         private Node put(Node node, Node parent, Key key, Value value) {
-            if(node == null) {
+            if (node == null) {
                 TwoNode newNode = new TwoNode(key, value, 1);
 
-                if(parent == null) {
+                if (parent == null) {
                     return newNode;
-                } else if(is2Node(parent)) {
+                } else if (is2Node(parent)) {
                     TwoNode parentNode = (TwoNode) parent;
                     return generate3Node(parentNode, newNode);
                 } else {
@@ -878,34 +878,34 @@ public class Exercise35_23Trees {
                 }
             }
 
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 TwoNode twoNode = (TwoNode) node;
 
                 int compare = key.compareTo(twoNode.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     Node newNode = put(node.left, node, key, value);
 
-                    if(is2Node(newNode)) {
+                    if (is2Node(newNode)) {
                         node.left = newNode;
                     } else {
                         ThreeNode newThreeNode = (ThreeNode) newNode;
 
-                        if(containsKey(newThreeNode, twoNode.key)) {
+                        if (containsKey(newThreeNode, twoNode.key)) {
                             node = newNode;
                         } else {
                             node.left = newNode;
                         }
                     }
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     Node newNode = put(node.right, node, key, value);
 
-                    if(is2Node(newNode)) {
+                    if (is2Node(newNode)) {
                         node.right = newNode;
                     } else {
                         ThreeNode newThreeNode = (ThreeNode) newNode;
 
-                        if(containsKey(newThreeNode, twoNode.key)) {
+                        if (containsKey(newThreeNode, twoNode.key)) {
                             node = newNode;
                         } else {
                             node.right = newNode;
@@ -921,43 +921,43 @@ public class Exercise35_23Trees {
                 int compareLeft = key.compareTo(threeNode.leftKey);
                 int compareRight = key.compareTo(threeNode.rightKey);
 
-                if(compareLeft < 0) {
+                if (compareLeft < 0) {
                     Node newNode = put(threeNode.left, threeNode, key, value);
 
-                    if(!is4Node(newNode)) {
+                    if (!is4Node(newNode)) {
                         node.left = newNode;
                     } else {
                         FourNode fourNode = (FourNode) newNode;
                         node = splitNodeAndBuildTree(parent, fourNode);
                     }
-                } else if(compareLeft > 0 && compareRight < 0) {
+                } else if (compareLeft > 0 && compareRight < 0) {
                     Node newNode = put(threeNode.middle, node, key, value);
 
-                    if(!is4Node(newNode)) {
+                    if (!is4Node(newNode)) {
                         threeNode.middle = newNode;
                     } else {
                         FourNode fourNode = (FourNode) newNode;
                         node = splitNodeAndBuildTree(parent, fourNode);
                     }
-                } else if(compareRight > 0) {
+                } else if (compareRight > 0) {
                     Node newNode = put(node.right, node, key, value);
 
-                    if(!is4Node(newNode)) {
+                    if (!is4Node(newNode)) {
                         node.right = newNode;
                     } else {
                         FourNode fourNode = (FourNode) newNode;
                         node = splitNodeAndBuildTree(parent, fourNode);
                     }
                 } else {
-                    if(threeNode.leftKey.compareTo(key) == 0) {
+                    if (threeNode.leftKey.compareTo(key) == 0) {
                         threeNode.leftValue = value;
-                    } else if(threeNode.rightKey.compareTo(key) == 0) {
+                    } else if (threeNode.rightKey.compareTo(key) == 0) {
                         threeNode.rightValue = value;
                     }
                 }
             }
 
-            if(!is3Node(node)) {
+            if (!is3Node(node)) {
                 node.size = size(node.left) + 1 + size(node.right);
             } else {
                 ThreeNode threeNode = (ThreeNode) node;
@@ -971,9 +971,9 @@ public class Exercise35_23Trees {
             Node returnNode;
 
             TwoNode splitNode = split4Node(fourNode);
-            if(parent == null) {
+            if (parent == null) {
                 returnNode = splitNode;
-            } else if(!is3Node(parent)) {
+            } else if (!is3Node(parent)) {
                 TwoNode parentNode = (TwoNode) parent;
                 returnNode = generate3Node(parentNode, splitNode);
             } else {
@@ -985,7 +985,7 @@ public class Exercise35_23Trees {
         }
 
         private boolean containsKey(ThreeNode threeNode, Key key) {
-            if((threeNode.leftKey != null && threeNode.leftKey.compareTo(key) == 0)
+            if ((threeNode.leftKey != null && threeNode.leftKey.compareTo(key) == 0)
                     || (threeNode.rightKey != null && threeNode.rightKey.compareTo(key) == 0)) {
                 return true;
             } else {
@@ -994,7 +994,7 @@ public class Exercise35_23Trees {
         }
 
         public Value get(Key key) {
-            if(key == null) {
+            if (key == null) {
                 return null;
             }
 
@@ -1002,17 +1002,17 @@ public class Exercise35_23Trees {
         }
 
         private Value get(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 TwoNode twoNode = (TwoNode) node;
 
                 int compare = key.compareTo(twoNode.key);
-                if(compare < 0) {
+                if (compare < 0) {
                     return get(twoNode.left, key);
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     return get(twoNode.right, key);
                 } else {
                     return twoNode.value;
@@ -1023,14 +1023,14 @@ public class Exercise35_23Trees {
                 int compareLeft = key.compareTo(threeNode.leftKey);
                 int compareRight = key.compareTo(threeNode.rightKey);
 
-                if(compareLeft < 0) {
+                if (compareLeft < 0) {
                     return get(threeNode.left, key);
-                } else if(compareLeft > 0 && compareRight < 0) {
+                } else if (compareLeft > 0 && compareRight < 0) {
                     return get(threeNode.middle, key);
-                } else if(compareRight > 0) {
+                } else if (compareRight > 0) {
                     return get(threeNode.right, key);
                 } else {
-                    if(compareLeft == 0) {
+                    if (compareLeft == 0) {
                         return threeNode.leftValue;
                     } else {
                         return threeNode.rightValue;
@@ -1047,13 +1047,13 @@ public class Exercise35_23Trees {
         }
 
         public Key min() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
             Node minNode = min(root);
 
-            if(is2Node(minNode)) {
+            if (is2Node(minNode)) {
                 return ((TwoNode) minNode).key;
             } else {
                 return ((ThreeNode) minNode).leftKey;
@@ -1061,7 +1061,7 @@ public class Exercise35_23Trees {
         }
 
         private Node min(Node node) {
-            if(node.left == null) {
+            if (node.left == null) {
                 return node;
             }
 
@@ -1069,13 +1069,13 @@ public class Exercise35_23Trees {
         }
 
         public Key max() {
-            if(root == null) {
+            if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
 
             Node maxNode = max(root);
 
-            if(is2Node(maxNode)) {
+            if (is2Node(maxNode)) {
                 return ((TwoNode) maxNode).key;
             } else {
                 return ((ThreeNode) maxNode).rightKey;
@@ -1083,7 +1083,7 @@ public class Exercise35_23Trees {
         }
 
         private Node max(Node node) {
-            if(node.right == null) {
+            if (node.right == null) {
                 return node;
             }
 
@@ -1093,11 +1093,11 @@ public class Exercise35_23Trees {
         //Returns the highest key in the symbol table smaller than or equal to key.
         public Key floor(Key key) {
             Node node = floor(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 return ((TwoNode) node).key;
             } else {
                 ThreeNode threeNode = (ThreeNode) node;
@@ -1106,12 +1106,12 @@ public class Exercise35_23Trees {
                 int compareRight = key.compareTo(threeNode.rightKey);
 
                 //compareLeft < 0 is not possible
-                if(compareLeft > 0 && compareRight < 0) {
+                if (compareLeft > 0 && compareRight < 0) {
                     return threeNode.leftKey;
                 } else if (compareRight > 0) {
                     return threeNode.rightKey;
                 } else {
-                    if(threeNode.leftKey.compareTo(key) == 0) {
+                    if (threeNode.leftKey.compareTo(key) == 0) {
                         return threeNode.leftKey;
                     } else {
                         return threeNode.rightKey;
@@ -1121,21 +1121,21 @@ public class Exercise35_23Trees {
         }
 
         private Node floor(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 TwoNode twoNode = (TwoNode) node;
 
                 int compare = key.compareTo(twoNode.key);
-                if(compare == 0) {
+                if (compare == 0) {
                     return node;
-                } else if(compare < 0) {
+                } else if (compare < 0) {
                     return floor(twoNode.left, key);
                 } else {
                     Node rightNode = floor(twoNode.right, key);
-                    if(rightNode != null) {
+                    if (rightNode != null) {
                         return rightNode;
                     } else {
                         return node;
@@ -1147,18 +1147,18 @@ public class Exercise35_23Trees {
                 int compareLeft = key.compareTo(threeNode.leftKey);
                 int compareRight = key.compareTo(threeNode.rightKey);
 
-                if(compareLeft < 0) {
+                if (compareLeft < 0) {
                     return floor(threeNode.left, key);
-                } else if(compareLeft > 0 && compareRight < 0) {
+                } else if (compareLeft > 0 && compareRight < 0) {
                     Node middleNode = floor(threeNode.middle, key);
-                    if(middleNode != null) {
+                    if (middleNode != null) {
                         return middleNode;
                     } else {
                         return node;
                     }
-                } else if(compareRight > 0) {
+                } else if (compareRight > 0) {
                     Node rightNode = floor(threeNode.right, key);
-                    if(rightNode != null) {
+                    if (rightNode != null) {
                         return rightNode;
                     } else {
                         return node;
@@ -1172,11 +1172,11 @@ public class Exercise35_23Trees {
         //Returns the smallest key in the symbol table greater than or equal to key.
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 return ((TwoNode) node).key;
             } else {
                 ThreeNode threeNode = (ThreeNode) node;
@@ -1185,12 +1185,12 @@ public class Exercise35_23Trees {
                 int compareRight = key.compareTo(threeNode.rightKey);
 
                 //compareRight > 0 is not possible
-                if(compareLeft < 0) {
+                if (compareLeft < 0) {
                     return threeNode.leftKey;
-                } else if(compareLeft > 0 && compareRight < 0) {
+                } else if (compareLeft > 0 && compareRight < 0) {
                     return threeNode.rightKey;
                 } else {
-                    if(threeNode.leftKey.compareTo(key) == 0) {
+                    if (threeNode.leftKey.compareTo(key) == 0) {
                         return threeNode.leftKey;
                     } else {
                         return threeNode.rightKey;
@@ -1200,21 +1200,21 @@ public class Exercise35_23Trees {
         }
 
         private Node ceiling(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 TwoNode twoNode = (TwoNode) node;
 
                 int compare = key.compareTo(twoNode.key);
-                if(compare == 0) {
+                if (compare == 0) {
                     return node;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     return ceiling(twoNode.right, key);
                 } else {
                     Node leftNode = ceiling(twoNode.left, key);
-                    if(leftNode != null) {
+                    if (leftNode != null) {
                         return leftNode;
                     } else {
                         return node;
@@ -1226,18 +1226,18 @@ public class Exercise35_23Trees {
                 int compareLeft = key.compareTo(threeNode.leftKey);
                 int compareRight = key.compareTo(threeNode.rightKey);
 
-                if(compareRight > 0) {
+                if (compareRight > 0) {
                     return ceiling(threeNode.right, key);
-                } else if(compareLeft > 0 && compareRight < 0) {
+                } else if (compareLeft > 0 && compareRight < 0) {
                     Node middleNode = ceiling(threeNode.middle, key);
-                    if(middleNode != null) {
+                    if (middleNode != null) {
                         return middleNode;
                     } else {
                         return node;
                     }
-                } else if(compareLeft < 0) {
+                } else if (compareLeft < 0) {
                     Node leftNode = ceiling(threeNode.left, key);
-                    if(leftNode != null) {
+                    if (leftNode != null) {
                         return leftNode;
                     } else {
                         return node;
@@ -1249,7 +1249,7 @@ public class Exercise35_23Trees {
         }
 
         public Key select(int index) {
-            if(index >= size()) {
+            if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
 
@@ -1260,8 +1260,8 @@ public class Exercise35_23Trees {
         private Node select(Node node, int index) {
             int leftSubtreeSize = size(node.left);
 
-            if(is2Node(node)) {
-                if(leftSubtreeSize == index) {
+            if (is2Node(node)) {
+                if (leftSubtreeSize == index) {
                     return node;
                 } else if (leftSubtreeSize > index) {
                     return select(node.left, index);
@@ -1272,13 +1272,13 @@ public class Exercise35_23Trees {
                 ThreeNode threeNode = (ThreeNode) node;
                 int middleSubtreeSize = size(threeNode.middle);
 
-                if(leftSubtreeSize == index) {
+                if (leftSubtreeSize == index) {
                     return new TwoNode(threeNode.leftKey, threeNode.leftValue, threeNode.size);
                 } else if (leftSubtreeSize + 1 + middleSubtreeSize == index) {
                     return new TwoNode(threeNode.rightKey, threeNode.rightValue, threeNode.size);
                 } else if (leftSubtreeSize > index) {
                     return select(node.left, index);
-                } else if(leftSubtreeSize + 1 + middleSubtreeSize > index) {
+                } else if (leftSubtreeSize + 1 + middleSubtreeSize > index) {
                     return select(threeNode.middle, index - leftSubtreeSize - 1);
                 } else {
                     return select(node.right, index - leftSubtreeSize - 1 - middleSubtreeSize - 1);
@@ -1291,18 +1291,18 @@ public class Exercise35_23Trees {
         }
 
         private int rank(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return 0;
             }
 
             //Returns the number of keys less than node.key in the subtree rooted at node
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 TwoNode twoNode = (TwoNode) node;
 
                 int compare = key.compareTo(twoNode.key);
-                if(compare < 0) {
+                if (compare < 0) {
                     return rank(node.left, key);
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     return size(node.left) + 1 + rank(node.right, key);
                 } else {
                     return size(node.left);
@@ -1313,14 +1313,14 @@ public class Exercise35_23Trees {
                 int compareLeft = key.compareTo(threeNode.leftKey);
                 int compareRight = key.compareTo(threeNode.rightKey);
 
-                if(compareLeft < 0) {
+                if (compareLeft < 0) {
                     return rank(threeNode.left, key);
-                } else if(compareLeft > 0 && compareRight < 0) {
+                } else if (compareLeft > 0 && compareRight < 0) {
                     return size(threeNode.left) + 1 + rank(threeNode.middle, key);
                 } else if (compareRight > 0) {
                     return size(threeNode.left) + 1 + size(threeNode.middle) + 1 + rank(threeNode.right, key);
                 } else {
-                    if(compareLeft == 0) {
+                    if (compareLeft == 0) {
                         return size(node.left);
                     } else {
                         return size(node.left) + 1 + size(threeNode.middle);
@@ -1330,14 +1330,14 @@ public class Exercise35_23Trees {
         }
 
         public void deleteMin() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(is2Node(root)) {
-                if(root.right != null && is2Node(root.left) && is2Node(root.right)) {
+            if (is2Node(root)) {
+                if (root.right != null && is2Node(root.left) && is2Node(root.right)) {
                     root = mergeParentKeyInto4NodeChild(root, root.left, root.right, NodePosition.LEFT);
-                } else if(is2Node(root.left) &&
+                } else if (is2Node(root.left) &&
                         (is3Node(root.right) || is4Node(root.right))) {
                     root = moveKey(root, NodePosition.RIGHT, NodePosition.LEFT);
                 }
@@ -1345,29 +1345,29 @@ public class Exercise35_23Trees {
 
             root = deleteMin(root);
 
-            if(!isEmpty() && is4Node(root)) {
+            if (!isEmpty() && is4Node(root)) {
                 root = split4Node((FourNode) root);
             }
         }
 
         private Node deleteMin(Node node) {
             //Current node is a 2-node
-            if(is2Node(node)) {
-                if(is2Node(node.left)) {
-                    if(!is2Node(node.right)) {
+            if (is2Node(node)) {
+                if (is2Node(node.left)) {
+                    if (!is2Node(node.right)) {
                         node = moveKey(node, NodePosition.RIGHT, NodePosition.LEFT);
                     } else {
                         node = mergeParentKeyInto4NodeChild(node, node.left, node.right, NodePosition.LEFT);
                     }
                 }
-            } else if(is3Node(node)) {
+            } else if (is3Node(node)) {
                 //Current node is a 3-node
                 ThreeNode threeNode = (ThreeNode) node;
 
-                if(is2Node(node.left)) {
-                    if(!is2Node(threeNode.middle)) {
+                if (is2Node(node.left)) {
+                    if (!is2Node(threeNode.middle)) {
                         node = moveKey(node, NodePosition.MIDDLE1, NodePosition.LEFT);
-                    } else if(!is2Node(threeNode.right)) {
+                    } else if (!is2Node(threeNode.right)) {
                         node = moveKey(node, NodePosition.RIGHT, NodePosition.LEFT);
                     } else {
                         node = mergeParentKeyInto4NodeChild(threeNode, threeNode.left, threeNode.middle, NodePosition.LEFT);
@@ -1377,12 +1377,12 @@ public class Exercise35_23Trees {
                 //Current node is a 4-node
                 FourNode fourNode = (FourNode) node;
 
-                if(is2Node(node.left)) {
-                    if(!is2Node(fourNode.middle1)) {
+                if (is2Node(node.left)) {
+                    if (!is2Node(fourNode.middle1)) {
                         node = moveKey(node, NodePosition.MIDDLE1, NodePosition.LEFT);
-                    } else if(!is2Node(fourNode.middle2)) {
+                    } else if (!is2Node(fourNode.middle2)) {
                         node = moveKey(node, NodePosition.MIDDLE2, NodePosition.LEFT);
-                    } else if(!is2Node(fourNode.middle2)) {
+                    } else if (!is2Node(fourNode.middle2)) {
                         node = moveKey(node, NodePosition.RIGHT, NodePosition.LEFT);
                     } else {
                         node = mergeParentKeyInto4NodeChild(fourNode, fourNode.left, fourNode.middle1, NodePosition.LEFT);
@@ -1390,7 +1390,7 @@ public class Exercise35_23Trees {
                 }
             }
 
-            if(node.left == null) {
+            if (node.left == null) {
                 return removeMinKeyFromNode(node);
             } else {
                 node.left = deleteMin(node.left);
@@ -1400,14 +1400,14 @@ public class Exercise35_23Trees {
         }
 
         public void deleteMax() {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(is2Node(root)) {
-                if(root.left != null && is2Node(root.left) && is2Node(root.right)) {
+            if (is2Node(root)) {
+                if (root.left != null && is2Node(root.left) && is2Node(root.right)) {
                     root = mergeParentKeyInto4NodeChild(root, root.left, root.right, NodePosition.RIGHT);
-                } else if(is2Node(root.right) &&
+                } else if (is2Node(root.right) &&
                         (is3Node(root.left) || is4Node(root.left))) {
                     root = moveKey(root, NodePosition.LEFT, NodePosition.RIGHT);
                 }
@@ -1415,29 +1415,29 @@ public class Exercise35_23Trees {
 
             root = deleteMax(root);
 
-            if(!isEmpty() && is4Node(root)) {
+            if (!isEmpty() && is4Node(root)) {
                 root = split4Node((FourNode) root);
             }
         }
 
         private Node deleteMax(Node node) {
             //Current node is a 2-node
-            if(is2Node(node)) {
-                if(is2Node(node.right)) {
-                    if(!is2Node(node.left)) {
+            if (is2Node(node)) {
+                if (is2Node(node.right)) {
+                    if (!is2Node(node.left)) {
                         node = moveKey(node, NodePosition.LEFT, NodePosition.RIGHT);
                     } else {
                         node = mergeParentKeyInto4NodeChild(node, node.left, node.right, NodePosition.RIGHT);
                     }
                 }
-            } else if(is3Node(node)) {
+            } else if (is3Node(node)) {
                 //Current node is a 3-node
                 ThreeNode threeNode = (ThreeNode) node;
 
-                if(is2Node(node.right)) {
-                    if(!is2Node(threeNode.middle)) {
+                if (is2Node(node.right)) {
+                    if (!is2Node(threeNode.middle)) {
                         node = moveKey(threeNode, NodePosition.MIDDLE1, NodePosition.RIGHT);
-                    } else if(!is2Node(threeNode.left)) {
+                    } else if (!is2Node(threeNode.left)) {
                         node = moveKey(threeNode, NodePosition.LEFT, NodePosition.RIGHT);
                     } else {
                         node = mergeParentKeyInto4NodeChild(threeNode, threeNode.middle, threeNode.right, NodePosition.RIGHT);
@@ -1447,12 +1447,12 @@ public class Exercise35_23Trees {
                 //Current node is a 4-node
                 FourNode fourNode = (FourNode) node;
 
-                if(is2Node(node.right)) {
-                    if(!is2Node(fourNode.middle2)) {
+                if (is2Node(node.right)) {
+                    if (!is2Node(fourNode.middle2)) {
                         node = moveKey(fourNode, NodePosition.MIDDLE2, NodePosition.RIGHT);
-                    } else if(!is2Node(fourNode.middle1)) {
+                    } else if (!is2Node(fourNode.middle1)) {
                         node = moveKey(fourNode, NodePosition.MIDDLE1, NodePosition.RIGHT);
-                    } else if(!is2Node(fourNode.middle1)) {
+                    } else if (!is2Node(fourNode.middle1)) {
                         node = moveKey(fourNode, NodePosition.LEFT, NodePosition.RIGHT);
                     } else {
                         node = mergeParentKeyInto4NodeChild(fourNode, fourNode.middle2, fourNode.right, NodePosition.RIGHT);
@@ -1460,7 +1460,7 @@ public class Exercise35_23Trees {
                 }
             }
 
-            if(node.right == null) {
+            if (node.right == null) {
                 return removeMaxKeyFromNode(node);
             } else {
                 node.right = deleteMax(node.right);
@@ -1470,31 +1470,31 @@ public class Exercise35_23Trees {
         }
 
         public void delete(Key key) {
-            if(isEmpty()) {
+            if (isEmpty()) {
                 return;
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
-            if(is2Node(root)) {
+            if (is2Node(root)) {
                 TwoNode rootNode = (TwoNode) root;
 
                 //If root is the key to delete and we can't make a 4-node
-                if(rootNode.key.compareTo(key) == 0 && is2Node(root)
+                if (rootNode.key.compareTo(key) == 0 && is2Node(root)
                         && (rootNode.left == null || rootNode.right == null)) {
-                    if(rootNode.right == null) {
+                    if (rootNode.right == null) {
                         root = rootNode.left;
                     } else {
                         Node aux = min(rootNode.right);
 
-                        if(is2Node(aux)) {
+                        if (is2Node(aux)) {
                             TwoNode auxNode = (TwoNode) aux;
                             rootNode.key = auxNode.key;
                             rootNode.value = auxNode.value;
                             rootNode.right = deleteMin(rootNode.right);
-                        } else if(is3Node(aux)) {
+                        } else if (is3Node(aux)) {
                             ThreeNode auxNode = (ThreeNode) aux;
                             rootNode.key = auxNode.leftKey;
                             rootNode.value = auxNode.leftValue;
@@ -1507,54 +1507,54 @@ public class Exercise35_23Trees {
                     return;
                 }
 
-                if(root.left != null && is2Node(root.left) && is2Node(root.right)) {
+                if (root.left != null && is2Node(root.left) && is2Node(root.right)) {
                     TwoNode leftNode = (TwoNode) root.left;
                     TwoNode middleNode = (TwoNode) root;
                     TwoNode rightNode = (TwoNode) root.right;
 
                     ThreeNode threeNode = generate3Node(middleNode, leftNode);
                     root = generate4Node(threeNode, rightNode);
-                } else if(is3Node(rootNode.left)) {
+                } else if (is3Node(rootNode.left)) {
                     root = moveThreeNodeLeftToCenter(root);
-                } else if(is3Node(rootNode.right)) {
+                } else if (is3Node(rootNode.right)) {
                     root = moveThreeNodeRightToCenter(root);
                 }
             }
 
             root = delete(root, key);
 
-            if(!isEmpty() && is4Node(root)) {
+            if (!isEmpty() && is4Node(root)) {
                 root = split4Node((FourNode) root);
             }
         }
 
         private Node delete(Node node, Key key) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
             //Move left
-            if((is2Node(node) && key.compareTo(((TwoNode) node).key) < 0)
+            if ((is2Node(node) && key.compareTo(((TwoNode) node).key) < 0)
                     || (is3Node(node) && key.compareTo(((ThreeNode) node).leftKey) < 0)
                     || (is4Node(node) && key.compareTo(((FourNode) node).leftKey) < 0)) {
 
                 //Current node is a 2-node
-                if(is2Node(node)) {
-                    if(is2Node(node.left)) {
-                        if(!is2Node(node.right)) {
+                if (is2Node(node)) {
+                    if (is2Node(node.left)) {
+                        if (!is2Node(node.right)) {
                             node = moveKey(node, NodePosition.RIGHT, NodePosition.LEFT);
                         } else {
                             node = mergeParentKeyInto4NodeChild(node, node.left, node.right, NodePosition.LEFT);
                         }
                     }
-                } else if(is3Node(node)) {
+                } else if (is3Node(node)) {
                     //Current node is a 3-node
                     ThreeNode threeNode = (ThreeNode) node;
 
-                    if(is2Node(node.left)) {
-                        if(threeNode.middle != null && !is2Node(threeNode.middle)) {
+                    if (is2Node(node.left)) {
+                        if (threeNode.middle != null && !is2Node(threeNode.middle)) {
                             node = moveKey(node, NodePosition.MIDDLE1, NodePosition.LEFT);
-                        } else if(!is2Node(threeNode.right)) {
+                        } else if (!is2Node(threeNode.right)) {
                             node = moveKey(node, NodePosition.RIGHT, NodePosition.LEFT);
                         } else {
                             node = mergeParentKeyInto4NodeChild(threeNode, threeNode.left, threeNode.middle, NodePosition.LEFT);
@@ -1564,12 +1564,12 @@ public class Exercise35_23Trees {
                     //Current node is a 4-node
                     FourNode fourNode = (FourNode) node;
 
-                    if(is2Node(node.left)) {
-                        if(fourNode.middle1 != null && !is2Node(fourNode.middle1)) {
+                    if (is2Node(node.left)) {
+                        if (fourNode.middle1 != null && !is2Node(fourNode.middle1)) {
                             node = moveKey(node, NodePosition.MIDDLE1, NodePosition.LEFT);
-                        } else if(fourNode.middle2 != null && !is2Node(fourNode.middle2)) {
+                        } else if (fourNode.middle2 != null && !is2Node(fourNode.middle2)) {
                             node = moveKey(node, NodePosition.MIDDLE2, NodePosition.LEFT);
-                        } else if(!is2Node(fourNode.right)) {
+                        } else if (!is2Node(fourNode.right)) {
                             node = moveKey(node, NodePosition.RIGHT, NodePosition.LEFT);
                         } else {
                             node = mergeParentKeyInto4NodeChild(fourNode, fourNode.left, fourNode.middle1, NodePosition.LEFT);
@@ -1578,17 +1578,17 @@ public class Exercise35_23Trees {
                 }
 
                 node.left = delete(node.left, key);
-            } else if((is3Node(node)
+            } else if ((is3Node(node)
                     && ((ThreeNode) node).leftKey.compareTo(key) < 0
                     && ((ThreeNode) node).rightKey.compareTo(key) > 0)) {
                 //Move middle
                 ThreeNode threeNode = (ThreeNode) node;
 
-                if(is3Node(threeNode.middle) || is4Node(threeNode.middle)) {
+                if (is3Node(threeNode.middle) || is4Node(threeNode.middle)) {
                     threeNode.middle = delete(threeNode.middle, key);
                 } else {
                     //The middle node is a 2-node
-                    if(threeNode.left != null && !is2Node(threeNode.left)) {
+                    if (threeNode.left != null && !is2Node(threeNode.left)) {
                         node = moveKey(threeNode, NodePosition.LEFT, NodePosition.MIDDLE1);
                         threeNode.middle = delete(threeNode.middle, key);
                     } else if (!is2Node(threeNode.right)) {
@@ -1599,23 +1599,23 @@ public class Exercise35_23Trees {
                         node.left = delete(node.left, key);
                     }
                 }
-            } else if((is4Node(node)
+            } else if ((is4Node(node)
                     && ((FourNode) node).leftKey.compareTo(key) < 0
                     && ((FourNode) node).middleKey.compareTo(key) > 0)) {
                 //Move to middle 1
                 FourNode fourNode = (FourNode) node;
 
-                if(is3Node(fourNode.middle1) || is4Node(fourNode.middle1)) {
+                if (is3Node(fourNode.middle1) || is4Node(fourNode.middle1)) {
                     fourNode.middle1 = delete(fourNode.middle1, key);
                 } else {
                     //The middle1 node is a 2-node
-                    if(fourNode.left != null && !is2Node(fourNode.left)) {
+                    if (fourNode.left != null && !is2Node(fourNode.left)) {
                         node = moveKey(fourNode, NodePosition.LEFT, NodePosition.MIDDLE1);
                         fourNode.middle1 = delete(fourNode.middle1, key);
-                    } else if(fourNode.middle2 != null && !is2Node(fourNode.middle2)) {
+                    } else if (fourNode.middle2 != null && !is2Node(fourNode.middle2)) {
                         node = moveKey(fourNode, NodePosition.MIDDLE2, NodePosition.MIDDLE1);
                         fourNode.middle1 = delete(fourNode.middle1, key);
-                    } else if(!is2Node(fourNode.right)) {
+                    } else if (!is2Node(fourNode.right)) {
                         node = moveKey(fourNode, NodePosition.RIGHT, NodePosition.MIDDLE1);
                         fourNode.middle1 = delete(fourNode.middle1, key);
                     } else {
@@ -1623,23 +1623,23 @@ public class Exercise35_23Trees {
                         node.left = delete(node.left, key);
                     }
                 }
-            } else if((is4Node(node)
+            } else if ((is4Node(node)
                     && ((FourNode) node).middleKey.compareTo(key) < 0
                     && ((FourNode) node).rightKey.compareTo(key) > 0)) {
                 //Move to middle 2
                 FourNode fourNode = (FourNode) node;
 
-                if(is3Node(fourNode.middle2) || is4Node(fourNode.middle2)) {
+                if (is3Node(fourNode.middle2) || is4Node(fourNode.middle2)) {
                     fourNode.middle2 = delete(fourNode.middle2, key);
                 } else {
                     //The middle2 node is a 2-node
-                    if(fourNode.middle1 != null && !is2Node(fourNode.middle1)) {
+                    if (fourNode.middle1 != null && !is2Node(fourNode.middle1)) {
                         node = moveKey(fourNode, NodePosition.MIDDLE1, NodePosition.MIDDLE2);
                         fourNode.middle2 = delete(fourNode.middle2, key);
-                    } else if(fourNode.right != null && !is2Node(fourNode.right)) {
+                    } else if (fourNode.right != null && !is2Node(fourNode.right)) {
                         node = moveKey(fourNode, NodePosition.RIGHT, NodePosition.MIDDLE2);
                         fourNode.middle2 = delete(fourNode.middle2, key);
-                    } else if(!is2Node(fourNode.left)) {
+                    } else if (!is2Node(fourNode.left)) {
                         node = moveKey(fourNode, NodePosition.LEFT, NodePosition.MIDDLE2);
                         fourNode.middle2 = delete(fourNode.middle2, key);
                     } else {
@@ -1652,34 +1652,34 @@ public class Exercise35_23Trees {
                 }
             } else {
                 //Move right or delete
-                if((is2Node(node)
+                if ((is2Node(node)
                         && key.compareTo(((TwoNode) node).key) == 0 && node.right == null)) {
                     return null;
-                } else if(is3Node(node)
+                } else if (is3Node(node)
                         && (key.compareTo(((ThreeNode) node).rightKey) == 0)) {
                     return removeMaxKeyFromNode(node);
-                } else if(is4Node(node)
+                } else if (is4Node(node)
                         && (key.compareTo(((FourNode) node).rightKey) == 0)) {
                     return removeMaxKeyFromNode(node);
                 }
 
                 //Current node is a 2-node
-                if(is2Node(node)) {
-                    if(is2Node(node.right)) {
-                        if(!is2Node(node.left)) {
+                if (is2Node(node)) {
+                    if (is2Node(node.right)) {
+                        if (!is2Node(node.left)) {
                             node = moveKey(node, NodePosition.LEFT, NodePosition.RIGHT);
                         } else {
                             node = mergeParentKeyInto4NodeChild(node, node.left, node.right, NodePosition.RIGHT);
                         }
                     }
-                } else if(is3Node(node)) {
+                } else if (is3Node(node)) {
                     //Current node is a 3-node
                     ThreeNode threeNode = (ThreeNode) node;
 
-                    if(is2Node(node.right)) {
-                        if(threeNode.middle != null && !is2Node(threeNode.middle)) {
+                    if (is2Node(node.right)) {
+                        if (threeNode.middle != null && !is2Node(threeNode.middle)) {
                             node = moveKey(threeNode, NodePosition.MIDDLE1, NodePosition.RIGHT);
-                        } else if(!is2Node(threeNode.left)) {
+                        } else if (!is2Node(threeNode.left)) {
                             node = moveKey(threeNode, NodePosition.LEFT, NodePosition.RIGHT);
                         } else {
                             node = mergeParentKeyInto4NodeChild(threeNode, threeNode.middle, threeNode.right, NodePosition.RIGHT);
@@ -1689,12 +1689,12 @@ public class Exercise35_23Trees {
                     //Current node is a 4-node
                     FourNode fourNode = (FourNode) node;
 
-                    if(is2Node(node.right)) {
-                        if(fourNode.middle2 != null && !is2Node(fourNode.middle2)) {
+                    if (is2Node(node.right)) {
+                        if (fourNode.middle2 != null && !is2Node(fourNode.middle2)) {
                             node = moveKey(fourNode, NodePosition.MIDDLE2, NodePosition.RIGHT);
-                        } else if(fourNode.middle1 != null && !is2Node(fourNode.middle1)) {
+                        } else if (fourNode.middle1 != null && !is2Node(fourNode.middle1)) {
                             node = moveKey(fourNode, NodePosition.MIDDLE1, NodePosition.RIGHT);
-                        } else if(!is2Node(fourNode.left)) {
+                        } else if (!is2Node(fourNode.left)) {
                             node = moveKey(fourNode, NodePosition.LEFT, NodePosition.RIGHT);
                         } else {
                             node = mergeParentKeyInto4NodeChild(fourNode, fourNode.middle2, fourNode.right, NodePosition.RIGHT);
@@ -1703,18 +1703,18 @@ public class Exercise35_23Trees {
                 }
 
                 //Check to see if key was found or if it is higher than current key
-                if(is2Node(node)) {
+                if (is2Node(node)) {
                     TwoNode twoNode = (TwoNode) node;
 
-                    if(key.compareTo(twoNode.key) == 0) {
+                    if (key.compareTo(twoNode.key) == 0) {
                         Node aux = min(twoNode.right);
 
-                        if(is2Node(aux)) {
+                        if (is2Node(aux)) {
                             TwoNode auxNode = (TwoNode) aux;
                             twoNode.key = auxNode.key;
                             twoNode.value = auxNode.value;
                             twoNode.right = deleteMin(twoNode.right);
-                        } else if(is3Node(aux)) {
+                        } else if (is3Node(aux)) {
                             ThreeNode auxNode = (ThreeNode) aux;
                             twoNode.key = auxNode.leftKey;
                             twoNode.value = auxNode.leftValue;
@@ -1723,19 +1723,19 @@ public class Exercise35_23Trees {
                     } else {
                         node.right = delete(node.right, key);
                     }
-                } else if(is3Node(node)) {
+                } else if (is3Node(node)) {
                     ThreeNode threeNode = (ThreeNode) node;
 
-                    if(key.compareTo(threeNode.leftKey) == 0) {
-                        if(threeNode.middle != null) {
+                    if (key.compareTo(threeNode.leftKey) == 0) {
+                        if (threeNode.middle != null) {
                             Node aux = min(threeNode.middle);
 
-                            if(is2Node(aux)) {
+                            if (is2Node(aux)) {
                                 TwoNode auxNode = (TwoNode) aux;
                                 threeNode.leftKey = auxNode.key;
                                 threeNode.leftValue = auxNode.value;
                                 threeNode.middle = deleteMin(threeNode.middle);
-                            } else if(is3Node(aux)) {
+                            } else if (is3Node(aux)) {
                                 ThreeNode auxNode = (ThreeNode) aux;
                                 threeNode.leftKey = auxNode.leftKey;
                                 threeNode.leftValue = auxNode.leftValue;
@@ -1748,15 +1748,15 @@ public class Exercise35_23Trees {
                             node.left = threeNode.left;
                             node.right = threeNode.right;
                         }
-                    } else if(key.compareTo(threeNode.rightKey) == 0) {
+                    } else if (key.compareTo(threeNode.rightKey) == 0) {
                         Node aux = min(threeNode.right);
 
-                        if(is2Node(aux)) {
+                        if (is2Node(aux)) {
                             TwoNode auxNode = (TwoNode) aux;
                             threeNode.rightKey = auxNode.key;
                             threeNode.rightValue = auxNode.value;
                             threeNode.right = deleteMin(threeNode.right);
-                        } else if(is3Node(aux)) {
+                        } else if (is3Node(aux)) {
                             ThreeNode auxNode = (ThreeNode) aux;
                             threeNode.rightKey = auxNode.leftKey;
                             threeNode.rightValue = auxNode.leftValue;
@@ -1765,19 +1765,19 @@ public class Exercise35_23Trees {
                     } else {
                         node.right = delete(node.right, key);
                     }
-                } else if(is4Node(node)) {
+                } else if (is4Node(node)) {
                     FourNode fourNode = (FourNode) node;
 
-                    if(key.compareTo(fourNode.leftKey) == 0) {
-                        if(fourNode.middle1 != null) {
+                    if (key.compareTo(fourNode.leftKey) == 0) {
+                        if (fourNode.middle1 != null) {
                             Node aux = min(fourNode.middle1);
 
-                            if(is2Node(aux)) {
+                            if (is2Node(aux)) {
                                 TwoNode auxNode = (TwoNode) aux;
                                 fourNode.leftKey = auxNode.key;
                                 fourNode.leftValue = auxNode.value;
                                 fourNode.middle1 = deleteMin(fourNode.middle1);
-                            } else if(is3Node(aux)) {
+                            } else if (is3Node(aux)) {
                                 ThreeNode auxNode = (ThreeNode) aux;
                                 fourNode.leftKey = auxNode.leftKey;
                                 fourNode.leftValue = auxNode.leftValue;
@@ -1792,16 +1792,16 @@ public class Exercise35_23Trees {
                             ((ThreeNode) node).middle = fourNode.middle2;
                             node.right = fourNode.right;
                         }
-                    } else if(key.compareTo(fourNode.middleKey) == 0) {
-                        if(fourNode.middle2 != null) {
+                    } else if (key.compareTo(fourNode.middleKey) == 0) {
+                        if (fourNode.middle2 != null) {
                             Node aux = min(fourNode.middle2);
 
-                            if(is2Node(aux)) {
+                            if (is2Node(aux)) {
                                 TwoNode auxNode = (TwoNode) aux;
                                 fourNode.middleKey = auxNode.key;
                                 fourNode.middleValue = auxNode.value;
                                 fourNode.middle2 = deleteMin(fourNode.middle2);
-                            } else if(is3Node(aux)) {
+                            } else if (is3Node(aux)) {
                                 ThreeNode auxNode = (ThreeNode) aux;
                                 fourNode.middleKey = auxNode.leftKey;
                                 fourNode.middleValue = auxNode.leftValue;
@@ -1816,15 +1816,15 @@ public class Exercise35_23Trees {
                             ((ThreeNode) node).middle = fourNode.middle1;
                             node.right = fourNode.right;
                         }
-                    } else if(key.compareTo(fourNode.rightKey) == 0) {
+                    } else if (key.compareTo(fourNode.rightKey) == 0) {
                         Node aux = min(fourNode.right);
 
-                        if(is2Node(aux)) {
+                        if (is2Node(aux)) {
                             TwoNode auxNode = (TwoNode) aux;
                             fourNode.rightKey = auxNode.key;
                             fourNode.rightValue = auxNode.value;
                             fourNode.right = deleteMin(fourNode.right);
-                        } else if(is3Node(aux)) {
+                        } else if (is3Node(aux)) {
                             ThreeNode auxNode = (ThreeNode) aux;
                             fourNode.rightKey = auxNode.leftKey;
                             fourNode.rightValue = auxNode.leftValue;
@@ -1842,13 +1842,13 @@ public class Exercise35_23Trees {
         }
 
         private Node removeMinKeyFromNode(Node node) {
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 return null;
             }
 
             Node bottomNode = null;
 
-            if(is4Node(node)) {
+            if (is4Node(node)) {
                 FourNode fourNode = (FourNode) node;
 
                 ThreeNode finalThreeNode = new ThreeNode(fourNode.middleKey, fourNode.middleValue, fourNode.rightKey,
@@ -1858,7 +1858,7 @@ public class Exercise35_23Trees {
                 finalThreeNode.right = fourNode.right;
 
                 bottomNode = finalThreeNode;
-            } else if(is3Node(node)) {
+            } else if (is3Node(node)) {
                 ThreeNode threeNode = (ThreeNode) node;
 
                 TwoNode finalTwoNode = new TwoNode(threeNode.rightKey, threeNode.rightValue, node.size - 1);
@@ -1872,13 +1872,13 @@ public class Exercise35_23Trees {
         }
 
         private Node removeMaxKeyFromNode(Node node) {
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 return null;
             }
 
             Node bottomNode = null;
 
-            if(is4Node(node)) {
+            if (is4Node(node)) {
                 FourNode fourNode = (FourNode) node;
 
                 ThreeNode finalThreeNode = new ThreeNode(fourNode.leftKey, fourNode.leftValue, fourNode.middleKey,
@@ -1888,7 +1888,7 @@ public class Exercise35_23Trees {
                 finalThreeNode.right = fourNode.middle2;
 
                 bottomNode = finalThreeNode;
-            } else if(is3Node(node)) {
+            } else if (is3Node(node)) {
                 ThreeNode threeNode = (ThreeNode) node;
 
                 TwoNode finalTwoNode = new TwoNode(threeNode.leftKey, threeNode.leftValue, node.size - 1);
@@ -1902,14 +1902,14 @@ public class Exercise35_23Trees {
         }
 
         private Node moveThreeNodeRightToCenter(Node node) {
-            if(!is2Node(node) || is2Node(node.right)) {
+            if (!is2Node(node) || is2Node(node.right)) {
                 return node;
             }
 
             TwoNode twoNodeRoot = (TwoNode) node;
             TwoNode splitTwoNodeRight;
 
-            if(is4Node(node.right)) {
+            if (is4Node(node.right)) {
                 FourNode fourNode = (FourNode) node.right;
                 splitTwoNodeRight = split4Node(fourNode);
             } else {
@@ -1935,14 +1935,14 @@ public class Exercise35_23Trees {
         }
 
         private Node moveThreeNodeLeftToCenter(Node node) {
-            if(!is2Node(node) || is2Node(node.left)) {
+            if (!is2Node(node) || is2Node(node.left)) {
                 return node;
             }
 
             TwoNode twoNodeRoot = (TwoNode) node;
             TwoNode splitTwoNodeLeft;
 
-            if(is4Node(node.left)) {
+            if (is4Node(node.left)) {
                 FourNode fourNode = (FourNode) node.left;
                 splitTwoNodeLeft = split4Node(fourNode);
             } else {
@@ -1968,17 +1968,17 @@ public class Exercise35_23Trees {
         }
 
         private Node balance(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return null;
             }
 
-            if(is4Node(node)) {
+            if (is4Node(node)) {
                 node = split4Node((FourNode) node);
             }
 
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 node.size = size(node.left) + 1 + size(node.right);
-            } else if(is3Node(node)) {
+            } else if (is3Node(node)) {
                 node.size = size(node.left) + size(((ThreeNode) node).middle) + 2 + size(node.right);
             }
 
@@ -2003,25 +2003,25 @@ public class Exercise35_23Trees {
         }
 
         private void keys(Node node, Queue<Key> queue, Key low, Key high) {
-            if(node == null) {
+            if (node == null) {
                 return;
             }
 
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 TwoNode twoNode = (TwoNode) node;
 
                 int compareLow = low.compareTo(twoNode.key);
                 int compareHigh = high.compareTo(twoNode.key);
 
-                if(compareLow < 0) {
+                if (compareLow < 0) {
                     keys(node.left, queue, low, high);
                 }
 
-                if(compareLow <= 0 && compareHigh >= 0) {
+                if (compareLow <= 0 && compareHigh >= 0) {
                     queue.enqueue(twoNode.key);
                 }
 
-                if(compareHigh > 0) {
+                if (compareHigh > 0) {
                     keys(node.right, queue, low, high);
                 }
             } else {
@@ -2032,23 +2032,23 @@ public class Exercise35_23Trees {
                 int compareRightLow = low.compareTo(threeNode.rightKey);
                 int compareRightHigh = high.compareTo(threeNode.rightKey);
 
-                if(compareLeftLow < 0) {
+                if (compareLeftLow < 0) {
                     keys(threeNode.left, queue, low, high);
                 }
 
-                if(compareLeftLow <= 0 && compareLeftHigh >= 0) {
+                if (compareLeftLow <= 0 && compareLeftHigh >= 0) {
                     queue.enqueue(threeNode.leftKey);
                 }
 
-                if(compareLeftHigh > 0 && compareRightLow < 0) {
+                if (compareLeftHigh > 0 && compareRightLow < 0) {
                     keys(threeNode.middle, queue, low, high);
                 }
 
-                if(compareRightLow <= 0 && compareRightHigh >= 0) {
+                if (compareRightLow <= 0 && compareRightHigh >= 0) {
                     queue.enqueue(threeNode.rightKey);
                 }
 
-                if(compareRightHigh > 0) {
+                if (compareRightHigh > 0) {
                     keys(threeNode.right, queue, low, high);
                 }
             }
@@ -2079,17 +2079,17 @@ public class Exercise35_23Trees {
         }
 
         private boolean isBST(Node node, Comparable low, Comparable high) {
-            if(node == null) {
+            if (node == null) {
                 return true;
             }
 
-            if(is2Node(node)) {
+            if (is2Node(node)) {
                 TwoNode twoNode = (TwoNode) node;
 
-                if(low != null && low.compareTo(twoNode.key) >= 0) {
+                if (low != null && low.compareTo(twoNode.key) >= 0) {
                     return false;
                 }
-                if(high != null && high.compareTo(twoNode.key) <= 0) {
+                if (high != null && high.compareTo(twoNode.key) <= 0) {
                     return false;
                 }
 
@@ -2097,11 +2097,11 @@ public class Exercise35_23Trees {
             } else {
                 ThreeNode threeNode = (ThreeNode) node;
 
-                if(low != null &&
+                if (low != null &&
                         (low.compareTo(threeNode.leftKey) >= 0 || low.compareTo(threeNode.rightKey) >= 0)) {
                     return false;
                 }
-                if(high != null &&
+                if (high != null &&
                         (high.compareTo(threeNode.leftKey) <= 0 || high.compareTo(threeNode.rightKey) <= 0)) {
                     return false;
                 }
@@ -2117,12 +2117,12 @@ public class Exercise35_23Trees {
         }
 
         private boolean isSubtreeCountConsistent(Node node) {
-            if(node == null) {
+            if (node == null) {
                 return true;
             }
 
-            if(is2Node(node)) {
-                if(size(node) != size(node.left) + size(node.right) + 1) {
+            if (is2Node(node)) {
+                if (size(node) != size(node.left) + size(node.right) + 1) {
                     return false;
                 }
 
@@ -2130,7 +2130,7 @@ public class Exercise35_23Trees {
             } else {
                 ThreeNode threeNode = (ThreeNode) node;
 
-                if(size(node) != size(threeNode.left) + size(threeNode.middle) + 2 + size(threeNode.right)) {
+                if (size(node) != size(threeNode.left) + size(threeNode.middle) + 2 + size(threeNode.right)) {
                     return false;
                 }
 

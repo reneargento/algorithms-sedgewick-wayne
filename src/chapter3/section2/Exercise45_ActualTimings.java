@@ -54,11 +54,11 @@ public class Exercise45_ActualTimings {
 
         for(String word : words) {
 
-            if(word.length() < minLength) {
+            if (word.length() < minLength) {
                 continue;
             }
 
-            if(!symbolTable.contains(word)) {
+            if (!symbolTable.contains(word)) {
                 timer = new Stopwatch();
                 symbolTable.put(word, 1);
                 totalRunningTime += timer.elapsedTime() * 1000;
@@ -93,7 +93,7 @@ public class Exercise45_ActualTimings {
             totalRunningTime += timer.elapsedTime() * 1000;
             visualAccumulator.addDataValue(totalRunningTime, false);
 
-            if(wordFrequency > maxWordFrequency) {
+            if (wordFrequency > maxWordFrequency) {
                 max = word;
             }
         }

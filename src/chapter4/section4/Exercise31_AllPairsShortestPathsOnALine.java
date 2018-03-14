@@ -25,30 +25,30 @@ public class Exercise31_AllPairsShortestPathsOnALine {
                 int outdegree = 0;
 
                 for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
-                    if(edge.weight() < 0) {
+                    if (edge.weight() < 0) {
                         throw new IllegalArgumentException("Edge weights cannot be negative");
                     }
 
                     outdegree++;
                 }
 
-                if(outdegree == 1) {
-                    if(sourceVertex == -1) {
+                if (outdegree == 1) {
+                    if (sourceVertex == -1) {
                         sourceVertex = vertex;
                     }
 
                     numberOfVerticesWithDegree1++;
-                } else if(outdegree == 0 || outdegree > 2) {
+                } else if (outdegree == 0 || outdegree > 2) {
                     isLineGraph = false;
                     break;
                 }
             }
 
-            if(numberOfVerticesWithDegree1 != 2) {
+            if (numberOfVerticesWithDegree1 != 2) {
                 isLineGraph = false;
             }
 
-            if(!isLineGraph) {
+            if (!isLineGraph) {
                 throw new IllegalArgumentException("Graph is not a line graph");
             }
 
@@ -72,7 +72,7 @@ public class Exercise31_AllPairsShortestPathsOnALine {
                 for(Edge edge : edgeWeightedGraph.adjacent(currentVertex)) {
                     int neighbor = edge.other(currentVertex);
 
-                    if(!visited[neighbor]) {
+                    if (!visited[neighbor]) {
                         distanceFromSource[neighbor] = distanceFromSource[currentVertex] + edge.weight();
                         queue.enqueue(neighbor);
                         visited[neighbor] = true;

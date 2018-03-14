@@ -36,7 +36,7 @@ public class Exercise25_ShortestPathsBetweenTwoSubsets {
                 int vertexToRelax = priorityQueue.deleteMin();
                 relax(edgeWeightedDigraph, vertexToRelax);
 
-                if(subsetT.contains(vertexToRelax)) {
+                if (subsetT.contains(vertexToRelax)) {
                     closestVertexInSubsetT = vertexToRelax;
                     break;
                 }
@@ -47,11 +47,11 @@ public class Exercise25_ShortestPathsBetweenTwoSubsets {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(distTo[neighbor] > distTo[vertex] + edge.weight()) {
+                if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
                     distTo[neighbor] = distTo[vertex] + edge.weight();
                     edgeTo[neighbor] = edge;
 
-                    if(priorityQueue.contains(neighbor)) {
+                    if (priorityQueue.contains(neighbor)) {
                         priorityQueue.decreaseKey(neighbor, distTo[neighbor]);
                     } else {
                         priorityQueue.insert(neighbor, distTo[neighbor]);
@@ -61,7 +61,7 @@ public class Exercise25_ShortestPathsBetweenTwoSubsets {
         }
 
         public Iterable<DirectedEdge> getShortestPathFromStoT() {
-            if(closestVertexInSubsetT == -1) {
+            if (closestVertexInSubsetT == -1) {
                 return null;
             }
 

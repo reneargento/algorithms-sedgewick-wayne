@@ -11,7 +11,7 @@ public class Exercise32_HamiltonianPathInDAGs {
     // in its topological order
     public boolean hasHamiltonianPath(Digraph digraph) {
         DirectedCycle directedCycle = new DirectedCycle(digraph);
-        if(directedCycle.hasCycle()) {
+        if (directedCycle.hasCycle()) {
             throw new IllegalArgumentException("Digraph is not a DAG");
         }
 
@@ -27,13 +27,13 @@ public class Exercise32_HamiltonianPathInDAGs {
             boolean hasEdgeToNextVertex = false;
 
             for(int neighbor : digraph.adjacent(topologicalOrder[i])) {
-                if(neighbor == topologicalOrder[i + 1]) {
+                if (neighbor == topologicalOrder[i + 1]) {
                     hasEdgeToNextVertex = true;
                     break;
                 }
             }
 
-            if(!hasEdgeToNextVertex) {
+            if (!hasEdgeToNextVertex) {
                 return false;
             }
         }

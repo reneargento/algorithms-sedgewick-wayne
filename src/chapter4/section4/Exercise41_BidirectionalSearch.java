@@ -62,12 +62,12 @@ public class Exercise41_BidirectionalSearch {
                 relax(edgeWeightedDigraph, reverseDigraph, nextVertexToRelax);
 
                 // If it is a vertex from the target SPT, find its original index
-                if(nextVertexToRelax >= edgeWeightedDigraph.vertices()) {
+                if (nextVertexToRelax >= edgeWeightedDigraph.vertices()) {
                     nextVertexToRelax -= edgeWeightedDigraph.vertices();
                 }
 
                 // Combine shortest paths if there are shortest paths from source to vertex and from vertex to target
-                if(relaxedFromSource[nextVertexToRelax] && relaxedFromTarget[nextVertexToRelax]) {
+                if (relaxedFromSource[nextVertexToRelax] && relaxedFromTarget[nextVertexToRelax]) {
                     computeShortestPath(edgeWeightedDigraph);
                     break;
                 }
@@ -80,7 +80,7 @@ public class Exercise41_BidirectionalSearch {
             int intermediateVertex = -1;
 
             for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-                if(distToSource[vertex] + distToTarget[vertex] < shortestDistance) {
+                if (distToSource[vertex] + distToTarget[vertex] < shortestDistance) {
                     shortestDistance = distToSource[vertex] + distToTarget[vertex];
                     intermediateVertex = vertex;
                 }
@@ -95,15 +95,15 @@ public class Exercise41_BidirectionalSearch {
         private void relax(EdgeWeightedDigraph edgeWeightedDigraph, EdgeWeightedDigraph reverseDigraph, int vertex) {
 
             // Shortest-path-tree from source
-            if(vertex < edgeWeightedDigraph.vertices()) {
+            if (vertex < edgeWeightedDigraph.vertices()) {
                 for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     int neighbor = edge.to();
 
-                    if(distToSource[neighbor] > distToSource[vertex] + edge.weight()) {
+                    if (distToSource[neighbor] > distToSource[vertex] + edge.weight()) {
                         distToSource[neighbor] = distToSource[vertex] + edge.weight();
                         edgeToSource[neighbor] = edge;
 
-                        if(priorityQueue.contains(neighbor)) {
+                        if (priorityQueue.contains(neighbor)) {
                             priorityQueue.decreaseKey(neighbor, distToSource[neighbor]);
                         } else {
                             priorityQueue.insert(neighbor, distToSource[neighbor]);
@@ -119,11 +119,11 @@ public class Exercise41_BidirectionalSearch {
                 for(DirectedEdge edge : reverseDigraph.adjacent(originalVertexId)) {
                     int neighbor = edge.to();
 
-                    if(distToTarget[neighbor] > distToTarget[originalVertexId] + edge.weight()) {
+                    if (distToTarget[neighbor] > distToTarget[originalVertexId] + edge.weight()) {
                         distToTarget[neighbor] = distToTarget[originalVertexId] + edge.weight();
                         edgeToTarget[neighbor] = edge;
 
-                        if(priorityQueue.contains(vertex)) {
+                        if (priorityQueue.contains(vertex)) {
                             priorityQueue.decreaseKey(vertex, distToTarget[neighbor]);
                         } else {
                             priorityQueue.insert(vertex, distToTarget[neighbor]);
@@ -148,7 +148,7 @@ public class Exercise41_BidirectionalSearch {
         }
 
         public Iterable<DirectedEdge> pathTo(int vertex) {
-            if(!hasPathTo(vertex)) {
+            if (!hasPathTo(vertex)) {
                 return null;
             }
 

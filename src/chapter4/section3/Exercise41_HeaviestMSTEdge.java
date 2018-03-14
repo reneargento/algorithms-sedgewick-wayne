@@ -90,7 +90,7 @@ public class Exercise41_HeaviestMSTEdge {
         }
 
         // Edge case: there are no edges, or only self-loops
-        if(numberOfEdgesInMST == 0) {
+        if (numberOfEdgesInMST == 0) {
             return new double[]{0, 0};
         }
 
@@ -110,7 +110,7 @@ public class Exercise41_HeaviestMSTEdge {
         int numberOfEdgesNotHeavierThanHeaviestEdge = 0;
 
         for(Edge edge : edgeWeightedGraph.edges()) {
-            if(edge.weight() <= heaviestEdgeWeight && edge != heaviestEdge) {
+            if (edge.weight() <= heaviestEdgeWeight && edge != heaviestEdge) {
                 numberOfEdgesNotHeavierThanHeaviestEdge++;
             }
         }

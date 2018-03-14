@@ -407,7 +407,7 @@ public class Exercise29_OptimalStorage {
             if (compare == 0) {
                 return node;
             } else if (compare < 0) {
-                if(!isRed(node)) {
+                if (!isRed(node)) {
                     return floor(node.left, key);
                 } else {
                     return floor(node.right, key);
@@ -522,7 +522,7 @@ public class Exercise29_OptimalStorage {
                 } else {
                     return rank(node.right, key);
                 }
-            } else if(compare > 0) {
+            } else if (compare > 0) {
                 if (!isRed(node)) {
                     return size(node.left) + 1 + rank(node.right, key);
                 } else {
@@ -854,7 +854,7 @@ public class Exercise29_OptimalStorage {
             }
 
             if (!isRed(node)) {
-                if(isRed(node.right)) {
+                if (isRed(node.right)) {
                     node = rotateLeft(node);
                 }
             } else {
@@ -996,7 +996,7 @@ public class Exercise29_OptimalStorage {
                 return false;
             }
 
-            if(!isRed(node)) {
+            if (!isRed(node)) {
                 if (!isRed(node.left) && isRed(node.right)) {
                     return false;
                 }

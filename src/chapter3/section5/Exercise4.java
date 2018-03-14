@@ -57,7 +57,7 @@ public class Exercise4 {
         private int hash(int key) {
             int hash = Integer.valueOf(key).hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -72,7 +72,7 @@ public class Exercise4 {
             HashSTint<Value> tempHashTable = new HashSTint<>(newSize);
 
             for(int i = 0; i < size; i++) {
-                if(keys[i] != EMPTY_KEY) {
+                if (keys[i] != EMPTY_KEY) {
                     tempHashTable.put(keys[i], values[i]);
                 }
             }
@@ -88,7 +88,7 @@ public class Exercise4 {
             }
 
             for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex] == key) {
+                if (keys[tableIndex] == key) {
                     return true;
                 }
             }
@@ -102,7 +102,7 @@ public class Exercise4 {
             }
 
             for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex] == key) {
+                if (keys[tableIndex] == key) {
                     return values[tableIndex];
                 }
             }
@@ -115,19 +115,19 @@ public class Exercise4 {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(keysSize >= size / (double) 2) {
+            if (keysSize >= size / (double) 2) {
                 resize(size * 2);
                 lgM++;
             }
 
             int tableIndex;
             for(tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex] == key) {
+                if (keys[tableIndex] == key) {
                     values[tableIndex] = value;
                     return;
                 }
@@ -143,7 +143,7 @@ public class Exercise4 {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
@@ -170,7 +170,7 @@ public class Exercise4 {
                 tableIndex = (tableIndex + 1) % size;
             }
 
-            if(keysSize > 1 && keysSize <= size / (double) 8) {
+            if (keysSize > 1 && keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             }
@@ -180,7 +180,7 @@ public class Exercise4 {
             Queue<Integer> keySet = new Queue<>();
 
             for(int key : keys) {
-                if(key != EMPTY_KEY) {
+                if (key != EMPTY_KEY) {
                     keySet.enqueue(key);
                 }
             }
@@ -242,7 +242,7 @@ public class Exercise4 {
         private int hash(double key) {
             int hash = ((Double) key).hashCode() & 0x7fffffff;
 
-            if(lgM < 26) {
+            if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
 
@@ -257,7 +257,7 @@ public class Exercise4 {
             HashSTdouble<Value> tempHashTable = new HashSTdouble<>(newSize);
 
             for(int i = 0; i < size; i++) {
-                if(keys[i] != EMPTY_VALUE) {
+                if (keys[i] != EMPTY_VALUE) {
                     tempHashTable.put(keys[i], values[i]);
                 }
             }
@@ -273,7 +273,7 @@ public class Exercise4 {
             }
 
             for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex] == key) {
+                if (keys[tableIndex] == key) {
                     return true;
                 }
             }
@@ -287,7 +287,7 @@ public class Exercise4 {
             }
 
             for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex] == key) {
+                if (keys[tableIndex] == key) {
                     return values[tableIndex];
                 }
             }
@@ -300,19 +300,19 @@ public class Exercise4 {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            if(value == null) {
+            if (value == null) {
                 delete(key);
                 return;
             }
 
-            if(keysSize >= size / (double) 2) {
+            if (keysSize >= size / (double) 2) {
                 resize(size * 2);
                 lgM++;
             }
 
             int tableIndex;
             for(tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
-                if(keys[tableIndex] == key) {
+                if (keys[tableIndex] == key) {
                     values[tableIndex] = value;
                     return;
                 }
@@ -328,7 +328,7 @@ public class Exercise4 {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            if(!contains(key)) {
+            if (!contains(key)) {
                 return;
             }
 
@@ -355,7 +355,7 @@ public class Exercise4 {
                 tableIndex = (tableIndex + 1) % size;
             }
 
-            if(keysSize > 1 && keysSize <= size / (double) 8) {
+            if (keysSize > 1 && keysSize <= size / (double) 8) {
                 resize(size / 2);
                 lgM--;
             }
@@ -365,7 +365,7 @@ public class Exercise4 {
             Queue<Double> keySet = new Queue<>();
 
             for(double key : keys) {
-                if(key != EMPTY_VALUE) {
+                if (key != EMPTY_VALUE) {
                     keySet.enqueue(key);
                 }
             }

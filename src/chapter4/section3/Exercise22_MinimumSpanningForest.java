@@ -60,13 +60,13 @@ public class Exercise22_MinimumSpanningForest {
 
             for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                 int otherVertex = edge.other(vertex);
-                if(marked[otherVertex]) {
+                if (marked[otherVertex]) {
                     continue; // vertex-otherVertex is ineligible
                 }
 
-                if(edge.weight() < distTo[otherVertex]) {
+                if (edge.weight() < distTo[otherVertex]) {
                     // Edge edge is the new best connection from the minimum spanning forest to otherVertex
-                    if(distTo[otherVertex] != Double.POSITIVE_INFINITY) {
+                    if (distTo[otherVertex] != Double.POSITIVE_INFINITY) {
                         weight -= distTo[otherVertex];
                     }
                     weight += edge.weight();
@@ -74,7 +74,7 @@ public class Exercise22_MinimumSpanningForest {
                     edgeTo[otherVertex] = edge;
                     distTo[otherVertex] = edge.weight();
 
-                    if(priorityQueue.contains(otherVertex)) {
+                    if (priorityQueue.contains(otherVertex)) {
                         priorityQueue.decreaseKey(otherVertex, distTo[otherVertex]);
                     } else {
                         priorityQueue.insert(otherVertex, distTo[otherVertex]);
@@ -87,7 +87,7 @@ public class Exercise22_MinimumSpanningForest {
             Queue<Edge> minimumSpanningForest = new Queue<>();
 
             for(int vertex = 0; vertex < edgeTo.length; vertex++) {
-                if(edgeTo[vertex] != null) {
+                if (edgeTo[vertex] != null) {
                     minimumSpanningForest.enqueue(edgeTo[vertex]);
                 }
             }
@@ -134,7 +134,7 @@ public class Exercise22_MinimumSpanningForest {
                 int vertex2 = edge.other(vertex1);
 
                 // Ignore ineligible edges
-                if(unionFind.connected(vertex1, vertex2)) {
+                if (unionFind.connected(vertex1, vertex2)) {
                     continue;
                 }
 

@@ -14,7 +14,7 @@ public class TwoColor {
         color = new boolean[graph.vertices()];
 
         for(int source = 0; source < graph.vertices(); source++) {
-            if(!visited[source]) {
+            if (!visited[source]) {
                 dfs(graph, source);
             }
         }
@@ -23,12 +23,12 @@ public class TwoColor {
     private void dfs(GraphInterface graph, int vertex) {
         visited[vertex] = true;
 
-        if(graph.adjacent(vertex) != null) {
+        if (graph.adjacent(vertex) != null) {
             for(int neighbor : graph.adjacent(vertex)) {
-                if(!visited[neighbor]) {
+                if (!visited[neighbor]) {
                     color[neighbor] = !color[vertex];
                     dfs(graph, neighbor);
-                } else if(color[neighbor] == color[vertex]) {
+                } else if (color[neighbor] == color[vertex]) {
                     isTwoColorable = false;
                 }
             }

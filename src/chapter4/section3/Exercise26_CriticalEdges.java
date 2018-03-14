@@ -64,7 +64,7 @@ public class Exercise26_CriticalEdges {
             int vertex2 = edge.other(vertex1);
 
             // Ineligible edges are never critical edges
-            if(unionFind.connected(vertex1, vertex2)) {
+            if (unionFind.connected(vertex1, vertex2)) {
                 continue;
             }
 
@@ -78,7 +78,7 @@ public class Exercise26_CriticalEdges {
                 equalWeightEdges.add(priorityQueue.deleteTop());
             }
 
-            if(equalWeightEdges.size() == 1) {
+            if (equalWeightEdges.size() == 1) {
                 criticalEdges.enqueue(edge); // There is no cycle, so this is a critical edge
 
                 unionFind.union(vertex1, vertex2);
@@ -121,7 +121,7 @@ public class Exercise26_CriticalEdges {
 
             // Use a different constructor for EdgeWeightedCycle to avoid O(E * V) runtime
             EdgeWeightedCycle edgeWeightedCycle = new EdgeWeightedCycle(componentsSubGraph, verticesInSubGraph);
-            if(edgeWeightedCycle.hasCycle()) {
+            if (edgeWeightedCycle.hasCycle()) {
                 for(Edge edgeInCycle : edgeWeightedCycle.cycle()) {
                     Edge edgeInGraph = subGraphToGraphEdgeMap.get(edgeInCycle);
 
@@ -138,14 +138,14 @@ public class Exercise26_CriticalEdges {
             // Add all edges that belong to an MST to the MST
             for(Edge edgeInCurrentBlock : equalWeightEdges.keys()) {
 
-                if(!nonCriticalEdges.contains(edgeInCurrentBlock)) {
+                if (!nonCriticalEdges.contains(edgeInCurrentBlock)) {
                     criticalEdges.enqueue(edgeInCurrentBlock);
                 }
 
                 vertex1 = edgeInCurrentBlock.either();
                 vertex2 = edgeInCurrentBlock.other(vertex1);
 
-                if(!unionFind.connected(vertex1, vertex2)) {
+                if (!unionFind.connected(vertex1, vertex2)) {
                     unionFind.union(vertex1, vertex2);
                     minimumSpanningTree.enqueue(edge); // Add edge to the minimum spanning tree
                 }

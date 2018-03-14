@@ -44,14 +44,14 @@ public class JohnsonAllCycles {
 
         for(List<Integer> stronglyConnectedComponent : stronglyConnectedComponents) {
 
-            if(stronglyConnectedComponent.size() == 1) {
+            if (stronglyConnectedComponent.size() == 1) {
                 continue;
             }
 
             EdgeWeightedDigraphInterface sccSubGraph = createSubGraphFromSCC(edgeWeightedDigraph, stronglyConnectedComponent);
 
             for(int vertexToProcess : stronglyConnectedComponent) {
-                if(sccSubGraph.outdegree(vertexToProcess) == 0) {
+                if (sccSubGraph.outdegree(vertexToProcess) == 0) {
                     continue;
                 }
 
@@ -73,7 +73,7 @@ public class JohnsonAllCycles {
         stack.push(currentVertex);
         blockedVerticesSet.add(currentVertex);
 
-        if(currentEdge != null) {
+        if (currentEdge != null) {
             stackOfEdges.push(currentEdge);
         }
 
@@ -81,7 +81,7 @@ public class JohnsonAllCycles {
             int neighbor = edge.to();
 
             // If neighbor is the same as the start vertex, a cycle was found.
-            if(neighbor == startVertex) {
+            if (neighbor == startVertex) {
                 // Add cycle with vertices to the cycles list
                 List<Integer> cycle = new ArrayList<>();
                 stack.push(startVertex);
@@ -120,7 +120,7 @@ public class JohnsonAllCycles {
                 int neighbor = edge.to();
 
                 HashSet<Integer> dependentVerticesFromNeighbor = blockedVerticesMap.get(neighbor);
-                if(dependentVerticesFromNeighbor == null) {
+                if (dependentVerticesFromNeighbor == null) {
                     dependentVerticesFromNeighbor = new HashSet<>();
                     dependentVerticesFromNeighbor.add(currentVertex);
                     blockedVerticesMap.put(neighbor, dependentVerticesFromNeighbor);
@@ -132,7 +132,7 @@ public class JohnsonAllCycles {
 
         stack.pop();
 
-        if(!stackOfEdges.isEmpty()) {
+        if (!stackOfEdges.isEmpty()) {
             stackOfEdges.pop();
         }
 
@@ -168,7 +168,7 @@ public class JohnsonAllCycles {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(!verticesInSCC.contains(vertex) || !verticesInSCC.contains(neighbor)) {
+                if (!verticesInSCC.contains(vertex) || !verticesInSCC.contains(neighbor)) {
                     continue;
                 }
 
@@ -188,7 +188,7 @@ public class JohnsonAllCycles {
             for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                if(vertex == vertexToRemove || neighbor == vertexToRemove) {
+                if (vertex == vertexToRemove || neighbor == vertexToRemove) {
                     continue;
                 }
 

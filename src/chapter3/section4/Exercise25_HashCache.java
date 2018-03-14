@@ -28,7 +28,7 @@ public class Exercise25_HashCache {
         public int hashCode() {
             int hash;
 
-            if(this.hash != -1) {
+            if (this.hash != -1) {
                 hash = this.hash;
 
                 StdOut.println("Cache hit");

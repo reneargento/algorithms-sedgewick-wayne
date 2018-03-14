@@ -44,27 +44,27 @@ public class Exercise46_CrossoverToBinarySearchTrees {
             }
             long binarySearchSTRunningTime = System.nanoTime() - binarySearchSTStartTime;
 
-            if(binarySearchSTRunningTime == bstRunningTime) {
+            if (binarySearchSTRunningTime == bstRunningTime) {
                 continue;
             }
 
-            if(binarySearchSTRunningTime >= bstRunningTime * 10
+            if (binarySearchSTRunningTime >= bstRunningTime * 10
                     && !tenTimesFasterNFound) {
                 StdOut.println("Value of N for which building a symbol table using a BST becomes 10 times faster than building a symbol table using a binary search symbol table: " + i);
                 tenTimesFasterNFound = true;
             }
-            if(binarySearchSTRunningTime >= bstRunningTime * 100
+            if (binarySearchSTRunningTime >= bstRunningTime * 100
                     && !aHundredTimesFasterNFound) {
                 StdOut.println("Value of N for which building a symbol table using a BST becomes 100 times faster than building a symbol table using a binary search symbol table: " + i);
                 aHundredTimesFasterNFound = true;
             }
-            if(binarySearchSTRunningTime >= bstRunningTime * 1000
+            if (binarySearchSTRunningTime >= bstRunningTime * 1000
                     && !aThousandTimesFasterNFound) {
                 StdOut.println("Value of N for which building a symbol table using a BST becomes 1000 times faster than building a symbol table using a binary search symbol table: " + i);
                 aThousandTimesFasterNFound = true;
             }
 
-            if(aThousandTimesFasterNFound) {
+            if (aThousandTimesFasterNFound) {
                 break;
             }
         }

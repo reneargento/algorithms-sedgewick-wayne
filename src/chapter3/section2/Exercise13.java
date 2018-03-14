@@ -16,9 +16,9 @@ public class Exercise13 {
             while (current != null) {
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
-                } else if(compare > 0) {
+                } else if (compare > 0) {
                     current = current.right;
                 } else {
                     return current.value;
@@ -37,7 +37,7 @@ public class Exercise13 {
             while (current != null) {
                 int compare = key.compareTo(current.key);
 
-                if(compare < 0) {
+                if (compare < 0) {
                     current = current.left;
                 } else if (compare > 0) {
                     current = current.right;
@@ -48,14 +48,14 @@ public class Exercise13 {
                 }
             }
 
-            if(keyExists) {
+            if (keyExists) {
                 return;
             }
 
             //Second pass
             //If we reached here, the key does not exist yet
 
-            if(root == null) {
+            if (root == null) {
                 root = new Node(key, value, 1);
                 return;
             }
@@ -67,9 +67,9 @@ public class Exercise13 {
                 int compare = key.compareTo(current.key);
                 current.size = current.size + 1;
 
-                if(compare < 0) {
+                if (compare < 0) {
 
-                    if(current.left != null) {
+                    if (current.left != null) {
                         current = current.left;
                     } else {
                         current.left = new Node(key, value, 1);
@@ -77,7 +77,7 @@ public class Exercise13 {
                     }
                 } else if (compare > 0) {
 
-                    if(current.right != null) {
+                    if (current.right != null) {
                         current = current.right;
                     } else {
                         current.right = new Node(key, value, 1);
