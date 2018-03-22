@@ -1,0 +1,16 @@
+5.3.21
+
+We could compute the hash of the pattern skipping the middle character (character at index M / 2 of the pattern, where M is the pattern length).
+We would then compute the text hashes skipping the middle character as well. The rest of the algorithm would be the same.
+
+Example:
+
+Pattern: REXNE
+Text: ABRE1NEP
+
+We compute the hash of the characters RENE, skipping X. The result will be the pattern hash.
+When computing the hash of the characters in the text we also skip the middle character:
+
+1- Compute the hash of ABE1 and compare with the hash of RENE. The result is a mismatch.
+2- Compute the hash of BR1N and compare with the hash of RENE. The result is a mismatch.
+3- Compute the hash of RENE and compare with the hash of RENE. The result is a match. Return the index 2.

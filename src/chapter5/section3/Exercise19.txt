@@ -1,0 +1,8 @@
+5.3.19
+
+Example where the Boyer-Moore algorithm (with only the mismatched character heuristic) performs poorly:
+
+Pattern: BAA
+Text: AAAAAAAAAA
+
+With this input the algorithm runs in time ~ N * M

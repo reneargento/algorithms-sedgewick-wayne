@@ -1,0 +1,59 @@
+5.3.22
+
+We could compute a pattern hash that is based on each row of V characters in the following way:
+We would compute H hashes (one hash for each row), in the same way as RabinKarp algorithm, and would add each value to the patternHash variable.
+
+So the 1-by-4 pattern RENE and the 2-by-2 pattern RE would have different pattern hashes.
+                                                  NE
+
+We would then use the same method to compute a hash for every sub matrix H-by-V in the text and would compare this value with the pattern hash. If there is a match in the hashes, we could check each character in the sub matrix (as in the Las Vegas version of Rabin Karp) to check if the pattern was found in the text.
+
+We would use the rolling hash technique in the following way: an initialColumnsHash value would be computed with the hash value of the first H-by-V characters in the text. Every time we moved to a new row in the text (row i), the (i - 1)th row would be subtracted from the initialColumnsHash rolling hash computation and the (i + patternRowLength - 1)th row would be added to the initialColumnsHash rolling hash computation. After this, initialColumnsHash would be compared to patternHash to search for a match.
+We then would copy initialColumnsHash’s value to a textHash variable to search horizontally in the text.
+Every time we moved to a new column in the text (column j), the (j - patternColumnLength)th column would be subtracted from the textHash rolling hash computation and the jth column would be added to the textHash rolling hash computation. After this, textHash would be compared to patternHash to search for a match.
+
+We would also precompute the powers of alphabetSize^i, for i = 0 … (patternColumnLength - 1) to effectively subtract rows and columns from the rolling hash computations.
+
+Example:
+
+Pattern: RE
+         NE
+(2-by-2 pattern)
+
+Text: ABCD
+      RERE
+      DRNE
+      XPQZ
+(4-by-4 text)
+
+We start by computing the hash of RE in the variable patternHash.
+                                  NE
+
+1- We compute the hash of characters AB in initialColumnsHash and compare with patternHash.
+                                     RE
+They have different values, so we move to the next column.
+We also copy the value of initialColumnsHash to textHash.
+
+2- We subtract the value of column A from textHash and add the value of column C, resulting in the hash of BC.
+                                   R                                           R                           ER
+We compare textHash with patternHash. They have different values, so we move to the next column.
+
+3- We subtract the value of column B from textHash and add the value of column D, resulting in the hash of CD.
+                                   E                                           E                           RE
+We compare textHash with patternHash. They have different values. There are no more columns to the right, so we move to the next row and to the first column.
+
+4- We subtract the value of row AB from initialColumnsHash and add the value of row DR, resulting in the hash of RE.
+                                                                                                                 DR
+We compare initialColumnsHash with patternHash. They have different values, so we copy the value of initialColumnsHash to textHash and move to the next column.
+
+5- We subtract the value of column R from textHash and add the value of column R, resulting in the hash of ER.
+                                   D                                           N                           RN
+We compare textHash with patternHash. They have different values, so we move to the next column.
+
+6- We subtract the value of column E from textHash and add the value of column E, resulting in the hash of RE.
+                                   R                                           E                           NE
+We compare textHash with patternHash. They have the same values, so we compare each character in the pattern with the current text sub matrix.
+There is a match and the pattern was found. We return the result (1,2) which indicates that the pattern was found on row 1 and column 2.
+
+The implementation of this algorithm can be found here:
+https://github.com/reneargento/algorithms-sedgewick-wayne/blob/master/src/chapter5/section3/Exercise30_TwoDimensionalSearch.java

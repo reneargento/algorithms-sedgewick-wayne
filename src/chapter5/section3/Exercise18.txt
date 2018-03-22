@@ -1,0 +1,67 @@
+5.3.18
+
+Consider that Ti is a character in the text, N is the length of the text, Pi is a character in the pattern and M is the length of the pattern.
+
+In the brute-force method the first check will have the following format:
+
+T1 T2 T3 … TM TM+1 … TN-1 TN
+P1 P2 P3 … PM
+
+And the second check will have the format:
+
+T1 T2 T3 … TM TM+1 … TN-1 TN
+   P1 P2 … PM
+
+Thus, there will be a total of (N - M + 1) checks.
+
+In each check there are different probabilities for individual characters to be compared (not all characters in the pattern may be compared):
+1- The first character in the pattern will always be compared.
+Probability: 1 = 1/R^0
+
+2- The second character in the pattern will only be compared if the first character was a match.
+Probability: 1/R = 1/R^1
+
+3- The third character in the pattern will only be compared if the first and second characters were matches.
+Probability: 1/R * 1/R = 1/R^2
+
+…
+
+M - The last character in the pattern will only be compared if all the other characters were matches.
+Probability: 1/R^(M-1)
+
+Summing all probabilities and multiplying by the number of possible checks:
+              M-1
+(N - M + 1) *  E R^(-i)
+              i=0
+
+Which is equal to:
+
+(N - M + 1) * (1 - R^(-M)) / (1 - R^(-1)) <= 2 * (N - M + 1)
+
+Example:
+Consider that R = 2, N = 8 and M = 4.
+
+Using our formula:
+
+                                  M-1
+Expected compares = (N - M + 1) *  E R^(-i)
+                                  i=0
+
+Expected compares = (8 - 4 + 1) * (1 + 1/2 + 1/4 + 1/8)
+Expected compares = 5 * 1.875
+Expected compares = 9.375
+
+Using the original formula:
+
+Expected compares = (N - M + 1) * (1 - R^(-M)) / (1 - R^(-1))
+
+Expected compares = (8 - 4 + 1) * (1 - 1/16) / (1 - 1/2)
+Expected compares = 5 * 1.875
+Expected compares = 9.375
+
+As we can see, both expressions are equivalent.
+Also notice that 2 * (N - M + 1) is equal to 2 * (8 - 4 + 1) = 10 and 9.375 <= 10.
+
+This shows that, for random patterns and random texts, the brute-force method is efficient.
+
+Reference: https://math.stackexchange.com/questions/1613895/expected-number-of-comparisons-of-naive-string-matching

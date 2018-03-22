@@ -1,0 +1,8 @@
+5.3.11
+
+Worst-case example for Boyer-Moore:
+
+Pattern: BAA
+Text: AAAAAAAAAA
+
+With this input the algorithm runs in time ~ N * M

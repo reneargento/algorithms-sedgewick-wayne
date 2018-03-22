@@ -1,0 +1,7 @@
+5.3.31 - Random patterns
+
+None. The method
+public boolean search(char[] text) {
+    return false;
+}
+is quite effective for this problem, since the chances of a random pattern of length 100 appearing in any text are so low that you may consider it to be 0.

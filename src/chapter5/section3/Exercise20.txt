@@ -1,0 +1,6 @@
+5.3.20
+
+The hashes of all k patterns should be computed and stored in a String Set.
+Then, we could run Rabin-Karp algorithm and compare the hashes in the text with all k hashes.
+
+If a match is found with any of the k hashes, return true. If all the text is checked and no matches occur with any of the k hashes, return false.

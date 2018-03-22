@@ -1,0 +1,12 @@
+5.3.39 - Timings
+
+            Method | Time spent
+        Bruteforce         0.01
+Knuth-Morris-Pratt         0.01
+       Boyer-Moore         0.00
+        Rabin-Karp         0.04
+
+The results validate the hypotheses about performance stated in the text:
+Both brute force and Knuth-Morris-Pratt methods took 0.01 seconds to do the search, which is aligned with their expected performance of 1.1N operations when searching in typical texts.
+Boyer-Moore took 0.00 seconds to do the search, which suggests that it did a sublinear number of operations. This is aligned with its expected performance of N / M operations when searching in typical texts.
+Rabin-Karp took 0.04 seconds to do the search, a longer time than all other three methods. However, this is expected according to the hypothesis in the text that it performs 7N operations when searching in typical texts.

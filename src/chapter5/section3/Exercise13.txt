@@ -1,0 +1,13 @@
+5.3.13
+
+Consider that we are currently checking the text character in index i (as the leftmost position of the pattern), the pattern character in index j and that a mismatch occurs in the text character at index mi.
+Also, consider that the last character in the pattern is c, the index of its last occurrence in the pattern is pMax and its penultimate occurrence is (pMax - x), where x is a number between 1 and pMax. Since c is the last character in the pattern pMax = patternLength - 1.
+
+When the character mismatch happens, the pattern has to be shifted to the right.
+If right[c] were equal to pMax then the pattern would be shifted to the right 1 position because pMax will always be higher than j (a mismatch for character c would never occur in the last index of the pattern (pMax), because character c is in that position) and the rule to shift the pattern is: shift positions = max(1, j - pMax).
+
+However, if we had a mismatch in the text character c this means two things:
+1- In the inner loop of the algorithm the first character compare is always with the last character in the pattern (c). So there was a comparison of pattern character c with a text character that was a match. The mismatch must have happened in the range [0 … patternLength - 2] of the pattern.
+2- Since pMax is equal to patternLength - 1, we know that pMax > j. As mentioned above, this would imply shifting the pattern right 1 position. However, the penultimate occurrence of c is in index (pMax - x). If (pMax - x) >= j, the pattern would still be shifted only 1 position. But if (pMax - x) < j, we can shift the pattern to align mi with the penultimate occurrence of c in the pattern (by incrementing i by j - (pMax - x)). Anything less would align that text character with a pattern character it could not match (such as one to the right of c’s penultimate occurrence).
+
+Therefore, right[c] can be set to the penultimate occurrence of c when c is the last character in the pattern.
