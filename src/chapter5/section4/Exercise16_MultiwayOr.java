@@ -59,16 +59,16 @@ public class Exercise16_MultiwayOr {
         Exercise16_MultiwayOr multiwayOr = new Exercise16_MultiwayOr();
 
         String pattern1 = "(A|B)(C|D)*";
-        String text1 = "ACCD";
         RegularExpressionMatcherMultiwayOr regularExpressionMatcherMultiwayOr1 =
                 multiwayOr.new RegularExpressionMatcherMultiwayOr(pattern1);
+        String text1 = "ACCD";
         boolean matches1 = regularExpressionMatcherMultiwayOr1.recognizes(text1);
         StdOut.println("Text 1 check: " + matches1 + " Expected: true");
 
         String pattern2 = "(.*AB((C|D|E)F)*G)";
-        String text2 = "RENEABCFDFG";
         RegularExpressionMatcherMultiwayOr regularExpressionMatcherMultiwayOr2 =
                 multiwayOr.new RegularExpressionMatcherMultiwayOr(pattern2);
+        String text2 = "RENEABCFDFG";
         boolean matches2 = regularExpressionMatcherMultiwayOr2.recognizes(text2);
         StdOut.println("Text 2 check: " + matches2 + " Expected: true");
 
@@ -85,9 +85,9 @@ public class Exercise16_MultiwayOr {
         StdOut.println("Text 5 check: " + matches5 + " Expected: false");
 
         String pattern3 = "(A|B|C|D|E|F)";
-        String text6 = "A";
         RegularExpressionMatcherMultiwayOr regularExpressionMatcherMultiwayOr3 =
                 multiwayOr.new RegularExpressionMatcherMultiwayOr(pattern3);
+        String text6 = "A";
         boolean matches6 = regularExpressionMatcherMultiwayOr3.recognizes(text6);
         StdOut.println("Text 6 check: " + matches6 + " Expected: true");
 
