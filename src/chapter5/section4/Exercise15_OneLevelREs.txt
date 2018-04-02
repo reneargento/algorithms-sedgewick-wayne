@@ -1,0 +1,5 @@
+5.4.15 - One-level REs
+
+Regular expression that describes the set of strings that are legal REs over the binary alphabet, but with no occurrence of parentheses within parentheses:
+
+([01\.\*\|\+\?\[\]\{\}]*(\([01\.\*\|\+\?\[\]\{\}]*\))*[01\.\*\|\+\?\[\]\{\}]*)*

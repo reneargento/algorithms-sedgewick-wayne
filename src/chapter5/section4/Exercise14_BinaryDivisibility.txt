@@ -1,0 +1,12 @@
+5.4.14 - Binary divisibility
+
+a. Divisible by 2: (0|1)*0
+b. Divisible by 3: (0|1(01*0)*1)*
+c. Divisible by 123: The key insight in this question is that the DFA can be created by using 123 states (0 through 122) for the remainders of the division by 123, with the start state (which is also the only accept state) 0 and the following transitions:
+For each state i:
+  Add a transition from i to (2i mod 123) if the digit is 0
+  Add a transition from i to ((2i + 1) mod 123) if the digit is 1
+This means that after we have a pattern that is a multiple of 123, we can always add 0 in the end of the binary string and it will remain divisible by 123. After creating the DFA it can be converted to a regular expression using the state removal method or any of the other methods described here: https://cs.stackexchange.com/questions/2016/how-to-convert-finite-automata-to-regular-expressions 
+The only problem is that converting an NFA of 123 states to a regular expression would be intractable due to its high quantity of states. So it is possible that this question was asked to highlight the comparison between the conversion to regular expressions from NFAs with a small quantity of states (which can be converted in a short period of time) and the conversion to regular expressions from NFAs with a high quantity of states (which cannot). 
+
+Reference: https://cs.stackexchange.com/questions/89626/regex-for-divisibility-by-123-in-binary-strings

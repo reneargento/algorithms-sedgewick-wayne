@@ -1,0 +1,16 @@
+5.4.3
+
+The maximum number of different strings that can be described by a regular expression with M or operators and no closure operators is M + 1, which happens when all options are different.
+
+Example patterns with M = 4
+
+Pattern 1: (A|B|C|D|E)
+Different strings: A, B, C, D, E
+
+The addition of parentheses do not change the result: 
+Pattern 2: (A(B|C|D|E|F)G)
+Different strings: ABG, ACG, ADG, AEG, AFG
+
+The addition of concatenations do not change the result:
+Pattern 3: (ABC|DE|F|GH|IJKL)
+Different strings: ABC, DE, F, GH, IJKL

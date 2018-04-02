@@ -1,0 +1,4 @@
+5.4.9
+
+Regular expression for at least two 0s but not consecutive 0s:
+(01|1)*01+0(01|1)*

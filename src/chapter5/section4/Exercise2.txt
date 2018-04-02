@@ -1,0 +1,6 @@
+5.4.2
+
+a. Any string (including the empty string).
+b. Strings that start and end with an A.
+c. Strings that contain the palindrome ABBABBA.
+d. Strings that contain at least 4 A's, not necessarily consecutive.

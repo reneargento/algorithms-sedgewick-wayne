@@ -1,0 +1,65 @@
+5.4.6
+
+Input: A B B A C E F G E F G C A A B
+
+0 1 2 3 5 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions from start
+
+4 : set of states reachable after matching A
+
+0 1 2 3 4 5 6 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A
+
+6 : set of states reachable after matching A B
+
+0 1 2 3 5 6 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B
+
+6 : set of states reachable after matching A B B
+
+0 1 2 3 5 6 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B B
+
+4 : set of states reachable after matching A B B A
+
+0 1 2 3 4 5 6 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B B A
+
+10 : set of states reachable after matching A B B A C
+
+0 1 2 3 5 7 8 9 10 11 12 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B B A C
+
+14 : set of states reachable after matching A B B A C E
+
+14 : set of states reachable via e-transitions after matching A B B A C E
+
+15 : set of states reachable after matching A B B A C E F
+
+15 : set of states reachable via e-transitions after matching A B B A C E F
+
+16 : set of states reachable after matching A B B A C E F G
+
+0 1 2 3 5 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B B A C E F G
+
+14 : set of states reachable after matching A B B A C E F G E
+
+14 : set of states reachable via e-transitions after matching A B B A C E F G E
+
+15 : set of states reachable after matching A B B A C E F G E F
+
+15 : set of states reachable via e-transitions after matching A B B A C E F G E F
+
+16 : set of states reachable after matching A B B A C E F G E F G
+
+0 1 2 3 5 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B B A C E F G E F G
+
+10 : set of states reachable after matching A B B A C E F G E F G C
+
+0 1 2 3 5 7 8 9 10 11 12 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B B A C E F G E F G C
+
+4 : set of states reachable after matching A B B A C E F G E F G C A
+
+0 1 2 3 4 5 6 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B B A C E F G E F G C A
+
+4 : set of states reachable after matching A B B A C E F G E F G C A A
+
+0 1 2 3 4 5 6 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B B A C E F G E F G C A A
+
+6 : set of states reachable after matching A B B A C E F G E F G C A A B
+
+0 1 2 3 5 6 7 8 9 13 16 17 18 19 20 : set of states reachable via e-transitions after matching A B B A C E F G E F G C A A B

@@ -1,0 +1,12 @@
+5.4.1
+
+Regular expression for strings that contain exactly four consecutive As: 
+A{4} | A{4}[^Ae].* | .*[^Ae]A{4} | .*[^Ae]A{4}[^Ae].*
+
+Regular expression for strings that contain no more than four consecutive As: 
+[^A{5}]*A{0-4}[^A{5}]*
+
+Regular expression for strings that contain at least one occurrence of four consecutive As: 
+.*(AAAA)+.*
+
+e = empty string

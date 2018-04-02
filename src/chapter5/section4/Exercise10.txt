@@ -1,0 +1,8 @@
+5.4.10
+
+a. Has at least 3 characters, and the third character is 0: ((0|1)(0|1)0)(0|1)*
+b. Number of 0s is a multiple of 3: (01*01*01*|1)*
+c. Starts and ends with the same character: (0(0|1)*0|1(0|1)*1)
+d. Odd length: 0|1((0|1)(0|1))*
+e. Starts with 0 and has odd length, or starts with 1 and has even length: (0|(10|11))((0|1)(0|1))*
+f. Length is at least 1 and at most 3: (0|1){1-3}

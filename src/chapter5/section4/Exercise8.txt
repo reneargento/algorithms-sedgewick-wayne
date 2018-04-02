@@ -1,0 +1,6 @@
+5.4.8
+
+a. Contains at least three consecutive 1s: (0|1)*(111)+(0|1)*
+b. Contains the substring 110: (0|1)*110(0|1)*
+c. Contains the substring 1101100: (0|1)*1101100(0|1)*
+d. Does not contain the substring 110: (0|10)*1*

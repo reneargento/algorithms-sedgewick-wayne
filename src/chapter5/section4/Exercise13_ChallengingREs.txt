@@ -1,0 +1,6 @@
+5.4.13 - Challenging REs
+
+a. All strings except 11 or 111: 1|(1*01*|1111(0|1)*)*
+b. Strings with 1 in every odd-number bit position: (10|11)*1*
+c. Strings with at least two 0s and at most one 1: 1?00+|0+1?0+|00+1?
+d. Strings with no two consecutive 1s: (0|10)*1?
