@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by Rene Argento on 9/28/16.
  */
 // Thanks for Vivek Bhojawala (https://github.com/VBhojawala) for mentioning that the solution should use
-// Arrays.sort(), as requested in the exercise.g https://github.com/reneargento/algorithms-sedgewick-wayne/issues/6
+// Arrays.sort(), as requested in the exercise. https://github.com/reneargento/algorithms-sedgewick-wayne/issues/6
 
 //Quantity of numbers : Quantity of equal pairs
 //        2                      1

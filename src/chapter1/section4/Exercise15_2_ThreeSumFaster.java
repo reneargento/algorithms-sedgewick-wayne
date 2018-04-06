@@ -41,25 +41,25 @@ public class Exercise15_2_ThreeSumFaster {
                 } else if (array[i] + array[start] + array[end] < 0) {
                     start++;
                 } else {
-                    StdOut.println(""+ array[i] + " " + array[start] + " " + array[end]);
+                    StdOut.println("" + array[i] + " " + array[start] + " " + array[end]);
                     count++;
 
                     //Compare all following elements with array[end]
                     tempIndex = start + 1;
                     while(tempIndex < end && array[i] + array[tempIndex] + array[end] == 0) {
+                        StdOut.println("" + array[i] + " " + array[tempIndex] + " " + array[end]);
+
                         count++;
                         tempIndex++;
-
-                        StdOut.println(""+ array[i] + " " + array[start] + " " + array[end]);
                     }
 
                     //Compare all previous elements with array[start]
                     tempIndex = end - 1;
                     while(tempIndex > start && array[i] + array[start] + array[tempIndex] == 0) {
+                        StdOut.println("" + array[i] + " " + array[start] + " " + array[tempIndex]);
+
                         count++;
                         tempIndex--;
-
-                        StdOut.println(""+ array[i] + " " + array[start] + " " + array[end]);
                     }
 
                     start++;

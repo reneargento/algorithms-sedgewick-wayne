@@ -13,7 +13,7 @@ public class Exercise14_4Sum {
 
         int[] array = {1, 2, 3, 4, -4, -5, -6, 2, 4, -1};
         StdOut.println("4 sum: " + fourSum(array));
-        StdOut.println("Expected: 4");
+        StdOut.println("Expected: 8");
     }
 
     //O(n^3 lg n)
@@ -28,7 +28,7 @@ public class Exercise14_4Sum {
                 for(int k = j + 1; k < array.length; k++) {
 
                     int searchElement = -1 * (array[i] + array[j] + array[k]);
-                    int elementIndex = binarySearch(array, searchElement, 0, array.length);
+                    int elementIndex = binarySearch(array, searchElement, 0, array.length - 1);
                     if (elementIndex > k) {
                         StdOut.println("" + array[i] +  " " + array[j] +  " " + array[k] +  " " + array[elementIndex]);
                         count++;
@@ -42,14 +42,14 @@ public class Exercise14_4Sum {
 
     private static int binarySearch(int[] array, int key, int low, int high) {
 
-        if (low >= high) {
+        if (low > high) {
             return -1;
         }
 
         int middle = low + (high - low) / 2;
 
         if (array[middle] > key) {
-            return binarySearch(array, key, low, middle-1);
+            return binarySearch(array, key, low, middle - 1);
         } else if (array[middle] < key) {
             return binarySearch(array, key, middle + 1, high);
         } else {
