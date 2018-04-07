@@ -40,7 +40,7 @@ public class Exercise14_4Sum {
         }
     }
 
-    // O(n^2)
+    // O(n^3)
     private static int fourSum(int[] array) {
         Map<Integer, List<Pair>> sumMap = new HashMap<>();
 
