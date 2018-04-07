@@ -40,7 +40,7 @@ public class Exercise14_4Sum {
         }
     }
 
-    // O(n^3)
+    // O(n^2)
     private static int fourSum(int[] array) {
         Map<Integer, List<Pair>> sumMap = new HashMap<>();
 
@@ -59,8 +59,8 @@ public class Exercise14_4Sum {
         int count = 0;
 
         for (int key : sumMap.keySet()) {
-            
-            if (sumMap.containsKey(-key)) {
+
+            if (sumMap.containsKey(-key)) {g
                 List<Pair> pairs = sumMap.get(key);
                 List<Pair> pairsComplement = sumMap.get(-key);
 
