@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 9/28/16.
  */
-// Thanks for Vivek Bhojawala (https://github.com/VBhojawala) for fixing a bug and suggesting improvements
+// Thanks to Vivek Bhojawala (https://github.com/VBhojawala) for fixing a bug and suggesting improvements
 // in the binarySearch() method at https://github.com/reneargento/algorithms-sedgewick-wayne/issues/6
 public class Exercise10 {
 

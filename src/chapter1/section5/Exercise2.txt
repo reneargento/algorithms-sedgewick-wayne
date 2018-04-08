@@ -79,4 +79,5 @@ Forest:
 7 5 3 0
       9
 
-Thanks for kaustubhb (https://github.com/kaustubhb) for fixing a bug in the array values.
+Thanks to kaustubhb (https://github.com/kaustubhb) for fixing a bug in the array values.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/4

@@ -75,8 +75,7 @@ public class Exercise18_LocalMinimum {
                 }
             }
 
-            if (array[middle - 1] > array[middle]
-                    && array[middle + 1] > array[middle]) {
+            if (array[middle - 1] > array[middle] && array[middle + 1] > array[middle]) {
                 return array[middle];
             } else if (array[middle - 1] < array[middle]) {
                 high = middle - 1;

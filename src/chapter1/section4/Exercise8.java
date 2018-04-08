@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by Rene Argento on 9/28/16.
  */
-// Thanks for Vivek Bhojawala (https://github.com/VBhojawala) for mentioning that the solution should use
+// Thanks to Vivek Bhojawala (https://github.com/VBhojawala) for mentioning that the solution should use
 // Arrays.sort(), as requested in the exercise. https://github.com/reneargento/algorithms-sedgewick-wayne/issues/6
 
 //Quantity of numbers : Quantity of equal pairs
@@ -35,7 +35,7 @@ public class Exercise8 {
         StdOut.println("Equal pairs 2: " + countNumberOfPairs(values2) + " Expected: 3");
     }
 
-    // O(N lg N) solution
+    // O(n lg n) solution
     private static int countNumberOfPairs(int[] values) {
         Arrays.sort(values);
 
@@ -60,7 +60,7 @@ public class Exercise8 {
         return count;
     }
 
-    // O(N) solution
+    // O(n) solution
     private static int countNumberOfPairs2(int[] values) {
 
         Map<Integer, Integer> valuesMap = new HashMap<>();
