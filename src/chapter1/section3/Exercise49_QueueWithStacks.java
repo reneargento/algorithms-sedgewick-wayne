@@ -1,6 +1,5 @@
 package chapter1.section3;
 
-import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
@@ -9,11 +8,12 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 8/28/16.
  */
-//Based on the paper "Real Time Queue Operations in Pure LISP" by Robert Hood and Robert Melville
-    //Available at https://ecommons.cornell.edu/bitstream/handle/1813/6273/80-433.pdf
-    //Check http://stackoverflow.com/questions/5538192/how-to-implement-a-queue-with-three-stacks/ for a nice
-    //discussion about this topic.
-public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
+// Based on the paper "Real Time Queue Operations in Pure LISP" by Robert Hood and Robert Melville
+// Available at https://ecommons.cornell.edu/bitstream/handle/1813/6273/80-433.pdf
+
+// Check http://stackoverflow.com/questions/5538192/how-to-implement-a-queue-with-three-stacks/ for a nice
+// discussion about this topic.
+public class Exercise49_QueueWithStacks<Item> implements Iterable<Item> {
 
     private Stack<Item> head;
     private Stack<Item> tail;
@@ -21,13 +21,14 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
     private Stack<Item> reverseHead;
     private Stack<Item> reverseTail;
 
-    private Stack<Item> tempHead; //Used during recopy operations
-    private Stack<Item> tempTail; //Used during recopy operations
+    private Stack<Item> tempTail;
+    private Iterator<Item> headIteratorToReverse;
+    private Iterator<Item> headIteratorToDequeue;
 
     private int size;
 
     private boolean isPerformingRecopy;
-    private boolean waitingSecondRecopyPass;
+    private boolean finishedRecopyFirstPass;
 
     private int numberOfItemsDeletedDuringRecopy;
 
@@ -36,13 +37,7 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
         tail = new Stack<>();
         reverseHead = new Stack<>();
         reverseTail = new Stack<>();
-        tempHead = new Stack<>();
         tempTail = new Stack<>();
-
-        size = 0;
-        isPerformingRecopy = false;
-        waitingSecondRecopyPass = false;
-        numberOfItemsDeletedDuringRecopy = 0;
     }
 
     public boolean isEmpty() {
@@ -59,16 +54,14 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
             tail.push(item);
         } else {
             tempTail.push(item);
-
-            if (waitingSecondRecopyPass) {
-                new Thread(this::performSecondRecopyPass).run();
-            }
+            performRecopySteps();
         }
 
         size++;
 
         if (!isPerformingRecopy && tail.size() > head.size()) {
-            new Thread(this::performFirstRecopyPass).run();
+            startRecopy();
+            performRecopySteps();
         }
     }
 
@@ -83,68 +76,83 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
         if (!isPerformingRecopy) {
             item = head.pop();
         } else {
-            item = tempHead.pop();
+            item = headIteratorToDequeue.next();
             numberOfItemsDeletedDuringRecopy++;
 
-            if (waitingSecondRecopyPass) {
-                new Thread(this::performSecondRecopyPass).run();
-            }
+            performRecopySteps();
         }
 
         size--;
 
         if (!isPerformingRecopy && tail.size() > head.size()) {
-            new Thread(this::performFirstRecopyPass).run();
+            startRecopy();
+            performRecopySteps();
         }
 
         return item;
     }
 
-    private void performFirstRecopyPass() {
-        isPerformingRecopy = true;
+    // Perform 2 steps in the recopy process
+    private void performRecopySteps() {
+        if (!finishedRecopyFirstPass) {
+            performRecopyFirstPassStep();
 
-        while (tail.size() > 0) {
+            if (!finishedRecopyFirstPass) {
+                performRecopyFirstPassStep();
+            } else {
+                performRecopySecondPassStep();
+            }
+        } else {
+            performRecopySecondPassStep();
+
+            if (isPerformingRecopy) {
+                performRecopySecondPassStep();
+            }
+        }
+    }
+
+    private void startRecopy() {
+        isPerformingRecopy = true;
+        headIteratorToReverse = head.iterator();
+        headIteratorToDequeue = head.iterator();
+    }
+
+    private void performRecopyFirstPassStep() {
+        if (tail.size() > 0) {
             reverseTail.push(tail.pop());
         }
 
-        while (head.size() > 0) {
-            reverseHead.push(head.pop());
+        if (headIteratorToReverse.hasNext()) {
+            reverseHead.push(headIteratorToReverse.next());
         }
 
-        //Keep a copy of head for pop operations to be performed during recopy process
-        for(Item item : reverseHead) {
-            tempHead.push(item);
+        if (tail.isEmpty() && !headIteratorToReverse.hasNext()) {
+            finishedRecopyFirstPass = true;
         }
-
-        waitingSecondRecopyPass = true;
     }
 
-    private void performSecondRecopyPass() {
-        waitingSecondRecopyPass = false;
+    private void performRecopySecondPassStep() {
 
-        while (reverseHead.size() > numberOfItemsDeletedDuringRecopy) {
+        if (reverseHead.size() > numberOfItemsDeletedDuringRecopy) {
             reverseTail.push(reverseHead.pop());
         }
 
-        Stack<Item> temp = head;
-        head = reverseTail;
-        reverseTail = temp;
+        if (reverseHead.size() == numberOfItemsDeletedDuringRecopy) {
+            // Update main stacks
+            head = reverseTail;
+            tail = tempTail;
 
-        Stack<Item> temp2 = tail;
-        tail = tempTail;
-        tempTail = temp2;
+            // Clear temporary stacks
+            reverseHead = new Stack<>();
+            reverseTail = new Stack<>();
+            tempTail = new Stack<>();
 
-        //Clear reverseHead and tempHead stacks
-        while (reverseHead.size() > 0) {
-            reverseHead.pop();
+            numberOfItemsDeletedDuringRecopy = 0;
+
+            // Recopy process done
+            isPerformingRecopy = false;
+            finishedRecopyFirstPass = false;
         }
-        while (tempHead.size() > 0) {
-            tempHead.pop();
-        }
-        numberOfItemsDeletedDuringRecopy = 0;
-
-        //Recopy process done
-        isPerformingRecopy = false;
     }
 
     @Override
@@ -171,11 +179,41 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
 
                 headIterator = head.iterator();
             } else {
-                for (Item item : reverseTail) {
+                // Get items in tail
+                for (Item item : tempTail) {
                     reverseTailCopy.push(item);
                 }
 
-                headIterator = tempHead.iterator();
+                for (Item item : tail) {
+                    reverseTailCopy.push(item);
+                }
+
+                Stack<Item> reverseReverseTail = new Stack<>();
+
+                for (Item item : reverseTail) {
+                    reverseReverseTail.push(item);
+                }
+                for (Item item : reverseReverseTail) {
+                    reverseTailCopy.push(item);
+                }
+
+                // Get items in head
+                Stack<Item> reverseReverseHead = new Stack<>();
+                for (Item item : reverseHead) {
+                    reverseReverseHead.push(item);
+                }
+
+                Stack<Item> reverseHeadMinusDeletedItemsStack = new Stack<>();
+                while (reverseReverseHead.size() > numberOfItemsDeletedDuringRecopy) {
+                    reverseHeadMinusDeletedItemsStack.push(reverseReverseHead.pop());
+                }
+
+                Stack<Item> headIteratorStack = new Stack<>();
+                while (!reverseHeadMinusDeletedItemsStack.isEmpty()){
+                    headIteratorStack.push(reverseHeadMinusDeletedItemsStack.pop());
+                }
+
+                headIterator = headIteratorStack.iterator();
             }
 
             reverseTailCopyIterator = reverseTailCopy.iterator();
@@ -205,21 +243,50 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item>{
 
         Exercise49_QueueWithStacks<Integer> queueWithStacks = new Exercise49_QueueWithStacks<>();
         queueWithStacks.enqueue(0);
+
+        queueWithStacks.dequeue();
+        StdOut.println("Queue size: " + queueWithStacks.size());
+        StdOut.println("Expected: 0");
+
         queueWithStacks.enqueue(1);
         queueWithStacks.enqueue(2);
         queueWithStacks.enqueue(3);
 
-        queueWithStacks.dequeue();
-        queueWithStacks.dequeue();
-        queueWithStacks.dequeue();
+        StdOut.println("\nQueue size: " + queueWithStacks.size());
+        StdOut.println("Expected: 3");
 
-        StringJoiner queueItems = new StringJoiner(" ");
+        StringJoiner queueItems1 = new StringJoiner(" ");
         for (int item : queueWithStacks) {
-            queueItems.add(String.valueOf(item));
+            queueItems1.add(String.valueOf(item));
         }
 
-        StdOut.println("Queue items: " + queueItems.toString());
-        StdOut.println("Expected: 3");
+        StdOut.println("Queue items: " + queueItems1.toString());
+        StdOut.println("Expected: 1 2 3");
+
+        queueWithStacks.enqueue(4);
+
+        StringJoiner queueItems2 = new StringJoiner(" ");
+        for (int item : queueWithStacks) {
+            queueItems2.add(String.valueOf(item));
+        }
+
+        StdOut.println("\nQueue items: " + queueItems2.toString());
+        StdOut.println("Expected: 1 2 3 4");
+
+        queueWithStacks.dequeue();
+        queueWithStacks.dequeue();
+        queueWithStacks.dequeue();
+
+        StringJoiner queueItems3 = new StringJoiner(" ");
+        for (int item : queueWithStacks) {
+            queueItems3.add(String.valueOf(item));
+        }
+
+        StdOut.println("\nQueue size: " + queueWithStacks.size());
+        StdOut.println("Expected: 1");
+
+        StdOut.println("Queue items: " + queueItems3.toString());
+        StdOut.println("Expected: 4");
     }
 
 }
