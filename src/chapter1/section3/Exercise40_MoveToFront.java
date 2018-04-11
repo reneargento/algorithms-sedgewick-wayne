@@ -3,14 +3,12 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Rene Argento on 8/22/16.
  */
-public class Exercise40_MoveToFront<Item> implements Iterable<Item>{
+public class Exercise40_MoveToFront<Item> implements Iterable<Item> {
 
     private class Node {
         Item item;
@@ -20,12 +18,10 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item>{
     private Node first;
     private int size;
 
-    private Map<Item, Boolean> existingCharactersHashTable;
+    private Set<Item> existingCharactersHashSet;
 
     public Exercise40_MoveToFront() {
-        first = null;
-        size = 0;
-        existingCharactersHashTable = new HashMap<>();
+        existingCharactersHashSet = new HashSet<>();
     }
 
     public boolean isEmpty() {
@@ -37,7 +33,7 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item>{
     }
 
     public void insert(Item item) {
-        if (existingCharactersHashTable.containsKey(item)) {
+        if (existingCharactersHashSet.contains(item)) {
             delete(item);
         }
 
@@ -46,7 +42,7 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item>{
         first.item = item;
         first.next = oldFirst;
 
-        existingCharactersHashTable.put(item, true);
+        existingCharactersHashSet.add(item);
         size++;
     }
 
@@ -113,9 +109,14 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item>{
 //        moveToFront.insert('d');
 //        moveToFront.insert('z');
 
+        StringJoiner list = new StringJoiner(" ");
+
         for (char character : moveToFront) {
-            StdOut.println(character);
+            list.add(String.valueOf(character));
         }
+
+        StdOut.println("Characters: " + list.toString());
+        // StdOut.println("Expected: z d c b a");
     }
 
 }

@@ -12,7 +12,8 @@ import java.util.StringJoiner;
 // Available at https://ecommons.cornell.edu/bitstream/handle/1813/6273/80-433.pdf
 
 // Check http://stackoverflow.com/questions/5538192/how-to-implement-a-queue-with-three-stacks/ for a nice
-// discussion about this topic.
+// discussion about this topic and for an explanation of why a 3-stack solution may not exist.
+// The best known solution is based on 6 stacks and this implementation is based on that solution.
 public class Exercise49_QueueWithStacks<Item> implements Iterable<Item> {
 
     private Stack<Item> head;
