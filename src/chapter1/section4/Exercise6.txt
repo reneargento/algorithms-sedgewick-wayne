@@ -1,5 +1,8 @@
 1.4.6
 
-a. O(N log(N))
+a. O(N)
 b. O(N)
 c. O(N log(N))
+
+Thanks to Vivek Bhojawala (https://github.com/VBhojawala) for mentioning the correct answer to the question in letter a.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/9
