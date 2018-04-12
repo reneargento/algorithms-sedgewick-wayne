@@ -94,7 +94,11 @@ public class LinkedList<Item> implements Iterable<Item> {
     }
 
     public void remove(Item item) {
-        if (item.equals(first)) {
+        if (isEmpty()) {
+            return;
+        }
+
+        if (item.equals(first.item)) {
             first = first.next;
             size--;
         } else {
@@ -118,20 +122,17 @@ public class LinkedList<Item> implements Iterable<Item> {
 
     private class LinkedListIterator implements Iterator<Item> {
 
-        int index = 0;
         Node currentNode = first;
 
         @Override
         public boolean hasNext() {
-            return index < size();
+            return currentNode != null;
         }
 
         @Override
         public Item next() {
             Item item = currentNode.item;
             currentNode = currentNode.next;
-
-            index++;
 
             return item;
         }

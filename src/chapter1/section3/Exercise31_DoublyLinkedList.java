@@ -39,8 +39,8 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 			oldFirst.previous = first;
 		}
 		
-		//If the list was empty before adding the new item:
-		if (last == null) {
+		// If the list was empty before adding the new item:
+		if (isEmpty()) {
 			last = first;
 		}
 
@@ -58,8 +58,8 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 			oldLast.next = last;
 		}
 
-		//If the list was empty before adding the new item:
-		if (first == null) {
+		// If the list was empty before adding the new item:
+		if (isEmpty()) {
 			first = last;
 		}
 
@@ -89,7 +89,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 			newNode.previous = previousNode;
 
 			if (newNode.previous == null) {
-				//This is the first node
+				// This is the first node
 				first = newNode;
 			} else {
 				newNode.previous.next = newNode;
@@ -122,7 +122,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 			newNode.next = nextNode;
 
 			if (newNode.next == null) {
-				//This is the last node
+				// This is the last node
 				last = newNode;
 			} else {
 				newNode.next.previous = newNode;
@@ -197,7 +197,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 			currentNode = startFromTheBeginning ? currentNode.next : currentNode.previous;
 		}
 
-		@SuppressWarnings("ConstantConditions") //if we got here, the node exists
+		@SuppressWarnings("ConstantConditions") // If we got here, the node exists
 		Item item = currentNode.item;
 
 		DoubleNode previousNode = currentNode.previous;
