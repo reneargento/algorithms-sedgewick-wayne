@@ -96,6 +96,18 @@ public class ArrayGenerator {
         return randomString.toString();
     }
 
+    public static String generateRandomStringOfSpecifiedLengthAllCharacters(int length) {
+
+        StringBuilder randomString = new StringBuilder();
+
+        for(int i = 0; i < length; i++) {
+            char randomChar = (char) StdRandom.uniform(256);
+            randomString.append(randomChar);
+        }
+
+        return randomString.toString();
+    }
+
     public static char[] generateRandomUniqueUppercaseChars(int numberOfChars) {
         char[] chars = new char[numberOfChars];
         int charsIndex = 0;
