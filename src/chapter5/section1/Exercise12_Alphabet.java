@@ -27,7 +27,7 @@ public class Exercise12_Alphabet {
         private char[] indexToChar;
         private int size;
 
-        Alphabet(String string) {
+        public Alphabet(String string) {
             indexToChar = string.toCharArray();
             Arrays.sort(indexToChar);
             size = indexToChar.length;
