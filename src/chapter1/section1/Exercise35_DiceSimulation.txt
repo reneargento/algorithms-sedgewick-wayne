@@ -1,4 +1,4 @@
-1.1.35
+1.1.35 - Dice simulation
 
 N has to be 6.000.000 before my empirical results match the exact results to three decimal places.
 

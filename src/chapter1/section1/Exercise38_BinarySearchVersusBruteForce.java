@@ -12,7 +12,7 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento
  */
-public class Exercise38_BinarySearchXBruteForce {
+public class Exercise38_BinarySearchVersusBruteForce {
 
 	public static void main(String[] args) {
 		

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Rene Argento on 27/11/16.
  */
-public class Exercise43_ResizingArrayXLinkedList<Item> {
+public class Exercise43_ResizingArraysVersusLinkedList<Item> {
 
     private interface Stack<Item> {
         boolean isEmpty();
@@ -123,7 +123,7 @@ public class Exercise43_ResizingArrayXLinkedList<Item> {
     private final int FINAL_NUMBER_OF_OPERATIONS = 67108864; // 2^26 = 67108864
 
     public static void main(String[] args) {
-        Exercise43_ResizingArrayXLinkedList<Integer> resizingArrayXLinkedList = new Exercise43_ResizingArrayXLinkedList<>();
+        Exercise43_ResizingArraysVersusLinkedList<Integer> resizingArrayXLinkedList = new Exercise43_ResizingArraysVersusLinkedList<>();
 
         //Resizing array stack
         Stack<Integer> resizingArrayStack = resizingArrayXLinkedList.new StackWithResizingArray(10);

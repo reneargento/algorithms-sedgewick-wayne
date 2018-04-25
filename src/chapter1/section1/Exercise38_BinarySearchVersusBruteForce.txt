@@ -1,4 +1,4 @@
-1.1.38
+1.1.38 - Binary search versus brute-force search
 
 largeW.txt results:
 

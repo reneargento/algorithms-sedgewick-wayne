@@ -1,4 +1,4 @@
-1.1.34
+1.1.34 - Filtering
 
 Print the maximum and minimum numbers -> Could be implemented as a filter
 Print the median of the numbers -> Requires saving all values

@@ -1,4 +1,4 @@
-1.3.46
+1.3.46 - Forbidden triple for stack generability
 Suppose that there is a forbidden triple (a,b,c). Item "c" is popped before "a" and "b", but "a" and "b" are pushed before "c".
 Thus, when "c" is pushed, both "a" and "b" are on the stack. Therefore, "a" cannot be popped before "b".
 

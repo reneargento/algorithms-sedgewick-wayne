@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.Stopwatch;
  * Created by Rene Argento on 26/11/16.
  */
 @SuppressWarnings("unchecked")
-public class Exercise37_AutoboxingPerformance {
+public class Exercise37_AutoboxingPerformancePenalty {
 
     private static class Exercise37_AutoboxingPerformanceFixCpInt {
 
