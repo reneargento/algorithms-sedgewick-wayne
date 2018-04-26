@@ -1,5 +1,7 @@
 3.3.8
 
+Unique representations (not considering the order of the nodes):
+
    A
     B
      C
