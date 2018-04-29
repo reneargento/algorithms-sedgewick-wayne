@@ -1,0 +1,21 @@
+5.5.11
+
+In a string whose characters are all from a two-character alphabet the Huffman code will consist of only two codes: 0 for one of the characters and 1 for the other character.
+Therefore, the maximum number of bits that could be used in a Huffman code for an N-character string whose characters are all from a two-character alphabet is 1.
+Example (N = 14): 
+
+String: ababababababbb 
+
+Frequencies
+6 8
+a b
+
+Trie
+ 14
+6  8
+a  b
+
+Codeword table
+key  value
+a     0
+b     1

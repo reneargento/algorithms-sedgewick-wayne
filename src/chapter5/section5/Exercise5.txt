@@ -1,0 +1,12 @@
+5.5.5
+
+The file q128x192.bin was not found anywhere on the booksite or in the data URL https://algs4.cs.princeton.edu/code/algs4-data.zip
+However, the file q64x96.bin exists in the booksite on the aforementioned algs4-data.zip and on the hidden URL https://algs4.cs.princeton.edu/55compression/q64x96.bin .
+
+In the uncompressed file there are 6144 bits.
+In the compressed file there are 2296 bits.
+
+Commands used:
+% javac -cp algs4.jar BinaryDump.java
+% javac -cp algs4.jar RunLengthEncoding.java
+% java -cp algs4.jar:. RunLengthEncoding - < q64x96.bin | java -cp algs4.jar:. BinaryDump 0

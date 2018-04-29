@@ -1,0 +1,6 @@
+5.5.19
+
+There are at least 2^(N-1) different Huffman codes corresponding to a given set of N symbols:
+With N symbols there are N - 1 internal nodes in the code tree and each of these internal nodes has an arbitrary choice to assign its left and right children.
+
+Reference: https://algs4.cs.princeton.edu/55compression/

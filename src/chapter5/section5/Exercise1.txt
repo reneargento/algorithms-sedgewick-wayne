@@ -1,0 +1,8 @@
+5.5.1
+
+Prefix-free codes: code 3 and code 4
+Uniquely decodable codes: code 3 and code 4
+
+Decoding of 1000000000000:
+code 3: Not recognized by the alphabet
+code 4: ADDDD

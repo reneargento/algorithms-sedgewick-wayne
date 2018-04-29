@@ -1,0 +1,184 @@
+5.5.7
+
+% more 5.5_input_1a.txt
+a
+
+% more 5.5_input_2a.txt
+aa
+
+% more 5.5_input_3a.txt
+aaa
+
+% more 5.5_input_4a.txt
+aaaa
+
+% more 5.5_input_20a.txt
+aaaaaaaaaaaaaaaaaaaa
+
+% more 5.5_input_100a.txt
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+*** Run-length encoding ***
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_1a.txt | java -cp algs4.jar:. BinaryDump 16
+0000000100000010
+0000010000000001
+32 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_2a.txt | java -cp algs4.jar:. BinaryDump 16
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+64 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_3a.txt | java -cp algs4.jar:. BinaryDump 16
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+96 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_4a.txt | java -cp algs4.jar:. BinaryDump 16
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+128 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_20a.txt | java -cp algs4.jar:. BinaryDump 16
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+0000000100000010
+0000010000000001
+640 bits
+
+Compression ratio (as a function of N): 32N / N = 3200%
+
+*** Huffman encoding ***
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_1a.txt | java -cp algs4.jar:. BinaryDump 16
+0100000000101100
+0010000000000000
+0000000000000000
+00110000
+56 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_2a.txt | java -cp algs4.jar:. BinaryDump 16
+0100000000101100
+0010000000000000
+0000000000000000
+01011000
+56 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_3a.txt | java -cp algs4.jar:. BinaryDump 16
+0100000000101100
+0010000000000000
+0000000000000000
+01111100
+56 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_4a.txt | java -cp algs4.jar:. BinaryDump 16
+0100000000101100
+0010000000000000
+0000000000000000
+10011110
+56 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_20a.txt | java -cp algs4.jar:. BinaryDump 16
+0100000000101100
+0010000000000000
+0000000000000010
+1001111111111111
+11111110
+72 bits
+
+Compression ratio (as seen on exercise 5.5.6, the relation [number of symbols : bits needed to encode] is variable, so for this exercise we base the compression ratio on N = 100).
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_100a.txt | java -cp algs4.jar:. BinaryDump 0
+152 bits
+
+Compression ratio: 152 / 100 = 152%
+
+*** LZW encoding ***
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_1a.txt | java -cp algs4.jar:. BinaryDump 16
+0000011000010001
+00000000
+24 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_2a.txt | java -cp algs4.jar:. BinaryDump 16
+0000011000010000
+0110000100010000
+00000000
+40 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_3a.txt | java -cp algs4.jar:. BinaryDump 16
+0000011000010001
+0000000100010000
+00000000
+40 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_4a.txt | java -cp algs4.jar:. BinaryDump 16
+0000011000010001
+0000000100000110
+0001000100000000
+48 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_20a.txt | java -cp algs4.jar:. BinaryDump 16
+0000011000010001
+0000000100010000
+0010000100000011
+0001000001000001
+0000010000010000
+00000000
+88 bits
+
+Compression ratio (as seen on exercise 5.5.6, the relation [number of symbols : bits needed to encode] is variable, so for this exercise we base the compression ratio on N = 100). 
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_100a.txt | java -cp algs4.jar:. BinaryDump 0
+184 bits
+
+Compression ratio: 184 / 100 = 184%

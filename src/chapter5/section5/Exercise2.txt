@@ -1,0 +1,6 @@
+5.5.2
+
+Example of a uniquely decodable code that is not prefix-free:
+Any suffix-free code is uniquely decodable.
+
+Example: { 0, 01, 011, 0111 }

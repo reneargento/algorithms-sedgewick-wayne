@@ -1,0 +1,17 @@
+5.5.22
+
+If the frequency of symbol i is strictly larger than the frequency of symbol j, then the length of the codeword for symbol i is less than or equal to the length of the codeword for symbol j.
+
+Proof:
+Suppose that C is an optimal Huffman code, L(C) is the sum of all the codeword lengths in the code C, C(x) is the codeword associated to the symbol x in C, f(x) is the frequency of occurrence of symbol x and l(x) is the length of C(x). 
+Let C’ be the code interchanging C(i) and C(j), and, as mentioned on the exercise statement, f(i) > f(j).
+Then
+0 <= L(C’) - L(C)
+   = E f(k) * l’(k) - E f(k) * l(k)
+     k                k 
+   = f(i) * l(j) + f(j) * l(i) - f(i) * l(i) - f(j) * l(j)
+   = (f(i) - f(j)) * (l(j) - l(i)) 
+
+and hence l(j) - l(i) >= 0, or equivalently, l(i) <= l(j).
+
+Reference: http://www.cs.cmu.edu/~aarti/Class/10704_Fall16/lec10.pdf

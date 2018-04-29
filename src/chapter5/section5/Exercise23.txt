@@ -1,0 +1,19 @@
+5.5.23
+
+Breaking up a Huffman-encoded string into five-bit characters and Huffman-encoding that string is a process called Double Huffman Coding and it would lead to a string of final length between N / 5 and N.
+
+Proof:
+
+Consider that the string has N bits. The best case happens when all 5-bit strings are equal: the resulting compressed string length is N / 5.
+
+Example: 
+01010010100101001010
+is broken into 
+01010 01010 01010 01010
+
+With the Huffman code 01010 -> 0, the string becomes:
+0000
+
+The original Huffman-encoded string length was 20 (N) and the final string length is 4 (N / 5).
+
+With 5 bits there are 2^5 possible five-bit characters. The worst case happens when all five-bit characters are different and there is one occurrence of each possible five-bit character. In this case, the Huffman encoding tree will be a complete binary tree and all codewords will have length 5. All five-bit characters will be encoded to codewords of length 5 and the final string length will be N (the same length as the original Huffman-encoded string).

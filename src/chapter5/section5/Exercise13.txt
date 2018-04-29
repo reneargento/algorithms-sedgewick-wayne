@@ -1,0 +1,6 @@
+5.5.13
+
+If all the symbol frequencies are equal the Huffman code will not be unique and it will not compress the symbols (the resulting string will have the same length as the original string). This is the worst-case for Huffman encoding.
+Huffman encoding assigns smaller bit-length codes to more frequent symbols and longer bit-length codes to less frequent symbols. If all symbol frequencies are equal the compression due to shorter codes is lost because there will be equally likely longer codes.
+
+Reference: https://stackoverflow.com/questions/11601437/huffman-encoding

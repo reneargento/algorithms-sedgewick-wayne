@@ -1,0 +1,6 @@
+5.5.4
+
+{ 1, 100000, 00 } is uniquely decodable.
+
+{ 01, 1001, 1011, 111, 1110 } is not uniquely decodable. 
+The string 11101111001 can be decoded both as 1110-111-1001 and 111-01-1110-01.

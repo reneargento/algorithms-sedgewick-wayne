@@ -1,0 +1,3 @@
+5.5.17
+
+The tricky situation in LZW coding happens during expansion when the codeword read to get the lookahead character has the same value as the next codeword to be added in the codeword table. This happens whenever the algorithm encounters cScSc, where c is a symbol and S is a string, cS is in the dictionary already but cSc is not.

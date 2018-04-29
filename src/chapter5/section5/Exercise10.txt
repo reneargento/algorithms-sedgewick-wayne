@@ -1,0 +1,104 @@
+5.5.10
+
+text: it was the age of foolishness
+
+Frequencies
+2  2   5  1  2  4  2  3  1  3  2  1  1
+i  t  SP  w  a  s  h  e  g  o  f  l  n
+
+Ordered frequencies and trie construction
+1  1  1  1  2  2  2  2  2  3  3  4   5
+w  g  l  n  i  t  a  h  f  e  o  s  SP
+ 
+
+1  1   2  2  2  2  2  2  3  3  4   5
+l  n  1 1  i  t  a  h  f  e  o  s  SP
+      w g
+
+ 2    2   2  2  2  2  2  3  3  4   5
+1 1  1 1  i  t  a  h  f  e  o  s  SP
+l n  w g
+
+2  2  2  2  2  3  3      4     4   5
+i  t  a  h  f  e  o   2    2   s  SP
+                     1 1  1 1
+                     l n  w g
+
+2  2  2  3  3   4       4     4   5
+a  h  f  e  o  2 2   2    2   s  SP
+               i t  1 1  1 1
+                    l n  w g
+
+2  3  3   4    4       4     4   5
+f  e  o  2 2  2 2   2    2   s  SP
+         a h  i t  1 1  1 1
+                   l n  w g
+
+3   4    4       4     4   5    5
+o  2 2  2 2   2    2   s  2 3  SP
+   a h  i t  1 1  1 1     f e
+             l n  w g
+
+ 4       4     4   5    5    7
+2 2   2    2   s  2 3  SP  3   4
+i t  1 1  1 1     f e      o  2 2
+     l n  w g                 a h
+
+4   5    5    7          8
+s  2 3  SP  3   4    4       4
+   f e      o  2 2  2 2   2    2
+               a h  i t  1 1  1 1
+                         l n  w g
+
+ 5    7          8           9
+SP  3   4    4       4     4   5
+    o  2 2  2 2   2    2   s  2 3
+       a h  i t  1 1  1 1     f e
+                 l n  w g
+
+     8           9         12
+ 4       4     4   5    5      7
+2 2   2    2   s  2 3  SP    3   4
+i t  1 1  1 1     f e        o  2 2
+     l n  w g                   a h
+
+    12                   17
+ 5      7          8           9
+SP    3   4    4       4     4   5
+      o  2 2  2 2   2    2   s  2 3 
+         a h  i t  1 1  1 1     f e
+                   l n  w g 
+
+                29
+    12                    17
+ 5      7           8           9
+SP    3   4     4       4     4   5
+      o  2 2   2 2   2    2   s  2 3 
+         a h   i t  1 1  1 1     f e
+                    l n  w g 
+
+Codeword table
+key  value
+SP     00
+a      0110
+e      1111
+f      1110
+g      10111
+h      0111
+i      1000
+l      10100
+n      10101
+o      010
+s      110
+t      1001
+w      10110
+
+Compressed bitstream (characters only): 1000 1001 10110 0110 110 1001 0111 1111 0110 10111 1111 010 1110 1110 010 010 10100 1000 110 0111 10101 1111 110 110
+
+Compressed bitstream (trie):
+0001 00100000 001 01101111 001 01100001 01 01101000 00001 01101001 01 01110100 0001 01101100 01 01101110 001 01110111 01 01100111 001 01110011 001 01100110 01 01100101
+
+Compressed bitstream (number of characters: 29):
+00011101
+
+Bits required: 93 + 142 + 8 = 243

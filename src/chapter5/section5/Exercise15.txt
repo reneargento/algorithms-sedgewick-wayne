@@ -1,0 +1,3 @@
+5.5.15
+
+Extending Huffman coding to encode in 2-bit characters (using 4-way trees) would have as main advantage building the code tree in less steps (because each merge would reduce the number of subtrees by 2 instead of reducing by only 1) and as main disadvantage the use of a higher number of bits (in general) to encode symbols (because in each level of the coding tree we add 2 bits instead of 1).

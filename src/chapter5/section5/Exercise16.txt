@@ -1,0 +1,46 @@
+5.5.16
+
+a. T  O  B  E  O  R  N  O  T  T  O  B  E
+   54 4F 42 45 4F 52 4E 4F 54 81    83    80
+
+Codeword table
+key   value
+TO     81
+OB     82
+BE     83
+EO     84
+OR     85
+RN     86
+NO     87
+OT     88
+TT     89
+TOB    8A
+
+b. Y  A  B  B  A  D  A  B  B  A  D  A  B  B  A  D  O  O
+   59 41 42 42 41 44 82    84    86    83    85    4F 4F 80
+
+Codeword table
+key   value
+YA     81
+AB     82
+BB     83
+BA     84
+AD     85
+DA     86
+ABB    87
+BAD    88
+DAB    89
+BBA    8A
+ADO    8B
+OO     8C
+
+c. A  A  A  A  A  A  A  A  A  A  A  A  A  A  A  A  A  A  A  A  A
+   41 81    82       83          84             85                80
+
+Codeword table
+key   value
+AA     81
+AAA    82
+AAAA   83
+AAAAA  84
+AAAAAA 85

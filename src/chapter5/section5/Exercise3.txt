@@ -1,0 +1,4 @@
+5.5.3
+
+Example of a uniquely decodable code that is not prefix-free or suffix-free:
+{ 0011, 011, 11, 1110 } or { 01, 10, 011, 110 }

@@ -1,0 +1,28 @@
+5.5.12
+
+When all of the symbol probabilities are negative powers of 2 (such as 0.5, 0.25, 0.125) the Huffman code is optimal (the compression is at the entropy of the data). This is because the code is optimal if the average length of the codewords equals the entropy of the source, which happens when all probabilities are negative powers of 2 in Huffman codes.
+
+Example: aaaabbcd
+
+Frequencies
+4 2 1 1
+a b c d
+
+Trie
+        8
+    4      4
+ 2    2    a
+1 1   b
+c d
+
+Codeword table
+key  value
+a     1
+b     01
+c     000
+d     001
+
+Compressed bitstream: 11110101000001
+Compression ratio: 14 / 64 = 21.8 %
+
+Reference: Fundamental Data Compression by Ida Mengyi Pu

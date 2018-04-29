@@ -1,0 +1,145 @@
+5.5.24
+
+text: it was the best of times it was the worst of times
+
+Compression process
+
+input   I     T     W     A     S     T     H     E     B     E     S     T     O     F     T     I     M     E     S     I     T     W     A     S     T     H     E     W     O     R     S     T     O     F     T     I     M     E     S
+matches I     T     W     A     S     T     H     E     B     E     ST          O     F     T     I     M     ES          IT          WA          ST          HE          W     O     R     STO               FT          IM          ES 
+output  49    54    57    41    53    54    48    45    42    45    85          4F    46    54    49    4D    8A          81          83          85          87          57    4F    52    8B                8D          8F          8A         80
+
+        IT 81 IT    IT    IT    IT    IT    IT    IT    IT    IT    IT          IT    IT    IT    IT    IT    IT          IT          IT          IT          IT          IT    IT    IT    IT                IT          IT          IT      
+              TW 82 TW    TW    TW    TW    TW    TW    TW    TW    TW          TW    TW    TW    TW    TW    TW          TW          TW          TW          TW          TW    TW    TW    TW                TW          TW          TW      
+                    WA 83 WA    WA    WA    WA    WA    WA    WA    WA          WA    WA    WA    WA    WA    WA          WA          WA          WA          WA          WA    WA    WA    WA                WA          WA          WA      
+                          AS 84 AS    AS    AS    AS    AS    AS    AS          AS    AS    AS    AS    AS    AS          AS          AS          AS          AS          AS    AS    AS    AS                AS          AS          AS      
+                                ST 85 ST    ST    ST    ST    ST    ST          ST    ST    ST    ST    ST    ST          ST          ST          ST          ST          ST    ST    ST    ST                ST          ST          ST      
+                                      TH 86 TH    TH    TH    TH    TH          TH    TH    TH    TH    TH    TH          TH          TH          TH          TH          TH    TH    TH    TH                TH          TH          TH      
+                                            HE 87 HE    HE    HE    HE          HE    HE    HE    HE    HE    HE          HE          HE          HE          HE          HE    HE    HE    HE                HE          HE          HE      
+                                                  EB 88 EB    EB    EB          EB    EB    EB    EB    EB    EB          EB          EB          EB          EB          EB    EB    EB    EB                EB          EB          EB      
+                                                        BE 89 BE    BE          BE    BE    BE    BE    BE    BE          BE          BE          BE          BE          BE    BE    BE    BE                BE          BE          BE      
+                                                              ES 8A ES          ES    ES    ES    ES    ES    ES          ES          ES          ES          ES          ES    ES    ES    ES                ES          ES          ES      
+                                                                    STO 8B      STO   STO   STO   STO   STO   STO         STO         STO         STO         STO         STO   STO   STO   STO               STO         STO         STO      
+                                                                                OF 8C OF    OF    OF    OF    OF          OF          OF          OF          OF          OF    OF    OF    OF                OF          OF          OF      
+                                                                                      FT 8D FT    FT    FT    FT          FT          FT          FT          FT          FT    FT    FT    FT                FT          FT          FT      
+                                                                                            TI 8E TI    TI    TI          TI          TI          TI          TI          TI    TI    TI    TI                TI          TI          TI      
+                                                                                                  IM 8F IM    IM          IM          IM          IM          IM          IM    IM    IM    IM                IM          IM          IM      
+                                                                                                        ME 90 ME          ME          ME          ME          ME          ME    ME    ME    ME                ME          ME          ME      
+                                                                                                              ESI 91      ESI         ESI         ESI         ESI         ESI   ESI   ESI   ESI               ESI         ESI         ESI     
+                                                                                                                          ITW 92      ITW         ITW         ITW         ITW   ITW   ITW   ITW               ITW         ITW         ITW     
+                                                                                                                                      WAS 93      WAS         WAS         WAS   WAS   WAS   WAS               WAS         WAS         WAS     
+                                                                                                                                                  STH 94      STH         STH   STH   STH   STH               STH         STH         STH     
+                                                                                                                                                              HEW 95      HEW   HEW   HEW   HEW               HEW         HEW         HEW     
+                                                                                                                                                                          WO 96 WO    WO    WO                WO          WO          WO      
+                                                                                                                                                                                OR 97 OR    OR                OR          OR          OR      
+                                                                                                                                                                                      RS 98 RS                RS          RS          RS      
+                                                                                                                                                                                            STOF 99           STOF        STOF        STOF    
+                                                                                                                                                                                                              FTI 9A      FTI         FTI     
+                                                                                                                                                                                                                          IME 9B      IME     
+
+Codeword table
+key   value
+IT     81
+TW     82
+WA     83
+AS     84
+ST     85
+TH     86
+HE     87
+EB     88
+BE     89
+ES     8A
+STO    8B
+OF     8C
+FT     8D
+TI     8E
+IM     8F
+ME     90
+ESI    91
+ITW    92
+WAS    93
+STH    94
+HEW    95
+WO     96
+OR     97
+RS     98
+STOF   99
+FTI    9A
+IME    9B
+
+Encoding trie
+                                                    Root
+                                                     |
+     ________________________________________________________________________________________________________
+    /    |       |        |       |        |         |         |         |         |           |             \
+   A 41  B 42    E 45     F 46    H 48     I 49      M 4D      O 4F      R 52      S 53        T 54           W 57
+   |     |       |        |       |        |         |         |         |         |           |              |
+   S 84  E 89  ____       T 8D    E 87    ____       E 90     ____       S 98      T 85     ________         ____ 
+              /    \      |       |      /    \              /    \                |       /   |    \       /    \
+             B 88   S 8A  I 9A    W 95  M 8F   T 81         F 8C   R 97           ____    H 86 I 8E  W 82  A 83   O 96
+                    |                   |      |                                 /    \                    |
+                    I 91                E 9B   W 92                             H 94   O 8B                S 93
+                                                                                       |
+                                                                                       F 99
+
+Expansion process
+
+input  49    54    57    41    53    54    48    45    42    45    85     4F    46    54    49    4D    8A     81     83     85     87     57    4F    52    8B      8D     8F     8A    80
+output  I     T     W     A     S     T     H     E     B     E     ST     O     F     T     I     M     ES     IT     WA     ST     HE     W     O     R     STO     FT     IM     ES
+
+     81 IT    IT    IT    IT    IT    IT    IT    IT    IT    IT    IT     IT    IT    IT    IT    IT    IT     IT     IT     IT     IT     IT    IT    IT    IT      IT     IT     IT
+           82 TW    TW    TW    TW    TW    TW    TW    TW    TW    TW     TW    TW    TW    TW    TW    TW     TW     TW     TW     TW     TW    TW    TW    TW      TW     TW     TW
+                 83 WA    WA    WA    WA    WA    WA    WA    WA    WA     WA    WA    WA    WA    WA    WA     WA     WA     WA     WA     WA    WA    WA    WA      WA     WA     WA
+                       84 AS    AS    AS    AS    AS    AS    AS    AS     AS    AS    AS    AS    AS    AS     AS     AS     AS     AS     AS    AS    AS    AS      AS     AS     AS
+                             85 ST    ST    ST    ST    ST    ST    ST     ST    ST    ST    ST    ST    ST     ST     ST     ST     ST     ST    ST    ST    ST      ST     ST     ST
+                                   86 TH    TH    TH    TH    TH    TH     TH    TH    TH    TH    TH    TH     TH     TH     TH     TH     TH    TH    TH    TH      TH     TH     TH
+                                         87 HE    HE    HE    HE    HE     HE    HE    HE    HE    HE    HE     HE     HE     HE     HE     HE    HE    HE    HE      HE     HE     HE
+                                               88 EB    EB    EB    EB     EB    EB    EB    EB    EB    EB     EB     EB     EB     EB     EB    EB    EB    EB      EB     EB     EB
+                                                     89 BE    BE    BE     BE    BE    BE    BE    BE    BE     BE     BE     BE     BE     BE    BE    BE    BE      BE     BE     BE
+                                                           8A ES    ES     ES    ES    ES    ES    ES    ES     ES     ES     ES     ES     ES    ES    ES    ES      ES     ES     ES
+                                                                 8B STO    STO   STO   STO   STO   STO   STO    STO    STO    STO    STO    STO   STO   STO   STO     STO    STO    STO
+                                                                        8C OF    OF    OF    OF    OF    OF     OF     OF     OF     OF     OF    OF    OF    OF      OF     OF     OF
+                                                                              8D FT    FT    FT    FT    FT     FT     FT     FT     FT     FT    FT    FT    FT      FT     FT     FT
+                                                                                    8E TI    TI    TI    TI     TI     TI     TI     TI     TI    TI    TI    TI      TI     TI     TI
+                                                                                          8F IM    IM    IM     IM     IM     IM     IM     IM    IM    IM    IM      IM     IM     IM
+                                                                                                90 ME    ME     ME     ME     ME     ME     ME    ME    ME    ME      ME     ME     ME
+                                                                                                      91 ESI    ESI    ESI    ESI    ESI    ESI   ESI   ESI   ESI     ESI    ESI    ESI
+                                                                                                             92 ITW    ITW    ITW    ITW    ITW   ITW   ITW   ITW     ITW    ITW    ITW
+                                                                                                                    93 WAS    WAS    WAS    WAS   WAS   WAS   WAS     WAS    WAS    WAS
+                                                                                                                           94 STH    STH    STH   STH   STH   STH     STH    STH    STH
+                                                                                                                                  95 HEW    HEW   HEW   HEW   HEW     HEW    HEW    HEW
+                                                                                                                                         96 WO    WO    WO    WO      WO     WO     WO
+                                                                                                                                               97 OR    OR    OR      OR     OR     OR
+                                                                                                                                                     98 RS    RS      RS     RS     RS
+                                                                                                                                                           99 STOF    STOF   STOF   STOF
+                                                                                                                                                                   9A FTI    FTI    FTI
+                                                                                                                                                                          9B IME    IME
+
+Inverse codeword table
+key   value
+81     IT
+82     TW
+83     WA
+84     AS
+85     ST
+86     TH
+87     HE
+88     EB
+89     BE
+8A     ES
+8B     STO
+8C     OF
+8D     FT
+8E     TI
+8F     IM
+90     ME
+91     ESI
+92     ITW
+93     WAS
+94     STH
+95     HEW
+96     WO
+97     OR
+98     RS
+99     STOF
+9A     FTI
+9B     IME

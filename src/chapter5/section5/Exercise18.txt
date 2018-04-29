@@ -1,0 +1,37 @@
+5.5.18
+
+When the symbol frequencies are based on the Fibonacci sequence the Huffman encoding tree will be left or right skewed. This will happen because the first symbol that has the smallest frequency F1 will be merged with the second symbol that has frequency F2, the resulting tree will be merged with the third symbol that has frequency F3, which will be merged with the fourth symbol that has frequency F4 and so on.
+
+The Huffman code (for a left skewed tree) can be derived using the following formula (where N is the number of symbols):
+code 1 = (N - 2) * 0 + 0
+code 2 = (N - 2) * 0 + 1
+code 3 = (N - 3) * 0 + 1
+code 4 = (N - 4) * 0 + 1
+…
+code N = 1
+
+Example:
+Symbol : Frequency
+A            1
+B            1
+C            2
+D            3
+E            5
+
+Huffman encoding tree
+              12
+        7          5
+   4       3       E
+ 2   2     D
+1 1  C
+A B
+
+Codeword table
+key   value
+A      0000
+B      0001
+C      001
+D      01
+E      1
+
+Reference: https://stackoverflow.com/questions/19883086/optimal-huffman-code-for-fibonacci-numbers

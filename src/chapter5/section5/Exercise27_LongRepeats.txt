@@ -1,0 +1,18 @@
+5.5.27 - Long repeats
+
+Compressing 2 * 1000 random characters (for N = 1000), with 16000 bits (8 bits per character).
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5.27_random.txt | java -cp algs4.jar:. BinaryDump 0
+53736 bits
+
+Compression ratio: 53736 / 16000 = 335%
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5.27_random.txt | java -cp algs4.jar:. BinaryDump 0
+12624 bits
+
+Compression ratio: 12624 / 16000 = 79%
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5.27_random.txt | java -cp algs4.jar:. BinaryDump 0
+13416 bits
+
+Compression ratio: 13416 / 16000 = 83%

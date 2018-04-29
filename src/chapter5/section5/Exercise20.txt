@@ -1,0 +1,10 @@
+5.5.20
+
+If the character ‘A’ occurs one million times and the character ‘B’ occurs once, the codeword for ‘A’ will be 0 and the codeword for ‘B’ will be 1.
+
+Codeword table
+key   value
+A      0
+B      1
+
+Reference: https://algs4.cs.princeton.edu/55compression/

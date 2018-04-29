@@ -1,0 +1,9 @@
+5.5.21
+
+The two longest codewords in a Huffman code have the same length.
+
+Proof:
+The longest codewords will be assigned to the symbols that have the lowest frequency of occurrence. 
+If the two longest codewords have differing lengths, a bit could be removed from the end of the longest codeword while remaining a prefix code and hence have strictly lower expected length. This reduces the average codeword length and contradicts the optimality of the code.
+
+Reference: http://www.cs.cmu.edu/~aarti/Class/10704_Fall16/lec10.pdf

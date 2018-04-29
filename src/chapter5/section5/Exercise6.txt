@@ -1,0 +1,193 @@
+5.5.6 
+
+Copies of symbol a:
+
+% more 5.5_input_1a.txt
+a
+
+% more 5.5_input_2a.txt
+aa
+
+% more 5.5_input_3a.txt
+aaa
+
+% more 5.5_input_20a.txt
+aaaaaaaaaaaaaaaaaaaa
+
+*** Run-length encoding ***
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_1a.txt | java -cp algs4.jar:. BinaryDump 0
+32 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_2a.txt | java -cp algs4.jar:. BinaryDump 0
+64 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_3a.txt | java -cp algs4.jar:. BinaryDump 0
+96 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_20a.txt | java -cp algs4.jar:. BinaryDump 0
+640 bits
+
+Bits needed to encode N copies of the symbol a: 32N
+
+*** Huffman encoding ***
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_1a.txt | java -cp algs4.jar:. BinaryDump 0
+56 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_2a.txt | java -cp algs4.jar:. BinaryDump 0
+56 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_3a.txt | java -cp algs4.jar:. BinaryDump 0
+56 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_20a.txt | java -cp algs4.jar:. BinaryDump 0
+72 bits
+
+Number of a symbols - bits needed to encode
+1-5: 56
+6-13 : 64
+14-21: 72
+22-29: 80
+30-37: 88
+38: 96
+
+Bits needed to encode N copies of the symbol a: 56 + ((N - 6) / 8 + 1) * 8
+
+*** LZW encoding ***
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_1a.txt | java -cp algs4.jar:. BinaryDump 0
+24 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_2a.txt | java -cp algs4.jar:. BinaryDump 0
+40 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_3a.txt | java -cp algs4.jar:. BinaryDump 0
+40 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_20a.txt | java -cp algs4.jar:. BinaryDump 0
+88 bits
+
+Number of a symbols - bits needed to encode
+1: 24
+2-3: 40
+4-6: 48
+7-10: 64
+11-15: 72 bits
+16-21: 88 bits
+22-28: 96 bits
+29: 112 bits
+
+                                                      i<=N
+Bits needed to encode N copies of the symbol a: 16 +   E        8 if j % 2 == 1
+                                                               16 if j % 2 == 0
+                                                    i=1, j=1
+                                                    i+=j; j++
+
+Copies of symbol abc:
+
+% more 5.5_input_1abc.txt
+abc
+
+% more 5.5_input_2abc.txt
+abcabc
+
+% more 5.5_input_3abc.txt
+abcabcabc
+
+% more 5.5_input_20a.txt
+abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc
+
+*** Run-length encoding ***
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_1abc.txt | java -cp algs4.jar:. BinaryDump 0
+96 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_2abc.txt | java -cp algs4.jar:. BinaryDump 0
+192 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_3abc.txt | java -cp algs4.jar:. BinaryDump 0
+288 bits
+
+% java -cp algs4.jar:. RunLengthEncoding - < 5.5_input_20abc.txt | java -cp algs4.jar:. BinaryDump 0
+1920 bits
+
+Bits needed to encode N copies of the sequence abc: 96N
+
+*** Huffman encoding ***
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_1abc.txt | java -cp algs4.jar:. BinaryDump 0
+72 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_2abc.txt | java -cp algs4.jar:. BinaryDump 0
+72 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_3abc.txt | java -cp algs4.jar:. BinaryDump 0
+80 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.Huffman - < 5.5_input_20abc.txt | java -cp algs4.jar:. BinaryDump 0
+168 bits
+
+Number of abc sequences - bits needed to encode
+1-2: 72
+3: 80
+4-5: 88
+6-7: 96
+8: 104
+9-10: 112
+11: 120
+12-13: 128
+14-15: 136
+16: 144
+17-18: 152
+19: 160
+20-21: 168
+22-23: 176
+24: 184
+
+                                                            i<=N
+Bits needed to encode N copies of the sequence abc: 64 +     E   8
+                                                         i=1, j=2
+                                                         i+=j; j=2 if j == 1 || (i - 4) % 8 == 0 || (i - 6) % 8 == 0
+                                                               j=1 [else]
+
+*** LZW encoding ***
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_1abc.txt | java -cp algs4.jar:. BinaryDump 0
+48 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_2abc.txt | java -cp algs4.jar:. BinaryDump 0
+72 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_3abc.txt | java -cp algs4.jar:. BinaryDump 0
+88 bits
+
+% java -cp algs4.jar:. edu.princeton.cs.algs4.LZW - < 5.5_input_20abc.txt | java -cp algs4.jar:. BinaryDump 0
+232 bits
+
+Number of abc sequences - bits needed to encode
+1: 48
+2: 72
+3: 88
+4: 96
+5: 112
+6: 120
+7: 136
+8: 144
+9-10: 160
+11: 168
+12-13: 184
+14-15: 192
+16-17: 208
+18-19: 216
+20-21: 232
+22-23: 240
+
+                                                     i<=N
+Bits needed to encode N copies of the sequence abc:    E       48 if i == 1
+                                                               24 [else] if i == 2
+                                                               16 [else] if k == 1
+                                                                8 [else] if k == 2
+                                                     i=1, j=1, k=1
+                                                     i+=j; k=1 if k == 2; j=1 if i < 9 || i == 11
+                                                           k=2 if k == 1; j=2 [else]

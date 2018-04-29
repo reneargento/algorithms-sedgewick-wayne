@@ -1,0 +1,4 @@
+5.5.14
+
+If the frequencies of the occurrence of all the characters to be encoded are different, the Huffman encoding tree is unique.
+The encoding tree is constructed by merging subtrees based on the frequency of occurrence of the characters contained in them. Since the characters frequencies of occurrence are different, the order in which the subtrees will be merged will always be the same, generating a unique encoding tree.
