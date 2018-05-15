@@ -80,7 +80,7 @@ public class Particle implements ParticleInterface {
 
         // Check if particles overlap
         if (deltaPositionSquared < distanceBetweenCentersSquared) {
-            throw new RuntimeException("Invalid state: overlapping particles. No two objects can occupy the same space " +
+            throw new IllegalStateException("Invalid state: overlapping particles. No two objects can occupy the same space " +
                     "at the same time.");
         }
 
