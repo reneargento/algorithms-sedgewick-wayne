@@ -25,6 +25,10 @@ import util.StdDraw3D;
 // -Djava.library.path=./libs/java3d
 
 // After running the code, you can click and drag the screen to view the different dimensions.
+
+/**
+ * Created by Rene Argento on 28/05/18.
+ */
 public class Exercise3 {
 
     public class Particle3D {

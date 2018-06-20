@@ -62,6 +62,7 @@ public class CollisionSystem {
     private ParticleInterface[] particles;
 
     public CollisionSystem(ParticleInterface[] particles) {
+        StdDraw.enableDoubleBuffering();
         this.particles = particles;
     }
 
@@ -96,7 +97,8 @@ public class CollisionSystem {
             particles[i].draw();
         }
 
-        StdDraw.show(20);
+        StdDraw.pause(20);
+        StdDraw.show();
 
         if (time < limit) {
             priorityQueue.insert(new Event(time + 1.0 / hertz, null, null));
@@ -144,8 +146,6 @@ public class CollisionSystem {
     }
 
     public static void main(String[] args) {
-        StdDraw.enableDoubleBuffering();
-
         int numberOfParticles = Integer.parseInt(args[0]);
         Particle[] particles = new Particle[numberOfParticles];
 

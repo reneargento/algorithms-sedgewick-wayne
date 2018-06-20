@@ -43,6 +43,8 @@ public class Exercise2 {
         private int numberOfCollisions;
 
         ParticleMultiCollisions(int id) {
+            StdDraw.enableDoubleBuffering();
+
             this.id = id;
             positionX = StdRandom.uniform(0.0, 1.0);
             positionY = StdRandom.uniform(0.0, 1.0);
@@ -56,6 +58,8 @@ public class Exercise2 {
 
         ParticleMultiCollisions(int id, double positionX, double positionY, double velocityX, double velocityY,
                                 double radius, double mass) {
+            StdDraw.enableDoubleBuffering();
+
             this.id = id;
             this.positionX = positionX;
             this.positionY = positionY;
@@ -363,7 +367,8 @@ public class Exercise2 {
                 particles[i].draw();
             }
 
-            StdDraw.show(20);
+            StdDraw.pause(20);
+            StdDraw.show();
 
             if (time < limit) {
                 priorityQueue.insert(new Event(time + 1.0 / hertz, null, null));

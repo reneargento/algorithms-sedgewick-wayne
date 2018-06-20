@@ -170,4 +170,25 @@ public class Particle implements ParticleInterface {
     public double kineticEnergy() {
         return 0.5 * mass * (velocityX * velocityX + velocityY * velocityY);
     }
+
+    public double getPositionX() {
+        return positionX;
+    }
+
+    public double getPositionY() {
+        return positionY;
+    }
+
+    public double getVelocityX() {
+        return velocityX;
+    }
+
+    public double getVelocityY() {
+        return velocityY;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
 }
