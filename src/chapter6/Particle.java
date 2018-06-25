@@ -10,8 +10,8 @@ public class Particle implements ParticleInterface {
     private double positionX;
     private double positionY;
 
-    private double velocityX;
-    private double velocityY;
+    protected double velocityX;
+    protected double velocityY;
 
     private double radius;
     private double mass;
@@ -189,6 +189,10 @@ public class Particle implements ParticleInterface {
 
     public double getRadius() {
         return radius;
+    }
+
+    public double getMass() {
+        return mass;
     }
 
 }
