@@ -8,11 +8,11 @@ import edu.princeton.cs.algs4.StdDraw;
  */
 public class CollisionSystem {
 
-    private class Event implements Comparable<Event> {
+    protected class Event implements Comparable<Event> {
 
-        private final double time;
-        private final ParticleInterface particleA;
-        private final ParticleInterface particleB;
+        protected final double time;
+        protected final ParticleInterface particleA;
+        protected final ParticleInterface particleB;
         private final int collisionsCountA;
         private final int collisionsCountB;
 
@@ -57,16 +57,16 @@ public class CollisionSystem {
         }
     }
 
-    private PriorityQueueResize<Event> priorityQueue;
-    private double time;
-    private ParticleInterface[] particles;
+    protected PriorityQueueResize<Event> priorityQueue;
+    protected double time;
+    protected ParticleInterface[] particles;
 
     public CollisionSystem(ParticleInterface[] particles) {
         StdDraw.enableDoubleBuffering();
         this.particles = particles;
     }
 
-    private void predictCollisions(ParticleInterface particle, double limit) {
+    protected void predictCollisions(ParticleInterface particle, double limit) {
         if (particle == null) {
             return;
         }

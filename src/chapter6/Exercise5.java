@@ -61,7 +61,7 @@ public class Exercise5 {
         }
 
         public double temperature() {
-            double velocityMagnitude = velocityX + velocityY;
+            double velocityMagnitude = Math.pow(velocityX, 2) + Math.pow(velocityY, 2);
             return getMass() * Math.pow(velocityMagnitude, 2) / (DIMENSION * BOLTZMANN_CONSTANT);
         }
 
