@@ -338,12 +338,14 @@ public class Exercise5 {
         }
 
         // V = SQRT(2 kb T / M)
+        // SQRT(V / 2) = vx + vy
         private void setTemperature(double temperature) {
 
             for (ParticleWithTemperature particle : particles) {
                 double newVelocityMagnitude = Math.sqrt(2 * BOLTZMANN_CONSTANT * temperature / particle.getMass());
-                particle.setVelocityX(newVelocityMagnitude / 2);
-                particle.setVelocityY(newVelocityMagnitude / 2);
+                double velocityComponent = Math.sqrt(newVelocityMagnitude / 2);
+                particle.setVelocityX(velocityComponent);
+                particle.setVelocityY(velocityComponent);
             }
 
         }
