@@ -19,7 +19,7 @@ public class Exercise7 {
 
         public double temperature() {
             double velocityMagnitude = Math.pow(velocityX, 2) + Math.pow(velocityY, 2);
-            return getMass() * Math.pow(velocityMagnitude, 2) / (DIMENSION * BOLTZMANN_CONSTANT);
+            return mass * Math.pow(velocityMagnitude, 2) / (DIMENSION * BOLTZMANN_CONSTANT);
         }
     }
 
