@@ -186,7 +186,7 @@ public class Exercise24 {
         //Get Kevin Bacon numbers
         BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(largestComponentSubGraph, kevinBaconId);
 
-        int[] histogram = new int[MAX_BACON + 1];
+        int[] kevinBaconNumbers = new int[MAX_BACON + 1];
         int maxDistance = 0;
 
         for(int vertex = 0; vertex < largestComponentSubGraph.vertices(); vertex++) {
@@ -197,13 +197,13 @@ public class Exercise24 {
                 throw new RuntimeException("Graph is not connected");
             }
 
-            histogram[kevinBaconNumber]++;
+            kevinBaconNumbers[kevinBaconNumber]++;
             if (kevinBaconNumber > maxDistance) {
                 maxDistance = kevinBaconNumber;
             }
         }
 
-        int[] verticesFurthestFromTheCenter = new int[histogram[maxDistance]];
+        int[] verticesFurthestFromTheCenter = new int[kevinBaconNumbers[maxDistance]];
         int farAwayVerticesIndex = 0;
         for(int vertex = 0; vertex < largestComponentSubGraph.vertices(); vertex++) {
             if (breadthFirstPaths.distTo(vertex) == maxDistance) {

@@ -4,7 +4,6 @@ import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdStats;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,11 +22,11 @@ public class Exercise32_Histogram {
 		int numberIndex = 3;
 		try {
 			while (args[numberIndex] != null) {
-				numbers.add(Double.parseDouble(args[numberIndex])); //{2, 2.5, 4.3, 5.5, 6.6, 6.7, 6.8, 8.3, 10};
+				numbers.add(Double.parseDouble(args[numberIndex])); // {2, 2.5, 4.3, 5.5, 6.6, 6.7, 6.8, 8.3, 10};
 				numberIndex++;
 			}
 		} catch (ArrayIndexOutOfBoundsException exception) {
-			//We read all the input
+			// We read all the input
 		}
 
 		double[] numbersArray = new double[numbers.size()];
@@ -38,34 +37,57 @@ public class Exercise32_Histogram {
 		histogram(n, l, r, numbersArray);
 	}
 
-	private static void histogram(int n, double l, double r, double[] numbers) {
+	private static void histogram(int numberOfIntervals, double left, double right, double[] numbers) {
 		
-		int[] numbersInInterval = new int[n];
+		int[] numbersInInterval = new int[numberOfIntervals];
+        double intervalSize = (right - left) / numberOfIntervals;
 		
-		verifyIntervals(n, l, r, numbers, numbersInInterval);
+		computeHistogramValues(numberOfIntervals, left, right, numbers, numbersInInterval);
 		
 		int maxCount = StdStats.max(numbersInInterval);
-		
+
+		double minX = left - 1;
+		double maxX = right + 1;
+		double minY = -2;
+		double maxY = maxCount + 2;
+
 		StdDraw.setCanvasSize(1024, 512);
-        StdDraw.setXscale(l, r);
-        StdDraw.setYscale(0, maxCount + 1);
+        StdDraw.setXscale(minX, maxX);
+        StdDraw.setYscale(minY, maxY);
+
+        double middleX = minX + ((maxX - minX) / 2);
+
+		// Labels
+		StdDraw.text(middleX, maxY - 0.5, "Numbers in intervals");
+		StdDraw.text(minX + 0.25, maxY / 2, "Numbers", 90);
+		StdDraw.text(middleX, -1.2, "Intervals");
+
+		// X labels
+        for(int x = 0; x < numberOfIntervals; x++) {
+            double minValue = left + (intervalSize * x);
+            double maxValue = minValue + intervalSize - 0.01;
+            String intervalDescription = String.format("[%.2f - %.2f]", minValue, maxValue);
+            StdDraw.text(left + (x + 0.5) * intervalSize, -0.25, intervalDescription);
+        }
+
+		// Y labels
+        for(int y = 0; y < maxY; y++) {
+            StdDraw.text(minX + 0.7, y, String.valueOf(y));
+        }
         
-        double intervalOfNumbers = (r - l) / n;
-        
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < numberOfIntervals; i++) {
         	
-            double x = l + (i + 0.5) * intervalOfNumbers,
-                   y = numbersInInterval[i] / 2.0,
-                   rw = intervalOfNumbers / 2.0,
-                   rh = numbersInInterval[i] / 2.0;
+            double x = left + (i + 0.5) * intervalSize;
+            double y = numbersInInterval[i] / 2.0;
+            double halfWidth = intervalSize / 3.0;
+            double halfHeight = numbersInInterval[i] / 2.0;
             
-            StdDraw.filledRectangle(x, y, rw, rh);
+            StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
         }
         
 	}
 	
-	private static void verifyIntervals(int n, double l, double r, double[] numbers, int[] numbersInInterval) {
-		
+	private static void computeHistogramValues(int n, double l, double r, double[] numbers, int[] numbersInInterval) {
 		double interval = r - l;
 		double intervalOfNumbers = interval / n;
 
