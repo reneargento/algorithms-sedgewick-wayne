@@ -1,14 +1,13 @@
 package chapter2.section3;
 
 import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.Stopwatch;
 import util.ArrayGenerator;
+import util.StatsUtil;
 
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Rene Argento on 11/03/17.
@@ -16,6 +15,7 @@ import java.util.Map;
 public class Exercise31_HistogramOfRunningTimes {
 
     private static final int NUMBER_OF_ARRAYS = 4;
+    private static final int NUMBER_OF_BUCKETS = 10;
 
     // Parameter example: 20 0
     public static void main(String[] args) {
@@ -25,71 +25,143 @@ public class Exercise31_HistogramOfRunningTimes {
         int initialArraySize = Integer.parseInt(args[1]);
         int realArraySize = 1000;
 
-        Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
-
         for(int i = 0; i < NUMBER_OF_ARRAYS; i++) {
             Comparable[] array = ArrayGenerator.generateRandomArray(realArraySize);
-            allInputArrays.put(i, array);
+            doExperiment(numberOfExperiments, array, i);
 
             realArraySize *= 10;
         }
-
-        doExperiment(numberOfExperiments, allInputArrays);
     }
 
-    private static void doExperiment(int numberOfExperiments, Map<Integer, Comparable[]> allInputArrays) {
+    private static void doExperiment(int numberOfExperiments, Comparable[] originalArray, int experimentId) {
 
-        List<Double> runningTimes = new ArrayList<>();
+        List<Double> runningTimesList = new ArrayList<>();
+        double minValue = Double.POSITIVE_INFINITY;
+        double maxValue = 0;
 
-        for(int i = 0; i < NUMBER_OF_ARRAYS; i++) {
+        for(int i = 0; i < numberOfExperiments; i++) {
+            Comparable[] array = new Comparable[originalArray.length];
+            System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
-            for(int j = 0; j < numberOfExperiments; j++) {
-                Comparable[] originalArray = allInputArrays.get(i);
-                Comparable[] array = new Comparable[originalArray.length];
-                System.arraycopy(originalArray, 0, array, 0, originalArray.length);
+            Stopwatch timer = new Stopwatch();
+            QuickSort.quickSort(array);
+            double runningTime = timer.elapsedTime();
 
-                Stopwatch timer = new Stopwatch();
-                QuickSort.quickSort(array);
-                double runningTime = timer.elapsedTime();
+            runningTimesList.add(runningTime);
 
-                runningTimes.add(runningTime);
+            if (runningTime < minValue) {
+                minValue = runningTime;
+            }
+
+            if (runningTime > maxValue) {
+                maxValue = runningTime;
             }
         }
 
-        histogram(runningTimes);
+        double rangeOfValues = maxValue - minValue;
+        double rangeOfRunningTimesPerBucket = rangeOfValues / NUMBER_OF_BUCKETS;
+
+        double[] runningTimes = getHistogramValues(runningTimesList, minValue, rangeOfRunningTimesPerBucket);
+        drawHistogram(runningTimes, minValue, rangeOfRunningTimesPerBucket, experimentId + 3);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            // No need to take any action if sleep is interrupted
+        }
     }
 
-    private static void histogram(List<Double> runningTimes) {
+    private static double[] getHistogramValues(List<Double> runningTimesList, double minValue,
+                                               double rangeOfRunningTimesPerBucket) {
+        double[] runningTimes = new double[NUMBER_OF_BUCKETS];
 
-        double[] runningTimesArray = new double[runningTimes.size()];
+        for (double runningTime : runningTimesList) {
+            int bucketId = getBucketId(runningTime, minValue, rangeOfRunningTimesPerBucket);
+            runningTimes[bucketId]++;
+        }
+
+        return runningTimes;
+    }
+
+    private static int getBucketId(double value, double minValue, double rangeOfRunningTimesPerBucket) {
+        double valueMinusOffset = value - minValue;
+        int bucketId = (int) Math.floor(valueMinusOffset / rangeOfRunningTimesPerBucket);
+        return Math.min(bucketId, NUMBER_OF_BUCKETS - 1);
+    }
+
+    private static void drawHistogram(double[] runningTimesHistogram, double minValue,
+                                      double rangeOfRunningTimesPerBucket, int arraySizePowerOf10) {
+        StdDraw.setCanvasSize(1024, 512);
+
         double maxCount = 0;
 
-        for(int i = 0; i < runningTimes.size(); i++) {
-            runningTimesArray[i] = runningTimes.get(i);
-
-            if (runningTimesArray[i] > maxCount) {
-                maxCount = runningTimesArray[i];
+        for(int i = 0; i < runningTimesHistogram.length; i++) {
+            if (runningTimesHistogram[i] > maxCount) {
+                maxCount = runningTimesHistogram[i];
             }
         }
 
-        StdDraw.setCanvasSize(1024, 512);
-        StdDraw.setXscale(0, runningTimesArray.length);
-        StdDraw.setYscale(-0.2, maxCount + 0.5);
+        double minX = -1.5;
+        double maxX = runningTimesHistogram.length;
+        double middleX = minX + (maxX - minX) / 2;
 
-        //Labels
-        StdDraw.text(runningTimesArray.length / 2, maxCount + 0.4, "Running Times");
-        StdDraw.text(5, maxCount, String.valueOf(maxCount) + " seconds");
-        StdDraw.text(0.8, -0.1, String.valueOf(0));
-        StdDraw.text(runningTimesArray.length - 1.5, -0.1, String.valueOf(runningTimesArray.length));
+        double minY = -2.2;
+        double maxY = maxCount + 3;
+        double middleY = minY + (maxY - minY) / 2;
 
-        int horizontalSpace = runningTimes.size() / NUMBER_OF_ARRAYS;
-        int leftOffset = (horizontalSpace / 2) * -1;
+        StdDraw.setXscale(minX, maxX);
+        StdDraw.setYscale(minY, maxY);
 
-        for(int i = 0; i < NUMBER_OF_ARRAYS; i++) {
-            StdDraw.text(leftOffset + (i + 1) * horizontalSpace, maxCount + 0.2, "10^" + (i+3));
+        // Labels
+        String fontName = "Verdana";
+        Font titlesFont = new Font(fontName, Font.PLAIN, 14);
+        StdDraw.setFont(titlesFont);
+
+        StdDraw.text(middleX, maxCount + 2, "Frequency vs Running Times");
+        StdDraw.text(-1, middleY, "Frequency", 90);
+        StdDraw.text(middleX, -1.3, "Running Times");
+
+        StdDraw.text(middleX, maxCount + 1, "N = 10^" + arraySizePowerOf10);
+
+        Font graphLabelsFont = new Font(fontName, Font.PLAIN, 10);
+        StdDraw.setFont(graphLabelsFont);
+
+        // Y labels
+        for (int y = 0; y <= maxCount; y++) {
+            StdDraw.text(-0.5, y, String.valueOf(y));
         }
 
-        StdStats.plotBars(runningTimesArray);
+        // X labels
+        String[] runningTimeDescriptions = getBucketDescriptions(minValue, rangeOfRunningTimesPerBucket);
+        int lineBreakIndex = 9;
+
+        double secondXLineYPosition;
+
+        if (maxCount <= 5) {
+            secondXLineYPosition = -0.5;
+        } else {
+            secondXLineYPosition = -0.7;
+        }
+
+        for (int x = 0; x < runningTimeDescriptions.length; x++) {
+            StdDraw.text(x, -0.3, runningTimeDescriptions[x].substring(0, lineBreakIndex));
+            StdDraw.text(x, secondXLineYPosition, runningTimeDescriptions[x].substring(lineBreakIndex));
+        }
+
+        StatsUtil.plotBars(runningTimesHistogram, 0.25);
+    }
+
+    private static String[] getBucketDescriptions(double minValue, double rangeOfRunningTimesPerBucket) {
+        String[] bucketDescriptions = new String[NUMBER_OF_BUCKETS];
+
+        for (int i = 0; i < bucketDescriptions.length; i++) {
+            double minSize = minValue + (rangeOfRunningTimesPerBucket * i);
+            double maxSize = minSize + rangeOfRunningTimesPerBucket - 0.00001;
+
+            bucketDescriptions[i] = String.format("[%.5f -%.5f] ", minSize, maxSize);
+        }
+
+        return bucketDescriptions;
     }
 
 }
