@@ -13,10 +13,4 @@ public class StatsUtil {
         }
     }
 
-    public static void plotIntegerValueBars(int[] values, double halfWidth) {
-        for (int i = 0; i < values.length; i++) {
-            StdDraw.filledRectangle(i, values[i] / 2, halfWidth, values[i] / 2);
-        }
-    }
-
 }
