@@ -2,8 +2,12 @@ package chapter4.section1;
 
 import chapter3.section4.SeparateChainingHashTable;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 import util.Constants;
+import util.StatsUtil;
+
+import java.awt.*;
 
 /**
  * Created by Rene Argento on 17/09/17.
@@ -103,16 +107,17 @@ public class Exercise23 {
         String separator = "/";
         String kevinBaconName = "Bacon, Kevin";
 
-        final int MAX_BACON = 100;
+        final int MAX_BACON = 30;
 
         MovieSymbolGraph movieSymbolGraph = new MovieSymbolGraph(filePath, separator);
         Graph graph = movieSymbolGraph.graph();
         int kevinBaconId = movieSymbolGraph.index(kevinBaconName);
 
-        //Get Kevin Bacon numbers
+        // Get Kevin Bacon numbers
         BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, kevinBaconId);
 
-        int[] histogram = new int[MAX_BACON + 1];
+        double[] histogram = new double[MAX_BACON + 1];
+        double maxFrequency = 0;
 
         for(int vertex = 0; vertex < graph.vertices(); vertex++) {
             if (movieSymbolGraph.vertexInformation(vertex).isMovie) {
@@ -131,16 +136,72 @@ public class Exercise23 {
             }
 
             histogram[kevinBaconNumber]++;
+
+            if (histogram[kevinBaconNumber] > maxFrequency) {
+                maxFrequency = histogram[kevinBaconNumber];
+            }
         }
 
-        //Print histogram
+        drawBaconHistogram(histogram, MAX_BACON, maxFrequency);
+        printHistogramValues(histogram, MAX_BACON);
+    }
+
+    private void drawBaconHistogram(double[] histogram, int INFINITY_ID, double maxFrequency) {
+        StdDraw.setCanvasSize(1024, 512);
+
+        double minX = -3;
+        double maxX = histogram.length + 2;
+        double middleX = minX + (maxX - minX) / 2;
+
+        double minY = -7000;
+        double maxY = maxFrequency + 6000;
+        double middleY = minY + (maxY - minY) / 2;
+
+        StdDraw.setXscale(minX, maxX);
+        StdDraw.setYscale(minY, maxY);
+
+        // Labels
+        String fontName = "Verdana";
+        Font titlesFont = new Font(fontName, Font.PLAIN, 14);
+        StdDraw.setFont(titlesFont);
+
+        StdDraw.text(middleX, maxFrequency + 3000, "Bacon Histogram");
+        StdDraw.text(-2, middleY, "Frequency", 90);
+        StdDraw.text(middleX, -5000, "Kevin Bacon Number");
+
+        Font graphLabelsFont = new Font(fontName, Font.PLAIN, 10);
+        StdDraw.setFont(graphLabelsFont);
+
+        // Y labels
+        for (int y = 0; y <= maxFrequency; y += 2000) {
+            StdDraw.text(-0.8, y, String.valueOf(y));
+        }
+
+        // X labels
+        for (int x = 0; x < histogram.length; x++) {
+            String label;
+
+            if (x != INFINITY_ID) {
+                label = String.valueOf(x);
+            } else {
+                label = "Infinite";
+            }
+
+            StdDraw.text(x, -2000, label);
+        }
+
+        StatsUtil.plotBars(histogram, 0.25);
+    }
+
+    private void printHistogramValues(double[] histogram, int INFINITY_ID) {
+
         for(int i = 0; i < histogram.length; i++) {
             if (histogram[i] == 0) {
                 break;
             }
-            StdOut.printf("%3d %8d\n", i, histogram[i]);
+            StdOut.printf("Kevin Bacon number %3d: %8.0f\n", i, histogram[i]);
         }
-        StdOut.printf("Inf %8d\n", histogram[MAX_BACON]);
+        StdOut.printf("Infinite: %8.0f\n", histogram[INFINITY_ID]);
     }
 
     public static void main(String[] args) {
