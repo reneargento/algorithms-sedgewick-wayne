@@ -7,14 +7,14 @@ import edu.princeton.cs.algs4.StdRandom;
  * Created by Rene Argento on 27/04/18.
  */
 public class Particle implements ParticleInterface {
-    protected double positionX;
-    protected double positionY;
+    double positionX;
+    double positionY;
 
-    protected double velocityX;
-    protected double velocityY;
+    double velocityX;
+    double velocityY;
 
-    protected double radius;
-    protected double mass;
+    double radius;
+    double mass;
 
     private int numberOfCollisions;
 
