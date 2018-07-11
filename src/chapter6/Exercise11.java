@@ -9,8 +9,9 @@ import edu.princeton.cs.algs4.StdOut;
 
 // References:
 // https://en.wikipedia.org/wiki/Ideal_gas_law
-// https://www.grc.nasa.gov/WWW/k-12/airplane/volume.html
+// https://www.mathopenref.com/spherevolume.html
 // https://courses.lumenlearning.com/boundless-chemistry/chapter/the-ideal-gas-law/
+// https://physics.stackexchange.com/questions/221789/why-the-round-trip-instead-collision-time
 public class Exercise11 {
 
     // Ideal gas formula: P V = n R T
@@ -30,35 +31,20 @@ public class Exercise11 {
         }
 
         private void addWallCollisionToPressure(boolean isHorizontal) {
-            double deltaPositionX;
-            double deltaPositionY;
-
             if (isHorizontal) {
-                deltaPositionX = radius;
-                deltaPositionY = 0;
+                pressure += Math.abs(2 * mass * velocityY);
             } else {
-                deltaPositionX = 0;
-                deltaPositionY = radius;
+                pressure += Math.abs(2 * mass * velocityX);
             }
-
-            double deltaVelocityX = velocityX;
-            double deltaVelocityY = velocityY;
-            double distanceBetweenCenters = radius;
-
-            double deltaPositionByDeltaVelocity = deltaPositionX * deltaVelocityX + deltaPositionY * deltaVelocityY;
-            double magnitudeOfNormalForce = 2 * mass * deltaPositionByDeltaVelocity / (mass * distanceBetweenCenters);
-
-            pressure += magnitudeOfNormalForce;
         }
 
-        // V = (pi d^3) / 6
+        // V = 4/3 (pi r^3)
         // V = volume
-        // d = diameter
+        // r = radius
         public double volume() {
-            double diameter = radius * 2;
-            double volumeInDm3 = (Math.PI * Math.pow(diameter, 3)) / 6;
-            // Volume in meters^3
-            return volumeInDm3 / 1000;
+            double volumeInCm3 = 4.0/3.0 * Math.PI * Math.pow(radius, 3);
+            // Volume in dm^3
+            return volumeInCm3 / 1000;
         }
 
         public double temperature() {
@@ -71,8 +57,8 @@ public class Exercise11 {
 
         private int numberOfParticles;
 
-        private final double IDEAL_GAS_CONSTANT = 8.314;
-        private final double AVOGRADOS_NUMBER = 6.022e23;
+        private final double IDEAL_GAS_CONSTANT = 0.082057;
+        private final double AVOGADROS_NUMBER = 6.022e23;
 
         public CollisionSystemWithPressure(ParticleInterface[] particles) {
             super(particles);
@@ -93,7 +79,7 @@ public class Exercise11 {
                 Event event = priorityQueue.deleteTop();
 
                 if (event.time >= nextCheckpoint) {
-                    validateEquation();
+                    validateEquation(time);
                     nextCheckpoint += 1000;
                 }
 
@@ -130,17 +116,16 @@ public class Exercise11 {
 
         // P V = n R T
         // P = (n R T) / V
-        private void validateEquation() {
+        private void validateEquation(double time) {
             double pressureMeasuredWithEquation = (numberOfMoles() * IDEAL_GAS_CONSTANT * temperature()) / volume();
-            // Pressure in gases is always positive
-            double pressureMeasuredWithWallCollisions = Math.abs(pressure());
+            double pressureMeasuredWithWallCollisions = pressure(time);
 
             StdOut.println("Pressure measured with P V = n R T: " + pressureMeasuredWithEquation);
             StdOut.println("Pressure measured with wall collisions: " + pressureMeasuredWithWallCollisions);
             StdOut.println();
         }
 
-        public double pressure() {
+        public double pressure(double time) {
             double systemPressure = 0;
 
             for(ParticleInterface particle : particles) {
@@ -148,7 +133,7 @@ public class Exercise11 {
                 systemPressure += particleWithPressure.pressure();
             }
 
-            return systemPressure;
+            return systemPressure / time;
         }
 
         public double volume() {
@@ -175,7 +160,7 @@ public class Exercise11 {
             double particleMass = ((ParticleWithPressure) particles[0]).mass;
             double totalMass = particleMass * particles.length;
 
-            double molecularWeight = particleMass * AVOGRADOS_NUMBER;
+            double molecularWeight = particleMass * AVOGADROS_NUMBER;
             return totalMass / molecularWeight;
         }
 
