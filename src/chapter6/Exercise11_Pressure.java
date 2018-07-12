@@ -12,7 +12,7 @@ import edu.princeton.cs.algs4.StdOut;
 // https://www.mathopenref.com/spherevolume.html
 // https://courses.lumenlearning.com/boundless-chemistry/chapter/the-ideal-gas-law/
 // https://physics.stackexchange.com/questions/221789/why-the-round-trip-instead-collision-time
-public class Exercise11 {
+public class Exercise11_Pressure {
 
     // Ideal gas formula: P V = n R T
     // P = pressure
@@ -177,7 +177,7 @@ public class Exercise11 {
     }
 
     public static void main(String[] args) {
-        Exercise11 exercise11 = new Exercise11();
+        Exercise11_Pressure exercise11 = new Exercise11_Pressure();
 
         int numberOfParticles = 20;
         ParticleInterface[] particles = new ParticleWithPressure[numberOfParticles];

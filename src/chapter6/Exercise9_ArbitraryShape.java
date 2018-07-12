@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * Created by Rene Argento on 01/07/18.
  */
-public class Exercise9 {
+public class Exercise9_ArbitraryShape {
 
     private static final double BOUNDARY_WALL_LEFT = 0.4;
     private static final double BOUNDARY_WALL_RIGHT = 0.6;
@@ -353,7 +353,7 @@ public class Exercise9 {
     }
 
     public static void main(String[] args) {
-        Exercise9 exercise9 = new Exercise9();
+        Exercise9_ArbitraryShape exercise9 = new Exercise9_ArbitraryShape();
         StdDraw.enableDoubleBuffering();
 
         int numberOfParticles = 20;

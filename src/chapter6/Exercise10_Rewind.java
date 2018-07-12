@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 05/07/18.
  */
-public class Exercise10 {
+public class Exercise10_Rewind {
 
     // Used to compute the roundoff error between the final and original states of the system
     private class State {
@@ -140,7 +140,7 @@ public class Exercise10 {
             particles[i] = new Particle();
         }
 
-        CollisionSystem collisionSystem = new Exercise10().new CollisionSystemRewind(particles);
+        CollisionSystem collisionSystem = new Exercise10_Rewind().new CollisionSystemRewind(particles);
         collisionSystem.simulate(limit, hertz);
     }
 

@@ -11,7 +11,7 @@ import java.awt.*;
 // For better visibility of the phenomenon 10,000 particles are used instead of millions.
 // If an invalid state of overlapping particles occur during initialization, rerun the program until the random
 // positioning of the particles do not overlap.
-public class Exercise6 {
+public class Exercise6_BrownianMotion {
 
     private static double MIN_DIMENSION_SIZE = 0;
     private static double MAX_DIMENSION_SIZE = 90;
@@ -76,7 +76,7 @@ public class Exercise6 {
     }
 
     public static void main(String[] args) {
-        Exercise6 exercise6 = new Exercise6();
+        Exercise6_BrownianMotion exercise6 = new Exercise6_BrownianMotion();
         StdDraw.setCanvasSize(500, 500);
         StdDraw.setScale(MIN_DIMENSION_SIZE, MAX_DIMENSION_SIZE);
         StdDraw.enableDoubleBuffering();

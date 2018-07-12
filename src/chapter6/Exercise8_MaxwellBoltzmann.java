@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * Created by Rene Argento on 27/06/18.
  */
-public class Exercise8 {
+public class Exercise8_MaxwellBoltzmann {
 
     private final double BOLTZMANN_CONSTANT = 1.3806488e-23;
     private final int SHOW_HISTOGRAM_DURATION = 5000;
@@ -262,7 +262,7 @@ public class Exercise8 {
         int simulationTime = 10000;
         double hertz = 0.5;
 
-        new Exercise8().doExperiment(numberOfParticles, simulationTime, hertz);
+        new Exercise8_MaxwellBoltzmann().doExperiment(numberOfParticles, simulationTime, hertz);
     }
 
     private void resetCanvas() {

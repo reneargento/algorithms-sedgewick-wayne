@@ -10,7 +10,7 @@ import edu.princeton.cs.algs4.StdOut;
 // exact resulting velocities after a particle collision. There is a round-off error.
 // Due to that, the temperature (which is based on the velocities) is not constant.
 // However, if there were no round-off error the temperature would be constant.
-public class Exercise7 {
+public class Exercise7_Temperature {
 
     public class ParticleWithTemperature extends Particle {
 
@@ -118,7 +118,7 @@ public class Exercise7 {
     }
 
     public static void main(String[] args) {
-        Exercise7 exercise7 = new Exercise7();
+        Exercise7_Temperature exercise7 = new Exercise7_Temperature();
 
         int numberOfParticles = 10;
         ParticleInterface[] particles = new ParticleWithTemperature[numberOfParticles];
