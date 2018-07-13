@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdDraw;
  */
 public class Exercise12_IndexPriorityQueueImplementation {
 
-    public static class ParticleWithId extends Particle {
+    public class ParticleWithId extends Particle {
         private int id;
 
         ParticleWithId(int id) {
@@ -23,7 +23,7 @@ public class Exercise12_IndexPriorityQueueImplementation {
         }
     }
 
-    public static class CollisionSystemIndexPriorityQueue {
+    public class CollisionSystemIndexPriorityQueue {
 
         private class Event implements Comparable<Event> {
 
@@ -197,15 +197,18 @@ public class Exercise12_IndexPriorityQueueImplementation {
     }
 
     public static void main(String[] args) {
+        Exercise12_IndexPriorityQueueImplementation indexPriorityQueueImplementation =
+                new Exercise12_IndexPriorityQueueImplementation();
+
         int numberOfParticles = 20;
         ParticleWithId[] particles = new ParticleWithId[numberOfParticles];
 
         for (int i = 0; i < numberOfParticles; i++) {
-            particles[i] = new ParticleWithId(i);
+            particles[i] = indexPriorityQueueImplementation.new ParticleWithId(i);
         }
 
         CollisionSystemIndexPriorityQueue collisionSystemIndexPriorityQueue =
-                new CollisionSystemIndexPriorityQueue(particles);
+                indexPriorityQueueImplementation.new CollisionSystemIndexPriorityQueue(particles);
         collisionSystemIndexPriorityQueue.simulate(10000, 0.5);
     }
 

@@ -76,7 +76,7 @@ public class Exercise6_BrownianMotion {
     }
 
     public static void main(String[] args) {
-        Exercise6_BrownianMotion exercise6 = new Exercise6_BrownianMotion();
+        Exercise6_BrownianMotion brownianMotion = new Exercise6_BrownianMotion();
         StdDraw.setCanvasSize(500, 500);
         StdDraw.setScale(MIN_DIMENSION_SIZE, MAX_DIMENSION_SIZE);
         StdDraw.enableDoubleBuffering();
@@ -89,11 +89,11 @@ public class Exercise6_BrownianMotion {
         int particleIndex;
 
         for (particleIndex = 0; particleIndex < numberOfBigParticles; particleIndex++) {
-            particles[particleIndex] = exercise6.new ParticleWithColor(false);
+            particles[particleIndex] = brownianMotion.new ParticleWithColor(false);
         }
 
         while (particleIndex < totalNumberOfParticles) {
-            particles[particleIndex] = exercise6.new ParticleWithColor(true);
+            particles[particleIndex] = brownianMotion.new ParticleWithColor(true);
             particleIndex++;
         }
 

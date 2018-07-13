@@ -353,21 +353,21 @@ public class Exercise9_ArbitraryShape {
     }
 
     public static void main(String[] args) {
-        Exercise9_ArbitraryShape exercise9 = new Exercise9_ArbitraryShape();
+        Exercise9_ArbitraryShape arbitraryShape = new Exercise9_ArbitraryShape();
         StdDraw.enableDoubleBuffering();
 
         int numberOfParticles = 20;
         ParticleArbitraryShape[] particles = new ParticleArbitraryShape[numberOfParticles];
 
         for (int i = 0; i < numberOfParticles / 2; i++) {
-            particles[i] = exercise9.generateParticleInLeftVessel();
+            particles[i] = arbitraryShape.generateParticleInLeftVessel();
         }
 
         for (int i = numberOfParticles / 2; i < numberOfParticles; i++) {
-            particles[i] = exercise9.generateParticleInRightVessel();
+            particles[i] = arbitraryShape.generateParticleInRightVessel();
         }
 
-        CollisionSystemArbitraryShape collisionSystem = exercise9.new CollisionSystemArbitraryShape(particles);
+        CollisionSystemArbitraryShape collisionSystem = arbitraryShape.new CollisionSystemArbitraryShape(particles);
         collisionSystem.simulate(10000, 0.5);
     }
 

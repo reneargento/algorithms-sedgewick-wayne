@@ -193,7 +193,7 @@ public class Exercise8_MaxwellBoltzmann {
         }
 
         // V = SQRT(2 kb T / M)
-        // SQRT(V / 2) = vx + vy
+        // SQRT(V / 2) = (vx + vy) / 2
         private void setTemperature(double temperature) {
 
             for (ParticleInterface particle : particles) {
@@ -222,17 +222,7 @@ public class Exercise8_MaxwellBoltzmann {
     }
 
     private void doExperiment(int numberOfParticles, int simulationTime, double hertz) {
-        // First test
-        ParticleWithTemperature[] particles = new ParticleWithTemperature[numberOfParticles];
-
-        for (int i = 0; i < numberOfParticles; i++) {
-            particles[i] = getRandomParticle();
-        }
-
-        CollisionSystemWithTemperature collisionSystem = new CollisionSystemWithTemperature(particles);
-        collisionSystem.simulate(simulationTime, hertz);
-
-        double baseLineTemperature = collisionSystem.temperature();
+        double baseLineTemperature = doBaselineTest(numberOfParticles, simulationTime, hertz);
 
         double[] testTemperatures = {
                 baseLineTemperature / 4,
@@ -257,12 +247,17 @@ public class Exercise8_MaxwellBoltzmann {
         }
     }
 
-    public static void main(String[] args) {
-        int numberOfParticles = 30;
-        int simulationTime = 10000;
-        double hertz = 0.5;
+    private double doBaselineTest(int numberOfParticles, int simulationTime, double hertz) {
+        ParticleWithTemperature[] particles = new ParticleWithTemperature[numberOfParticles];
 
-        new Exercise8_MaxwellBoltzmann().doExperiment(numberOfParticles, simulationTime, hertz);
+        for (int i = 0; i < numberOfParticles; i++) {
+            particles[i] = getRandomParticle();
+        }
+
+        CollisionSystemWithTemperature collisionSystem = new CollisionSystemWithTemperature(particles);
+        collisionSystem.simulate(simulationTime, hertz);
+
+        return collisionSystem.temperature();
     }
 
     private void resetCanvas() {
@@ -270,6 +265,14 @@ public class Exercise8_MaxwellBoltzmann {
         StdDraw.setCanvasSize();
         StdDraw.setXscale(0, 1);
         StdDraw.setYscale(0, 1);
+    }
+
+    public static void main(String[] args) {
+        int numberOfParticles = 30;
+        int simulationTime = 10000;
+        double hertz = 0.5;
+
+        new Exercise8_MaxwellBoltzmann().doExperiment(numberOfParticles, simulationTime, hertz);
     }
 
 }

@@ -338,7 +338,7 @@ public class Exercise5 {
         }
 
         // V = SQRT(2 kb T / M)
-        // SQRT(V / 2) = vx + vy
+        // SQRT(V / 2) = (vx + vy) / 2
         private void setTemperature(double temperature) {
 
             for (ParticleWithTemperature particle : particles) {

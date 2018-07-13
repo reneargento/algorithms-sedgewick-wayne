@@ -118,16 +118,16 @@ public class Exercise7_Temperature {
     }
 
     public static void main(String[] args) {
-        Exercise7_Temperature exercise7 = new Exercise7_Temperature();
+        Exercise7_Temperature temperature = new Exercise7_Temperature();
 
         int numberOfParticles = 10;
         ParticleInterface[] particles = new ParticleWithTemperature[numberOfParticles];
 
         for (int i = 0; i < numberOfParticles; i++) {
-            particles[i] = exercise7.new ParticleWithTemperature();
+            particles[i] = temperature.new ParticleWithTemperature();
         }
 
-        CollisionSystem collisionSystem = exercise7.new CollisionSystemWithTemperature(particles);
+        CollisionSystem collisionSystem = temperature.new CollisionSystemWithTemperature(particles);
         collisionSystem.simulate(10000, 0.5);
     }
 

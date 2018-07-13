@@ -154,7 +154,7 @@ public class Exercise11_Pressure {
         //
         // mw = pm * AC
         // pm = mass of one particle
-        // AC = Avogrado's number
+        // AC = Avogadro's number
         public double numberOfMoles() {
             // All particle masses are the same
             double particleMass = ((ParticleWithPressure) particles[0]).mass;
@@ -177,16 +177,16 @@ public class Exercise11_Pressure {
     }
 
     public static void main(String[] args) {
-        Exercise11_Pressure exercise11 = new Exercise11_Pressure();
+        Exercise11_Pressure pressure = new Exercise11_Pressure();
 
         int numberOfParticles = 20;
         ParticleInterface[] particles = new ParticleWithPressure[numberOfParticles];
 
         for (int i = 0; i < numberOfParticles; i++) {
-            particles[i] = exercise11.new ParticleWithPressure();
+            particles[i] = pressure.new ParticleWithPressure();
         }
 
-        CollisionSystem collisionSystem = exercise11.new CollisionSystemWithPressure(particles);
+        CollisionSystem collisionSystem = pressure.new CollisionSystemWithPressure(particles);
         collisionSystem.simulate(10000, 0.5);
     }
 
