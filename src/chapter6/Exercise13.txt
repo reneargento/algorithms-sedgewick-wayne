@@ -1,0 +1,62 @@
+6.13
+
+Tests done with a random baseline temperature T, 100 * T, 10000 * T, 1000000 * T and 100000000 * T.
+The standard priority queue was used to test all the temperatures.
+The index priority queue was also used to test the highest temperatures: 1000000 * T and 100000000 * T.
+
+Results:
+
+**** Standard priority queue tests ****
+
+Testing with temperature: 5.817661439511093E12
+Total time spent on insert operations: 0.02200
+Total time spent on deleteMin operations: 0.01300
+Total time spent on isEmpty operations: 0.00200
+Computational bottleneck: insert operations
+
+Testing with temperature: 8.270951314920601E14
+Total time spent on insert operations: 0.00700
+Total time spent on deleteMin operations: 0.01400
+Total time spent on isEmpty operations: 0.00000
+Computational bottleneck: delete min operations
+
+Testing with temperature: 8.2709513149206064E16
+Total time spent on insert operations: 0.00800
+Total time spent on deleteMin operations: 0.01500
+Total time spent on isEmpty operations: 0.00300
+Computational bottleneck: delete min operations
+
+Testing with temperature: 8.2709513149206047E18
+Total time spent on insert operations: 0.01900
+Total time spent on deleteMin operations: 0.06700
+Total time spent on isEmpty operations: 0.00300
+Computational bottleneck: delete min operations
+
+Testing with temperature: 8.270951314920604E20
+Total time spent on insert operations: 0.04700
+Total time spent on deleteMin operations: 0.12100
+Total time spent on isEmpty operations: 0.02500
+Computational bottleneck: delete min operations
+
+**** Index priority queue tests ****
+
+Testing with temperature: 6.3274920297362524E18
+Total time spent on insert operations: 0.00900
+Total time spent on deleteMin operations: 0.00500
+Total time spent on isEmpty operations: 0.00000
+Total time spent on contains operations: 0.00300
+Total time spent on min operations: 0.00100
+Total time spent on delete operations: 0.00400
+Computational bottleneck: insert operations
+
+Testing with temperature: 6.327492029736252E20
+Total time spent on insert operations: 0.00600
+Total time spent on deleteMin operations: 0.00700
+Total time spent on isEmpty operations: 0.00000
+Total time spent on contains operations: 0.00300
+Total time spent on min operations: 0.00200
+Total time spent on delete operations: 0.00500
+Computational bottleneck: deleteMin operations
+
+For the standard priority queue on a lower temperature the computational bottleneck were the insert operations. However, for all higher temperatures, the computational bottleneck were the deleteMin operations.
+For the index priority queue the computational bottleneck were also both the insert and deleteMin operations. In the first test the computational bottleneck were the insert operations. In the second test, with a higher temperature, the computational bottleneck were the deleteMin operations.

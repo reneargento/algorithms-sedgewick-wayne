@@ -1,0 +1,33 @@
+6.11
+
+Pressure measured with P V = n R T: 5.480029392202992E-4
+Pressure measured with wall collisions: 4.394236724937985E-4
+
+Pressure measured with P V = n R T: 3.855098323894351E-4
+Pressure measured with wall collisions: 4.389151787833636E-4
+
+Pressure measured with P V = n R T: 4.675754466697337E-4
+Pressure measured with wall collisions: 4.3342966247778204E-4
+
+Pressure measured with P V = n R T: 4.441454588925588E-4
+Pressure measured with wall collisions: 4.4036995403253654E-4
+
+Pressure measured with P V = n R T: 5.251377268433578E-4
+Pressure measured with wall collisions: 4.385114019830638E-4
+
+Pressure measured with P V = n R T: 4.931824176831048E-4
+Pressure measured with wall collisions: 4.3656839984208926E-4
+
+Pressure measured with P V = n R T: 6.345006963980435E-4
+Pressure measured with wall collisions: 4.3819347783853905E-4
+
+Pressure measured with P V = n R T: 5.26662616889756E-4
+Pressure measured with wall collisions: 4.3843233793566013E-4
+
+Pressure measured with P V = n R T: 4.024926450876052E-4
+Pressure measured with wall collisions: 4.378203542088311E-4
+
+Pressure measured with P V = n R T: 6.089323091252579E-4
+Pressure measured with wall collisions: 4.3764997179323103E-4
+
+The pressure results from the P V = n R T formula and from the measurement based on wall collisions are similar, with small differences.
