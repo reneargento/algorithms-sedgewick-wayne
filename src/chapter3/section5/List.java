@@ -23,7 +23,7 @@ public class List<Item> implements Iterable<Item> {
     private static final double INITIAL_VALUE = 50000;
     private static final double OFFSET = 0.0001;;
 
-    List() {
+    public List() {
         itemsBST = new RedBlackBST<>();
         itemsPositions = new SeparateChainingHashTable<>();
     }

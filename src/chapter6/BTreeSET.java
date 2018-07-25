@@ -1,12 +1,15 @@
 package chapter6;
 
+import chapter3.section5.HashSet;
+
 /**
  * Created by Rene Argento on 23/07/18.
  */
 @SuppressWarnings("unchecked")
 public class BTreeSET<Key extends Comparable<Key>> {
 
-    private PageInterface<Key> root = new Page<>(true);
+    private HashSet<PageInterface> pagesInMemory = new HashSet<>();
+    private PageInterface<Key> root = new Page<>(true, pagesInMemory);
 
     public BTreeSET(Key sentinel) {
         add(sentinel);
@@ -30,7 +33,8 @@ public class BTreeSET<Key extends Comparable<Key>> {
         if (root.isFull()) {
             PageInterface leftHalf = root;
             PageInterface rightHalf = root.split();
-            root = new Page(false);
+
+            root = new Page(false, pagesInMemory);
             root.add(leftHalf);
             root.add(rightHalf);
         }
