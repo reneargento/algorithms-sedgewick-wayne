@@ -8,8 +8,10 @@ import chapter3.section5.HashSet;
 @SuppressWarnings("unchecked")
 public class BTreeSET<Key extends Comparable<Key>> {
 
+    private static final int MAX_NUMBER_OF_NODES = 4;
     private HashSet<PageInterface> pagesInMemory = new HashSet<>();
-    private PageInterface<Key> root = new Page<>(true, pagesInMemory);
+
+    private PageInterface<Key> root = new Page<>(true, MAX_NUMBER_OF_NODES, pagesInMemory);
 
     public BTreeSET(Key sentinel) {
         add(sentinel);
@@ -34,7 +36,7 @@ public class BTreeSET<Key extends Comparable<Key>> {
             PageInterface leftHalf = root;
             PageInterface rightHalf = root.split();
 
-            root = new Page(false, pagesInMemory);
+            root = new Page(false, MAX_NUMBER_OF_NODES, pagesInMemory);
             root.add(leftHalf);
             root.add(rightHalf);
         }

@@ -22,12 +22,12 @@ public class Exercise15 {
 
         // Reference to pages in memory on the system
         private HashSet<PageInterface> pagesInMemory;
-        // By convention MAX_NUMBER_OF_NODES is always an even number
-        private static final int MAX_NUMBER_OF_NODES = 4;
+        private int maxNumberOfNodes;
 
-        BinarySearchSTPage(boolean bottom, HashSet<PageInterface> pagesInMemory) {
+        BinarySearchSTPage(boolean bottom, int maxNumberOfNodes, HashSet<PageInterface> pagesInMemory) {
             binarySearchSymbolTable = new BinarySearchSymbolTable<>();
             this.pagesInMemory = pagesInMemory;
+            this.maxNumberOfNodes = maxNumberOfNodes;
             isExternal = bottom;
             open();
         }
@@ -92,7 +92,7 @@ public class Exercise15 {
 
         @Override
         public boolean isFull() {
-            return binarySearchSymbolTable.size() == MAX_NUMBER_OF_NODES;
+            return binarySearchSymbolTable.size() == maxNumberOfNodes;
         }
 
         @Override
@@ -105,7 +105,7 @@ public class Exercise15 {
                 keysToMove.add(keyToMove);
             }
 
-            PageInterface<Key> newPage = new BinarySearchSTPage<>(isExternal, pagesInMemory);
+            PageInterface<Key> newPage = new BinarySearchSTPage<>(isExternal, maxNumberOfNodes, pagesInMemory);
 
             for (Key key : keysToMove) {
                 PageInterface pageLink = binarySearchSymbolTable.get(key);
@@ -130,7 +130,8 @@ public class Exercise15 {
     private class BTreeSETWithBinarySearchSTPage<Key extends Comparable<Key>> {
 
         private HashSet<PageInterface> pagesInMemory = new HashSet<>();
-        private PageInterface root = new BinarySearchSTPage(true, pagesInMemory);
+        private PageInterface root = new BinarySearchSTPage(true, MAX_NUMBER_OF_NODES, pagesInMemory);
+        private static final int MAX_NUMBER_OF_NODES = 4;
 
         public BTreeSETWithBinarySearchSTPage(Key sentinel) {
             add(sentinel);
@@ -155,7 +156,7 @@ public class Exercise15 {
                 PageInterface leftHalf = root;
                 PageInterface rightHalf = root.split();
 
-                root = new BinarySearchSTPage(false, pagesInMemory);
+                root = new BinarySearchSTPage(false, MAX_NUMBER_OF_NODES, pagesInMemory);
                 root.add(leftHalf);
                 root.add(rightHalf);
             }

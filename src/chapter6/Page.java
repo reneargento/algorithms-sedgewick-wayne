@@ -20,12 +20,12 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
 
     // Reference to pages in memory on the system
     private HashSet<PageInterface> pagesInMemory;
-    // By convention MAX_NUMBER_OF_NODES is always an even number
-    private static final int MAX_NUMBER_OF_NODES = 4;
+    private int maxNumberOfNodes;
 
-    Page(boolean bottom, HashSet<PageInterface> pagesInMemory) {
+    Page(boolean bottom, int maxNumberOfNodes, HashSet<PageInterface> pagesInMemory) {
         binarySearchSymbolTable = new BinarySearchSymbolTable<>();
         this.pagesInMemory = pagesInMemory;
+        this.maxNumberOfNodes = maxNumberOfNodes;
         isExternal = bottom;
         open();
     }
@@ -90,7 +90,7 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
 
     @Override
     public boolean isFull() {
-        return binarySearchSymbolTable.size() == MAX_NUMBER_OF_NODES;
+        return binarySearchSymbolTable.size() == maxNumberOfNodes;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
             keysToMove.add(keyToMove);
         }
 
-        PageInterface<Key> newPage = new Page<>(isExternal, pagesInMemory);
+        PageInterface<Key> newPage = new Page<>(isExternal, maxNumberOfNodes, pagesInMemory);
 
         for (Key key : keysToMove) {
             PageInterface pageLink = binarySearchSymbolTable.get(key);
