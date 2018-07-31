@@ -85,6 +85,11 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
         }
 
         Key nextKey = binarySearchSymbolTable.floor(key);
+
+        if (nextKey == null) {
+            return null;
+        }
+
         return binarySearchSymbolTable.get(nextKey);
     }
 
