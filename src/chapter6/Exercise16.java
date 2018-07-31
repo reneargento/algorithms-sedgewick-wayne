@@ -12,7 +12,6 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 25/07/18.
  */
-@SuppressWarnings("unchecked")
 public class Exercise16 {
 
     private class BinarySearchSTPage<Key extends Comparable<Key>, Value> implements PageSTInterface<Key, Value> {
@@ -37,7 +36,7 @@ public class Exercise16 {
 
         // Reference to pages in memory on the system
         private HashSet<PageSTInterface> pagesInMemory;
-        // By convention MAX_NUMBER_OF_NODES is always an even number
+        // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
         private static final int MAX_NUMBER_OF_NODES = 4;
 
         BinarySearchSTPage(boolean bottom, HashSet<PageSTInterface> pagesInMemory) {
@@ -377,7 +376,7 @@ public class Exercise16 {
     private class BTreeST<Key extends Comparable<Key>, Value> {
 
         private HashSet<PageSTInterface> pagesInMemory = new HashSet<>();
-        private PageSTInterface<Key, Value> root = new BinarySearchSTPage(true, pagesInMemory);
+        private PageSTInterface<Key, Value> root = new BinarySearchSTPage<>(true, pagesInMemory);
         private int size;
         private Key sentinel;
 
@@ -446,7 +445,7 @@ public class Exercise16 {
                 PageSTInterface<Key, Value> leftHalf = root;
                 PageSTInterface<Key, Value> rightHalf = root.split();
 
-                root = new BinarySearchSTPage(false, pagesInMemory);
+                root = new BinarySearchSTPage<>(false, pagesInMemory);
                 root.addPage(leftHalf);
                 root.addPage(rightHalf);
 
@@ -654,13 +653,22 @@ public class Exercise16 {
                 next.open();
                 delete(next, key, treeLevel + 1);
 
+                Key minKeyInNextPage = next.min();
+                boolean wasMergeRequired = false;
+
                 if (next.pageSize() < page.maxNumberOfNodes() / 2) {
-                    stabilizePages(next, page, treeLevel + 1, key);
+                    wasMergeRequired = stabilizePages(next, page, treeLevel + 1, key);
                 }
 
                 // Update internal page references if necessary
-                if (page.contains(key)) {
-                    updateParentPageReference(page, next, key);
+                // If a merge was not required, next page still exists
+                if (!wasMergeRequired) {
+                    Key keyToDeleteReference = key;
+
+                    if (!page.contains(key) && next.min() != minKeyInNextPage) {
+                        keyToDeleteReference = minKeyInNextPage;
+                    }
+                    updateParentPageReference(page, next, keyToDeleteReference);
                 }
 
                 // Update size - movements and merges may have happened
@@ -671,7 +679,6 @@ public class Exercise16 {
                 }
 
                 page.setKeysSize(newKeysSize);
-
                 next.close(false);
             }
         }
@@ -802,11 +809,12 @@ public class Exercise16 {
             page.close(false);
         }
 
-        private void stabilizePages(PageSTInterface<Key, Value> page, PageSTInterface<Key, Value> parentPage,
+        private boolean stabilizePages(PageSTInterface<Key, Value> page, PageSTInterface<Key, Value> parentPage,
                                     int treeLevel, Key keyBeingDeleted) {
             boolean pagesStable = false;
             boolean hasLeftSibling = false;
             boolean hasRightSibling = false;
+            boolean wasMergeRequired = false;
 
             PageSTInterface<Key, Value> leftPageParent = null;
             PageSTInterface<Key, Value> leftPage = null;
@@ -918,12 +926,14 @@ public class Exercise16 {
             // Case 3: Merge to left page
             if (!pagesStable && hasLeftSibling) {
                 merge(page, parentPage, leftPage, false, keyBeingDeleted);
+                wasMergeRequired = true;
                 pagesStable = true;
             }
 
             // Case 4: Merge to right page
             if (!pagesStable && hasRightSibling) {
                 merge(page, parentPage, rightPage, true, keyBeingDeleted);
+                wasMergeRequired = true;
             }
 
             // Close pages
@@ -939,6 +949,8 @@ public class Exercise16 {
             if (rightPage != null) {
                 rightPage.close(false);
             }
+
+            return wasMergeRequired;
         }
 
         private void merge(PageSTInterface<Key, Value> page, PageSTInterface<Key, Value> parentPage,
