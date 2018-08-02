@@ -5,7 +5,11 @@ package chapter6;
  */
 public interface PageInterface<Key> {
 
+    int numberOfChildPages();
+
     void close();
+
+    PageInterface<Key> getPage(Key key);
 
     void add(Key key);
 

@@ -16,7 +16,15 @@ public class Exercise15 {
 
     private class BinarySearchSTPage<Key extends Comparable<Key>> implements PageInterface<Key> {
 
-        private BinarySearchSymbolTable<Key, PageInterface> binarySearchSymbolTable;
+        private class PageValue {
+            private PageInterface<Key> childPage;
+
+            PageValue(PageInterface<Key> childPage) {
+                this.childPage = childPage;
+            }
+        }
+
+        private BinarySearchSymbolTable<Key, PageValue> binarySearchSymbolTable;
         private boolean isOpen;
         private boolean isExternal;
 
@@ -30,6 +38,11 @@ public class Exercise15 {
             this.maxNumberOfNodes = maxNumberOfNodes;
             isExternal = bottom;
             open();
+        }
+
+        @Override
+        public int numberOfChildPages() {
+            return binarySearchSymbolTable.size();
         }
 
         private void open() {
@@ -51,19 +64,30 @@ public class Exercise15 {
         }
 
         @Override
+        public PageInterface<Key> getPage(Key key) {
+            PageValue pageValue = binarySearchSymbolTable.get(key);
+
+            if (pageValue != null) {
+                return pageValue.childPage;
+            } else {
+                return null;
+            }
+        }
+
+        @Override
         public void add(Key key) {
             if (!isExternal()) {
                 throw new IllegalArgumentException("Cannot add key directly to an internal page");
             }
 
-            // Since binary search symbol tables do not allow null values, we make the external nodes point to themselves
-            binarySearchSymbolTable.put(key, this);
+            // External pages do not point to any page
+            binarySearchSymbolTable.put(key, new PageValue(null));
         }
 
         @Override
         public void add(PageInterface page) {
             Key minKey = (Key) ((BinarySearchSTPage) page).binarySearchSymbolTable.min();
-            binarySearchSymbolTable.put(minKey, page);
+            binarySearchSymbolTable.put(minKey, new PageValue(page));
         }
 
         @Override
@@ -87,7 +111,7 @@ public class Exercise15 {
             }
 
             Key nextKey = binarySearchSymbolTable.floor(key);
-            return binarySearchSymbolTable.get(nextKey);
+            return binarySearchSymbolTable.get(nextKey).childPage;
         }
 
         @Override
@@ -108,7 +132,7 @@ public class Exercise15 {
             PageInterface<Key> newPage = new BinarySearchSTPage<>(isExternal, maxNumberOfNodes, pagesInMemory);
 
             for (Key key : keysToMove) {
-                PageInterface pageLink = binarySearchSymbolTable.get(key);
+                PageInterface pageLink = binarySearchSymbolTable.get(key).childPage;
                 binarySearchSymbolTable.delete(key);
 
                 if (!isExternal()) {
