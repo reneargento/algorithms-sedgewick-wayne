@@ -38,11 +38,6 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
         open();
     }
 
-    @Override
-    public int numberOfChildPages() {
-        return binarySearchSymbolTable.size();
-    }
-
     private void open() {
         pagesInMemory.add(this);
         isOpen = true;
@@ -151,5 +146,10 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
     @Override
     public Iterable<Key> keys() {
         return binarySearchSymbolTable.keys();
+    }
+
+    @Override
+    public int getMaxNumberOfNodes() {
+        return maxNumberOfNodes;
     }
 }

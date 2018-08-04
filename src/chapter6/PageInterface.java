@@ -5,8 +5,6 @@ package chapter6;
  */
 public interface PageInterface<Key> {
 
-    int numberOfChildPages();
-
     void close();
 
     PageInterface<Key> getPage(Key key);
@@ -26,5 +24,7 @@ public interface PageInterface<Key> {
     PageInterface split();
 
     Iterable<Key> keys();
+
+    int getMaxNumberOfNodes();
 
 }
