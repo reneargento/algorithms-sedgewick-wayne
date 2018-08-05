@@ -11,7 +11,6 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 23/07/18.
  */
-@SuppressWarnings("unchecked")
 public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
 
     private class PageValue {
@@ -78,8 +77,8 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
     }
 
     @Override
-    public void add(PageInterface page) {
-        Key minKey = (Key) ((Page) page).binarySearchSymbolTable.min();
+    public void add(PageInterface<Key> page) {
+        Key minKey = ((Page<Key>) page).binarySearchSymbolTable.min();
         binarySearchSymbolTable.put(minKey, new PageValue(page));
     }
 
@@ -98,7 +97,7 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
     }
 
     @Override
-    public PageInterface next(Key key) {
+    public PageInterface<Key> next(Key key) {
         if (isExternal()) {
             throw new IllegalArgumentException("Next cannot be called on an external page");
         }
@@ -118,7 +117,7 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
     }
 
     @Override
-    public PageInterface split() {
+    public PageInterface<Key> split() {
         List<Key> keysToMove = new ArrayList<>();
         int middleRank = binarySearchSymbolTable.size() / 2;
 

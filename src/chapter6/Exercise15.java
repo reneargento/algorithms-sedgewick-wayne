@@ -11,7 +11,6 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 23/07/18.
  */
-@SuppressWarnings("unchecked")
 public class Exercise15 {
 
     private class BinarySearchSTPage<Key extends Comparable<Key>> implements PageInterface<Key> {
@@ -80,8 +79,8 @@ public class Exercise15 {
         }
 
         @Override
-        public void add(PageInterface page) {
-            Key minKey = (Key) ((BinarySearchSTPage) page).binarySearchSymbolTable.min();
+        public void add(PageInterface<Key> page) {
+            Key minKey = ((BinarySearchSTPage<Key>) page).binarySearchSymbolTable.min();
             binarySearchSymbolTable.put(minKey, new PageValue(page));
         }
 
@@ -100,7 +99,7 @@ public class Exercise15 {
         }
 
         @Override
-        public PageInterface next(Key key) {
+        public PageInterface<Key> next(Key key) {
             if (isExternal()) {
                 throw new IllegalArgumentException("Next cannot be called on an external page");
             }
@@ -115,7 +114,7 @@ public class Exercise15 {
         }
 
         @Override
-        public PageInterface split() {
+        public PageInterface<Key> split() {
             List<Key> keysToMove = new ArrayList<>();
             int middleRank = binarySearchSymbolTable.size() / 2;
 
@@ -127,7 +126,7 @@ public class Exercise15 {
             PageInterface<Key> newPage = new BinarySearchSTPage<>(isExternal, maxNumberOfNodes, pagesInMemory);
 
             for (Key key : keysToMove) {
-                PageInterface pageLink = binarySearchSymbolTable.get(key).childPage;
+                PageInterface<Key> pageLink = binarySearchSymbolTable.get(key).childPage;
                 binarySearchSymbolTable.delete(key);
 
                 if (!isExternal()) {
@@ -154,7 +153,7 @@ public class Exercise15 {
     private class BTreeSETWithBinarySearchSTPage<Key extends Comparable<Key>> {
 
         private HashSet<PageInterface> pagesInMemory = new HashSet<>();
-        private PageInterface root = new BinarySearchSTPage(true, MAX_NUMBER_OF_NODES, pagesInMemory);
+        private PageInterface<Key> root = new BinarySearchSTPage<>(true, MAX_NUMBER_OF_NODES, pagesInMemory);
         private static final int MAX_NUMBER_OF_NODES = 4;
 
         public BTreeSETWithBinarySearchSTPage(Key sentinel) {
@@ -165,7 +164,7 @@ public class Exercise15 {
             return contains(root, key);
         }
 
-        private boolean contains(PageInterface page, Key key) {
+        private boolean contains(PageInterface<Key> page, Key key) {
             if (page.isExternal()) {
                 return page.contains(key);
             }
@@ -177,22 +176,22 @@ public class Exercise15 {
             add(root, key);
 
             if (root.isFull()) {
-                PageInterface leftHalf = root;
-                PageInterface rightHalf = root.split();
+                PageInterface<Key> leftHalf = root;
+                PageInterface<Key> rightHalf = root.split();
 
-                root = new BinarySearchSTPage(false, MAX_NUMBER_OF_NODES, pagesInMemory);
+                root = new BinarySearchSTPage<>(false, MAX_NUMBER_OF_NODES, pagesInMemory);
                 root.add(leftHalf);
                 root.add(rightHalf);
             }
         }
 
-        public void add(PageInterface page, Key key) {
+        public void add(PageInterface<Key> page, Key key) {
             if (page.isExternal()) {
                 page.add(key);
                 return;
             }
 
-            PageInterface next = page.next(key);
+            PageInterface<Key> next = page.next(key);
             add(next, key);
 
             if (next.isFull()) {

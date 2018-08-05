@@ -11,17 +11,17 @@ public interface PageInterface<Key> {
 
     void add(Key key);
 
-    void add(PageInterface page);
+    void add(PageInterface<Key> page);
 
     boolean isExternal();
 
     boolean contains(Key key);
 
-    PageInterface next(Key key);
+    PageInterface<Key> next(Key key);
 
     boolean isFull();
 
-    PageInterface split();
+    PageInterface<Key> split();
 
     Iterable<Key> keys();
 
