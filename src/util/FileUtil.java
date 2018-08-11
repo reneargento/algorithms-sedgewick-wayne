@@ -80,12 +80,36 @@ public class FileUtil {
 
         try {
             lines = Files.readAllLines(Paths.get(filePath));
-        } catch (IOException e) {
-            StdOut.println(e.getMessage());
+        } catch (IOException exception) {
+            StdOut.println(exception.getMessage());
             return null;
         }
 
         return lines;
     }
 
+    // Create and write file. Replaces it if it already exists.
+    public static void writeFile(String filePath, List<String> data){
+        StringBuilder output = new StringBuilder();
+
+        for(String line : data) {
+            output.append(line).append("\n");
+        }
+
+        byte[] dataBytes = output.toString().getBytes();
+
+        try {
+            Files.write(Paths.get(filePath), dataBytes);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public static void deleteFile(String filePath) {
+        try {
+            Files.delete(Paths.get(filePath));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
 }
