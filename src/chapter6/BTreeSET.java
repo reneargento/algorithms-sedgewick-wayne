@@ -5,7 +5,6 @@ import chapter3.section5.HashSet;
 /**
  * Created by Rene Argento on 23/07/18.
  */
-@SuppressWarnings("unchecked")
 public class BTreeSET<Key extends Comparable<Key>> {
 
     private static final int MAX_NUMBER_OF_NODES = 4;
@@ -33,22 +32,22 @@ public class BTreeSET<Key extends Comparable<Key>> {
         add(root, key);
 
         if (root.isFull()) {
-            PageInterface leftHalf = root;
-            PageInterface rightHalf = root.split();
+            PageInterface<Key> leftHalf = root;
+            PageInterface<Key> rightHalf = root.split();
 
-            root = new Page(false, MAX_NUMBER_OF_NODES, pagesInMemory);
+            root = new Page<>(false, MAX_NUMBER_OF_NODES, pagesInMemory);
             root.add(leftHalf);
             root.add(rightHalf);
         }
     }
 
-    public void add(PageInterface page, Key key) {
+    public void add(PageInterface<Key> page, Key key) {
         if (page.isExternal()) {
             page.add(key);
             return;
         }
 
-        PageInterface next = page.next(key);
+        PageInterface<Key> next = page.next(key);
         add(next, key);
 
         if (next.isFull()) {

@@ -129,7 +129,7 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
         PageInterface<Key> newPage = new Page<>(isExternal, maxNumberOfNodes, pagesInMemory);
 
         for (Key key : keysToMove) {
-            PageInterface pageLink = binarySearchSymbolTable.get(key).childPage;
+            PageInterface<Key> pageLink = binarySearchSymbolTable.get(key).childPage;
             binarySearchSymbolTable.delete(key);
 
             if (!isExternal()) {
