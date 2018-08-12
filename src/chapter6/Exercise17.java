@@ -263,6 +263,7 @@ public class Exercise17 {
 
     private class BTreeSETDrawable<Key extends Comparable<Key>> {
 
+        // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
         private static final int MAX_NUMBER_OF_NODES = 6;
         private HashSet<PageInterface> pagesInMemory = new HashSet<>();
         BTreeSETDrawing<Key> bTreeSETDrawing = new BTreeSETDrawing<>();

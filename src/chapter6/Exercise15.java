@@ -32,6 +32,10 @@ public class Exercise15 {
         private int maxNumberOfNodes;
 
         BinarySearchSTPage(boolean bottom, int maxNumberOfNodes, HashSet<PageInterface> pagesInMemory) {
+            if (maxNumberOfNodes % 2 != 0 || maxNumberOfNodes == 2) {
+                throw new IllegalArgumentException("Max number of nodes must be divisible by 2 and higher than 2");
+            }
+
             binarySearchSymbolTable = new BinarySearchSymbolTable<>();
             this.pagesInMemory = pagesInMemory;
             this.maxNumberOfNodes = maxNumberOfNodes;
@@ -154,6 +158,8 @@ public class Exercise15 {
 
         private HashSet<PageInterface> pagesInMemory = new HashSet<>();
         private PageInterface<Key> root = new BinarySearchSTPage<>(true, MAX_NUMBER_OF_NODES, pagesInMemory);
+
+        // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
         private static final int MAX_NUMBER_OF_NODES = 4;
 
         public BTreeSETWithBinarySearchSTPage(Key sentinel) {

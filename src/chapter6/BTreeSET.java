@@ -7,6 +7,7 @@ import chapter3.section5.HashSet;
  */
 public class BTreeSET<Key extends Comparable<Key>> {
 
+    // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
     private static final int MAX_NUMBER_OF_NODES = 4;
     private HashSet<PageInterface> pagesInMemory = new HashSet<>();
 

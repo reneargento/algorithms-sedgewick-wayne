@@ -30,6 +30,10 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
     private int maxNumberOfNodes;
 
     Page(boolean bottom, int maxNumberOfNodes, HashSet<PageInterface> pagesInMemory) {
+        if (maxNumberOfNodes % 2 != 0 || maxNumberOfNodes == 2) {
+            throw new IllegalArgumentException("Max number of nodes must be divisible by 2 and higher than 2");
+        }
+
         binarySearchSymbolTable = new BinarySearchSymbolTable<>();
         this.pagesInMemory = pagesInMemory;
         this.maxNumberOfNodes = maxNumberOfNodes;
