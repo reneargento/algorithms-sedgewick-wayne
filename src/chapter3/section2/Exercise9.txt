@@ -64,7 +64,7 @@ Insertion order: 1 4 3 2
   3
  2
 
-Insertion order: 2 1 3 4
+Insertion order: 2 1 3 4, 2 3 1 4, 2 3 4 1
  2
 1 3
    4
@@ -73,11 +73,6 @@ Insertion order: 2 1 4 3, 2 4 1 3, 2 4 3 1
   2
 1   4
    3
-
-Insertion order: 2 3 1 4, 2 3 4 1
- 2
-1 3
-   4
 
 Insertion order: 3 2 1 4, 3 2 4 1, 3 4 2 1
     3
@@ -105,7 +100,7 @@ Insertion order: 4 2 1 3, 4 2 3 1
     4
    2
   1 3
-   
+
 Insertion order: 4 1 2 3
     4
    1
@@ -117,6 +112,7 @@ Insertion order: 4 1 3 2
    1
     3
    2
+
 
 N = 5
 
@@ -154,28 +150,16 @@ Insertion order: 5 1 4 3 2
   3
  2
 
-Insertion order: 5 2 1 3 4
+Insertion order: 5 2 1 3 4, 5 2 3 1 4, 5 2 3 4 1
   5
  2
 1 3
    4
 
-Insertion order: 5 2 1 4 3, 5 2 4 1 3
+Insertion order: 5 2 1 4 3, 5 2 4 1 3, 5 2 4 3 1
    5
   2
 1   4
-   3
-
-Insertion order: 5 2 3 1 4, 5 2 3 4 1
-  5
- 2
-1 3
-   4
-
-Insertion order: 5 2 4 3 1
-   5
-  2
-1   4 
    3
 
 Insertion order: 5 3 2 1 4, 5 3 2 4 1, 5 3 4 2 1
@@ -209,7 +193,7 @@ Insertion order: 5 4 2 1 3, 5 4 2 3 1
     4
    2
   1 3
-   
+
 Insertion order: 5 4 1 2 3
      5
     4
@@ -258,31 +242,19 @@ Insertion order: 1 5 4 3 2
  3
 2
 
-Insertion order: 2 5 1 3 4, 2 1 5 3 4
+Insertion order: 2 5 1 3 4, 2 1 5 3 4, 2 5 3 1 4, 2 5 3 4 1
   2
 1   5
    3
     4
 
-Insertion order: 2 5 1 4 3, 2 5 4 1 3, 2 1 5 4 3
+Insertion order: 2 5 1 4 3, 2 5 4 1 3, 2 1 5 4 3, 2 5 4 3 1
   2
 1   5
    4
   3
 
-Insertion order: 2 5 3 1 4, 2 5 3 4 1
-  2
-1   5
-   3
-    4
-
-Insertion order: 2 5 4 3 1
-    2
-  1   5
-     4
-    3
-
-Insertion order: 3 5 2 1 4, 3 5 2 4 1, 3 5 4 2 1
+Insertion order: 3 5 2 1 4, 3 5 2 4 1, 3 5 4 2 1, 3 2 5 1 4, 3 2 5 4 1, 3 2 1 5 4
     3
   2   5
  1   4
@@ -308,7 +280,7 @@ Insertion order: 4 5 2 1 3, 4 5 2 3 1, 4 2 5 1 3, 4 2 5 3 1, 4 2 1 5 3, 4 2 3 5 
      4
    2   5
   1 3
-   
+
 Insertion order: 4 5 1 2 3, 4 1 5 2 3, 4 1 2 5 3, 4 1 2 3 5
      4
    1   5
@@ -319,7 +291,7 @@ Insertion order: 4 5 1 3 2, 4 1 5 3 2, 4 1 3 5 2, 4 1 3 2 5
      4
    1   5
     3
-   2 
+   2
 
 Insertion order: 1 2 5 3 4
  1
@@ -328,33 +300,26 @@ Insertion order: 1 2 5 3 4
   3
    4
 
-Insertion order: 1 2 5 4 3
+Insertion order: 1 2 5 4 3 (same shape for 1 4 5 3 2, with different order of elements)
  1
   2
    5
   4
  3
 
-Insertion order: 1 3 5 4 2, 1 3 5 2 4
+Insertion order: 1 3 5 4 2, 1 3 5 2 4, 1 3 2 5 4
  1
    3
  2   5
     4
 
-Insertion order: 1 4 5 2 3
+Insertion order: 1 4 5 2 3, 1 4 2 5 3, 1 4 2 3 5
  1
    4
  2   5
   3
 
-Insertion order: 1 4 5 3 2
-  1
-   4
-    5
-   3
-  2
-
-Insertion order: 2 4 5 1 3, 2 4 5 3 1
+Insertion order: 2 4 5 1 3, 2 4 5 3 1, 2 1 4 5 3, 2 4 1 5 3, 2 4 3 5 1, 2 1 4 3 5, 2 4 1 3 5, 2 4 3 1 5
   2
 1   4
    3 5
@@ -365,17 +330,12 @@ Insertion order: 2 3 5 1 4, 2 3 5 4 1
     5
    4
 
-Insertion order: 3 2 5 1 4, 3 2 5 4 1
-    3
-  2   5
- 1   4
-
 Insertion order: 3 4 5 2 1, 3 2 4 5 1, 3 4 2 5 1, 3 2 1 4 5, 3 2 4 1 5, 3 4 2 1 5
     3
   2   4
  1     5
 
-Insertion order: 3 4 5 1 2, 3 1 2 4 5, 3 1 4 2 5, 3 4 1 2 5
+Insertion order: 3 4 5 1 2, 3 1 2 4 5, 3 1 4 2 5, 3 4 1 2 5, 3 1 4 5 2, 3 4 1 5 2
      3
   1     4
    2     5
@@ -387,67 +347,29 @@ Insertion order: 1 2 3 5 4
     5
    4
 
-Insertion order: 1 2 4 5 3
+Insertion order: 1 2 4 5 3, 1 2 4 3 5
  1
   2
    4
   3 5
 
-Insertion order: 1 3 4 5 2
+Insertion order: 1 3 4 5 2, 1 3 4 2 5, 5 1 3 2 4 5
  1
   3
  2 4
     5
 
-Insertion order: 1 3 2 5 4
- 1
-   3
- 2   5
-    4
-
-Insertion order: 1 4 2 5 3
- 1
-   4
- 2   5
-  3
-
-Insertion order: 1 4 3 5 2
+Insertion order: 1 4 3 5 2, 1 4 3 2 5
   1
    4
   3 5
  2
 
-Insertion order: 2 1 3 5 4
+Insertion order: 2 1 3 5 4, 2 3 1 5 4, 2 3 4 5 1, 2 1 3 4 5, 2 3 1 4 5, 2 3 4 1 5
  2
 1 3
    4
     5
-
-Insertion order: 2 1 4 5 3, 2 4 1 5 3
-  2
-1   4
-   3 5
-
-Insertion order: 2 3 1 5 4, 2 3 4 5 1
- 2
-1 3
-   4
-    5
-
-Insertion order: 2 4 3 5 1
-  2
-1   4
-   3 5
-
-Insertion order: 3 2 1 5 4
-    3
-  2   5
- 1   4
-
-Insertion order: 3 1 4 5 2, 3 4 1 5 2
-     3
-  1     4
-   2     5
 
 Insertion order: 1 2 3 4 5
  1
@@ -456,50 +378,7 @@ Insertion order: 1 2 3 4 5
     4
      5
 
-Insertion order: 1 2 4 3 5
- 1
-  2
-   4
-  3 5
-
-Insertion order: 1 3 4 2 5, 5 1 3 2 4 5
- 1
-  3
- 2 4
-    5
-
-Insertion order: 1 4 2 3 5
- 1
-   4
- 2   5
-  3
-
-Insertion order: 1 4 3 2 5
-  1
-   4
-  3 5
- 2
-
-Insertion order: 2 1 3 4 5
- 2
-1 3
-   4
-    5
-
-Insertion order: 2 1 4 3 5, 2 4 1 3 5
-  2
-1   4
-   3 5
-
-Insertion order: 2 3 1 4 5, 2 3 4 1 5
- 2
-1 3
-   4
-    5
-
-Insertion order: 2 4 3 1 5
-  2
-1   4 
-   3 5
-
 For N = 6 there are 720 different insertion orders, but the tree shapes follow the same pattern as for N = 1, 2, 3, 4 and 5.
+
+Thanks to dbedrenko (https://github.com/dbedrenko) for mentioning that there should be 42 tree shapes for N = 5.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/18
