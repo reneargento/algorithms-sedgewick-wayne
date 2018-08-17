@@ -27,4 +27,6 @@ public interface PageInterface<Key> {
 
     int getMaxNumberOfNodes();
 
+    void setVerbose(boolean verbose);
+
 }

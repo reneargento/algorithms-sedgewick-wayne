@@ -24,6 +24,7 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
     private BinarySearchSymbolTable<Key, PageValue> binarySearchSymbolTable;
     private boolean isOpen;
     private boolean isExternal;
+    private boolean verbose;
 
     // Reference to pages in memory on the system
     private HashSet<PageInterface> pagesInMemory;
@@ -38,6 +39,7 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
         this.pagesInMemory = pagesInMemory;
         this.maxNumberOfNodes = maxNumberOfNodes;
         isExternal = bottom;
+        verbose = true;
         open();
     }
 
@@ -54,7 +56,10 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
             pageContent.add(String.valueOf(key));
         }
 
-        StdOut.println("Page content: " + pageContent.toString());
+        if (verbose) {
+            StdOut.println("Page content: " + pageContent.toString());
+        }
+
         pagesInMemory.delete(this);
         isOpen = false;
     }
@@ -154,5 +159,10 @@ public class Page<Key extends Comparable<Key>> implements PageInterface<Key> {
     @Override
     public int getMaxNumberOfNodes() {
         return maxNumberOfNodes;
+    }
+
+    @Override
+    public void setVerbose(boolean verbose) {
+        this.verbose = verbose;
     }
 }
