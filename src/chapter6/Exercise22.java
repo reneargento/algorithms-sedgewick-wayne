@@ -55,12 +55,12 @@ public class Exercise22 {
                 }
             }
 
-            printResults(numberOfSearches, results[0], results[1]);
+            printResults(numberOfSearches, results[SEARCH_TYPE_B_TREE], results[SEARCH_TYPE_BINARY_SEARCH]);
         }
     }
 
     private BTreeSET<Integer> createBTree(int[] keys) {
-        BTreeSET<Integer> bTreeSET = new BTreeSET<>(0, false);
+        BTreeSET<Integer> bTreeSET = new BTreeSET<>(0);
 
         for (int key : keys) {
             bTreeSET.add(key);

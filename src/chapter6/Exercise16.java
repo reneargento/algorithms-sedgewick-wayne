@@ -36,12 +36,16 @@ public class Exercise16 {
 
         // Reference to pages in memory on the system
         private HashSet<PageSTInterface> pagesInMemory;
-        // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
-        private static final int MAX_NUMBER_OF_NODES = 4;
+        private int maxNumberOfNodes;
 
-        BinarySearchSTPage(boolean bottom, HashSet<PageSTInterface> pagesInMemory) {
+        BinarySearchSTPage(boolean bottom, int maxNumberOfNodes, HashSet<PageSTInterface> pagesInMemory) {
+            if (maxNumberOfNodes % 2 != 0 || maxNumberOfNodes == 2) {
+                throw new IllegalArgumentException("Max number of nodes must be divisible by 2 and higher than 2");
+            }
+
             binarySearchSymbolTable = new BinarySearchSymbolTable<>();
             this.pagesInMemory = pagesInMemory;
+            this.maxNumberOfNodes = maxNumberOfNodes;
             isExternal = bottom;
             open();
         }
@@ -323,7 +327,7 @@ public class Exercise16 {
 
         @Override
         public boolean isFull() {
-            return binarySearchSymbolTable.size() == MAX_NUMBER_OF_NODES;
+            return binarySearchSymbolTable.size() == maxNumberOfNodes;
         }
 
         @Override
@@ -336,7 +340,7 @@ public class Exercise16 {
                 keysToMove.add(keyToMove);
             }
 
-            PageSTInterface<Key, Value> newPage = new BinarySearchSTPage<>(isExternal, pagesInMemory);
+            PageSTInterface<Key, Value> newPage = new BinarySearchSTPage<>(isExternal, maxNumberOfNodes, pagesInMemory);
             int keysToMoveSize = 0;
 
             for (Key key : keysToMove) {
@@ -369,18 +373,38 @@ public class Exercise16 {
 
         @Override
         public int maxNumberOfNodes() {
-            return MAX_NUMBER_OF_NODES;
+            return maxNumberOfNodes;
         }
     }
 
     private class BTreeST<Key extends Comparable<Key>, Value> {
 
-        private HashSet<PageSTInterface> pagesInMemory = new HashSet<>();
-        private PageSTInterface<Key, Value> root = new BinarySearchSTPage<>(true, pagesInMemory);
+        private PageSTInterface<Key, Value> root;
+        private static final int DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE = 4;
+        private static final boolean DEFAULT_VERBOSE = false;
+
         private int size;
         private Key sentinel;
 
+        private int maxNumberOfNodesPerPage;
+        private HashSet<PageSTInterface> pagesInMemory;
+        private boolean verbose;
+
         public BTreeST(Key sentinel) {
+            this(sentinel, DEFAULT_VERBOSE, DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE);
+        }
+
+        public BTreeST(Key sentinel, boolean verbose, int maxNumberOfNodesPerPage) {
+            if (maxNumberOfNodesPerPage % 2 != 0 || maxNumberOfNodesPerPage == 2) {
+                throw new IllegalArgumentException("Max number of nodes must be divisible by 2 and higher than 2");
+            }
+
+            pagesInMemory = new HashSet<>();
+            root = new BinarySearchSTPage<>(true, maxNumberOfNodesPerPage, pagesInMemory);
+
+            this.verbose = verbose;
+            this.maxNumberOfNodesPerPage = maxNumberOfNodesPerPage;
+
             add(sentinel, null);
             this.sentinel = sentinel;
             root.setContainsSentinel(true);
@@ -408,7 +432,7 @@ public class Exercise16 {
             page.open();
 
             boolean contains = contains(page.next(key), key);
-            page.close(false);
+            page.close(verbose);
             return contains;
         }
 
@@ -428,7 +452,7 @@ public class Exercise16 {
             page.open();
 
             Value value = get(page.next(key), key);
-            page.close(false);
+            page.close(verbose);
             return value;
         }
 
@@ -445,7 +469,7 @@ public class Exercise16 {
                 PageSTInterface<Key, Value> leftHalf = root;
                 PageSTInterface<Key, Value> rightHalf = root.split();
 
-                root = new BinarySearchSTPage<>(false, pagesInMemory);
+                root = new BinarySearchSTPage<>(false, maxNumberOfNodesPerPage, pagesInMemory);
                 root.addPage(leftHalf);
                 root.addPage(rightHalf);
 
@@ -474,7 +498,7 @@ public class Exercise16 {
                 page.addPage(next.split());
                 next.setParentPage(page);
             }
-            next.close(false);
+            next.close(verbose);
         }
 
         public Key min() {
@@ -493,7 +517,7 @@ public class Exercise16 {
             }
 
             Key minKey = min(page.next(page.min()));
-            page.close(false);
+            page.close(verbose);
             return minKey;
         }
 
@@ -513,7 +537,7 @@ public class Exercise16 {
             }
 
             Key maxKey = max(page.next(page.max()));
-            page.close(false);
+            page.close(verbose);
             return maxKey;
         }
 
@@ -523,7 +547,7 @@ public class Exercise16 {
             pageThatMayContainKey.open();
 
             Key floorKey = pageThatMayContainKey.floor(key);
-            pageThatMayContainKey.close(false);
+            pageThatMayContainKey.close(verbose);
 
             if (floorKey == sentinel) {
                 floorKey = null;
@@ -538,7 +562,7 @@ public class Exercise16 {
             pageThatMayContainKey.open();
 
             Key ceilingKey = pageThatMayContainKey.ceiling(key);
-            pageThatMayContainKey.close(false);
+            pageThatMayContainKey.close(verbose);
 
             if (ceilingKey == null) {
                 int rank = rank(key);
@@ -578,12 +602,12 @@ public class Exercise16 {
 
                 if (leftSubtreeSize + childPageSize > index) {
                     Key keySelected = select(childPage, index - leftSubtreeSize);
-                    childPage.close(false);
+                    childPage.close(verbose);
                     return keySelected;
                 }
 
                 leftSubtreeSize += childPageSize;
-                childPage.close(false);
+                childPage.close(verbose);
             }
 
             // If the index searched is not higher than or equal to the BTree size (as previously validated),
@@ -612,12 +636,12 @@ public class Exercise16 {
 
                 if (childPage == nextPage) {
                     int rank = leftSubtreeSize + rank(childPage, searchKey);
-                    childPage.close(false);
+                    childPage.close(verbose);
                     return rank;
                 }
 
                 leftSubtreeSize += childPageSize;
-                childPage.close(false);
+                childPage.close(verbose);
             }
 
             // We should never reach here
@@ -679,7 +703,7 @@ public class Exercise16 {
                 }
 
                 page.setKeysSize(newKeysSize);
-                next.close(false);
+                next.close(verbose);
             }
         }
 
@@ -741,10 +765,10 @@ public class Exercise16 {
 
                 if (nextPageMinKey.compareTo(high) <= 0 && nextPageMaxKey.compareTo(low) >= 0) {
                     keys(nextPage, keys, low, high);
-                    nextPage.close(false);
+                    nextPage.close(verbose);
                 }
             }
-            page.close(false);
+            page.close(verbose);
         }
 
         public int size(Key low, Key high) {
@@ -803,10 +827,10 @@ public class Exercise16 {
 
                 if (nextPageMinKey.compareTo(high) <= 0 && nextPageMaxKey.compareTo(low) >= 0) {
                     get(nextPage, values, low, high);
-                    nextPage.close(false);
+                    nextPage.close(verbose);
                 }
             }
-            page.close(false);
+            page.close(verbose);
         }
 
         private boolean stabilizePages(PageSTInterface<Key, Value> page, PageSTInterface<Key, Value> parentPage,
@@ -938,16 +962,16 @@ public class Exercise16 {
 
             // Close pages
             if (leftPageParent != null) {
-                leftPageParent.close(false);
+                leftPageParent.close(verbose);
             }
             if (leftPage != null) {
-                leftPage.close(false);
+                leftPage.close(verbose);
             }
             if (rightPageParent != null) {
-                rightPageParent.close(false);
+                rightPageParent.close(verbose);
             }
             if (rightPage != null) {
-                rightPage.close(false);
+                rightPage.close(verbose);
             }
 
             return wasMergeRequired;
@@ -1037,10 +1061,10 @@ public class Exercise16 {
             nextPage.open();
 
             if (nextPage.isExternal()) {
-                nextPage.close(false);
+                nextPage.close(verbose);
                 return page;
             } else {
-                page.close(false);
+                page.close(verbose);
             }
 
             return getParentPageOfPageWithKey(nextPage, key);
@@ -1077,11 +1101,11 @@ public class Exercise16 {
             }
 
             PageSTInterface<Key, Value> nextPage = page.next(key);
-            page.close(false);
+            page.close(verbose);
 
             PageSTInterface<Key, Value> targetPage =
                     getPageWithKeyInTreeLevel(nextPage, key, treeLevel, currentTreeLevel + 1);
-            nextPage.close(false);
+            nextPage.close(verbose);
             return targetPage;
         }
     }

@@ -7,17 +7,31 @@ import chapter3.section5.HashSet;
  */
 public class BTreeSET<Key extends Comparable<Key>> {
 
-    // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
-    private static final int MAX_NUMBER_OF_NODES = 4;
-    private HashSet<PageInterface> pagesInMemory = new HashSet<>();
+    private PageInterface<Key> root;
+    private static final int DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE = 4;
+    private static final boolean DEFAULT_VERBOSE = false;
+
+    private int maxNumberOfNodesPerPage;
+    private HashSet<PageInterface> pagesInMemory;
     private boolean verbose;
 
-    private PageInterface<Key> root = new Page<>(true, MAX_NUMBER_OF_NODES, pagesInMemory);
+    public BTreeSET(Key sentinel) {
+        this(sentinel, DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE, DEFAULT_VERBOSE);
+    }
 
-    public BTreeSET(Key sentinel, boolean verbose) {
-        add(sentinel);
+    public BTreeSET(Key sentinel, int maxNumberOfNodesPerPage, boolean verbose) {
+        if (maxNumberOfNodesPerPage % 2 != 0 || maxNumberOfNodesPerPage == 2) {
+            throw new IllegalArgumentException("Max number of nodes must be divisible by 2 and higher than 2");
+        }
+
+        pagesInMemory = new HashSet<>();
+        root = new Page<>(true, maxNumberOfNodesPerPage, pagesInMemory);
+
         this.verbose = verbose;
         root.setVerbose(verbose);
+        this.maxNumberOfNodesPerPage = maxNumberOfNodesPerPage;
+
+        add(sentinel);
     }
 
     public boolean contains(Key key) {
@@ -39,7 +53,7 @@ public class BTreeSET<Key extends Comparable<Key>> {
             PageInterface<Key> leftHalf = root;
             PageInterface<Key> rightHalf = root.split();
 
-            root = new Page<>(false, MAX_NUMBER_OF_NODES, pagesInMemory);
+            root = new Page<>(false, maxNumberOfNodesPerPage, pagesInMemory);
             root.add(leftHalf);
             root.add(rightHalf);
 

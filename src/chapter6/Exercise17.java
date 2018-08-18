@@ -263,15 +263,34 @@ public class Exercise17 {
 
     private class BTreeSETDrawable<Key extends Comparable<Key>> {
 
-        // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
-        private static final int MAX_NUMBER_OF_NODES = 6;
-        private HashSet<PageInterface> pagesInMemory = new HashSet<>();
-        BTreeSETDrawing<Key> bTreeSETDrawing = new BTreeSETDrawing<>();
+        private PageInterface<Key> root;
+        private static final int DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE = 6;
+        private static final boolean DEFAULT_VERBOSE = false;
 
-        private PageInterface<Key> root = new Page<>(true, MAX_NUMBER_OF_NODES, pagesInMemory);
+        private int maxNumberOfNodesPerPage;
+        private HashSet<PageInterface> pagesInMemory;
+        private boolean verbose;
+
+        BTreeSETDrawing<Key> bTreeSETDrawing;
 
         public BTreeSETDrawable(Key sentinel) {
+            this(sentinel, DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE, DEFAULT_VERBOSE);
+        }
+
+        public BTreeSETDrawable(Key sentinel, int maxNumberOfNodesPerPage, boolean verbose) {
+            if (maxNumberOfNodesPerPage % 2 != 0 || maxNumberOfNodesPerPage == 2) {
+                throw new IllegalArgumentException("Max number of nodes must be divisible by 2 and higher than 2");
+            }
+
+            pagesInMemory = new HashSet<>();
+            bTreeSETDrawing = new BTreeSETDrawing<>();
+
+            root = new Page<>(true, maxNumberOfNodesPerPage, pagesInMemory);
             add(sentinel);
+
+            this.verbose = verbose;
+            root.setVerbose(verbose);
+            this.maxNumberOfNodesPerPage = maxNumberOfNodesPerPage;
         }
 
         public PageInterface<Key> getRoot() {
@@ -299,9 +318,12 @@ public class Exercise17 {
                 PageInterface<Key> leftHalf = root;
                 PageInterface<Key> rightHalf = root.split();
 
-                root = new Page<>(false, MAX_NUMBER_OF_NODES, pagesInMemory);
+                root = new Page<>(false, maxNumberOfNodesPerPage, pagesInMemory);
                 root.add(leftHalf);
                 root.add(rightHalf);
+
+                root.setVerbose(verbose);
+                rightHalf.setVerbose(verbose);
             }
             bTreeSETDrawing.drawBTree(this);
         }
@@ -317,7 +339,10 @@ public class Exercise17 {
 
             if (next.isFull()) {
                 bTreeSETDrawing.drawBTree(this);
-                page.add(next.split());
+
+                PageInterface<Key> newPage = next.split();
+                newPage.setVerbose(verbose);
+                page.add(newPage);
             }
             next.close();
         }

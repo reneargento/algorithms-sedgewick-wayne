@@ -164,15 +164,32 @@ public class Exercise15 {
         }
     }
 
-    private class BTreeSETWithBinarySearchSTPage<Key extends Comparable<Key>> {
+    public class BTreeSETWithBinarySearchSTPage<Key extends Comparable<Key>> {
 
-        private HashSet<PageInterface> pagesInMemory = new HashSet<>();
-        private PageInterface<Key> root = new BinarySearchSTPage<>(true, MAX_NUMBER_OF_NODES, pagesInMemory);
+        private PageInterface<Key> root;
+        private static final int DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE = 4;
+        private static final boolean DEFAULT_VERBOSE = false;
 
-        // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
-        private static final int MAX_NUMBER_OF_NODES = 4;
+        private int maxNumberOfNodesPerPage;
+        private HashSet<PageInterface> pagesInMemory;
+        private boolean verbose;
 
         public BTreeSETWithBinarySearchSTPage(Key sentinel) {
+            this(sentinel, DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE, DEFAULT_VERBOSE);
+        }
+
+        public BTreeSETWithBinarySearchSTPage(Key sentinel, int maxNumberOfNodesPerPage, boolean verbose) {
+            if (maxNumberOfNodesPerPage % 2 != 0 || maxNumberOfNodesPerPage == 2) {
+                throw new IllegalArgumentException("Max number of nodes must be divisible by 2 and higher than 2");
+            }
+
+            pagesInMemory = new HashSet<>();
+            root = new BinarySearchSTPage<>(true, maxNumberOfNodesPerPage, pagesInMemory);
+
+            this.verbose = verbose;
+            root.setVerbose(verbose);
+            this.maxNumberOfNodesPerPage = maxNumberOfNodesPerPage;
+
             add(sentinel);
         }
 
@@ -195,9 +212,12 @@ public class Exercise15 {
                 PageInterface<Key> leftHalf = root;
                 PageInterface<Key> rightHalf = root.split();
 
-                root = new BinarySearchSTPage<>(false, MAX_NUMBER_OF_NODES, pagesInMemory);
+                root = new BinarySearchSTPage<>(false, maxNumberOfNodesPerPage, pagesInMemory);
                 root.add(leftHalf);
                 root.add(rightHalf);
+
+                root.setVerbose(verbose);
+                rightHalf.setVerbose(verbose);
             }
         }
 
@@ -211,7 +231,9 @@ public class Exercise15 {
             add(next, key);
 
             if (next.isFull()) {
-                page.add(next.split());
+                PageInterface<Key> newPage = next.split();
+                newPage.setVerbose(verbose);
+                page.add(newPage);
             }
             next.close();
         }
@@ -229,8 +251,6 @@ public class Exercise15 {
         bTreeSET.add("AVL tree");
         bTreeSET.add("Segment tree");
         bTreeSET.add("Fenwick tree");
-
-        StdOut.println("\nTests");
 
         StdOut.println("Contains Binary tree: " + bTreeSET.contains("Binary tree") + " Expected: true");
         StdOut.println("Contains Red-black tree: " + bTreeSET.contains("Red-black tree") + " Expected: true");

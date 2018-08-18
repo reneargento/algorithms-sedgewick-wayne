@@ -76,7 +76,7 @@ public class Exercise19_WebSearch {
             isOpen = true;
         }
 
-        public void close() {
+        public void close(boolean verbose) {
             if (!isOpen) {
                 return;
             }
@@ -88,8 +88,10 @@ public class Exercise19_WebSearch {
                 webPageContent.add(key + DIVIDER + value);
             }
 
-            StdOut.println("Closing web page " + name + ":\n" + webPageContent.toString());
-            StdOut.println();
+            if (verbose) {
+                StdOut.println("Closing web page " + name + ":\n" + webPageContent.toString());
+                StdOut.println();
+            }
 
             webPagesInMemory.delete(id);
             isOpen = false;
@@ -242,13 +244,16 @@ public class Exercise19_WebSearch {
 
     public class BTreeWeb {
 
-        // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
-        private static final int MAX_NUMBER_OF_NODES = 4;
-        private SeparateChainingHashTable<String, WebPage> webPagesInMemory;
-        private boolean useCache;
-
         private WebPage root;
+        private static final int DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE = 4;
+        // For web pages the default verbose is true
+        private static final boolean DEFAULT_VERBOSE = true;
         private static final String SENTINEL_VALUE = "Sentinel (no content)";
+
+        private int maxNumberOfNodesPerPage;
+        private SeparateChainingHashTable<String, WebPage> webPagesInMemory;
+        private boolean verbose;
+        private boolean useCache;
 
         private static final String INTERNAL_WEB_PAGE_NAME_PREFIX = "BTreeNode";
         private static final String EXTERNAL_WEB_PAGE_NAME_PREFIX = "WebPage";
@@ -258,6 +263,16 @@ public class Exercise19_WebSearch {
         private int numberOfDigitsInInternalWebPagesName;
 
         public BTreeWeb(String sentinel, int upperLimitNumberOfInternalPagesExponential, boolean useCache) {
+            this(sentinel, upperLimitNumberOfInternalPagesExponential, useCache,
+                    DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE, DEFAULT_VERBOSE);
+        }
+
+        public BTreeWeb(String sentinel, int upperLimitNumberOfInternalPagesExponential, boolean useCache,
+                int maxNumberOfNodesPerPage, boolean verbose) {
+            if (maxNumberOfNodesPerPage % 2 != 0 || maxNumberOfNodesPerPage == 2) {
+                throw new IllegalArgumentException("Max number of nodes must be divisible by 2 and higher than 2");
+            }
+
             webPagesInMemory = new SeparateChainingHashTable<>();
             this.useCache = useCache;
 
@@ -267,7 +282,11 @@ public class Exercise19_WebSearch {
             GoogleDriveUtil.initializeGoogleDriveService();
 
             String rootName = getNextExternalWebPageName();
-            root = new WebPage(true, MAX_NUMBER_OF_NODES, rootName, webPagesInMemory);
+            root = new WebPage(true, maxNumberOfNodesPerPage, rootName, webPagesInMemory);
+
+            this.verbose = verbose;
+            this.maxNumberOfNodesPerPage = maxNumberOfNodesPerPage;
+
             add(sentinel, SENTINEL_VALUE);
         }
 
@@ -339,7 +358,7 @@ public class Exercise19_WebSearch {
             int nameParameterDividerIndex = nameParameterLine.indexOf(WebPage.DIVIDER);
             String webPageName = nameParameterLine.substring(nameParameterDividerIndex + 1);
 
-            WebPage webPage = new WebPage(isExternalPage, MAX_NUMBER_OF_NODES, webPageName, webPagesInMemory);
+            WebPage webPage = new WebPage(isExternalPage, maxNumberOfNodesPerPage, webPageName, webPagesInMemory);
 
             for (int dataLineNumber = WebPage.KEYS_PARAMETER_START_LINE_NUMBER; dataLineNumber < webPageData.size();
                  dataLineNumber++) {
@@ -362,7 +381,7 @@ public class Exercise19_WebSearch {
                 WebPage leftHalf = root;
                 WebPage rightHalf = root.split(this);
 
-                root = new WebPage(false, MAX_NUMBER_OF_NODES, getNextInternalWebPageName(), webPagesInMemory);
+                root = new WebPage(false, maxNumberOfNodesPerPage, getNextInternalWebPageName(), webPagesInMemory);
                 // Only upload changes to server after adding both pages, doing 1 network request instead of 2
                 root.add(leftHalf, false);
                 root.add(rightHalf, true);
@@ -388,7 +407,7 @@ public class Exercise19_WebSearch {
                 WebPage newWebPage = nextWebPage.split(this);
                 webPage.add(newWebPage, true);
             }
-            nextWebPage.close();
+            nextWebPage.close(verbose);
         }
 
         private String getNextInternalWebPageName() {

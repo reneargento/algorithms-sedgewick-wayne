@@ -14,14 +14,25 @@ public class Exercise21 {
         private HashSet<PageInterface> pagesInMemory = new HashSet<>();
 
         private PageInterface<Key> root;
-        private int maxNumberOfNodes;
+        private static final int DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE = 4;
+        private static final boolean DEFAULT_VERBOSE = false;
+
+        private int maxNumberOfNodesPerPage;
         private int numberOfExternalNodes;
         private boolean verbose;
 
-        public BTreeSETWithExternalPageCounter(Key sentinel, int maxNumberOfNodes, boolean verbose) {
-            this.maxNumberOfNodes = maxNumberOfNodes;
+        public BTreeSETWithExternalPageCounter(Key sentinel) {
+            this(sentinel, DEFAULT_MAX_NUMBER_OF_NODES_PER_PAGE, DEFAULT_VERBOSE);
+        }
+
+        public BTreeSETWithExternalPageCounter(Key sentinel, int maxNumberOfNodesPerPage, boolean verbose) {
+            if (maxNumberOfNodesPerPage % 2 != 0 || maxNumberOfNodesPerPage == 2) {
+                throw new IllegalArgumentException("Max number of nodes must be divisible by 2 and higher than 2");
+            }
+
+            this.maxNumberOfNodesPerPage = maxNumberOfNodesPerPage;
             this.verbose = verbose;
-            root = new Page<>(true, maxNumberOfNodes, pagesInMemory);
+            root = new Page<>(true, maxNumberOfNodesPerPage, pagesInMemory);
             numberOfExternalNodes = 1;
             root.setVerbose(verbose);
             add(sentinel);
@@ -50,7 +61,7 @@ public class Exercise21 {
                 PageInterface<Key> leftHalf = root;
                 PageInterface<Key> rightHalf = root.split();
 
-                root = new Page<>(false, maxNumberOfNodes, pagesInMemory);
+                root = new Page<>(false, maxNumberOfNodesPerPage, pagesInMemory);
                 root.add(leftHalf);
                 root.add(rightHalf);
 

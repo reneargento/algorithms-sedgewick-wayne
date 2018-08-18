@@ -57,14 +57,17 @@ public class Exercise20_BStarTrees {
             isOpen = true;
         }
 
-        public void close() {
+        public void close(boolean verbose) {
             StringJoiner pageContent = new StringJoiner(" ");
 
             for (Key key : keys()) {
                 pageContent.add(String.valueOf(key));
             }
 
-            StdOut.println("Page content: " + pageContent.toString());
+            if (verbose) {
+                StdOut.println("Page content: " + pageContent.toString());
+            }
+
             pagesInMemory.delete(this);
             isOpen = false;
         }
@@ -240,13 +243,30 @@ public class Exercise20_BStarTrees {
 
     public class BStarTree<Key extends Comparable<Key>> {
 
-        // By convention MAX_NUMBER_OF_NODES for B*Trees is always a number divisible by 3 with value >= 6
-        private static final int MAX_NUMBER_OF_NODES = 6;
-        private HashSet<BStarTreePage> pagesInMemory = new HashSet<>();
+        private static final int DEFAULT_MAX_NUMBER_OF_NODES_PER_INTERNAL_PAGE = 6;
+        private static final boolean DEFAULT_VERBOSE = false;
 
-        private BStarTreePage<Key> root = new BStarTreePage<>(true, MAX_NUMBER_OF_NODES, pagesInMemory);
+        private int maxNumberOfNodesInInternalPages;
+        private HashSet<BStarTreePage> pagesInMemory;
+        private boolean verbose;
+
+        private BStarTreePage<Key> root;
 
         public BStarTree(Key sentinel) {
+            this(sentinel, DEFAULT_MAX_NUMBER_OF_NODES_PER_INTERNAL_PAGE, DEFAULT_VERBOSE);
+        }
+
+        public BStarTree(Key sentinel, int maxNumberOfNodesInInternalPages, boolean verbose) {
+            if (maxNumberOfNodesInInternalPages % 3 != 0 || maxNumberOfNodesInInternalPages == 3) {
+                throw new IllegalArgumentException("Max number of nodes must be divisible by 3 and higher than 3");
+            }
+
+            pagesInMemory = new HashSet<>();
+            root = new BStarTreePage<>(true, maxNumberOfNodesInInternalPages, pagesInMemory);
+
+            this.verbose = verbose;
+            this.maxNumberOfNodesInInternalPages = maxNumberOfNodesInInternalPages;
+
             add(sentinel);
         }
 
@@ -269,7 +289,7 @@ public class Exercise20_BStarTrees {
                 BStarTreePage<Key> leftHalf = root;
                 BStarTreePage<Key> rightHalf = root.splitRoot();
 
-                root = new BStarTreePage<>(false, MAX_NUMBER_OF_NODES, pagesInMemory);
+                root = new BStarTreePage<>(false, maxNumberOfNodesInInternalPages, pagesInMemory);
                 root.add(leftHalf);
                 root.add(rightHalf);
             }
@@ -287,7 +307,7 @@ public class Exercise20_BStarTrees {
             if (next.isFull()) {
                 page.split();
             }
-            next.close();
+            next.close(verbose);
         }
     }
 
@@ -312,8 +332,6 @@ public class Exercise20_BStarTrees {
             char characterToAppend = (char) ('A' + i);
             bStarTree.add("Key " + characterToAppend);
         }
-
-        StdOut.println("\nTests");
 
         StdOut.println("Contains Binary tree: " + bStarTree.contains("Binary tree") + " Expected: true");
         StdOut.println("Contains Red-black tree: " + bStarTree.contains("Red-black tree") + " Expected: true");
