@@ -1,5 +1,6 @@
 package util;
 
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.HashMap;
@@ -131,6 +132,16 @@ public class ArrayGenerator {
 
     public static Comparable[] generateOrderedArray(int length) {
         Comparable[] array = new Comparable[length];
+
+        for(int i = 0; i < length; i++) {
+            array[i] = i;
+        }
+
+        return array;
+    }
+
+    public static int[] generateIntOrderedArray(int length) {
+        int[] array = new int[length];
 
         for(int i = 0; i < length; i++) {
             array[i] = i;

@@ -16,12 +16,14 @@ public class Exercise21 {
         private PageInterface<Key> root;
         private int maxNumberOfNodes;
         private int numberOfExternalNodes;
+        private boolean verbose;
 
-        public BTreeSETWithExternalPageCounter(Key sentinel, int maxNumberOfNodes) {
+        public BTreeSETWithExternalPageCounter(Key sentinel, int maxNumberOfNodes, boolean verbose) {
             this.maxNumberOfNodes = maxNumberOfNodes;
+            this.verbose = verbose;
             root = new Page<>(true, maxNumberOfNodes, pagesInMemory);
             numberOfExternalNodes = 1;
-            root.setVerbose(false);
+            root.setVerbose(verbose);
             add(sentinel);
         }
 
@@ -51,8 +53,9 @@ public class Exercise21 {
                 root = new Page<>(false, maxNumberOfNodes, pagesInMemory);
                 root.add(leftHalf);
                 root.add(rightHalf);
-                root.setVerbose(false);
-                rightHalf.setVerbose(false);
+
+                root.setVerbose(verbose);
+                rightHalf.setVerbose(verbose);
             }
         }
 
@@ -67,7 +70,7 @@ public class Exercise21 {
 
             if (next.isFull()) {
                 PageInterface<Key> newPage = next.split();
-                newPage.setVerbose(false);
+                newPage.setVerbose(verbose);
                 page.add(newPage);
 
                 if (newPage.isExternal()) {
@@ -95,7 +98,7 @@ public class Exercise21 {
 
                 for (int experiment = 0; experiment < numberOfExperimentsPerConfiguration; experiment++) {
                     BTreeSETWithExternalPageCounter<Integer> bTreeSet =
-                            new BTreeSETWithExternalPageCounter<>(0, order);
+                            new BTreeSETWithExternalPageCounter<>(0, order, false);
 
                     for (int i = 0; i < numberOfItems; i++) {
                         int randomKey = StdRandom.uniform(Integer.MAX_VALUE);

@@ -10,11 +10,14 @@ public class BTreeSET<Key extends Comparable<Key>> {
     // By convention MAX_NUMBER_OF_NODES is always an even number >= 4
     private static final int MAX_NUMBER_OF_NODES = 4;
     private HashSet<PageInterface> pagesInMemory = new HashSet<>();
+    private boolean verbose;
 
     private PageInterface<Key> root = new Page<>(true, MAX_NUMBER_OF_NODES, pagesInMemory);
 
-    public BTreeSET(Key sentinel) {
+    public BTreeSET(Key sentinel, boolean verbose) {
         add(sentinel);
+        this.verbose = verbose;
+        root.setVerbose(verbose);
     }
 
     public boolean contains(Key key) {
@@ -39,6 +42,9 @@ public class BTreeSET<Key extends Comparable<Key>> {
             root = new Page<>(false, MAX_NUMBER_OF_NODES, pagesInMemory);
             root.add(leftHalf);
             root.add(rightHalf);
+
+            root.setVerbose(verbose);
+            rightHalf.setVerbose(verbose);
         }
     }
 
@@ -52,7 +58,9 @@ public class BTreeSET<Key extends Comparable<Key>> {
         add(next, key);
 
         if (next.isFull()) {
-            page.add(next.split());
+            PageInterface<Key> newPage = next.split();
+            newPage.setVerbose(verbose);
+            page.add(newPage);
         }
         next.close();
     }
