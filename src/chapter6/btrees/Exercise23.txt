@@ -1,0 +1,26 @@
+6.23
+
+Results:
+
+ Order M |  Number of searches |  Total time
+     100                  1000         0.005
+     100                100000         0.198
+     100              10000000        19.973
+     200                  1000         0.002
+     200                100000         0.195
+     200              10000000        18.331
+     400                  1000         0.003
+     400                100000         0.188
+     400              10000000        17.533
+    1000                  1000         0.002
+    1000                100000         0.176
+    1000              10000000        16.818
+    1500                  1000         0.002
+    1500                100000         0.162
+    1500              10000000        15.784
+    2000                  1000         0.003
+    2000                100000         0.205
+    2000              10000000        17.821
+
+The value of M (order) that leads to the fastest search times for a B-tree doing random search operations in a huge symbol table (with 10,000,000 entries) is 1500.
+

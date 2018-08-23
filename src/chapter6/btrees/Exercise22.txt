@@ -1,0 +1,13 @@
+6.22
+
+Results:
+
+Number of searches |  B-tree time |  Binary search time
+              1000          0.005                 0.001
+            100000          0.082                 0.013
+          10000000          6.352                 0.910
+
+For random searches in a huge symbol table (with 10,000,000 entries) binary search has a better performance than B-trees.
+
+Reference related to virtual memory in macs:
+https://www.howtogeek.com/319151/why-you-shouldnt-turn-off-virtual-memory-on-your-mac/

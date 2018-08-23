@@ -1,0 +1,5 @@
+6.14
+
+The maximum number of items that we can hold in such a tree is achieved when there are "a" links in internal memory (the links between the first and second level of the tree), 2b links in pages representing internal nodes (the highest branching possible) and 2c items in pages representing external nodes (the highest number of items per external node).
+
+Maximum number of items = a * 2b * 2c

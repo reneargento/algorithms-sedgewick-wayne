@@ -1,0 +1,9 @@
+6.20 - B* trees
+
+Bounds on the number of probes used for a search or an insertion in a B*-tree of order M with N items:
+Between log(M) N and log(2M/3) N probes.
+This is because almost all internal nodes of the tree have between 2M / 3 and M - 1 links, since they are formed from a split of a full node with M keys and can only grow in size. 
+The only exception in which an internal node can have less than 2M / 3 links is when a node's child keys are reallocated with the creation of a new child node and its rightmost child does not get allocated enough entries. This happens when there are K keys to be reallocated to C child nodes and K / C < 2M / 3.
+
+As seen in Proposition B, the bounds on the number of probes used for a search or an insertion in a B-tree of order M with N items is between log(M) N and log(M/2) N probes.
+Since log(2M/3) N < log(M/2) N, B*-trees are more efficient for both search and insert operations. This efficiency comes with a tradeoff that the split() operation, which has a runtime complexity of O(M / 2) in B-trees, changes its runtime complexity to O(M^2).

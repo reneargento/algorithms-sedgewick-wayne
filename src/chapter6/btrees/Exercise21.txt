@@ -1,0 +1,20 @@
+6.21
+
+Results:
+
+ Order M |  Number of items |  AVG Number of External Pages
+       4             100000                           42865
+       4            1000000                          428592
+       4           10000000                         4276006
+      16             100000                            9424
+      16            1000000                           94288
+      16           10000000                          940648
+      64             100000                            2277
+      64            1000000                           22822
+      64           10000000                          227472
+     256             100000                             542
+     256            1000000                            5650
+     256           10000000                           57418
+
+As expected, the higher the value of the order (M), the lower the number of external pages in the B-tree.
+Also, when comparing experiments with the same order (M) but with different number of items (N), the higher the number of items, the higher the number of external pages in the B-tree.

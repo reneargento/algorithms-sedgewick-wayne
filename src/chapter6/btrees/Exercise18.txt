@@ -1,0 +1,16 @@
+6.18
+
+As seen on Proposition B, a search in a B-tree of order M with N items requires between log M N and log M/2 N probes.
+
+Considering that:
+1- We are evaluating the example given in Proposition B, with M = 1000 and N less than 62.5 billion, where the number of probes is less than 4. This means that the B-tree has height 3.
+2- The average number of probes per search when the target page is not in memory is 2 (which is 3 / 2 rounded up).
+3- T (the number of most-recently accessed pages) is 5% of S (the number of random searches).
+4- There are already T pages in memory.
+
+Average number of probes = 0 * 0.05 / (0.05 + 0.95) + 2 * 0.95 / (0.05 + 0.95)
+Average number of probes = 0 * 0.05 + 2 * 0.95
+Average number of probes = 2 * 0.95
+Average number of probes = 1.9
+
+The average number of probes per search in this B-tree is 1.9.

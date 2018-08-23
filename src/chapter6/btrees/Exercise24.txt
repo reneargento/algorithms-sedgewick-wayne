@@ -1,0 +1,12 @@
+6.24
+
+Results:
+
+Number of searches |  B-tree time |  Linear probing hashing time |  Red-Black tree time
+              1000          0.004                          0.001                  0.002
+            100000          0.173                          0.019                  0.114
+          10000000         16.659                          1.931                 11.297
+
+On the experiments using B-trees with order 1500, linear probing hashing and red-black trees for random searches in a huge symbol table (with 10,000,000 entries), the best search performance by far was achieved by linear probing hashing, which took 1.931 seconds to search 10 million random keys.
+It was followed by red-black trees, with 11.297 seconds to search 10 million random keys. B-trees had the worst search performance, taking 16.659 seconds to do the same searches.
+Such results can be explained by the fact that linear probing hashing perform searches in O(1) while B-trees perform searches in O(log(M/2) N) - O(log(750) N) in this case - and red-black trees perform searches in O(lgN).
