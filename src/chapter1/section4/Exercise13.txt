@@ -9,14 +9,14 @@ Amount of memory needed: 16 + 8 + 4 + 4 = 32 bytes
 
 b. Transaction (page 79)
 * object overhead -> 16 bytes
-* String reference -> 8 bytes
-* Date reference -> 8 bytes
+* String reference (who) -> 8 bytes
+* Date reference (when) -> 8 bytes
 * double value (amount) -> 8 bytes
 Amount of memory needed: 16 + 8 + 8 + 8 = 40 bytes
 
 c. FixedCapacityStackOfStrings with capacity C and N entries (page 133)
 * object overhead -> 16 bytes
-* array of String
+* String[] (a)
    object overhead -> 16 bytes
    int value (length) -> 4 bytes
    int value (padding) -> 4 bytes
