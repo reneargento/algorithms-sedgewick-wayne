@@ -1,8 +1,5 @@
 package util.google.drive;
 
-/**
- * Created by Rene Argento on 08/08/18.
- */
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -25,6 +22,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Created by Rene Argento on 08/08/18.
+ */
+
+// To compile this class import all libraries in libs/googledrive to the project
 public class GoogleDriveUtil {
     private static final String APPLICATION_NAME = "B-tree web pages";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();

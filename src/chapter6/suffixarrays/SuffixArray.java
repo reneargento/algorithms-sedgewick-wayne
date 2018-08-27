@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class SuffixArray {
 
-    private static class Suffix implements Comparable<Suffix> {
+    private class Suffix implements Comparable<Suffix> {
         private final String text; // reference to text string
         private final int index;   // index of suffix's first character
 
@@ -52,7 +52,7 @@ public class SuffixArray {
 
     public SuffixArray(String text) {
         int length = text.length();
-        this.suffixes = new Suffix[length];
+        suffixes = new Suffix[length];
 
         for (int index = 0; index < length; index++) {
             suffixes[index] = new Suffix(text, index);
@@ -78,17 +78,60 @@ public class SuffixArray {
         return suffixes[i].toString();
     }
 
-    // Will be added in exercise 6.28
     public int longestCommonPrefix(int i) {
         if (i < 1 || i >= suffixes.length) {
             throw new IllegalArgumentException("Index must be between 1 and " + (suffixes.length - 1));
         }
-        return -1;
+
+        return longestCommonPrefix(suffixes[i], suffixes[i - 1]);
     }
 
-    // Will be added in exercise 6.28
+    private int longestCommonPrefix(Suffix suffix1, Suffix suffix2) {
+        int minLength = Math.min(suffix1.length(), suffix2.length());
+
+        for (int i = 0; i < minLength; i++) {
+            if (suffix1.charAt(i) != suffix2.charAt(i)) {
+                return i;
+            }
+        }
+
+        return minLength;
+    }
+
     public int rank(String key) {
-        return -1;
+        int low = 0;
+        int high = suffixes.length - 1;
+
+        while (low <= high) {
+            int middle = low + (high - low) / 2;
+
+            int compare = compare(key, suffixes[middle]);
+
+            if (compare < 0) {
+                high = middle - 1;
+            } else if (compare > 0) {
+                low = middle + 1;
+            } else {
+                return middle;
+            }
+        }
+
+        return low;
+    }
+
+    private int compare(String key, Suffix suffix) {
+        int minLength = Math.min(key.length(), suffix.length());
+
+        for (int i = 0; i < minLength; i++) {
+            if (key.charAt(i) < suffix.charAt(i)) {
+                return -1;
+            }
+            if (key.charAt(i) > suffix.charAt(i)) {
+                return 1;
+            }
+        }
+
+        return key.length() - suffix.length();
     }
 
 }
