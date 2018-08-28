@@ -19,7 +19,7 @@ c. FixedCapacityStackOfStrings with capacity C and N entries (page 133)
 * String[] (a)
    object overhead -> 16 bytes
    int value (length) -> 4 bytes
-   int value (padding) -> 4 bytes
+   padding -> 4 bytes
    String references -> 8N bytes
    N Strings -> (32 bytes (a Java 7+ String size) + 24 + 2N bytes (for the char array)) * N = (56 + 2N) * N bytes
 * int value (n) -> 4 bytes

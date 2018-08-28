@@ -5,7 +5,7 @@ Using a two-dimensional array of double for adjacent edges instead of using an a
 double[][]
 * object overhead -> 16 bytes
 * int value (length) -> 4 bytes
-* int value (padding) -> 4 bytes
+* padding -> 4 bytes
 * double[] array overheads + lengths + paddings -> 24V bytes
 * double[] references -> 8V bytes
 * double values (weight) -> 8V^2 bytes
@@ -39,12 +39,12 @@ Amount of memory needed: 16 + 8 = 24 bytes
 PriorityQueue (assuming a min-priority queue and not a priority queue that may be either min or max)
 * object overhead -> 16 bytes
 * int value (size) -> 4 bytes
-* int value (padding) -> 4 bytes
+* padding -> 4 bytes
 * Key[] reference (priorityQueue) -> 8 bytes
 * Key[] (priorityQueue)
    object overhead -> 16 bytes
    int value (length) -> 4 bytes
-   int value (padding) -> 4 bytes
+   padding -> 4 bytes
    Key references -> 8E -> (Resizing array): 8E * 2 = 16E
 
    Edge -> 32 bytes -> 32E

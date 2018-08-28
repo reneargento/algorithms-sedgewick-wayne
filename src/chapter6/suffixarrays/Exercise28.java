@@ -178,8 +178,8 @@ public class Exercise28 {
         int rank2 = suffixArray.rank("fenwick");
         StdOut.println("Rank fenwick: " + rank2 + " Expected: 5");
 
-        int rank3 = suffixArray.rank("suffix arrays");
-        StdOut.println("Rank suffix arrays: " + rank3 + " Expected: 9");
+        int rank3 = suffixArray.rank("rene argento");
+        StdOut.println("Rank rene argento: " + rank3 + " Expected: 9");
     }
 
 }

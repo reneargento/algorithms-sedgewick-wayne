@@ -29,7 +29,7 @@ EdgeWeightedDigraph
 * Bag<DirectedEdge>[] (adj)
    object overhead -> 16 bytes
    int value (length) -> 4 bytes
-   int value (padding) -> 4 bytes
+   padding -> 4 bytes
    Bag references -> 8V -> (Resizing array): 8V * 2 = 16V
    Bag -> 72E + 24 bytes -> There are V Bags in total, and they have E nodes -> 72E + 24V
 Amount of memory needed: 16 + 4 + 4 + 8 + 16 + 4 + 4 + 16V + 72E + 24V = 72E + 40V + 56 bytes

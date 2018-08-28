@@ -28,7 +28,7 @@ Graph
 * Bag<Integer>[] (adj)
    object overhead -> 16 bytes
    int value (length) -> 4 bytes
-   int value (padding) -> 4 bytes
+   padding -> 4 bytes
    Bag references -> 8V -> (Resizing array): 8V * 2 = 16V
    Bag -> 64E + 24 bytes -> There are V Bags and in total, they have 2E nodes -> 128E + 24V
 Amount of memory needed: 16 + 4 + 4 + 8 + 16 + 4 + 4 + 16V + 128E + 24V = 128E + 40V + 56 bytes
