@@ -13,7 +13,7 @@ public class Exercise30 {
 
         private char[] textChars;
         private int[] indexes; // indexes of suffixes' first characters
-        int textLength;
+        private int textLength;
 
         public SuffixArrayNoInnerClass(String text) {
             textLength = text.length();
@@ -116,7 +116,7 @@ public class Exercise30 {
 
     // O(N * w * logR), where N is the number of strings in the array, w is the strings' average length and R is
     // the alphabet size.
-    // For suffix arrays this is equal to O(N * N/2 * log256) = O(N^2).
+    // For suffix arrays this is equal to O(N * N/2 * log256) = O(N^2) character compares.
     // Has an average running time of N when sorting Strings with long prefix matches.
     public class ThreeWayStringQuickSortSuffixArray {
 
