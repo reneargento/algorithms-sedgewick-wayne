@@ -134,6 +134,7 @@ public class SuffixArrayLinearTime {
 
         // Step 1: Sort sample suffixes
         // LSD radix sort the module 1 and module 2 triples
+        count = ensureSize(count, k + 1);
         radixPass(s12, suffixArray12, values, +2, n02, k, count);
         radixPass(suffixArray12, s12, values, +1, n02, k, count);
         radixPass(s12, suffixArray12, values, 0, n02, k, count);
@@ -226,6 +227,14 @@ public class SuffixArrayLinearTime {
         }
 
         return count;
+    }
+
+    private int[] ensureSize(int[] array, int length) {
+        if (array.length < length) {
+            array = new int[length];
+        }
+
+        return array;
     }
 
     private int getSuffixArrayPosition(int[] suffixArray12, int t, int n0) {
