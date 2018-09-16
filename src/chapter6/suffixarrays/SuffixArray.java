@@ -5,6 +5,10 @@ import java.util.Arrays;
 /**
  * Created by Rene Argento on 23/08/18.
  */
+// Running time: O(N * w * logR), where w is the suffixes average length and R is the alphabet size.
+// This is equal to O(N * N/2 * log256) = O(N^2) character compares.
+// The worst case happens when sorting the suffixes of a string consisting of N copies of the same character.
+// On average it runs in 2N ln N character compares.
 public class SuffixArray {
 
     private class Suffix implements Comparable<Suffix> {

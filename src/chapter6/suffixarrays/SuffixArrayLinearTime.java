@@ -8,6 +8,7 @@ import java.util.Arrays;
  * Created by Rene Argento on 02/09/18.
  */
 
+// Builds a suffix array in O(N)
 // Based on J. Kärkkäinen and P. Sanders' "Simple linear work suffix array construction" article.
 // In: Proceedings of the 30th International Conference on Automata, Languages and Programming, Springer, 2003
 // Also based on https://github.com/carrotsearch/jsuffixarrays/blob/master/src/main/java/org/jsuffixarrays/Skew.java
@@ -315,6 +316,16 @@ public class SuffixArrayLinearTime {
         }
 
         return key.length() - suffix.length();
+    }
+
+    public int[] getSuffixes() {
+        int[] suffixesArray = new int[suffixes.length];
+
+        for (int i = 0; i < suffixes.length; i++) {
+            suffixesArray[i] = suffixes[i].index;
+        }
+
+        return suffixesArray;
     }
 
     public static void main(String[] args) {
