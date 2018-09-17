@@ -36,7 +36,16 @@ public class Exercise27 {
             }
 
             public int compareTo(CircularSuffix otherCircularSuffix) {
-                return toString().compareTo(otherCircularSuffix.toString());
+
+                for (int i = 0; i < length(); i++) {
+                    if (charAt(i) < otherCircularSuffix.charAt(i)) {
+                        return -1;
+                    } else if (charAt(i) > otherCircularSuffix.charAt(i)) {
+                        return 1;
+                    }
+                }
+
+                return 0;
             }
         }
 

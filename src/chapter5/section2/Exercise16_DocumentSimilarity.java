@@ -26,8 +26,8 @@ public class Exercise16_DocumentSimilarity {
         String filePath1 = Constants.FILES_PATH + fileName1;
         String filePath2 = Constants.FILES_PATH + fileName2;
 
-        String charactersInFile1 = FileUtil.getAllCharactersFromFile(filePath1, false);
-        String charactersInFile2 = FileUtil.getAllCharactersFromFile(filePath2, false);
+        String charactersInFile1 = FileUtil.getAllCharactersFromFile(filePath1, false, false);
+        String charactersInFile2 = FileUtil.getAllCharactersFromFile(filePath2, false, false);
 
         if (charactersInFile1 == null || charactersInFile2 == null) {
             return Double.POSITIVE_INFINITY;

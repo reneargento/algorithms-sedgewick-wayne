@@ -14,7 +14,7 @@ public class Exercise39_Timings {
 
     private void doExperiment() {
         String taleOfTwoCitiesFile = Constants.FILES_PATH + Constants.TALE_OF_TWO_CITIES_FILE;
-        String taleOfTwoCitiesText = FileUtil.getAllCharactersFromFile(taleOfTwoCitiesFile, true);
+        String taleOfTwoCitiesText = FileUtil.getAllCharactersFromFile(taleOfTwoCitiesFile, true, true);
         String pattern = "it is a far far better thing that I do than I have ever done";
 
         String[] substringSearchMethods = {

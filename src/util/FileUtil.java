@@ -43,7 +43,8 @@ public class FileUtil {
         return words;
     }
 
-    public static String getAllCharactersFromFile(String filePath, boolean includeWhitespacesAndLineBreaks) {
+    public static String getAllCharactersFromFile(String filePath, boolean includeWhitespaces,
+                                                  boolean includeLineBreaks) {
         List<String> lines;
 
         try {
@@ -57,12 +58,12 @@ public class FileUtil {
         int lineNumber = 0;
 
         for(String line : lines) {
-            if (lineNumber != 0 && includeWhitespacesAndLineBreaks) {
+            if (lineNumber != 0 && includeLineBreaks) {
                 allCharacters.append("\n");
             }
 
             for (char currentChar : line.toCharArray()) {
-                if (currentChar == ' ' && !includeWhitespacesAndLineBreaks) {
+                if (currentChar == ' ' && !includeWhitespaces) {
                     continue;
                 }
 
