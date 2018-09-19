@@ -48,6 +48,11 @@ public class SuffixArrayLinearTime {
         int length = text.length();
         suffixes = new Suffix[length];
 
+        if (length == 1) {
+            suffixes[0] = new Suffix(text, 0);
+            return;
+        }
+
         for (int i = 0; i < text.length(); i++) {
             input[i] = text.charAt(i);
         }
