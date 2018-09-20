@@ -138,4 +138,25 @@ public class SuffixArray {
         return key.length() - suffix.length();
     }
 
+    public int[] getSuffixes() {
+        int[] suffixesArray = new int[suffixes.length];
+
+        for (int i = 0; i < suffixes.length; i++) {
+            suffixesArray[i] = suffixes[i].index;
+        }
+
+        return suffixesArray;
+    }
+
+    // Direct access to a suffix.
+    // This method is useful when we need to check specific characters of the suffix in constant time (instead of
+    // getting the entire suffix first with select() in O(N)).
+    public Suffix getSuffix(int index) {
+        if (index < 0 || index >= suffixes.length) {
+            throw new IllegalArgumentException("Index must be between 0 and " + (suffixes.length - 1));
+        }
+
+        return suffixes[index];
+    }
+
 }
