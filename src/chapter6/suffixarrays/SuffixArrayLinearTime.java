@@ -333,15 +333,15 @@ public class SuffixArrayLinearTime {
         return suffixesArray;
     }
 
-    // Direct access to a suffix.
+    // Direct access to a suffix character in O(1).
     // This method is useful when we need to check specific characters of the suffix in constant time (instead of
     // getting the entire suffix first with select() in O(N)).
-    public Suffix getSuffix(int index) {
-        if (index < 0 || index >= suffixes.length) {
-            throw new IllegalArgumentException("Index must be between 0 and " + (suffixes.length - 1));
+    public char getSuffixCharAt(int suffixIndex, int charIndex) {
+        if (suffixIndex < 0 || suffixIndex >= suffixes.length) {
+            throw new IllegalArgumentException("Suffix index must be between 0 and " + (suffixes.length - 1));
         }
 
-        return suffixes[index];
+        return suffixes[suffixIndex].charAt(charIndex);
     }
 
     public static void main(String[] args) {
