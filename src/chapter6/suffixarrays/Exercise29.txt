@@ -1,0 +1,18 @@
+6.29
+
+Suffix
+* object overhead -> 16 bytes
+* String reference (text) -> 8 bytes
+* int value (index) -> 4 bytes
+* padding -> 4 bytes
+Amount of memory needed: 16 + 8 + 4 + 4 = 32 bytes
+
+SuffixArray
+* object overhead -> 16 bytes
+* Suffix[] (suffixes)
+   object overhead -> 16 bytes
+   int value (length) -> 4 bytes
+   int value (padding) -> 4 bytes
+   Suffix references -> 8N bytes
+   N Suffixes -> 32N bytes
+Amount of memory needed: 16 + 16 + 4 + 4 + 8N + 32N = 40N + 40 bytes

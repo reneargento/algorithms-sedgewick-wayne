@@ -1,0 +1,61 @@
+6.25
+
+a. abacadaba
+
+suffixes      sorted suffix array
+              i   index(i)   lcp(i)
+0  abacadaba  0      8        0       a
+1  bacadaba   1      6        1       aba
+2  acadaba    2      0        3       abacadaba
+3  cadaba     3      2        1       acadaba
+4  adaba      4      4        1       adaba
+5  daba       5      7        0       ba
+6  aba        6      1        2       bacadaba
+7  ba         7      3        0       cadaba
+8  a          8      5        0       daba
+
+b. mississippi
+
+suffixes          sorted suffix array
+                  i   index(i)    lcp(i)
+ 0  mississippi   0      10        0       i
+ 1  ississippi    1       7        1       ippi
+ 2  ssissippi     2       4        1       issippi
+ 3  sissippi      3       1        4       ississippi
+ 4  issippi       4       0        0       mississippi
+ 5  ssippi        5       9        0       pi
+ 6  sippi         6       8        1       ppi
+ 7  ippi          7       6        0       sippi
+ 8  ppi           8       3        2       sissippi
+ 9  pi            9       5        1       ssippi
+10  i            10       2        3       ssissippi
+
+c. abcdefghij
+
+suffixes        sorted suffix array
+                i   index(i)    lcp(i)
+0  abcdefghij   0      0         0       abcdefghij
+1  bcdefghij    1      1         0       bcdefghij
+2  cdefghij     2      2         0       cdefghij
+3  defghij      3      3         0       defghij
+4  efghij       4      4         0       efghij
+5  fghij        5      5         0       fghij
+6  ghij         6      6         0       ghij
+7  hij          7      7         0       hij
+8  ij           8      8         0       ij
+9  j            9      9         0       j
+
+d. aaaaaaaaaa
+
+suffixes        sorted suffix array
+                i   index(i)    lcp(i)
+0  aaaaaaaaaa   0      9         0       a
+1  aaaaaaaaa    1      8         1       aa
+2  aaaaaaaa     2      7         2       aaa
+3  aaaaaaa      3      6         3       aaaa
+4  aaaaaa       4      5         4       aaaaa
+5  aaaaa        5      4         5       aaaaaa
+6  aaaa         6      3         6       aaaaaaa
+7  aaa          7      2         7       aaaaaaaa
+8  aa           8      1         8       aaaaaaaaa
+9  a            9      0         9       aaaaaaaaaa

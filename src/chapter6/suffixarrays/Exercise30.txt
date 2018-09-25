@@ -1,0 +1,30 @@
+6.30
+
+Suffix array with Suffix class:
+Running time: O(N^2), but on average runs in 2N ln N (as seen in the book, on chapter 6, proposition C). The worst case happens when sorting the suffixes of a string consisting of N copies of the same character, or already sorted suffixes.
+Memory: 40N + 40 bytes (as seen on exercise 6.29)
+
+Suffix array without Suffix class:
+Running time: O(N * w * logR), where w is the suffix' average length and R is the alphabet size. For suffix arrays this is equal to O(N * N/2 * log256) = O(N^2) character compares. The worst case happens when sorting the suffixes of a string consisting of N copies of the same character. On average it runs in 2N ln N character compares (as seen in the book, on chapter 5, proposition E).
+Memory: 
+SuffixArrayNoInnerClass
+* object overhead -> 16 bytes
+* char[] reference (textChars) -> 8 bytes
+* char[] (textChars)
+   object overhead -> 16 bytes
+   int value (length) -> 4 bytes
+   padding -> 4 bytes
+   char items -> 2N
+* int[] reference (indexes) -> 8 bytes
+* int[] (indexes)
+   object overhead -> 16 bytes
+   int value (length) -> 4 bytes
+   padding -> 4 bytes
+   int items -> 4N
+* int value (textLength) -> 4 bytes
+* padding -> 4 bytes
+Amount of memory needed: 16 + 8 + 16 + 4 + 4 + 2N + 8 + 16 + 4 + 4 + 4N + 4 + 4 = 6N + 88 bytes
+
+The running time of the suffix array implementation without Suffix class is better than the running time of the implementation using Suffix class. The former has a worst case of O(N^2) character compares while the latter has a worst case of O(N^2) key compares. Also, on average the suffix array implementation without Suffix class has a runtime of 2N ln N character compares while the implementation using Suffix class has an average runtime of 2N ln N key compares. The difference becomes clearer when dealing with suffixes that have long common prefixes, where the implementation without Suffix class does not have to re-compare such prefixes during the sort.
+In terms of memory usage, the suffix array implementation without Suffix class uses less memory (6N + 88 bytes) than the implementation using Suffix class (40N + 40 bytes).
+Overall the suffix array implementation without Suffix class is better than the implementation with Suffix class in both running time and memory usage.

@@ -1,0 +1,3 @@
+6.26
+
+The problem with the code fragment is that if the substring() method takes linear time and space (which is the case in Java 7) the loop will take quadratic time and space. This wouldn't be a problem in Java 6, where the substring() method takes constant time and space (which would lead to a linear time and space loop).
