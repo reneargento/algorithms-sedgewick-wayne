@@ -35,12 +35,13 @@ public class FordFulkerson {
     private boolean hasAugmentingPath(FlowNetwork flowNetwork, int source, int target) {
         visited = new boolean[flowNetwork.vertices()];
         edgeTo = new FlowEdge[flowNetwork.vertices()];
+
         Queue<Integer> queue = new Queue<>();
 
         visited[source] = true;
         queue.enqueue(source);
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty() && !visited[target]) {
             int vertex = queue.dequeue();
 
             for (FlowEdge edge : flowNetwork.adjacent(vertex)) {
@@ -61,7 +62,7 @@ public class FordFulkerson {
         return maxFlowValue;
     }
 
-    // Returns true if vertex is reachable from source after doing a min cut
+    // Returns true if the vertex is on the source side of the min cut
     public boolean inCut(int vertex) {
         return visited[vertex];
     }

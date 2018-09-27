@@ -5,11 +5,14 @@ package chapter6.networkflow;
  */
 public class FlowFeasibility {
 
+    private static final double FLOATING_POINT_EPSILON = 1E-11;
+
     private boolean isFeasible(FlowNetwork flowNetwork, int sourceVertex, int targetVertex) {
         // Check that flow on each edge is nonnegative and not greater than capacity.
         for (int vertex = 0; vertex < flowNetwork.vertices(); vertex++) {
             for (FlowEdge flowEdge : flowNetwork.adjacent(vertex)) {
-                if (flowEdge.flow() < 0 || flowEdge.flow() > flowEdge.capacity()) {
+                if (flowEdge.flow() < -FLOATING_POINT_EPSILON
+                        || flowEdge.flow() > flowEdge.capacity() + FLOATING_POINT_EPSILON) {
                     return false;
                 }
             }
@@ -26,7 +29,6 @@ public class FlowFeasibility {
     }
 
     private boolean localEquilibrium(FlowNetwork flowNetwork, int vertex) {
-        double EPSILON = 1E-11;
         double netflow = 0;
 
         for (FlowEdge flowEdge : flowNetwork.adjacent(vertex)) {
@@ -37,7 +39,7 @@ public class FlowFeasibility {
             }
         }
 
-        return Math.abs(netflow) < EPSILON;
+        return Math.abs(netflow) < FLOATING_POINT_EPSILON;
     }
 
 }

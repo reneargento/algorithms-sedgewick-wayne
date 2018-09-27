@@ -1,0 +1,22 @@
+6.36
+
+Maximum possible flow value for any st-network with V vertices and E edges (with positive integer capacities less than M):
+Consider C to be the highest possible edge capacity.
+
+1- Parallel edges not allowed
+Max flow = (V - 2) * C
+In this case, since parallel edges are not allowed, each vertex other than the source and the target is connected to them through 2 edges of capacity C.
+
+       s
+    /  |   \
+   v1  v2  v3
+    \  |  /
+       t
+
+2- Parallel edges allowed
+Max flow = E * C
+In this case, with parallel edges allowed, the source vertex can be directly connected to the target vertex through E parallel edges, each with capacity C.
+
+      s
+     /|\
+      t
