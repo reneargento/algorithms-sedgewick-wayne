@@ -1,0 +1,32 @@
+6.37
+
+If the network forms a tree if the sink is removed this means that there are no cycles in the network that do not include the sink. In other words, intermediate vertices are not directly connected and a situation like this would happen:
+
+Original network:
+
+       s
+    /  |   \
+   v   v    v
+   1   2     3
+   |   |     /
+   v   v    /
+   4   5   /
+    \  |  /
+     v v v
+       t
+
+Tree formed after removing the sink vertex:
+
+       s
+    /  |   \
+   v   v    v
+   1   2    3
+   |   |
+   v   v
+   4   5
+
+In this case the maxflow can be computed with the following algorithm:
+ For each vertex adjacent to the source:
+   Do a depth first search until reaching the sink vertex. Keep track of the minimum edge capacity on the path.
+ Maxflow will be equal to the sum of all the minimum edge capacities computed.
+ Return maxflow.
