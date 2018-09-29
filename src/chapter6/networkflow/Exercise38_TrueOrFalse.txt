@@ -1,0 +1,95 @@
+6.38 - True of false
+
+a. In any max flow, there is no directed cycle on which every edge carries positive flow.
+False.
+Counterexample:
+
+    s
+   | ^
+2/2| |1/1
+   v |
+    1
+    |
+    |1/1
+    v
+    t
+
+b. There exists a max flow for which there is no directed cycle on which every edge carries positive flow.
+True.
+Proof: Let f be a maximum flow and let C be a cycle on which every edge carries positive flow.
+Let g = min(e E C) f(e). In other words, g is equal to the value of the minimum edge flow among the edges in cycle C.
+Reducing the flow of each edge in C by g maintains the value of the max flow and sets the flow f(e) of at least one of the edges e E C to zero.
+
+c. If all edge capacities are distinct, the max flow is unique.
+False.
+Counterexample:
+
+      s
+      | 1/1
+      |
+      v
+      1
+      |
+     / \
+2/0 /  |
+   v   |
+  2    | 3/1
+   \   |
+4/0 \  |
+     v v
+      t
+
+      s
+      | 1/1
+      |
+      v
+      1
+      |
+     / \
+2/1 /  |
+   v   |
+  2    | 3/0
+   \   |
+4/1 \  |
+     v v
+      t
+
+d. If all edge capacities are increased by an additive constant, the min cut remains unchanged.
+False.
+Counterexample:
+
+original network:
+
+        s
+        | 4/3
+        v
+        1
+ 1/1/   |1/1  \ 1/1    <- min cut
+   v    v      v
+   \    |     /
+1/1 \   |1/1 / 1/1
+     v  v   v
+        t
+
+After adding a constant value of 1 to all edge capacities:
+
+        s
+        | 5/3  <- min cut
+        v
+        1
+ 2/1/   |2/1  \ 2/1
+   v    v      v
+   \    |     /
+2/1 \   |2/1 / 2/1
+     v  v   v
+        t
+
+e. If all edge capacities are multiplied by a positive integer, the min cut remains unchanged.
+True.
+Proof: Let g be the positive integer for which every edge capacity is multiplied.
+When all edge capacities are multiplied by g the value of every cut also gets multiplied by g.
+Thus, the relative order of the cuts does not change and the min cut before the multiplication will remain the min cut after it.
+
+References:
+http://algo2.iti.kit.edu/sanders/courses/algdat03/sol3.pdf
+https://stackoverflow.com/questions/40277603/is-minimum-cut-same-for-the-graph-after-increasing-edge-capacity-by-1-for-all-ed
