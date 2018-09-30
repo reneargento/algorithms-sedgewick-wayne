@@ -1,0 +1,21 @@
+6.39
+
+Proposition: Each time an edge is a critical edge, the length of the augmenting path through it must increase by 2.
+Proof:
+Let df(vertex1, vertex2) be the augmenting path distance from vertex 1 to vertex 2.
+
+When edge (u, v) is critical this means that:
+df(s, v) = df(s, u) + 1 (since augmenting paths are shortest paths)
+
+Before becoming a critical edge again, (u, v) must be added back by some augmenting path, which must contain it.
+Let df' be the augmenting path distance when (u, v) is added back.
+
+df'(s, u) = df'(s, v) + 1 (since edge (u, v) was removed, to add it back it is necessary to reach it from vertex v).
+df'(s, v) + 1 >= df(s, v) + 1 (since df'(s, v) is in an augmenting path found after the augmenting path in which df(s, v) is, it cannot have a distance lower than df(s, v)).
+df(s, v) + 1 = df(s, u) + 1 + 1 (replace df(s, v) by df(s, u) + 1, according to the above definition).
+
+This means that df'(s, u) = df(s, u) + 2.
+Therefore, the length of the augmenting path through a re-added critical edge must increase by 2.
+
+Reference:
+https://www.cs.usfca.edu/~galles/cs673/lecture/lecture18.pdf
