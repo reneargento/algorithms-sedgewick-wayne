@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Rene Argento on 12/11/17.
  */
-// The data source is a file containing information about United States flight distances
+// The data source is a file containing information about flights between United States airports in 1997.
 // It can be downloaded here: http://networkrepository.com/inf-USAir97.php
 @SuppressWarnings("unchecked")
 public class Exercise37_RealEdgeWeightedGraphs {

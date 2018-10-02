@@ -90,7 +90,9 @@ public class FlowNetwork {
 
             StringJoiner neighbors = new StringJoiner(" ");
             for(FlowEdge edge : adjacent(vertex)) {
-                neighbors.add(edge.toString());
+                if (edge.from() == vertex) {
+                    neighbors.add(edge.toString());
+                }
             }
             stringBuilder.append(neighbors.toString()).append("\n");
         }
