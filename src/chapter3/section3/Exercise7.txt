@@ -11,7 +11,7 @@ less than a   between a and b   between b and c   greater than c
 2- parent is a 2-node (left)
                                                  d
                                  abc                             greater than d
-less than a   between a and b   between b and c   greater than c
+less than a   between a and b   between b and c   between c and d
 
                                                  bd
             a                                   c                             greater than d
