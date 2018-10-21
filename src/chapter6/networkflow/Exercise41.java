@@ -10,17 +10,17 @@ public class Exercise41 {
 
     private final int MAX_VALUE = (int) Math.pow(2, 20);
 
-    private interface RandomCapacity {
+    interface RandomCapacity {
         int getRandomCapacity();
     }
 
-    private class RandomUniformCapacity implements RandomCapacity {
+    class RandomUniformCapacity implements RandomCapacity {
         public int getRandomCapacity() {
             return StdRandom.uniform(MAX_VALUE);
         }
     }
 
-    private class RandomGaussianCapacity implements RandomCapacity {
+    class RandomGaussianCapacity implements RandomCapacity {
         int median = MAX_VALUE / 2;
         double sigma = median / 6.0;
 
@@ -29,7 +29,7 @@ public class Exercise41 {
         }
     }
 
-    private class VertexPair {
+    class VertexPair {
         int vertex1;
         int vertex2;
 
@@ -90,7 +90,7 @@ public class Exercise41 {
             }
         }
 
-        private VertexPair getRandomVerticesPair(int vertices) {
+        public VertexPair getRandomVerticesPair(int vertices) {
             int vertex1 = StdRandom.uniform(vertices);
             int vertex2 = StdRandom.uniform(vertices);
 
