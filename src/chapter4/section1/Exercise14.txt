@@ -1,11 +1,21 @@
 4.1.14
 
-If we use a stack instead of a queue when running breadth-first search, it does not compute shortest paths.
+If we use a stack instead of a queue when running breadth-first search, it may not compute shortest paths.
 This can be seen in the following graph:
 
   0 (source)
  / \
 1 - 2
+|   |
+4 - 3
 
-Using a stack the distance from 0 to 1 will be 1 and from 0 to 2 will be 2.
-Using a queue, the distance from 0 to both 1 and 2 will be 1.
+If the edge 0 - 2 is inserted before the edge 0 - 1:
+Using a stack, the distance from 0 to 4 will be 3.
+Using a queue, the distance from 0 to 4 will be 2.
+
+If the edge 0 - 1 is inserted before the edge 0 - 2:
+Using a stack, the distance from 0 to 3 will be 3.
+Using a queue, the distance from 0 to 3 will be 2.
+
+Thanks to lemonadeseason (https://github.com/lemonadeseason) for correcting the example in this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/24
