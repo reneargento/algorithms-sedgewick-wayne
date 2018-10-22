@@ -11,7 +11,7 @@ public class FlowEdge {
     private double flow;
 
     // Deal with floating-point roundoff errors
-    private static final double FLOATING_POINT_EPSILON = 1E-11;
+    private static final double FLOATING_POINT_EPSILON = 1E-10;
 
     public FlowEdge(int vertex1, int vertex2, double capacity) {
         this.vertex1 = vertex1;
@@ -34,6 +34,10 @@ public class FlowEdge {
 
     public double flow() {
         return flow;
+    }
+
+    public void setFlow(double flow) {
+        this.flow = flow;
     }
 
     public int other(int vertex) {
