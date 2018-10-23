@@ -106,7 +106,7 @@ public class Exercise43_BasicReductions {
             flowNetwork.addEdge(new FlowEdge(edge.from(), edge.to(), edge.capacity()));
         }
 
-        // Add dummy source and dummy target
+        // Add super source and super target
         int source = originalFlowNetwork.vertices();
         int target = source + 1;
 
