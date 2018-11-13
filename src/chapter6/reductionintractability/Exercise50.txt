@@ -1,0 +1,89 @@
+6.50
+
+Reduction from shortest paths problem to linear programming:
+
+Method 1:
+We consider a system of inequalities and equations that involve the following variables:
+l(u,v) -> variable corresponding to the length of the directed edge u -> v.
+x(u,v) -> indicator variable for whether edge u -> v is in the shortest path. It has value 1 when the edge is, and 0 when the edge is not.
+
+Given a directed graph G with a source vertex s and a target vertex t.
+
+Linear programming formulation:
+
+   Minimize  E  l(u,v) * x(u,v)
+            u->v
+
+Subject to the constraints
+
+   E x(s,v) - E x(v,s) = 1
+   v          v
+
+   E x(t,v) - E x(v,t) = -1
+   v          v
+
+for every vertex u other than s and t:
+   E x(u,v) - E x(v,u) = 0
+   v          v
+
+   x(u,v) >= 0 for every edge u -> v
+
+The constraints state that the path should start at s, end at t, and either pass through or avoid every other vertex v.
+This selects the set of edges with minimal length, subject to the constraint that this set forms a path from s to t  - represented by the constraints that ensure that for all vertices except s and t the number of incoming and outcoming edges that are part of the path must be the same.
+
+The solution is easily converted to a solution of the shortest paths problem: the edges u -> v for which x(u,v) is equal to 1 are part of the shortest path and the sum of all their lengths is the length of the shortest path from s to t.
+
+Method 2:
+We consider a system of inequalities and equations that involve the following variables:
+d(v) -> variable corresponding to the shortest distance from s to vertex v.
+l(u,v) -> variable corresponding to the length of the directed edge u -> v.
+
+Given a directed graph G with a source vertex s and a target vertex t.
+
+Linear programming formulation:
+
+   Maximize d(t)
+
+Subject to the constraints
+
+   d(s) = 0
+   d(v) - d(u) <= l(u,v) for every edge u -> v
+
+The constraints state that in a shortest path from s to t, d(v) is at most the shortest path distance from s to v. And the value of d(t) will be the shortest path distance from s to t.
+To find the edges in the shortest path from s to t, the following method can be used:
+Pre-process the edges to map each vertex with its incoming edges.
+Starting with vertex t, check which incoming neighbor vertex v has d(v) equal to d(t) - l(v,t).
+Add the edge v -> t to the shortest path. Replace t with v and do the same check for its incoming neighbors, iterating this process until vertex s is reached.
+
+To compute the shortest paths from s to every other vertex, the following linear programming formulation can be used:
+
+   Maximize E d(v)
+            v
+
+Subject to the constraints
+
+   d(s) = 0
+   d(v) - d(u) <= l(u,v) for every edge u -> v
+
+The resulting values of d(v) will be the shortest path distances from s to every vertex v.
+To find the edges in the shortest path from s to any vertex v, the same process mentioned above can be used, replacing vertex t with vertex v.
+
+To compute the shortest paths from all vertices to every other vertex (all-pairs shortest paths), the following linear programming formulation can be used:
+
+d(u,v) -> variable corresponding to the shortest distance from vertex u to vertex v.
+
+   Maximize E d(u,v)
+            v
+
+Subject to the constraints
+
+   d(v,v) = 0 for every vertex v
+   d(u,w) - d(u,v) <= l(v,w) for every vertex u in V (the set of all vertices in G) and every edge v -> w in E (the set of all edges in G)
+
+The resulting values of d(u,v) will be the shortest path distances from every vertex u to every vertex v.
+To find the edges in the shortest paths from every vertex u to every vertex v, the same process mentioned above can be used, replacing vertex t with vertex v and vertex s with vertex u.
+
+References
+https://en.wikipedia.org/wiki/Shortest_path_problem#Linear_programming_formulation
+https://courses.engr.illinois.edu/cs498dl1/sp2015/notes/26-lp.pdf
+http://www.cs.yale.edu/homes/aspnes/pinewiki/attachments/LinearProgramming/lp.pdf
