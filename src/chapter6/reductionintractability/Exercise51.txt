@@ -1,0 +1,8 @@
+6.51
+
+Could there be an algorithm that solves an NP-complete problem in an average time of N^(log n), if P != NP? Explain your answer.
+
+Yes, there could be, it is not possible to affirm either yes or no.
+An algorithm of average time N^(log n) does not belong to either P or NP, it is part of an intermediate class of algorithms called quasi-polynomial (QP). Quasi-polynomial time algorithms are algorithms that run slower than polynomial time, yet not so slow as to be exponential time.
+If P != NP this would mean that there is no polynomial time algorithm that can solve an NP-complete problem.
+It could still be possible that QP = NP (or not).
