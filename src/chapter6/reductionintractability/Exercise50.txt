@@ -38,7 +38,7 @@ We consider a system of inequalities and equations that involve the following va
 d(v) -> variable corresponding to the shortest distance from s to vertex v.
 l(u,v) -> variable corresponding to the length of the directed edge u -> v.
 
-Given a directed graph G with a source vertex s and a target vertex t.
+Given a directed graph G with a set of vertices V, a set of edges E and with a source vertex s and a target vertex t.
 
 Linear programming formulation:
 
@@ -78,7 +78,7 @@ d(u,v) -> variable corresponding to the shortest distance from vertex u to verte
 Subject to the constraints
 
    d(v,v) = 0 for every vertex v
-   d(u,w) - d(u,v) <= l(v,w) for every vertex u in V (the set of all vertices in G) and every edge v -> w in E (the set of all edges in G)
+   d(u,w) - d(u,v) <= l(v,w) for every vertex u in V and every edge v -> w in E
 
 The resulting values of d(u,v) will be the shortest path distances from every vertex u to every vertex v.
 To find the edges in the shortest paths from every vertex u to every vertex v, the same process mentioned above can be used, replacing vertex t with vertex v and vertex s with vertex u.
