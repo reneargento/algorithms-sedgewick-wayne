@@ -83,7 +83,7 @@ Subject to the constraints
 The resulting values of d(u,v) will be the shortest path distances from every vertex u to every vertex v.
 To find the edges in the shortest paths from every vertex u to every vertex v, the same process mentioned above can be used, replacing vertex t with vertex v and vertex s with vertex u.
 
-References
+References:
 https://en.wikipedia.org/wiki/Shortest_path_problem#Linear_programming_formulation
 https://courses.engr.illinois.edu/cs498dl1/sp2015/notes/26-lp.pdf
 http://www.cs.yale.edu/homes/aspnes/pinewiki/attachments/LinearProgramming/lp.pdf

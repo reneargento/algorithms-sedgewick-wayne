@@ -1,0 +1,7 @@
+6.53
+
+A program that could solve the integer linear programming problem in time proportional to 1.1^N would signify that it can also solve any other problem in NP in time proportional to 1.1^N (this is because the integer linear programming problem is an NP-complete problem and due to that all problems in NP polynomially reduce to it).
+1.1^N is still exponential running time, so it does not prove anything related to P = NP, but it would mean that we can solve instances of any problem in NP of size up to ~218 efficiently.
+
+Reference:
+https://www.ics.uci.edu/~eppstein/265/exponential.html

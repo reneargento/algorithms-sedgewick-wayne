@@ -1,4 +1,4 @@
 6.52
 
 Yes, if the algorithm can guarantee to solve the boolean satisfiability problem in time proportional to 1.1^N this implies that it can solve other NP-complete problems in time proportional to 1.1^N.
-This is because boolean satisfiability is an NP-complete problem and due to that every other NP-complete problem polynomially reduces to it.
+This is because boolean satisfiability is an NP-complete problem and due to that all problems in NP polynomially reduce to it.
