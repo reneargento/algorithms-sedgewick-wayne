@@ -1,0 +1,23 @@
+6.54
+
+Poly-time reduction from vertex cover to 0-1 integer linear inequality satisfiability:
+
+We consider a system of inequalities and equations that involve the following variables:
+x(v) -> binary variable that is equal to 1 if vertex v is selected and 0 otherwise.
+
+Given a graph G with a set of vertices V and a set of edges E.
+
+Linear programming formulation:
+
+   Minimize  E  x(v)
+            veV
+
+Subject to the constraints
+
+   x(u) + x(v) >= 1 for every edge u - v in E
+   x(v) e {0, 1} for every vertex v in V
+
+Vertices with x(v) equal to 1 will be the vertices in the minimum vertex cover.
+
+Reference:
+https://cs.stackexchange.com/questions/68232/reduction-vertex-cover-to-binary-integer-program-decision-problem
