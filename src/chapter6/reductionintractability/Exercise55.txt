@@ -1,0 +1,29 @@
+6.55
+
+Prove that the problem of finding a Hamiltonian path in a directed graph is NP-complete, using the NP-completeness of the Hamiltonian path problem for undirected graphs.
+
+Let's call the Hamiltonian path problem in undirected graphs HPg and the Hamiltonian path problem in directed graphs HPdg.
+
+Reduction from HPg to HPdg:
+Replace every edge v - w in the undirected graph in HPg to two directed edges in the directed graph in HPdg:
+A v -> w directed edge and a w -> v directed edge.
+Solve HPdg.
+The directed edges selected in the solution to HPdg can be mapped to the edges in the solution to HPg:
+If either v -> w or w -> v are in HPdg solution, v - w is in HPg solution.
+
+A problem is NP-complete if it is in NP and all problems in NP poly-time reduce to it.
+HPdg is in NP because if given a Hamiltonian path as a solution, it is possible to check if all vertices are visited in polynomial time.
+Since HPg is NP-complete, all problems in NP poly-time reduce to it.
+As seen above, there is a poly-time reduction from HPg to HPdg. By transitive relation this shows that all problems in NP poly-time reduce to HPdg, and it is, therefore, NP-complete.
+
+             All problems in NP
+
+                     |
+                     V
+
+    Hamiltonian path problem for undirected graphs
+
+                     |
+                     V
+
+    Hamiltonian path problem for directed graphs
