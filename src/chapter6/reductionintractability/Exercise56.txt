@@ -1,0 +1,5 @@
+6.56
+
+Yes, if two problems are known to be NP-complete this implies that there is a poly-time reduction from one to the other.
+This is because all problems in NP poly-time reduce to any NP-complete problem.
+All NP-complete problems are in NP, therefore, both problems poly-time reduce from one to the other.
