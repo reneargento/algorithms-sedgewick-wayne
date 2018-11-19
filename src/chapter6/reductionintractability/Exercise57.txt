@@ -1,0 +1,15 @@
+6.57
+
+Suppose that X is NP-complete, X poly-time reduces to Y, and Y poly-time reduces to X. Is Y necessarily NP-complete?
+
+For Y to be NP-complete the following conditions must be met:
+1) Y is in NP
+2) Every problem in NP poly-time reduces to Y
+
+Condition 2 is true because X poly-time reduces to Y, and since X is NP-complete, all problems in NP poly-time reduce to it (and transitively to Y).
+Nothing is said about condition 1, so Y is not necessarily NP-complete. It may be the case that Y is not in NP because it is not possible to verify if a given solution to it is correct or not in polynomial time. In this case (with condition 2 satisfied but condition 1 not satisfied) Y would be NP-hard, but not NP-complete.
+For example if X = CIRCUIT-SAT and Y = CO-CIRCUIT-SAT then X and Y are equal to the problem description, but it is unknown whether Y is in NP.
+This answer is based on the definition of reductions as polynomial-time Turing reductions (and not Karp reductions).
+
+Reference:
+https://algs4.cs.princeton.edu/66intractability/
