@@ -1,0 +1,17 @@
+6.58
+
+Given an algorithm that solves the decision version of boolean satisfiability - which indicates whether there exists an assignment of truth values to the variables that satisfies a boolean expression - the assignment can be found with the following method:
+
+Consider a boolean expression BE composed by a set of distinct variables x1, x2, ..., xn.
+
+1- Use the algorithm to check if it is possible to satisfy BE.
+If the answer is no, the expression is not satisfiable and there is no possible assignment.
+If the answer is yes:
+2- Assign the value true to x1 and use the algorithm to check if it is possible to satisfy BE.
+3- If the answer is yes, then x1 is equal to true. Otherwise, x1 is equal to false, so update its value.
+4- Repeat steps 2 and 3 for all other variables.
+
+In total, all variable assignments can be found in n + 1 runs of the algorithm, where n is number of distinct variables in BE.
+
+Reference:
+https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#Self-reducibility
