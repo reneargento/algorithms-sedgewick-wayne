@@ -1,0 +1,13 @@
+6.59
+
+Given an algorithm that solves the decision version of the vertex cover problem - which indicates that there exists a vertex cover of a given size - the optimization version of finding the vertex cover of minimum cardinality can be solved with the following method:
+
+Consider a graph G with V vertices and E edges.
+
+1- Using the algorithm, binary search for k, the cardinality of the minimum vertex cover.
+2- Find a vertex v such that G - {v} (removing the vertex and its incident edges) has a vertex cover of size k - 1. Any vertex in any minimum vertex cover will have this property.
+3- Include v in the vertex cover.
+4- Recursively find a minimum vertex cover in G - {v}. The stop condition is when there is no vertex whose removal leads to a smaller vertex cover.
+
+Reference:
+https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pearson/08Intractability.pdf
