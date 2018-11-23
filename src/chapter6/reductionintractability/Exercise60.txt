@@ -1,0 +1,3 @@
+6.60
+
+The optimization version of the vertex cover problem is not necessarily a search problem because its output (a vertex cover of minimum cardinality) cannot be certified to be correct in polynomial time. It is possible to certify in polynomial time that the output is a vertex cover, but not that it is a minimum cardinality vertex cover.
