@@ -1,0 +1,19 @@
+6.61
+
+If X and Y are two search problems and X poly-time reduces to Y, we can infer that:
+
+b. If X is NP-complete then so is Y.
+This is because if both X and Y are search problems they are both in NP.
+If X is NP-complete, then all problems in NP poly-time reduce to it. And if X poly-time reduces to Y, then all problems in NP also poly-time reduce to Y (through X).
+Since Y is both in NP and all problems in NP poly-time reduce to it, Y is NP-complete.
+
+d. If Y is in P, then X is in P.
+If Y is in P it can be solved in polynomial time. If we can reduce X to Y then we can solve Y in polynomial time and consequently solve X in polynomial time, meaning that X is also in P.
+
+The following alternatives are wrong:
+
+a. If Y is NP-complete then so is X.
+Not necessarily, there may not exist reductions from all problems in NP to X.
+
+c. If X is in P, then Y is in P.
+Not necessarily, Y may be NP-complete and currently it is unknown whether P = NP.
