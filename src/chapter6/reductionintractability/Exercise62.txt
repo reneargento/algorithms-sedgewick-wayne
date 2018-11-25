@@ -1,0 +1,17 @@
+6.62
+
+If P != NP, we can infer that:
+
+a. If X is NP-complete, then X cannot be solved in polynomial time.
+If P != NP, no NP-complete problem can be solved in polynomial time.
+
+d. If X is in P, then X is not NP-complete.
+If P != NP, then problems in P can be solved in polynomial time whereas problems NP-complete cannot. So X cannot be both in P and NP-complete.
+
+The following alternatives are wrong:
+
+b. If X is in NP, then X cannot be solved in polynomial time.
+Not necessarily, X can be in P, which is the class of problems that can be solved in polynomial time.
+
+c. If X is in NP but not NP-complete, then X can be solved in polynomial time.
+Not necessarily, X can be in an intermediate class between P and NP-complete, such as QP (quasi-polynomial). Quasi-polynomial time algorithms are algorithms that run slower than polynomial time, yet not so slow as to be exponential time.
