@@ -10,6 +10,6 @@ If you find anything incorrect feel free to create an issue or to open a pull re
 
 Many of these exercises are used as homework assignments in universities. If you have to do any of these exercises as homework make sure you understand the problem and solution instead of simply copying it. Understanding these algorithms and data structures will be extremelly valuable in your career.
 
-Update (November 26 2018):</br>
+<b>Update (November 26 2018):</b></br>
 It took me 2 and a half years of work, but the repository is now complete!</br>
 You can now find here the solutions to all the exercises in the book.
