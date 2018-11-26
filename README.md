@@ -3,7 +3,7 @@ Solutions to the exercises of the Algorithms book by Robert Sedgewick and Kevin 
 
 <a href="url"><img src="resources/book_cover.png" align="right" height="280" width="200" ></a>
 
-I found the book to be an excellent resource to learning algorithms and data structures. Since there are not many (almost none) solutions of the exercises on the Internet and the only ones I've found are incomplete, I decided to share my work on the exercises. Hopefully this will help students and professionals to validate their exercise solutions and learn more about the book content.
+I found the book to be an excellent resource to learning algorithms and data structures. Since there are not many (almost none) solutions of the exercises on the Internet and the only ones available are incomplete, I decided to share my work on the exercises. Hopefully this will help students and professionals to validate their exercise solutions and learn more about the book content.
 
 To the best of my knowledge, these solutions are correct.</br>
 If you find anything incorrect feel free to create an issue or to open a pull request. 
