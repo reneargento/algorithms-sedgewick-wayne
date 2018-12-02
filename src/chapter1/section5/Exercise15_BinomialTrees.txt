@@ -8,45 +8,44 @@ Binomial coefficient:
 1 4 6 4 1
 ...
 
-Each new level of the binomial coefficient is created by putting the previous level underneath it, but one
-position lower. For example:
+Each new level of the binomial coefficient is created by putting the previous level underneath it, but one position lower.
+For example:
     1 1
   +
       1 1
   = 1 2 1
 
-  1 2 1
+   1 2 1
  +
-    1 2 1
- =1 3 3 1
+     1 2 1
+ = 1 3 3 1
 
-With weighted quick union, the worst case tree happens when every union() call, the 2 sub-trees have the
-same size, starting from 1 and 1, and (1 1) and (1 1)
+With weighted quick union, a worst case tree happens when in every union() call the 2 sub-trees have the same size, starting from 1 and 1, and (1 1) and (1 1).
 
-If we take a closer look, we can see that by putting one of the two subtree underneath the other,
-we are actually follow the same pattern with how the binomial coefficient is formed
-=> in the worst case tree, the number of nodes per each level of the tree
- correspond to one number in each level of the binomial coefficient.
+If we take a closer look, we can see that by putting one of the two subtrees underneath the other, we are actually following the same pattern than how the binomial coefficient is formed.
 
- - For a tree with N=2^n nodes, there are n+1 levels
- For example: 16=2^4=1+4+6+4+1 => 4+1=5 levels
- The root has depth 0
- The second level from the root has depth 1 and so on
- => for example with N=16, the total depth is: 1*0 + 4*1 + 6*2 + 4*3 + 1*4 = 32
- => the average depth is: total depth/N = 32/16=2=4/2 = n/2
+Average depth of a node in a worst-case tree with N = 2^n nodes:
 
- => We can make an assumption that the average depth of a node in worst case tree will be n/2
+In a worst case tree the number of nodes in each level of the tree correspond to a number in each level of the binomial coefficient.
 
- Prove by induction:
-    - For N=2=2^1 (n=1), total depth is: 1*0 + 1*1 = 1, average depth is 1/2=> true
-    - Generalize: for 2 subtrees of size K=2^k, assuming the average depth of all the nodes in
-    each subtree is k/2, we prove that the average depth of the resulting tree (size K*2)
-    is (k+1)/2
-    - Because one of the subtree will have to sit underneath the other, all the nodes in that subtree
-    increase the depth by 1 => total increase is K (the number of nodes in one subtree) = 2^k
-    => the total depth after union will be:
-        k/2*2^k + (k/2*2^k + 2^k)
-       = 2^k * (k+1)
+For a tree with N = 2^n nodes, there are n + 1 levels.
+For example: 16 = 2^4 = 1 + 4 + 6 + 4 + 1 => 4 + 1 = 5 levels.
+The root has depth 0.
+The second level from the root has depth 1 and so on.
+ => For example with N = 16, the total depth is: 1 * 0 + 4 * 1 + 6 * 2 + 4 * 3 + 1 * 4 = 32
+ => The average node depth is: Total depth / N = 32 / 16 = 2 = 4 / 2 = n / 2
 
-     The number of nodes in the new tree is K*2 = 2^(k+1) => the new average depth is
-        2^k * (k+1) / (2^(k+1)) = (k+1)/2 => true
+We can make an assumption that the average depth of a node in a worst case tree will be n / 2.
+
+Proof by induction:
+For N = 2 = 2^1 (n = 1), the total depth is: 1 * 0 + 1 * 1 = 1 and the average depth is 1 / 2 => true.
+Generalize: for 2 subtrees of size K = 2^k, assuming that the average depth of all the nodes in each subtree is k / 2, we prove that the average depth of the resulting tree (size K * 2) is (k + 1) / 2.
+This happens because one of the subtrees will be placed underneath the other, and all the nodes in that subtree will have their depths increased by 1 => the total increase will be equal to K (the number of nodes in one subtree) = 2^k.
+The total depth after the union will be:
+k / 2 * 2^k + (k / 2 * 2^k + 2^k) = 2^k * (k + 1)
+
+The number of nodes in the new tree is K * 2 = 2^(k + 1).
+The new average node depth is: 2^k * (k + 1) / (2^(k + 1)) = (k + 1) / 2 => true.
+
+Thanks to huyquanha (https://github.com/huyquanha) for providing a more complete answer to this question and for correcting the second part of the question.
+https://github.com/reneargento/algorithms-sedgewick-wayne/pull/25
