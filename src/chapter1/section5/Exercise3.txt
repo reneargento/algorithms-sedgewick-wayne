@@ -78,5 +78,5 @@ Forest:
 9 4     5
   3
 
-Thanks for sepehrhakimi90 (https://github.com/sepehrhakimi90) for pointing out that some values were incorrect.
+Thanks to sepehrhakimi90 (https://github.com/sepehrhakimi90) for pointing out that some values were incorrect.
 https://github.com/reneargento/algorithms-sedgewick-wayne/issues/17
