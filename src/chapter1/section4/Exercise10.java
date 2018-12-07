@@ -7,6 +7,8 @@ import edu.princeton.cs.algs4.StdOut;
  */
 // Thanks to Vivek Bhojawala (https://github.com/VBhojawala) for fixing a bug and suggesting improvements
 // in the binarySearch() method at https://github.com/reneargento/algorithms-sedgewick-wayne/issues/6
+// Thanks to ajfg93 (https://github.com/ajfg93) for suggesting an iterative solution for the problem at
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/27
 public class Exercise10 {
 
     public static void main(String[] args) {
@@ -30,7 +32,6 @@ public class Exercise10 {
     }
 
     private static int binarySearch(int[] array, int element, int low, int high) {
-
         if (low > high) {
             return -1;
         }
@@ -42,13 +43,31 @@ public class Exercise10 {
         } else if (array[middle] > element) {
             return binarySearch(array, element, low, middle - 1);
         } else {
-
             int possibleSmallestIndex = binarySearch(array, element, 0, middle - 1);
+
             if (possibleSmallestIndex == -1) {
                 return middle;
             } else {
                 return possibleSmallestIndex;
             }
         }
+    }
+
+    private static int binarySearchIterative(int[] array, int element, int low, int high) {
+        while (low < high) {
+            int middle = low + (high - low) / 2;
+
+            if (array[middle] < element) {
+                low = middle + 1;
+            } else if (array[middle] > element) {
+                high = middle - 1;
+            } else if (middle > 0 && array[middle - 1] == element) {
+                high = middle;
+            } else {
+                return middle;
+            }
+        }
+
+        return -1;
     }
 }
