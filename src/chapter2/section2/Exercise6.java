@@ -9,6 +9,8 @@ import java.util.Map;
 /**
  * Created by Rene Argento on 11/02/17.
  */
+// Thanks to ajfg93 (https://github.com/ajfg93) for correcting the array access count.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/12
 public class Exercise6 {
 
     private enum SortType {
@@ -125,7 +127,7 @@ public class Exercise6 {
         for(int i = low; i <= high; i++) {
             aux[i] = array[i];
 
-            numberOfArrayAccesses++;
+            numberOfArrayAccesses += 2;
         }
 
         int indexLeft = low;
@@ -142,7 +144,7 @@ public class Exercise6 {
             }
 
             arrayIndex++;
-            numberOfArrayAccesses++;
+            numberOfArrayAccesses += 4;
         }
 
         while (indexLeft <= middle) {
@@ -151,7 +153,7 @@ public class Exercise6 {
             indexLeft++;
             arrayIndex++;
 
-            numberOfArrayAccesses++;
+            numberOfArrayAccesses += 2;
         }
     }
 
