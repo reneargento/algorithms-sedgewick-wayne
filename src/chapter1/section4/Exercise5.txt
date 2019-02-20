@@ -1,9 +1,12 @@
 1.4.5 
 
 a. ~N
-b. ~1/N
-c. ~2/N^2
+b. ~1
+c. ~1
 d. ~2N^3
-e. ~lg(2N) / lg N
-f. ~lg(N^2+1)
-g. ~2^N
+e. ~1
+f. lg(N^2 + 1) / lg N ~= lg(N^2) / lg N = 2 lg N / lg N = ~2
+g. ~1
+
+Thanks to mathieu2em (https://github.com/mathieu2em) for correcting this exercise:
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/32
