@@ -52,11 +52,16 @@ Insertion order: 1 2 4 3, 1 3 4 2 (same shape)
    4
   3
 
-Insertion order: 1 3 2 4, 1 4 2 3 (same shape)
+Insertion order: 1 3 2 4
  1
   3
- 2
+ 2 4
+
+Insertion order: 1 4 2 3
+ 1
   4
+ 2
+  3
 
 Insertion order: 1 4 3 2
   1
@@ -382,3 +387,6 @@ For N = 6 there are 720 different insertion orders, but the tree shapes follow t
 
 Thanks to dbedrenko (https://github.com/dbedrenko) for mentioning that there should be 42 tree shapes for N = 5.
 https://github.com/reneargento/algorithms-sedgewick-wayne/issues/18
+
+Thanks to Scharling (https://github.com/Scharling) for finding a missing shape for N = 4.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/36
