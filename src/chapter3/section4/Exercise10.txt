@@ -89,37 +89,37 @@ key hash value
 key hash value
   I    3   7
 
-0 null      8 null
-1 Q4        9 Y3
-2 null     10 I7
-3 S2       11 A1
-4 T6       12 null
-5 Q5       13 null
-6 I7       14 null
+0 null      8 U5
+1 S2        9 null
+2 null     10 null
+3 Y3       11 A1
+4 I7       12 Q4
+5 null     13 T6
+6 null     14 null
 7 E0       15 null
 
 key hash value
-  O   11   8
+  O   5    8
 
-0 null      8 null
-1 Q4        9 Y3
-2 null     10 I7
-3 S2       11 A1
-4 T6       12 O8
-5 Q5       13 null
-6 I7       14 null
+0 null      8 U5
+1 S2        9 null
+2 null     10 null
+3 Y3       11 A1
+4 I7       12 Q4
+5 O8       13 T6
+6 null     14 null
 7 E0       15 null
 
 key hash value
   N   10   9
 
-0 null      8 null
-1 Q4        9 Y3
-2 null     10 I7
-3 S2       11 A1
-4 T6       12 O8
-5 Q5       13 N9
-6 I7       14 null
+0 null      8 U5
+1 S2        9 null
+2 null     10 N9
+3 Y3       11 A1
+4 I7       12 Q4
+5 O8       13 T6
+6 null     14 null
 7 E0       15 null
 
 M = 10
@@ -213,3 +213,6 @@ key hash value
 2 U5        7 Q4
 3 I7        8 O8
 4 N9        9 S2
+
+Thanks to Kongkille (https://github.com/Kongkille) for finding an error in some M = 16 insertions.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/37
