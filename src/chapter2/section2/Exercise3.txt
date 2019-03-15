@@ -13,7 +13,6 @@
      merge(a, 0, 1, 3)       A  E  S  Y  Q  U  E  S  I  T   N   O
      merge(a, 4, 5, 7)       A  E  S  Y  E  Q  S  U  I  T   N   O
      merge(a, 8, 9, 11)      A  E  S  Y  E  Q  S  U  I  N   O   T
-     merge(a, 8, 9, 11)      A  E  S  Y  E  Q  S  U  I  N   O   T
    sz = 4
    merge(a, 0, 3, 7)         A  E  E  Q  S  S  U  Y  I  N   O   T
    merge(a, 8, 9, 11)        A  E  E  Q  S  S  U  Y  I  N   O   T
