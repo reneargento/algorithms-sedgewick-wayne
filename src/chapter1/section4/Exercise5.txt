@@ -6,7 +6,9 @@ c. ~1
 d. ~2N^3
 e. ~1
 f. lg(N^2 + 1) / lg N ~= lg(N^2) / lg N = 2 lg N / lg N = ~2
-g. ~1
+g. ~0
 
 Thanks to mathieu2em (https://github.com/mathieu2em) for correcting this exercise:
 https://github.com/reneargento/algorithms-sedgewick-wayne/issues/32
+Thanks to YaochengTong (https://github.com/YaochengTong) for correcting letter g in this exercise:
+https://github.com/reneargento/algorithms-sedgewick-wayne/pull/39
