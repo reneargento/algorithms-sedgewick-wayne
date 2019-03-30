@@ -8,6 +8,8 @@ import java.util.Iterator;
 /**
  * Created by Rene Argento on 8/16/16.
  */
+// Thanks to Oreshnik (https://github.com/Oreshnik) for fixing a bug in the shuffleItems() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/40
 @SuppressWarnings("unchecked")
 public class Exercise36_RandomQueue2 {
 
@@ -60,8 +62,7 @@ public class Exercise36_RandomQueue2 {
 
             int randomIndex = StdRandom.uniform(0, size);
 
-            Item randomItem = items[randomIndex];
-            return randomItem;
+            return items[randomIndex];
         }
 
         private void resize(int capacity) {
@@ -109,9 +110,8 @@ public class Exercise36_RandomQueue2 {
             }
 
             private void shuffleItems() {
-
                 for (int i = 0; i < size; i++) {
-                    int randomIndex = StdRandom.uniform(0, size);
+                    int randomIndex = StdRandom.uniform(0, i + 1);
 
                     //Swap
                     Item temp = arrayCopy[i];

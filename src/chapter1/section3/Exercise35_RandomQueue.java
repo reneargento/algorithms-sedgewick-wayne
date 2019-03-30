@@ -58,8 +58,7 @@ public class Exercise35_RandomQueue {
 
             int randomIndex = StdRandom.uniform(0, size);
 
-            Item randomItem = items[randomIndex];
-            return randomItem;
+            return items[randomIndex];
         }
 
         private void resize(int capacity) {
