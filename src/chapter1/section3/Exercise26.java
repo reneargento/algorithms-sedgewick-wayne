@@ -8,6 +8,9 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento
  */
+// Thanks to Oreshnik (https://github.com/Oreshnik) for reporting that some methods were not updating
+// the list size. 
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/33
 public class Exercise26<Item> implements Iterable<Item> {
 
 	private class Node {
@@ -82,6 +85,7 @@ public class Exercise26<Item> implements Iterable<Item> {
 				count++;
 			}
 		}
+		size--;
 	}
 	
 	public void remove(String key) {
@@ -91,6 +95,7 @@ public class Exercise26<Item> implements Iterable<Item> {
 		
 		while(first != null && first.item.equals(key)) {
 			first = first.next;
+			size--;
 		}
 		
 		Node current;
@@ -98,6 +103,7 @@ public class Exercise26<Item> implements Iterable<Item> {
 		for(current = first; current != null; current = current.next) {
 			if (current.next != null && current.next.item.equals(key)) {
 				current.next = current.next.next;
+                size--;
 			}
 		}
 	}
@@ -119,7 +125,6 @@ public class Exercise26<Item> implements Iterable<Item> {
 	}
 	
 	public void removeAfter(Node node) {
-		
 		if (isEmpty() || node == null) {
 			return;
 		}
@@ -130,6 +135,7 @@ public class Exercise26<Item> implements Iterable<Item> {
 			if (current.item.equals(node.item)) {
 				if (current.next != null) {
 					current.next = current.next.next;
+                    size--;
 				}
 				break;
 			}
@@ -147,6 +153,7 @@ public class Exercise26<Item> implements Iterable<Item> {
 			if (current.item.equals(firstNode.item)) {
 				secondNode.next = current.next;
 				current.next = secondNode;
+                size++;
 			}
 		}
 	}
@@ -157,7 +164,6 @@ public class Exercise26<Item> implements Iterable<Item> {
 	}
 	
 	private class ListIterator implements Iterator<Item> {
-		
 		Node current = first;
 		
 		@Override

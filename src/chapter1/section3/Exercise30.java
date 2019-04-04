@@ -60,9 +60,10 @@ public class Exercise30<Item> implements Iterable<Item> {
 				count++;
 			}
 		}
+		size--;
 	}
 	
-	//First implementation
+	// First implementation
 	public Node reverse() {
 		if (isEmpty()) {
 			return null;
@@ -83,10 +84,8 @@ public class Exercise30<Item> implements Iterable<Item> {
 		while(newNode != null) {
 			old = current;
 			current = newNode;
-			
-			if (newNode != null) {
-				newNode = newNode.next;
-			} 
+
+            newNode = newNode.next;
 			
 			current.next = old;
 			first = current;
@@ -97,7 +96,6 @@ public class Exercise30<Item> implements Iterable<Item> {
 	
 	//Improved implementation 
 	public Node reverse2() {
-
 		Node reverse = null;
 		
 		while(first != null) {
@@ -117,7 +115,6 @@ public class Exercise30<Item> implements Iterable<Item> {
 	}
 		
 	private Node reverse3Impl(Node first) {
-			
 		if (first == null) {
 			return null;
 		}
@@ -140,7 +137,6 @@ public class Exercise30<Item> implements Iterable<Item> {
 	}
 	
 	private class ListIterator implements Iterator<Item> {
-		
 		Node current = first;
 		
 		@Override

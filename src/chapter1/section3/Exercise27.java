@@ -81,6 +81,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 				count++;
 			}
 		}
+		size--;
 	}
 	
 	public void remove(String key) {
@@ -90,6 +91,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 		
 		while(first != null && first.item.equals(key)) {
 			first = first.next;
+            size--;
 		}
 		
 		Node current;
@@ -97,6 +99,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 		for(current = first; current != null; current = current.next) {
 			if (current.next != null && current.next.item.equals(key)) {
 				current.next = current.next.next;
+                size--;
 			}
 		}
 	}
@@ -118,7 +121,6 @@ public class Exercise27<Item> implements Iterable<Item> {
 	}
 	
 	public void removeAfter(Node node) {
-		
 		if (isEmpty() || node == null) {
 			return;
 		}
@@ -129,6 +131,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 			if (current.item.equals(node.item)) {
 				if (current.next != null) {
 					current.next = current.next.next;
+                    size--;
 				}
 				break;
 			}
@@ -146,6 +149,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 			if (current.item.equals(firstNode.item)) {
 				secondNode.next = current.next;
 				current.next = secondNode;
+                size++;
 			}
 		}
 	}
@@ -176,7 +180,6 @@ public class Exercise27<Item> implements Iterable<Item> {
 	}
 	
 	private class ListIterator implements Iterator<Item> {
-		
 		Node current = first;
 		
 		@Override
@@ -201,7 +204,8 @@ public class Exercise27<Item> implements Iterable<Item> {
 		linkedList.add(9);
 		
 		int maxValue = linkedList.max();
-		StdOut.println("Max value: " + maxValue + " Expected: 91");
+		StdOut.println("Max value: " + maxValue);
+		StdOut.println("Expected: 91");
 	}
 
 }

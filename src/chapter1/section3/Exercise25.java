@@ -82,6 +82,7 @@ public class Exercise25<Item> implements Iterable<Item> {
 				count++;
 			}
 		}
+		size--;
 	}
 	
 	public boolean find(String key) {
@@ -101,7 +102,6 @@ public class Exercise25<Item> implements Iterable<Item> {
 	}
 	
 	public void removeAfter(Node node) {
-		
 		if (isEmpty() || node == null) {
 			return;
 		}
@@ -112,6 +112,7 @@ public class Exercise25<Item> implements Iterable<Item> {
 			if (current.item.equals(node.item)) {
 				if (current.next != null) {
 					current.next = current.next.next;
+                    size--;
 				}
 				break;
 			}
@@ -129,6 +130,7 @@ public class Exercise25<Item> implements Iterable<Item> {
 			if (current.item.equals(firstNode.item)) {
 				secondNode.next = current.next;
 				current.next = secondNode;
+				size++;
 			}
 		}
 	}
@@ -139,7 +141,6 @@ public class Exercise25<Item> implements Iterable<Item> {
 	}
 	
 	private class ListIterator implements Iterator<Item> {
-		
 		Node current = first;
 		
 		@Override

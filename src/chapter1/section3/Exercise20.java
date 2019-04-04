@@ -40,7 +40,7 @@ public class Exercise20<Item> implements Iterable<Item> {
 		}
 		size++;
 	}
-	
+
 	public void deleteLastNode() {
 		if (!isEmpty()) {
 			if (size == 1) {
@@ -52,7 +52,7 @@ public class Exercise20<Item> implements Iterable<Item> {
 				}
 				current.next = null;
 			}
-			
+
 			size--;
 		}
 	}
@@ -76,6 +76,7 @@ public class Exercise20<Item> implements Iterable<Item> {
 				count++;
 			}
 		}
+		 size--;
 	}
 	
 	@Override
@@ -84,7 +85,6 @@ public class Exercise20<Item> implements Iterable<Item> {
 	}
 	
 	private class ListIterator implements Iterator<Item> {
-		
 		Node current = first;
 		
 		@Override

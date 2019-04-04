@@ -75,6 +75,7 @@ public class Exercise21<Item> implements Iterable<Item> {
 				count++;
 			}
 		}
+		size--;
 	}
 	
 	public boolean find(String key) {
@@ -99,7 +100,6 @@ public class Exercise21<Item> implements Iterable<Item> {
 	}
 	
 	private class ListIterator implements Iterator<Item> {
-		
 		Node current = first;
 		
 		@Override

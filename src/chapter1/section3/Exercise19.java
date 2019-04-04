@@ -47,7 +47,7 @@ public class Exercise19<Item> implements Iterable<Item>{
 				first = null;
 			} else {
 				Node current = first;
-				for (int i = 0; i < size-2; i++) {
+				for (int i = 0; i < size - 2; i++) {
 					current = current.next;
 				}
 				current.next = null;
@@ -63,7 +63,6 @@ public class Exercise19<Item> implements Iterable<Item>{
 	}
 	
 	private class ListIterator implements Iterator<Item> {
-		
 		Node current = first;
 		
 		@Override
