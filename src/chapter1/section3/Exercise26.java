@@ -9,8 +9,8 @@ import edu.princeton.cs.algs4.StdOut;
  * Created by Rene Argento
  */
 // Thanks to Oreshnik (https://github.com/Oreshnik) for reporting that some methods were not updating
-// the list size. 
-// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/33
+// the list size.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/41
 public class Exercise26<Item> implements Iterable<Item> {
 
 	private class Node {
