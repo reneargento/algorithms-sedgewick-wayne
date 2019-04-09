@@ -21,7 +21,7 @@ I = 10^16
 Seconds needed = 10^16 / 10^9
 Seconds needed = 10^7
 
-10^7 seconds = 166 minutes = 2,777 hours = ~115 days
+10^7 seconds = 166,666 minutes = 2,777 hours = ~115 days
 
 Thanks to kaustubhb (https://github.com/kaustubhb) for noting that the MI parameter was missing in the formula.
 https://github.com/reneargento/algorithms-sedgewick-wayne/issues/4
