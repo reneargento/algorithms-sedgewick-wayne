@@ -8,7 +8,9 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 15/02/17.
  */
-//Based on http://stackoverflow.com/questions/7685/merge-sort-a-linked-list
+// Thanks to dbf256 (https://github.com/dbf256) for mentioning that this exercise had an incorrect implementation of
+// natural sort.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/42
 @SuppressWarnings("unchecked")
 public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
 
@@ -40,7 +42,6 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
         newNode.next = first;
 
         first = newNode;
-
         size++;
     }
 
@@ -49,7 +50,6 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
     }
 
     private class ListIterator implements Iterator<Item> {
-
         Node current = first;
 
         public boolean hasNext() {
@@ -94,144 +94,78 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
         return linkedList;
     }
 
-    //Dave Gamble's answer
-    // Runtime: O(n log n)
-    // Memory: Constant
     private static Exercise17_LinkedListSort.Node mergesort(Exercise17_LinkedListSort<Comparable>.Node sourceNode) {
-
         if (sourceNode == null || sourceNode.next == null) {
             return sourceNode;
         }
 
-        int listSize = 1;
-        int numberOfMerges;
-        int leftSize;
-        int rightSize;
+        Exercise17_LinkedListSort<Comparable>.Node low = sourceNode;
+        Exercise17_LinkedListSort<Comparable>.Node middle = sourceNode;
+        Exercise17_LinkedListSort<Comparable>.Node high = sourceNode;
+        Exercise17_LinkedListSort<Comparable>.Node currentNode = sourceNode;
 
-        Exercise17_LinkedListSort<Comparable>.Node tail;
-        Exercise17_LinkedListSort<Comparable>.Node left;
-        Exercise17_LinkedListSort<Comparable>.Node right;
-        Exercise17_LinkedListSort<Comparable>.Node next;
+        boolean secondSubArray = false;
 
-        do{ // For each power of 2 <= list length
-            numberOfMerges = 0;
-            left = sourceNode;
-            tail = null;
-            sourceNode = null;
+        while (currentNode != null && currentNode.next != null) {
 
-            while(left != null) { // Do this list length / listSize times:
-                numberOfMerges++;
-                right = left;
-                leftSize = 0;
-                rightSize = listSize;
-
-                // Cut list into two halves (but don't overrun)
-                while(right != null && leftSize < listSize) {
-                    leftSize++;
-                    right = right.next;
+            if (currentNode.item.compareTo(currentNode.next.item) > 0) {
+                if (!secondSubArray) {
+                    middle = currentNode;
+                    secondSubArray = true;
+                } else {
+                    high = currentNode;
+                    low = merge(low, middle, high);
+                    middle = high;
                 }
-
-                // Run through the lists appending onto what we have so far.
-                while(leftSize > 0 || (rightSize > 0 && right != null)) {
-                    // Left empty, take right OR Right empty, take left, OR compare.
-                    if (leftSize == 0) {
-                        next = right;
-                        right = right.next;
-                        rightSize--;
-                    } else if (rightSize == 0 || right == null) {
-                        next = left;
-                        left = left.next;
-                        leftSize--;
-                    } else if (left.item.compareTo(right.item) <= 0) {
-                        next = left;
-                        left = left.next;
-                        leftSize--;
-                    } else {
-                        next = right;
-                        right = right.next;
-                        rightSize--;
-                    }
-
-                    // Update pointers to keep track of where we are:
-                    if (tail != null) {
-                        tail.next = next;
-                    } else {
-                        sourceNode = next;
-                    }
-
-                    tail = next;
-                }
-                // Right is now AFTER the list we just sorted, so start the next sort there.
-                left = right;
             }
-            // Terminate the list, double the list-sort size.
-            if (tail != null) {
-                tail.next = null;
-            }
-
-            listSize *= 2;
-        } while (numberOfMerges > 1); // If we only did one merge, then we have sorted the whole list.
-
-        return sourceNode;
-    }
-
-    // Recursive approach:
-    // Runs faster, but requires log n space due to recursive stack
-    //jayadev's answer
-    // Runtime: O(n log n)
-    // Memory: log n
-    private static Exercise17_LinkedListSort.Node mergesortRecursive(Exercise17_LinkedListSort<Comparable>.Node sourceNode) {
-
-        if (sourceNode == null || sourceNode.next == null) {
-            return sourceNode;
+            currentNode = currentNode.next;
         }
 
-        Exercise17_LinkedListSort.Node middle = getMiddle(sourceNode);
-
-        //Split the list in 2
-        Exercise17_LinkedListSort.Node secondHalf = middle.next;
-        middle.next = null;
-
-        return merge(mergesortRecursive(sourceNode), mergesortRecursive(secondHalf));
-    }
-
-    //Finding the middle element of the list for splitting
-    private static Exercise17_LinkedListSort.Node getMiddle(Exercise17_LinkedListSort<Comparable>.Node sourceNode) {
-
-        if (sourceNode == null) {
-            return null;
+        if (high.next != null && currentNode != null) {
+            low = merge(low, middle, currentNode);
         }
 
-        Exercise17_LinkedListSort.Node slow = sourceNode;
-        Exercise17_LinkedListSort.Node fast = sourceNode;
-
-        while(fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        return slow;
+        return low;
     }
 
-    private static Exercise17_LinkedListSort.Node merge(Exercise17_LinkedListSort<Comparable>.Node firstHalf,
-                                                        Exercise17_LinkedListSort<Comparable>.Node secondHalf) {
-        Exercise17_LinkedListSort<Comparable>.Node dummyHead = new Exercise17_LinkedListSort<Comparable>().new Node();
-        Exercise17_LinkedListSort<Comparable>.Node current = dummyHead;
+    private static Exercise17_LinkedListSort<Comparable>.Node merge(Exercise17_LinkedListSort<Comparable>.Node low,
+                                                                    Exercise17_LinkedListSort<Comparable>.Node middle,
+                                                                    Exercise17_LinkedListSort<Comparable>.Node high) {
+        Exercise17_LinkedListSort<Comparable>.Node leftNode = low;
+        Exercise17_LinkedListSort<Comparable>.Node rightNode = middle.next;
+        Exercise17_LinkedListSort<Comparable>.Node newLow;
+        Exercise17_LinkedListSort<Comparable>.Node afterLastNode = high.next;
+        Exercise17_LinkedListSort<Comparable>.Node aux;
 
-        while(firstHalf != null && secondHalf != null) {
-            if (firstHalf.item.compareTo(secondHalf.item) <= 0) {
-                current.next = firstHalf;
-                firstHalf = firstHalf.next;
+        if (leftNode.item.compareTo(rightNode.item) <= 0) {
+            newLow = leftNode;
+            aux = leftNode;
+            leftNode = leftNode.next;
+        } else {
+            newLow = rightNode;
+            aux = rightNode;
+            rightNode = rightNode.next;
+        }
+
+        while(leftNode != middle.next && rightNode != high.next) {
+            if (leftNode.item.compareTo(rightNode.item) <= 0) {
+                aux.next = leftNode;
+                aux = leftNode;
+                leftNode = leftNode.next;
             } else {
-                current.next = secondHalf;
-                secondHalf = secondHalf.next;
+                aux.next = rightNode;
+                aux = rightNode;
+                rightNode = rightNode.next;
             }
-
-            current = current.next;
         }
 
-        current.next = (firstHalf == null) ? secondHalf : firstHalf;
+        if (leftNode == middle.next) {
+            aux.next = rightNode;
+        } else {
+            aux.next = leftNode;
+            middle.next = afterLastNode;
+        }
 
-        return dummyHead.next;
+        return newLow;
     }
 }
