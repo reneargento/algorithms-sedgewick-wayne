@@ -58,17 +58,19 @@ public class Exercise10 {
         public void addEdge(Edge edge) {
             int vertex1 = edge.either();
             int vertex2 = edge.other(vertex1);
-            double weight = edge.weight();
-
-            // Parallel edges are ignored
-            if (hasEdge(vertex1, vertex2)) {
-                return;
-            }
-
-            adjacent[vertex1][vertex2] = weight;
-            adjacent[vertex2][vertex1] = weight;
-            edges++;
+         
+            // Parallel edges are ignored but we should keep only minimum edge, otherwise the mst is not valid;
+      
+            double weight = e.weight();
+            double prevWeight = adjacent[v][w];
+            if (prevWeight > weight && !hasEdge(vertex1,vertex2)) {
+                 adjacent[vertex1][vertex2] = weight;
+                 adjacent[vertex2][vertex1] = weight;
+                 edges++;
         }
+    }
+
+         
 
         public boolean hasEdge(int vertex1, int vertex2) {
             return adjacent[vertex1][vertex2] != Double.POSITIVE_INFINITY;
