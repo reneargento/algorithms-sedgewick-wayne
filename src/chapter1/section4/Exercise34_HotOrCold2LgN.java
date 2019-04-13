@@ -8,11 +8,6 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise34_HotOrCold2LgN {
 
     private int hotOrCold(int number, int target) {
-        return firstGuesses(number, target, 1, number);
-    }
-
-    private int firstGuesses(int number, int target, int low, int high) {
-
         //Check if it is in the first half
         int firstGuessIndex = number / 2;
 
@@ -22,7 +17,7 @@ public class Exercise34_HotOrCold2LgN {
         }
 
         //Check if it is in the second half
-        int secondGuessIndex = (number / 2) + 1;
+        int secondGuessIndex = firstGuessIndex + 1;
         if (secondGuessIndex == target) {
             StdOut.println("Found it!");
             return secondGuessIndex;
@@ -30,16 +25,15 @@ public class Exercise34_HotOrCold2LgN {
             boolean isItHotter = isItHotter(firstGuessIndex, secondGuessIndex, target);
 
             if (isItHotter) {
-                return binarySearch(target, secondGuessIndex, secondGuessIndex, high);
+                return binarySearch(target, secondGuessIndex, secondGuessIndex, number);
             } else {
-                return binarySearch(target, secondGuessIndex, low, firstGuessIndex);
+                return binarySearch(target, secondGuessIndex, 1, firstGuessIndex);
             }
         }
     }
 
     //2 * O(lg n)
     private int binarySearch(int target, int lastGuess, int low, int high) {
-
         if (low == high) {
             if (low == target) {
                 //Found it!
