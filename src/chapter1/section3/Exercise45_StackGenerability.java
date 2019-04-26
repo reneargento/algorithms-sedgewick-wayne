@@ -4,9 +4,11 @@ import edu.princeton.cs.algs4.StdOut;
 
 /**
  * Created by Rene Argento on 8/23/16.
- * Adapted by AspectLeft (https://github.com/AspectLeft) -> Added the correct implementation
- * for canAPermutationBeGenerated() on 12/25/17
  */
+// Adapted by AspectLeft (https://github.com/AspectLeft) -> Added the correct implementation
+// for canAPermutationBeGenerated() on 12/25/17
+// Thanks to shftdlt (https://github.com/shftdlt) for spotting a bug in the code.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/2
 public class Exercise45_StackGenerability {
 
     private static boolean willTheStackUnderflow(String[] inputValues) {
@@ -28,7 +30,6 @@ public class Exercise45_StackGenerability {
     }
 
     private static boolean canAPermutationBeGenerated(String[] permutation) {
-
         Stack<Integer> stack = new Stack<>();
         int current = 0;
 
@@ -44,7 +45,6 @@ public class Exercise45_StackGenerability {
                 current++;
             } else if (integerValue == stack.peek()) {
                 stack.pop();
-                current++;
             } else {
                 return false;
             }
@@ -91,6 +91,8 @@ public class Exercise45_StackGenerability {
         StdOut.println(canAPermutationBeGenerated("1 4 7 9 8 6 5 3 0 2".split(" ")) + " Expected: false");
         StdOut.print("Input: 2 1 4 3 6 5 8 7 9 0 - ");
         StdOut.println(canAPermutationBeGenerated("2 1 4 3 6 5 8 7 9 0".split(" ")) + " Expected: true");
+        StdOut.print("Input: 4 3 2 1 0 5 9 7 8 6 - ");
+        StdOut.println(canAPermutationBeGenerated("4 3 2 1 0 5 9 7 8 6".split(" ")) + " Expected: false");
     }
 
 }
