@@ -14,11 +14,8 @@ public class Exercise11 {
 	}
 	
 	private static void printArray(boolean[][] array) {
-		int rowsLength = array.length;
-		int columnsLength = array[0].length;
-		
-		for (int i = 0; i < rowsLength; i++) {
-			for (int j = 0; j < columnsLength; j++) {
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array[i].length; j++) {
 				
 				if (array[i][j]) {
 					StdOut.print("*");
