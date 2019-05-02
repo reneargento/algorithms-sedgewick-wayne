@@ -5,12 +5,16 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 23/10/16.
  */
-//Based on http://algs4.cs.princeton.edu/14analysis/:
+// Based on http://algs4.cs.princeton.edu/14analysis/:
 // Answer: Instead of searching based on powers of two (binary search),
 // use Fibonacci numbers (which also grow exponentially).
 // Maintain the current search range to be [i, i + F(k)] and keep F(k), F(k-1) in two variables.
 // At each step compute F(k-2) via subtraction, check element i + F(k-2),
 // and update the range to either [i, i + F(k-2)] or [i + F(k-2), i + F(k-2) + F(k-1)].
+
+// Thanks to shftdlt (https://github.com/shftdlt) for suggesting an improvement with a break condition at
+// the end of the loop.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/47
 public class Exercise22_BinarySearchAddSub {
 
     public static void main(String... args) {
@@ -36,7 +40,7 @@ public class Exercise22_BinarySearchAddSub {
         int fibonacciBeforeN = 0;
         int fibonacciN = 1;
 
-        //Compute F(k)
+        // Compute F(k)
         while(fibonacciN < array.length - 1) {
             aux = fibonacciN;
             fibonacciN = fibonacciBeforeN + fibonacciN;
@@ -49,8 +53,8 @@ public class Exercise22_BinarySearchAddSub {
         while(low <= high) {
             //Compute F(k-2)
             aux = fibonacciBeforeN;
-            fibonacciBeforeN = fibonacciN - fibonacciBeforeN; //F(k-2)
-            fibonacciN = aux; //F(k-1)
+            fibonacciBeforeN = fibonacciN - fibonacciBeforeN; // F(k-2)
+            fibonacciN = aux; // F(k-1)
 
             if (low >= array.length) {
                 low = array.length - 1;
@@ -58,7 +62,7 @@ public class Exercise22_BinarySearchAddSub {
 
             int elementToCheck = low + fibonacciBeforeN;
 
-            //Check to avoid an index higher or equal to the array length
+            // Check to avoid an index higher or equal to the array length
             if (elementToCheck >= array.length) {
                 elementToCheck = array.length-1;
             }
@@ -73,6 +77,10 @@ public class Exercise22_BinarySearchAddSub {
                 high = low + fibonacciN;
             } else {
                 return elementToCheck;
+            }
+
+            if (elementToCheck == 0 || elementToCheck == array.length - 1) {
+                return -1;
             }
         }
 
