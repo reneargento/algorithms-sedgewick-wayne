@@ -15,7 +15,6 @@
      merge(a, 8, 9, 11)      A  E  S  Y  E  Q  S  U  I  N   O   T
    sz = 4
    merge(a, 0, 3, 7)         A  E  E  Q  S  S  U  Y  I  N   O   T
-   merge(a, 8, 9, 11)        A  E  E  Q  S  S  U  Y  I  N   O   T
 sz = 8
-merge(a, 0, 5, 11)           A  E  E  I  N  O  Q  S  S  T   U   Y
+merge(a, 0, 7, 11)           A  E  E  I  N  O  Q  S  S  T   U   Y
                              A  E  E  I  N  O  Q  S  S  T   U   Y 
