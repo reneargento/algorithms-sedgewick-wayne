@@ -12,8 +12,7 @@ import edu.princeton.cs.algs4.StdOut;
 // At each step compute F(k-2) via subtraction, check element i + F(k-2),
 // and update the range to either [i, i + F(k-2)] or [i + F(k-2), i + F(k-2) + F(k-1)].
 
-// Thanks to shftdlt (https://github.com/shftdlt) for suggesting an improvement with a break condition at
-// the end of the loop.
+// Thanks to shftdlt (https://github.com/shftdlt) for suggesting improvements in this exercise.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/47
 public class Exercise22_BinarySearchAddSub {
 
@@ -35,52 +34,36 @@ public class Exercise22_BinarySearchAddSub {
     }
 
     private int binarySearch(int[] array, int key) {
-
         int aux;
         int fibonacciBeforeN = 0;
         int fibonacciN = 1;
 
         // Compute F(k)
-        while(fibonacciN < array.length - 1) {
+        while (fibonacciN < array.length - 1) {
             aux = fibonacciN;
             fibonacciN = fibonacciBeforeN + fibonacciN;
             fibonacciBeforeN = aux;
         }
 
         int low = 0;
-        int high = low + fibonacciN;
+        int high = array.length - 1;
 
-        while(low <= high) {
-            //Compute F(k-2)
-            aux = fibonacciBeforeN;
-            fibonacciBeforeN = fibonacciN - fibonacciBeforeN; // F(k-2)
-            fibonacciN = aux; // F(k-1)
-
-            if (low >= array.length) {
-                low = array.length - 1;
+        while (low <= high) {
+            while (fibonacciBeforeN > 0 && fibonacciN >= high - low) {
+                // Compute F(k-2)
+                aux = fibonacciBeforeN;
+                fibonacciBeforeN = fibonacciN - fibonacciBeforeN; // F(k-2)
+                fibonacciN = aux; // F(k-1)
             }
 
             int elementToCheck = low + fibonacciBeforeN;
 
-            // Check to avoid an index higher or equal to the array length
-            if (elementToCheck >= array.length) {
-                elementToCheck = array.length-1;
-            }
-            if (elementToCheck < 0) {
-                elementToCheck = 0;
-            }
-
             if (key < array[elementToCheck]) {
-                high = low + fibonacciBeforeN;
+                high = elementToCheck - 1;
             } else if (key > array[elementToCheck]) {
-                low = low + fibonacciBeforeN;
-                high = low + fibonacciN;
+                low = elementToCheck + 1;
             } else {
                 return elementToCheck;
-            }
-
-            if (elementToCheck == 0 || elementToCheck == array.length - 1) {
-                return -1;
             }
         }
 
