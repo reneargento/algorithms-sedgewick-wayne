@@ -5,10 +5,14 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 07/12/16.
  */
-//Also known as union by rank
-    //Components are only united when they have the same height,
-// guaranteeing a logarithmic upper bound on the height of the trees for N sites
-    // The size of a tree will be at most 2^height. Therefore, the height can increase at most lg N times.
+// Also known as union by rank.
+// The height of a tree will only increase when uniting with a tree of the same height,
+// otherwise the smaller tree will join the biggest tree.
+// This guarantees a logarithmic upper bound on the height of the trees for N sites.
+// The size of a tree will be at most 2^height. Therefore, the height can increase at most lg N times.
+
+// Thanks to shftdlt (https://github.com/shftdlt) for fixing bugs on the union() method code:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/51
 public class Exercise14_WeightedQUHeight {
 
     private class WeightedQuickUnionByHeight {
@@ -54,8 +58,8 @@ public class Exercise14_WeightedQUHeight {
         //O(lg n)
         public void union(int site1, int site2) {
 
-            int leader1 = leaders[site1];
-            int leader2 = leaders[site2];
+            int leader1 = find(site1);
+            int leader2 = find(site2);
 
             if (leader1 == leader2) {
                 return;
@@ -67,7 +71,7 @@ public class Exercise14_WeightedQUHeight {
                 leaders[leader2] = leader1;
             } else {
                 leaders[leader1] = leaders[leader2];
-                ranks[leader1]++;
+                ranks[leader2]++;
 
                 if (ranks[leader1] > maxHeight) {
                     maxHeight = ranks[leader1];
