@@ -11,6 +11,8 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 09/04/17.
  */
+// Thanks to dbf256 (https://github.com/dbf256) for finding an issue on the heapsort copy array construction.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/50
 public class Exercise11 {
 
     private class PermutationNumber implements Comparable<PermutationNumber>{
@@ -43,13 +45,14 @@ public class Exercise11 {
         PermutationNumber number5 = exercise11.new PermutationNumber(0, 4);
         PermutationNumber number6 = exercise11.new PermutationNumber(0, 5);
         PermutationNumber number7 = exercise11.new PermutationNumber(0, 6);
+        PermutationNumber number8 = exercise11.new PermutationNumber(0, 7);
 
-        PermutationNumber[] array = {number1, number2, number3, number4, number5, number6, number7};
+        PermutationNumber[] array = {number1, number2, number3, number4, number5, number6, number7, number8};
         exercise11.computePermutations(array);
     }
 
     private void computePermutations(PermutationNumber[] array) {
-        //Insertion sort
+        // Insertion sort
         PermutationNumber[] insertionSortCopy = new PermutationNumber[array.length];
         System.arraycopy(array, 0, insertionSortCopy, 0, array.length);
         InsertionSort.insertionSort(insertionSortCopy);
@@ -61,7 +64,7 @@ public class Exercise11 {
         }
         printPermutation(insertionSortPermutation);
 
-        //Selection sort
+        // Selection sort
         PermutationNumber[] selectionSortCopy = new PermutationNumber[array.length];
         System.arraycopy(array, 0, selectionSortCopy, 0, array.length);
         SelectionSort.selectionSort(selectionSortCopy);
@@ -74,7 +77,7 @@ public class Exercise11 {
         }
         printPermutation(selectionSortPermutation);
 
-        //Shell sort
+        // Shell sort
         PermutationNumber[] shellSortCopy = new PermutationNumber[array.length];
         System.arraycopy(array, 0, shellSortCopy, 0, array.length);
         ShellSort.shellSort(shellSortCopy);
@@ -87,7 +90,7 @@ public class Exercise11 {
         }
         printPermutation(shellSortPermutation);
 
-        //Merge sort
+        // Merge sort
         PermutationNumber[] mergeSortCopy = new PermutationNumber[array.length];
         System.arraycopy(array, 0, mergeSortCopy, 0, array.length);
         TopDownMergeSort.mergeSort(mergeSortCopy);
@@ -100,7 +103,7 @@ public class Exercise11 {
         }
         printPermutation(mergeSortPermutation);
 
-        //Quick sort
+        // Quick sort
         PermutationNumber[] quickSortCopy = new PermutationNumber[array.length];
         System.arraycopy(array, 0, quickSortCopy, 0, array.length);
         QuickSort.quickSort(quickSortCopy);
@@ -113,16 +116,16 @@ public class Exercise11 {
         }
         printPermutation(quickSortPermutation);
 
-        //Heap sort
-        PermutationNumber[] heapSortCopy = new PermutationNumber[array.length];
-        System.arraycopy(array, 0, heapSortCopy, 0, array.length);
+        // Heap sort
+        PermutationNumber[] heapSortCopy = new PermutationNumber[array.length + 1];
+        System.arraycopy(array, 0, heapSortCopy, 1, array.length);
         HeapSort.heapSort(heapSortCopy);
 
         StdOut.println();
         StdOut.println("Heap Sort");
         int[] heapSortPermutation = new int[array.length];
         for(int i = 0; i < heapSortPermutation.length; i++) {
-            heapSortPermutation[heapSortCopy[i].originalIndex] = i;
+            heapSortPermutation[heapSortCopy[i + 1].originalIndex] = i;
         }
         printPermutation(heapSortPermutation);
     }
