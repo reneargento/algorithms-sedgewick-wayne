@@ -17,9 +17,11 @@ Amount of memory needed: 16 + 8 + 8 + 8 = 40 bytes
 Bag
 * object overhead -> 16 bytes
 * Node reference (first) -> 8 bytes
+* int value (size) -> 4 bytes
+* padding -> 4 bytes
 * N Nodes -> 40N bytes (there will be 2 Nodes per Edge when computing the EdgeWeightedGraph memory, so this will become 80N)
 * Edge (item) -> 32N bytes
-Amount of memory needed: 16 + 8 + 40N + 32N = 72N + 24 bytes
+Amount of memory needed: 16 + 8 + 4 + 4 + 40N + 32N = 72N + 32 bytes
 
 EdgeWeightedGraph
 * object overhead -> 16 bytes
@@ -30,6 +32,6 @@ EdgeWeightedGraph
    object overhead -> 16 bytes
    int value (length) -> 4 bytes
    padding -> 4 bytes
-   Bag references -> 8V -> (Resizing array): 8V * 2 = 16V
-   Bag -> 72E + 24 bytes -> There are V Bags in total, and they have 2E nodes (so we double the 40N bytes from the Nodes memory in Bag) -> 72E + 24V + 40E -> 112E + 24V
-Amount of memory needed: 16 + 4 + 4 + 8 + 16 + 4 + 4 + 16V + 112E + 24V = 112E + 40V + 56 bytes
+   Bag references -> 8V
+   Bag -> 72E + 32 bytes -> There are V Bags in total, and they have 2E nodes (so we double the 40N bytes from the Nodes memory in Bag) -> 72E + 32V + 40E -> 112E + 32V
+Amount of memory needed: 16 + 4 + 4 + 8 + 16 + 4 + 4 + 8V + 112E + 32V = 112E + 40V + 56 bytes
