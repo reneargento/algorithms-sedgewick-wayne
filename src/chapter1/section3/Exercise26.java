@@ -11,6 +11,8 @@ import edu.princeton.cs.algs4.StdOut;
 // Thanks to Oreshnik (https://github.com/Oreshnik) for reporting that some methods were not updating
 // the list size.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/41
+// Thanks to sdxxxa (https://github.com/sdxxxa) for reporting that there was a bug in the remove() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/60
 public class Exercise26<Item> implements Iterable<Item> {
 
 	private class Node {
@@ -88,7 +90,7 @@ public class Exercise26<Item> implements Iterable<Item> {
 		size--;
 	}
 	
-	public void remove(String key) {
+	public void remove(Item key) {
 		if (isEmpty() || key == null) {
 			return;
 		}
@@ -101,14 +103,18 @@ public class Exercise26<Item> implements Iterable<Item> {
 		Node current;
 		
 		for(current = first; current != null; current = current.next) {
-			if (current.next != null && current.next.item.equals(key)) {
-				current.next = current.next.next;
-                size--;
+			Node next = current.next;
+
+			while (next != null && next.item.equals(key)) {
+				next = next.next;
+				size--;
 			}
+
+			current.next = next;
 		}
 	}
 	
-	public boolean find(String key) {
+	public boolean find(Item key) {
 		if (isEmpty()) {
 			return false;
 		}
@@ -187,6 +193,8 @@ public class Exercise26<Item> implements Iterable<Item> {
 		linkedList.add("Elon");
 		linkedList.add("Rene");
 		linkedList.add("Mark");
+		linkedList.add("Mark");
+		linkedList.add("Mark");
 		linkedList.add("Elon");
 		
 		StdOut.println("Before removing Mark");
@@ -197,7 +205,7 @@ public class Exercise26<Item> implements Iterable<Item> {
 		}
 
         StdOut.println(listBeforeRemove.toString());
-        StdOut.println("Expected: Mark Bill Elon Rene Mark Elon");
+        StdOut.println("Expected: Mark Bill Elon Rene Mark Mark Mark Elon");
 		
 		String itemToBeRemoved = "Mark";
 		linkedList.remove(itemToBeRemoved);
