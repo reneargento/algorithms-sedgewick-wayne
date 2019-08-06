@@ -1,4 +1,7 @@
 3.2.4
 
-The sequence that cannot be the sequence of keys examined is:
+The sequences that cannot be the sequence of keys examined are:
+b. 4, 10, 8, 7, 5, 3
 d. 2, 7, 3, 8, 4, 5
+
+Thanks to CharlieLei (https://github.com/CharlieLei) for noting that sequence b is also part of the answer.
