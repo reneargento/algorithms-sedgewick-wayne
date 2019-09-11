@@ -6,6 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento
  */
+// Thanks to Akshay Sharma for mentioning that the postfix expression should not contain any parenthesis
 public class Exercise10 {
 	
 	private static String infixToPostfix(String infixExpression) {
@@ -26,8 +27,8 @@ public class Exercise10 {
 				String value2 = operands.pop();
 				String value1 = operands.pop();
 				String operator = operators.pop();
-				
-				String newExpression = "( " + value1 + " " + value2 + " " + operator + " )";
+
+				String newExpression = value1 + " " + value2 + " " + operator;
 				operands.push(newExpression);
 			} else {
 				operands.push(value);
@@ -42,7 +43,7 @@ public class Exercise10 {
 		String postFixExpression = infixToPostfix(infixExpression);
 		
 		StdOut.println("Postfix expression: " + postFixExpression);
-        StdOut.println("Expected: ( ( 1 2 + ) ( 4 2 / ) * )");
+		StdOut.println("Expected: 1 2 + 4 2 / *");
 	}
 
 }
