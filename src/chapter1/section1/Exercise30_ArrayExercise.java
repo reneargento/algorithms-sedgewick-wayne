@@ -23,7 +23,7 @@ public class Exercise30_ArrayExercise {
 
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				StdOut.print(array[i][j] + " ");
+				StdOut.printf("%6b", array[i][j]);
 			}
 			StdOut.println();
 		}
