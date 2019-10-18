@@ -165,15 +165,15 @@ public class Exercise33_Matrix_Operations {
 	//Vector-matrix product
 	private static double[] mult(double[] y, double[][] a) {
 		
-		//Number of rows in matrix must be the same as the number of rows in vector
+		//Number of rows in matrix must be the same as the number of columns in vector
 		if (a == null || y == null || a.length != y.length) {
 			throw new IllegalArgumentException();
 		}
 		
 		double[] b = new double[a[0].length];
 		
-		for (int i = 0; i < a.length; i++) {
-			for (int j = 0; j < a[0].length; j++) {
+		for (int i = 0; i < a[0].length; i++) {
+			for (int j = 0; j < a.length; j++) {
 				b[i] += a[j][i] * y[j];
 			}
 		}
