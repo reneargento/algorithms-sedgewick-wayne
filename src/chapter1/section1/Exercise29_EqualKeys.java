@@ -8,112 +8,96 @@ import edu.princeton.cs.algs4.StdOut;
  * Created by Rene Argento
  */
 public class Exercise29_EqualKeys {
-	
-public static void main(String[] args) {
-		
-		int[] whitelist = {1, 2, 4, 4, 5, 6, 6, 7, 7, 7, 8};
-		int[] keys = {1, 4, 5, 9, 10};
-		
-		Arrays.sort(whitelist);
-		
-		StdOut.println(rank(3, whitelist));
-		StdOut.println(rank(5, whitelist));
-		
-		StdOut.println();
-		
-		StdOut.println(count(5, whitelist));
-		StdOut.println(count(7, whitelist));
-		StdOut.println(count(20, whitelist));
-		
-		StdOut.println("Verification: " + verify(7, whitelist) + " Expected: true");
-		//binarySearch(whitelist, keys);
-	}
-	
-	private static void binarySearch(int[] whitelist, int[] keys) {
-		
-		int numbersCount = 0;
-		
-		for (int i = 0; i < keys.length; i++) {
-			
-			int index = rank(keys[i], whitelist, 0, whitelist.length-1, false);
 
-			if (index == -1) {
-				if (numbersCount != 0) {
-					StdOut.print(", ");
+	public static void main(String[] args) {
+		int[] array = {1, 2, 4, 4, 5, 6, 6, 7, 7, 7, 8};
+
+		Arrays.sort(array);
+
+		StdOut.println("Rank: " + rank(3, array) + " Expected: 2");
+		StdOut.println("Rank: " + rank(5, array) + " Expected: 4");
+		StdOut.println();
+
+		StdOut.println("Count: " + count(5, array) + " Expected: 1");
+		StdOut.println("Count: " + count(7, array) + " Expected: 3");
+		StdOut.println("Count: " + count(20, array) + " Expected: 0");
+
+		StdOut.println("Verification: " + verify(7, array) + " Expected: true");
+	}
+
+	// Find the number of elements that are smaller than the key
+	public static int rank (int key, int[] array) {
+		return rank(key, array, 0, array.length - 1);
+	}
+
+	private static int rank(int key, int[] array, int low, int high) {
+		if (low <= high) {
+			int middle = low + (high - low) / 2;
+
+			if (key < array[middle]) {
+				return rank(key, array, low, middle - 1);
+			} else if (key > array[middle]) {
+				int rightIndex = rank(key, array, middle + 1, high);
+				if (rightIndex == -1) {
+					return middle + 1;
+				} else {
+					return rightIndex;
 				}
-				
-				StdOut.print(keys[i]);
-				
-				numbersCount++;
-			}
-		}
-	}
-	
-	private static int rank(int key, int[] arr, int lo, int hi, boolean count) {
-		boolean found = false;
-		int mid = -1;
-		
-		if (lo <= hi) {
-			mid = lo + (hi - lo) / 2;
-			
-			if (key < arr[mid]) {
-				return rank(key, arr, lo, mid-1, count);
-			} else if (key > arr[mid]) {
-				return rank(key, arr, mid+1, hi, count);
 			} else {
-				found = true;
+				int leftIndex = rank(key, array, low, middle - 1);
+				if (leftIndex == -1) {
+					return middle;
+				} else {
+					return leftIndex;
+				}
 			}
-		} 
-		
-		if (found) {
-			//Go to the first occurrence of key in the array
-			while (--mid >= 0 && arr[mid] == key);
-			
-			//Return the position of the first occurrence of the element
-			return mid + 1;
-		} else {
-			if (count) {
-				//If we are counting, we need to know that the element does not exist
-				return -1;
+		}
+		return -1;
+	}
+
+	public static int count(int key, int[] array) {
+		int firstOccurrence = getIndex(key, array, 0, array.length - 1, true);
+
+		if (firstOccurrence == -1) {
+			return 0;
+		}
+		int lastOccurrence = getIndex(key, array, 0, array.length - 1, false);
+		return lastOccurrence - firstOccurrence + 1;
+	}
+
+	private static int getIndex(int key, int[] array, int low, int high, boolean firstOccurrence) {
+		if (low <= high) {
+			int middle = low + (high - low) / 2;
+
+			if (key < array[middle]) {
+				return getIndex(key, array, low, middle - 1, firstOccurrence);
+			} else if (key > array[middle]) {
+				return getIndex(key, array, middle + 1, high, firstOccurrence);
 			} else {
-				//Return the position that the element would be in (which is equal to the number of elements smaller than the key)
-				return lo;
+				int index;
+				if (firstOccurrence) {
+					index = getIndex(key, array, low, middle - 1, true);
+				} else {
+					index = getIndex(key, array, middle + 1, high, false);
+				}
+				if (index == -1) {
+					return middle;
+				} else {
+					return index;
+				}
 			}
 		}
-		
+		return -1;
 	}
 	
-	private static int rank (int key, int[] arr) {
-		//Find the number of elements that are smaller than the key
-		
-		int index = rank(key, arr, 0, arr.length-1, false);
-		return index;
-	}
-	
-	private static int count(int key, int[] arr) {
-		
-		int index = rank(key, arr, 0, arr.length-1, true);
-		
-		int count = 0;
-		
-		if (index != -1) {
-			for (int i = index; i < arr.length && arr[i] == key; i++) {
-				count++;
-			}
-		}
-		
-		return count;
-	}
-	
-	private static boolean verify(int key, int[] arr) {
-		
+	private static boolean verify(int key, int[] array) {
 		boolean verification = false;
 				
-		int indexFromRank = rank(key, arr);
-		int count = count(key, arr);
+		int indexFromRank = rank(key, array);
+		int count = count(key, array);
 		
 		for (int i = indexFromRank; i < indexFromRank + count; i++) {
-			if (arr[i] != key) {
+			if (array[i] != key) {
 				verification = false;
 				break;
 			} else {
