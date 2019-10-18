@@ -5,8 +5,8 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento
  */
-// Thanks to alexrad89 (https://github.com/alexrad89) and to shrutigupta23 (https://github.com/shrutigupta23) for
-// suggesting improvements to this exercise.
+// Thanks to alexrad89 (https://github.com/alexrad89), to shrutigupta23 (https://github.com/shrutigupta23)
+// and thiendao1407 (https://github.com/thiendao1407) for suggesting improvements to this exercise.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/34
 public class Exercise30_ArrayExercise {
 
@@ -30,7 +30,7 @@ public class Exercise30_ArrayExercise {
 	}
 
 	private static boolean isCoprime(int i, int j) {
-		if (i == j) {
+		if (i == j && i != 1) {
 			return false;
 		}
 		return i == 0 || j == 0 || gcd(i, j) == 1;
