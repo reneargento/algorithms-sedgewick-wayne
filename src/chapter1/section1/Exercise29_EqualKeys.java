@@ -112,7 +112,7 @@ public static void main(String[] args) {
 		int indexFromRank = rank(key, arr);
 		int count = count(key, arr);
 		
-		for (int i = indexFromRank; i < indexFromRank + count - 1; i++) {
+		for (int i = indexFromRank; i < indexFromRank + count; i++) {
 			if (arr[i] != key) {
 				verification = false;
 				break;
