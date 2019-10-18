@@ -65,12 +65,11 @@ public class Exercise33_Matrix_Operations {
 		
 		StdOut.println();
 		//Vector-matrix product
-		double[] i = {1, 2, 3};
+		double[] i = {1, 2};
 		
 		double[][] j = {
 				{1, 2, 3},
 				{4, 5, 6},
-				{1, 2, 3}
 			};
 
 		double[] k = mult(i, j);
