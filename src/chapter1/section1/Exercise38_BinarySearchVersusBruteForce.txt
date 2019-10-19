@@ -13,3 +13,9 @@ Bruteforce: 7328283
 Duration: 1325191800 nanoseconds.
 BinarySearch: 7328279
 Duration: 158600 nanoseconds.
+
+For testing:
+https://algs4.cs.princeton.edu/11model/tinyW.txt
+https://algs4.cs.princeton.edu/11model/tinyT.txt
+https://algs4.cs.princeton.edu/11model/largeW.txt
+https://algs4.cs.princeton.edu/11model/largeT.txt
