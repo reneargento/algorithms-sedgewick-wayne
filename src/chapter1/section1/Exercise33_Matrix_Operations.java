@@ -164,7 +164,7 @@ public class Exercise33_Matrix_Operations {
 	//Vector-matrix product
 	private static double[] mult(double[] y, double[][] a) {
 		
-		//Number of rows in matrix must be the same as the number of columns in vector
+		//Number of rows in matrix must be the same as the number of elements in vector
 		if (a == null || y == null || a.length != y.length) {
 			throw new IllegalArgumentException();
 		}
