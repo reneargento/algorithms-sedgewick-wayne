@@ -11,20 +11,19 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise38_BinarySearchVersusBruteForce {
 
 	public static void main(String[] args) {
-
 		int key = 760788;
 
-		// read the integers from a file
+		// Read the integers from a file
 		In in = new In(args[0]);
-		int[] arr = in.readAllInts();
+		int[] array = in.readAllInts();
 
-		// sort the array
-		Arrays.sort(arr);
+		// Sort the array
+		Arrays.sort(array);
 
 		// BRUTEFORCE
 		long startTime = System.nanoTime();
 
-		StdOut.println("Bruteforce: " + bruteForceSearch(key, arr));
+		StdOut.println("Bruteforce: " + bruteForceSearch(key, array));
 
 		long endTime = System.nanoTime();
 		long duration = (endTime - startTime);
@@ -34,7 +33,7 @@ public class Exercise38_BinarySearchVersusBruteForce {
 		// BINARY SEARCH
 		startTime = System.nanoTime();
 
-		StdOut.println("BinarySearch: " + binarySearch(key, arr, 0, arr.length - 1));
+		StdOut.println("BinarySearch: " + binarySearch(key, array, 0, array.length - 1));
 
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);
@@ -42,16 +41,15 @@ public class Exercise38_BinarySearchVersusBruteForce {
 		StdOut.println("Duration: " + duration + " nanoseconds.");
 	}
 
-	private static int bruteForceSearch(int key, int[] arr) {
-
-		if (arr == null) {
+	private static int bruteForceSearch(int key, int[] array) {
+		if (array == null) {
 			throw new IllegalArgumentException();
 		}
 
 		int result = -1;
 
-		for (int i = 0; i < arr.length; i++) {
-			if (key == arr[i]) {
+		for (int i = 0; i < array.length; i++) {
+			if (key == array[i]) {
 				result = i;
 			}
 		}
@@ -59,21 +57,20 @@ public class Exercise38_BinarySearchVersusBruteForce {
 		return result;
 	}
 
-	private static int binarySearch(int key, int[] arr, int lo, int hi) {
-
-		if (arr == null) {
+	private static int binarySearch(int key, int[] array, int low, int high) {
+		if (array == null) {
 			throw new IllegalArgumentException();
 		}
 
-		if (lo <= hi) {
-			int mid = lo + (hi - lo) / 2;
+		if (low <= high) {
+			int middle = low + (high - low) / 2;
 
-			if (key < arr[mid]) {
-				return binarySearch(key, arr, lo, mid - 1);
-			} else if (key > arr[mid]) {
-				return binarySearch(key, arr, mid + 1, hi);
+			if (key < array[middle]) {
+				return binarySearch(key, array, low, middle - 1);
+			} else if (key > array[middle]) {
+				return binarySearch(key, array, middle + 1, high);
 			} else {
-				return mid;
+				return middle;
 			}
 		} else {
 			return -1;
