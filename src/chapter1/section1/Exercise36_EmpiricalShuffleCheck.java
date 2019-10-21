@@ -8,11 +8,12 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 // Thanks to ccumulatio (https://github.com/ccumulatio) for mentioning that the arrays should be reinitialized at each
 // loop iteration: https://github.com/reneargento/algorithms-sedgewick-wayne/issues/33
+// Thanks to thiendao1407 (https://github.com/thiendao1407) for fixing a bug on the code to display the position counts:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/73
 public class Exercise36_EmpiricalShuffleCheck {
 
 	// Parameters example: 200000 5
 	public static void main(String[] args) {
-
 		int n = Integer.parseInt(args[0]);
 		int m = Integer.parseInt(args[1]);
 
@@ -25,12 +26,12 @@ public class Exercise36_EmpiricalShuffleCheck {
 			shuffle(array);
 
 			for (int j = 0; j < array.length; j++) {
-				positions[j][(int)array[j]]++;
+				positions[(int) array[j]][j]++;
 			}
 		}
 
 		printTable(positions);
-		//Entries are close to N/M
+		// Entries are close to N/M
 	}
 
 	private static void initializeArray(double[] array) {
@@ -43,15 +44,15 @@ public class Exercise36_EmpiricalShuffleCheck {
 		int n = array.length;
 
 		for (int i = 0; i < n; i++) {
-			int r = i + StdRandom.uniform(n - i);
+			int randomIndex = i + StdRandom.uniform(n - i);
+
 			double temp = array[i];
-			array[i] = array[r];
-			array[r] = temp;
+			array[i] = array[randomIndex];
+			array[randomIndex] = temp;
 		}
 	}
 
 	private static void printTable(int[][] positions) {
-
 		StdOut.println("TABLE");
 
 		for (int i = 0; i < positions.length; i++) {

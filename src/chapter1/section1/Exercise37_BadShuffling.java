@@ -8,11 +8,12 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 // Thanks to ccumulatio (https://github.com/ccumulatio) for mentioning that the arrays should be reinitialized at each
 // loop iteration: https://github.com/reneargento/algorithms-sedgewick-wayne/issues/33
+// Thanks to thiendao1407 (https://github.com/thiendao1407) for fixing a bug on the code to display the position counts
+// and in the shuffle method: https://github.com/reneargento/algorithms-sedgewick-wayne/issues/73
 public class Exercise37_BadShuffling {
 
 	// Parameters example: 200000 5
 	public static void main(String[] args) {
-
 		int n = Integer.parseInt(args[0]);
 		int m = Integer.parseInt(args[1]);
 
@@ -25,7 +26,7 @@ public class Exercise37_BadShuffling {
 			badShuffle(array);
 
 			for (int j = 0; j < array.length; j++) {
-				positions[j][(int)array[j]]++;
+				positions[(int) array[j]][j]++;
 			}
 		}
 
@@ -42,7 +43,8 @@ public class Exercise37_BadShuffling {
 		int n = array.length;
 
 		for (int i = 0; i < n; i++) {
-			int randomIndex = StdRandom.uniform(n - i);
+			int randomIndex = StdRandom.uniform(n);
+
 
 			double temp = array[i];
 			array[i] = array[randomIndex];
@@ -51,7 +53,6 @@ public class Exercise37_BadShuffling {
 	}
 
 	private static void printTable(int[][] positions) {
-
 		StdOut.println("TABLE");
 
 		for (int i = 0; i < positions.length; i++) {
