@@ -65,12 +65,11 @@ public class Exercise33_Matrix_Operations {
 		
 		StdOut.println();
 		//Vector-matrix product
-		double[] i = {1, 2, 3};
+		double[] i = {1, 2};
 		
 		double[][] j = {
 				{1, 2, 3},
 				{4, 5, 6},
-				{1, 2, 3}
 			};
 
 		double[] k = mult(i, j);
@@ -165,15 +164,15 @@ public class Exercise33_Matrix_Operations {
 	//Vector-matrix product
 	private static double[] mult(double[] y, double[][] a) {
 		
-		//Number of rows in matrix must be the same as the number of rows in vector
+		//Number of rows in matrix must be the same as the number of elements in vector
 		if (a == null || y == null || a.length != y.length) {
 			throw new IllegalArgumentException();
 		}
 		
 		double[] b = new double[a[0].length];
 		
-		for (int i = 0; i < a.length; i++) {
-			for (int j = 0; j < a[0].length; j++) {
+		for (int i = 0; i < y.length; i++) {
+			for (int j = 0; j < a.length; j++) {
 				b[i] += a[j][i] * y[j];
 			}
 		}
