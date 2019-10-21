@@ -171,7 +171,7 @@ public class Exercise33_Matrix_Operations {
 		
 		double[] b = new double[a[0].length];
 		
-		for (int i = 0; i < a[0].length; i++) {
+		for (int i = 0; i < y.length; i++) {
 			for (int j = 0; j < a.length; j++) {
 				b[i] += a[j][i] * y[j];
 			}
