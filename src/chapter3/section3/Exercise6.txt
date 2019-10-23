@@ -32,13 +32,13 @@ N = 9
    ()    ()
 ( ) ( ) () ()
 
-Probability of this tree being the result: 1 / 7 + (6 / 7) * (6 / 9) = 2 / 7 = 0.71
+Probability of this tree being the result: 1 / 7 + (6 / 7) * (6 / 9) = 5 / 7 = 0.71
 
      ()
   ()    ( )
 () () () () ()
 
-Probability of this tree being the result: (6 / 7) * (3 / 9) = 5 / 7 = 0.29
+Probability of this tree being the result: (6 / 7) * (3 / 9) = 2 / 7 = 0.29
 
 N = 10
 
@@ -46,10 +46,13 @@ N = 10
    ()     ()
 ( ) ( ) ( ) ()
 
-Probability of this tree being the result: (2 / 7) * (4 / 10) = 1 / 9 = 0.11
+Probability of this tree being the result: (5 / 7) * (4 / 10) = 2 / 7 = 0.29
 
         ()
     ( )    ()
 ( ) () () () ()
 
-Probability of this tree being the result: (2 / 7) * (6 / 10) + 5 / 7 = 8 / 9 = 0.89
+Probability of this tree being the result: (5 / 7) * (6 / 10) + 2 / 7 = 5 / 7 = 0.71
+
+// Thanks to Oreshnik (https://github.com/Oreshnik) for finding an issue in the probability computation for trees with N = 9.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/pull/74
