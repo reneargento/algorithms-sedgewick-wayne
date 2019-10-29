@@ -1,2 +1,5 @@
 2.1.3
-Array: Z R E N E A B C
+Array: H G F E D C B A
+
+Thanks to QiotoF (https://github.com/QiotoF) for mentioning a better array solution for this exercise
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/76
