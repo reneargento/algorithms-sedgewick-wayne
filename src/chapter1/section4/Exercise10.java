@@ -54,7 +54,7 @@ public class Exercise10 {
     }
 
     private static int binarySearchIterative(int[] array, int element, int low, int high) {
-        while (low < high) {
+        while (low <= high) {
             int middle = low + (high - low) / 2;
 
             if (array[middle] < element) {
