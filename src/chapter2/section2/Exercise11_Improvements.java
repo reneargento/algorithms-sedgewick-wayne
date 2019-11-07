@@ -65,7 +65,7 @@ public class Exercise11_Improvements {
                 aux[i] = array[indexRight++];
             } else if (indexRight > high) {
                 aux[i] = array[indexLeft++];
-            } else if (array[indexLeft].compareTo(array[indexRight]) < 0) {
+            } else if (array[indexLeft].compareTo(array[indexRight]) <= 0) {
                 aux[i] = array[indexLeft++];   // to ensure stability
             } else {
                 aux[i] = array[indexRight++];
