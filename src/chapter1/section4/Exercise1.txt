@@ -13,7 +13,8 @@ So, the number of triples that can be chosen from N items is equal to:
 N(N - 1)(N - 2) / 6
 
 By induction:
-Let's define the number of different triples that can be chosen from N elements as P(N). Let's assume that P(N) = N(N - 1)(N - 2) / 6 and consider the base cases.
+Let's define the number of different triples that can be chosen from N elements as P(N).
+Let's assume that P(N) = N(N - 1)(N - 2) / 6 and consider the base cases.
 
 N = 1       P(N) = 1(1 - 1)(1 - 2) / 6 = 0
 N = 2       P(N) = 2(2 - 1)(2 - 2) / 6 = 0
@@ -21,17 +22,25 @@ N = 3       P(N) = 3(3 - 1)(3 - 2) / 6 = 1
 
 And we can see that P(N) holds for those.
 
-Now if we assume that P(N) = N(N - 1)(N - 2) / 6 and we prove that P(N + 1) = (N + 1)N(N - 1) / 6 [*], then P(N) holds for any arbitrary N.
+Now if we assume that:
+
+P(N) = N(N - 1)(N - 2) / 6
+
+and we prove that:
+
+P(N + 1) = (N + 1)N(N - 1) / 6 [*]
+
+then P(N) holds for any arbitrary N.
 
 P(N + 1) = P(N) + (number of new triples that contain the newly inserted N + 1)
 
 There are exactly "N choose K" new triples that contain N + 1, so:
 
-P(N+1) = P(N) + N! / 2!(N - 2)!
-       = P(N) + N(N - 1) / 2
-       = N(N - 1)(N - 2) / 6 + N(N - 1) / 2
-       = N(N - 1)(N - 2) / 6 + 3N(N - 1) / 6
-       = N(N - 1)(N - 2 + 3) / 6
-       = N(N - 1)(N + 1) / 6
+P(N + 1) = P(N) + N! / 2!(N - 2)!
+         = P(N) + N(N - 1) / 2
+         = N(N - 1)(N - 2) / 6 + N(N - 1) / 2
+         = N(N - 1)(N - 2) / 6 + 3N(N - 1) / 6
+         = N(N - 1)(N - 2 + 3) / 6
+         = N(N - 1)(N + 1) / 6
       
 And [*] is proven.
