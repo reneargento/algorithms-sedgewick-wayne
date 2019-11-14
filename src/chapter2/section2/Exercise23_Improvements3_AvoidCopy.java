@@ -3,8 +3,8 @@ package chapter2.section2;
 /**
  * Created by Rene Argento on 19/02/17.
  */
-//This implementation uses the third mergesort improvement:
-    //Improvement #3 - Avoid array copy during merge by switching arguments
+// This implementation uses the third mergesort improvement:
+// Improvement #3 - Avoid array copy during merge by switching arguments
 public class Exercise23_Improvements3_AvoidCopy {
 
     public static void mergeSort(Comparable[] array) {
@@ -15,7 +15,6 @@ public class Exercise23_Improvements3_AvoidCopy {
     }
 
     private static void sort(Comparable[] array, Comparable[] aux, int low, int high) {
-
         if (high <= low) {
             return;
         }
@@ -38,7 +37,7 @@ public class Exercise23_Improvements3_AvoidCopy {
                 aux[i] = array[indexRight++];
             } else if (indexRight > high) {
                 aux[i] = array[indexLeft++];
-            } else if (array[indexLeft].compareTo(array[indexRight]) < 0) {
+            } else if (array[indexLeft].compareTo(array[indexRight]) <= 0) {
                 aux[i] = array[indexLeft++];   // to ensure stability
             } else {
                 aux[i] = array[indexRight++];

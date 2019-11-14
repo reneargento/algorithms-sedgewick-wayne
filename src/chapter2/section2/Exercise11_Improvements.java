@@ -11,7 +11,6 @@ public class Exercise11_Improvements {
     private static final int CUTOFF = 15;
 
     public static void main(String[] args) {
-
         Comparable[] array = generateRandomArray(1000);
         topDownMergeSort(array);
     }
@@ -34,7 +33,6 @@ public class Exercise11_Improvements {
     }
 
     private static void topDownMergeSort(Comparable[] array, Comparable[] aux, int low, int high) {
-
         //Improvement #1 - Cutoff for small arrays
         if (high - low <= CUTOFF) {
             insertionSort(aux, low, high);
@@ -47,7 +45,7 @@ public class Exercise11_Improvements {
         topDownMergeSort(aux, array, middle + 1, high);
 
         //Improvement #2 - Skip merge if the array is already in order
-        if (array[middle].compareTo(array[middle + 1]) < 0) {
+        if (array[middle].compareTo(array[middle + 1]) <= 0) {
             System.arraycopy(array, low, aux, low, high - low + 1);
             return;
         }
@@ -56,7 +54,6 @@ public class Exercise11_Improvements {
     }
 
     private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-
         int indexLeft = low;
         int indexRight = middle + 1;
 
@@ -74,15 +71,12 @@ public class Exercise11_Improvements {
     }
 
     private static void insertionSort(Comparable[] array, int low, int high) {
-
         for(int i = low; i <= high; i++) {
             for(int j = i; j > low && array[j - 1].compareTo(array[j]) > 0; j--) {
-
                 Comparable temp = array[j - 1];
                 array[j - 1] = array[j];
                 array[j] = temp;
             }
         }
     }
-
 }
