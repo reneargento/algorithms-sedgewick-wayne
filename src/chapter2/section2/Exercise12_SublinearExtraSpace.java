@@ -23,7 +23,7 @@ public class Exercise12_SublinearExtraSpace {
         selectionSortBlocks(array, blockSize);
 
         //O (N^2)
-        for(int i = 0; i < arraySize / blockSize; i++) {
+        for(int i = 0; i < arraySize / blockSize - 1; i++) {
             mergeBlocks(array, blockSize);
         }
     }
