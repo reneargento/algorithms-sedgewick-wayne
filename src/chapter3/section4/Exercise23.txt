@@ -1,18 +1,28 @@
 3.4.23
 
-Since R is a power of 2, only the first lg(R) bits are used to compute the hashcode.
-This can be seen with the strings "rene" and "ener".
+Given R = 256 and M = 255, we shall prove that the hash of all strings with the same collection of chars is the same.
+In fact, we can prove the proposition that hash(string) = (sum of chars) % 255 for all strings by induction on string
+length.
 
-"rene" has hashcode 43
-hash = 0
-hash = (256 * 0 + 82) % 255 = 82
-hash = (256 * 82 + 69) % 255 = 151
-hash = (256 * 151 + 78) % 255 = 229
-hash = (256 * 229 + 69) % 255 = 43
+For any string with only one char, the proposition holds trivially.
+Let hash(str{k}) denote the hash of a string no longer than k, char(k) is the k-th char.
+By induction assumption, we have:
+hash(str{k}) = (sum of k chars) % 255
 
-"ener" also has hashcode 43
-hash = 0
-hash = (256 * 0 + 69) % 255 = 69
-hash = (256 * 69 + 78) % 255 = 147
-hash = (256 * 147 + 69) % 255 = 216
-hash = (256 * 216 + 82) % 255 = 43
+Then we have:
+hash(str{k + 1}) = (hash(str{k}) * 256 + char(k + 1)) % 255
+ = (hash(str{k}) * (255 + 1) + char(k + 1)) % 255
+ = (hash(str{k}) * 255 + hash(str{k}) + char(k + 1)) % 255
+ = (hash(str{k}) + char(k + 1)) % 255
+ = ((sum of k chars) % 255 + char(k + 1)) % 255
+ = ((sum of k chars + char(k + 1)) % 255) % 255
+ = (sum of k + 1 chars) % 255
+Note that (N * 255) % 255 = 0, and the char values are always less than 255, so the chars can be moved into the modular
+expression.
+
+Hence, by induction, the proposition holds for strings of any length.
+All strings with the same collection of chars must have the same sum of chars, so by the proposition they must have the
+same hash.
+
+Thanks to luowyang (https://github.com/luowyang) for improving the answer and providing a proof for this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/95
