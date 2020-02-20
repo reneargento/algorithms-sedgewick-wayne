@@ -1,16 +1,16 @@
 5.4.3
 
-The maximum number of different strings that can be described by a regular expression with M or operators and no closure operators is M + 1, which happens when all options are different.
+The maximum number of different strings that can be described by a regular expression with M or operators and no closure operators is 2^M, which happens when every position yields two choices.
 
-Example patterns with M = 4
+Example pattern with M = 4:
+(A|B)(A|B)(A|B)(A|B)
 
-Pattern 1: (A|B|C|D|E)
-Different strings: A, B, C, D, E
+On that pattern every position has two choices, which will yield 2^4 = 16 strings:
+AAAA
+BAAA, ABAA, AABA, AAAB
+BBAA, BABA, BAAB, ABBA, ABAB, AABB
+BBBA, BBAB, BABB, ABBB
+BBBB
 
-The addition of parentheses do not change the result: 
-Pattern 2: (A(B|C|D|E|F)G)
-Different strings: ABG, ACG, ADG, AEG, AFG
-
-The addition of concatenations do not change the result:
-Pattern 3: (ABC|DE|F|GH|IJKL)
-Different strings: ABC, DE, F, GH, IJKL
+Thanks to luowyang (https://github.com/luowyang) for the correct solution to this exercise:
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/97
