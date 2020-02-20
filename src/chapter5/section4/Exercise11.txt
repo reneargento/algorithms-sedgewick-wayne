@@ -9,9 +9,15 @@ Bitstrings of length 1,000: 999 bitstrings
 In this case we have options such as: 998 0’s and 0 1’s; 997 0’s and 1 1’s; until 0 0’s and 998 1’s.
 
 c. Regular expression: (1 | 01)*
-Bitstrings of length 1,000: 2^500 bitstrings
-In this case we have options such as: 1000 1’s and 0 01’s; 998 1’s and 1 01’s; until 0 1’s and 500 01’s.
-Also, the 1's and 01's can be placed in multiple permutations.
+Bitstrings of length 1,000: SUM(from k=0 to 500) (1000 - (2 * k) + 1)^k bitstrings, where k is the number of (01)'s.
+In this case the bitstrings must be a combination of k (01)'s and 1000 - (2 * k) 1's, where k can be anywhere between 0 and 500.
+To calculate the total number of combinations, we can think of 1000 - (2 * k) balls (1's) placed in
+between k separators (01)'s on a line, as illustrated below (O is a ball and | is a separator).
+...O|OO||OOO|O|...
+There are no limitations on how to insert a separator and the relative order of separators is irrelevant.
+Each separator can be inserted on 1000 - (2 * k) + 1 different places (including both ends of the bitstring), so the
+number of combinations will be (1000 - (2 * k) + 1)^k.
+Thus the total number of combinations will be a sum of (1000 - (2 * k) + 1)^k from 0 to 500.
 
-Thanks to LegendaryKokiri (https://github.com/LegendaryKokiri) for finding the correct answer to part c of this exercise.
-https://github.com/reneargento/algorithms-sedgewick-wayne/issues/59
+Thanks to luowyang (https://github.com/luowyang) for finding the correct answer to part c of this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/98
