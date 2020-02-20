@@ -2,4 +2,7 @@
 
 Regular expression that describes the set of strings that are legal REs over the binary alphabet, but with no occurrence of parentheses within parentheses:
 
-([01\.\*\|\+\?\[\]\{\}]*(\([01\.\*\|\+\?\[\]\{\}]*\))*[01\.\*\|\+\?\[\]\{\}]*)*
+([01\.]|\([01\.](\|[01\.])*\))(([01\.\*]|\|[01\.])|(\(|\|\()[01\.](\|[01\.])*\))*
+
+Thanks to luowyang (https://github.com/luowyang) for providing an improvement over the previous answer.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/99
