@@ -9,46 +9,36 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise11 {
 	
 	private static int evaluatePostfix(String postfixExpression) {
-		Stack<String> operands = new Stack<>();
-		Stack<String> operators = new Stack<>();
-		
+		Stack<Integer> operands = new Stack<>();
+
 		String[] values = postfixExpression.split("\\s");
 		for (String s : values) {
-			if (s.equals("(")) {
-				//do nothing
-			} else if (s.equals("+")
-					|| s.equals("-")
-					|| s.equals("*")
-					|| s.equals("/")) {
-				operators.push(s);
-			} else if (s.equals(")")) {
-				int operand2 = Integer.parseInt(operands.pop());
-				int operand1 = Integer.parseInt(operands.pop());
-				String operator = operators.pop();
-				
+			if (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/")) {
+				int operand2 = operands.pop();
+				int operand1 = operands.pop();
 				int result = 0;
-				if (operator.equals("+")) {
+				if (s.equals("+")) {
 					result = operand1 + operand2;
-				} else if (operator.equals("-")) {
+				} else if (s.equals("-")) {
 					result = operand1 - operand2;
-				} else if (operator.equals("*")) {
+				} else if (s.equals("*")) {
 					result = operand1 * operand2;
-				} else if (operator.equals("/")) {
+				} else if (s.equals("/")) {
 					result = operand1 / operand2;
 				}
-				operands.push(String.valueOf(result));
+				operands.push(result);
 			} else {
-				operands.push(s);
+				operands.push(Integer.parseInt(s));
 			}
 		}
 		
-		return Integer.parseInt(operands.pop());
+		return operands.pop();
 	}
 
-	// Parameter example: "( ( 4 2 + ) 3 / )"
+	// Parameter example: "4 2 + 1 3 - *"
 	public static void main(String[] args) {
 		String postfixExpression = args[0];
-		
+		// Supposed to be -12
 		StdOut.println("Result: " + evaluatePostfix(postfixExpression));
 	}
 
