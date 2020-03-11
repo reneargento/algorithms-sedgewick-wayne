@@ -31,15 +31,14 @@ public class Exercise11 {
 				operands.push(Integer.parseInt(s));
 			}
 		}
-		
 		return operands.pop();
 	}
 
 	// Parameter example: "4 2 + 1 3 - *"
 	public static void main(String[] args) {
 		String postfixExpression = args[0];
-		// Supposed to be -12
 		StdOut.println("Result: " + evaluatePostfix(postfixExpression));
+		StdOut.println("Expected: -12");
 	}
 
 }
