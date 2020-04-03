@@ -7,7 +7,9 @@ import java.util.Stack;
 /**
  * Created by Rene Argento on 20/11/16.
  */
-//Based on http://stackoverflow.com/questions/23585523/implementing-deque-using-3-stacks-amortized-time-o1
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for finding a bug on the popLeft() and popRight()
+// methods: https://github.com/reneargento/algorithms-sedgewick-wayne/issues/104
+// Based on http://stackoverflow.com/questions/23585523/implementing-deque-using-3-stacks-amortized-time-o1
 public class Exercise31_DequeWith3Stacks<Item> {
 
     private Stack<Item> headStack;
@@ -20,48 +22,33 @@ public class Exercise31_DequeWith3Stacks<Item> {
         tailStack = new Stack<>();
     }
 
-    //O(1)
+    // O(1)
     public int size() {
         return headStack.size() + middleStack.size() + tailStack.size();
     }
 
-    //O(1)
+    // O(1)
     public boolean isEmpty() {
         return headStack.isEmpty() && middleStack.isEmpty() && tailStack.isEmpty();
     }
 
-    //O(1)
+    // O(1)
     public void pushLeft(Item item) {
         headStack.push(item);
     }
 
-    //Amortized O(1)
+    // Amortized O(1)
     public Item popLeft() {
         if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
-
         Item item = null;
 
         if (!headStack.isEmpty()) {
             item = headStack.pop();
         } else {
             if (!tailStack.isEmpty()) {
-                //Move half items from tail stack to middle stack
-                for(int i = 0; i < tailStack.size() / 2; i++) {
-                    middleStack.push(tailStack.pop());
-                }
-
-                //Move the other half items from tail stack to head stack
-                while(!tailStack.isEmpty()) {
-                    headStack.push(tailStack.pop());
-                }
-
-                //Return all items from middle stack to tail stack
-                while(!middleStack.isEmpty()) {
-                    tailStack.push(middleStack.pop());
-                }
-
+                moveHalfItems(tailStack, headStack);
                 item = headStack.pop();
             }
         }
@@ -69,43 +56,47 @@ public class Exercise31_DequeWith3Stacks<Item> {
         return item;
     }
 
-    //O(1)
+    // O(1)
     public void pushRight(Item item) {
         tailStack.push(item);
     }
 
-    //Amortized O(1)
+    // Amortized O(1)
     public Item popRight() {
         if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
-
         Item item = null;
 
         if (!tailStack.isEmpty()) {
             item = tailStack.pop();
         } else {
             if (!headStack.isEmpty()) {
-                //Move half items from head stack to middle stack
-                for(int i = 0; i < headStack.size() / 2; i++) {
-                    middleStack.push(headStack.pop());
-                }
-
-                //Move the other half items from head stack to tail stack
-                while(!headStack.isEmpty()) {
-                    tailStack.push(headStack.pop());
-                }
-
-                //Return all items from middle stack to head stack
-                while(!middleStack.isEmpty()) {
-                    headStack.push(middleStack.pop());
-                }
-
+                moveHalfItems(headStack, tailStack);
                 item = tailStack.pop();
             }
         }
 
         return item;
+    }
+
+    private void moveHalfItems(Stack<Item> fullStack, Stack<Item> emptyStack) {
+        int fullStackHalfSize = fullStack.size() / 2;
+
+        // Move half items from fullStack to middle stack
+        for(int i = 0; i < fullStackHalfSize; i++) {
+            middleStack.push(fullStack.pop());
+        }
+
+        // Move the other half items from fullStack to emptyStack
+        while(!fullStack.isEmpty()) {
+            emptyStack.push(fullStack.pop());
+        }
+
+        // Return all items from middle stack to fullStack
+        while(!middleStack.isEmpty()) {
+            fullStack.push(middleStack.pop());
+        }
     }
 
     public static void main(String[] args) {
@@ -115,9 +106,13 @@ public class Exercise31_DequeWith3Stacks<Item> {
         exercise31_dequeWith3Stacks.pushLeft(1);
         exercise31_dequeWith3Stacks.pushLeft(2);
         exercise31_dequeWith3Stacks.pushLeft(3);
+        exercise31_dequeWith3Stacks.pushLeft(4);
 
+        StdOut.println(exercise31_dequeWith3Stacks.popRight());
         StdOut.println(exercise31_dequeWith3Stacks.popLeft());
         StdOut.println(exercise31_dequeWith3Stacks.popLeft());
+
+        StdOut.println("Expected output from pop(): 1 4 3");
 
         exercise31_dequeWith3Stacks.pushRight(7);
         exercise31_dequeWith3Stacks.pushRight(8);
@@ -129,7 +124,7 @@ public class Exercise31_DequeWith3Stacks<Item> {
         StdOut.println(exercise31_dequeWith3Stacks.popLeft());
         StdOut.println(exercise31_dequeWith3Stacks.popRight());
 
-        StdOut.println("Expected output from pop(): 3 2 1 7 8");
+        StdOut.println("Expected output from pop(): 2 7 8");
     }
 
 }
