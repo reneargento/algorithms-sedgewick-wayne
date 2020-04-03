@@ -8,11 +8,14 @@ import java.util.Stack;
 /**
  * Created by Rene Argento on 20/11/16.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting to move half the items from steque
+// to the stack once the stack is empty. With this we have either O(1) or amortized O(1) on all methods.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/105
 public class Exercise30_DequeWithStackAndSteque<Item> {
 
-    //Stack will handle left operations
+    // Stack will handle left operations
     private Stack<Item> stack;
-    //Steque will handle right operations
+    // Steque will handle right operations
     private Exercise32_Steque<Item> steque;
 
     public Exercise30_DequeWithStackAndSteque() {
@@ -20,53 +23,61 @@ public class Exercise30_DequeWithStackAndSteque<Item> {
         steque = new Exercise32_Steque<>();
     }
 
-    //O(1)
+    // O(1)
     public int size() {
         return stack.size() + steque.size();
     }
 
-    //O(1)
+    // O(1)
     public boolean isEmpty() {
         return stack.isEmpty() && steque.isEmpty();
     }
 
-    //O(1)
+    // O(1)
     public void pushLeft(Item item) {
         stack.push(item);
     }
 
-    //Amortized O(1)
+    // Amortized O(1)
     public Item popLeft() {
         if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
-
         if (stack.isEmpty()) {
-            while (!steque.isEmpty()) {
-                stack.push(steque.pop());
-            }
+            moveHalfItemsFromStequeToStack();
         }
-
         return stack.pop();
     }
 
-    //O(1)
+    private void moveHalfItemsFromStequeToStack() {
+        int halfStequeSize = steque.size() / 2;
+        int remainingStequeSize = steque.size() - halfStequeSize;
+
+        for (int i = 0; i < halfStequeSize; i++) {
+            steque.enqueue(steque.pop());
+        }
+
+        for (int i = 0; i < remainingStequeSize; i++) {
+            stack.push(steque.pop());
+        }
+    }
+
+    // O(1)
     public void pushRight(Item item) {
         steque.push(item);
     }
 
-    //Amortized O(1)
+    // Amortized O(1)
     public Item popRight() {
         if (isEmpty()) {
             throw new RuntimeException("Deque underflow");
         }
-
         if (steque.isEmpty()) {
+            // Move all items from stack to steque
             while (!stack.isEmpty()) {
                 steque.push(stack.pop());
             }
         }
-
         return steque.pop();
     }
 
@@ -77,9 +88,13 @@ public class Exercise30_DequeWithStackAndSteque<Item> {
         exercise30_dequeWithStackAndSteque.pushLeft(1);
         exercise30_dequeWithStackAndSteque.pushLeft(2);
         exercise30_dequeWithStackAndSteque.pushLeft(3);
+        exercise30_dequeWithStackAndSteque.pushLeft(4);
 
+        StdOut.println(exercise30_dequeWithStackAndSteque.popRight());
         StdOut.println(exercise30_dequeWithStackAndSteque.popLeft());
         StdOut.println(exercise30_dequeWithStackAndSteque.popLeft());
+
+        StdOut.println("Expected output from pop(): 1 4 3");
 
         exercise30_dequeWithStackAndSteque.pushRight(7);
         exercise30_dequeWithStackAndSteque.pushRight(8);
@@ -91,8 +106,7 @@ public class Exercise30_DequeWithStackAndSteque<Item> {
         StdOut.println(exercise30_dequeWithStackAndSteque.popLeft());
         StdOut.println(exercise30_dequeWithStackAndSteque.popRight());
 
-        StdOut.println("Expected output from pop(): 3 2 1 7 8");
-
+        StdOut.println("Expected output from pop(): 2 7 8");
     }
 
 }
