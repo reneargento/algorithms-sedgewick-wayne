@@ -13,6 +13,9 @@ import edu.princeton.cs.algs4.StdOut;
 
 // Thanks to shftdlt (https://github.com/shftdlt) for fixing bugs on the union() method code:
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/51
+
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for finding a bug on the maxHeight verification:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/106
 public class Exercise14_WeightedQUHeight {
 
     private class WeightedQuickUnionByHeight {
@@ -45,8 +48,8 @@ public class Exercise14_WeightedQUHeight {
             return find(site1) == find(site2);
         }
 
-        //O(lg n)
-        //no path compression in this exercise
+        // O(lg n)
+        // No path compression in this exercise
         public int find(int site) {
             while(site != leaders[site]) {
                 site = leaders[site];
@@ -55,9 +58,8 @@ public class Exercise14_WeightedQUHeight {
             return site;
         }
 
-        //O(lg n)
+        // O(lg n)
         public void union(int site1, int site2) {
-
             int leader1 = find(site1);
             int leader2 = find(site2);
 
@@ -73,8 +75,8 @@ public class Exercise14_WeightedQUHeight {
                 leaders[leader1] = leaders[leader2];
                 ranks[leader2]++;
 
-                if (ranks[leader1] > maxHeight) {
-                    maxHeight = ranks[leader1];
+                if (ranks[leader2] > maxHeight) {
+                    maxHeight = ranks[leader2];
                 }
             }
 
