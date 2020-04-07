@@ -6,6 +6,8 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 13/02/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting a simpler method to merge the queues:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/107
 @SuppressWarnings("unchecked")
 public class Exercise14_MergingSortedQueues {
 
@@ -36,38 +38,20 @@ public class Exercise14_MergingSortedQueues {
     public static Queue<Comparable> mergeQueues(Queue<Comparable> queue1, Queue<Comparable> queue2) {
         Queue<Comparable> mergedQueue = new Queue<>();
 
-        Comparable[] queue1Array = new Comparable[queue1.size()];
-        Comparable[] queue2Array = new Comparable[queue2.size()];
-
-        int array1Index = 0;
-        for(Comparable value : queue1) {
-            queue1Array[array1Index++] = value;
-        }
-
-        int array2Index = 0;
-        for(Comparable value : queue2) {
-            queue2Array[array2Index++] = value;
-        }
-
-        int leftIndex = 0;
-        int rightIndex = 0;
-
-        while(leftIndex < queue1Array.length && rightIndex < queue2Array.length) {
-            if (queue1Array[leftIndex].compareTo(queue2Array[rightIndex]) <= 0) {
-                mergedQueue.enqueue(queue1Array[leftIndex++]);
+        while(!queue1.isEmpty() && !queue2.isEmpty()) {
+            if (queue1.peek().compareTo(queue2.peek()) <= 0) {
+                mergedQueue.enqueue(queue1.dequeue());
             } else {
-                mergedQueue.enqueue(queue2Array[rightIndex++]);
+                mergedQueue.enqueue(queue2.dequeue());
             }
         }
 
-        while(leftIndex < queue1Array.length) {
-            mergedQueue.enqueue(queue1Array[leftIndex++]);
+        while(!queue1.isEmpty()) {
+            mergedQueue.enqueue(queue1.dequeue());
         }
-
-        while(rightIndex < queue2Array.length) {
-            mergedQueue.enqueue(queue2Array[rightIndex++]);
+        while(!queue2.isEmpty()) {
+            mergedQueue.enqueue(queue2.dequeue());
         }
-
         return mergedQueue;
     }
 
