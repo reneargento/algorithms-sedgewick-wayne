@@ -1,18 +1,20 @@
 2.3.15 - Nuts and bolts
 
-Since each nut matches to exactly one bolt, the array of nuts and the array of bolts have distinct elements.
+Since each nut matches exactly one bolt, the array of nuts and the array of bolts have distinct elements.
+To avoid a O(N^2) complexity, initially I would shuffle the nuts array.
 
-I would use the nuts as pivots, so to avoid a O(N ^ 2) complexity, initially I would shuffle the nuts array.
+I would then use Quicksort's partition method:
+1- Select a nut as the pivot (since the array is shuffled it is safe to always select the first nut).
+2- Using that pivot, partition the bolts array. This would result in the bolts array with a bolt (matching the nut pivot) in the correct place, all bolts smaller than it on its left and all bolts bigger than it on its right.
+3- Use the bolt found on the previous step as a pivot and partition the nuts array.
+4- Split the bolt array into two sub-arrays: one array with bolts smaller than the bolt found on step 2, and another array with bolts bigger than it.
+5- Do the same split for the nuts array, based on the nut found on step 3.
 
-I would use a similar method to Quicksorts part'ition to place the bolts in their correct location.
-Using one nut as the pivot at a time, I would partition the bolts array. This would result in the bolts array with a bolt (matching the nut pivot) in the correct place, all bolts smaller than it on its left and all bolts bigger than it on its right.
+I would repeat these steps recursively on the corresponding nut and bolt sub-arrays.
+At the end, I would iterate over the sorted arrays and connect all nuts and bolts based on their index.
 
-Instead of removing it, though, I would leave the matched bolt in its correct place and store the information of its location and the corresponding nut in a hashmap, to match them at end of the algorithm.
+This method would do 2 * N operations for finding the partitions (N operations for the nuts array and N operations for the bolts array), lg N times, and would yield a complexity of O(N lg N).
 
-I would then choose the next nut as the pivot. However, in this case, I would first compare it with the bolt found in the previous iteration of the algorithm, to know in which subarray to check (either the left or the right), depending on whether the bolt is smaller or bigger than the current pivot nut. I would then repeat the previous process.
-
-I would repeat this steps for every nut, doing a binary search on the already found bolts to reduce the bolts subarray to search.
-At the end, I would iterate over the hashmap and connect all nuts and bolts.
-
-This method would yield a complexity of O(N lg lg N).
-N operations for the pivot method, lg N times, using a binary search to find the correct subarray (lg n).
+Based on: https://www.geeksforgeeks.org/nuts-bolts-problem-lock-key-problem/
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting a simpler method for this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/109
