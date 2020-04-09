@@ -4,7 +4,7 @@ Regular expression for strings that contain exactly four consecutive As:
 A{4} | A{4}[^A].* | .*[^A]A{4} | .*[^A]A{4}[^A].*
 
 Regular expression for strings that contain no more than four consecutive As:
-(([^A] | Ɛ)A{0-4}([^A] | Ɛ))*
+A{0-4}([^A]A{0-4})*
 
 Regular expression for strings that contain at least one occurrence of four consecutive As:
 .*(AAAA)+.*
