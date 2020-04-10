@@ -12,6 +12,8 @@ import java.util.Map;
 /**
  * Created by Rene Argento on 07/03/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for noticing that some redundant checks could be removed.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/110
 public class Exercise20_NonrecursiveQuicksort {
 
     private static class QuickSortRange {
@@ -35,7 +37,6 @@ public class Exercise20_NonrecursiveQuicksort {
     }
 
     private static void doExperiment(int numberOfExperiments, int initialArraySize, Map<Integer, Comparable[]> allInputArrays) {
-
         StdOut.printf("%13s %23s %22s\n", "Array Size | ", "QuickSort Running Time |", "Nonrecursive QuickSort");
 
         int arraySize = initialArraySize;
@@ -46,14 +47,14 @@ public class Exercise20_NonrecursiveQuicksort {
             Comparable[] arrayCopy1 = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, arrayCopy1, 0, originalArray.length);
 
-            //Default QuickSort
+            // Default QuickSort
             Stopwatch defaultQuickSortTimer = new Stopwatch();
 
             QuickSort.quickSort(originalArray);
 
             double defaultQuickSortRunningTime = defaultQuickSortTimer.elapsedTime();
 
-            //Nonrecursive QuickSort
+            // Nonrecursive QuickSort
             Stopwatch nonRecursiveQuickSortTimer = new Stopwatch();
 
             nonRecursiveQuickSort(arrayCopy1);
@@ -72,7 +73,6 @@ public class Exercise20_NonrecursiveQuicksort {
     }
 
     private static void quickSort(Comparable[] array, int low, int high) {
-
         Stack<QuickSortRange> stack = new Stack<>();
 
         QuickSortRange quickSortRange = new QuickSortRange(low, high);
@@ -85,25 +85,23 @@ public class Exercise20_NonrecursiveQuicksort {
             QuickSortRange leftQuickSortRange = new QuickSortRange(currentQuickSortRange.low, partition - 1);
             QuickSortRange rightQuickSortRange = new QuickSortRange(partition + 1, currentQuickSortRange.high);
 
-            //Size = right - left + 1
+            // Size = right - left + 1
             int leftSubArraySize = partition - currentQuickSortRange.low;
             int rightSubArraySize = currentQuickSortRange.high - partition + 2;
 
-            //Push the larger sub array first to guarantee that the stack will have at most lg N entries
+            // Push the larger sub array first to guarantee that the stack will have at most lg N entries
             if (leftSubArraySize > rightSubArraySize) {
-                if (leftSubArraySize > 1 && leftQuickSortRange.low < leftQuickSortRange.high) {
+                if (leftSubArraySize > 1) {
                     stack.push(leftQuickSortRange);
                 }
-
-                if (rightSubArraySize > 1 && rightQuickSortRange.low < rightQuickSortRange.high) {
+                if (rightSubArraySize > 1) {
                     stack.push(rightQuickSortRange);
                 }
             } else {
-                if (rightSubArraySize > 1 && rightQuickSortRange.low < rightQuickSortRange.high) {
+                if (rightSubArraySize > 1) {
                     stack.push(rightQuickSortRange);
                 }
-
-                if (leftSubArraySize > 1 && leftQuickSortRange.low < leftQuickSortRange.high) {
+                if (leftSubArraySize > 1) {
                     stack.push(leftQuickSortRange);
                 }
             }
@@ -136,7 +134,7 @@ public class Exercise20_NonrecursiveQuicksort {
             ArrayUtil.exchange(array, i, j);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, j);
         return j;
     }
