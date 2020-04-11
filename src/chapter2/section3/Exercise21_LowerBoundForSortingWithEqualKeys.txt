@@ -5,17 +5,62 @@ where H is the Shannon entropy, defined from the frequencies of key values.
 
 First part of the proof: There are N! / f1! f2! ... fk! different ways to arrange keys with k different values, where the ith value appears with frequency fi, with f1 + ... + fk = N.
 
-Using a ternary tree we can describe the sequence of compares. Each node in the tree is either a leaf i0 i1 i2 ... in-1 that indicates that the sort is complete and has discovered that the original inputs were in the order a[i0], a[i1], ... a[in-1], or an internal node i:j that corresponds to a compare operation between a[i] and a[j], with a left subtree corresponding to the sequence of compares in the case that a[i] is less than a[j], a central subtree corresponding to the sequence of compares in the case that a[i] is equal to a[j] and a right subtree corresponding to what happens if a[i] is greater than a[j]. Each path from the root to a leaf corresponds to the sequence of compares that the algorithm uses to establish the ordering given in the leaf.
+Using a ternary tree we can describe the sequence of compares.
+Each node in the tree is either a leaf i0 i1 i2 ... i(n-1) that indicates that the sort is complete and has discovered that the original inputs were in the order a[i0], a[i1], ..., a[i(n-1)], or an internal node i:j that corresponds to a compare operation between a[i] and a[j], with a left subtree corresponding to the sequence of compares in the case that a[i] is less than a[j], a central subtree corresponding to the sequence of compares in the case that a[i] is equal to a[j] and a right subtree corresponding to what happens if a[i] is greater than a[j].
+Each path from the root to a leaf corresponds to the sequence of compares that the algorithm uses to establish the ordering given in the leaf.
 
 The first key observation in the proof is that the tree must have at least N! / f1! f2! ... fk! leaves because there are N! / f1! f2! ... fk! different permutations of the keys.
 If there are fewer than N! / f1! f2! ... fk! leaves, then some permutation is missing from the leaves, and the algorithm would fail for that permutation.
 
 The number of internal nodes on a path from the root to a leaf in the tree is the number of compares used by the algorithm for some input.
 We are interested in the length of the longest such path in the tree (known as the tree height) since it measures the worst-case number of compares used by the algorithm.
-It is a basic combinatorial property of ternary trees that a tree of height h has no more than 3^h leaves - the tree of height h with the maximum number of leaves is perfectly balanced, or complete.
+It is a basic combinatorial property of ternary trees that a tree of height h has no more than 3^h leaves, where the tree of height h with the maximum number of leaves is perfectly balanced, or complete.
 
 Combining the previous two observations, we have shown that any compare-based sorting algorithm corresponds to a compare tree of height h with
 N! / f1! f2! ... fk! <= number of leaves <= 3^h
 
-The value of h is precisely the worst-case number of compares, so we can take the logarithm (base 2) of both sides of this equation and conclude that the number of compares used by any algorithm must be at least lg N! / f1! f2! ... fk!
-The approximation lg N! ~ N lg N follows immediately from Stirling's approximation to the factorial function, which means that the number of compares used by any algorithm must be at least N lg N / f1! f2! ... fk! when there are k different values.
+The value of h is precisely the worst-case number of compares, so we can take the logarithm (base 3) of the left side of this equation and conclude that the number of compares used by any algorithm must be at least log(base 3) (N! / f1! f2! ... fk!)
+Note: to simplify the notations, consider that the logs on the equations below are all on base 3.
+
+log(N! / f1! * f2! * ... * fk!)
+
+Using logarithm properties, this is the same as:
+log(N!) - log(f1! * f2! * ... * fk!)
+
+Which is equal to:
+log(N!) - (log(f1!) + log(f2!) + ... + log(fk!))
+
+As fi = pi * N, the previous formula expands to:
+log(N!) - (log((p1 * N)!) + log((p2 * N)!) + ... + log((pk * N)!))
+
+Then, using Stirling's approximation:
+N * log(N) - (N * p1 * log(p1 * N) + ... + N * pk * log(pk * N))
+
+Moving N behind the brackets:
+N * log(N) - N * (p1 * log(p1 * N) + ... + pk * log(pk * N))
+
+Expanding the logarithms using logarithm properties:
+N * log(N) - N * (p1 * log(p1) + p1 * log(N) + ... + pk * log(pk) + pk * log(N))
+
+Re-grouping terms inside brackets:
+N * log(N) - N * (p1 * log(p1) + ... + pk * log(pk)) - N * (p1 * log(N) + ... + pk * log(N))
+
+Now, the first term inside brackets is Shannon entropy: H = -(p1 * log(p1) + ... + pk * log(pk)).
+Moreover, for the second term inside brackets, we can move the log(N) term behind the brackets:
+N * log(N) + N * H - N * log(N) * (p1 + ... + pk)
+
+The sum of p1 + p2 + ... + pk is equal to 1, because this is the sum of all probabilities of each value.
+Using this fact, we have:
+N * log(N) + N * H - N * log(N)
+
+Which can be simplified to:
+N * H
+
+This means that the number of compares used by any compare-based sorting algorithm must be at least NH when there are k different values.
+
+Note: Proposition M describes an extra -N term in the formula: NH - N.
+It seems to be correct to include that term only in cases of applying Stirling's approximation to a relatively large N, because for a small N the approximation is not precise.
+In other sections of the book applying Stirling's approximation (such as Proposition I), this extra N term is not included.
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for providing a correct proof for this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/111
