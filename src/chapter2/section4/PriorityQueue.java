@@ -38,6 +38,13 @@ public class PriorityQueue<Key extends Comparable<Key>> {
         }
     }
 
+    public Key peek() {
+        if (size == 0) {
+            throw new RuntimeException("Priority queue underflow");
+        }
+        return priorityQueue[1];
+    }
+
     public Key deleteTop() {
         if (size == 0) {
             throw new RuntimeException("Priority queue underflow");
