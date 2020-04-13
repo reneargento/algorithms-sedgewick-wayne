@@ -6,11 +6,12 @@ import util.ArrayUtil;
 /**
  * Created by Rene Argento on 26/03/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting an improved binarySearchToGetTargetAncestor() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/114
 @SuppressWarnings("unchecked")
 public class Exercise31_FastInsert {
 
     private class PriorityQueueFastInsert<Key extends Comparable<Key>> {
-
         private Key[] priorityQueue;
         private int size = 0; // in priorityQueue[1..n] with pq[0] unused
 
@@ -29,13 +30,11 @@ public class Exercise31_FastInsert {
         }
 
         public void insert(Key key) {
-
             numberOfCompares = 0;
 
             if (size == priorityQueue.length - 1) {
                 resize(priorityQueue.length * 2);
             }
-
             size++;
             priorityQueue[size] = key;
 
@@ -48,13 +47,11 @@ public class Exercise31_FastInsert {
         }
 
         public Key deleteMin() {
-
             numberOfCompares = 0;
 
             if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
             }
-
             size--;
 
             Key min = priorityQueue[1];
@@ -75,8 +72,7 @@ public class Exercise31_FastInsert {
         }
 
         private void swim(int index) {
-
-            //No need to swim if we only have 1 element
+            // No need to swim if we only have 1 element
             if (index == 1) {
                 return;
             }
@@ -90,36 +86,30 @@ public class Exercise31_FastInsert {
         }
 
         private int binarySearchToGetTargetAncestor(int index) {
-            //Generate parents array
-            int parentsArraySize = (int) (Math.log10(size) / Math.log10(2));
-            int[] parentsIndex = new int[parentsArraySize];
+            int higherLevel = 0;
+            int indexLevel = log2(index);
+            int lowerLevel = indexLevel;
 
-            int parentsArrayIndex = parentsIndex.length - 1;
-            for(int i = index / 2; i >= 1; i /= 2) {
-                parentsIndex[parentsArrayIndex] = i;
-                parentsArrayIndex--;
-            }
-
-            //Binary search
-            int low = 0;
-            int high = parentsIndex.length - 1;
-            int middle;
-
-            int targetAncestor = index;
-
-            while (low < high) {
-                middle = low + (high - low) / 2;
+            while (lowerLevel != higherLevel) {
+                int middleLevel = higherLevel + (lowerLevel - higherLevel) / 2;
+                int parentIndex = index / (1 << (indexLevel - middleLevel));
 
                 numberOfCompares++;
-                if (ArrayUtil.more(priorityQueue[parentsIndex[middle]], priorityQueue[index])) {
-                    high = middle;
-                    targetAncestor = parentsIndex[middle];
+                if (ArrayUtil.more(priorityQueue[parentIndex], priorityQueue[index])) {
+                    lowerLevel = middleLevel;
                 } else {
-                    low = middle + 1;
+                    higherLevel = middleLevel + 1;
                 }
             }
+            return index / (1 << (indexLevel - higherLevel));
+        }
 
-            return targetAncestor;
+        private int log2(int value) {
+            int result = 0;
+            while ((value >>= 1) != 0) {
+                result++;
+            }
+            return result;
         }
 
         private void sink(int index) {
@@ -153,7 +143,7 @@ public class Exercise31_FastInsert {
         Exercise31_FastInsert.PriorityQueueFastInsert<Integer> priorityQueueFastInsert =
                 new Exercise31_FastInsert().new PriorityQueueFastInsert<>();
 
-        //Insert many items and later insert smaller items to check the number of compares
+        // Insert many items and later insert smaller items to check the number of compares
         for(int i = 10; i <= 42; i++) {
             priorityQueueFastInsert.insert(i);
         }
@@ -161,7 +151,7 @@ public class Exercise31_FastInsert {
         priorityQueueFastInsert.insert(2);
         priorityQueueFastInsert.insert(1);
 
-        //Also test delete min
+        // Also test delete min
         StdOut.println("Delete Min: " + priorityQueueFastInsert.deleteMin() + " Expected: 1");
         StdOut.println("Delete Min: " + priorityQueueFastInsert.deleteMin() + " Expected: 2");
         StdOut.println("Delete Min: " + priorityQueueFastInsert.deleteMin() + " Expected: 10");
