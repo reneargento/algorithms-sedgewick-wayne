@@ -3,129 +3,93 @@ package chapter2.section4;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Rene Argento on 27/03/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for fixing the random() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/116
 public class Exercise35_Sampling {
 
     private class Node {
         double weight;
         double cumulativeWeight;
+
+        public Node(double weight) {
+            this.weight = weight;
+        }
     }
 
     private Node[] nodes;
     private double sum = 0;
 
     private Exercise35_Sampling(double[] probabilities) {
-
         nodes = new Node[probabilities.length + 1];
 
-        //Used to initialize the nodes with highest weights on the top
-        Arrays.sort(probabilities);
-
-        int nodesIndex = 1;
-        for(int i = probabilities.length; i >= 1; i--) {
-            Node node = new Node();
-            node.weight = probabilities[i - 1];
-            node.cumulativeWeight = probabilities[i - 1];
-            nodes[nodesIndex++] = node;
-
-            sum += probabilities[i - 1];
+        for (int i = 1; i <= probabilities.length; i++) {
+            double weight = probabilities[i - 1];
+            nodes[i] = new Node(weight);
+            sum += weight;
         }
-
         computeCumulativeWeights();
-    }
-
-    private int random() {
-
-        int currentIndex = 1;
-
-        //Traverse the tree
-
-        //Check which node is closer to the random generated number
-        //If it is the parent, it will be selected
-        //Otherwise, move to the branch of the subtree with the node closest to the generated number
-        while(currentIndex * 2 < nodes.length) {
-
-            double randomNumber = StdRandom.uniform(0, sum);
-
-            double distanceFromParent = Math.abs(nodes[currentIndex].cumulativeWeight - randomNumber);
-            double distanceFromLeftChild = Math.abs(nodes[currentIndex * 2].cumulativeWeight - randomNumber);
-            double distanceFromRightChild = Double.MAX_VALUE;
-
-            if (currentIndex * 2 + 1 < nodes.length) {
-                distanceFromRightChild = Math.abs(nodes[currentIndex * 2 + 1].cumulativeWeight - randomNumber);
-            }
-
-            int closestChildIndex;
-            double distanceFromClosestChild;
-
-            if (distanceFromLeftChild < distanceFromRightChild) {
-                closestChildIndex = currentIndex * 2;
-                distanceFromClosestChild = distanceFromLeftChild;
-            } else if (distanceFromRightChild < distanceFromLeftChild) {
-                closestChildIndex = currentIndex * 2 + 1;
-                distanceFromClosestChild = distanceFromRightChild;
-            } else {
-                //Distance is the same, choose any child randomly
-                int randomChild = StdRandom.uniform(2);
-                if (randomChild == 0) {
-                    closestChildIndex = currentIndex * 2;
-                    distanceFromClosestChild = distanceFromLeftChild;
-                } else {
-                    closestChildIndex = currentIndex * 2 + 1;
-                    distanceFromClosestChild = distanceFromRightChild;
-                }
-            }
-
-            if (distanceFromParent < distanceFromClosestChild) {
-                //If the parent is closer to the random number, select it
-                return currentIndex;
-            } else {
-                //Otherwise, move to the branch of the child closest to the random number
-                currentIndex = closestChildIndex;
-            }
-        }
-
-        return currentIndex;
-    }
-
-    private void changeKey(int index, double value) {
-        double difference = value - nodes[index].weight;
-        nodes[index].weight = value;
-
-        sum += difference;
-
-        updateCumulativeWeights(index, difference);
     }
 
     private void computeCumulativeWeights() {
         for(int i = nodes.length - 1; i >= 2; i--) {
-            nodes[i / 2].cumulativeWeight += nodes[i].cumulativeWeight;
+            nodes[i / 2].cumulativeWeight += nodes[i].cumulativeWeight + nodes[i].weight;
         }
     }
 
-    private void updateCumulativeWeights(int startIndex, double difference) {
-        while (startIndex >= 1) {
-            nodes[startIndex].cumulativeWeight += difference;
+    private int random() {
+        double randomValue = StdRandom.uniform(0, sum);
+        int index = 1;
 
-            startIndex = startIndex / 2;
+        while (randomValue < nodes[index].cumulativeWeight) {
+            index *= 2;
+            double leftSubtreeWeight = nodes[index].cumulativeWeight + nodes[index].weight;
+
+            if (randomValue >= leftSubtreeWeight) {
+                randomValue -= leftSubtreeWeight;
+                index++;
+            }
+        }
+        return index - 1;
+    }
+
+    private void changeKey(int index, double value) {
+        index++;
+        double difference = value - nodes[index].weight;
+        nodes[index].weight = value;
+
+        sum += difference;
+        updateCumulativeWeights(index / 2, difference);
+    }
+
+    private void updateCumulativeWeights(int index, double difference) {
+        while (index >= 1) {
+            nodes[index].cumulativeWeight += difference;
+            index /= 2;
         }
     }
 
     public static void main(String[] args) {
-        double[] weights = {1, 2.2, 3.4, 4.1, 5.9, 6};
-
+        double[] weights = { 5, 1, 3, 4, 2, 20 };
         Exercise35_Sampling sampling = new Exercise35_Sampling(weights);
 
-        sampling.changeKey(4, 1);
+        sampling.changeKey(5, 5);
 
-        StdOut.println("Random generated indices:");
+        Map<Integer, Integer> result = new HashMap<>();
+        for (int i = 0; i < 20000; i++) {
+            int index = sampling.random();
+            result.put(index, result.getOrDefault(index, 0) + 1);
+        }
 
-        for(int i = 0; i < 20; i++) {
-            StdOut.println(sampling.random());
+        for (Map.Entry<Integer, Integer> entry : result.entrySet()) {
+            StdOut.println("Key = " + entry.getKey() +
+                    " (value = " + weights[entry.getKey()] +
+                    ") count = " + entry.getValue());
         }
     }
 
