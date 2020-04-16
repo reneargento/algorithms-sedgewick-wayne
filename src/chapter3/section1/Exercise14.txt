@@ -1,4 +1,17 @@
 3.1.14
 
-For an application that does 10^6 put() operations and 10^3 get() operations I would use a binary search symbol table implementation.
-The runtime complexity of the put() operation for both a binary search symbol table and a sequential search symbol table is O(n). For the get() operation, the runtime complexity of a binary search symbol table is O(log(n)), which is better than the runtime complexity of the sequential search symbol table of O(n).
+For an application that does 10^6 put() operations and 10^3 get() operations I would use a sequential search symbol table implementation.
+
+The worst-case runtime cost of the put() operation for a binary search symbol table is 2N while for a sequential search symbol table it is N.
+For the get() operation, the worst-case runtime cost of a binary search symbol table is lg(n) while for the sequential search symbol table it is N.
+
+Comparing the total number of operations in the worst-case:
+Sequential search symbol table: 10^6 + 10^3 ~ 10^6 operations
+Binary search symbol table: 2 * 10^6 + lg(10^3) ~ 2 * 10^6 operations
+
+The average-case runtime cost of both implementations in this case is similar because most of the operations are put() and both the sequential search symbol table and the binary search symbol table implementations have an average-case cost of N for it.
+
+So for this application the sequential search symbol table performs better than the binary search symbol table in the worst-case and both perform similarly in the average-case, making the sequential search symbol table the best choice.
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for showing that the sequential search symbol table is the best option in this question.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/119
