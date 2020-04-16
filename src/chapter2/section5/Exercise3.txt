@@ -17,8 +17,18 @@ public class Balance implements Comparable<Balance> {
     public int compareTo(Balance that) {
         return this.amount.compareTo(that.amount);
     }
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof Balance) {
+            return this.amount.compareTo(((Balance) object).amount) == 0;
+        }
+        return false;
+    }
     ...
 }
+
+For the BigDecimal class we also have to override the equals method to guarantee that it is consistent with compareTo().
+This ensures that values with the same amount but different scales (such as 1.0 and 1.00) are considered equivalent, adhering to the Comparable contract.
 
 Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for showing that using double values is not the best approach to represent the balance amount.
 https://github.com/reneargento/algorithms-sedgewick-wayne/issues/117
