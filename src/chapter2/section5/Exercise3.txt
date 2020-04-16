@@ -6,8 +6,19 @@ In the implementation described in the exercise, if x = 0.001, y = 0.005 and z =
 x.compareTo(y) will be equal to 0, x.compareTo(z) will have a negative sign and y.compareTo(z) will be equal to zero.
 
 In other words, it is possible that x.compareTo(y) and y.compareTo(z) are both 0, but x.compareTo(z) is negative (or positive).
-To fix this problem both "amount" variables should be compared directly:
 
-if (this.amount < that.amount) return -1;
-if (this.amount > that.amount) return +1;
-return 0;
+Another issue is that floating point numbers cannot be represented with exact precision in binary with java's double primitive data type.
+Critical information such as account balances should be stored in BigDecimal objects instead.
+This will also allow direct comparison between both values to work correctly:
+
+public class Balance implements Comparable<Balance> {
+    ...
+    private BigDecimal amount;
+    public int compareTo(Balance that) {
+        return this.amount.compareTo(that.amount);
+    }
+    ...
+}
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for showing that using double values is not the best approach to represent the balance amount.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/117
