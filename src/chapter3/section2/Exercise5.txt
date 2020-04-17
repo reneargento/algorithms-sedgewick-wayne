@@ -1,4 +1,21 @@
 3.2.5
 
-The keys should be inserted into the tree in decreasing order of likely frequency of access. This will make the keys with high frequency of access stay above in the tree than keys with a low frequency of access, requiring less compares to be found.
-Since these keys are the most frequently accessed keys, requiring less compares to find them improves the overall search performance. And since keys with a low frequency of access will not be accessed often, it is not such a big problem to require more compares to search and find them.
+Neither inserting the keys in increasing or decreasing order of likely frequency of access will be the optimal approach.
+This problem is known as creating an optimal-binary search tree (Optimal BST).
+Since the insertions occur before the searches, we are looking for the best way to create a statically optimal BST.
+
+Two algorithms could be used to achieve this:
+1- Knuth's dynamic programming algorithm
+It constructs the statically optimal tree in O(N^2) time using a dynamic programming algorithm.
+This algorithm is based on the observation that the static optimality problem exhibits optimal substructure; that is, if a certain tree is statically optimal for
+a given probability distribution, then its left and right subtrees must also be statically optimal for their appropriate subsets of the distribution.
+
+2- Mehlhorn's approximation algorithm
+This algorithm closely approximates the statically optimal tree in O(N) time.
+In this algorithm, the root of the tree is chosen so as to most closely balance the total weight (by probability) of the left and right subtrees.
+This strategy is then applied recursively on each subtree.
+
+Reference: https://en.wikipedia.org/wiki/Optimal_binary_search_tree
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for finding the correct solution for this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/121
