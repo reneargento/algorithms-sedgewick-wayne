@@ -11,15 +11,14 @@ import java.util.StringJoiner;
  */
 // Thanks to Vivek Bhojawala (https://github.com/VBhojawala) for mentioning that the exercise should be solved using
 // circular linked lists.
+// Also thanks to emergencyd (https://github.com/emergencyd) for mentioning that the stack catenation was incorrect.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/12
 public class Exercise47_CatenableCollections<Item> {
 
     public LinkedListCircular<Item> catenationQueues(Queue<Item> queue1, Queue<Item> queue2) {
-
         if (queue1 == null || queue2 == null) {
             return null;
         }
-
         LinkedListCircular<Item> linkedListCircular = new LinkedListCircular<>();
 
         while (!queue1.isEmpty()) {
@@ -31,51 +30,29 @@ public class Exercise47_CatenableCollections<Item> {
             Item item = queue2.dequeue();
             linkedListCircular.insert(item);
         }
-
         return linkedListCircular;
     }
 
     public LinkedListCircular<Item> catenationStacks(Stack<Item> stack1, Stack<Item> stack2) {
-
         if (stack1 == null || stack2 == null) {
             return null;
         }
-
         LinkedListCircular<Item> linkedListCircular = new LinkedListCircular<>();
 
-        Stack<Item> tempStack1 = new Stack<>();
-
         while (!stack1.isEmpty()) {
-            Item item = stack1.pop();
-            tempStack1.push(item);
+            linkedListCircular.insert(stack1.pop());
         }
-
-        while (!tempStack1.isEmpty()) {
-            Item item = tempStack1.pop();
-            linkedListCircular.insert(item);
-        }
-
-        Stack<Item> tempStack2 = new Stack<>();
 
         while (!stack2.isEmpty()) {
-            Item item = stack2.pop();
-            tempStack2.push(item);
+            linkedListCircular.insert(stack2.pop());
         }
-
-        while (!tempStack2.isEmpty()) {
-            Item item = tempStack2.pop();
-            linkedListCircular.insert(item);
-        }
-
         return linkedListCircular;
     }
 
     public LinkedListCircular<Item> catenationSteques(Exercise32_Steque<Item> steque1, Exercise32_Steque<Item> steque2) {
-
         if (steque1 == null || steque2 == null) {
             return null;
         }
-
         LinkedListCircular<Item> linkedListCircular = new LinkedListCircular<>();
 
         while (!steque1.isEmpty()) {
@@ -87,7 +64,6 @@ public class Exercise47_CatenableCollections<Item> {
             Item item = steque2.pop();
             linkedListCircular.insert(item);
         }
-
         return linkedListCircular;
     }
 
@@ -122,7 +98,6 @@ public class Exercise47_CatenableCollections<Item> {
         for (int item : linkedListCircular) {
             linkedListItems.add(String.valueOf(item));
         }
-
         StdOut.println("Result after catenation: " + linkedListItems.toString());
         StdOut.println("Expected: 0 1 2 3 7 8 9");
 
@@ -132,7 +107,6 @@ public class Exercise47_CatenableCollections<Item> {
         for (int item : queue1) {
             queue1Items.add(String.valueOf(item));
         }
-
         StdOut.println("Queue 1 after catenation: " + queue1Items.toString());
         StdOut.println("Expected: ");
 
@@ -142,7 +116,6 @@ public class Exercise47_CatenableCollections<Item> {
         for (int item : queue2) {
             queue1Items.add(String.valueOf(item));
         }
-
         StdOut.println("Queue 2 after catenation: " + queue2Items.toString());
         StdOut.println("Expected: ");
         StdOut.println();
@@ -166,9 +139,8 @@ public class Exercise47_CatenableCollections<Item> {
         for (int item : linkedListCircular) {
             linkedListItems.add(String.valueOf(item));
         }
-
         StdOut.println("Result after catenation: " + linkedListItems.toString());
-        StdOut.println("Expected: 0 1 2 3 7 8 9");
+        StdOut.println("Expected: 3 2 1 0 9 8 7");
 
         StdOut.println();
 
@@ -176,7 +148,6 @@ public class Exercise47_CatenableCollections<Item> {
         for (int item : stack1) {
             stack1Items.add(String.valueOf(item));
         }
-
         StdOut.println("Stack 1 after catenation: " + stack1.toString());
         StdOut.println("Expected: ");
 
@@ -186,7 +157,6 @@ public class Exercise47_CatenableCollections<Item> {
         for (int item : stack2) {
             stack2Items.add(String.valueOf(item));
         }
-
         StdOut.println("Stack 2 after catenation: " + stack2Items.toString());
         StdOut.println("Expected: ");
         StdOut.println();
@@ -200,9 +170,9 @@ public class Exercise47_CatenableCollections<Item> {
         steque1.enqueue(3);
 
         Exercise32_Steque<Integer> steque2 = new Exercise32_Steque<>();
-        steque2.enqueue(7);
-        steque2.enqueue(8);
-        steque2.enqueue(9);
+        steque2.push(7);
+        steque2.push(8);
+        steque2.push(9);
 
         LinkedListCircular<Integer> linkedListCircular = catenableCollections.catenationSteques(steque1, steque2);
 
@@ -210,9 +180,8 @@ public class Exercise47_CatenableCollections<Item> {
         for (int item : linkedListCircular) {
             linkedListItems.add(String.valueOf(item));
         }
-
         StdOut.println("Result after catenation: " + linkedListItems.toString());
-        StdOut.println("Expected: 0 1 2 3 7 8 9");
+        StdOut.println("Expected: 0 1 2 3 9 8 7");
 
         StdOut.println();
 
@@ -220,7 +189,6 @@ public class Exercise47_CatenableCollections<Item> {
         for (int item : steque1) {
             steque1Items.add(String.valueOf(item));
         }
-
         StdOut.println("Steque 1 after catenation: " + steque1Items.toString());
         StdOut.println("Expected: ");
 
@@ -230,7 +198,6 @@ public class Exercise47_CatenableCollections<Item> {
         for (int item : steque2) {
             steque2Items.add(String.valueOf(item));
         }
-
         StdOut.println("Steque 2 after catenation: " + steque2Items.toString());
         StdOut.println("Expected: ");
     }
