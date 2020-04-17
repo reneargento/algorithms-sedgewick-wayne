@@ -7,8 +7,7 @@ Since the insertions occur before the searches, we are looking for the best way 
 Two algorithms could be used to achieve this:
 1- Knuth's dynamic programming algorithm
 It constructs the statically optimal tree in O(N^2) time using a dynamic programming algorithm.
-This algorithm is based on the observation that the static optimality problem exhibits optimal substructure; that is, if a certain tree is statically optimal for
-a given probability distribution, then its left and right subtrees must also be statically optimal for their appropriate subsets of the distribution.
+This algorithm is based on the observation that the static optimality problem exhibits optimal substructure; that is, if a certain tree is statically optimal for a given probability distribution, then its left and right subtrees must also be statically optimal for their appropriate subsets of the distribution.
 
 2- Mehlhorn's approximation algorithm
 This algorithm closely approximates the statically optimal tree in O(N) time.
