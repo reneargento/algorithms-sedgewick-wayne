@@ -1,6 +1,15 @@
 3.4.7
 
-The change mix up the bits sufficiently well that a nonprime M can be used.
+If and only if a and M are coprime, the change will mix up the bits sufficiently well that a nonprime M can be used.
+
+Proof:
+1- (a * k) % M = hash
+2- This means that a * k = M * q + hash, which is equivalent to hash = a * k - M * q, where q is a natural number.
+3- Now let's consider that a and M are not coprime.
+This means that there exists a non-zero natural number t where M = a * t.
+hash = a * k - M * q expands to hash = a * k - a * t * q = a * (k - t * q)
+This means that all hash values will be divisible by a, which greatly reduces the distribution of keys.
+For example, if a = 37 and M = 37 * t, then all hash values will be only 0, 37, 74, 111, ...
 
 Example where a is an arbitrary fixed prime:
 a = 7
@@ -25,3 +34,6 @@ M = 6
 (8 * 4) % 6 = 2
 (8 * 5) % 6 = 4
 (8 * 6) % 6 = 0
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for observing and providing the proof that a and M must be coprime.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/125
