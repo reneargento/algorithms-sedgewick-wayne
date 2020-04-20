@@ -9,6 +9,8 @@ import edu.princeton.cs.algs4.StdOut;
 // in the binarySearch() method at https://github.com/reneargento/algorithms-sedgewick-wayne/issues/6
 // Thanks to ajfg93 (https://github.com/ajfg93) for suggesting an iterative solution for the problem at
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/27
+// Thanks to emergencyd (https://github.com/emergencyd) for suggesting an improvement on the iterative solution.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/124
 public class Exercise10 {
 
     public static void main(String[] args) {
@@ -59,15 +61,13 @@ public class Exercise10 {
 
             if (array[middle] < element) {
                 low = middle + 1;
-            } else if (array[middle] > element) {
+            } else if (array[middle] > element
+                    || (middle > 0 && array[middle - 1] == element)) {
                 high = middle - 1;
-            } else if (middle > 0 && array[middle - 1] == element) {
-                high = middle;
             } else {
                 return middle;
             }
         }
-
         return -1;
     }
 }
