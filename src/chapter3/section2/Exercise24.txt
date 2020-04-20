@@ -3,4 +3,16 @@
 Proposition: No compare-based algorithm can build a BST using fewer than lg(N!) ~ N lg N compares.
 
 In the best case, once built the tree will become a balanced search tree, where each insert using a compare-based algorithm takes lg N time.
-Since we are building a tree with N elements, in the best case, each insert will make ~ lg N compares and the total number of compares for N inserts will be ~ N lg N in the best case.
+
+When building a balanced BST with N elements:
+The first element will make lg(1) compares, the second element will make lg(2) compares, and so on, until the Nth element, which will make lg(N) compares.
+Adding all these values:
+lg 1 + lg 2 + ... + lg N
+This is directly equal to (using logarithm properties):
+lg(1 * 2 * ... * N) = lg(N!)
+Finally, using Stirling's approximation, this is ~ N lg N.
+
+Therefore, the total number of compares for N inserts will be ~ N lg N in the best case.
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for improving the proof for this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/122
