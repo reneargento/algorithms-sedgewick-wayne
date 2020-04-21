@@ -6,9 +6,9 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 22/07/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting an improvement on the hashCode() computation.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/126
 public class Exercise25_HashCache {
-
-    private int hashTableSize = 997;
 
     public class Transaction {
         private final String who;
@@ -34,9 +34,9 @@ public class Exercise25_HashCache {
                 StdOut.println("Cache hit");
             } else {
                 hash = 17;
-                hash = (31 * hash + who.hashCode()) % hashTableSize;
-                hash = (31 * hash + when.hashCode()) % hashTableSize;
-                hash = (31 * hash + ((Double) amount).hashCode()) % hashTableSize;
+                hash = 31 * hash + who.hashCode();
+                hash = 31 * hash + when.hashCode();
+                hash = 31 * hash + ((Double) amount).hashCode();
 
                 StdOut.println("Cache miss");
 

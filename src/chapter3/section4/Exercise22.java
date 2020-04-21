@@ -6,9 +6,9 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 21/07/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting an improvement on the hashCode() computations.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/126
 public class Exercise22 {
-
-    private static final int HASH_TABLE_SIZE = 997;
 
     private class Point2D {
         private double x;
@@ -22,8 +22,8 @@ public class Exercise22 {
         @Override
         public int hashCode() {
             int hash = 17;
-            hash = (31 * hash + ((Double) x).hashCode()) % HASH_TABLE_SIZE;
-            hash = (31 * hash + ((Double) y).hashCode()) % HASH_TABLE_SIZE;
+            hash = 31 * hash + ((Double) x).hashCode();
+            hash = 31 * hash + ((Double) y).hashCode();
             return hash;
         }
     }
@@ -40,8 +40,8 @@ public class Exercise22 {
         @Override
         public int hashCode() {
             int hash = 17;
-            hash = (31 * hash + ((Double) min).hashCode()) % HASH_TABLE_SIZE;
-            hash = (31 * hash + ((Double) max).hashCode()) % HASH_TABLE_SIZE;
+            hash = 31 * hash + ((Double) min).hashCode();
+            hash = 31 * hash + ((Double) max).hashCode();
             return hash;
         }
     }
@@ -58,8 +58,8 @@ public class Exercise22 {
         @Override
         public int hashCode() {
             int hash = 17;
-            hash = (31 * hash + x.hashCode()) % HASH_TABLE_SIZE;
-            hash = (31 * hash + y.hashCode()) % HASH_TABLE_SIZE;
+            hash = 31 * hash + (x == null ? 0 : x.hashCode());
+            hash = 31 * hash + (y == null ? 0 : y.hashCode());
             return hash;
         }
     }
@@ -78,9 +78,9 @@ public class Exercise22 {
         @Override
         public int hashCode() {
             int hash = 17;
-            hash = (31 * hash + day) % HASH_TABLE_SIZE;
-            hash = (31 * hash + month) % HASH_TABLE_SIZE;
-            hash = (31 * hash + year) % HASH_TABLE_SIZE;
+            hash = 31 * hash + day;
+            hash = 31 * hash + month;
+            hash = 31 * hash + year;
             return hash;
         }
     }
