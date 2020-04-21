@@ -88,18 +88,18 @@ public class Exercise22 {
     public static void main(String[] args) {
         Exercise22 exercise22 = new Exercise22();
         Point2D point2D = exercise22.new Point2D(20, 13);
-        StdOut.println(point2D.hashCode());
+        StdOut.println("Point 2D hash code: " + point2D.hashCode());
 
         Interval interval = exercise22.new Interval(1, 999);
-        StdOut.println(interval.hashCode());
+        StdOut.println("Interval hash code: " + interval.hashCode());
 
         Interval1D interval1D1 = new Interval1D(10.2, 30.20);
         Interval1D interval1D2 = new Interval1D(2, 1000);
         Interval2D interval2D = exercise22.new Interval2D(interval1D1, interval1D2);
-        StdOut.println(interval2D.hashCode());
+        StdOut.println("Interval 2D hash code: " + interval2D.hashCode());
 
         Date date = exercise22.new Date(18, 4, 1989);
-        StdOut.println(date.hashCode());
+        StdOut.println("Date hash code: " + date.hashCode());
     }
 
 }
