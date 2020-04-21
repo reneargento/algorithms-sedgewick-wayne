@@ -20,11 +20,11 @@ c. FixedCapacityStackOfStrings with capacity C and N entries (page 133)
    object overhead -> 16 bytes
    int value (length) -> 4 bytes
    padding -> 4 bytes
-   String references -> 8N bytes
-   N Strings -> (32 bytes (a Java 7+ String size) + 24 + 2N bytes (for the char array)) * N = (56 + 2N) * N bytes
+   String references -> 8C bytes
+   N Strings -> (32 bytes (a Java 7+ String size) + 24 + 2Ch bytes (for the char array)) * N = (56 + 2Ch) * N bytes
 * int value (n) -> 4 bytes
 * padding -> 4 bytes
-Amount of memory needed: 16 + 16 + 4 + 4 + 8N + 56N + 2N^2 + 4 + 4 = 2N^2 + 64N + 48 bytes
+Amount of memory needed: 16 + 16 + 4 + 4 + 8C + 56N + (2Ch * N) + 4 + 4 = (2Ch * N) + 8C + 56N + 48 bytes
 
 d. Point2D (page 77)
 * object overhead -> 16 bytes
