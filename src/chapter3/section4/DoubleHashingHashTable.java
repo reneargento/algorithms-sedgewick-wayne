@@ -3,8 +3,6 @@ package chapter3.section4;
 import edu.princeton.cs.algs4.Queue;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Rene Argento on 30/07/17.
@@ -19,9 +17,9 @@ public class DoubleHashingHashTable<Key, Value> {
 
     int tombstoneItemCount;
 
-    //The largest prime <= 2^i for i = 1 to 31
-    //Used to distribute keys uniformly in the hash table after resizes
-    //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+    // The largest prime <= 2^i for i = 1 to 31
+    // Used to distribute keys uniformly in the hash table after resizes
+    // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
     private static final int[] PRIMES = {
             1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
             32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -29,8 +27,8 @@ public class DoubleHashingHashTable<Key, Value> {
             536870909, 1073741789, 2147483647
     };
 
-    //The lg of the hash table size
-    //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+    // The lg of the hash table size
+    // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
     protected int lgM;
 
     DoubleHashingHashTable(int size) {
@@ -55,42 +53,10 @@ public class DoubleHashingHashTable<Key, Value> {
         return hash % size;
     }
 
-    protected int secondaryHash(Key key) {
-        int hash = key.hashCode() & 0x7fffffff;
-        int hash2 = hash;
-
-        Set<Integer> hashTableSizeFactors = getFactors(size);
-
-        for(int i = 1; i < size; i++) {
-            int modHash = (i + hash) % size;
-
-            if (!hashTableSizeFactors.contains(modHash)) {
-                hash2 = modHash;
-                break;
-            }
-        }
-
-        hash2 = hash2 != 0? hash2 : 1;
+    private int secondaryHash(Key key) {
+        int hash2 = (key.hashCode() % size) & 0x7fffffff;
+        hash2 = hash2 != 0 ? hash2 : 1;
         return hash2;
-    }
-
-    private Set<Integer> getFactors(int number) {
-        Set<Integer> factors = new HashSet<>();
-
-        int sqrt = (int) Math.sqrt(number);
-
-        for(int i = 1; i <= sqrt; i++) {
-
-            if (number % i == 0) {
-                factors.add(i);
-
-                if (i != number / i) {
-                    factors.add(number / i);
-                }
-            }
-        }
-
-        return factors;
     }
 
     public double getLoadFactor() {
@@ -146,8 +112,8 @@ public class DoubleHashingHashTable<Key, Value> {
             return;
         }
 
-        if (keysSize + tombstoneItemCount >= size / (double) 2) {
-            resize(size * 2);
+        if (keysSize + tombstoneItemCount >= size / (double) 2 && size != PRIMES[PRIMES.length - 1]) {
+            resize(PRIMES[lgM + 2]);
             lgM++;
         }
 
@@ -190,7 +156,7 @@ public class DoubleHashingHashTable<Key, Value> {
         tombstoneItemCount++;
 
         if (keysSize <= size / (double) 8) {
-            resize(size / 2);
+            resize(PRIMES[lgM]);
             lgM--;
         }
     }
