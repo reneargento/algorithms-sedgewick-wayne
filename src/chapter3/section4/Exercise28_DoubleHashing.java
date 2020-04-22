@@ -60,7 +60,7 @@ public class Exercise28_DoubleHashing {
 
         private int secondaryHash(Key key) {
             int hash2 = (key.hashCode() % size) & 0x7fffffff;
-            hash2 = hash2 != 0 ? hash2 : 1;
+            hash2 = hash2 != 0 ? hash2 : size + 1;
             return hash2;
         }
 
