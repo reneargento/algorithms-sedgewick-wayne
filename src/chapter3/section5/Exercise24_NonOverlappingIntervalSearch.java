@@ -9,6 +9,8 @@ import java.util.List;
 /**
  * Created by Rene Argento on 17/08/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting a simplification for this exercise:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/133
 public class Exercise24_NonOverlappingIntervalSearch {
 
     private class Interval {
@@ -23,53 +25,20 @@ public class Exercise24_NonOverlappingIntervalSearch {
         }
     }
 
-    private class RedBlackBSTGetNodeOrPrevious<Key extends Comparable<Key>, Value> extends RedBlackBST<Key, Value> {
-
-        @Override
-        public Value get(Key key) {
-            if (key == null) {
-                return null;
-            }
-
-            return get(root, key);
-        }
-
-        private Value get(Node node, Key key) {
-            if (node == null) {
-                return null;
-            }
-
-            int compare = key.compareTo(node.key);
-            if (compare < 0) {
-                return get(node.left, key);
-            } else if (compare > 0) {
-                Value value = node.value;
-
-                Value rightValue = get(node.right, key);
-                if (rightValue != null) {
-                    value = rightValue;
-                }
-
-                return value;
-            } else {
-                return node.value;
-            }
-        }
-    }
-
     private class NonOverlappingIntervalFinder {
-        RedBlackBSTGetNodeOrPrevious<Integer, Interval> redBlackBSTGetNodeOrPrevious;
+        private RedBlackBST<Integer, Interval> redBlackBST;
 
         NonOverlappingIntervalFinder(List<Interval> intervals) {
-            redBlackBSTGetNodeOrPrevious = new RedBlackBSTGetNodeOrPrevious<>();
+            redBlackBST = new RedBlackBST<>();
 
             for(Interval interval : intervals) {
-                redBlackBSTGetNodeOrPrevious.put(interval.start, interval);
+                redBlackBST.put(interval.start, interval);
             }
         }
 
         private int findInterval(int query) {
-            Interval possibleInterval = redBlackBSTGetNodeOrPrevious.get(query);
+            Integer key = redBlackBST.floor(query);
+            Interval possibleInterval = redBlackBST.get(key);
 
             if (possibleInterval != null && possibleInterval.start <= query && query <= possibleInterval.end) {
                 return possibleInterval.index;
