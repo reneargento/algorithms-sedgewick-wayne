@@ -6,14 +6,11 @@ package chapter2.section2;
 public class BottomUpMergeSort {
 
     public static void mergeSort(Comparable[] array) {
-
         Comparable[] aux = new Comparable[array.length];
 
         for (int size = 1; size < array.length; size = size + size) {
-
             for(int low = 0; low + size < array.length; low += size + size) {
                 int high = Math.min(low + size + size - 1, array.length - 1);
-
                 merge(array, aux, low, low + size - 1, high);
             }
         }
