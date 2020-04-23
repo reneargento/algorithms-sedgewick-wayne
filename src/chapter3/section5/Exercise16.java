@@ -6,10 +6,13 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 06/08/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for improving the sum() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/131
 public class Exercise16 {
 
     private class SparseVectorSum {
 
+        private static final double FLOATING_POINT_EPSILON = 1E-6;
         private SeparateChainingHashTable<Integer, Double> hashTable;
 
         public SparseVectorSum() {
@@ -37,29 +40,19 @@ public class Exercise16 {
         }
 
         public SparseVectorSum sum(SparseVectorSum sparseVectorToSum) {
-
-            int maxKey = 0;
-            for(Integer key : hashTable.keys()) {
-                if (key > maxKey) {
-                    maxKey = key;
-                }
-            }
             for(Integer key : sparseVectorToSum.hashTable.keys()) {
-                if (key > maxKey) {
-                    maxKey = key;
-                }
-            }
-
-            for(int key = 0; key <= maxKey; key++) {
-                double sum = get(key) + sparseVectorToSum.get(key);
-
-                if (sum != 0) {
-                    put(key, sum);
+                if (!hashTable.contains(key)) {
+                    put(key, sparseVectorToSum.get(key));
                 } else {
-                    delete(key);
+                    double sum = get(key) + sparseVectorToSum.get(key);
+
+                    if (Math.abs(sum) <= FLOATING_POINT_EPSILON) {
+                        delete(key);
+                    } else {
+                        put(key, sum);
+                    }
                 }
             }
-
             return this;
         }
 
