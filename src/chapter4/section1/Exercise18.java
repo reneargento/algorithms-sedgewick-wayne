@@ -6,6 +6,8 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 17/09/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for simplifying the bfsToGetShortestCycle() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/137
 public class Exercise18 {
 
     public class GraphProperties {
@@ -76,25 +78,11 @@ public class Exercise18 {
             int[] distTo = new int[graph.vertices()];
             int[] edgeTo = new int[graph.vertices()];
 
-            distTo[sourceVertex] = 0;
-
-            BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, sourceVertex);
-
-            //Compute distTo and edgeTo values
-            for(int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
-                if (otherVertex == sourceVertex) {
-                    continue;
-                }
-
-                distTo[otherVertex] = breadthFirstPaths.distTo(otherVertex);
-                edgeTo[otherVertex] = breadthFirstPaths.edgeTo(otherVertex);
-            }
-
             Queue<Integer> queue = new Queue<>();
             boolean[] visited = new boolean[graph.vertices()];
 
             visited[sourceVertex] = true;
-
+            edgeTo[sourceVertex] = Integer.MAX_VALUE;
             queue.enqueue(sourceVertex);
 
             while (!queue.isEmpty()) {
@@ -103,9 +91,11 @@ public class Exercise18 {
                 for(int neighbor : graph.adjacent(currentVertex)) {
                     if (!visited[neighbor]) {
                         visited[neighbor] = true;
+                        distTo[neighbor] = distTo[currentVertex] + 1;
+                        edgeTo[neighbor] = currentVertex;
                         queue.enqueue(neighbor);
                     } else if (neighbor != edgeTo[currentVertex]) {
-                        //Cycle found
+                        // Cycle found
                         int cycleLength = distTo[currentVertex] + distTo[neighbor] + 1;
                         shortestCycle = Math.min(shortestCycle, cycleLength);
                     }
