@@ -1,39 +1,24 @@
 package chapter4.section1;
 
-import chapter1.section3.Bag;
-import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
  * Created by Rene Argento on 21/09/17.
  */
-//The original Cycle algorithm considers parallel edges and self-loops as cycles
-    //This version is modified to do not consider parallel edges and self-loops as cycles
-@SuppressWarnings("unchecked")
+// The original Cycle algorithm considers parallel edges and self-loops as cycles.
+// This version is modified to do not consider parallel edges and self-loops as cycles.
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for simplifying this solution:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/138
 public class Exercise29 {
 
     public class CycleThatDoesNotCountParallelEdgesOrSelfLoops {
-
         private boolean[] visited;
+        private int[] edgeTo;
         private boolean hasCycle;
 
         public CycleThatDoesNotCountParallelEdgesOrSelfLoops(Graph graph) {
             visited = new boolean[graph.vertices()];
-
-            //Pre-processing to remove parallel edges and self-loops
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-                Bag<Integer> newAdjacencyList = new Bag();
-                HashSet<Integer> verticesInNewAdjacencyList = new HashSet<>();
-
-                for(int neighbor : graph.getAdjacencyList()[vertex]) {
-                    if (!verticesInNewAdjacencyList.contains(neighbor) && neighbor != vertex) {
-                        verticesInNewAdjacencyList.add(neighbor);
-                        newAdjacencyList.add(neighbor);
-                    }
-                }
-
-                graph.updateAdjacencyList(vertex, newAdjacencyList);
-            }
+            edgeTo = new int[graph.vertices()];
 
             for(int source = 0; source < graph.vertices(); source++) {
                 if (!visited[source]) {
@@ -44,11 +29,14 @@ public class Exercise29 {
 
         private void dfs(Graph graph, int vertex, int origin) {
             visited[vertex] = true;
+            edgeTo[vertex] = origin;
 
             for(int neighbor : graph.adjacent(vertex)) {
                 if (!visited[neighbor]) {
                     dfs(graph, neighbor, vertex);
-                } else if (neighbor != origin) {
+                } else if (neighbor != origin
+                        && edgeTo[neighbor] != vertex
+                        && neighbor != vertex) {
                     hasCycle = true;
                 }
             }
@@ -57,7 +45,6 @@ public class Exercise29 {
         public boolean hasCycle() {
             return hasCycle;
         }
-
     }
 
     public static void main(String[] args) {
