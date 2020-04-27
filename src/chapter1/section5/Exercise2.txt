@@ -51,7 +51,7 @@ Forest:
 5-7
         0 1 2 3 4 5 6 7 8 9
 array = 0 1 1 4 4 8 6 2 1 0
-Array accesses: 6 (2 for find(5), 3 for find(7) and 1 for updating parent)
+Array accesses: 9 (3 for find(5), 5 for find(7) and 1 for updating parent)
 
 Forest:
 0   1   4 6
@@ -61,7 +61,7 @@ Forest:
 0-3
         0 1 2 3 4 5 6 7 8 9
 array = 4 1 1 4 4 8 6 2 1 0
-Array accesses: 4 (1 for find(0), 2 for find(3) and 1 for updating parent)
+Array accesses: 5 (1 for find(0), 3 for find(3) and 1 for updating parent)
 
 Forest:
  1    4   6
@@ -71,7 +71,7 @@ Forest:
 4-2
         0 1 2 3 4 5 6 7 8 9
 array = 4 1 1 4 1 8 6 2 1 0
-Array accesses: 4 (1 for find(4), 2 for find(2) and 1 for updating parent)
+Array accesses: 5 (1 for find(4), 3 for find(2) and 1 for updating parent)
 
 Forest:
   1      6
@@ -81,3 +81,5 @@ Forest:
 
 Thanks to kaustubhb (https://github.com/kaustubhb) for fixing a bug in the array values.
 https://github.com/reneargento/algorithms-sedgewick-wayne/issues/4
+Thanks to emergencyd (https://github.com/emergencyd) for fixing some of the array access counts.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/135
