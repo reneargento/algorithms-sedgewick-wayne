@@ -9,17 +9,17 @@ Running 1000 experiments with 100 vertices and 300 edges for random graphs and r
 Running 1000 experiments with 100 vertices and a distance of 0.3 for interval graphs.
 
             Graph type |   Probability of finding path |  Average path length
-          Random graph                            1.00                  45.47
-   Random simple graph                            1.00                  46.36
- Random interval graph                            1.00                  50.19
+          Random graph                            1.00                  43.70
+   Random simple graph                            1.00                  45.25
+ Random interval graph                            1.00                  49.75
 
 Running 1000 experiments with 300 vertices and 100 edges for random graphs and random simple graphs.
 Running 1000 experiments with 300 vertices and a distance of 0.3 for interval graphs.
 
             Graph type |   Probability of finding path |  Average path length
-          Random graph                            0.01                   3.57
-   Random simple graph                            0.01                   2.30
- Random interval graph                            1.00                 144.54
+          Random graph                            0.01                   2.67
+   Random simple graph                            0.01                   2.20
+ Random interval graph                            1.00                 144.81
 
 Conclusions:
 

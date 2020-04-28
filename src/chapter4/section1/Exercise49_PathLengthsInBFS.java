@@ -9,7 +9,6 @@ import edu.princeton.cs.algs4.StdRandom;
 public class Exercise49_PathLengthsInBFS {
 
     private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges) {
-
         StdOut.printf("%25s %31s %15s\n", "Graph type | ", "Probability of finding path | ", "Average path length");
 
         int totalPathsFound = 0;

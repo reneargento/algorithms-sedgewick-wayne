@@ -6,9 +6,9 @@ Running 1000 experiments with 100 vertices and 300 edges for random graphs and r
 Running 1000 experiments with 100 vertices and a distance of 0.3 for interval graphs.
 
 Random graph experiments
-Components:     1   Frequency:   747
-Components:     2   Frequency:   222
-Components:     3   Frequency:    30
+Components:     1   Frequency:   770
+Components:     2   Frequency:   208
+Components:     3   Frequency:    21
 Components:     4   Frequency:     1
 Components:     5   Frequency:     0
 Components:     6   Frequency:     0
@@ -108,10 +108,10 @@ Components:    99   Frequency:     0
 Components:   100   Frequency:     0
 
 Random simple graph experiments
-Components:     1   Frequency:  1000
-Components:     2   Frequency:     0
-Components:     3   Frequency:     0
-Components:     4   Frequency:     0
+Components:     1   Frequency:   813
+Components:     2   Frequency:   166
+Components:     3   Frequency:    20
+Components:     4   Frequency:     1
 Components:     5   Frequency:     0
 Components:     6   Frequency:     0
 Components:     7   Frequency:     0
@@ -514,11 +514,11 @@ Components:   196   Frequency:     0
 Components:   197   Frequency:     0
 Components:   198   Frequency:     0
 Components:   199   Frequency:     0
-Components:   200   Frequency:   571
-Components:   201   Frequency:   335
-Components:   202   Frequency:    80
-Components:   203   Frequency:    14
-Components:   204   Frequency:     0
+Components:   200   Frequency:   582
+Components:   201   Frequency:   329
+Components:   202   Frequency:    74
+Components:   203   Frequency:    13
+Components:   204   Frequency:     2
 Components:   205   Frequency:     0
 Components:   206   Frequency:     0
 Components:   207   Frequency:     0
@@ -816,9 +816,9 @@ Components:   196   Frequency:     0
 Components:   197   Frequency:     0
 Components:   198   Frequency:     0
 Components:   199   Frequency:     0
-Components:   200   Frequency:   976
-Components:   201   Frequency:    24
-Components:   202   Frequency:     0
+Components:   200   Frequency:   901
+Components:   201   Frequency:    96
+Components:   202   Frequency:     3
 Components:   203   Frequency:     0
 Components:   204   Frequency:     0
 Components:   205   Frequency:     0

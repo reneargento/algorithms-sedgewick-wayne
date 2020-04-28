@@ -12,7 +12,6 @@ import java.awt.*;
 public class Exercise50_ConnectedComponents {
 
     private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges) {
-
         // Graph model 1: Random graphs
         double[] histogramRandomGraphs = new double[vertices + 1];
         String randomGraphType = "Random graph";

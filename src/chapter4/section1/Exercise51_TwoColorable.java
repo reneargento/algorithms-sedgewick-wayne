@@ -51,7 +51,6 @@ public class Exercise51_TwoColorable {
     }
 
     private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges) {
-
         StdOut.printf("%25s %15s\n", "Graph type | ", "Edges examined");
 
         int totalEdgesExamined = 0;
