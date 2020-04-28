@@ -11,7 +11,6 @@ import java.util.List;
 public class Exercise52_Reachability {
 
     private void generateDigraphsAndDoExperiments(int experiments, int vertices, int edges) {
-
         StdOut.printf("%25s %15s %15s %15s %31s\n", "Digraph type | ", "Experiments | ", "Vertices | ", "Edges | ",
                 "Average number of vertices reachable");
 

@@ -95,7 +95,7 @@ public class Exercise46_RandomSimpleDigraphs {
     }
 
     public Digraph randomDigraph(int vertices, int edges) {
-        //A complete digraph has n * (n - 1) edges
+        // A complete digraph has n * (n - 1) edges
         int maxNumberOfEdges = vertices * (vertices - 1);
 
         if (edges > maxNumberOfEdges) {
@@ -105,41 +105,15 @@ public class Exercise46_RandomSimpleDigraphs {
 
         Digraph randomSimpleDigraph = new Digraph(vertices);
 
-        //Used to select vertices with equal likelihood - based on Fisher-Yates algorithm
-        int[] shuffledVerticesArray1 = new int[vertices];
-        int[] shuffledVerticesArray2 = new int[vertices];
+        while (randomSimpleDigraph.edges() < edges) {
+            int vertexId1 = StdRandom.uniform(vertices);
+            int vertexId2 = StdRandom.uniform(vertices);
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
-            shuffledVerticesArray1[vertex] = vertex;
-            shuffledVerticesArray2[vertex] = vertex;
-        }
-
-        StdRandom.shuffle(shuffledVerticesArray1);
-        StdRandom.shuffle(shuffledVerticesArray2);
-
-        int shuffleIndex = 0;
-
-        for(int edge = 0; edge < edges; edge++) {
-            if (shuffleIndex == shuffledVerticesArray1.length) {
-                StdRandom.shuffle(shuffledVerticesArray1);
-                StdRandom.shuffle(shuffledVerticesArray2);
-
-                shuffleIndex = 0;
+            if (vertexId1 != vertexId2
+                    && !randomSimpleDigraph.adjacentSetOfValues(vertexId1).contains(vertexId2)) {
+                randomSimpleDigraph.addEdge(vertexId1, vertexId2);
             }
-
-            int vertexId1 = shuffledVerticesArray1[shuffleIndex];
-            int vertexId2 = shuffledVerticesArray2[shuffleIndex];
-            shuffleIndex++;
-
-            if (randomSimpleDigraph.adjacentSetOfValues(vertexId1).contains(vertexId2)
-                    || vertexId1 == vertexId2) {
-                edge--;
-                continue;
-            }
-
-            randomSimpleDigraph.addEdge(vertexId1, vertexId2);
         }
-
         return randomSimpleDigraph;
     }
 

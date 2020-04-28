@@ -11,7 +11,6 @@ import java.util.List;
 public class Exercise54_PathLengthsInBFS {
 
     private void generateDigraphsAndDoExperiments(int experiments, int vertices, int edges) {
-
         StdOut.printf("%25s %15s %8s %8s %31s %20s\n", "Digraph type | ", "Experiments | ", "Vertices | ", "Edges | ",
                 "Probability of finding path | ", "Average path length");
 

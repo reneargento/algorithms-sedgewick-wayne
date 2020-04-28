@@ -13,7 +13,6 @@ import java.util.List;
 public class Exercise55_StrongComponents {
 
     private void generateDigraphsAndDoExperiments(int experiments, int vertices, int edges) {
-
         // Digraph model 1: Random digraphs
         double[] histogramRandomDigraphs = new double[vertices + 1];
         String randomDigraphType = "Random digraph";
