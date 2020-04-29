@@ -257,16 +257,13 @@ public class Exercise51_RealWorldDAG {
             throw new IllegalArgumentException("Not enough edges to choose");
         }
 
-        DirectedEdge[] allSubDigraphEdgesArray = new DirectedEdge[allSubDigraphEdges.size()];
-        allSubDigraphEdgesArray = allSubDigraphEdges.toArray(allSubDigraphEdgesArray);
-
         // Randomly choose edges
         for(int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
-            int randomEdgeId = StdRandom.uniform(edgeIndex, allSubDigraphEdgesArray.length);
+            int randomEdgeId = StdRandom.uniform(edgeIndex, allSubDigraphEdges.size());
 
-            DirectedEdge randomEdge = allSubDigraphEdgesArray[randomEdgeId];
-            allSubDigraphEdgesArray[randomEdgeId] = allSubDigraphEdgesArray[edgeIndex];
-            allSubDigraphEdgesArray[edgeIndex] = randomEdge;
+            DirectedEdge randomEdge = allSubDigraphEdges.get(randomEdgeId);
+            allSubDigraphEdges.set(randomEdgeId, allSubDigraphEdges.get(edgeIndex));
+            allSubDigraphEdges.set(edgeIndex, randomEdge);
 
             randomSubDigraph.addEdge(randomEdge.fromVertex, randomEdge.toVertex);
         }
