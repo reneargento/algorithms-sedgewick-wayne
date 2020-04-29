@@ -16,11 +16,13 @@ import java.util.List;
  */
 // The data source is a file containing information about flights between United States airports in 1997.
 // It can be downloaded here: http://networkrepository.com/inf-USAir97.php
+
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting improvements to this exercise:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/140
 @SuppressWarnings("unchecked")
 public class Exercise45_RealWorldGraphs {
 
     private class Graph {
-
         private int vertices;
         private int edges;
         private SeparateChainingHashTable<Integer, Bag<Integer>> adjacent;
@@ -80,7 +82,6 @@ public class Exercise45_RealWorldGraphs {
 
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
@@ -122,9 +123,9 @@ public class Exercise45_RealWorldGraphs {
         List<Edge> allSubGraphEdges = new ArrayList<>();
         HashSet<Integer> chosenVertices = new HashSet<>();
 
-        for(int vertex = 0; vertex < randomVerticesToChoose; vertex++) {
+        while (chosenVertices.size() < randomVerticesToChoose) {
             // Randomly choose a vertex between 1 and vertices
-            int randomVertexId = StdRandom.uniform(vertices) + 1;
+            int randomVertexId = 1 + StdRandom.uniform(vertices);
 
             if (chosenVertices.contains(randomVertexId)) {
                 continue;
@@ -137,17 +138,10 @@ public class Exercise45_RealWorldGraphs {
             randomSubGraph.addVertex(subGraphVertexId1);
 
             for(Integer neighbor : fullGraph.adjacent(randomVertexId)) {
-                int subGraphVertexId2;
-
-                if (!graphToSubGraphMap.contains(neighbor)) {
-                    subGraphVertexId2 = graphToSubGraphMap.size();
-                    graphToSubGraphMap.put(neighbor, subGraphVertexId2);
-                    randomSubGraph.addVertex(subGraphVertexId2);
-                } else {
-                    subGraphVertexId2 = graphToSubGraphMap.get(neighbor);
+                if (graphToSubGraphMap.contains(neighbor)) {
+                    int subGraphVertexId2 = graphToSubGraphMap.get(neighbor);
+                    allSubGraphEdges.add(new Edge(subGraphVertexId1, subGraphVertexId2));
                 }
-
-                allSubGraphEdges.add(new Edge(subGraphVertexId1, subGraphVertexId2));
             }
         }
 
@@ -157,32 +151,23 @@ public class Exercise45_RealWorldGraphs {
         }
 
         Edge[] allSubGraphEdgesArray = new Edge[allSubGraphEdges.size()];
-        int allSubGraphEdgesArrayIndex = 0;
-        HashSet<Integer> edgesChosen = new HashSet<>();
+        allSubGraphEdgesArray = allSubGraphEdges.toArray(allSubGraphEdgesArray);
 
-        for(Edge edge : allSubGraphEdges) {
-            allSubGraphEdgesArray[allSubGraphEdgesArrayIndex++] = edge;
-        }
-
-        for(int edge = 0; edge < randomEdgesToChoose; edge++) {
-            // Randomly choose an edge
-            int randomEdgeId = StdRandom.uniform(allSubGraphEdgesArray.length);
-
-            if (edgesChosen.contains(randomEdgeId)) {
-                continue;
-            }
-
-            edgesChosen.add(randomEdgeId);
+        // Randomly choose edges
+        for(int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
+            int randomEdgeId = StdRandom.uniform(edgeIndex, allSubGraphEdgesArray.length);
 
             Edge randomEdge = allSubGraphEdgesArray[randomEdgeId];
+            allSubGraphEdgesArray[randomEdgeId] = allSubGraphEdgesArray[edgeIndex];
+            allSubGraphEdgesArray[edgeIndex] = randomEdge;
+
             randomSubGraph.addEdge(randomEdge.vertex1, randomEdge.vertex2);
         }
-
         return randomSubGraph;
     }
 
     // Example parameters:
-    // 20 20
+    // 50 20
     public static void main(String[] args) {
         int randomVerticesToChoose = Integer.parseInt(args[0]);
         int randomEdgesToChoose = Integer.parseInt(args[1]);
