@@ -9,11 +9,12 @@ import java.util.List;
 /**
  * Created by Rene Argento on 12/10/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting an improvement on the interval generation:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/141
 @SuppressWarnings("unchecked")
 public class Exercise46_RandomIntervalGraphs {
 
     public class IntervalGraph implements GraphInterface {
-
         private IntervalBinarySearchTree.Interval[] keys;
         private Graph graph;
 
@@ -92,35 +93,24 @@ public class Exercise46_RandomIntervalGraphs {
 
             return stringBuilder.toString();
         }
-
     }
 
     public IntervalGraph generateIntervalGraph(int vertices, double length) {
-        //Generate random endpoints
+        // Generate random endpoints
         IntervalBinarySearchTree.Interval[] randomIntervals = new IntervalBinarySearchTree.Interval[vertices];
         int randomIntervalsIndex = 0;
 
         IntervalBinarySearchTree<Integer> intervalBinarySearchTree = new IntervalBinarySearchTree();
 
         for(int randomVertex = 0; randomVertex < vertices; randomVertex++) {
-            boolean randomIntervalGenerated = false;
-            double randomIntervalStart = 0;
-
-            while (!randomIntervalGenerated) {
-                randomIntervalStart = StdRandom.uniform();
-
-                if (randomIntervalStart + length <= 1) {
-                    randomIntervalGenerated = true;
-                }
-            }
-
+            double randomIntervalStart = StdRandom.uniform(0, 1 - length);
             double randomIntervalEnd = randomIntervalStart + length;
             IntervalBinarySearchTree.Interval intervalVertex =
                     intervalBinarySearchTree.new Interval(randomIntervalStart, randomIntervalEnd);
             randomIntervals[randomIntervalsIndex++] = intervalVertex;
         }
 
-        //Generate interval graph
+        // Generate interval graph
         IntervalGraph intervalGraph = new IntervalGraph(vertices);
 
         for(int vertexId = 0; vertexId < randomIntervals.length; vertexId++) {
@@ -140,7 +130,7 @@ public class Exercise46_RandomIntervalGraphs {
     }
 
     public static void main(String[] args) {
-        //Arguments example: 10 0.3
+        // Arguments example: 10 0.3
         int vertices = Integer.parseInt(args[0]);
         double length = Double.parseDouble(args[1]);
 
