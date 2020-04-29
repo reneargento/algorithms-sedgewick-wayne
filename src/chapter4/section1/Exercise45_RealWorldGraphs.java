@@ -121,16 +121,14 @@ public class Exercise45_RealWorldGraphs {
         SeparateChainingHashTable<Integer, Integer> graphToSubGraphMap = new SeparateChainingHashTable<>();
 
         List<Edge> allSubGraphEdges = new ArrayList<>();
-        HashSet<Integer> chosenVertices = new HashSet<>();
 
-        while (chosenVertices.size() < randomVerticesToChoose) {
+        while (graphToSubGraphMap.size() < randomVerticesToChoose) {
             // Randomly choose a vertex between 1 and vertices
             int randomVertexId = 1 + StdRandom.uniform(vertices);
 
-            if (chosenVertices.contains(randomVertexId)) {
+            if (graphToSubGraphMap.contains(randomVertexId)) {
                 continue;
             }
-            chosenVertices.add(randomVertexId);
 
             int subGraphVertexId1 = graphToSubGraphMap.size();
             graphToSubGraphMap.put(randomVertexId, subGraphVertexId1);
@@ -167,7 +165,7 @@ public class Exercise45_RealWorldGraphs {
     }
 
     // Example parameters:
-    // 50 20
+    // 60 20
     public static void main(String[] args) {
         int randomVerticesToChoose = Integer.parseInt(args[0]);
         int randomEdgesToChoose = Integer.parseInt(args[1]);
