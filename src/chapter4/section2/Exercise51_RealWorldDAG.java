@@ -3,7 +3,6 @@ package chapter4.section2;
 import chapter1.section3.Bag;
 import chapter1.section3.Stack;
 import chapter3.section4.SeparateChainingHashTable;
-import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -25,7 +24,6 @@ import java.util.List;
 public class Exercise51_RealWorldDAG {
 
     private class Digraph {
-
         private int vertices;
         private int edges;
         private SeparateChainingHashTable<Integer, Bag<Integer>> adjacent;
@@ -116,7 +114,6 @@ public class Exercise51_RealWorldDAG {
                     reverse.addEdge(neighbor, vertex);
                 }
             }
-
             return reverse;
         }
 
@@ -132,10 +129,8 @@ public class Exercise51_RealWorldDAG {
                         stringBuilder.append(neighbor).append(" ");
                     }
                 }
-
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
@@ -192,7 +187,6 @@ public class Exercise51_RealWorldDAG {
                     }
                 }
             }
-
             onStack[vertex] = false;
         }
 
@@ -203,19 +197,86 @@ public class Exercise51_RealWorldDAG {
         public Iterable<Integer> cycle() {
             return cycle;
         }
-
     }
 
     private Digraph randomRealDAG(int randomVerticesToChoose, int randomEdgesToChoose) {
-        String filePath = Constants.FILES_PATH + Constants.CITATION_DIGRAPH_FILE;
-        String separator = " ";
-
-        In in = new In(filePath);
-
         Digraph fullDigraph = new Digraph();
-
         SeparateChainingHashTable<Integer, Integer> realDAGToFullDAGMap =
                 new SeparateChainingHashTable<>();
+
+        readDAG(fullDigraph, realDAGToFullDAGMap);
+
+        DirectedCycle directedCycle = new DirectedCycle(fullDigraph);
+        if (directedCycle.hasCycle()) {
+            throw new IllegalArgumentException("Digraph is not a DAG");
+        }
+
+        Digraph randomSubDigraph = new Digraph();
+        SeparateChainingHashTable<Integer, Integer> digraphToSubDigraphMap =
+                new SeparateChainingHashTable<>();
+        SeparateChainingHashTable<Integer, Integer> subDigraphToDigraphMap =
+                new SeparateChainingHashTable<>();
+
+        List<DirectedEdge> allSubDigraphEdges = new ArrayList<>();
+
+        while (digraphToSubDigraphMap.size() < randomVerticesToChoose) {
+            // Randomly choose a vertex between 1 and vertices
+            int randomVertexId = 1 + StdRandom.uniform(fullDigraph.vertices);
+
+            if (digraphToSubDigraphMap.contains(randomVertexId)) {
+                continue;
+            }
+
+            int subDigraphVertexId1 = digraphToSubDigraphMap.size();
+            digraphToSubDigraphMap.put(randomVertexId, subDigraphVertexId1);
+            subDigraphToDigraphMap.put(subDigraphVertexId1, randomVertexId);
+
+            randomSubDigraph.addVertex(subDigraphVertexId1);
+
+            // Outward edges
+            for(int neighbor : fullDigraph.adjacent(randomVertexId)) {
+                if (digraphToSubDigraphMap.contains(neighbor)) {
+                    int subDigraphVertexId2 = digraphToSubDigraphMap.get(neighbor);
+                    allSubDigraphEdges.add(new DirectedEdge(subDigraphVertexId1, subDigraphVertexId2));
+                }
+            }
+            // Inward edges
+            for(int subDigraphVertexId = 0; subDigraphVertexId < randomSubDigraph.vertices(); subDigraphVertexId++) {
+                int fullDigraphVertexId = subDigraphToDigraphMap.get(subDigraphVertexId);
+
+                for(int neighbor : fullDigraph.adjacent(fullDigraphVertexId)) {
+                    if (neighbor == randomVertexId) {
+                        allSubDigraphEdges.add(new DirectedEdge(subDigraphVertexId, subDigraphVertexId1));
+                    }
+                }
+            }
+        }
+
+        // Randomly choose E directed edges from the subdigraph induced by the random vertices
+        if (randomEdgesToChoose > allSubDigraphEdges.size()) {
+            throw new IllegalArgumentException("Not enough edges to choose");
+        }
+
+        DirectedEdge[] allSubDigraphEdgesArray = new DirectedEdge[allSubDigraphEdges.size()];
+        allSubDigraphEdgesArray = allSubDigraphEdges.toArray(allSubDigraphEdgesArray);
+
+        // Randomly choose edges
+        for(int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
+            int randomEdgeId = StdRandom.uniform(edgeIndex, allSubDigraphEdgesArray.length);
+
+            DirectedEdge randomEdge = allSubDigraphEdgesArray[randomEdgeId];
+            allSubDigraphEdgesArray[randomEdgeId] = allSubDigraphEdgesArray[edgeIndex];
+            allSubDigraphEdgesArray[edgeIndex] = randomEdge;
+
+            randomSubDigraph.addEdge(randomEdge.fromVertex, randomEdge.toVertex);
+        }
+        return randomSubDigraph;
+    }
+
+    private void readDAG(Digraph fullDigraph, SeparateChainingHashTable<Integer, Integer> realDAGToFullDAGMap) {
+        String filePath = Constants.FILES_PATH + Constants.CITATION_DIGRAPH_FILE;
+        String separator = " ";
+        In in = new In(filePath);
 
         while (in.hasNextLine()) {
             String[] connection = in.readLine().split(separator);
@@ -243,75 +304,10 @@ public class Exercise51_RealWorldDAG {
 
             fullDigraph.addEdge(paperVertex1Id, paperVertex2Id);
         }
-
-        DirectedCycle directedCycle = new DirectedCycle(fullDigraph);
-        if (directedCycle.hasCycle()) {
-            throw new IllegalArgumentException("Digraph is not a DAG");
-        }
-
-        Digraph randomSubDigraph = new Digraph();
-        SeparateChainingHashTable<Integer, Integer> digraphToSubDigraphMap =
-                new SeparateChainingHashTable<>();
-
-        List<DirectedEdge> allSubDigraphEdges = new ArrayList<>();
-
-        for(int vertex = 0; vertex < randomVerticesToChoose; vertex++) {
-            // Randomly choose a vertex between 1 and vertices
-            int randomVertexId = StdRandom.uniform(fullDigraph.vertices) + 1;
-
-            if (digraphToSubDigraphMap.contains(randomVertexId)) {
-                continue;
-            }
-
-            int subDigraphVertexId = digraphToSubDigraphMap.size();
-            digraphToSubDigraphMap.put(randomVertexId, subDigraphVertexId);
-
-            randomSubDigraph.addVertex(subDigraphVertexId);
-
-            for(int neighbor : fullDigraph.adjacent(randomVertexId)) {
-                allSubDigraphEdges.add(new DirectedEdge(subDigraphVertexId, neighbor));
-            }
-        }
-
-        // Randomly choose E directed edges from the subdigraph induced by the random vertices
-        if (randomEdgesToChoose > allSubDigraphEdges.size()) {
-            throw new IllegalArgumentException("Not enough edges to choose");
-        }
-
-        DirectedEdge[] allSubDigraphEdgesArray = new DirectedEdge[allSubDigraphEdges.size()];
-        int allSubDigraphEdgesArrayIndex = 0;
-        HashSet<Integer> edgesChosen = new HashSet<>();
-
-        for(DirectedEdge directedEdge : allSubDigraphEdges) {
-            allSubDigraphEdgesArray[allSubDigraphEdgesArrayIndex++] = directedEdge;
-        }
-
-        for(int edge = 0; edge < randomEdgesToChoose; edge++) {
-            // Randomly choose an edge
-            int randomEdgeId = StdRandom.uniform(allSubDigraphEdgesArray.length);
-
-            if (edgesChosen.contains(randomEdgeId)) {
-                continue;
-            }
-
-            edgesChosen.add(randomEdgeId);
-
-            DirectedEdge randomEdge = allSubDigraphEdgesArray[randomEdgeId];
-
-            if (!digraphToSubDigraphMap.contains(randomEdge.toVertex)) {
-                int subDigraphNeighborVertexId = digraphToSubDigraphMap.size();
-                digraphToSubDigraphMap.put(randomEdge.toVertex, subDigraphNeighborVertexId);
-            }
-
-            int subDigraphNeighborVertexId = digraphToSubDigraphMap.get(randomEdge.toVertex);
-            randomSubDigraph.addEdge(randomEdge.fromVertex, subDigraphNeighborVertexId);
-        }
-
-        return randomSubDigraph;
     }
 
     // Example parameters:
-    // 20 20
+    // 500 20
     public static void main(String[] args) {
         int randomVerticesToChoose = Integer.parseInt(args[0]);
         int randomEdgesToChoose = Integer.parseInt(args[1]);

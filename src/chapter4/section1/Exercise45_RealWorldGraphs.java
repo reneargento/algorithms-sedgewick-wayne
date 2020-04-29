@@ -2,7 +2,6 @@ package chapter4.section1;
 
 import chapter1.section3.Bag;
 import chapter3.section4.SeparateChainingHashTable;
-import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
