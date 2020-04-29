@@ -147,16 +147,13 @@ public class Exercise45_RealWorldGraphs {
             throw new IllegalArgumentException("Not enough edges to choose from the induced subgraph");
         }
 
-        Edge[] allSubGraphEdgesArray = new Edge[allSubGraphEdges.size()];
-        allSubGraphEdgesArray = allSubGraphEdges.toArray(allSubGraphEdgesArray);
-
         // Randomly choose edges
         for(int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
-            int randomEdgeId = StdRandom.uniform(edgeIndex, allSubGraphEdgesArray.length);
+            int randomEdgeId = StdRandom.uniform(edgeIndex, allSubGraphEdges.size());
 
-            Edge randomEdge = allSubGraphEdgesArray[randomEdgeId];
-            allSubGraphEdgesArray[randomEdgeId] = allSubGraphEdgesArray[edgeIndex];
-            allSubGraphEdgesArray[edgeIndex] = randomEdge;
+            Edge randomEdge = allSubGraphEdges.get(randomEdgeId);
+            allSubGraphEdges.set(randomEdgeId, allSubGraphEdges.get(edgeIndex));
+            allSubGraphEdges.set(edgeIndex, randomEdge);
 
             randomSubGraph.addEdge(randomEdge.vertex1, randomEdge.vertex2);
         }
