@@ -1,15 +1,23 @@
 4.2.10
 
-Given a DAG, there is no topological order that cannot result from applying a DFS-based algorithm, no matter in what order the vertices adjacent to each vertex are chosen.
+Given a DAG, there exists topological orders that cannot result from applying a DFS-based algorithm, no matter in what order the vertices adjacent to each vertex are chosen.
 
-Proof:
-As seen on proposition F:
-Consider any edge v->w. One of the following three cases must hold when dfs(v) is called:
-1- dfs(w) has already been called and has returned (w is marked).
-2- dfs(w) has not yet been called (w is unmarked), so v->w will cause dfs(w) to be called (and return), either directly or indirectly, before dfs(v) returns.
-3- dfs(w) has been called and had not yet returned when dfs(v) is called. This case in impossible in a DAG, because the recursive call chain implies a path from w to v and v->w would complete a directed cycle.
+An example is the following:
 
-In the two possible cases, dfs(w) is done before dfs(v), so w appears before v in postorder and after v in reverse postorder. Thus, each edge v->w points from a vertex earlier in the order to a vertex later in the order, as desired.
+DAG:
+0 -> 1
+0 -> 2
+2 -> 3
 
-Since topological orders are the reverse postorder of a digraph, this means that topological orders can always be found when applying a DFS-based algorithm. The topological sort that results from such algorithm depends on the order in which the vertices adjacent to each vertex are chosen.
-If a topological order could not be found applying a DFS-based algorithm this means that dfs(v) would finish before dfs(w) for an edge v->w, which is not possible in a DAG.
+1    2 -> 3
+^   ^
+ \ /
+  0
+
+For this graph, the following topological order cannot result from applying a DFS-based algorithm:
+0 - 2 - 1 - 3
+
+DFS will always follow the branches 0 -> 1 and 0 -> 2 -> 3 (depending on the order that the adjacent vertices were chosen), but will never examine vertex 1 after vertex 2 and before vertex 3.
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for finding the correct solution to this exercise:
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/143
