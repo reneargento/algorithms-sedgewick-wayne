@@ -1,6 +1,5 @@
 package chapter4.section2;
 
-import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
@@ -9,45 +8,37 @@ import java.util.List;
 /**
  * Created by Rene Argento on 21/10/17.
  */
-//Based on https://stackoverflow.com/questions/36381100/verify-that-given-list-of-nodes-of-a-graph-is-a-correct-topological-order
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting a more efficient solution:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/142
 public class Exercise9 {
 
     private class CheckTopologicalOrder {
 
         public boolean isTopologicalOrder(Digraph digraph, List<Integer> topologicalOrder) {
-
             DirectedCycle directedCycle = new DirectedCycle(digraph);
             if (directedCycle.hasCycle()) {
                 throw new IllegalArgumentException("Digraph is not a DAG");
             }
 
-            HashSet<Integer> visitedVertices = new HashSet<>();
-            for(int vertex : topologicalOrder) {
-                visitedVertices.add(vertex);
-
-                if (!dfs(vertex, digraph, visitedVertices)) {
-                    return false;
-                }
+            if (topologicalOrder.size() != digraph.vertices()) {
+                return false;
             }
 
-            return true;
-        }
-
-        // Check if any reachable neighbor from vertex has already been visited
-        // If it has, this is not a valid topological sort
-        private boolean dfs(int vertex, Digraph digraph, HashSet<Integer> visitedVertices) {
-
-            for(int neighbor : digraph.adjacent(vertex)) {
-                if (visitedVertices.contains(neighbor)) {
+            boolean[] visited = new boolean[digraph.vertices()];
+            for (int i = topologicalOrder.size() - 1; i >= 0; i--) {
+                int vertex = topologicalOrder.get(i);
+                if (visited[vertex]) {
                     return false;
                 }
 
-                boolean isValid = dfs(neighbor, digraph, visitedVertices);
-                if (!isValid) {
-                    return false;
+                visited[vertex] = true;
+
+                for (int neighbor : digraph.adjacent(vertex)) {
+                    if (!visited[neighbor]) {
+                        return false;
+                    }
                 }
             }
-
             return true;
         }
     }
@@ -64,15 +55,17 @@ public class Exercise9 {
         topologicalOrder1.add(0);
         topologicalOrder1.add(1);
         topologicalOrder1.add(2);
+        boolean isTopologicalOrder1 = checkTopologicalOrder.isTopologicalOrder(digraph1, topologicalOrder1);
 
-        StdOut.println(checkTopologicalOrder.isTopologicalOrder(digraph1, topologicalOrder1) + " Expected: true");
+        StdOut.println("Is topological order: " + isTopologicalOrder1 + " Expected: true");
 
         List<Integer> topologicalOrder2 = new ArrayList<>();
         topologicalOrder2.add(1);
         topologicalOrder2.add(0);
         topologicalOrder2.add(2);
+        boolean isTopologicalOrder2 = checkTopologicalOrder.isTopologicalOrder(digraph1, topologicalOrder2);
 
-        StdOut.println(checkTopologicalOrder.isTopologicalOrder(digraph1, topologicalOrder2) + " Expected: false");
+        StdOut.println("Is topological order: " + isTopologicalOrder2 + " Expected: false");
 
         Digraph digraph2 = new Digraph(6);
         digraph2.addEdge(0, 1);
@@ -87,8 +80,9 @@ public class Exercise9 {
         topologicalOrder3.add(2);
         topologicalOrder3.add(5);
         topologicalOrder3.add(3);
+        boolean isTopologicalOrder3 = checkTopologicalOrder.isTopologicalOrder(digraph2, topologicalOrder3);
 
-        StdOut.println(checkTopologicalOrder.isTopologicalOrder(digraph2, topologicalOrder3) + " Expected: true");
+        StdOut.println("Is topological order: " + isTopologicalOrder3 + " Expected: true");
     }
 
 }
