@@ -27,21 +27,15 @@ public class Exercise29<Item> implements Iterable<Item> {
 	}
 	
 	public void enqueue(Item item) {
+		Node node = new Node();
+		node.item = item;
+
 		if (isEmpty()) {
-			last = new Node();
-			last.item = item;
+			last = node;
 			last.next = last;
 		} else {
-			Node node = new Node();
-			node.item = item;
-			
-			if (size == 1) {
-				last.next = node;
-				node.next = last;
-			} else {
-				node.next = last.next;
-				last.next = node;
-			}
+			node.next = last.next;
+			last.next = node;
 			last = node;
 		}
 		size++;
@@ -51,13 +45,11 @@ public class Exercise29<Item> implements Iterable<Item> {
 		if (isEmpty()) {
 			return null;
 		}
-		
 		Item item;
 		
 		if (size == 1) {
 			item = last.item;
 			last = null;
-			
 		} else {
 			item = last.next.item;
 			last.next = last.next.next;
@@ -72,7 +64,6 @@ public class Exercise29<Item> implements Iterable<Item> {
 	}
 	
 	private class QueueIterator implements Iterator<Item>{
-		
 		private Node current;
 		int count = 0;
 		
