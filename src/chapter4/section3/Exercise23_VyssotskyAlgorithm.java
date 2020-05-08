@@ -2,6 +2,7 @@ package chapter4.section3;
 
 import chapter1.section3.Queue;
 import chapter1.section3.Stack;
+import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
@@ -17,8 +18,10 @@ public class Exercise23_VyssotskyAlgorithm {
 
             for(Edge edge : edgeWeightedGraph.edges()) {
                 putativeTree.addEdge(edge);
+                HashSet<Integer> vertexToSearch = new HashSet<>();
+                vertexToSearch.add(edge.either());
 
-                EdgeWeightedCycle edgeWeightedCycle = new EdgeWeightedCycle(putativeTree);
+                EdgeWeightedCycle edgeWeightedCycle = new EdgeWeightedCycle(putativeTree, vertexToSearch);
 
                 // If a cycle was formed, delete the maximum-weight edge in it
                 if (edgeWeightedCycle.hasCycle()) {
