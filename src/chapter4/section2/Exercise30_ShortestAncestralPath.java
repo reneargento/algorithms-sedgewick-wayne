@@ -7,6 +7,8 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 24/10/17.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting a more efficient algorithm:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/145
 public class Exercise30_ShortestAncestralPath {
 
     private class ShortestAncestralPath {
@@ -22,7 +24,74 @@ public class Exercise30_ShortestAncestralPath {
         }
     }
 
-    //O(V + E)
+    private class BreadthFirstSearchToGetIntersection {
+        private Digraph digraph;
+        private int[] edgeTo;
+        private Queue<Integer> pendingVertices;
+
+        BreadthFirstSearchToGetIntersection(Digraph digraph, int source) {
+            this.digraph = digraph;
+            edgeTo = new int[digraph.vertices()];
+
+            for (int i = 0; i < edgeTo.length; i++) {
+                edgeTo[i] = -1;
+            }
+            edgeTo[source] = source;
+            pendingVertices = new Queue<>();
+            pendingVertices.enqueue(source);
+        }
+
+        int runStep(BreadthFirstSearchToGetIntersection otherBFS) {
+            int verticesToProcess = pendingVertices.size();
+
+            while (verticesToProcess > 0) {
+                int vertex = pendingVertices.dequeue();
+                for (int neighbor : digraph.adjacent(vertex)) {
+                    if (edgeTo[neighbor] != -1) {
+                        continue;
+                    }
+                    edgeTo[neighbor] = vertex;
+
+                    if (otherBFS.edgeTo[neighbor] != -1) {
+                        return neighbor;
+                    }
+                    pendingVertices.enqueue(neighbor);
+                }
+                verticesToProcess--;
+            }
+            return -1;
+        }
+
+        boolean isCompleted() {
+            return pendingVertices.isEmpty();
+        }
+
+        Stack<Integer> pathTo(int vertex) {
+            Stack<Integer> path = new Stack<>();
+
+            while (edgeTo[vertex] != vertex) {
+                path.push(vertex);
+                vertex = edgeTo[vertex];
+            }
+            path.push(vertex);
+            return path;
+        }
+    }
+
+    private String pathToString(Stack<Integer> path) {
+        StringBuilder pathString = new StringBuilder();
+
+        while (path.size() > 1) {
+            pathString.append(path.pop()).append("->").append(path.peek());
+
+            if (path.size() != 1) {
+                pathString.append(" ");
+            }
+        }
+        return pathString.toString();
+    }
+
+    // O(V + E)
     public ShortestAncestralPath getShortestAncestralPath(Digraph digraph, int vertex1, int vertex2) {
         DirectedCycle directedCycle = new DirectedCycle(digraph);
         if (directedCycle.hasCycle()) {
@@ -30,106 +99,30 @@ public class Exercise30_ShortestAncestralPath {
         }
 
         // 1- Reverse graph
-        Digraph reverseDigraph = digraph.reverse();
+        digraph = digraph.reverse();
 
-        int[] distancesFromVertex1 = new int[reverseDigraph.vertices()];
-        int[] distancesFromVertex2 = new int[reverseDigraph.vertices()];
+        // 2- Run a bidirectional breadth-first search to find the ancestor
+        BreadthFirstSearchToGetIntersection bfs1 = new BreadthFirstSearchToGetIntersection(digraph, vertex1);
+        BreadthFirstSearchToGetIntersection bfs2 = new BreadthFirstSearchToGetIntersection(digraph, vertex2);
 
-        for(int vertex = 0; vertex < reverseDigraph.vertices(); vertex++) {
-            distancesFromVertex1[vertex] = Integer.MAX_VALUE;
-            distancesFromVertex2[vertex] = Integer.MAX_VALUE;
-        }
-
-        // 2- Do a BFS from vertex1 to find all its ancestors and compute the distance from vertex1 to them
-        bfs(reverseDigraph, vertex1, distancesFromVertex1);
-
-        // 3- Do a BFS from vertex2 to find all its ancestors and compute the distance from vertex2 to them
-        bfs(reverseDigraph, vertex2, distancesFromVertex2);
-
-        // 4- Find the common ancestor with a shortest ancestral path
-        int commonAncestorWithShortestPath = -1;
-        int shortestDistance = Integer.MAX_VALUE;
-
-        for(int vertex = 0; vertex < reverseDigraph.vertices(); vertex++) {
-            if (distancesFromVertex1[vertex] != Integer.MAX_VALUE
-                    && distancesFromVertex2[vertex] != Integer.MAX_VALUE
-                    && distancesFromVertex1[vertex] + distancesFromVertex2[vertex] < shortestDistance) {
-                shortestDistance = distancesFromVertex1[vertex] + distancesFromVertex2[vertex];
-                commonAncestorWithShortestPath = vertex;
+        int ancestor = -1;
+        while (ancestor == - 1 && (!bfs1.isCompleted() || !bfs2.isCompleted())) {
+            ancestor = bfs1.runStep(bfs2);
+            if (ancestor == -1) {
+                ancestor = bfs2.runStep(bfs1);
             }
         }
 
-        if (commonAncestorWithShortestPath == -1) {
+        if (ancestor == -1) {
             return new ShortestAncestralPath(-1, null, null);
         }
 
-        // 5- Do a BFS from vertex1 to the common ancestor to get the shortest path
-        String shortestPathFromVertex1ToAncestor = bfsToGetPath(reverseDigraph, vertex1, commonAncestorWithShortestPath);
+        // 3- Get the paths from each vertex to the ancestor
+        Stack<Integer> shortestPathFromVertex1ToAncestor = bfs1.pathTo(ancestor);
+        Stack<Integer> shortestPathFromVertex2ToAncestor = bfs2.pathTo(ancestor);
 
-        // 6- Do a BFS from vertex2 to the common ancestor to get the shortest path
-        String shortestPathFromVertex2ToAncestor = bfsToGetPath(reverseDigraph, vertex2, commonAncestorWithShortestPath);
-
-        return new ShortestAncestralPath(commonAncestorWithShortestPath, shortestPathFromVertex1ToAncestor,
-                shortestPathFromVertex2ToAncestor);
-    }
-
-    private void bfs(Digraph digraph, int source, int[] distances) {
-        Queue<Integer> queue = new Queue<>();
-        queue.enqueue(source);
-        distances[source] = 0;
-
-        while (!queue.isEmpty()) {
-            int currentVertex = queue.dequeue();
-
-            for(int neighbor : digraph.adjacent(currentVertex)) {
-                distances[neighbor] = distances[currentVertex] + 1;
-                queue.enqueue(neighbor);
-            }
-        }
-    }
-
-    private String bfsToGetPath(Digraph digraph, int source, int target) {
-        int[] edgeTo = new int[digraph.vertices()];
-        Queue<Integer> queue = new Queue<>();
-        queue.enqueue(source);
-
-        while (!queue.isEmpty()) {
-            int currentVertex = queue.dequeue();
-
-            for(int neighbor : digraph.adjacent(currentVertex)) {
-                edgeTo[neighbor] = currentVertex;
-                queue.enqueue(neighbor);
-
-                if (neighbor == target) {
-                    Stack<Integer> inversePath = new Stack<>();
-
-                    for(int vertex = target; vertex != source; vertex = edgeTo[vertex]) {
-                        inversePath.push(vertex);
-                    }
-                    inversePath.push(source);
-
-                    StringBuilder path = new StringBuilder();
-
-                    while (!inversePath.isEmpty()) {
-                        int vertexInPath = inversePath.pop();
-
-                        if (!inversePath.isEmpty()) {
-                            int nextVertexInPath = inversePath.peek();
-                            path.append(vertexInPath).append("->").append(nextVertexInPath);
-                        }
-
-                        if (inversePath.size() > 1) {
-                            path.append(" ");
-                        }
-                    }
-
-                    return path.toString();
-                }
-            }
-        }
-
-        //If we got here, there is not path from source vertex to target vertex
-        return null;
+        return new ShortestAncestralPath(ancestor, pathToString(shortestPathFromVertex1ToAncestor),
+                pathToString(shortestPathFromVertex2ToAncestor));
     }
 
     public static void main(String[] args) {
