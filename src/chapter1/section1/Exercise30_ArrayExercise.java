@@ -14,22 +14,29 @@ public class Exercise30_ArrayExercise {
 
 	public static void main(String[] args) {
 		int n = 5;
-
-		boolean[][] array = new boolean[n][n];
-
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				array[i][j] = isCoprime(i, j);
-			}
-		}
-
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				StdOut.printf("%6b", array[i][j]);
-			}
-			StdOut.println();
-		}
+        boolean[][] array = createCoprimeArray(n);
+        printArray(array);
 	}
+
+	public static boolean[][] createCoprimeArray(int n) {
+        boolean[][] array = new boolean[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                array[i][j] = isCoprime(i, j);
+            }
+        }
+        return array;
+    }
+
+    public static void printArray(boolean[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                StdOut.printf("%6b", array[i][j]);
+            }
+            StdOut.println();
+        }
+    }
 
 	private static boolean isCoprime(int i, int j) {
 		if (i == j && i != 1) {
