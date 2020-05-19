@@ -17,18 +17,21 @@ public class Exercise15_1_TwoSumFaster {
         int[] arrayTest1 = {-3, -2, 2, 3, 5, 99};
         int[] arrayTest2 = {-10, -10, -10, 10, 10};
         int[] arrayTest3 = {0, 0, 0, 0, 0};
+        int[] arrayTest4 = {-2, -1, 0, 0, 0, 0, 0, 0, 1};
 
         StdOut.println("Method 1");
         StdOut.println("TwoSumFaster: " + twoSumFaster(array) + " Expected: 5");
         StdOut.println("TwoSumFaster: " + twoSumFaster(arrayTest1) + " Expected: 2");
         StdOut.println("TwoSumFaster: " + twoSumFaster(arrayTest2) + " Expected: 6");
         StdOut.println("TwoSumFaster: " + twoSumFaster(arrayTest3) + " Expected: 10");
+        StdOut.println("TwoSumFaster: " + twoSumFaster(arrayTest4) + " Expected: 16");
 
         StdOut.println("\nMethod 2");
         StdOut.println("TwoSumFaster: " + twoSumFaster2(array) + " Expected: 5");
         StdOut.println("TwoSumFaster: " + twoSumFaster2(arrayTest1) + " Expected: 2");
         StdOut.println("TwoSumFaster: " + twoSumFaster2(arrayTest2) + " Expected: 6");
         StdOut.println("TwoSumFaster: " + twoSumFaster2(arrayTest3) + " Expected: 10");
+        StdOut.println("TwoSumFaster: " + twoSumFaster2(arrayTest4) + " Expected: 16");
     }
 
     // O(n)
@@ -62,14 +65,10 @@ public class Exercise15_1_TwoSumFaster {
     // Considering that the array is already sorted.
     // O(n)
     private static int twoSumFaster2(int[] array) {
-        if (isAllZeros(array)) {
-            return handleAllZerosEdgeCase(array.length);
-        }
-
         int start = 0;
         int end = array.length - 1;
 
-        int count = 0;
+        int count = countZeroMatches(array);
 
         if ((array[start] > 0 && array[end] > 0) || (array[start] < 0 && array[end] < 0)) {
             return 0;
@@ -81,6 +80,12 @@ public class Exercise15_1_TwoSumFaster {
             } else if (array[start] + array[end] < 0) {
                 start++;
             } else {
+                if (array[start] == 0 && array[end] == 0) {
+                    start++;
+                    end--;
+                    continue;
+                }
+
                 int startElement = array[start];
                 int equalStartElements = 1;
 
@@ -105,22 +110,23 @@ public class Exercise15_1_TwoSumFaster {
                 end--;
             }
         }
-
         return count;
     }
 
-    private static boolean isAllZeros(int[] array) {
+    private static int countZeroMatches(int[] array) {
+        int count = 0;
+
         for (int value : array) {
-            if (value != 0) {
-                return false;
+            if (value == 0) {
+                count++;
             }
         }
-        return true;
+        return handleZerosEdgeCase(count);
     }
 
-    private static int handleAllZerosEdgeCase(int arrayLength) {
-        int lengthMinus1 = arrayLength - 1;
-        return ((1 + lengthMinus1) * lengthMinus1) / 2;
+    private static int handleZerosEdgeCase(int numberOfZeros) {
+        int numberMinus1 = numberOfZeros - 1;
+        return ((1 + numberMinus1) * numberMinus1) / 2;
     }
 
 }
