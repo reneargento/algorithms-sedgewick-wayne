@@ -125,8 +125,7 @@ public class Exercise15_1_TwoSumFaster {
     }
 
     private static int handleZerosEdgeCase(int numberOfZeros) {
-        int numberMinus1 = numberOfZeros - 1;
-        return ((1 + numberMinus1) * numberMinus1) / 2;
+        return (numberOfZeros * (numberOfZeros - 1)) / 2;
     }
 
 }
