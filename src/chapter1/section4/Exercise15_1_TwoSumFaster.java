@@ -8,22 +8,27 @@ import java.util.Map;
 /**
  * Created by Rene Argento on 9/30/16.
  */
+// Thanks to ontvzla (https://github.com/ontvzla) for suggesting an improvement when there are equal numbers in the array:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/150
 public class Exercise15_1_TwoSumFaster {
 
     public static void main(String[] args) {
         int[] array = {-10, -10, -5, 0, 5, 10, 10, 15, 20};
         int[] arrayTest1 = {-3, -2, 2, 3, 5, 99};
-        int[] arrayTest2 = {-10, -10, -10, 10};
+        int[] arrayTest2 = {-10, -10, -10, 10, 10};
+        int[] arrayTest3 = {0, 0, 0, 0, 0};
 
         StdOut.println("Method 1");
         StdOut.println("TwoSumFaster: " + twoSumFaster(array) + " Expected: 5");
         StdOut.println("TwoSumFaster: " + twoSumFaster(arrayTest1) + " Expected: 2");
-        StdOut.println("TwoSumFaster: " + twoSumFaster(arrayTest2) + " Expected: 3");
+        StdOut.println("TwoSumFaster: " + twoSumFaster(arrayTest2) + " Expected: 6");
+        StdOut.println("TwoSumFaster: " + twoSumFaster(arrayTest3) + " Expected: 10");
 
         StdOut.println("\nMethod 2");
         StdOut.println("TwoSumFaster: " + twoSumFaster2(array) + " Expected: 5");
         StdOut.println("TwoSumFaster: " + twoSumFaster2(arrayTest1) + " Expected: 2");
-        StdOut.println("TwoSumFaster: " + twoSumFaster2(arrayTest2) + " Expected: 3");
+        StdOut.println("TwoSumFaster: " + twoSumFaster2(arrayTest2) + " Expected: 6");
+        StdOut.println("TwoSumFaster: " + twoSumFaster2(arrayTest3) + " Expected: 10");
     }
 
     // O(n)
@@ -55,14 +60,14 @@ public class Exercise15_1_TwoSumFaster {
     }
 
     // Considering that the array is already sorted.
-    // Runs in linear time when there are no duplicate keys and in O(n^2) when there are duplicate keys.
-    // The exercise asks to avoid using binary search. If we used binary search to get the ranges we could
-    // reduce the complexity to O(n lg n) when there are duplicate keys.
+    // O(n)
     private static int twoSumFaster2(int[] array) {
+        if (isAllZeros(array)) {
+            return handleAllZerosEdgeCase(array.length);
+        }
+
         int start = 0;
         int end = array.length - 1;
-
-        int tempIndex;
 
         int count = 0;
 
@@ -76,23 +81,25 @@ public class Exercise15_1_TwoSumFaster {
             } else if (array[start] + array[end] < 0) {
                 start++;
             } else {
-                count++;
+                int startElement = array[start];
+                int equalStartElements = 1;
 
-                // Compare all following elements with array[end]
-                // Could be improved with binary search
-                tempIndex = start + 1;
-                while(tempIndex < end && array[tempIndex] + array[end] == 0) {
-                    count++;
-                    tempIndex++;
+                // Compare all following elements with startElement
+                while (start + 1 < end && array[start + 1] == startElement) {
+                    equalStartElements++;
+                    start++;
                 }
 
-                //Compare all previous elements with array[start]
-                // Could be improved with binary search
-                tempIndex = end - 1;
-                while(tempIndex > start && array[start] + array[tempIndex] == 0) {
-                    count++;
-                    tempIndex--;
+                int endElement = array[end];
+                int equalEndElements = 1;
+
+                // Compare all previous elements with endElement
+                while (end - 1 > start && array[end - 1] == endElement) {
+                    equalEndElements++;
+                    end--;
                 }
+
+                count += equalStartElements * equalEndElements;
 
                 start++;
                 end--;
@@ -100,6 +107,20 @@ public class Exercise15_1_TwoSumFaster {
         }
 
         return count;
+    }
+
+    private static boolean isAllZeros(int[] array) {
+        for (int value : array) {
+            if (value != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static int handleAllZerosEdgeCase(int arrayLength) {
+        int lengthMinus1 = arrayLength - 1;
+        return ((1 + lengthMinus1) * lengthMinus1) / 2;
     }
 
 }
