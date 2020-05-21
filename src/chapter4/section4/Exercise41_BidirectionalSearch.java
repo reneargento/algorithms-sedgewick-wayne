@@ -10,6 +10,9 @@ import edu.princeton.cs.algs4.StdOut;
 // This exercise description asks us to use the same priority queue for both shortest-path-trees.
 // This requires a lot of extra bookkeeping.
 // If two priority queues could be used, the code could be significantly simplified.
+
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for fixing a bug when updating the priority queue.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/152
 public class Exercise41_BidirectionalSearch {
 
     public class DijkstraSPSourceSinkBidirectional {
@@ -123,10 +126,11 @@ public class Exercise41_BidirectionalSearch {
                         distToTarget[neighbor] = distToTarget[originalVertexId] + edge.weight();
                         edgeToTarget[neighbor] = edge;
 
-                        if (priorityQueue.contains(vertex)) {
-                            priorityQueue.decreaseKey(vertex, distToTarget[neighbor]);
+                        int adjustedNeighborIndex = neighbor + edgeWeightedDigraph.vertices();
+                        if (priorityQueue.contains(adjustedNeighborIndex)) {
+                            priorityQueue.decreaseKey(adjustedNeighborIndex, distToTarget[neighbor]);
                         } else {
-                            priorityQueue.insert(vertex, distToTarget[neighbor]);
+                            priorityQueue.insert(adjustedNeighborIndex, distToTarget[neighbor]);
                         }
                     }
                 }
