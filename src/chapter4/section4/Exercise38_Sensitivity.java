@@ -7,6 +7,10 @@ import edu.princeton.cs.algs4.StdOut;
  * Created by Rene Argento on 22/12/17.
  */
 // Adapted from http://courses.csail.mit.edu/6.006/fall10/handouts/quiz2review.pdf section 8.3
+//
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for fixing the time complexity of the
+// computeSensitivity() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/151
 public class Exercise38_Sensitivity {
 
     private class EdgeInformation {
@@ -46,7 +50,7 @@ public class Exercise38_Sensitivity {
     // distance from the source to some vertex v (however, by definition, if weight(e) = 0 then e is not
     // downwards critical, because we can't decrease its weight below 0).
 
-    // O(E * V)
+    // O(V^2 + E * lg V * V)
     public boolean[][] computeSensitivity(EdgeWeightedDigraph edgeWeightedDigraph) {
 
         // 0 - Initialize sensitivity matrix
