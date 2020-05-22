@@ -1,4 +1,8 @@
 5.1.10
 
-In the worst case all strings are equal and 3-way string quicksort examines all characters of all strings:
-N * W characters.
+In the worst case there are N unique strings of length 1 in reverse order.
+For example: {"e", "d", "c", "b", "a"}.
+The algorithm will examine N + (N - 1) + (N - 2) + ... + 2 characters, which has a complexity of O(N^2) characters.
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for finding a more accurate worst case.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/153
