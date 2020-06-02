@@ -1,10 +1,17 @@
 2.3.10
 
-The number of compares used by quicksort for N = 1 million is around 26 million, which is much less than 100 billion. 
+There are 1 million elements, so N = 1,000,000.
+As mentioned on the book, quicksort uses ~2N ln N compares on the average case to sort N keys.
+Therefore, on average there will be 27,620,000 compares.
 
-Array Size |   Compares
-   1000000     27053401
-   1000000     25482965
-   1000000     26411245
-   1000000     25411808
-   1000000     25027730
+As also mentioned on the book, the standard deviation of the number of compares is about .65 N, which in this case is 650,000.
+With this information, the probability can be computed as follows:
+
+Difference between target compares and average compares = 100,000,000,000 - 27,620,000 = 99,972,380,000
+k = number of standard deviations = 99,972,380,000 / 650,000 ~= 153,804
+Probability < 1 / k^2
+Probability < 1 / (153,804)^2
+Probability < 1 / 23,655,670,416
+Probability < 0.000000000042273 = 0.0000000042273%
+
+Therefore, the probability that the number of compares used by quicksort for N = 1,000,000 is more than 100 billion is less than 0.0000000042273%.
