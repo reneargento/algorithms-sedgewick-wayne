@@ -9,7 +9,7 @@ P1 P2 P3 … PM
 
 And the second check will have the format:
 
-T1 T2 T3 … TM TM+1 … TN-1 TN
+T1 T2 T3 … TM+1 TM+2 … TN-1 TN
    P1 P2 … PM
 
 Thus, there will be a total of (N - M + 1) checks.
@@ -65,3 +65,6 @@ Also notice that 2 * (N - M + 1) is equal to 2 * (8 - 4 + 1) = 10 and 9.375 <= 1
 This shows that, for random patterns and random texts, the brute-force method is efficient.
 
 Reference: https://math.stackexchange.com/questions/1613895/expected-number-of-comparisons-of-naive-string-matching
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for reporting a minor issue on the second check format.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/158
