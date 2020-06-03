@@ -1,4 +1,7 @@
 5.4.9
 
 Regular expression for at least two 0s but not consecutive 0s:
-(01|1)*01+0(01|1)*
+(01|1)*01+0(10|1)*
+
+Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for fixing part of the regular expression.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/159
