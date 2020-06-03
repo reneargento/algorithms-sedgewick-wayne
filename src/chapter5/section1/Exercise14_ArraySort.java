@@ -8,6 +8,8 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 12/01/18.
  */
+// Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for reporting a bug related to negative values in arrays:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/157
 public class Exercise14_ArraySort {
 
     public class ArraySort {
@@ -26,16 +28,18 @@ public class Exercise14_ArraySort {
 
             int pivotIndex = StdRandom.uniform(low, high + 1);
             swapArrays(arrays, low, pivotIndex);
-            int pivot = valueAt(arrays[low], valueIndex);
+            Integer pivot = valueAt(arrays[low], valueIndex);
 
             int index = low + 1;
 
             while (index <= greaterThan) {
-                int currentValue = valueAt(arrays[index], valueIndex);
+                Integer currentValue = valueAt(arrays[index], valueIndex);
 
-                if (currentValue < pivot) {
+                if ((currentValue == null && pivot != null) ||
+                        (pivot != null && currentValue < pivot)) {
                     swapArrays(arrays, lowerThan++, index++);
-                } else if (currentValue > pivot) {
+                } else if ((pivot == null && currentValue != null) ||
+                        (pivot != null && currentValue > pivot)) {
                     swapArrays(arrays, index, greaterThan--);
                 } else {
                     index++;
@@ -44,17 +48,17 @@ public class Exercise14_ArraySort {
 
             // Now arrays[low..lowerThan - 1] < pivot = arrays[lowerThan..greaterThan] < arrays[greaterThan + 1..high]
             threeWayStringQuickSortArrays(arrays, low, lowerThan - 1, valueIndex);
-            if (pivot >= 0) {
+            if (pivot != null) {
                 threeWayStringQuickSortArrays(arrays, lowerThan, greaterThan, valueIndex + 1);
             }
             threeWayStringQuickSortArrays(arrays, greaterThan + 1, high, valueIndex);
         }
 
-        private int valueAt(int[] array, int index) {
+        private Integer valueAt(int[] array, int index) {
             if (index < array.length) {
                 return array[index];
             } else {
-                return Integer.MIN_VALUE;
+                return null;
             }
         }
 
@@ -76,8 +80,10 @@ public class Exercise14_ArraySort {
         int[] array6 = {20, 10, 1};
         int[] array7 = {20, 10, 0};
         int[] array8 = {20, 10, -10};
+        int[] array9 = {20, 10, -10, 30};
+        int[] array10 = {20, 10, -10, 1};
 
-        int[][] arrays = {array1, array2, array3, array4, array5, array6, array7, array8};
+        int[][] arrays = {array1, array2, array3, array4, array5, array6, array7, array8, array9, array10};
 
         arraySort.threeWayStringQuickSortArrays(arrays);
 
@@ -101,6 +107,8 @@ public class Exercise14_ArraySort {
                 "15\n" +
                 "20, 10\n" +
                 "20, 10, -10\n" +
+                "20, 10, -10 1\n" +
+                "20, 10, -10 30\n" +
                 "20, 10, 0\n" +
                 "20, 10, 1");
     }
