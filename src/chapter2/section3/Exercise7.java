@@ -10,6 +10,8 @@ import java.util.Map;
 /**
  * Created by Rene Argento on 04/03/17.
  */
+// Thanks to MrScislowski (https://github.com/MrScislowski) for fixing the rightSubArraySize computation.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/161
 public class Exercise7 {
 
     private static int subArraysOfSize0;
@@ -17,13 +19,11 @@ public class Exercise7 {
     private static int subArraysOfSize2;
 
     public static void main(String[] args) {
-
         Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(5, 1000, 2);
 
         StdOut.printf("%13s %17s %17s %17s\n", "Array Size | ", "SubArrays Size 0 | ", "SubArrays Size 1 | ", "SubArrays Size 2");
 
         for(int i = 0; i < allInputArrays.size(); i++) {
-
             Comparable[] array = allInputArrays.get(i);
 
             quickSort(array);
@@ -42,16 +42,15 @@ public class Exercise7 {
     }
 
     private static void quickSort(Comparable[] array, int low, int high) {
-
         if (low >= high) {
             return;
         }
 
         int partition = partition(array, low, high);
 
-        //size = high - low + 1
+        // size = high - low + 1
         int leftSubArraySize = partition - low;
-        int rightSubArraySize = high - partition + 2;
+        int rightSubArraySize = high - partition;
 
         checkSubArraySize(leftSubArraySize);
         checkSubArraySize(rightSubArraySize);
