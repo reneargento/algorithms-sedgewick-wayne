@@ -8,7 +8,9 @@ import java.util.NoSuchElementException;
 /**
  * Created by Rene Argento on 29/06/17.
  */
-//Based on http://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/AVLTreeST.java.html
+// Based on http://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/AVLTreeST.java.html
+// Thanks to williamcheng-web (https://github.com/williamcheng-web) for finding a bug on the height update after a rotation:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/162
 public class Exercise32_AVLTrees {
 
     private class AVLTree<Key extends Comparable<Key>, Value> {
@@ -70,8 +72,8 @@ public class Exercise32_AVLTrees {
             node.right = newRoot.left;
             newRoot.left = node;
 
-            newRoot.height = 1 + Math.max(height(newRoot.left), height(newRoot.right));
             node.height = 1 + Math.max(height(node.left), height(node.right));
+            newRoot.height = 1 + Math.max(height(newRoot.left), height(newRoot.right));
 
             newRoot.size = node.size;
             node.size = size(node.left) + 1 + size(node.right);
@@ -89,8 +91,8 @@ public class Exercise32_AVLTrees {
             node.left = newRoot.right;
             newRoot.right = node;
 
-            newRoot.height = 1 + Math.max(height(newRoot.left), height(newRoot.right));
             node.height = 1 + Math.max(height(node.left), height(node.right));
+            newRoot.height = 1 + Math.max(height(newRoot.left), height(newRoot.right));
 
             newRoot.size = node.size;
             node.size = size(node.left) + 1 + size(node.right);
