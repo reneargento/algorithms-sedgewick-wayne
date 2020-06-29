@@ -66,8 +66,8 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
         node.right = newRoot.left;
         newRoot.left = node;
 
-        newRoot.height = 1 + Math.max(height(newRoot.left), height(newRoot.right));
         node.height = 1 + Math.max(height(node.left), height(node.right));
+        newRoot.height = 1 + Math.max(height(newRoot.left), height(newRoot.right));
 
         newRoot.size = node.size;
         node.size = size(node.left) + 1 + size(node.right);
@@ -85,8 +85,8 @@ public class AVLTree<Key extends Comparable<Key>, Value> {
         node.left = newRoot.right;
         newRoot.right = node;
 
-        newRoot.height = 1 + Math.max(height(newRoot.left), height(newRoot.right));
         node.height = 1 + Math.max(height(node.left), height(node.right));
+        newRoot.height = 1 + Math.max(height(newRoot.left), height(newRoot.right));
 
         newRoot.size = node.size;
         node.size = size(node.left) + 1 + size(node.right);
