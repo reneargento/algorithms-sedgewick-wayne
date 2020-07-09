@@ -3,6 +3,8 @@ package chapter1.section5;
 /**
  * Created by Rene Argento on 09/12/16.
  */
+// Thanks to Jinchul81 (https://github.com/Jinchul81) for fixing the time complexity description on the connected() method:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/164
 public class QuickUnion implements UF {
 
     private int[] id;
@@ -21,7 +23,7 @@ public class QuickUnion implements UF {
         return count;
     }
 
-    //O(n)
+    // O(n)
     public int find(int site) {
         while(site != id[site]) {
             site = id[site];
@@ -30,12 +32,12 @@ public class QuickUnion implements UF {
         return site;
     }
 
-    //O(1)
+    // O(n)
     public boolean connected(int site1, int site2) {
         return find(site1) == find(site2);
     }
 
-    //O(n)
+    // O(n)
     public void union(int site1, int site2) {
         int leaderId1 = find(site1);
         int leaderId2 = find(site2);
