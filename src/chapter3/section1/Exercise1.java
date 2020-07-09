@@ -3,9 +3,6 @@ package chapter3.section1;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Rene Argento on 22/04/17.
  */
@@ -34,7 +31,10 @@ public class Exercise1 {
 
         double totalGrades = 0;
 
-        for(String grade : grades) {
+        for (String grade : grades) {
+            if (scoresMap.get(grade) == null) {
+                StdOut.println("You did not enter a valid grade. Please re-enter the grades. Valid grades are A+ - F");
+            }
             totalGrades += scoresMap.get(grade);
         }
 
