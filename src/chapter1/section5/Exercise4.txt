@@ -149,93 +149,96 @@ Worst-case input
 Beginning
 
 id[]
-0 1 2 3 4 5 6 7 8 9
-0 1 2 3 4 5 6 7 8 9
+0 1 2 3 4 5 6 7
+0 1 2 3 4 5 6 7
 
 sz[]
-0 1 2 3 4 5 6 7 8 9
-1 1 1 1 1 1 1 1 1 1
+0 1 2 3 4 5 6 7
+1 1 1 1 1 1 1 1
 
 0-1
 
 id[]
-0 1 2 3 4 5 6 7 8 9
-0 0 2 3 4 5 6 7 8 9
+0 1 2 3 4 5 6 7
+0 0 2 3 4 5 6 7
 
 sz[]
-0 1 2 3 4 5 6 7 8 9
-2 1 1 1 1 1 1 1 1 1
+0 1 2 3 4 5 6 7
+2 1 1 1 1 1 1 1
 
 Array accesses: 3 (1 for find(0), 1 for find(1) and 1 for updating parent)
 
 2-3
 
 id[]
-0 1 2 3 4 5 6 7 8 9
-0 0 2 2 4 5 6 7 8 9
+0 1 2 3 4 5 6 7
+0 0 2 2 4 5 6 7
 
 sz[]
-0 1 2 3 4 5 6 7 8 9
-2 1 2 1 1 1 1 1 1 1
+0 1 2 3 4 5 6 7
+2 1 2 1 1 1 1 1
 
 Array accesses: 3 (1 for find(2), 1 for find(3) and 1 for updating parent)
 
 4-5
 
 id[]
-0 1 2 3 4 5 6 7 8 9
-0 0 2 2 4 4 6 7 8 9
+0 1 2 3 4 5 6 7
+0 0 2 2 4 4 6 7
 
 sz[]
-0 1 2 3 4 5 6 7 8 9
-2 1 2 1 2 1 1 1 1 1
+0 1 2 3 4 5 6 7
+2 1 2 1 2 1 1 1
 
 Array accesses: 3 (1 for find(4), 1 for find(5) and 1 for updating parent)
 
 6-7
 
 id[]
-0 1 2 3 4 5 6 7 8 9
-0 0 2 2 4 4 6 6 8 9
+0 1 2 3 4 5 6 7
+0 0 2 2 4 4 6 6
 
 sz[]
-0 1 2 3 4 5 6 7 8 9
-2 1 2 1 2 1 2 1 1 1
+0 1 2 3 4 5 6 7
+2 1 2 1 2 1 2 1
 
 Array accesses: 3 (1 for find(6), 1 for find(7) and 1 for updating parent)
 
 0-2
 
 id[]
-0 1 2 3 4 5 6 7 8 9
-0 0 0 2 4 4 6 6 8 9
+0 1 2 3 4 5 6 7
+0 0 0 2 4 4 6 6
 
 sz[]
-0 1 2 3 4 5 6 7 8 9
-4 1 2 1 2 1 2 1 1 1
+0 1 2 3 4 5 6 7
+4 1 2 1 2 1 2 1
 
 Array accesses: 3 (1 for find(0), 1 for find(2) and 1 for updating parent)
 
 4-6
 
 id[]
-0 1 2 3 4 5 6 7 8 9
-0 0 0 2 4 4 4 6 8 9
+0 1 2 3 4 5 6 7
+0 0 0 2 4 4 4 6
 
 sz[]
-0 1 2 3 4 5 6 7 8 9
-4 1 2 1 4 1 2 1 1 1
+0 1 2 3 4 5 6 7
+4 1 2 1 4 1 2 1
 
 Array accesses: 3 (1 for find(4), 1 for find(6) and 1 for updating parent)
 
 0-4
 
 id[]
-0 1 2 3 4 5 6 7 8 9
-0 0 0 2 0 4 4 6 8 9
+0 1 2 3 4 5 6 7
+0 0 0 2 0 4 4 6
 
 sz[]
-0 1 2 3 4 5 6 7 8 9
-8 1 2 1 4 1 2 1 1 1
+0 1 2 3 4 5 6 7
+8 1 2 1 4 1 2 1
 
 Array accesses: 3 (1 for find(0), 1 for find(4) and 1 for updating parent)
+
+Thanks to sergiovasquez122 (https://github.com/sergiovasquez122) for noticing that there were extra array fields in the worst case:
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/168
