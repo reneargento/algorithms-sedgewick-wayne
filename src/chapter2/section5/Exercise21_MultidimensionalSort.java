@@ -2,98 +2,91 @@ package chapter2.section5;
 
 import edu.princeton.cs.algs4.StdRandom;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
-
+/**
+ * Created by Rene Argento on 13/04/17.
+ * Improved by UniverseObserver (https://github.com/UniverseObserver) on 21/07/20.
+ */
 public class Exercise21_MultidimensionalSort {
 
+    private static class VectorSort implements Comparator<int[]> {
+        public int dimension;
+
+        public VectorSort(int dimension) {
+            this.dimension = dimension;
+        }
+
+        public int compare(int[] a, int[] b) {
+            if (a[dimension] > b[dimension]){
+                return 1;
+            } else if (a[dimension] < b[dimension]){
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    public static void sortByDimension(int[][] vectors, int currentDimension, int maxDimension, int leftBound,
+                                       int rightBound) {
+        VectorSort comparator = new VectorSort(currentDimension);
+        sort(vectors, comparator, leftBound, rightBound);
+
+        if (currentDimension == maxDimension) {
+            return;
+        }
+
+        int leftBoundNew = leftBound;
+        int rightBoundNew = -1;
+        boolean hasDifferentValues = false;
+
+        for (int i = leftBound; i < rightBound - 1; i++) {
+            if (vectors[i][currentDimension] != vectors[i + 1][currentDimension]) {
+                hasDifferentValues = true;
+                rightBoundNew = i + 1;
+                sortByDimension(vectors, currentDimension + 1, maxDimension, leftBoundNew, rightBoundNew);
+                leftBoundNew = i + 1;
+            }
+        }
+
+        if (!hasDifferentValues) {
+            sortByDimension(vectors, currentDimension + 1, maxDimension, leftBound, rightBound);
+        }
+        if (rightBoundNew != -1) {
+            sortByDimension(vectors, currentDimension + 1, maxDimension, rightBoundNew, rightBound);
+        }
+    }
+
+    public static void sort(int[][] array, Comparator<int[]> comparator, int low, int high) {
+        for (int i = low + 1; i < high; i++) {
+            for (int j = i; j > low && less(array[j], array[j - 1], comparator); j--) {
+                exchange(array, j, j - 1);
+            }
+        }
+    }
+
+    // Is value1 < value2 ?
+    private static boolean less(int[] value1, int[] value2, Comparator<int[]> comparator) {
+        return comparator.compare(value1, value2) < 0;
+    }
+
+    // Exchange array[i] and array[j]
+    private static void exchange(Object[] array, int i, int j) {
+        Object aux = array[i];
+        array[i] = array[j];
+        array[j] = aux;
+    }
+
     public static void main(String[] args) {
+        int[][] vectors = new int[25][5];
 
-        StdRandom.setSeed(1);
-
-        var vectors = new int[25][];
         for (int i = 0; i < vectors.length; i++) {
-            vectors[i] = new int[5];
             for (int j = 0; j < vectors[i].length; j++) {
                 vectors[i][j] = StdRandom.uniform(0,3);
             }
         }
 
-        var breakpoints = new ArrayList<Integer>();
-        breakpoints.add(0);
-        breakpoints.add(vectors.length);
-
-        sort_by_dim(vectors, 0, 4, 0, 25);
-
-        System.out.println();
-
-    }
-
-
-    public static void sort_by_dim(int[][] vectors, int current_dim, int max_dim, int left_bound, int right_bound) {
-
-        VecSort comparator = new VecSort(current_dim);
-        sort(vectors, comparator, left_bound, right_bound);
-
-        if (current_dim == max_dim)
-            return;
-
-        var left_bound_new = left_bound;
-        var right_bound_new = -1;
-        var flag = false;
-        for (int i = left_bound; i < right_bound - 1; i++) {
-            if (vectors[i][current_dim] == vectors[i+1][current_dim]) {
-            } else {
-                flag = true;
-                right_bound_new = i + 1;
-                sort_by_dim(vectors, current_dim+1, max_dim, left_bound_new, right_bound_new);
-                left_bound_new = i + 1;
-            }
-        }
-        if (!flag) {
-            sort_by_dim(vectors, current_dim+1, max_dim, left_bound, right_bound);
-        }
-        if (right_bound_new != -1)
-            sort_by_dim(vectors, current_dim+1, max_dim, right_bound_new, right_bound);
-
-    }
-
-    public static void sort(Object[] a, Comparator comparator, int lo, int hi) {
-        for (int i = lo + 1; i < hi; i++) {
-            for (int j = i; j > lo && less(a[j], a[j-1], comparator); j--) {
-                exch(a, j, j-1);
-            }
-        }
-    }
-
-    // is v < w ?
-    private static boolean less(Object v, Object w, Comparator comparator) {
-        return comparator.compare(v, w) < 0;
-    }
-        
-    // exchange a[i] and a[j]
-    private static void exch(Object[] a, int i, int j) {
-        Object swap = a[i];
-        a[i] = a[j];
-        a[j] = swap;
-    }
-
-}
-
-class VecSort implements Comparator<int[]> {
-
-    public int dimension;
-
-    public VecSort(int dimension) {
-        this.dimension = dimension;
-    }
-
-    public int compare(int[] a, int[] b) {
-        if (a[dimension] > b[dimension]){
-            return 1;
-        } else if (a[dimension] < b[dimension]){
-            return -1;
-        } else return 0;
+        sortByDimension(vectors, 0, vectors[0].length - 1, 0, vectors.length);
     }
 }
