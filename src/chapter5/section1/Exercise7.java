@@ -8,15 +8,15 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 08/01/18.
  */
+// Thanks to AdamShamaa (https://github.com/AdamShamaa) for suggesting an optimization to this exercise.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/173
+
 // Assumes that all Strings have the same length
 @SuppressWarnings("unchecked")
 public class Exercise7 {
 
     public void keyIndexedCountWithQueue(String[] array, int stringsLength) {
-
         int alphabetSize = 256; // Extended ASCII characters
-
-        Queue<String> auxQueue = new Queue<>();
 
         Queue<String> count[] = new Queue[alphabetSize + 1];
 
@@ -32,21 +32,15 @@ public class Exercise7 {
                 count[digitIndex].enqueue(array[i]);
             }
 
-            // Distribute
+            // Distribute and copy back
+            int indexArray = 0;
             for(int r = 0; r < count.length; r++) {
                 while (!count[r].isEmpty()) {
                     String string = count[r].dequeue();
-                    auxQueue.enqueue(string);
+                    array[indexArray++] = string;
                 }
             }
-
-            // Copy back
-            int indexArray = 0;
-            while (!auxQueue.isEmpty()) {
-                array[indexArray++] = auxQueue.dequeue();
-            }
         }
-
     }
 
     public static void main(String[] args) {
