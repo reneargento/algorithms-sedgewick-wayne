@@ -5,22 +5,32 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 24/02/18.
  */
-// The method to find blank characters uses the Knuth-Morris-Pratt algorithm, so the number of character compares is
-// the same as the number mentioned in the book:
-    // Typical case: 1.1N
-    // Worst case: 2N
+// Thanks to AdamShamaa (https://github.com/AdamShamaa) for suggesting an optimization to this exercise.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/174
+
+// Number of character compares:
+    // Typical case: N / 2
+    // Worst case: N
 public class Exercise4 {
 
     public int findBlankCharacters(String text, int mSpaces) {
+        int textLength = text.length();
+        int consecutiveBlanks;
+        int i;
 
-        StringBuilder pattern = new StringBuilder();
-
-        for (int space = 0; space < mSpaces; space++) {
-            pattern.append(" ");
+        for (i = 0, consecutiveBlanks = 0; i < textLength && consecutiveBlanks < mSpaces; i++) {
+            if (text.charAt(i) == ' ') {
+                consecutiveBlanks++;
+            } else {
+                consecutiveBlanks = 0;
+            }
         }
 
-        KnuthMorrisPratt knuthMorrisPratt = new KnuthMorrisPratt(pattern.toString());
-        return knuthMorrisPratt.search(text);
+        if (consecutiveBlanks == mSpaces) {
+            return i - mSpaces;	  //found
+        } else {
+            return textLength;    //not found
+        }
     }
 
     public static void main(String[] args) {
