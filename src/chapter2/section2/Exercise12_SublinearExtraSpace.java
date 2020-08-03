@@ -22,9 +22,15 @@ public class Exercise12_SublinearExtraSpace {
 
         selectionSortBlocks(array, blockSize);
 
+        Comparable[] aux = new Comparable[blockSize];
         //O (N^2)
-        for(int i = 0; i < arraySize / blockSize - 1; i++) {
-            mergeBlocks(array, blockSize);
+        for (int i = arraySize / blockSize - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                int low = j * blockSize;
+                int middle = (j + 1) * blockSize - 1;
+                int high = middle + blockSize;
+                merge(array, aux, low, middle, high);
+            }
         }
     }
 
@@ -57,27 +63,6 @@ public class Exercise12_SublinearExtraSpace {
             Comparable temp = array[i];
             array[i] = array[minIndex];
             array[minIndex] = temp;
-        }
-    }
-
-    private static void mergeBlocks(Comparable[] array, int blockSize) {
-        Comparable[] aux = new Comparable[blockSize];
-
-        int low = 0;
-        int middle = blockSize - 1;
-        int high = middle + blockSize;
-
-        int blocksMerged = 1;
-
-        while(high < array.length) {
-
-            merge(array, aux, low, middle, high);
-
-            blocksMerged++;
-
-            low = (blocksMerged - 1) * blockSize;
-            middle = blocksMerged * blockSize - 1;
-            high = middle + blockSize;
         }
     }
 
