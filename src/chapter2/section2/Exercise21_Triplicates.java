@@ -2,156 +2,140 @@ package chapter2.section2;
 
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by Rene Argento on 19/02/17.
  */
+// Thanks to YRFT (https://github.com/YRFT) for suggesting an improved algorithm to this exercise.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/176
 @SuppressWarnings("unchecked")
 public class Exercise21_Triplicates {
 
     public static void main(String[] args) {
-
-        Comparable[][] names1 = generateArray1();
+        List<List<String>> names1 = generateNames1();
         String name1 = checkIfThereAreCommonNames(names1);
-
-        StdOut.print("Check 1: ");
-        if (name1 == null) {
-            StdOut.println("No common name");
-        } else {
-            StdOut.println(name1);
-        }
-        StdOut.println("Expected: No common name");
-
+        printResult(1, name1, "Rene");
         StdOut.println();
 
-        Comparable[][] names2 = generateArray2();
+        List<List<String>> names2 = generateNames2();
         String name2 = checkIfThereAreCommonNames(names2);
+        printResult(2, name2, "No common name");
+    }
 
-        StdOut.print("Check 2: ");
-        if (name2 == null) {
+    private static void printResult(int indexCheck, String name, String expected) {
+        StdOut.print("Check " + indexCheck + ": ");
+        if (name == null) {
             StdOut.println("No common name");
         } else {
-            StdOut.println(name2);
+            StdOut.println(name);
         }
-        StdOut.println("Expected: Rene");
+        StdOut.println("Expected: " + expected);
     }
 
-    private static Comparable[][] generateArray1() {
-        Comparable[][] names = new Comparable[3][4];
+    private static List<List<String>> generateNames1() {
+        List<String> namesList1 = new ArrayList<>();
+        namesList1.add("Sedgewick");
+        namesList1.add("Zord");
+        namesList1.add("Bill");
+        namesList1.add("Rene");
 
-        Comparable[] array1 = new Comparable[4];
+        List<String> namesList2 = new ArrayList<>();
+        namesList2.add("Zord");
+        namesList2.add("Wayne");
+        namesList2.add("Rene");
+        namesList2.add("Larry");
 
-        array1[0] = "Name1";
-        array1[1] = "Name4";
-        array1[2] = "Name3";
-        array1[3] = "Name2";
+        List<String> namesList3 = new ArrayList<>();
+        namesList3.add("Rene");
+        namesList3.add("Sergey");
+        namesList3.add("Zord");
+        namesList3.add("Elon");
 
-        Comparable[] array2 = new Comparable[4];
-
-        array2[0] = "Name5";
-        array2[1] = "Name8";
-        array2[2] = "Name6";
-        array2[3] = "Name7";
-
-        Comparable[] array3 = new Comparable[4];
-
-        array3[0] = "Name1";
-        array3[1] = "Name5";
-        array3[2] = "Name2";
-        array3[3] = "Name9";
-
-        names[0] = array1;
-        names[1] = array2;
-        names[2] = array3;
+        List<List<String>> names = new ArrayList<>();
+        names.add(namesList1);
+        names.add(namesList2);
+        names.add(namesList3);
 
         return names;
     }
 
-    private static Comparable[][] generateArray2() {
-        Comparable[][] names = new Comparable[3][4];
+    private static List<List<String>> generateNames2() {
+        List<String> namesList1 = new ArrayList<>();
+        namesList1.add("Name1");
+        namesList1.add("Name4");
+        namesList1.add("Name3");
+        namesList1.add("Name2");
 
-        Comparable[] array1 = new Comparable[4];
+        List<String> namesList2 = new ArrayList<>();
+        namesList2.add("Name5");
+        namesList2.add("Name8");
+        namesList2.add("Name6");
+        namesList2.add("Name7");
 
-        array1[0] = "Sedgewick";
-        array1[1] = "Zord";
-        array1[2] = "Bill";
-        array1[3] = "Rene";
+        List<String> namesList3 = new ArrayList<>();
+        namesList3.add("Name1");
+        namesList3.add("Name5");
+        namesList3.add("Name2");
+        namesList3.add("Name9");
 
-        Comparable[] array2 = new Comparable[4];
-
-        array2[0] = "Zord";
-        array2[1] = "Wayne";
-        array2[2] = "Rene";
-        array2[3] = "Larry";
-
-        Comparable[] array3 = new Comparable[4];
-
-        array3[0] = "Rene";
-        array3[1] = "Sergey";
-        array3[2] = "Zord";
-        array3[3] = "Elon";
-
-        names[0] = array1;
-        names[1] = array2;
-        names[2] = array3;
+        List<List<String>> names = new ArrayList<>();
+        names.add(namesList1);
+        names.add(namesList2);
+        names.add(namesList3);
 
         return names;
     }
 
+    private static String checkIfThereAreCommonNames(List<List<String>> names) {
+        for (List<String> nameList : names) {
+            if (nameList == null || nameList.isEmpty()) {
+                return null;
+            }
+        }
 
-    private static String checkIfThereAreCommonNames(Comparable[][] names) {
+        for (List<String> nameList : names) {
+            Collections.sort(nameList);
+        }
 
-        if (names == null || names.length == 0) {
-            return null;
+        List<Integer> indexes = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            indexes.add(0);
         }
 
         String commonName = null;
 
-        mergesort(names);
-
-        int list1Index = 0;
-        int list2Index = 0;
-        int list3Index = 0;
-
-        int numberOfNames = names[0].length;
-        boolean[] incrementIndex = new boolean[3];
-
-        while (list1Index < numberOfNames && list2Index < numberOfNames && list3Index < numberOfNames) {
-            if (names[0][list1Index].equals(names[1][list2Index])
-                    && names[1][list2Index].equals(names[2][list3Index])) {
-                commonName = names[0][list1Index].toString();
+        while (true) {
+            if (indexes.get(0) >= names.get(0).size()) {
                 break;
-            } else {
+            }
 
-                for(int i = 0; i < incrementIndex.length; i++) {
-                    incrementIndex[i] = false;
-                }
+            String maxName = findMaxName(names, indexes);
+            boolean commonNameFound = areAllCurrentNamesEqual(names, indexes);
 
-                if (names[0][list1Index].compareTo(names[1][list2Index]) < 0) {
-                    incrementIndex[0] = true;
-                } else if (names[0][list1Index].compareTo(names[2][list3Index]) < 0) {
-                    incrementIndex[0] = true;
-                }
+            if (commonNameFound) {
+                commonName = maxName;
+                break;
+            }
 
-                if (names[1][list2Index].compareTo(names[0][list1Index]) < 0) {
-                    incrementIndex[1] = true;
-                } else if (names[1][list2Index].compareTo(names[2][list3Index]) < 0) {
-                    incrementIndex[1] = true;
-                }
+            for (int i = 0; i < names.size(); i++) {
+                int index = indexes.get(i);
 
-                if (names[2][list3Index].compareTo(names[0][list1Index]) < 0) {
-                    incrementIndex[2] = true;
-                } else if (names[2][list3Index].compareTo(names[1][list2Index]) < 0) {
-                    incrementIndex[2] = true;
-                }
+                while (true) {
+                    String name = names.get(i).get(index);
 
-                if (incrementIndex[0]) {
-                    list1Index++;
-                }
-                if (incrementIndex[1]) {
-                    list2Index++;
-                }
-                if (incrementIndex[2]) {
-                    list3Index++;
+                    if (name.compareTo(maxName) < 0) {
+                        index++;
+                        indexes.set(i, index);
+                    } else {
+                        break;
+                    }
+
+                    if (index >= names.get(i).size()) {
+                        return null;
+                    }
                 }
             }
         }
@@ -159,56 +143,34 @@ public class Exercise21_Triplicates {
         return commonName;
     }
 
-    private static void mergesort(Comparable[][] names) {
+    private static boolean areAllCurrentNamesEqual(List<List<String>> names, List<Integer> indexes) {
+        for (int i = 0; i < names.size() - 1; i++) {
+            int index1 = indexes.get(i);
+            String name1 = names.get(i).get(index1);
 
-        Comparable[] aux = new Comparable[names[0].length];
+            int index2 = indexes.get(i + 1);
+            String name2 = names.get(i + 1).get(index2);
 
-        for(Comparable[] nameArray : names) {
-            mergesort(nameArray, aux, 0, nameArray.length - 1);
-        }
-
-    }
-
-    private static void mergesort(Comparable[] names, Comparable[] aux, int low, int high) {
-
-        if (low >= high) {
-            return;
-        }
-
-        int middle = low + (high - low) / 2;
-
-        mergesort(names, aux, low, middle);
-        mergesort(names, aux, middle + 1, high);
-
-        merge(names, aux, low, middle, high);
-    }
-
-    private static void merge(Comparable[] names, Comparable[] aux, int low, int middle, int high) {
-
-        for (int i = low; i <= high; i++) {
-            aux[i] = names[i];
-        }
-
-        int leftIndex = low;
-        int rightIndex = middle + 1;
-        int arrayIndex = low;
-
-        while (leftIndex <= middle && rightIndex <= high) {
-            if (aux[leftIndex].compareTo(aux[rightIndex]) <= 0) {
-                names[arrayIndex] = aux[leftIndex];
-                leftIndex++;
-            } else {
-                names[arrayIndex] = aux[rightIndex];
-                rightIndex++;
+            if (!name1.equals(name2)) {
+                return false;
             }
-            arrayIndex++;
         }
 
-        while (leftIndex <= middle) {
-            names[arrayIndex] = aux[leftIndex];
+        return true;
+    }
 
-            leftIndex++;
-            arrayIndex++;
+    private static String findMaxName(List<List<String>> names, List<Integer> indexes) {
+        String maxName = names.get(0).get(indexes.get(0));
+
+        for (int i = 1; i < names.size(); i++) {
+            int index = indexes.get(i);
+            String name = names.get(i).get(index);
+
+            if (name.compareTo(maxName) > 0) {
+                maxName = name;
+            }
         }
+
+        return maxName;
     }
 }
