@@ -8,10 +8,12 @@ import java.util.Map;
 /**
  * Created by Rene Argento on 20/02/17.
  */
+// Thanks to YRFT (https://github.com/YRFT) for reporting that the computation of the average length was incorrect:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/177
 public class Exercise27_SubarrayLengths {
 
-    private double totalLengthOfOtherSubArrays;
-    private double totalLengthOfBothSubArrays;
+    private double totalNumberOfSubArrays;
+    private double totalSubArrayProportions;
 
     public static void main(String[] args) {
         int numberOfExperiments = Integer.parseInt(args[0]); // 8
@@ -24,23 +26,20 @@ public class Exercise27_SubarrayLengths {
     }
 
     private void doExperiment(int numberOfExperiments, int initialArraySize, Map<Integer, Comparable[]> allInputArrays) {
-
         StdOut.printf("%13s %28s\n", "Array Size | ", "AVG Length of other SubArray(%)");
 
         int arraySize = initialArraySize;
 
         for(int i = 0; i < numberOfExperiments; i++) {
-
-            totalLengthOfOtherSubArrays = 0;
-            totalLengthOfBothSubArrays = 0;
+            totalNumberOfSubArrays = 0;
+            totalSubArrayProportions = 0;
 
             Comparable[] array = allInputArrays.get(i);
 
             mergesort(array);
 
-            double averageLengthOfOtherSubArray = totalLengthOfOtherSubArrays / totalLengthOfBothSubArrays * 100;
-
-            printResults(arraySize, averageLengthOfOtherSubArray);
+            double averageLengthOfOtherSubArray = totalSubArrayProportions / totalNumberOfSubArrays * 100;
+            StdOut.printf("%10d %31.1f\n", arraySize, averageLengthOfOtherSubArray);
 
             arraySize *= 2;
         }
@@ -67,6 +66,8 @@ public class Exercise27_SubarrayLengths {
 
     @SuppressWarnings("unchecked")
     private void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
+        totalNumberOfSubArrays++;
+
         for(int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
@@ -94,19 +95,18 @@ public class Exercise27_SubarrayLengths {
 
             if (!exhausted && (leftIndex > middle || rightIndex > high)) {
                 exhausted = true;
+                double lengthOfOtherSubArray = 0;
 
                 if (leftIndex > middle) {
-                    totalLengthOfOtherSubArrays += high - rightIndex + 1;
+                    lengthOfOtherSubArray += high - rightIndex + 1;
                 } else {
-                    totalLengthOfOtherSubArrays += middle - leftIndex + 1;
+                    lengthOfOtherSubArray += middle - leftIndex + 1;
                 }
 
-                totalLengthOfBothSubArrays += high - low + 1;
+                double lengthOfBothSubArrays = high - low + 1;
+                double proportionOfSubArrayOverArray = lengthOfOtherSubArray / lengthOfBothSubArrays;
+                totalSubArrayProportions += proportionOfSubArrayOverArray;
             }
         }
-    }
-
-    private void printResults(int arraySize, double averageLengthOfOtherSubArray) {
-        StdOut.printf("%10d %31.1f\n", arraySize, averageLengthOfOtherSubArray);
     }
 }
