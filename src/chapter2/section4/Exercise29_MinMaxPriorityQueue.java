@@ -7,6 +7,8 @@ import util.ArrayUtil;
  * Created by Rene Argento on 25/03/17.
  */
 //Based on: http://eranle.blogspot.com.br/2012/08/min-max-heap-java-implementation.html
+// Thanks to YRFT (https://github.com/YRFT) for finding that the method deleteItem() also needs to call the swim() method:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/181
 @SuppressWarnings("unchecked")
 public class Exercise29_MinMaxPriorityQueue  {
 
@@ -26,7 +28,6 @@ public class Exercise29_MinMaxPriorityQueue  {
     }
 
     private class MinMaxPriorityQueue<Key extends Comparable<Key>> {
-
         private PQNode[] minPriorityQueue;
         private PQNode[] maxPriorityQueue;
         private int size = 0;
@@ -45,7 +46,6 @@ public class Exercise29_MinMaxPriorityQueue  {
         }
 
         public void insert(Key key) {
-
             if (size == minPriorityQueue.length - 1) {
                 resize(minPriorityQueue.length * 2);
             }
@@ -60,13 +60,11 @@ public class Exercise29_MinMaxPriorityQueue  {
         }
 
         private void insertOnMinHeap(PQNode pqNode) {
-
             minPriorityQueue[size] = pqNode;
             swim(minPriorityQueue, size, Orientation.MIN);
         }
 
         private void insertOnMaxHeap(PQNode pqNode) {
-
             maxPriorityQueue[size] = pqNode;
             swim(maxPriorityQueue, size, Orientation.MAX);
         }
@@ -91,7 +89,6 @@ public class Exercise29_MinMaxPriorityQueue  {
 
         //O(lg N)
         public Comparable deleteMax() {
-
             if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
             }
@@ -112,7 +109,6 @@ public class Exercise29_MinMaxPriorityQueue  {
 
         //O(lg N)
         public Comparable deleteMin() {
-
             if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
             }
@@ -145,6 +141,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             }
 
             sink(priorityQueue, index, orientation);
+            swim(priorityQueue, index, orientation);
         }
 
         private void swim(PQNode[] priorityQueue, int index, Orientation orientation) {
