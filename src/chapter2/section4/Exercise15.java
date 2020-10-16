@@ -18,9 +18,9 @@ public class Exercise15 {
 
     private static boolean certification(Comparable[] pq) {
 
-        for(int i = 1; i < pq.length; i++) {
+        for(int i = 1; i < pq.length / 2; i++) {
             //Check left child
-            if (i * 2 < pq.length && !ArrayUtil.less(pq[i], pq[i * 2])) {
+            if (!ArrayUtil.less(pq[i], pq[i * 2])) {
                 return false;
             }
 
