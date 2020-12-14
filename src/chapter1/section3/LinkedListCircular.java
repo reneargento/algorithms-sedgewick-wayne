@@ -5,6 +5,8 @@ import java.util.Iterator;
 /**
  * Created by Rene Argento on 11/04/18.
  */
+// Thanks to Adeboye (https://github.com/Adeboye) for finding a bug on the remove methods:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/185
 public class LinkedListCircular<Item> implements Iterable<Item> {
 
     public class Node {
@@ -95,13 +97,12 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
                 current = current.next;
             }
 
-            current.next = current.next.next;
-
             if (current.next == last) {
                 last = current;
             }
-        }
 
+            current.next = current.next.next;
+        }
         size--;
     }
 
@@ -111,7 +112,6 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
         }
 
         if (item.equals(first.item)) {
-
             if (size() > 1) {
                 first = first.next;
                 last.next = first;
@@ -129,12 +129,11 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
             }
 
             if (current != last) {
-                current.next = current.next.next;
-
                 if (current.next == last) {
                     last = current;
                 }
 
+                current.next = current.next.next;
                 size--;
             }
         }
@@ -146,7 +145,6 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
     }
 
     private class LinkedListIterator implements Iterator<Item> {
-
         int index = 0;
         Node currentNode = first;
 
@@ -164,5 +162,4 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
             return item;
         }
     }
-
 }
