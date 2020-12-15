@@ -1,34 +1,53 @@
 3.3.37 - Memoryless
 
-Red-black BSTs are not memoryless because the rebalance (rotations and colorings) made when inserting a new minimum value and when deleting the immediately-inserted minimum value occur in opposite directions and lead to the same balanced tree. 
-This can be seen is this example:
+It can be seen that red-black BSTs are not memoryless by observing the following example:
 
-  (B)3
-(R)2
+Inserting keys in the order N, G, D, F, E, O, L, K, M generates the red-black tree:
 
-Insert a key smaller than all keys
-    (B)3
-  (R)2
-(R)1
+            (B)G
+   (B)E              (B)N
+(B)D  (B)F      (R)L      (B)O
+            (B)K  (B)M
 
-     (B)2          (Rotate right)
-  (R)1  (R)3
 
-     (R)2          (Flip colors)
-  (B)1  (B)3
+Tree after inserting minimum key (key A):
 
-     (B)2          (Flip color of root)
-  (B)1  (B)3
+               (B)G
+      (B)E              (B)N
+   (B)D  (B)F      (R)L      (B)O
+(R)A            (B)K  (B)M
 
-Delete the minimum
-     (R)2          (Flip color of root)
-  (B)1  (B)3
 
-     (B)2          (Flip colors)
-  (R)1  (R)3
+Deleting minimum key (key A):
 
-     (B)2          (Delete min)
-        (R)3
+               (R)G                 (Flip colors)
+      (R)E              (R)N
+   (B)D  (B)F      (R)L      (B)O
+(R)A            (B)K  (B)M
 
-     (B)3          (Rotate left)
-   (R)2
+               (R)G                 (Rotate L right)
+      (R)E              (R)L
+   (B)D  (B)F      (B)K      (R)N
+(R)A                      (B)M  (B)O
+
+                   (R)L             (Rotate G left)
+           (R)G            (R)N
+      (R)E     (B)K     (B)M  (B)O
+   (B)D  (B)F
+(R)A
+
+                   (B)L             (Flip colors)
+           (B)G            (B)N
+      (R)E     (B)K     (B)M  (B)O
+   (B)D  (B)F
+(R)A
+
+                (B)L                (Delete min)
+        (B)G            (B)N
+   (R)E     (B)K     (B)M  (B)O
+(B)D  (B)F
+
+The final red-black tree is different from the original one.
+
+Thanks to Hunter-Chen (https://github.com/Hunter-Chen) for mentioning that the previous answer was incorrect.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/186
