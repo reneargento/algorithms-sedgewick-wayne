@@ -31,7 +31,7 @@ public class Exercise25_InsertionSortWithoutExchanges {
 
     private static void insertionSortWithoutExchanges(Comparable[] array) {
 
-        for(int i = 0; i < array.length; i++) {
+        for(int i = 1; i < array.length; i++) {
             Comparable aux = array[i];
 
             int j;
