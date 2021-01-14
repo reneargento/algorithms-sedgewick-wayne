@@ -57,7 +57,7 @@ public class Exercise39_DeleteTheMinimum {
                 return null;
             }
 
-            if (isRed(node.right)) {
+            if (isRed(node.right) && !isRed(node.left)) {
                 node = rotateLeft(node);
             }
 
@@ -86,7 +86,6 @@ public class Exercise39_DeleteTheMinimum {
                 }
             }
         }
-
     }
 
     public static void main(String[] args) {
@@ -112,6 +111,5 @@ public class Exercise39_DeleteTheMinimum {
             StdOut.println("Delete min");
             redBlackBST.deleteMin();
         }
-
     }
 }

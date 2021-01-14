@@ -94,7 +94,7 @@ public class Exercise41_Delete {
                 return null;
             }
 
-            if (isRed(node.right)) {
+            if (isRed(node.right) && !isRed(node.left)) {
                 node = rotateLeft(node);
             }
 
@@ -171,5 +171,4 @@ public class Exercise41_Delete {
         }
         StdOut.println();
     }
-
 }

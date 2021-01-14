@@ -60,7 +60,7 @@ public class Exercise40_DeleteTheMaximum {
                 return null;
             }
 
-            if (isRed(node.right)) {
+            if (isRed(node.right) && !isRed(node.left)) {
                 node = rotateLeft(node);
             }
 
@@ -115,7 +115,5 @@ public class Exercise40_DeleteTheMaximum {
             StdOut.println("Delete max");
             redBlackBST.deleteMax();
         }
-
     }
-
 }
