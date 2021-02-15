@@ -50,15 +50,20 @@ public class Exercise17_RationalNumbersRobust {
 		
 		assert this.numerator * b.denominator <= Integer.MAX_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
 		assert b.numerator * this.denominator <= Integer.MAX_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
+		assert this.numerator * b.denominator >= Integer.MIN_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
+		assert b.numerator * this.denominator >= Integer.MIN_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
+
 		
 		long newNumeratorA = this.numerator() * b.denominator();
 		long newNumeratorB = b.numerator() * this.denominator();
 		
 		assert newNumeratorA + newNumeratorB <= Integer.MAX_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
-		
+		assert newNumeratorA + newNumeratorB >= Integer.MIN_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
+
 		int resultNumerator = (int) (newNumeratorA + newNumeratorB);
 		
-		assert this.denominator * b.denominator <= Integer.MAX_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
+		assert this.denominator * b.denominator <= Integer.MAX_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;		
+		assert this.denominator * b.denominator >= Integer.MIN_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
 		
 		int resultDenominator = this.denominator() * b.denominator();
 
@@ -70,6 +75,8 @@ public class Exercise17_RationalNumbersRobust {
 		
 		assert this.numerator * b.denominator <= Integer.MAX_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
 		assert b.numerator * this.denominator <= Integer.MAX_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
+		assert this.numerator * b.denominator >= Integer.MIN_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
+		assert b.numerator * this.denominator >= Integer.MIN_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
 		
 		long newNumeratorA = this.numerator() * b.denominator();
 		long newNumeratorB = b.numerator() * this.denominator();
@@ -90,6 +97,8 @@ public class Exercise17_RationalNumbersRobust {
 		
 		assert this.numerator * b.numerator <= Integer.MAX_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
 		assert this.denominator * b.denominator <= Integer.MAX_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
+		assert this.numerator * b.numerator >= Integer.MIN_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
+		assert this.denominator * b.denominator >= Integer.MIN_VALUE : ASSERT_AVOIDING_OVERFLOW_MESSAGE;
 		
 		int resultNumerator = this.numerator() * b.numerator();
 		int resultDenominator = this.denominator() * b.denominator();
