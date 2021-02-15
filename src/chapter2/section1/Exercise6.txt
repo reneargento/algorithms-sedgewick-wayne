@@ -1,4 +1,6 @@
 2.1.6
 
 Insertion sort because it will only make one comparison with the previous element (per element) and won't exchange any elements,
-running in linear time. Selection sort won't exchange any elements, but will run in quadratic time.
+running in linear time. Selection sort will exchange each element with itself and will run in quadratic time.
+
+Thanks to glucu (https://github.com/glucu) for correcting the number of exchanges done in selection sort.
