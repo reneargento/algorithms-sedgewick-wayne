@@ -1,4 +1,7 @@
 2.1.7
 
 Selection sort because even though both selection sort and insertion sort will run in quadratic time, selection sort will
-only make N-1 exchanges, while insertion sort will make N * N / 2 exchanges.
+only make N / 2 exchanges, while insertion sort will make N * N / 2 exchanges.
+
+Thanks to needajobofphp (https://github.com/needajobofphp) for correcting the number of exchanges in selection sort.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/194
