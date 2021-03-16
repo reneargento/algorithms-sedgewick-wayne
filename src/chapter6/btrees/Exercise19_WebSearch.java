@@ -24,7 +24,7 @@ import java.util.StringJoiner;
 // 2- Move the downloaded file (credentials.json) of the previous step to the
 // folder src/util/google/drive inside this project.
 
-// 3- Import the following libraries to this project (they are in the libs/googledrive folder):
+// 3- Import the following libraries to this project (they are in the lib/googledrive folder):
 // com.fasterxml.jackson.core.jar
 // google-api-client-1.24.1.jar
 // google-api-services-drive-v3-rev124-1.24.1.jar

@@ -53,7 +53,7 @@ import edu.princeton.cs.algs4.StdOut;
  *  or to report problems.
  */
 
-// To compile this class import all libraries in libs/java3d to the project
+// To compile this class import all libraries in lib/java3d to the project
 public final class StdDraw3D implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
     // Scene groups
     private static SimpleUniverse universe;

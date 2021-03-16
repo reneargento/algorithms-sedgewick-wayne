@@ -26,7 +26,7 @@ import java.util.List;
  * Created by Rene Argento on 08/08/18.
  */
 
-// To compile this class import all libraries in libs/googledrive to the project
+// To compile this class import all libraries in lib/googledrive to the project
 public class GoogleDriveUtil {
     private static final String APPLICATION_NAME = "B-tree web pages";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();

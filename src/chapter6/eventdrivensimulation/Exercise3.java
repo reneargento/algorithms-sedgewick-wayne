@@ -4,25 +4,25 @@ import chapter2.section4.PriorityQueueResize;
 import edu.princeton.cs.algs4.StdRandom;
 import util.StdDraw3D;
 
-// To run this class, make sure to import the following libraries to the project (they are in the libs/java3d folder):
+// 1-To run this class, make sure to import the following libraries to the project (they are in the lib/java3d folder):
 // jogl-all.jar
 // gluegen-rt.jar
 // j3dcore-jar
 // j3dutils.jar
 // vecmath.jar
 
-// Native libraries are also needed. If you are using a Mac, import the libraries:
+// 2-Native libraries are also needed. If you are using a Mac, import the libraries:
 // libgluegen-rt.jnilib
 // libjogl_desktop.jnilib
 // libnativewindow_awt.jnilib
 // libnativewindow_macosx.jnilib
 // libnewt.jnilib
 
-// If you are using any other operating system, import the libraries mentioned in
+// 3-If you are using any other operating system, import the libraries mentioned in
 // https://jogamp.org/wiki/index.php/Downloading_and_installing_JOGL
 
-// Finally, set the VM Options parameter to point java.library.path to the location of your libraries.
-// -Djava.library.path=./libs/java3d
+// 4-Finally, set the VM Options parameter to point java.library.path to the location of your libraries.
+// -Djava.library.path=./lib/java3d
 
 // After running the code, you can click and drag the screen to view the different dimensions.
 
