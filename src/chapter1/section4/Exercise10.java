@@ -11,6 +11,8 @@ import edu.princeton.cs.algs4.StdOut;
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/27
 // Thanks to emergencyd (https://github.com/emergencyd) for suggesting an improvement on the iterative solution.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/124
+// For another (similar) iterative solution to this problem, check
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/196 - Thanks to nedas-dev (https://github.com/nedas-dev)
 public class Exercise10 {
 
     public static void main(String[] args) {
