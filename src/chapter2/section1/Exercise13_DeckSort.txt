@@ -1,8 +1,8 @@
 2.1.13 - Deck sort
-I would use insertion sort twice.
-The first insertion sort would sort the deck by suit.
-The second insertion sort would sort the deck by rank within each suit.
-Insertion sort is recommended in this case as it would be a small array and it is a stable sort.
+I would use selection sort, comparing the cards first by suit, and if they have the same suit, by rank.
+As we are dealing with physical objects it makes sense to minimize the number of swaps.
+With selection sort it may be needed to look at more cards than insertion sort (twice as many in the average case),
+but swaps will be required at most 52 times versus at most 676 times.
 
-Thanks to nedas-dev (https://github.com/nedas-dev) for improving this exercise:
+Thanks to zefrawg (https://github.com/zefrawg) and nedas-dev (https://github.com/nedas-dev) for improving this exercise:
 https://github.com/reneargento/algorithms-sedgewick-wayne/issues/198
