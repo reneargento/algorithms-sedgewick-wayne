@@ -41,11 +41,11 @@ public class Exercise12 {
         private static final int DEFAULT_INITIAL_CAPACITY = 2;
 
         public BinarySearchSymbolTable() {
-            items = new BinarySearchSymbolTable.Item[DEFAULT_INITIAL_CAPACITY];
+            items = (Item[])Array.newInstance(BinarySearchSymbolTable.Item.class, DEFAULT_INITIAL_CAPACITY);
         }
 
         public BinarySearchSymbolTable(int capacity) {
-            items = new BinarySearchSymbolTable.Item[capacity];
+            items = (Item[])Array.newInstance(BinarySearchSymbolTable.Item.class, capacity);
         }
 
         public BinarySearchSymbolTable(Item[] items) {
@@ -262,7 +262,7 @@ public class Exercise12 {
         }
 
         private void resize(int newSize) {
-            Item[] tempItems = new BinarySearchSymbolTable.Item[newSize];
+            Item[] tempItems = (Item[])Array.newInstance(BinarySearchSymbolTable.Item.class, newSize);
 
             System.arraycopy(items, 0, tempItems, 0, size);
 
