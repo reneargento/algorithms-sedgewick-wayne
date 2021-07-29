@@ -161,7 +161,6 @@ public class Exercise2 {
             }
 
             keysSize++;
-            node = buckets.get(bucketIndex);
             Node newNode = new Node(key, value, node);
             buckets.set(bucketIndex, newNode);
 
