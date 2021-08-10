@@ -6,6 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento
  */
+// Thanks to smoothcriminal78 (https://github.com/smoothcriminal78) for pointing out a bug on the date comparison.
 public class Exercise14 {
 
 	private final String who;
@@ -49,7 +50,7 @@ public class Exercise14 {
 		if (!this.who.equals(that.who)) {
 			return false;
 		}
-		if (this.when != that.when) {
+		if (!this.when.equals(that.when)) {
 			return false;
 		}
 		if (this.amount != that.amount) {
