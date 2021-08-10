@@ -5,10 +5,11 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 04/12/16.
  */
+// Thanks to DominicPeng0125 (https://github.com/DominicPeng0125) for mentioning that the path compression should be iterative.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/204
 public class Exercise13_WeightedQUPathCompression {
 
     public class WeightedQuickUnionPathCompression implements UF {
-
         int id[];
         int size[];
         int count;
@@ -32,16 +33,22 @@ public class Exercise13_WeightedQUPathCompression {
             return find(site1) == find(site2);
         }
 
-        //O(lg n)
+        // O(lg n)
         public int find(int site) {
-            if (site == id[site]) {
-                return site;
+            int root = site;
+            while (root != id[root]) {
+                root = id[root];
             }
 
-            return id[site] = find(id[site]);
+            while (site != id[site]) {
+                int nextParent = id[site];
+                id[site] = root;
+                site = nextParent;
+            }
+            return root;
         }
 
-        //O(lg n)
+        // O(lg n)
         public void union(int site1, int site2) {
             int parentId1 = find(site1);
             int parentId2 = find(site2);
@@ -63,7 +70,7 @@ public class Exercise13_WeightedQUPathCompression {
     }
 
     public static void main(String[] args) {
-        //Sequence of input pairs to produce a tree of height 4:
+        // Sequence of input pairs to produce a tree of height 4:
         //0 1
         //0 2
         //0 3
@@ -81,7 +88,7 @@ public class Exercise13_WeightedQUPathCompression {
         //10 18
         //0 10
 
-        //Path of height 4: 9 -> 8 -> 6 -> 0 -> 10
+        // Path of height 4: 9 -> 8 -> 6 -> 0 -> 10
 
         WeightedQuickUnionPathCompression weightedQuickUnionPathCompression =
                 new Exercise13_WeightedQUPathCompression().new WeightedQuickUnionPathCompression(19);
