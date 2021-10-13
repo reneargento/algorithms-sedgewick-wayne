@@ -6,6 +6,8 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento
  */
+// Thanks to Adam-fei (https://github.com/Adam-fei) for suggesting a fix on the solution.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/209
 public class Exercise15 {
 	
 	private static void printItems(Queue<String> queue, int k) {
@@ -14,8 +16,9 @@ public class Exercise15 {
 		for (String item : queue) {
 			count++;
 			
-			if (count >= k) {
+			if (count == queue.size() - (k - 1)) {
 				StdOut.println(item);
+				break;
 			}
 		}
 	}
