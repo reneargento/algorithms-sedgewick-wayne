@@ -1,8 +1,28 @@
 2.1.28 - Equal keys
 
+From the book we know that:
+Proposition A. Selection sort uses ~(N^2 / 2) compares and N exchanges to sort an array of length N.
+Proposition B. Insertion sort uses ~(N^2 / 4) compares and ~(N^2 / 4) exchanges to sort a randomly ordered array of
+length N with distinct keys, on the average. The worst case is ~(N^2 / 2) compares and ~(N^2 / 2) exchanges and the best
+case is N - 1 compares and 0 exchanges.
+
+Thus the running time of selection sort is bound by O(N^2 / 2) and insertion sort averages on O(N^2 / 2)
+(this is because ~(N^2 / 4) compares + ~(N^2 / 4) exchanges = ~(N^2 / 4)).
+
+For arrays with 2 key values (assuming value 1 and value 2) of equal probability:
+* Selection sort: it still needs to scan N - K elements to sort the Kth element.
+  So its asymptotic running time remains the same O(N^2 / 2).
+* Insertion sort: when sorting the (K + 1)th element, there are already K / 2 ones and K / 2 twos sorted.
+  Thus the (random variable) expected value of the running time for sorting the (K + 1)th element is:
+  0.5 * 1 + 0.5 * K
+  Thus the total running time for K = 0, 1, 2, ..., N is:
+  0.5 * N + ((N + 1) * N / 2) * 0.5 = 3N/4 + (N ^ 2) / 4 ~= O(N^2 / 4)
+  Comparing O(N^2 / 4) against O(N^2 / 2) we can make the hypothesis that the running time of insertion sort with
+  2 key values is half of that for random values.
+
 Hypothesis: 
 1- Selection sort will take the same time for both arrays with different values and arrays with only 2 possible values.
-2- Insertion sort will be faster for arrays with only 2 possible values than for arrays with different values.
+2- Insertion sort will take half the same for arrays with only 2 possible values than for arrays with different values.
 
 Validation:
 
@@ -96,11 +116,12 @@ For an array of size 131072:
 Time for an array with any values: 18.9
 Time for an array with 2 values: 6.3
 
-For only 2 values, Insertion Sort is 15837.0 times faster than Selection Sort
-
 --------
 Result:
 1- Selection sort is faster for arrays with only 2 possible values than for arrays with different values.
-2- Insertion sort is a lot faster for arrays with only 2 possible values than for arrays with different values.
+2- Insertion sort is a lot faster (about a third of the time) for arrays with only 2 possible values than for arrays with different values.
 
-Insertion sort is faster than selection sort for sorting arrays with only 2 possible values.
+Also, insertion sort is faster than selection sort for sorting arrays with only 2 possible values.
+
+Thanks to faame (https://github.com/faame) for improving the analysis.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/216
