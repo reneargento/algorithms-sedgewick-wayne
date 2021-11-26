@@ -7,8 +7,10 @@ import util.ArrayGenerator;
  */
 // Thanks to svezyridis (https://github.com/svezyridis) for finding an improvement to the natural mergesort algorithm.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/101
+// Thanks to faame (https://github.com/faame) for finding an improvement to the algorithm analysis.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/217
 
-// Running time: O(n lg IS)
+// Running time: Omega(n lg IS)
 // Array size = n
 // Number of maximal increasing sequences in the array = IS
 @SuppressWarnings("unchecked")
