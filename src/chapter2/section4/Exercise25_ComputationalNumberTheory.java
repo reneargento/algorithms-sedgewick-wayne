@@ -10,6 +10,8 @@ import java.util.*;
  */
 // Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for fixing a bug and improving this algorithm.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/112
+// Thanks to SunJenry (https://github.com/SunJenry) for suggesting an improvement on the PriorityQueue construction.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/219
 public class Exercise25_ComputationalNumberTheory {
 
     private class ValueForComputation implements Comparable<ValueForComputation>{
@@ -33,7 +35,7 @@ public class Exercise25_ComputationalNumberTheory {
         Exercise25_ComputationalNumberTheory computationalNumberTheory = new Exercise25_ComputationalNumberTheory();
 
         int n = 1000; //1000000;
-        PriorityQueue<ValueForComputation> priorityQueue = new PriorityQueue<>(n + 1, PriorityQueue.Orientation.MIN);
+        PriorityQueue<ValueForComputation> priorityQueue = new PriorityQueue<>(n, PriorityQueue.Orientation.MIN);
 
         computationalNumberTheory.initPriorityQueue(priorityQueue, n);
         computationalNumberTheory.computeAllElements(priorityQueue, n);
