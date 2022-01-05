@@ -8,7 +8,40 @@ C(N) <= C(FLOOR(N / 2)) + 1
 
 Whether the search goes to the left or to the right, the size of the subarray is no more than FLOOR(N / 2), and we can use one compare to check for equality and to choose whether to go left or right.
 
-C(N) is monotonic: C(N) <= C(N + 1) for all N > 0.
+Let's first prove by induction that C(N) is monotonic: C(N) <= C(N + 1) for all N > 0.
+
+It is trivial to prove that:
+C(1) = 1
+C(2) = 1 or 2
+
+Thus we have:
+C(1) <= C(2)
+
+Assume for all N=[0, K]
+C(N + 1) >= C(N)
+
+Thus we have:
+C(K + 1) >= C(K)
+
+At the beginning of the binary search, low has value 0 and high has value N. Mid is computed as:
+mid = low + (high - low) / 2 = high / 2
+
+Let's use L to represent the size of the left half and R to represent the size of the right half.
+The mid element has size 1.
+When N = K + 1 the total size is L + 1 + R.
+
+When N = K + 2:
+mid = low + (high - low) / 2 = (high + 1) / 2 = (N + 1) / 2
+
+When N is incremented by 1 (from K + 1 to K + 2), the mid point either remains in the same place or shifts to the right by 1.
+1- If mid remains in the same place, then L remains the same, and R is incremented by 1.
+Since (R + 1) <= K + 1, we have:
+C(K + 2) = C(L) + 1 + C(R + 1) >= C(L) + 1 + C(R) = C(K + 1)
+2- If mid shifts to the right by 1, then L is incremented by 1 and R remains the same.
+Since (L + 1) <= K + 1, we have:
+C(K + 2) = C(L + 1) + 1 + C(R) >= C(L) + 1 + C(R) = C(K + 1)
+
+Therefore, given C(K + 1) >= C(K) it is also true that C(K + 2) >= C(K + 1), which proves that C(N) is monotonic.
 
 For a general N, we have that:
 
@@ -53,3 +86,6 @@ T(n) = O(n^0 * log(n)^1) = O(log n)
 With binary search, we achieve a logarithmic-time search guarantee.
 
 Reference: https://en.wikipedia.org/wiki/Master_theorem
+
+Thanks to faame (https://github.com/faame) for adding the section proving that C(N) is monotonic.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/223
