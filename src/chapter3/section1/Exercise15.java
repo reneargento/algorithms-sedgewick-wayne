@@ -14,7 +14,7 @@ public class Exercise15 {
     }
 
     private void computePercentageTimeSpentOnInsertions() {
-        int[] numberOfSearches = {1000, 1000000, 1000000000};
+        int[] numberOfSearches = { 1000, 1000000, 1000000000 };
 
         BinarySearchSymbolTable<Integer, String> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
         for(int i = 0; i < 10000; i++) {
@@ -29,14 +29,14 @@ public class Exercise15 {
             Stopwatch totalTimeTimer = new Stopwatch();
 
             for(int search = 0; search < numberOfSearches[i]; search++) {
-                int randomValueToSearch = StdRandom.uniform(10000);
+                int randomValueToSearch = StdRandom.uniform(1000000);
                 binarySearchSymbolTable.get(randomValueToSearch);
             }
 
             Stopwatch insertionsTimer = new Stopwatch();
 
             for(int insertion = 0; insertion < numberOfInsertions; insertion++) {
-                int randomValueToInsert = StdRandom.uniform(100000);
+                int randomValueToInsert = StdRandom.uniform(1000000000);
                 binarySearchSymbolTable.put(randomValueToInsert, "Value " + randomValueToInsert);
             }
 
@@ -52,5 +52,4 @@ public class Exercise15 {
     private void printResults(int numberOfSearches, double percentageOfTimeOnInsertions) {
         StdOut.printf("%13d %43.2f%%\n", numberOfSearches, percentageOfTimeOnInsertions);
     }
-
 }

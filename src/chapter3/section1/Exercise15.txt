@@ -2,5 +2,19 @@
 
      Searches Percentage of total time spent on insertions
          1000                                        0.00%
-      1000000                                        2.20%
-   1000000000                                        5.92%
+      1000000                                        6.10%
+   1000000000                                       96.26%
+
+The average insertion cost is N, so the total insertion cost for N keys is N^2.
+The average search cost is lg N, so the total search cost for M keys is M * lg N.
+According to the question, M = 1000 * N.
+
+The total cost is then:
+total cost = N^2 + M * lg N = N^2 + 1000N * lg N
+
+The insertion percentage is:
+P = (N^2) / (N^2 + 1000N * lg N)
+N^2 is the higher-order element in the equation, so as N increases, the insertion percentage approaches 100%.
+
+Thanks to faame (https://github.com/faame) for improving this answer.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/222
