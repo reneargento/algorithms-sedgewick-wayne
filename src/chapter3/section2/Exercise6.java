@@ -44,31 +44,15 @@ public class Exercise6 {
         }
 
         public int heightRecursive() {
-            if (root == null) {
+            return heightRecursive(root);
+        }
+
+        private int heightRecursive(Node node) {
+            if (node == null) {
                 return -1;
             }
 
-            return heightRecursive(root, -1);
-        }
-
-        private int heightRecursive(Node node, int currentHeight) {
-            if (node == null) {
-                return currentHeight;
-            }
-
-            int height = currentHeight;
-
-            int leftHeight = heightRecursive(node.left, currentHeight + 1);
-            if (leftHeight > height) {
-                height = leftHeight;
-            }
-
-            int rightHeight = heightRecursive(node.right, currentHeight + 1);
-            if (rightHeight > height) {
-                height = rightHeight;
-            }
-
-            return height;
+            return Math.max(heightRecursive(node.left), heightRecursive(node.right)) + 1;
         }
 
         public int heightConstant() {
