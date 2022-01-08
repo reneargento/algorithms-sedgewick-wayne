@@ -1,6 +1,10 @@
 3.1.6
 
-Calls to put() as a function of words: 1.00
-Calls to put() as a function of distinct words: 1.23
-Calls to get() as a function of words: 1.81
-Calls to get() as a function of distinct words: 2.23
+The put() method will be called once for every word.
+The get() method will be called once for every word, except on the first time a word in being inserted in the symbol table.
+
+Calls to put() = W
+Calls to get() = W - D
+
+Thanks to faame (https://github.com/faame) for suggesting a better answer.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/221

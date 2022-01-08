@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class Exercise26_FrequencyCountDictionary {
 
-    private class Word implements Comparable<Word>{
+    private class Word {
 
         private String wordValue;
         private int frequency;
@@ -20,11 +20,6 @@ public class Exercise26_FrequencyCountDictionary {
 
         private Word(String wordValue) {
             this.wordValue = wordValue;
-        }
-
-        @Override
-        public int compareTo(Word that) {
-            return wordValue.compareTo(that.wordValue);
         }
     }
 
@@ -57,7 +52,7 @@ public class Exercise26_FrequencyCountDictionary {
         Set<String> wordsSet = new HashSet<>();
         Collections.addAll(wordsSet, wordsInDictionary);
 
-        BinarySearchSymbolTable<Word, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
+        BinarySearchSymbolTable<String, Word> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
         int orderOfWordsFound = 0;
 
@@ -67,51 +62,51 @@ public class Exercise26_FrequencyCountDictionary {
                 continue;
             }
 
-            Word newWord = new Word(word);
-
-            if (!binarySearchSymbolTable.contains(newWord)) {
+            if (!binarySearchSymbolTable.contains(word)) {
+                Word newWord = new Word(word);
                 newWord.orderFoundInFile = orderOfWordsFound;
+                newWord.frequency = 1;
                 orderOfWordsFound++;
 
-                binarySearchSymbolTable.put(newWord, 1);
+                binarySearchSymbolTable.put(word, newWord);
             } else {
-                binarySearchSymbolTable.put(newWord, binarySearchSymbolTable.get(newWord) + 1);
+                Word curWord = binarySearchSymbolTable.get(word);
+                curWord.frequency += 1;
+                binarySearchSymbolTable.put(word, curWord);
             }
         }
 
-        Word[] wordsSortedByFrequency = new Word[binarySearchSymbolTable.size()];
+        Word[] wordsFromSymbolTable = new Word[binarySearchSymbolTable.size()];
         int wordsArrayIndex = 0;
-        for(Word word : binarySearchSymbolTable.keys()) {
-            word.frequency = binarySearchSymbolTable.get(word);
-
-            wordsSortedByFrequency[wordsArrayIndex++] = word;
+        for(String word : binarySearchSymbolTable.keys()) {
+            wordsFromSymbolTable[wordsArrayIndex++] = binarySearchSymbolTable.get(word);
         }
 
-        Word[] wordsSortedByOrderFound = new Word[binarySearchSymbolTable.size()];
-        System.arraycopy(wordsSortedByFrequency, 0, wordsSortedByOrderFound, 0, wordsSortedByFrequency.length);
-
-        //Sort word arrays
-        Arrays.sort(wordsSortedByFrequency, new Comparator<Word>() {
+        //Sort word arrays by frequency
+        Arrays.sort(wordsFromSymbolTable, new Comparator<Word>() {
             @Override
             public int compare(Word word1, Word word2) {
                 return word1.frequency - word2.frequency;
             }
         });
-        Arrays.sort(wordsSortedByOrderFound, new Comparator<Word>() {
+
+        //Print results by frequency
+        StdOut.println("Words sorted by frequency");
+        StdOut.printf("%14s %15s %17s\n", "Word | ","Frequency | ", "Order found in file");
+        printWordFrequencies(wordsFromSymbolTable);
+
+        //Sort word arrays by order
+        Arrays.sort(wordsFromSymbolTable, new Comparator<Word>() {
             @Override
             public int compare(Word word1, Word word2) {
                 return word1.orderFoundInFile - word2.orderFoundInFile;
             }
         });
 
-        //Print results
-        StdOut.println("Words sorted by frequency");
-        StdOut.printf("%14s %15s %17s\n", "Word | ","Frequency | ", "Order found in file");
-        printWordFrequencies(wordsSortedByFrequency);
-
+        //Print results by order
         StdOut.println("\nWords sorted by order found in the dictionary file");
         StdOut.printf("%14s %15s %17s\n", "Word | ","Frequency | ", "Order found in file");
-        printWordFrequencies(wordsSortedByOrderFound);
+        printWordFrequencies(wordsFromSymbolTable);
     }
 
     private void printWordFrequencies(Word[] words) {
