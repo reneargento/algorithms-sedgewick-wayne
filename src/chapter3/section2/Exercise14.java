@@ -20,29 +20,25 @@ public class Exercise14 {
 
             Node current = root;
 
-            while (current != null) {
-                if (current.left == null) {
-                    return current.key;
-                } else {
-                    current = current.left;
-                }
+            while (current.left != null) {
+                current = current.left;
             }
 
-            return null;
+            return current.key;
         }
 
         //Used for the delete operation
         public Node min(Node current) {
 
-            while (current != null) {
-                if (current.left == null) {
-                    return current;
-                } else {
-                    current = current.left;
-                }
+            if (current == null) {
+                return null;
             }
 
-            return null;
+            while (current.left != null) {
+                current = current.left;
+            }
+
+            return current;
         }
 
         public Key max() {
@@ -52,15 +48,11 @@ public class Exercise14 {
 
             Node current = root;
 
-            while (current != null) {
-                if (current.right == null) {
-                    return current.key;
-                } else {
-                    current = current.right;
-                }
+            while (current.right != null) {
+                current = current.right;
             }
 
-            return null;
+            return current.key;
         }
 
         public Key floor(Key key) {
