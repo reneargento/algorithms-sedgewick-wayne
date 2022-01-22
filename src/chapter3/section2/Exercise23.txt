@@ -21,4 +21,7 @@ Tree:
      C  
 
     D
-     C 
+   C
+
+Thanks to faame (https://github.com/faame) for reporting an issue with the counterexample.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/230
