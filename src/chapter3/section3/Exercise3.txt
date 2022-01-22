@@ -1,29 +1,33 @@
 3.3.3
 
-Insertion order: E M R X A C H S
+Insertion order: E A M X R C H S
 
 Insert E     E
 
-Insert M     E
-              M
+Insert A     AE
 
-Insert R     E
-              MR
+Insert M     AEM
 
-Insert X     E
-              MRX
+Insert M      E
+             A M
 
-Insert X     ER
-              M X
+Insert X      E
+             A MX
 
-Insert A     ER
-            A M X
+Insert R      E
+             A MRX
 
-Insert C     ER
-           AC M X
+Insert R      ER
+             A M X
 
-Insert H      ER
-           AC HM X
+Insert C      ER
+            AC M X
 
-Insert S      ER
-           AC HM SX
+Insert H       ER
+            AC HM X
+
+Insert S       ER
+            AC HM SX
+
+Thanks to faame (https://github.com/faame) for correcting this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/231
