@@ -5,12 +5,13 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 30/05/17.
  */
+// Thanks to faame (https://github.com/faame) for suggesting an improvement to the put() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/228
 public class Exercise13 {
 
     private class BinarySearchTree<Key extends Comparable<Key>, Value> extends chapter3.section2.BinarySearchTree<Key, Value>{
 
         public Value get(Key key) {
-
             Node current = root;
 
             while (current != null) {
@@ -24,14 +25,11 @@ public class Exercise13 {
                     return current.value;
                 }
             }
-
             return null;
         }
 
         public void put(Key key, Value value) {
-            //First pass to check if key already exists - needed to know whether to update the node's sizes on the second pass
-            boolean keyExists = false;
-
+            // First pass to check if the key already exists
             Node current = root;
 
             while (current != null) {
@@ -43,17 +41,12 @@ public class Exercise13 {
                     current = current.right;
                 } else {
                     current.value = value;
-                    keyExists = true;
-                    break;
+                    return;
                 }
             }
 
-            if (keyExists) {
-                return;
-            }
-
-            //Second pass
-            //If we reached here, the key does not exist yet
+            // Second pass
+            // If we reached here, the key does not exist yet
 
             if (root == null) {
                 root = new Node(key, value, 1);
@@ -62,8 +55,7 @@ public class Exercise13 {
 
             current = root;
 
-            while (current != null) {
-
+            while (true) {
                 int compare = key.compareTo(current.key);
                 current.size = current.size + 1;
 
@@ -168,5 +160,4 @@ public class Exercise13 {
 
         StdOut.println("Size: " + binarySearchTree.size() + " Expected: 3");
     }
-
 }
