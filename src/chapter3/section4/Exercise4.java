@@ -8,6 +8,8 @@ import java.util.Set;
 /**
  * Created by Rene Argento on 19/07/17.
  */
+// Thanks to faame (https://github.com/faame) for improving the bounds in this exercise's main loop:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/233
 public class Exercise4 {
 
     public static void main(String[] args) {
@@ -25,12 +27,12 @@ public class Exercise4 {
 
         int[] letterValues = {19, 5, 1, 18, 3, 8, 24, 13, 16, 12};
 
-        for(int m = 2; m <= 100; m++) {
-            for(int a = 1; a <= 1000; a++) {
+        for (int m = letterValues.length; m <= 26; m++) {
+            for (int a = 1; a < m; a++) {
                 Set<Integer> hashes = new HashSet<>();
 
-                for(int i = 0; i < letterValues.length; i++) {
-                    int hash = hashCodeFunction(a, letterValues[i], m);
+                for (int letterValue : letterValues) {
+                    int hash = hashCodeFunction(a, letterValue, m);
                     hashes.add(hash);
                 }
 
@@ -42,12 +44,10 @@ public class Exercise4 {
                 }
             }
         }
-
         return null;
     }
 
     private int hashCodeFunction(int a, int k, int m) {
         return (a * k) % m;
     }
-
 }
