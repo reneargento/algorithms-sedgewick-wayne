@@ -29,7 +29,7 @@ public class Exercise25_DoublingTestRandomGrids {
 
         Exercise25_DoublingTestRandomGrids doublingTestRandomGrids = new Exercise25_DoublingTestRandomGrids();
 
-        for(int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= 3; i++) {
 
             switch (i) {
                 case 1: StdOut.println("Quick Find"); break;
@@ -43,12 +43,11 @@ public class Exercise25_DoublingTestRandomGrids {
     }
 
     private void doExperiments(int numberOfExperiments, int unionFindType) {
-
         List<Experiment> experiments = new ArrayList<>();
 
         int numberOfSites = 512;
 
-        //Previous time
+        // Previous time
         UF initialUnionFind = generateUnionFind(numberOfSites / 2, unionFindType);
 
         Stopwatch initialTimer = new Stopwatch();
@@ -57,8 +56,7 @@ public class Exercise25_DoublingTestRandomGrids {
 
         double previousRunningTime = initialTimer.elapsedTime();
 
-        for(int i = 0; i < numberOfExperiments; i++) {
-
+        for (int i = 0; i < numberOfExperiments; i++) {
             UF unionFind = generateUnionFind(numberOfSites, unionFindType);
 
             Stopwatch timer = new Stopwatch();
@@ -78,7 +76,6 @@ public class Exercise25_DoublingTestRandomGrids {
     }
 
     private UF generateUnionFind(int numberOfSites, int unionFindType) {
-
         UF unionFind;
 
         switch (unionFindType) {
@@ -87,7 +84,6 @@ public class Exercise25_DoublingTestRandomGrids {
             case 3: unionFind = new WeightedQuickUnion(numberOfSites); break;
             default: unionFind = null;
         }
-
         return unionFind;
     }
 
@@ -98,7 +94,7 @@ public class Exercise25_DoublingTestRandomGrids {
         int connectionsGenerated = 0;
         int connectionIndex = 0;
 
-        while(unionFind.count() != 1) {
+        while (unionFind.count() != 1) {
             int randomSite1 = connections[connectionIndex].p;
             int randomSite2 = connections[connectionIndex].q;
 
@@ -110,23 +106,18 @@ public class Exercise25_DoublingTestRandomGrids {
 
             connectionIndex++;
         }
-
         return connectionsGenerated;
     }
 
     private void printResults(List<Experiment> experiments) {
         StdOut.printf("%12s %17s %23s %23s\n", "Experiment |", "Number of Sites |",
                 "AVG Pairs Generated |", "Ratio of Running Time |");
-
         int experimentId = 1;
 
-        for(Experiment experiment : experiments) {
-
+        for (Experiment experiment : experiments) {
             StdOut.printf("%7d %13d %21d %23.1f\n", experimentId, experiment.numberOfSites,
                     experiment.numberOfConnectionsProcessed, experiment.ratioOfRunningTimeToPrevious);
-
             experimentId++;
         }
     }
-
 }

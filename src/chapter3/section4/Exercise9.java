@@ -47,20 +47,19 @@ public class Exercise9 {
         separateChainingHashTableWithDelete.put(7, 7);
 
         StdOut.println("Keys");
-        for(Integer key : separateChainingHashTableWithDelete.keys()) {
+        for (Integer key : separateChainingHashTableWithDelete.keys()) {
             StdOut.print(key + " ");
         }
 
         int[] keysToDelete = {-1, 1, 2, 7, 6, 4, 5, 3};
-        for(int k : keysToDelete) {
+        for (int k : keysToDelete) {
             StdOut.println("\nDelete key " + k);
             separateChainingHashTableWithDelete.delete(k);
 
-            for(Integer key : separateChainingHashTableWithDelete.keys()) {
+            for (Integer key : separateChainingHashTableWithDelete.keys()) {
                 StdOut.print(key + " ");
             }
             StdOut.println("\nSize: " + separateChainingHashTableWithDelete.size());
         }
     }
-
 }

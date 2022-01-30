@@ -21,7 +21,7 @@ public class Exercise42_ReachableVertexInDAG {
         int[] topologicalOrderArray = new int[digraph.vertices()];
         int topologicalOrderArrayIndex = 0;
 
-        for(int vertex : topological.order()) {
+        for (int vertex : topological.order()) {
             topologicalOrderArray[topologicalOrderArrayIndex++] = vertex;
         }
 
@@ -34,19 +34,18 @@ public class Exercise42_ReachableVertexInDAG {
         dfs(reverseDigraph, possibleReachableVertex, visited);
 
         // 3- Check if it reaches all other vertices
-        for(int vertex = 0; vertex < visited.length; vertex++) {
+        for (int vertex = 0; vertex < visited.length; vertex++) {
             if (!visited[vertex]) {
                 return false;
             }
         }
-
         return true;
     }
 
     private void dfs(Digraph digraph, int vertex, boolean[] visited) {
         visited[vertex] = true;
 
-        for(int neighbor : digraph.adjacent(vertex)) {
+        for (int neighbor : digraph.adjacent(vertex)) {
             dfs(digraph, neighbor, visited);
         }
     }
@@ -63,12 +62,11 @@ public class Exercise42_ReachableVertexInDAG {
         // 1- Check if there is only one sink
         int sinks = 0;
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             if (digraph.outdegree(vertex) == 0) {
                 sinks++;
             }
         }
-
         return sinks == 1;
     }
 
@@ -117,5 +115,4 @@ public class Exercise42_ReachableVertexInDAG {
         StdOut.println("Reachable 4: " + reachableVertexInDAG.hasVertexReachableFromEveryOtherVertex2(digraph4)
                 + " Expected: true");
     }
-
 }

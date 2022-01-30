@@ -41,7 +41,7 @@ public class Exercise20 {
         for (int vertex = 0; vertex < vertices; vertex++) {
             name[vertex] = allValues[valueId++];
 
-            for(int neighbor = 0; neighbor < vertices; neighbor++) {
+            for (int neighbor = 0; neighbor < vertices; neighbor++) {
                 double rate = Double.parseDouble(allValues[valueId++]);
                 adjacencyMatrix[vertex][neighbor] = -Math.log(rate);
             }
@@ -61,11 +61,11 @@ public class Exercise20 {
         allCycles.addAll(allCyclesOfLength4);
         allCycles.addAll(allCyclesOfLength5);
 
-        for(String cycle : allCycles) {
+        for (String cycle : allCycles) {
             char[] currentCycle = cycle.toCharArray();
             double sum = 0;
 
-            for(char vertex = 0; vertex < currentCycle.length - 1; vertex++) {
+            for (char vertex = 0; vertex < currentCycle.length - 1; vertex++) {
                 int vertexFrom = Character.getNumericValue((currentCycle[vertex]));
                 int vertexTo = Character.getNumericValue((currentCycle[vertex + 1]));
 
@@ -73,7 +73,7 @@ public class Exercise20 {
             }
 
             if (sum < 0) {
-                for(int i = 0; i < cycle.length() - 1; i++) {
+                for (int i = 0; i < cycle.length() - 1; i++) {
                     int currencyId = Character.getNumericValue(cycle.charAt(i));
                     int nextCurrencyId = Character.getNumericValue(cycle.charAt(i + 1));
 
@@ -91,5 +91,4 @@ public class Exercise20 {
     public static void main(String[] args) {
         new Exercise20().printAllArbitrageOpportunities();
     }
-
 }

@@ -19,7 +19,7 @@ public class Exercise25_Throwing2Eggs {
 
         Exercise25_Throwing2Eggs exercise25_throwing2Eggs = new Exercise25_Throwing2Eggs();
 
-        //findFloorIn2SqrtN
+        // findFloorIn2SqrtN
 
         int floor = exercise25_throwing2Eggs.findFloorIn2SqrtN(array);
         StdOut.println("Floor: " + floor + " Expected: 7");
@@ -30,7 +30,7 @@ public class Exercise25_Throwing2Eggs {
         int floor3 = exercise25_throwing2Eggs.findFloorIn2SqrtN(array3);
         StdOut.println("Floor: " + floor3 + " Expected: 40");
 
-        //findFloorInCSqrtF
+        // findFloorInCSqrtF
 
         int floor4 = exercise25_throwing2Eggs.findFloorInCSqrtF(array);
         StdOut.println("Floor: " + floor4 + " Expected: 7");
@@ -75,7 +75,7 @@ public class Exercise25_Throwing2Eggs {
             if (key > array[separator]) {
                 return findFloorIn2SqrtN(array, separator + 1, high, ++searchLevel);
             } else {
-                //We broke 1 out of 2 eggs, now we do a linear search starting from a floor in which we know that the egg
+                // We broke 1 out of 2 eggs, now we do a linear search starting from a floor in which we know that the egg
                 // does not break
 
                 if (searchLevel != 0) {
@@ -84,11 +84,11 @@ public class Exercise25_Throwing2Eggs {
 
                 int lastFloorThatDidNotBreak = sqrt * searchLevel;
 
-                for(int i = lastFloorThatDidNotBreak; i <= separator; i++) {
+                for (int i = lastFloorThatDidNotBreak; i <= separator; i++) {
                     StdOut.println("Debug - current index: " + i);
 
                     if (array[i] == 1) {
-                        //2 out of 2 eggs broken, but we now have the floor number
+                        // 2 out of 2 eggs broken, but we now have the floor number
                         return i;
                     }
                 }
@@ -105,7 +105,7 @@ public class Exercise25_Throwing2Eggs {
         return findFloorInCSqrtF(array, low, high, 0, 0);
     }
 
-    //Hint from website: 1 + 2 + 3 + ... k ~ 1/2 k^2.
+    // Hint from website: 1 + 2 + 3 + ... k ~ 1/2 k^2.
     private int findFloorInCSqrtF(int[] array, int low, int high, int searchElement, int increment) {
         int key = 1;
 
@@ -122,24 +122,22 @@ public class Exercise25_Throwing2Eggs {
             if (key > array[searchElement]) {
                 return findFloorInCSqrtF(array, searchElement + 1, high, searchElement, ++increment);
             } else {
-                //We broke 1 out of 2 eggs, now we do a linear search starting from a floor in which we know that the egg
+                // We broke 1 out of 2 eggs, now we do a linear search starting from a floor in which we know that the egg
                 // does not break
 
                 searchElement = searchElement - increment;
                 int lastFloorThatDidNotBreak = searchElement;
 
-                for(int i = lastFloorThatDidNotBreak; i <= searchElement + increment; i++) {
+                for (int i = lastFloorThatDidNotBreak; i <= searchElement + increment; i++) {
                     StdOut.println("Debug - current index: " + i);
 
                     if (array[i] == 1) {
-                        //2 out of 2 eggs broken, but we now have the floor number
+                        // 2 out of 2 eggs broken, but we now have the floor number
                         return i;
                     }
                 }
             }
         }
-
         return -1;
     }
-
 }

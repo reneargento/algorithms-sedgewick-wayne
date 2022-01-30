@@ -53,7 +53,7 @@ public class Exercise22_StockMarketTrading {
         PriorityQueueResize<Order> buyersPQ = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MAX);
         PriorityQueueResize<Order> sellersPQ = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
 
-        for(int i = 0; i < orders.length; i++) {
+        for (int i = 0; i < orders.length; i++) {
             String[] values = orders[i].split(" ");
             int orderValue = Integer.parseInt(values[1]);
             int quantityOfShares = Integer.parseInt(values[2]);
@@ -62,8 +62,7 @@ public class Exercise22_StockMarketTrading {
             int sharesRemaining;
 
             if (values[0].charAt(0) == 'B') {
-
-                while(quantityOfShares > 0) {
+                while (quantityOfShares > 0) {
                     if (sellersPQ.size() > 0) {
                         Order lowestPriceOrder = sellersPQ.peek();
 
@@ -93,7 +92,7 @@ public class Exercise22_StockMarketTrading {
                     buyersPQ.insert(order);
                 }
             } else {
-                while(quantityOfShares > 0) {
+                while (quantityOfShares > 0) {
                     if (buyersPQ.size() > 0) {
                         Order highestPriceOrder = buyersPQ.peek();
 

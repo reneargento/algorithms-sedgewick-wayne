@@ -40,7 +40,7 @@ public class Exercise25_Dictionary {
             String[] keysArray = keys.toArray(new String[keys.size()]);
 
             // Queries
-            for(int i = 0; i < numberOfQueries; i++) {
+            for (int i = 0; i < numberOfQueries; i++) {
                 // Randomly chooses if this query will be a key hit or a key miss
                 int keyHit = StdRandom.uniform(2);
                 boolean isKeyHit = keyHit == 1;
@@ -63,12 +63,11 @@ public class Exercise25_Dictionary {
         private String generateRandomKey() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
                 int ascIIRandomValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                         Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                 stringBuilder.append(((char) ascIIRandomValue));
             }
-
             return stringBuilder.toString();
         }
     }
@@ -122,5 +121,4 @@ public class Exercise25_Dictionary {
     public static void main(String[] args) {
         new Exercise25_Dictionary().doExperiment();
     }
-
 }

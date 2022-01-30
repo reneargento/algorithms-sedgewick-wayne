@@ -29,20 +29,20 @@ public class Exercise17_Sentinels {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
-            //Default QuickSort
+            // Default QuickSort
             Stopwatch defaultQuickSortTimer = new Stopwatch();
 
             QuickSort.quickSort(array);
 
             double defaultQuickSortRunningTime = defaultQuickSortTimer.elapsedTime();
 
-            //QuickSort with no sentinels
+            // QuickSort with no sentinels
             Stopwatch quickSortWithNoSentinelsTimer = new Stopwatch();
 
             quickSortWithNoSentinels(originalArray);
@@ -58,10 +58,10 @@ public class Exercise17_Sentinels {
     private static void quickSortWithNoSentinels(Comparable[] array) {
         StdRandom.shuffle(array);
 
-        //Place biggest item on the right end
+        // Place biggest item on the right end
         Comparable maxValue = array[0];
         int maxValueIndex = 0;
-        for(int i = 1; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             if (ArrayUtil.less(maxValue, array[i])) {
                 maxValue = array[i];
                 maxValueIndex = i;
@@ -90,10 +90,10 @@ public class Exercise17_Sentinels {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot));
 
-            while(ArrayUtil.less(pivot, array[--j]));
+            while (ArrayUtil.less(pivot, array[--j]));
 
             if (i >= j) {
                 break;
@@ -102,7 +102,7 @@ public class Exercise17_Sentinels {
             ArrayUtil.exchange(array, i, j);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, j);
         return j;
     }
@@ -110,5 +110,4 @@ public class Exercise17_Sentinels {
     private static void printResults(int arraySize, double defaultQuickSortRunningTime, double quickSortWithNoSentinelsRunningTime) {
         StdOut.printf("%10d %25.1f %41.1f\n", arraySize, defaultQuickSortRunningTime, quickSortWithNoSentinelsRunningTime);
     }
-
 }

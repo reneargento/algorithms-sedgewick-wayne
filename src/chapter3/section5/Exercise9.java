@@ -103,7 +103,7 @@ public class Exercise9 {
 
             int compare = key.compareTo(node.key);
 
-            //If it is a duplicate key, put it on the left subtree
+            // If it is a duplicate key, put it on the left subtree
             if (compare <= 0) {
                 node.left = put(node.left, key, value);
             } else if (compare > 0) {
@@ -146,7 +146,7 @@ public class Exercise9 {
             return max(node.right);
         }
 
-        //Returns the highest key in the symbol table smaller than or equal to key.
+        // Returns the highest key in the symbol table smaller than or equal to key.
         public Key floor(Key key) {
             Node node = floor(root, key);
             if (node == null) {
@@ -177,7 +177,7 @@ public class Exercise9 {
             }
         }
 
-        //Returns the smallest key in the symbol table greater than or equal to key.
+        // Returns the smallest key in the symbol table greater than or equal to key.
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
             if (node == null) {
@@ -237,7 +237,7 @@ public class Exercise9 {
                 return 0;
             }
 
-            //Returns the number of keys less than node.key in the subtree rooted at node
+            // Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
             if (compare < 0) {
                 return rankFirst(node.left, key);
@@ -267,7 +267,7 @@ public class Exercise9 {
                 return 0;
             }
 
-            //Returns the number of keys less than node.key in the subtree rooted at node
+            // Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
             if (compare < 0) {
                 return rankLast(node.left, key);
@@ -288,12 +288,12 @@ public class Exercise9 {
             }
         }
 
-        //In the case of duplicates, return the rank of the rightmost key
+        // In the case of duplicates, return the rank of the rightmost key
         public int rank(Key key) {
             return rankLast(key);
         }
 
-        //O(n lg n) since we are removing all duplicate min keys
+        // O(n lg n) since we are removing all duplicate min keys
         public void deleteMin() {
             if (root == null) {
                 return;
@@ -316,7 +316,7 @@ public class Exercise9 {
             return node;
         }
 
-        //O(n lg n) since we are removing all duplicate max keys
+        // O(n lg n) since we are removing all duplicate max keys
         public void deleteMax() {
             if (root == null) {
                 return;
@@ -339,13 +339,13 @@ public class Exercise9 {
             return node;
         }
 
-        //O(n lg n) since we are removing all duplicate keys
+        // O(n lg n) since we are removing all duplicate keys
         public void delete(Key key) {
             if (isEmpty()) {
                 return;
             }
 
-            while(contains(key)) {
+            while (contains(key)) {
                 root = delete(root, key);
             }
         }
@@ -436,7 +436,7 @@ public class Exercise9 {
         BinarySearchTreeDuplicateKeys<Integer, Integer> binarySearchTreeDuplicateKeys =
                 exercise9.new BinarySearchTreeDuplicateKeys<>();
 
-        //Test put()
+        // Test put()
         binarySearchTreeDuplicateKeys.put(0, 0);
         binarySearchTreeDuplicateKeys.put(0, 1);
         binarySearchTreeDuplicateKeys.put(0, 2);
@@ -459,11 +459,11 @@ public class Exercise9 {
         binarySearchTreeDuplicateKeys.put(24, 18);
 
         StdOut.println("Keys() test");
-        for(Integer key : binarySearchTreeDuplicateKeys.keys()) {
+        for (Integer key : binarySearchTreeDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTreeDuplicateKeys.get(key));
         }
         StdOut.println("\nExpected:");
-        //When there are duplicate keys the expected value is the value of the first inserted key
+        // When there are duplicate keys the expected value is the value of the first inserted key
         StdOut.println("Key 0: 0");
         StdOut.println("Key 0: 0");
         StdOut.println("Key 0: 0");
@@ -481,45 +481,45 @@ public class Exercise9 {
         StdOut.println("Key 23: 17");
         StdOut.println("Key 24: 18");
 
-        //Test size()
+        // Test size()
         StdOut.println("Keys size: " + binarySearchTreeDuplicateKeys.size() + " Expected: 16");
 
-        //Test size() with range
+        // Test size() with range
         StdOut.println("Keys size [0, 20]: " + binarySearchTreeDuplicateKeys.size(0, 20) + " Expected: 12");
 
-        //Test contains()
+        // Test contains()
         StdOut.println("\nContains 8: " + binarySearchTreeDuplicateKeys.contains(8) + " Expected: true");
         StdOut.println("Contains 9: " + binarySearchTreeDuplicateKeys.contains(9) + " Expected: false");
 
-        //Test min()
+        // Test min()
         StdOut.println("\nMin key: " + binarySearchTreeDuplicateKeys.min() + " Expected: 0");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + binarySearchTreeDuplicateKeys.max() + " Expected: 24");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + binarySearchTreeDuplicateKeys.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + binarySearchTreeDuplicateKeys.floor(15) + " Expected: 8");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + binarySearchTreeDuplicateKeys.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + binarySearchTreeDuplicateKeys.ceiling(15) + " Expected: 20");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 3: " + binarySearchTreeDuplicateKeys.select(3) + " Expected: 0");
         StdOut.println("Select key of rank 4: " + binarySearchTreeDuplicateKeys.select(4) + " Expected: 5");
 
-        //Test rank()
-        //Note that the expected rank of key 8 is 7 and not 6, because we are assuming that rank returns the index
+        // Test rank()
+        // Note that the expected rank of key 8 is 7 and not 6, because we are assuming that rank returns the index
         // of the rightmost key when there are duplicates
         StdOut.println("Rank of key 8: " + binarySearchTreeDuplicateKeys.rank(8) + " Expected: 7");
         StdOut.println("Rank of key 9: " + binarySearchTreeDuplicateKeys.rank(9) + " Expected: 8");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 20");
         binarySearchTreeDuplicateKeys.delete(20);
 
-        for(Integer key : binarySearchTreeDuplicateKeys.keys()) {
+        for (Integer key : binarySearchTreeDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTreeDuplicateKeys.get(key));
         }
         StdOut.println("Keys size: " + binarySearchTreeDuplicateKeys.size() + " Expected: 12");
@@ -527,48 +527,47 @@ public class Exercise9 {
         StdOut.println("\nDelete key 5");
         binarySearchTreeDuplicateKeys.delete(5);
 
-        for(Integer key : binarySearchTreeDuplicateKeys.keys()) {
+        for (Integer key : binarySearchTreeDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTreeDuplicateKeys.get(key));
         }
         StdOut.println("Keys size: " + binarySearchTreeDuplicateKeys.size() + " Expected: 10");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key 0)");
         binarySearchTreeDuplicateKeys.deleteMin();
 
-        for(Integer key : binarySearchTreeDuplicateKeys.keys()) {
+        for (Integer key : binarySearchTreeDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTreeDuplicateKeys.get(key));
         }
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 24)");
         binarySearchTreeDuplicateKeys.deleteMax();
 
-        for(Integer key : binarySearchTreeDuplicateKeys.keys()) {
+        for (Integer key : binarySearchTreeDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTreeDuplicateKeys.get(key));
         }
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
-        for(Integer key : binarySearchTreeDuplicateKeys.keys(2, 10)) {
+        for (Integer key : binarySearchTreeDuplicateKeys.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + binarySearchTreeDuplicateKeys.get(key));
         }
 
         StdOut.println("\nKeys in range [20, 22]");
-        for(Integer key : binarySearchTreeDuplicateKeys.keys(20, 22)) {
+        for (Integer key : binarySearchTreeDuplicateKeys.keys(20, 22)) {
             StdOut.println("Key " + key + ": " + binarySearchTreeDuplicateKeys.get(key));
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\nDelete all");
         while (binarySearchTreeDuplicateKeys.size() > 0) {
-            for(Integer key : binarySearchTreeDuplicateKeys.keys()) {
+            for (Integer key : binarySearchTreeDuplicateKeys.keys()) {
                 StdOut.println("Key " + key + ": " + binarySearchTreeDuplicateKeys.get(key));
             }
-            //binarySearchTreeDuplicateKeys.delete(binarySearchTreeDuplicateKeys.select(0));
+            // binarySearchTreeDuplicateKeys.delete(binarySearchTreeDuplicateKeys.select(0));
             binarySearchTreeDuplicateKeys.delete(binarySearchTreeDuplicateKeys.select(binarySearchTreeDuplicateKeys.size() - 1));
             StdOut.println();
         }
     }
-
 }

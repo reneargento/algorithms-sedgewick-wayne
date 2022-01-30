@@ -13,7 +13,7 @@ public class Exercise32_HashAttack {
     public int hashCode(String string) {
         int hash = 0;
 
-        for(int i = 0; i < string.length(); i++) {
+        for (int i = 0; i < string.length(); i++) {
             hash = (hash * 31) + string.charAt(i);
         }
 
@@ -35,7 +35,7 @@ public class Exercise32_HashAttack {
             return;
         }
 
-        for(String value : values) {
+        for (String value : values) {
             String newValue = currentString + value;
             int newIndex = currentIndex + 1;
 
@@ -47,9 +47,8 @@ public class Exercise32_HashAttack {
         Exercise32_HashAttack hashAttack = new Exercise32_HashAttack();
         List<String> hashAttackInput = hashAttack.generateStringsInput(3);
 
-        for(String string : hashAttackInput) {
+        for (String string : hashAttackInput) {
             StdOut.println(string);
         }
     }
-
 }

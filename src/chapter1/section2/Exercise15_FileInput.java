@@ -17,7 +17,7 @@ public class Exercise15_FileInput {
 	public static void main(String...args) {
 		int[] ints = readAllInts(FILE_PATH);
 		
-		for(int i : ints) {
+		for (int i : ints) {
 			StdOut.print(i + " ");
 		}
 	}
@@ -46,5 +46,4 @@ public class Exercise15_FileInput {
 		
 		return ints;
 	}
-
 }

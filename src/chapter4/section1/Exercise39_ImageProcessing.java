@@ -15,9 +15,9 @@ public class Exercise39_ImageProcessing {
         int[] neighborRows = {-1, 1, 0 ,0};
         int[] neighborColumns = {0, 0, -1 ,1};
 
-        for(int row = 0; row < image.length; row++) {
-            for(int column = 0; column < image[0].length; column++) {
-                for(int i = 0; i < 4; i++) {
+        for (int row = 0; row < image.length; row++) {
+            for (int column = 0; column < image[0].length; column++) {
+                for (int i = 0; i < 4; i++) {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
@@ -39,7 +39,7 @@ public class Exercise39_ImageProcessing {
         int components = 0;
         boolean[] visited = new boolean[graph.vertices()];
 
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             if (!visited[vertex]) {
                 components++;
                 depthFirstSearch(graph, vertex, visited);
@@ -52,7 +52,7 @@ public class Exercise39_ImageProcessing {
     private void depthFirstSearch(Graph graph, int currentVertex, boolean[] visited) {
         visited[currentVertex] = true;
 
-        for(int neighbor : graph.adjacent(currentVertex)) {
+        for (int neighbor : graph.adjacent(currentVertex)) {
             if (!visited[neighbor]) {
                 depthFirstSearch(graph, neighbor, visited);
             }
@@ -80,5 +80,4 @@ public class Exercise39_ImageProcessing {
         int numberOfComponents = imageProcessing.floodFill(image);
         StdOut.println("Number of components: " + numberOfComponents + " Expected: 5");
     }
-
 }

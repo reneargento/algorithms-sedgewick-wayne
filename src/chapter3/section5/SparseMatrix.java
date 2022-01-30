@@ -23,12 +23,12 @@ public class SparseMatrix {
         this.columnSize = columnSize;
 
         rows = new SparseVector[rowSize];
-        for(int i = 0; i < rows.length; i++) {
+        for (int i = 0; i < rows.length; i++) {
             rows[i] = new SparseVector(columnSize);
         }
 
         columns = new SparseVector[columnSize];
-        for(int i = 0; i < columns.length; i++) {
+        for (int i = 0; i < columns.length; i++) {
             columns[i] = new SparseVector(rowSize);
         }
     }
@@ -89,7 +89,7 @@ public class SparseMatrix {
         return result;
     }
 
-    //Matrix-matrix multiplication
+    // Matrix-matrix multiplication
     public SparseMatrix dot(SparseMatrix sparseMatrix) {
         if (columnSize != sparseMatrix.rowSize) {
             throw new IllegalArgumentException("Matrix A columns number and Matrix B rows number must match");
@@ -97,8 +97,8 @@ public class SparseMatrix {
 
         SparseMatrix result = new SparseMatrix(rowSize, sparseMatrix.columnSize);
 
-        for(int i = 0; i < rows.length; i++) {
-            for(int j = 0; j < sparseMatrix.columnSize; j++) {
+        for (int i = 0; i < rows.length; i++) {
+            for (int j = 0; j < sparseMatrix.columnSize; j++) {
                 double dot = rows[i].dot(sparseMatrix.columns[j]);
 
                 if (dot != 0) {
@@ -106,11 +106,10 @@ public class SparseMatrix {
                 }
             }
         }
-
         return result;
     }
 
-    //Matrix-vector multiplication
+    // Matrix-vector multiplication
     public SparseVector dot(SparseVector sparseVector) {
         if (columnSize != sparseVector.dimension) {
             throw new IllegalArgumentException("Matrix columns number and vector dimension must match");
@@ -118,14 +117,13 @@ public class SparseMatrix {
 
         SparseVector result = new SparseVector(rowSize);
 
-        for(int i = 0; i < rows.length; i++) {
+        for (int i = 0; i < rows.length; i++) {
             double dot = rows[i].dot(sparseVector);
 
             if (dot != 0) {
                 result.put(i, dot);
             }
         }
-
         return result;
     }
 
@@ -135,7 +133,6 @@ public class SparseMatrix {
         for (int row = 0; row < rowSize; row++) {
             stringBuilder.append(row).append(": ").append(rows[row]).append("\n");
         }
-
         return stringBuilder.toString();
     }
 }

@@ -31,27 +31,27 @@ public class Exercise17_InPlaceKeyIndexedCounting {
 
             int alphabetSize = 256; // Extended ASCII characters
 
-            for(int digit = stringsLength - 1; digit >= 0; digit--) {
+            for (int digit = stringsLength - 1; digit >= 0; digit--) {
                 // Sort by key-indexed counting on digitTh char
 
                 // Compute frequency counts
                 int count[] = new int[alphabetSize + 1];
                 int[] startIndex = new int[alphabetSize + 1];
 
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     int digitIndex = array[i].value.charAt(digit);
                     count[digitIndex + 1]++;
                     startIndex[digitIndex + 1]++;
                 }
 
                 // Transform counts to indices
-                for(int r = 0; r < alphabetSize; r++) {
+                for (int r = 0; r < alphabetSize; r++) {
                     count[r + 1] += count[r];
                     startIndex[r + 1] += startIndex[r];
                 }
 
                 // Distribute
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
 
                     // Continue placing items in the correct place until array[i] is in the correct place
                     while (true) {
@@ -68,11 +68,9 @@ public class Exercise17_InPlaceKeyIndexedCounting {
                 }
             }
         }
-
     }
 
     public class MostSignificantDigitInPlace {
-
         private int alphabetSize = 256; // Extended ASCII characters; radix
         private final int CUTOFF_FOR_SMALL_SUBARRAYS = 15;
 
@@ -81,7 +79,6 @@ public class Exercise17_InPlaceKeyIndexedCounting {
         }
 
         private void sort(Element[] array, int low, int high, int digit) {
-
             // Do not use Insertion sort in this case to prove that the sort is not stable
 
             // Sort from array[low] to array[high], starting at the digitTh character
@@ -99,20 +96,20 @@ public class Exercise17_InPlaceKeyIndexedCounting {
             int[] count = new int[alphabetSize + 2];
             int[] startIndex = new int[alphabetSize + 2];
 
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 int digitIndex = charAt(array[i].value, digit) + 2;
                 count[digitIndex]++;
                 startIndex[digitIndex]++;
             }
 
             // Transform counts to indices
-            for(int r = 0; r < alphabetSize + 1; r++) {
+            for (int r = 0; r < alphabetSize + 1; r++) {
                 count[r + 1] += count[r];
                 startIndex[r + 1] += startIndex[r];
             }
 
             // Distribute
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
 
                 // Continue placing items in the correct place until array[i] is in the correct place
                 while (true) {
@@ -129,7 +126,7 @@ public class Exercise17_InPlaceKeyIndexedCounting {
             }
 
             // Recursively sort for each character value
-            for(int r = 0; r < alphabetSize; r++) {
+            for (int r = 0; r < alphabetSize; r++) {
                 sort(array, low + count[r], low + count[r + 1] - 1,digit + 1);
             }
         }
@@ -147,33 +144,30 @@ public class Exercise17_InPlaceKeyIndexedCounting {
 
             public void sort(Element[] array, int low, int high, int digit) {
                 // Sort from array[low] to array[high], starting at the digitTh character
-                for(int i = low; i <= high; i++) {
-                    for(int j = i; j > low && less(array[j].value, array[j - 1].value, digit); j--) {
+                for (int i = low; i <= high; i++) {
+                    for (int j = i; j > low && less(array[j].value, array[j - 1].value, digit); j--) {
                         ArrayUtil.exchange(array, j, j - 1);
                     }
                 }
             }
 
             private boolean less(String string1, String string2, int digit) {
-                for(int i = digit; i < Math.min(string1.length(), string2.length()); i++) {
+                for (int i = digit; i < Math.min(string1.length(), string2.length()); i++) {
                     if (string1.charAt(i) < string2.charAt(i)) {
                         return true;
                     } else if (string1.charAt(i) > string2.charAt(i)) {
                         return false;
                     }
                 }
-
                 return string1.length() < string2.length();
             }
         }
-
     }
 
     public static void main(String[] args) {
         Exercise17_InPlaceKeyIndexedCounting inPlaceKeyIndexedCounting = new Exercise17_InPlaceKeyIndexedCounting();
 
         StdOut.println("In-place LSD tests\n");
-
         LeastSignificantDigitInPlace leastSignificantDigitInplace =
                 inPlaceKeyIndexedCounting.new LeastSignificantDigitInPlace();
 
@@ -197,7 +191,7 @@ public class Exercise17_InPlaceKeyIndexedCounting {
 
         StringJoiner sortedArray1 = new StringJoiner(" ");
 
-        for(Element element : array1) {
+        for (Element element : array1) {
             sortedArray1.add(element.value);
         }
         StdOut.println("Sorted array 1 with lost of stability");
@@ -205,7 +199,6 @@ public class Exercise17_InPlaceKeyIndexedCounting {
         StdOut.println("Expected if there was no lost of stability: \n" +
                 "1ICK750 1ICK750 1OHV845 1OHV845 1OHV845 2IYE230 2RLA629 2RLA629 3ATW723 3CIO720 3CIO720 " +
                 "4JZY524 4PGC938");
-
 
         Element[] array2 = new Element[3];
         array2[0] = inPlaceKeyIndexedCounting.new Element("CAA", 0);
@@ -217,14 +210,13 @@ public class Exercise17_InPlaceKeyIndexedCounting {
 
         StringJoiner sortedArray2 = new StringJoiner("\n");
 
-        for(Element element : array2) {
+        for (Element element : array2) {
             sortedArray2.add("Element: " + element.value + " Original index: " + element.originalIndex);
         }
         StdOut.println("\nSorted array 2 with lost of stability");
         StdOut.println(sortedArray2);
 
         leastSignificantDigitInplace.lsdSort(array2, 3);
-
 
         StdOut.println("\nIn-place MSD tests\n");
 
@@ -255,14 +247,13 @@ public class Exercise17_InPlaceKeyIndexedCounting {
 
         StringJoiner sortedArray3 = new StringJoiner(" ");
 
-        for(Element element : array3) {
+        for (Element element : array3) {
             sortedArray3.add(element.value);
         }
         StdOut.println("Sorted array 3");
         StdOut.println(sortedArray3);
         StdOut.println("Expected: \n3WayStringQuickSort Alg Algorithms Arg Argento BFS Bellman DFS Dijkstra Floyd Ford " +
                 "Johnson LSD MSD Rene Sedgewick Warshall Wayne\n");
-
 
         Element[] array4 = new Element[3];
         array4[0] = inPlaceKeyIndexedCounting.new Element("CAA", 0);
@@ -273,11 +264,10 @@ public class Exercise17_InPlaceKeyIndexedCounting {
 
         StringJoiner sortedArray4 = new StringJoiner("\n");
 
-        for(Element element : array4) {
+        for (Element element : array4) {
             sortedArray4.add("Element: " + element.value + " Original index: " + element.originalIndex);
         }
         StdOut.println("Sorted array 4 with lost of stability");
         StdOut.println(sortedArray4);
     }
-
 }

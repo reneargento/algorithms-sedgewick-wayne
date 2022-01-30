@@ -6,7 +6,7 @@ import util.ArrayUtil;
 /**
  * Created by Rene Argento on 25/03/17.
  */
-//Based on: http://eranle.blogspot.com.br/2012/08/min-max-heap-java-implementation.html
+// Based on: http://eranle.blogspot.com.br/2012/08/min-max-heap-java-implementation.html
 // Thanks to YRFT (https://github.com/YRFT) for finding that the method deleteItem() also needs to call the swim() method:
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/181
 @SuppressWarnings("unchecked")
@@ -69,7 +69,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             swim(maxPriorityQueue, size, Orientation.MAX);
         }
 
-        //O(1)
+        // O(1)
         public Comparable findMin() {
             if (size == 0) {
                 return null;
@@ -78,7 +78,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             return minPriorityQueue[1].key;
         }
 
-        //O(1)
+        // O(1)
         public Comparable findMax() {
             if (size == 0) {
                 return null;
@@ -87,7 +87,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             return maxPriorityQueue[1].key;
         }
 
-        //O(lg N)
+        // O(lg N)
         public Comparable deleteMax() {
             if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
@@ -107,7 +107,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             return max.key;
         }
 
-        //O(lg N)
+        // O(lg N)
         public Comparable deleteMin() {
             if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
@@ -136,7 +136,7 @@ public class Exercise29_MinMaxPriorityQueue  {
             priorityQueue[size + 1] = null;
 
             if (index == size + 1) {
-                //We deleted the last value, so no need to sink
+                // We deleted the last value, so no need to sink
                 return;
             }
 
@@ -145,7 +145,7 @@ public class Exercise29_MinMaxPriorityQueue  {
         }
 
         private void swim(PQNode[] priorityQueue, int index, Orientation orientation) {
-            while(index / 2 >= 1) {
+            while (index / 2 >= 1) {
                 if ((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))
                         || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index / 2], priorityQueue[index]))) {
                     ArrayUtil.exchange(priorityQueue, index / 2, index);
@@ -164,7 +164,7 @@ public class Exercise29_MinMaxPriorityQueue  {
                 index = index / 2;
             }
 
-            //Even if there were no exchanges, we still need to update the index
+            // Even if there were no exchanges, we still need to update the index
             if (orientation == Orientation.MIN) {
                 priorityQueue[index].minHeapIndex = index;
             } else {
@@ -203,7 +203,7 @@ public class Exercise29_MinMaxPriorityQueue  {
                 index = selectedChildIndex;
             }
 
-            //Even if there were no exchanges, we still need to update the index
+            // Even if there were no exchanges, we still need to update the index
             if (orientation == Orientation.MIN) {
                 priorityQueue[index].minHeapIndex = index;
             } else {
@@ -212,12 +212,12 @@ public class Exercise29_MinMaxPriorityQueue  {
         }
 
         private void resize(int newSize) {
-            //Min heap
+            // Min heap
             PQNode[] newMinPriorityQueue = new PQNode[newSize];
             System.arraycopy(minPriorityQueue, 1, newMinPriorityQueue, 1, size);
             minPriorityQueue = newMinPriorityQueue;
 
-            //Max heap
+            // Max heap
             PQNode[] newMaxPriorityQueue = new PQNode[newSize];
             System.arraycopy(maxPriorityQueue, 1, newMaxPriorityQueue, 1, size);
             maxPriorityQueue = newMaxPriorityQueue;
@@ -245,5 +245,4 @@ public class Exercise29_MinMaxPriorityQueue  {
         StdOut.println("Find Max: " + minMaxPriorityQueue.findMax() + " Expected: 99");
         StdOut.println("Find Min: " + minMaxPriorityQueue.findMin() + " Expected: -1");
     }
-
 }

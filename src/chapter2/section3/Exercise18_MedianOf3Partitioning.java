@@ -29,7 +29,7 @@ public class Exercise18_MedianOf3Partitioning {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
@@ -93,10 +93,10 @@ public class Exercise18_MedianOf3Partitioning {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot));
 
-            while(ArrayUtil.less(pivot, array[--j]));
+            while (ArrayUtil.less(pivot, array[--j]));
 
             if (i >= j) {
                 break;
@@ -113,5 +113,4 @@ public class Exercise18_MedianOf3Partitioning {
     private static void printResults(int arraySize, double defaultQuickSortRunningTime, double quickSortWithMedianOfThree) {
         StdOut.printf("%10d %25.1f %32.1f\n", arraySize, defaultQuickSortRunningTime, quickSortWithMedianOfThree);
     }
-
 }

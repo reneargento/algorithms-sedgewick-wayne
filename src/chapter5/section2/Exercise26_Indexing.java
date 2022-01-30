@@ -30,7 +30,7 @@ public class Exercise26_Indexing {
 
                 String key = tokens[0];
 
-                for(int i = 1; i < tokens.length; i++) {
+                for (int i = 1; i < tokens.length; i++) {
                     String value = tokens[i];
 
                     if (!trie1.contains(key)) {
@@ -51,7 +51,7 @@ public class Exercise26_Indexing {
             String[] keysArray = keys.toArray(new String[keys.size()]);
 
             // Queries
-            for(int i = 0; i < numberOfQueries; i++) {
+            for (int i = 0; i < numberOfQueries; i++) {
                 // Randomly chooses if this query will be a key hit or a key miss
                 int keyHit = StdRandom.uniform(2);
                 boolean isKeyHit = keyHit == 1;
@@ -66,14 +66,14 @@ public class Exercise26_Indexing {
                 }
 
                 if (trie1.contains(query)) {
-                    for(String value : trie1.get(query)) {
-                        //Loop through values
+                    for (String value : trie1.get(query)) {
+                        // Loop through values
                     }
                 }
 
                 if (trie2.contains(query)) {
-                    for(String value : trie2.get(query)) {
-                        //Loop through values
+                    for (String value : trie2.get(query)) {
+                        // Loop through values
                     }
                 }
             }
@@ -82,12 +82,11 @@ public class Exercise26_Indexing {
         private String generateRandomKey() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
                 int ascIIRandomValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                         Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                 stringBuilder.append(((char) ascIIRandomValue));
             }
-
             return stringBuilder.toString();
         }
     }
@@ -108,8 +107,8 @@ public class Exercise26_Indexing {
                 "Time spent");
 
         for (int trieType = 0; trieType < 2; trieType++) {
-            for(int q = 0; q < numberOfQueries.length; q++) {
-                for(int f = 0; f < filePaths.length; f++) {
+            for (int q = 0; q < numberOfQueries.length; q++) {
+                for (int f = 0; f < filePaths.length; f++) {
 
                     TrieInterface<Queue<String>> trie1;
                     TrieInterface<Queue<String>> trie2;
@@ -139,5 +138,4 @@ public class Exercise26_Indexing {
     public static void main(String[] args) {
         new Exercise26_Indexing().doExperiment();
     }
-
 }

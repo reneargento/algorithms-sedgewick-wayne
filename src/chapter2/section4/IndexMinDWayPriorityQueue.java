@@ -21,7 +21,7 @@ public class IndexMinDWayPriorityQueue<Key extends Comparable<Key>> {
         pq = new int[size + 1];
         qp = new int[size + 1];
 
-        for(int index = 0; index < qp.length; index++) {
+        for (int index = 0; index < qp.length; index++) {
             qp[index] = -1;
         }
 
@@ -172,7 +172,7 @@ public class IndexMinDWayPriorityQueue<Key extends Comparable<Key>> {
 
             int selectedChildIndex = childSmallestIndex;
 
-            for(int childIndex = childSmallestIndex + 1; childIndex <= childHighestIndex; childIndex++) {
+            for (int childIndex = childSmallestIndex + 1; childIndex <= childHighestIndex; childIndex++) {
                 if (childIndex <= size && more(selectedChildIndex, childIndex)) {
                     selectedChildIndex = childIndex;
                 }
@@ -206,5 +206,4 @@ public class IndexMinDWayPriorityQueue<Key extends Comparable<Key>> {
         qp[pq[keyIndex1]] = keyIndex1;
         qp[pq[keyIndex2]] = keyIndex2;
     }
-
 }

@@ -29,8 +29,8 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
             double[] newWeight = new double[edgeWeightedDigraph.vertices()];
 
             // 0 - Initialize all distances to Double.POSITIVE_INFINITY
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-                for(int neighbor = 0; neighbor < edgeWeightedDigraph.vertices(); neighbor++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+                for (int neighbor = 0; neighbor < edgeWeightedDigraph.vertices(); neighbor++) {
                     distances[vertex][neighbor] = Double.POSITIVE_INFINITY;
                 }
             }
@@ -38,15 +38,15 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
             // 1- Add a new vertex to the graph, connected to all other vertices through edges of weight 0
             // O(V + E)
             EdgeWeightedDigraph edgeWeightedDigraphWithSource = new EdgeWeightedDigraph(edgeWeightedDigraph.vertices() + 1);
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     edgeWeightedDigraphWithSource.addEdge(edge);
                 }
             }
 
             int newVertexId = edgeWeightedDigraph.vertices();
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 edgeWeightedDigraphWithSource.addEdge(new DirectedEdge(newVertexId, vertex, 0));
             }
 
@@ -61,15 +61,15 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
 
             // 3- Compute new weights, which are the distance from the new vertex to every other vertex
             // O(V)
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 newWeight[vertex] = bellmanFordSP.distTo(vertex);
             }
 
             // 4- Generate a new graph with the new weights
             // O(V + E)
             EdgeWeightedDigraph edgeWeightedDigraphWithNewWeights = new EdgeWeightedDigraph(edgeWeightedDigraph.vertices());
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     double edgeWeight = edge.weight() + newWeight[edge.from()] - newWeight[edge.to()];
                     edgeWeightedDigraphWithNewWeights.addEdge(new DirectedEdge(edge.from(), edge.to(), edgeWeight));
                 }
@@ -78,10 +78,10 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
             // 5- Run Dijkstra to compute all pairs shortest paths on the new graph.
             // Also compute the real all-pairs-shortest-path distances by adjusting the new weights
             // O(V * E lg V) + O(V^2) = O(V * E lg V)
-            for(int source = 0; source < edgeWeightedDigraph.vertices(); source++) {
+            for (int source = 0; source < edgeWeightedDigraph.vertices(); source++) {
                 DijkstraSP dijkstraSP = new DijkstraSP(edgeWeightedDigraphWithNewWeights, source);
 
-                for(int target = 0; target < edgeWeightedDigraph.vertices(); target++) {
+                for (int target = 0; target < edgeWeightedDigraph.vertices(); target++) {
                     double realShortestPathDistance = dijkstraSP.distTo(target) - newWeight[source] + newWeight[target];
                     distances[source][target] = realShortestPathDistance;
 
@@ -108,7 +108,7 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[source][target]; edge != null; edge = edgeTo[source][edge.from()]) {
+            for (DirectedEdge edge = edgeTo[source][target]; edge != null; edge = edgeTo[source][edge.from()]) {
                 path.push(edge);
             }
 
@@ -155,8 +155,8 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
                         -4, 1, 0}
         };
 
-        for(int source = 0; source < edgeWeightedDigraph.vertices(); source++) {
-            for(int target = 0; target < edgeWeightedDigraph.vertices(); target++) {
+        for (int source = 0; source < edgeWeightedDigraph.vertices(); source++) {
+            for (int target = 0; target < edgeWeightedDigraph.vertices(); target++) {
                 StdOut.println("Distance from " + source + " to " + target + ": " +
                         allPairsShortestPathsDigraphsWithoutNegativeCycles.dist(source, target)
                         + " Expected: " + expectedDistances[source][target]);
@@ -165,8 +165,8 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
 
         StdOut.println();
 
-        for(int source = 0; source < edgeWeightedDigraph.vertices(); source++) {
-            for(int target = 0; target < edgeWeightedDigraph.vertices(); target++) {
+        for (int source = 0; source < edgeWeightedDigraph.vertices(); source++) {
+            for (int target = 0; target < edgeWeightedDigraph.vertices(); target++) {
                 StdOut.print("Shortest path from " + source + " to " + target + ": ");
 
                 if (!allPairsShortestPathsDigraphsWithoutNegativeCycles.hasPathTo(source, target)) {
@@ -174,7 +174,7 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
                     continue;
                 }
 
-                for(DirectedEdge edge : allPairsShortestPathsDigraphsWithoutNegativeCycles.path(source, target)) {
+                for (DirectedEdge edge : allPairsShortestPathsDigraphsWithoutNegativeCycles.path(source, target)) {
                     StdOut.print(edge.from() + "->" + edge.to() + " (" + edge.weight() + ") ");
                 }
 
@@ -220,5 +220,4 @@ public class Exercise30_AllPairsShortestPathsDigraphsWithoutNegativeCycles {
                 "Shortest path from 5 to 4: 5->4 (1.0) \n" +
                 "Shortest path from 5 to 5: ");
     }
-
 }

@@ -16,7 +16,7 @@ public class Exercise6 {
 			stack.push(queue.dequeue());
 		}
 		
-		while(!stack.isEmpty()) {
+		while (!stack.isEmpty()) {
 			queue.enqueue(stack.pop());
 		}
 	}
@@ -30,10 +30,9 @@ public class Exercise6 {
 		invertQueue(queue);
 
         StdOut.print("Inverted queue: ");
-		for(String string : queue) {
+		for (String string : queue) {
 			StdOut.print(string + " ");
 		}
         StdOut.println("\nExpected: 3 2 1");
 	}
-
 }

@@ -14,12 +14,11 @@ public class Exercise4 {
         }
 
         public boolean hasEdge(int vertex1, int vertex2) {
-            for(int neighbor: adjacent(vertex1)) {
+            for (int neighbor: adjacent(vertex1)) {
                 if (neighbor == vertex2) {
                     return true;
                 }
             }
-
             return false;
         }
     }
@@ -38,5 +37,4 @@ public class Exercise4 {
         StdOut.println("Has edge 2 -> 3: " + digraphWithHasEdge.hasEdge(2 ,3) + " Expected: true");
         StdOut.println("Has edge 2 -> 4: " + digraphWithHasEdge.hasEdge(2 ,4) + " Expected: false");
     }
-
 }

@@ -57,7 +57,7 @@ public class Exercise12_Scheduling {
         Job[] jobs = new Job[input.length];
         int jobsIndex = 0;
 
-        for(String jobString : input) {
+        for (String jobString : input) {
             String[] jobDescription = jobString.split(" ");
             String name = jobDescription[0];
             int processingTime = Integer.parseInt(jobDescription[1]);
@@ -68,7 +68,7 @@ public class Exercise12_Scheduling {
         Arrays.sort(jobs);
 
         StdOut.println("Schedule:");
-        for(Job job : jobs) {
+        for (Job job : jobs) {
             StdOut.println(job);
         }
 
@@ -81,5 +81,4 @@ public class Exercise12_Scheduling {
                 "JobC   999\n" +
                 "JobF   999999999");
     }
-
 }

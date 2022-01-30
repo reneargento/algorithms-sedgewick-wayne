@@ -88,7 +88,7 @@ public class Exercise19_Inversions {
     private static int countInversionsComparingBothParts(Comparable[] array, Comparable[] aux, int low, int middle,
                                                          int high) {
 
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 

@@ -86,7 +86,7 @@ public class Exercise22 {
 
         SeparateChainingHashTable<String, Integer> baconNumbers = getKevinBaconNumbersFromGraph(oscarNominees,
                 movieSymbolGraph, breadthFirstPaths);
-        for(String oscarNominee : baconNumbers.keys()) {
+        for (String oscarNominee : baconNumbers.keys()) {
             StdOut.println(oscarNominee + ": " + baconNumbers.get(oscarNominee));
         }
     }
@@ -95,12 +95,12 @@ public class Exercise22 {
                                                                                      SymbolGraph movieSymbolGraph,
                                                                                      BreadthFirstPaths breadthFirstPaths) {
         SeparateChainingHashTable<String, Integer> symbolTable = new SeparateChainingHashTable<>();
-        for(String oscarNominee : oscarNominees) {
+        for (String oscarNominee : oscarNominees) {
             int kevinBaconNumber = Integer.MAX_VALUE;
 
             if (movieSymbolGraph.contains(oscarNominee)) {
                 int nomineeVertexId = movieSymbolGraph.index(oscarNominee);
-                //Divide by 2 because the relation in the graph is
+                // Divide by 2 because the relation in the graph is
                 // Actor ---- Movie ---- Actor
                 // So a distance of 2 in the graph is actually a Kevin Bacon number of 1
                 kevinBaconNumber = breadthFirstPaths.distTo(nomineeVertexId) / 2;
@@ -115,5 +115,4 @@ public class Exercise22 {
     public static void main(String[] args) {
         new Exercise22().getKevinBaconNumbers();
     }
-
 }

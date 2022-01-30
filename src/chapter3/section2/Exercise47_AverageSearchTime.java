@@ -11,7 +11,6 @@ import util.VisualAccumulator;
 public class Exercise47_AverageSearchTime {
 
     private class BinarySearchTreeInternalPathLength<Key extends Comparable<Key>, Value> extends BinarySearchTree<Key, Value> {
-
         private class Node {
             private Key key;
             private Value value;
@@ -117,16 +116,16 @@ public class Exercise47_AverageSearchTime {
         double lastComputedAveragePathLength = 0;
         double lastExpectedAveragePathLength = -1;
 
-        for(int size = originValue; size <= maxNumberOfOperations; size++) {
+        for (int size = originValue; size <= maxNumberOfOperations; size++) {
             int numberOfTrials = 1000;
 
             long totalAvgPathLengths = 0;
 
-            for(int t = 0; t < numberOfTrials; t++) {
+            for (int t = 0; t < numberOfTrials; t++) {
                 BinarySearchTreeInternalPathLength<Integer, Integer> binarySearchTreeInternalPathLength =
                         new BinarySearchTreeInternalPathLength<>();
 
-                for(int i = 0; i < size; i++) {
+                for (int i = 0; i < size; i++) {
                     Integer randomKey = StdRandom.uniform(Integer.MAX_VALUE);
                     binarySearchTreeInternalPathLength.put(randomKey, randomKey);
                 }
@@ -144,7 +143,7 @@ public class Exercise47_AverageSearchTime {
             if (size % 200 == 0) {
                 visualAccumulator.drawDataValue(size, averageOfAveragesPathLength, StdDraw.RED);
 
-                //Draw the expected average path length -> 1.39 lg N - 1.85
+                // Draw the expected average path length -> 1.39 lg N - 1.85
                 double expectedAveragePathLength = 1.39 * (Math.log(size) / Math.log(2)) - 1.85;
                 visualAccumulator.drawDataValue(size, expectedAveragePathLength, StdDraw.BLACK);
 
@@ -166,5 +165,4 @@ public class Exercise47_AverageSearchTime {
     public static void main(String[] args) {
         new Exercise47_AverageSearchTime().doExperiment();
     }
-
 }

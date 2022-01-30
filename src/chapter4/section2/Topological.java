@@ -33,9 +33,8 @@ public class Topological {
         SymbolDigraph symbolDigraph = new SymbolDigraph(filename, separator);
         Topological topological = new Topological(symbolDigraph.digraph());
 
-        for(int vertex : topological.topologicalOrder) {
+        for (int vertex : topological.topologicalOrder) {
             StdOut.println(symbolDigraph.name(vertex));
         }
     }
-
 }

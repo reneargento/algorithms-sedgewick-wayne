@@ -47,12 +47,11 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (key.equals(node.key)) {
                     return node.value;
                 }
             }
-
             return null;
         }
 
@@ -68,7 +67,7 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
                 return 0; //Delete is not used in the analysis of node accesses
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 numberOfNodeAccesses++;
                 if (key.equals(node.key)) {
                     node.value = value;
@@ -78,7 +77,6 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
 
             first = new Node(key, value, first);
             size++;
-
             return numberOfNodeAccesses;
         }
 
@@ -97,7 +95,7 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
                 return;
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
@@ -109,13 +107,11 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 keys.enqueue(node.key);
             }
-
             return keys;
         }
-
     }
 
     private static final String TALE_FILE_PATH = Constants.FILES_PATH + Constants.TALE_OF_TWO_CITIES_FILE;
@@ -127,7 +123,6 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
     }
 
     private String frequencyCounter(String[] words, int minLength) {
-
         String title = "SequentialSearchST costs using put() in FrequencyCounter";
         String xAxisLabel = "operations";
         String yAxisLabel = "cost";
@@ -139,8 +134,7 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
                 xAxisLabel, yAxisLabel);
         SequentialSearchSymbolTable<String, Integer> sequentialSearchSymbolTable = new SequentialSearchSymbolTable<>();
 
-        for(String word : words) {
-
+        for (String word : words) {
             if (word.length() < minLength) {
                 continue;
             }
@@ -158,15 +152,13 @@ public class Exercise38_AmortizedCostPlotsSeqSearch {
         int numberOfNodeAccesses = sequentialSearchSymbolTable.put(max, 0);
         visualAccumulator.addDataValue(numberOfNodeAccesses, true);
 
-        for(String word : sequentialSearchSymbolTable.keys()) {
+        for (String word : sequentialSearchSymbolTable.keys()) {
             if (sequentialSearchSymbolTable.get(word) > sequentialSearchSymbolTable.get(max)) {
                 max = word;
             }
         }
 
         visualAccumulator.writeFinalMean();
-
         return max + " " + sequentialSearchSymbolTable.get(max);
     }
-
 }

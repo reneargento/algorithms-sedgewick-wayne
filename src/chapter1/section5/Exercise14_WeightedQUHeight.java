@@ -33,8 +33,8 @@ public class Exercise14_WeightedQUHeight {
 
             maxHeight = 0;
 
-            //Initialization
-            for(int i = 0; i < size; i++) {
+            // Initialization
+            for (int i = 0; i < size; i++) {
                 leaders[i] = i;
                 ranks[i] = 0;
             }
@@ -51,7 +51,7 @@ public class Exercise14_WeightedQUHeight {
         // O(lg n)
         // No path compression in this exercise
         public int find(int site) {
-            while(site != leaders[site]) {
+            while (site != leaders[site]) {
                 site = leaders[site];
             }
 
@@ -79,10 +79,8 @@ public class Exercise14_WeightedQUHeight {
                     maxHeight = ranks[leader2];
                 }
             }
-
             components--;
         }
-
     }
 
     public static void main(String[] args) {
@@ -109,5 +107,4 @@ public class Exercise14_WeightedQUHeight {
         StdOut.println("Maximum height: " + weightedQuickUnionByHeight.maxHeight + " Expected: Equal or less than 5 for N = 19" +
                 " (lg 19 = 5)");
     }
-
 }

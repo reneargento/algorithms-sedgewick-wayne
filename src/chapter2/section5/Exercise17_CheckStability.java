@@ -41,15 +41,15 @@ public class Exercise17_CheckStability {
 
         Wrapper[] wrappedKeys = new Wrapper[array.length];
         int wrappedKeysIndex = 0;
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             Wrapper wrapper = new Wrapper(array[i], i);
             wrappedKeys[wrappedKeysIndex++] = wrapper;
         }
 
-        //Insert all values in the map
+        // Insert all values in the map
         Map<Comparable, Integer> valuesMap = new HashMap<>();
 
-        for(Comparable value : array) {
+        for (Comparable value : array) {
             int count = 0;
 
             if (valuesMap.containsKey(value)) {
@@ -61,7 +61,7 @@ public class Exercise17_CheckStability {
         }
 
         if (stable) {
-            //Mergesort
+            // Mergesort
             Arrays.sort(array);
             Arrays.sort(wrappedKeys);
         } else {
@@ -69,15 +69,15 @@ public class Exercise17_CheckStability {
             QuickSort.quickSort(wrappedKeys);
         }
 
-        //Check if array is sorted
-        for(int i = 0; i < array.length - 1; i++) {
+        // Check if array is sorted
+        for (int i = 0; i < array.length - 1; i++) {
             if (array[i].compareTo(array[i+1]) > 0) {
                 return false;
             }
         }
 
-        //Check if the initial set of objects is still in the array
-        for(Comparable value : array) {
+        // Check if the initial set of objects is still in the array
+        for (Comparable value : array) {
             if (valuesMap.containsKey(value)) {
                 int count = valuesMap.get(value);
                 count--;
@@ -96,15 +96,13 @@ public class Exercise17_CheckStability {
             return false;
         }
 
-        //Check if the elements were sorted in a stable manner
-        for(int i = 0; i < wrappedKeys.length - 1; i++) {
+        // Check if the elements were sorted in a stable manner
+        for (int i = 0; i < wrappedKeys.length - 1; i++) {
             if (wrappedKeys[i].keyValue.compareTo(wrappedKeys[i+1].keyValue) == 0 &&
                     wrappedKeys[i].originalIndex > wrappedKeys[i+1].originalIndex) {
                 return false;
             }
         }
-
         return true;
     }
-
 }

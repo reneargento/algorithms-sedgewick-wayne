@@ -78,7 +78,7 @@ public class Exercise30_BSTReconstruction {
         }
 
         int[] reverseArray = new int[post.length];
-        for(int i = 0; i < reverseArray.length; i++) {
+        for (int i = 0; i < reverseArray.length; i++) {
             reverseArray[i] = post[post.length - 1 - i];
         }
 
@@ -123,5 +123,4 @@ public class Exercise30_BSTReconstruction {
         StdOut.print(node.key + " ");
         printBSTInOrder(node.right);
     }
-
 }

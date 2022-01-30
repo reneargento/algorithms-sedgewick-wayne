@@ -14,7 +14,7 @@ public class Exercise17 {
 		In in = new In(fileName);
 		Queue<Transaction> queue = new Queue<>();
 
-		while(!in.isEmpty()) {
+		while (!in.isEmpty()) {
 			queue.enqueue(new Transaction(in.readLine()));
 		}
 
@@ -36,5 +36,4 @@ public class Exercise17 {
 			StdOut.println(transaction);
 		}
 	}
-	
 }

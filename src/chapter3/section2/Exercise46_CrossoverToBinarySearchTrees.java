@@ -14,32 +14,30 @@ public class Exercise46_CrossoverToBinarySearchTrees {
     }
 
     private void doExperiment() {
-
         boolean tenTimesFasterNFound = false;
         boolean aHundredTimesFasterNFound = false;
         boolean aThousandTimesFasterNFound = false;
 
-        for(int i = 1; true; i++) {
-
+        for (int i = 1; true; i++) {
             double[] keys = new double[i];
-            for(int j = 0; j < i; j++) {
+            for (int j = 0; j < i; j++) {
                 keys[j] = StdRandom.uniform();
             }
 
-            //BST symbol table
+            // BST symbol table
             long bstStartTime = System.nanoTime();
             BinarySearchTree<Double, Double> binarySearchTree = new BinarySearchTree<>();
 
-            for(int j = 0; j < i; j++) {
+            for (int j = 0; j < i; j++) {
                 binarySearchTree.put(keys[j], keys[j]);
             }
             long bstRunningTime = System.nanoTime() - bstStartTime;
 
-            //Binary search symbol table
+            // Binary search symbol table
             long binarySearchSTStartTime = System.nanoTime();
             BinarySearchSymbolTable<Double, Double> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-            for(int j = 0; j < i; j++) {
+            for (int j = 0; j < i; j++) {
                 binarySearchSymbolTable.put(keys[j], keys[j]);
             }
             long binarySearchSTRunningTime = System.nanoTime() - binarySearchSTStartTime;

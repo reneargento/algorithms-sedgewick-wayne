@@ -38,11 +38,9 @@ public class Exercise24_SortTestImprovement {
 
     private void doExperiment(int numberOfExperiments, int initialArraySize,
                               Map<Integer, Comparable[]> allInputArrays, TEST_TYPE testType) {
-
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
-
+        for (int i = 0; i < numberOfExperiments; i++) {
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
@@ -81,7 +79,6 @@ public class Exercise24_SortTestImprovement {
 
     @SuppressWarnings("unchecked")
     private void sort(Comparable[] array, Comparable[] aux, int low, int high) {
-
         if (high <= low) {
             return;
         }
@@ -91,7 +88,7 @@ public class Exercise24_SortTestImprovement {
         sort(array, aux, low, middle);
         sort(array, aux, middle + 1, high);
 
-        //Improvement - Skip merge if the array is already in order
+        // Improvement - Skip merge if the array is already in order
         if (array[middle].compareTo(array[middle + 1]) <= 0) {
             numberOfTimesSortTestSucceeded++;
             return;
@@ -102,7 +99,7 @@ public class Exercise24_SortTestImprovement {
 
     @SuppressWarnings("unchecked")
     private void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 

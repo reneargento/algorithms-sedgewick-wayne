@@ -56,7 +56,7 @@ public class Exercise3 {
             this.numberOfBuckets = numberOfBuckets;
             buckets = new ArrayList<>(numberOfBuckets);
 
-            for(int i = 0; i < numberOfBuckets; i++) {
+            for (int i = 0; i < numberOfBuckets; i++) {
                 buckets.add(null);
             }
 
@@ -101,11 +101,11 @@ public class Exercise3 {
             numberOfBuckets = newBucketSize;
             keysSize = 0;
 
-            for(int i = 0; i < newBucketSize; i++) {
+            for (int i = 0; i < newBucketSize; i++) {
                 buckets.add(null);
             }
 
-            for(Node node : tempBuckets) {
+            for (Node node : tempBuckets) {
                 while (node != null) {
                     put(node.key, node.value, node.numberOfKeysAtTimeOfInsert);
                     node = node.next;
@@ -222,7 +222,7 @@ public class Exercise3 {
 
             Queue<Key> keysToDelete = new Queue<>();
 
-            for(int i = 0; i < buckets.size(); i++) {
+            for (int i = 0; i < buckets.size(); i++) {
                 if (buckets.get(i) != null) {
                     Node node = buckets.get(i);
 
@@ -236,7 +236,7 @@ public class Exercise3 {
                 }
             }
 
-            for(Key key : keysToDelete) {
+            for (Key key : keysToDelete) {
                 delete(key);
             }
 
@@ -249,7 +249,7 @@ public class Exercise3 {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(int i = 0; i < buckets.size(); i++) {
+            for (int i = 0; i < buckets.size(); i++) {
                 if (buckets.get(i) != null) {
                     Node node = buckets.get(i);
 
@@ -262,17 +262,16 @@ public class Exercise3 {
 
             if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }
-
             return keys;
         }
     }
@@ -291,20 +290,19 @@ public class Exercise3 {
         separateChainingHashTableLinkedListWithDeleteK.put(7, 7);
 
         StdOut.println("\nKeys");
-        for(Integer key : separateChainingHashTableLinkedListWithDeleteK.keys()) {
+        for (Integer key : separateChainingHashTableLinkedListWithDeleteK.keys()) {
             StdOut.print(key + " ");
         }
 
         int[] kValuesToTest = {8, 7, 6, 4, 3, 2, 0};
-        for(int k : kValuesToTest) {
+        for (int k : kValuesToTest) {
             StdOut.println("\nDelete K = " + k);
             separateChainingHashTableLinkedListWithDeleteK.deleteNewestNodes(k);
 
-            for(Integer key : separateChainingHashTableLinkedListWithDeleteK.keys()) {
+            for (Integer key : separateChainingHashTableLinkedListWithDeleteK.keys()) {
                 StdOut.print(key + " ");
             }
             StdOut.println("\nSize: " + separateChainingHashTableLinkedListWithDeleteK.size());
         }
     }
-
 }

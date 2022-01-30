@@ -17,7 +17,7 @@ public class Exercise30_DuplicatesRevisited {
             // and every optimization counts
             java.util.Set<Integer> set = new java.util.HashSet<>();
 
-            for(int i = 0; i < numberOfValues; i++) {
+            for (int i = 0; i < numberOfValues; i++) {
                 int key = StdRandom.uniform(maxValue);
 
                 if (!set.contains(key)) {
@@ -33,7 +33,7 @@ public class Exercise30_DuplicatesRevisited {
             // and every optimization counts
             java.util.Set<Long> set = new java.util.HashSet<>();
 
-            for(int i = 0; i < numberOfValues; i++) {
+            for (int i = 0; i < numberOfValues; i++) {
                 long key = ThreadLocalRandom.current().nextLong(maxValue);
 
                 if (!set.contains(key)) {
@@ -47,7 +47,7 @@ public class Exercise30_DuplicatesRevisited {
         private int countDistinctIntegerValuesUsingIndex(int numberOfValues, int maxValue) {
             int[] values = new int[maxValue];
 
-            for(int i = 0; i < numberOfValues; i++) {
+            for (int i = 0; i < numberOfValues; i++) {
                 int generatedValue = StdRandom.uniform(maxValue);
                 values[generatedValue]++;
             }
@@ -127,8 +127,8 @@ public class Exercise30_DuplicatesRevisited {
 
         DistinctCounter distinctCounter = new DistinctCounter();
 
-        for(int n = 0; n < values.length; n++) {
-            for(int m = 0; m < 3; m++) {
+        for (int n = 0; n < values.length; n++) {
+            for (int m = 0; m < 3; m++) {
                 int numberOfValues = values[n];
 
                 int maxValue = 0;
@@ -142,7 +142,7 @@ public class Exercise30_DuplicatesRevisited {
 
                 Stopwatch stopwatch = new Stopwatch();
 
-                for(int trial = 0; trial < numberOfTrials; trial++) {
+                for (int trial = 0; trial < numberOfTrials; trial++) {
 
                     // Count the distinct values, but will not be used in this exercise since we are interested
                     // only in the running time
@@ -176,5 +176,4 @@ public class Exercise30_DuplicatesRevisited {
     private void printResults(String method, String valuesType, int numberOfValues, int maxValue, double timeSpent) {
         StdOut.printf("%18s %15s %19d %15d %13.2f\n", method, valuesType, numberOfValues, maxValue, timeSpent);
     }
-
 }

@@ -100,7 +100,7 @@ public class Exercise30_Certification {
                 resize(keys.length * 2);
             }
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
                 values[i] = values[i - 1];
             }
@@ -128,7 +128,7 @@ public class Exercise30_Certification {
             }
 
             int rank = rank(key);
-            for(int i = rank; i < size - 1; i++) {
+            for (int i = rank; i < size - 1; i++) {
                 keys[i] = keys[i + 1];
                 values[i] = values[i + 1];
             }
@@ -229,7 +229,7 @@ public class Exercise30_Certification {
 
             Queue<Key> queue = new Queue<>();
 
-            for(int i = rank(low); i < rank(high); i++) {
+            for (int i = rank(low); i < rank(high); i++) {
                 queue.enqueue(keys[i]);
             }
 
@@ -257,19 +257,19 @@ public class Exercise30_Certification {
 
         private boolean certifyIntegrity() {
             // Check if every index i = rank(select(i))
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                if (i != rank(select(i))) {
                    return false;
                }
             }
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i].compareTo(select(rank(keys[i]))) != 0) {
                     return false;
                 }
             }
 
             //Check if keys array is ordered
-            for(int i = 0; i < size - 1; i++) {
+            for (int i = 0; i < size - 1; i++) {
                 if (keys[i].compareTo(keys[i + 1]) > 0) {
                     return false;
                 }
@@ -283,15 +283,14 @@ public class Exercise30_Certification {
         Exercise30_Certification certification = new Exercise30_Certification();
         BinarySearchSymbolTable<Integer, String> binarySearchSymbolTable = certification.new BinarySearchSymbolTable<>();
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             binarySearchSymbolTable.put(i, "Value " + i);
         }
 
-        for(int i = 1; i < 10; i *= 2) {
+        for (int i = 1; i < 10; i *= 2) {
             binarySearchSymbolTable.delete(i);
         }
 
         StdOut.println("Assertions OK");
     }
-
 }

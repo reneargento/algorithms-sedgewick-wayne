@@ -390,7 +390,7 @@ public class Exercise13_PriorityQueuePerformance {
         public double pressureWithWallCollisions(double time) {
             double systemPressure = 0;
 
-            for(ParticleWithPressureAndId particle : particles) {
+            for (ParticleWithPressureAndId particle : particles) {
                 systemPressure += particle.pressure();
             }
 
@@ -400,7 +400,7 @@ public class Exercise13_PriorityQueuePerformance {
         public double volume() {
             double systemVolume = 0;
 
-            for(ParticleWithPressureAndId particle : particles) {
+            for (ParticleWithPressureAndId particle : particles) {
                 systemVolume += particle.volume();
             }
 
@@ -427,7 +427,7 @@ public class Exercise13_PriorityQueuePerformance {
         public double temperature() {
             double totalTemperature = 0;
 
-            for(ParticleWithPressureAndId particle : particles) {
+            for (ParticleWithPressureAndId particle : particles) {
                 totalTemperature += particle.temperature();
             }
 
@@ -437,7 +437,6 @@ public class Exercise13_PriorityQueuePerformance {
         // V = SQRT(2 kb T / M)
         // SQRT(V / 2) = (vx + vy) / 2
         private void setTemperature(double temperature) {
-
             for (ParticleWithPressureAndId particle : particles) {
                 double newVelocityMagnitude =
                         Math.sqrt(2 * BOLTZMANN_CONSTANT * temperature / particle.getMass());
@@ -568,5 +567,4 @@ public class Exercise13_PriorityQueuePerformance {
 
         new Exercise13_PriorityQueuePerformance().doExperiment(numberOfParticles, simulationTime, hertz);
     }
-
 }

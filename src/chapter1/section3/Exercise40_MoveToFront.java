@@ -57,7 +57,7 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item> {
             first = current.next;
             size--;
         } else {
-            for(current = first; current.next != null; current = current.next) {
+            for (current = first; current.next != null; current = current.next) {
                 if (current.next.item.equals(item)) {
                     break;
                 }
@@ -118,5 +118,4 @@ public class Exercise40_MoveToFront<Item> implements Iterable<Item> {
         StdOut.println("Characters: " + list.toString());
         // StdOut.println("Expected: z d c b a");
     }
-
 }

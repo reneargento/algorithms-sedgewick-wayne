@@ -23,30 +23,30 @@ public class Exercise9 {
             String[] auxArray = new String[array.length];
             int maxStringLength = getMaxStringLength(array);
 
-            for(int digit = maxStringLength - 1; digit >= 0; digit--) {
+            for (int digit = maxStringLength - 1; digit >= 0; digit--) {
                 // Sort by key-indexed counting on digitTh char
 
                 // Compute frequency counts
                 int count[] = new int[alphabetSize + 1];
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     int digitIndex = charAt(array[i], digit);
                     count[digitIndex + 1]++;
                 }
 
                 // Transform counts to indices
-                for(int r = 0; r < alphabetSize; r++) {
+                for (int r = 0; r < alphabetSize; r++) {
                     count[r + 1] += count[r];
                 }
 
                 // Distribute
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     int digitIndex = charAt(array[i], digit);
                     int indexInAuxArray = count[digitIndex]++;
                     auxArray[indexInAuxArray] = array[i];
                 }
 
                 // Copy back
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     array[i] = auxArray[i];
                 }
             }
@@ -55,12 +55,11 @@ public class Exercise9 {
         private int getMaxStringLength(String[] strings) {
             int maxLength = -1;
 
-            for(String string : strings) {
+            for (String string : strings) {
                 if (string.length() > maxLength) {
                     maxLength = string.length();
                 }
             }
-
             return maxLength;
         }
 
@@ -72,7 +71,6 @@ public class Exercise9 {
                 return 0;
             }
         }
-
     }
 
     public static void main(String[] args) {
@@ -85,7 +83,7 @@ public class Exercise9 {
 
         StringJoiner sortedArray1 = new StringJoiner(" ");
 
-        for(String string : array1) {
+        for (String string : array1) {
             sortedArray1.add(string);
         }
         StdOut.println("Sorted array 1");
@@ -98,12 +96,11 @@ public class Exercise9 {
 
         StringJoiner sortedArray2 = new StringJoiner(" ");
 
-        for(String string : array2) {
+        for (String string : array2) {
             sortedArray2.add(string);
         }
         StdOut.println("Sorted array 2");
         StdOut.println(sortedArray2);
         StdOut.println("Expected: \nBubbleSort InsertionSort MergeSort QuickSort SelectionSort ShellSort");
     }
-
 }

@@ -13,18 +13,16 @@ import java.util.List;
  */
 public class Exercise43_RandomEuclideanGraphs {
 
-    public List<Exercise37_EuclideanGraphs.EuclideanGraph> generateRandomEuclideanGraphs(int numberOfGraphs,
-                                                                                         int vertices, double radius) {
+    public List<Exercise37_EuclideanGraphs.EuclideanGraph> generateRandomEuclideanGraphs(int numberOfGraphs, int vertices, double radius) {
         if (numberOfGraphs < 0) {
             throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 
         List<Exercise37_EuclideanGraphs.EuclideanGraph> randomEuclideanGraphs = new ArrayList<>();
-        for(int graph = 0; graph < numberOfGraphs; graph++) {
+        for (int graph = 0; graph < numberOfGraphs; graph++) {
             Exercise37_EuclideanGraphs.EuclideanGraph randomEuclideanGraph = randomEuclideanGraph(vertices, radius);
             randomEuclideanGraphs.add(randomEuclideanGraph);
         }
-
         return randomEuclideanGraphs;
     }
 
@@ -35,7 +33,7 @@ public class Exercise43_RandomEuclideanGraphs {
         Exercise37_EuclideanGraphs.EuclideanGraph.Vertex[] allVertices =
                 new Exercise37_EuclideanGraphs.EuclideanGraph.Vertex[vertices];
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             double randomXCoordinate = StdRandom.uniform();
             double randomYCoordinate = StdRandom.uniform();
 
@@ -46,8 +44,8 @@ public class Exercise43_RandomEuclideanGraphs {
             randomEuclideanGraph.addVertex(vertex);
         }
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
-            for(int otherVertex = vertexId + 1; otherVertex < vertices; otherVertex++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int otherVertex = vertexId + 1; otherVertex < vertices; otherVertex++) {
                 double distance = MathUtil.distanceBetweenPoints(allVertices[vertexId].xCoordinate,
                         allVertices[vertexId].yCoordinate, allVertices[otherVertex].xCoordinate,
                         allVertices[otherVertex].yCoordinate);
@@ -61,7 +59,7 @@ public class Exercise43_RandomEuclideanGraphs {
         return randomEuclideanGraph;
     }
 
-    //Parameters example: 6 0.5 100
+    // Parameters example: 6 0.5 100
     public static void main(String[] args) {
         int vertices = Integer.parseInt(args[0]);
         double radius = Double.parseDouble(args[1]);
@@ -75,8 +73,8 @@ public class Exercise43_RandomEuclideanGraphs {
 
         UnionFind unionFind = new UnionFind(vertices);
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
-            for(int neighbor : firstEuclideanGraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
+            for (int neighbor : firstEuclideanGraph.adjacent(vertex)) {
                 unionFind.union(vertex, neighbor);
             }
         }
@@ -88,5 +86,4 @@ public class Exercise43_RandomEuclideanGraphs {
         StdOut.println("Expected to be connected: " + (radius > thresholdValue));
         StdOut.println("Is connected: " + (unionFind.count() == 1));
     }
-
 }

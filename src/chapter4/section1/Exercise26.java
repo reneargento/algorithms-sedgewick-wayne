@@ -72,7 +72,7 @@ public class Exercise26 {
 
                 Stack<Integer> path = new Stack<>();
 
-                for(int currentVertex = vertex; currentVertex != source; currentVertex = edgeTo[currentVertex]) {
+                for (int currentVertex = vertex; currentVertex != source; currentVertex = edgeTo[currentVertex]) {
                     path.push(currentVertex);
                 }
 
@@ -102,7 +102,7 @@ public class Exercise26 {
                     int destinationVertex = symbolGraph.index(sink);
 
                     if (depthFirstPathsIterative.hasPathTo(destinationVertex)) {
-                        for(int vertexInPath : depthFirstPathsIterative.pathTo(destinationVertex)) {
+                        for (int vertexInPath : depthFirstPathsIterative.pathTo(destinationVertex)) {
                             StdOut.println("    " + symbolGraph.name(vertexInPath));
                         }
                     } else {
@@ -115,10 +115,9 @@ public class Exercise26 {
         }
     }
 
-    //Arguments example: movies.txt / "Bacon, Kevin"
+    // Arguments example: movies.txt / "Bacon, Kevin"
     public static void main(String[] args) {
         String movieFilePath = Constants.FILES_PATH + args[0];
         new Exercise26().new DegreesOfSeparationDFS().degreesOfSeparationDFS(movieFilePath, args[1], args[2]);
     }
-
 }

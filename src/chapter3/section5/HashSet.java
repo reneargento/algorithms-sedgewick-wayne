@@ -36,7 +36,7 @@ public class HashSet<Key> {
             }
 
             public boolean contains(Key key) {
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (key.equals(node.key)) {
                         return true;
                     }
@@ -46,7 +46,7 @@ public class HashSet<Key> {
             }
 
             public void put(Key key) {
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (key.equals(node.key)) {
                         node.key = key;
                         return;
@@ -64,7 +64,7 @@ public class HashSet<Key> {
                     return;
                 }
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
@@ -76,13 +76,11 @@ public class HashSet<Key> {
             public Iterable<Key> keys() {
                 Queue<Key> keys = new Queue<>();
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     keys.enqueue(node.key);
                 }
-
                 return keys;
             }
-
         }
 
         private int averageListSize;
@@ -94,9 +92,9 @@ public class HashSet<Key> {
         private static final int DEFAULT_HASH_TABLE_SIZE = 997;
         private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
 
-        //The largest prime <= 2^i for i = 1 to 31
-        //Used to distribute keys uniformly in the hash table after resizes
-        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        // The largest prime <= 2^i for i = 1 to 31
+        // Used to distribute keys uniformly in the hash table after resizes
+        // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
                 1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -104,8 +102,8 @@ public class HashSet<Key> {
                 536870909, 1073741789, 2147483647
         };
 
-        //The lg of the hash table size
-        //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+        // The lg of the hash table size
+        // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
         private SeparateChainingHashTable() {
@@ -117,7 +115,7 @@ public class HashSet<Key> {
             this.averageListSize = averageListSize;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
 
@@ -154,7 +152,7 @@ public class HashSet<Key> {
             SeparateChainingHashTable<Key> separateChainingHashTableTemp =
                     new SeparateChainingHashTable<>(newSize, averageListSize);
 
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 separateChainingHashTableTemp.put(key);
             }
 
@@ -195,28 +193,26 @@ public class HashSet<Key> {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(SequentialSearchSymbolTable<Key> sequentialSearchST : symbolTable) {
-                for(Key key : sequentialSearchST.keys()) {
+            for (SequentialSearchSymbolTable<Key> sequentialSearchST : symbolTable) {
+                for (Key key : sequentialSearchST.keys()) {
                     keys.enqueue(key);
                 }
             }
 
             if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }
-
             return keys;
         }
-
     }
 
     private SeparateChainingHashTable<Key> hashTable;
@@ -270,7 +266,7 @@ public class HashSet<Key> {
         StringBuilder stringBuilder = new StringBuilder("{");
 
         boolean isFirstKey = true;
-        for(Key key : keys()) {
+        for (Key key : keys()) {
             if (isFirstKey) {
                 isFirstKey = false;
             } else {
@@ -283,5 +279,4 @@ public class HashSet<Key> {
         stringBuilder.append(" }");
         return stringBuilder.toString();
     }
-
 }

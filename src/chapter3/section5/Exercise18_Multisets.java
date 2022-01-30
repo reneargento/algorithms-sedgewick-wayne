@@ -107,7 +107,7 @@ public class Exercise18_Multisets {
             }
 
             public boolean contains(Key key) {
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (key.equals(node.key)) {
                         return true;
                     }
@@ -128,7 +128,7 @@ public class Exercise18_Multisets {
                     return;
                 }
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
@@ -140,7 +140,7 @@ public class Exercise18_Multisets {
             public Iterable<Key> keys() {
                 Queue<Key> keys = new Queue<>();
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     keys.enqueue(node.key);
                 }
 
@@ -158,9 +158,9 @@ public class Exercise18_Multisets {
         private static final int DEFAULT_HASH_TABLE_SIZE = 997;
         private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
 
-        //The largest prime <= 2^i for i = 1 to 31
-        //Used to distribute keys uniformly in the hash table after resizes
-        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        // The largest prime <= 2^i for i = 1 to 31
+        // Used to distribute keys uniformly in the hash table after resizes
+        // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
                 1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -168,8 +168,8 @@ public class Exercise18_Multisets {
                 536870909, 1073741789, 2147483647
         };
 
-        //The lg of the hash table size
-        //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+        // The lg of the hash table size
+        // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
         public SeparateChainingMultiSET() {
@@ -181,7 +181,7 @@ public class Exercise18_Multisets {
             this.averageListSize = averageListSize;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
 
@@ -202,7 +202,6 @@ public class Exercise18_Multisets {
             if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
-
             return hash % size;
         }
 
@@ -214,17 +213,15 @@ public class Exercise18_Multisets {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
-
             return symbolTable[hash(key)].contains(key);
         }
 
         private void resize(int newSize) {
             SeparateChainingMultiSET<Key> separateChainingMultiSET = new SeparateChainingMultiSET<>(newSize, averageListSize);
 
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 separateChainingMultiSET.add(key);
             }
-
             symbolTable = separateChainingMultiSET.symbolTable;
             size = separateChainingMultiSET.size;
         }
@@ -267,12 +264,11 @@ public class Exercise18_Multisets {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(SequentialSearchSymbolTable<Key> sequentialSearchST : symbolTable) {
-                for(Key key : sequentialSearchST.keys()) {
+            for (SequentialSearchSymbolTable<Key> sequentialSearchST : symbolTable) {
+                for (Key key : sequentialSearchST.keys()) {
                     keys.enqueue(key);
                 }
             }
-
             return keys;
         }
 
@@ -285,7 +281,7 @@ public class Exercise18_Multisets {
             StringBuilder stringBuilder = new StringBuilder("{");
 
             boolean isFirstKey = true;
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 if (isFirstKey) {
                     isFirstKey = false;
                 } else {
@@ -301,7 +297,6 @@ public class Exercise18_Multisets {
     }
 
     public class BinarySearchMultiSET<Key extends Comparable<Key>> implements MultiSET<Key> {
-
         private Key[] keys;
         private int size;
 
@@ -413,7 +408,7 @@ public class Exercise18_Multisets {
 
             int rank = rankLast(key);
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
             }
             keys[rank] = key;
@@ -431,7 +426,7 @@ public class Exercise18_Multisets {
 
             while (contains(key)) {
                 int rank = rankLast(key);
-                for(int i = rank; i < size - 1; i++) {
+                for (int i = rank; i < size - 1; i++) {
                     keys[i] = keys[i + 1];
                 }
 
@@ -448,7 +443,6 @@ public class Exercise18_Multisets {
             if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
-
             return keys[0];
         }
 
@@ -456,7 +450,6 @@ public class Exercise18_Multisets {
             if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
-
             return keys[size - 1];
         }
 
@@ -464,7 +457,6 @@ public class Exercise18_Multisets {
             if (isEmpty() || k >= size) {
                 throw new IllegalArgumentException("Index " + k + " is higher than size");
             }
-
             return keys[k];
         }
 
@@ -474,7 +466,6 @@ public class Exercise18_Multisets {
             if (rank == size) {
                 return null;
             }
-
             return keys[rank];
         }
 
@@ -488,7 +479,6 @@ public class Exercise18_Multisets {
             if (rank == 0) {
                 return null;
             }
-
             return keys[rank - 1];
         }
 
@@ -537,14 +527,13 @@ public class Exercise18_Multisets {
 
             Queue<Key> queue = new Queue<>();
 
-            for(int i = rankFirst(low); i < rankLast(high); i++) {
+            for (int i = rankFirst(low); i < rankLast(high); i++) {
                 queue.enqueue(keys[i]);
             }
 
             if (contains(high)) {
                 queue.enqueue(keys[rankLast(high)]);
             }
-
             return queue;
         }
 
@@ -567,7 +556,7 @@ public class Exercise18_Multisets {
             StringBuilder stringBuilder = new StringBuilder("{");
 
             boolean isFirstKey = true;
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 if (isFirstKey) {
                     isFirstKey = false;
                 } else {
@@ -592,10 +581,10 @@ public class Exercise18_Multisets {
         StdOut.println("*********** SeparateChainingMultiSET tests ***********");
         MultiHashSET<Integer> separateChainingMultiSET = new SeparateChainingMultiSET<>();
 
-        //Test isEmpty()
+        // Test isEmpty()
         StdOut.println("\nIsEmpty: " + separateChainingMultiSET.isEmpty() + " Expected: true");
 
-        //Test add()
+        // Test add()
         separateChainingMultiSET.add(0);
         separateChainingMultiSET.add(0);
         separateChainingMultiSET.add(0);
@@ -617,24 +606,24 @@ public class Exercise18_Multisets {
         separateChainingMultiSET.add(23);
         separateChainingMultiSET.add(24);
 
-        //Test keys()
+        // Test keys()
         StdOut.println("\nKeys() test");
 
-        for(Integer key : separateChainingMultiSET.keys()) {
+        for (Integer key : separateChainingMultiSET.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: 0 0 0 0 5 5 8 8 20 20 20 20 21 22 23 24 - Not necessarily in this order");
 
-        //Test size()
+        // Test size()
         StdOut.println("\nKeys size: " + separateChainingMultiSET.size() + " Expected: 16");
 
         StdOut.println("\ntoString() test: " + separateChainingMultiSET);
 
-        //Test contains()
+        // Test contains()
         StdOut.println("\nContains 0: " + separateChainingMultiSET.contains(0) + " Expected: true");
         StdOut.println("Contains 100: " + separateChainingMultiSET.contains(100) + " Expected: false");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 5");
         separateChainingMultiSET.delete(5);
         StdOut.println(separateChainingMultiSET);
@@ -655,10 +644,10 @@ public class Exercise18_Multisets {
         StdOut.println("\n\n*********** BinarySearchMultiSET tests ***********");
         MultiSET<Integer> binarySearchMultiSET = new BinarySearchMultiSET<>();
 
-        //Test isEmpty()
+        // Test isEmpty()
         StdOut.println("\nIsEmpty: " + binarySearchMultiSET.isEmpty() + " Expected: true");
 
-        //Test add()
+        // Test add()
         binarySearchMultiSET.add(0);
         binarySearchMultiSET.add(0);
         binarySearchMultiSET.add(0);
@@ -680,53 +669,53 @@ public class Exercise18_Multisets {
         binarySearchMultiSET.add(23);
         binarySearchMultiSET.add(24);
 
-        //Test keys()
+        // Test keys()
         StdOut.println("\nKeys() test");
-        for(Integer key : binarySearchMultiSET.keys()) {
+        for (Integer key : binarySearchMultiSET.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: 0 0 0 0 5 5 8 8 20 20 20 20 21 22 23 24");
 
-        //Test size()
+        // Test size()
         StdOut.println("\nKeys size: " + binarySearchMultiSET.size() + " Expected: 16");
 
-        //Test size() with range
+        // Test size() with range
         StdOut.println("Keys size [0, 20]: " + binarySearchMultiSET.size(0, 20) + " Expected: 12");
 
-        //Test contains()
+        // Test contains()
         StdOut.println("\nContains 8: " + binarySearchMultiSET.contains(8) + " Expected: true");
         StdOut.println("Contains 9: " + binarySearchMultiSET.contains(9) + " Expected: false");
 
-        //Test min()
+        // Test min()
         StdOut.println("\nMin key: " + binarySearchMultiSET.min() + " Expected: 0");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + binarySearchMultiSET.max() + " Expected: 24");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + binarySearchMultiSET.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + binarySearchMultiSET.floor(15) + " Expected: 8");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + binarySearchMultiSET.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + binarySearchMultiSET.ceiling(15) + " Expected: 20");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 3: " + binarySearchMultiSET.select(3) + " Expected: 0");
         StdOut.println("Select key of rank 4: " + binarySearchMultiSET.select(4) + " Expected: 5");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("RankFirst of key 8: " + binarySearchMultiSET.rankFirst(8) + " Expected: 6");
         StdOut.println("RankFirst of key 9: " + binarySearchMultiSET.rankFirst(9) + " Expected: 8");
         StdOut.println("RankLast of key 9: " + binarySearchMultiSET.rankLast(9) + " Expected: 8");
         StdOut.println("RankFirst of key 20: " + binarySearchMultiSET.rankFirst(20) + " Expected: 8");
         StdOut.println("RankLast of key 20: " + binarySearchMultiSET.rankLast(20) + " Expected: 11");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 20");
         binarySearchMultiSET.delete(20);
 
-        //Test toString()
+        // Test toString()
         StdOut.println(binarySearchMultiSET);
         StdOut.println("\nKeys size: " + binarySearchMultiSET.size() + " Expected: 12");
 
@@ -736,41 +725,40 @@ public class Exercise18_Multisets {
         StdOut.println(binarySearchMultiSET);
         StdOut.println("\nKeys size: " + binarySearchMultiSET.size() + " Expected: 10");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key 0)");
         binarySearchMultiSET.deleteMin();
 
         StdOut.println(binarySearchMultiSET);
         StdOut.println("\nKeys size: " + binarySearchMultiSET.size() + " Expected: 6");
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 24)");
         binarySearchMultiSET.deleteMax();
 
         StdOut.println(binarySearchMultiSET);
         StdOut.println("\nKeys size: " + binarySearchMultiSET.size() + " Expected: 5");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
-        for(Integer key : binarySearchMultiSET.keys(2, 10)) {
+        for (Integer key : binarySearchMultiSET.keys(2, 10)) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\n\nKeys in range [20, 22]");
-        for(Integer key : binarySearchMultiSET.keys(20, 22)) {
+        for (Integer key : binarySearchMultiSET.keys(20, 22)) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\n\nIsEmpty: " + binarySearchMultiSET.isEmpty() + " Expected: false");
 
-        //Delete all
+        // Delete all
         StdOut.println("\nDelete all");
         while (binarySearchMultiSET.size() > 0) {
             StdOut.println(binarySearchMultiSET);
-            //binarySearchMultiSET.delete(binarySearchMultiSET.select(0));
+            // binarySearchMultiSET.delete(binarySearchMultiSET.select(0));
             binarySearchMultiSET.delete(binarySearchMultiSET.select(binarySearchMultiSET.size() - 1));
         }
         StdOut.println(binarySearchMultiSET);
     }
-
 }

@@ -42,7 +42,7 @@ public class Exercise25_ComputationalNumberTheory {
     }
 
     private void initPriorityQueue(PriorityQueue<ValueForComputation> priorityQueue, int n) {
-        for(int i = 0; i <= n; i++) {
+        for (int i = 0; i <= n; i++) {
             BigInteger iValue = BigInteger.valueOf(i);
             BigInteger value = iValue.multiply(iValue).multiply(iValue);
 

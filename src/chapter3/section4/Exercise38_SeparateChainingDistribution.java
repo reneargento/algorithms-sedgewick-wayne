@@ -46,19 +46,18 @@ public class Exercise38_SeparateChainingDistribution {
             }
 
             public Value get(Key key) {
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (key.equals(node.key)) {
                         return node.value;
                     }
                 }
-
                 return null;
             }
 
             public void put(Key key, Value value) {
                 costOfPutCompares = 0;
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     costOfPutCompares++;
 
                     if (key.equals(node.key)) {
@@ -66,7 +65,6 @@ public class Exercise38_SeparateChainingDistribution {
                         return;
                     }
                 }
-
                 first = new Node(key, value, first);
                 size++;
             }
@@ -78,7 +76,7 @@ public class Exercise38_SeparateChainingDistribution {
                     return;
                 }
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
@@ -90,13 +88,11 @@ public class Exercise38_SeparateChainingDistribution {
             public Iterable<Key> keys() {
                 Queue<Key> keys = new Queue<>();
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     keys.enqueue(node.key);
                 }
-
                 return keys;
             }
-
         }
 
         private int size;
@@ -109,7 +105,7 @@ public class Exercise38_SeparateChainingDistribution {
             this.size = size;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
         }
@@ -132,7 +128,6 @@ public class Exercise38_SeparateChainingDistribution {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
-
             return get(key) != null;
         }
 
@@ -140,7 +135,6 @@ public class Exercise38_SeparateChainingDistribution {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
-
             return symbolTable[hash(key)].get(key);
         }
 
@@ -171,7 +165,6 @@ public class Exercise38_SeparateChainingDistribution {
             if (isEmpty() || !contains(key)) {
                 return;
             }
-
             symbolTable[hash(key)].delete(key);
             keysSize--;
         }
@@ -179,32 +172,29 @@ public class Exercise38_SeparateChainingDistribution {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
-                for(Key key : sequentialSearchST.keys()) {
+            for (SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
+                for (Key key : sequentialSearchST.keys()) {
                     keys.enqueue(key);
                 }
             }
 
             if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }
-
             return keys;
         }
-
     }
 
     private void doExperiment() {
-
         SeparateChainingHashTableFixedSizeCost<Integer, Integer> separateChainingHashTableFixedSizeCost =
                 new SeparateChainingHashTableFixedSizeCost<>(100000);
 
@@ -224,7 +214,7 @@ public class Exercise38_SeparateChainingDistribution {
 
         long totalCostOfPutCompares = 0;
 
-        for(int operation = 1; operation <= 100000; operation++) {
+        for (int operation = 1; operation <= 100000; operation++) {
             int randomKey = StdRandom.uniform(maxInt);
             separateChainingHashTableFixedSizeCost.put(randomKey, randomKey);
 
@@ -250,5 +240,4 @@ public class Exercise38_SeparateChainingDistribution {
     public static void main(String[] args) {
         new Exercise38_SeparateChainingDistribution().doExperiment();
     }
-
 }

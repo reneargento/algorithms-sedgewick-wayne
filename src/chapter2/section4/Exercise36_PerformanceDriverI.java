@@ -22,17 +22,16 @@ public class Exercise36_PerformanceDriverI {
     }
 
     private static void doExperiment(int numberOfExperiments, Map<Integer, Comparable[]> allInputArrays) {
-
         StdOut.printf("%13s %12s\n", "Array Size | ", "Average Running Time");
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] array = allInputArrays.get(i);
             PriorityQueue<Double> priorityQueue = new PriorityQueue<>(array.length, PriorityQueue.Orientation.MAX);
 
             double totalTime = 0;
 
-            for(int trial = 0; trial < 5; trial++) {
+            for (int trial = 0; trial < 5; trial++) {
                 Stopwatch timer = new Stopwatch();
                 performanceTest(priorityQueue, array);
                 double runningTime = timer.elapsedTime();
@@ -46,22 +45,22 @@ public class Exercise36_PerformanceDriverI {
     }
 
     private static void performanceTest(PriorityQueue<Double> priorityQueue, Comparable[] keys) {
-        //Fill the priority queue
-        for(int i = 0; i < keys.length; i++) {
+        // Fill the priority queue
+        for (int i = 0; i < keys.length; i++) {
             priorityQueue.insert((double) keys[i]);
         }
 
-        //Remove half the keys
-        for(int i = 0; i < keys.length / 2; i++) {
+        // Remove half the keys
+        for (int i = 0; i < keys.length / 2; i++) {
             priorityQueue.deleteTop();
         }
 
-        //Fill the priority queue again
-        for(int i = keys.length / 2; i < keys.length; i++) {
+        // Fill the priority queue again
+        for (int i = keys.length / 2; i < keys.length; i++) {
             priorityQueue.insert((double) keys[i]);
         }
 
-        //Remove all the keys
+        // Remove all the keys
         while (priorityQueue.size() > 0) {
             priorityQueue.deleteTop();
         }
@@ -70,5 +69,4 @@ public class Exercise36_PerformanceDriverI {
     private static void printResults(int arraySize, double runningTime) {
         StdOut.printf("%10d %23.1f\n", arraySize, runningTime);
     }
-
 }

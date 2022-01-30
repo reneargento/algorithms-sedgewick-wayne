@@ -13,14 +13,14 @@ public class Exercise29_TestClient {
         BinarySearchSymbolTable<String, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
          // Parameter example: S E A R C H E X A M P L E
-        for(int i = 0; !StdIn.isEmpty(); i++) {
+        for (int i = 0; !StdIn.isEmpty(); i++) {
             String key = StdIn.readString();
             binarySearchSymbolTable.put(key, i);
         }
 
         String[] keys = new String[binarySearchSymbolTable.size()];
         int keyArrayIndex = 0;
-        for(String key : binarySearchSymbolTable.keys()) {
+        for (String key : binarySearchSymbolTable.keys()) {
             keys[keyArrayIndex++] = key;
         }
 
@@ -29,7 +29,6 @@ public class Exercise29_TestClient {
         StdOut.println("max  = " + binarySearchSymbolTable.max());
         StdOut.println();
 
-
         // Print keys in order using keys()
         StdOut.println("Testing keys()");
         StdOut.println("--------------------------------");
@@ -37,7 +36,6 @@ public class Exercise29_TestClient {
             StdOut.println(key + " " + binarySearchSymbolTable.get(key));
         }
         StdOut.println();
-
 
         // Print keys in order using select
         StdOut.println("Testing select");
@@ -110,5 +108,4 @@ public class Exercise29_TestClient {
         }
         StdOut.println();
     }
-
 }

@@ -16,7 +16,7 @@ public class Exercise23_VyssotskyAlgorithm {
         public Queue<Edge> minimumSpanningTree(EdgeWeightedGraph edgeWeightedGraph) {
             EdgeWeightedGraphWithDelete putativeTree = new EdgeWeightedGraphWithDelete(edgeWeightedGraph.vertices());
 
-            for(Edge edge : edgeWeightedGraph.edges()) {
+            for (Edge edge : edgeWeightedGraph.edges()) {
                 putativeTree.addEdge(edge);
                 HashSet<Integer> vertexToSearch = new HashSet<>();
                 vertexToSearch.add(edge.either());
@@ -29,7 +29,7 @@ public class Exercise23_VyssotskyAlgorithm {
                     Edge maxWeightEdge = null;
                     double maxWeight = Double.NEGATIVE_INFINITY;
 
-                    for(Edge edgeInCycle : cycle) {
+                    for (Edge edgeInCycle : cycle) {
                         if (edgeInCycle.weight() > maxWeight) {
                             maxWeight = edgeInCycle.weight();
                             maxWeightEdge = edgeInCycle;
@@ -42,7 +42,7 @@ public class Exercise23_VyssotskyAlgorithm {
 
             Queue<Edge> minimumSpanningTree = new Queue<>();
 
-            for(Edge edge : putativeTree.edges()) {
+            for (Edge edge : putativeTree.edges()) {
                 minimumSpanningTree.enqueue(edge);
             }
 
@@ -78,7 +78,7 @@ public class Exercise23_VyssotskyAlgorithm {
 
         Queue<Edge> minimumSpanningTree = vyssotsky.minimumSpanningTree(edgeWeightedGraph1);
 
-        for(Edge edge : minimumSpanningTree) {
+        for (Edge edge : minimumSpanningTree) {
             StdOut.println(edge);
         }
 
@@ -92,7 +92,7 @@ public class Exercise23_VyssotskyAlgorithm {
 
         Queue<Edge> minimumSpanningForest = vyssotsky.minimumSpanningTree(edgeWeightedGraph2);
 
-        for(Edge edge : minimumSpanningForest) {
+        for (Edge edge : minimumSpanningForest) {
             StdOut.println(edge);
         }
 
@@ -104,5 +104,4 @@ public class Exercise23_VyssotskyAlgorithm {
                 "1-2 0.41000\n" +
                 "0-1 0.30000");
     }
-
 }

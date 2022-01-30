@@ -24,7 +24,7 @@ public class Exercise32_ParentCheckingHeuristic {
             onQueue = new boolean[edgeWeightedDigraph.vertices()];
             queue = new Queue<>();
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
 
@@ -49,8 +49,7 @@ public class Exercise32_ParentCheckingHeuristic {
         }
 
         private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex) {
-
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -87,7 +86,7 @@ public class Exercise32_ParentCheckingHeuristic {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
 
@@ -98,7 +97,7 @@ public class Exercise32_ParentCheckingHeuristic {
             int vertices = edgeTo.length;
             EdgeWeightedDigraph shortestPathsTree = new EdgeWeightedDigraph(vertices);
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 if (edgeTo[vertex] != null) {
                     shortestPathsTree.addEdge(edgeTo[vertex]);
                 }
@@ -141,7 +140,7 @@ public class Exercise32_ParentCheckingHeuristic {
         StdOut.println("Shortest-paths-tree\n");
         StdOut.printf("%13s %10s\n", "edgeTo[]",  "distTo[]");
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             StdOut.printf("%d %11s %9.2f\n", vertex, bellmanFordParentCheckingHeuristic.edgeTo(vertex),
                     bellmanFordParentCheckingHeuristic.distTo(vertex));
         }
@@ -159,7 +158,7 @@ public class Exercise32_ParentCheckingHeuristic {
 
         StdOut.print("\nPath from 0 to 1: ");
 
-        for(DirectedEdge edge : bellmanFordParentCheckingHeuristic.pathTo(1)) {
+        for (DirectedEdge edge : bellmanFordParentCheckingHeuristic.pathTo(1)) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
         StdOut.println("\nExpected:         0->2 2->7 7->3 3->6 6->4 4->5 5->1");
@@ -176,7 +175,7 @@ public class Exercise32_ParentCheckingHeuristic {
         StdOut.println("\nShortest-paths-tree 2\n");
         StdOut.printf("%13s %10s\n", "edgeTo[]",  "distTo[]");
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph2.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph2.vertices(); vertex++) {
             StdOut.printf("%d %11s %9.2f\n", vertex, bellmanFordParentCheckingHeuristic2.edgeTo(vertex),
                     bellmanFordParentCheckingHeuristic2.distTo(vertex));
         }
@@ -188,5 +187,4 @@ public class Exercise32_ParentCheckingHeuristic {
                 "2   1->2 2.00      3.00\n" +
                 "3   0->3 4.00      4.00");
     }
-
 }

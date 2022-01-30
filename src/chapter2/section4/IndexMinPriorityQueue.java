@@ -19,7 +19,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
         pq = new int[size + 1];
         qp = new int[size + 1];
 
-        for(int index = 0; index < qp.length; index++) {
+        for (int index = 0; index < qp.length; index++) {
             qp[index] = -1;
         }
     }
@@ -36,7 +36,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
         return qp[index] != -1;
     }
 
-    //Return key associated with index
+    // Return key associated with index
     public Key keyOf(int index) {
         if (!contains(index)) {
             throw new NoSuchElementException("Index is not in the priority queue");
@@ -148,7 +148,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
     }
 
     private void swim(int index) {
-        while(index / 2 >= 1 && more(index / 2, index)) {
+        while (index / 2 >= 1 && more(index / 2, index)) {
             exchange(index / 2, index);
             index = index / 2;
         }
@@ -167,7 +167,6 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
             } else {
                 break;
             }
-
             index = selectedChildIndex;
         }
     }
@@ -188,5 +187,4 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> {
         qp[pq[keyIndex1]] = keyIndex1;
         qp[pq[keyIndex2]] = keyIndex2;
     }
-
 }

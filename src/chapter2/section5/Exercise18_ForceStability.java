@@ -56,16 +56,15 @@ public class Exercise18_ForceStability {
 
         Wrapper[] wrappedKeys = new Wrapper[array.length];
         int wrappedKeysIndex = 0;
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             Wrapper wrapper = new Wrapper(array[i], i);
             wrappedKeys[wrappedKeysIndex++] = wrapper;
         }
 
         Arrays.sort(wrappedKeys);
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             array[i] = wrappedKeys[i].keyValue;
         }
     }
-
 }

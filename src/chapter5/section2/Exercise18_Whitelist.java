@@ -21,7 +21,7 @@ public class Exercise18_Whitelist {
         StringJoiner output = new StringJoiner(" ");
 
         if (keysInWhitelist == null) {
-            for(String key : keys) {
+            for (String key : keys) {
                 output.add(key);
             }
 
@@ -91,5 +91,4 @@ public class Exercise18_Whitelist {
 
         StdOut.println("Expected: it was the of it was the of");
     }
-
 }

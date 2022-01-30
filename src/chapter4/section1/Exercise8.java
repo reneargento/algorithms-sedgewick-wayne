@@ -17,8 +17,8 @@ public class Exercise8 {
             weightedQuickUnion = new WeightedQuickUnion(graph.vertices());
             this.sourceVertex = sourceVertex;
 
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
-                for(int neighbor : graph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < graph.vertices(); vertex++) {
+                for (int neighbor : graph.adjacent(vertex)) {
                     weightedQuickUnion.union(vertex, neighbor);
                 }
             }
@@ -53,5 +53,4 @@ public class Exercise8 {
         StdOut.println("Connected to 3: " + searchUnionFind.marked(3) + " Expected: true");
         StdOut.println("Connected to 4: " + searchUnionFind.marked(4) + " Expected: false");
     }
-
 }

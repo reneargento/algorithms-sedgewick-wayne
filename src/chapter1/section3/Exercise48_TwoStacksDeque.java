@@ -81,7 +81,7 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
             int currentIndex = 0;
             hasNext = true;
 
-            for(Item item : deque) {
+            for (Item item : deque) {
                 items[currentIndex++] = item;
             }
 
@@ -236,5 +236,4 @@ public class Exercise48_TwoStacksDeque<Item> implements Iterable<Item>{
         StdOut.println("Expected: Stack 1 - stack rene");
         StdOut.println("Expected: Stack 2 - b a");
     }
-
 }

@@ -22,9 +22,9 @@ public class Exercise26_LazyDeleteLinearProbing {
             StdOut.println("Deleting tombstone items");
             tombstoneItemCount = 0;
 
-            //Resize
+            // Resize
             LinearProbingHashTableLazyDelete<Key, Value> tempHashTable = new LinearProbingHashTableLazyDelete<>(newSize);
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (values[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
@@ -51,7 +51,7 @@ public class Exercise26_LazyDeleteLinearProbing {
             }
 
             int tableIndex;
-            for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
+            for (tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 if (keys[tableIndex].equals(key)) {
 
                     if (values[tableIndex] == null) {
@@ -63,7 +63,6 @@ public class Exercise26_LazyDeleteLinearProbing {
                     return;
                 }
             }
-
             keys[tableIndex] = key;
             values[tableIndex] = value;
             keysSize++;
@@ -138,7 +137,7 @@ public class Exercise26_LazyDeleteLinearProbing {
         LinearProbingHashTableLazyDelete<Integer, Integer> linearProbingHashTableLazyDelete =
                 lazyDeleteLinearProbing.new LinearProbingHashTableLazyDelete<>(16);
 
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             linearProbingHashTableLazyDelete.put(i, i);
         }
 
@@ -151,7 +150,7 @@ public class Exercise26_LazyDeleteLinearProbing {
         StdOut.println("Expected: Deleting tombstone items");
         StdOut.println("Size: " + linearProbingHashTableLazyDelete.size() + " Expected: 2");
 
-        for(int i = 4; i < 8; i++) {
+        for (int i = 4; i < 8; i++) {
             linearProbingHashTableLazyDelete.put(i, i);
         }
 
@@ -170,5 +169,4 @@ public class Exercise26_LazyDeleteLinearProbing {
         StdOut.println("Expected: Deleting tombstone items");
         StdOut.println("Size: " + linearProbingHashTableLazyDelete.size() + " Expected: 2");
     }
-
 }

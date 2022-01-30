@@ -14,7 +14,7 @@ public class GraphProperties {
 
     private Graph graph;
 
-    //Used for lazy properties computation
+    // Used for lazy properties computation
     private boolean propertiesComputed;
     private boolean girthComputed;
 
@@ -22,7 +22,6 @@ public class GraphProperties {
 
     GraphProperties(Graph graph, boolean useIterativeDFS) {
         eccentricities = new int[graph.vertices()];
-
         ConnectedComponents connectedComponents;
 
         if (useIterativeDFS) {
@@ -34,24 +33,22 @@ public class GraphProperties {
         if (connectedComponents.count() != 1) {
             throw new RuntimeException("Graph must be connected");
         }
-
         this.graph = graph;
     }
 
-    //O(V * (V + E))
+    // O(V * (V + E))
     public void computeProperties() {
         diameter = 0;
         radius = Integer.MAX_VALUE;
         center = 0;
 
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, vertex);
 
-            for(int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
+            for (int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
                 if (otherVertex == vertex) {
                     continue;
                 }
-
                 eccentricities[vertex] = Math.max(eccentricities[vertex], breadthFirstPaths.distTo(otherVertex));
             }
 
@@ -67,17 +64,17 @@ public class GraphProperties {
         propertiesComputed = true;
     }
 
-    //Used when we have domain information and only need to check a few vertices to compute the properties
-    //O(V * (V + E))
+    // Used when we have domain information and only need to check a few vertices to compute the properties
+    // O(V * (V + E))
     public void computeProperties(int[] vertices) {
         diameter = 0;
         radius = Integer.MAX_VALUE;
         center = 0;
 
-        for(int vertex = 0; vertex < vertices.length; vertex++) {
+        for (int vertex = 0; vertex < vertices.length; vertex++) {
             BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, vertices[vertex]);
 
-            for(int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
+            for (int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
                 if (otherVertex == vertices[vertex]) {
                     continue;
                 }
@@ -93,25 +90,23 @@ public class GraphProperties {
                 center = vertices[vertex];
             }
         }
-
         propertiesComputed = true;
     }
 
-    //O(V * (V + E))
+    // O(V * (V + E))
     public void computeGirth() {
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             int shortestCycle = bfsToGetShortestCycle(graph, vertex);
             girth = Math.min(girth, shortestCycle);
         }
-
         girthComputed = true;
     }
 
-    //Used when we have domain information and have an idea of the shortest cycle length
+    // Used when we have domain information and have an idea of the shortest cycle length
     // and need to validate this information
-    //O(VC * (VC + E)), where VC is the number of vertices to check
+    // O(VC * (VC + E)), where VC is the number of vertices to check
     public int computeGirthLessOrEqualTo(int girthToSearchFor) {
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             int shortestCycle = bfsToGetShortestCycle(graph, vertex);
             girth = Math.min(girth, shortestCycle);
 
@@ -119,10 +114,8 @@ public class GraphProperties {
                 break;
             }
         }
-
         girthComputed = true;
         return girth;
-
     }
 
     private int bfsToGetShortestCycle(Graph graph, int sourceVertex) {
@@ -140,7 +133,7 @@ public class GraphProperties {
         while (!queue.isEmpty()) {
             int currentVertex = queue.dequeue();
 
-            for(int neighbor : graph.adjacent(currentVertex)) {
+            for (int neighbor : graph.adjacent(currentVertex)) {
                 if (!visited[neighbor]) {
                     visited[neighbor] = true;
                     distTo[neighbor] = distTo[currentVertex] + 1;
@@ -153,7 +146,6 @@ public class GraphProperties {
                 }
             }
         }
-
         return shortestCycle;
     }
 
@@ -161,7 +153,6 @@ public class GraphProperties {
         if (!propertiesComputed) {
             computeProperties();
         }
-
         return diameter;
     }
 
@@ -169,7 +160,6 @@ public class GraphProperties {
         if (!propertiesComputed) {
             computeProperties();
         }
-
         return radius;
     }
 
@@ -177,7 +167,6 @@ public class GraphProperties {
         if (!propertiesComputed) {
             computeProperties();
         }
-
         return center;
     }
 
@@ -185,7 +174,6 @@ public class GraphProperties {
         if (!propertiesComputed) {
             computeProperties();
         }
-
         return eccentricities[vertexId];
     }
 
@@ -193,8 +181,6 @@ public class GraphProperties {
         if (!girthComputed) {
             computeGirth();
         }
-
         return girth;
     }
-
 }

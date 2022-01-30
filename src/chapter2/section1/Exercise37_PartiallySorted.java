@@ -14,7 +14,6 @@ import java.util.Set;
 public class Exercise37_PartiallySorted {
 
     public static void main(String[] args) {
-
         int arrayLength = Integer.parseInt(args[0]);
         int experiments = Integer.parseInt(args[1]);
 
@@ -22,14 +21,12 @@ public class Exercise37_PartiallySorted {
     }
 
     private static void runAllExperiments(int initialArrayLength, int experiments) {
-
         int arrayLength = initialArrayLength;
 
         StdOut.printf("%15s %17s %8s\n", "Sort Type", "Array Length", "Time");
         StdOut.println("95% sorted and last percent random");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
-
+        for (int experiment = 0; experiment < experiments; experiment++) {
             Comparable[] ninetyFivePercentSortedExceptEndingArray = generate95PercentSortedExceptEndingArray(arrayLength);
             runExperiments(ninetyFivePercentSortedExceptEndingArray);
             arrayLength *= 2;
@@ -42,7 +39,7 @@ public class Exercise37_PartiallySorted {
 
         StdOut.println("All entries within 10 positions of their final place");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Comparable[] elementsWithin10PositionsFromFinalPositionArray = generateElementsWithin10PositionsFromFinalPositionArray(arrayLength);
             runExperiments(elementsWithin10PositionsFromFinalPositionArray);
@@ -56,8 +53,7 @@ public class Exercise37_PartiallySorted {
 
         StdOut.println("Sorted except for 5% of entries randomly dispersed");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
-
+        for (int experiment = 0; experiment < experiments; experiment++) {
             Comparable[] ninetyFivePercentSortedArray = generate95PercentSortedArray(arrayLength);
             runExperiments(ninetyFivePercentSortedArray);
             arrayLength *= 2;
@@ -79,56 +75,47 @@ public class Exercise37_PartiallySorted {
     }
 
     private static Comparable[] generate95PercentSortedExceptEndingArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
-
         int lastFivePercentStartIndex = (int) (arrayLength * 0.95);
 
-        for(int i = 0; i <= lastFivePercentStartIndex; i++) {
+        for (int i = 0; i <= lastFivePercentStartIndex; i++) {
             array[i] = i;
         }
 
-        for(int i =lastFivePercentStartIndex; i < arrayLength; i++) {
+        for (int i =lastFivePercentStartIndex; i < arrayLength; i++) {
             array[i] = StdRandom.uniform(Integer.MAX_VALUE);
         }
-
         return array;
     }
 
     private static Comparable[] generateElementsWithin10PositionsFromFinalPositionArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        //Used to guarantee that all values are unique and that they will be within 10 positions of their final place in the array
+        // Used to guarantee that all values are unique and that they will be within 10 positions of their final place in the array
         Set<Integer> generatedValues = new HashSet<>();
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             int randomValue = StdRandom.uniform(i - 10, i + 10 + 1);
 
             while (generatedValues.contains(randomValue)) {
                 randomValue = StdRandom.uniform(i - 10, i + 10 + 1);
             }
-
             generatedValues.add(randomValue);
-
             array[i] = randomValue;
         }
-
         return array;
     }
 
     private static Comparable[] generate95PercentSortedArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
-
         int fivePercentLength = (int) (arrayLength * 0.05);
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = i;
         }
 
-        //Shuffle 5% of values
-        for(int i = 0; i <= fivePercentLength / 2; i++) {
+        // Shuffle 5% of values
+        for (int i = 0; i <= fivePercentLength / 2; i++) {
             int randomIndex1 = StdRandom.uniform(0, arrayLength);
             int randomIndex2 = StdRandom.uniform(0, arrayLength);
 
@@ -136,7 +123,6 @@ public class Exercise37_PartiallySorted {
             array[randomIndex1] = array[randomIndex2];
             array[randomIndex2] = temp;
         }
-
         return array;
     }
 
@@ -151,12 +137,10 @@ public class Exercise37_PartiallySorted {
             case SHELL: ShellSort.shellSort(array);
                 break;
         }
-
         return timer.elapsedTime();
     }
 
     private static void printExperiment(SortTypes sortType, int arrayLength, double time) {
         StdOut.printf("%15s %17d %8.2f\n", sortType, arrayLength, time);
     }
-
 }

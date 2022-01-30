@@ -27,7 +27,7 @@ public class Exercise37_ArithmeticExpressions {
 
         double result = Double.MIN_VALUE;
 
-        for(int neighbor : digraph.adjacent(sourceVertex)) {
+        for (int neighbor : digraph.adjacent(sourceVertex)) {
             if (values[sourceVertex].equals("+")) {
                 if (result == Double.MIN_VALUE) {
                     result = 0;
@@ -124,5 +124,4 @@ public class Exercise37_ArithmeticExpressions {
         StdOut.println("(3 * 4) + (3 * 4) + (3 * 4) + (3 * 4) / 6 = " + arithmeticExpressions.evaluateDAG(digraph2, values2));
         StdOut.println("Expected: 8.0");
     }
-
 }

@@ -109,11 +109,10 @@ public class Exercise50_FailFastIterator<Item> implements Iterable<Item>{
 
         failFastIterator.pop();
 
-        for(String string : failFastIterator) {
+        for (String string : failFastIterator) {
             StdOut.print("Iterating at item " + string + " ");
 
             failFastIterator.push("z");
         }
     }
-
 }

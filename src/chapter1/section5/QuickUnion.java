@@ -14,7 +14,7 @@ public class QuickUnion implements UF {
         id = new int[size];
         count = size;
 
-        for(int i = 0; i < id.length; i++) {
+        for (int i = 0; i < id.length; i++) {
             id[i] = i;
         }
     }
@@ -25,7 +25,7 @@ public class QuickUnion implements UF {
 
     // O(n)
     public int find(int site) {
-        while(site != id[site]) {
+        while (site != id[site]) {
             site = id[site];
         }
 

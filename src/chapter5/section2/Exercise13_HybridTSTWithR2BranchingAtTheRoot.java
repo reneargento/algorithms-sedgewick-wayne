@@ -589,7 +589,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
 
         // Keys() test
         StdOut.println("\nAll keys");
-        for(String key : hybridTernarySearchTrie.keys()) {
+        for (String key : hybridTernarySearchTrie.keys()) {
             StdOut.println(key);
         }
 
@@ -597,7 +597,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         StdOut.println("\nKeys with prefix Alg");
         StringJoiner keysWithPrefix1 = new StringJoiner(" ");
 
-        for(String key : hybridTernarySearchTrie.keysWithPrefix("Alg")) {
+        for (String key : hybridTernarySearchTrie.keysWithPrefix("Alg")) {
             keysWithPrefix1.add(key);
         }
         StdOut.println(keysWithPrefix1.toString());
@@ -606,7 +606,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         StdOut.println("\nKeys with prefix T");
         StringJoiner keysWithPrefix2 = new StringJoiner(" ");
 
-        for(String key : hybridTernarySearchTrie.keysWithPrefix("T")) {
+        for (String key : hybridTernarySearchTrie.keysWithPrefix("T")) {
             keysWithPrefix2.add(key);
         }
         StdOut.println(keysWithPrefix2.toString());
@@ -615,7 +615,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         StdOut.println("\nKeys with prefix R");
         StringJoiner keysWithPrefix3 = new StringJoiner(" ");
 
-        for(String key : hybridTernarySearchTrie.keysWithPrefix("R")) {
+        for (String key : hybridTernarySearchTrie.keysWithPrefix("R")) {
             keysWithPrefix3.add(key);
         }
         StdOut.println(keysWithPrefix3.toString());
@@ -624,7 +624,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         StdOut.println("\nKeys with prefix ZZZ");
         StringJoiner keysWithPrefix4 = new StringJoiner(" ");
 
-        for(String key : hybridTernarySearchTrie.keysWithPrefix("ZZZ")) {
+        for (String key : hybridTernarySearchTrie.keysWithPrefix("ZZZ")) {
             keysWithPrefix4.add(key);
         }
         StdOut.println(keysWithPrefix4.toString());
@@ -633,7 +633,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         StdOut.println("\nKeys with prefix B");
         StringJoiner keysWithPrefix5 = new StringJoiner(" ");
 
-        for(String key : hybridTernarySearchTrie.keysWithPrefix("B")) {
+        for (String key : hybridTernarySearchTrie.keysWithPrefix("B")) {
             keysWithPrefix5.add(key);
         }
         StdOut.println(keysWithPrefix5.toString());
@@ -643,7 +643,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         StdOut.println("\nKeys that match Alg..");
         StringJoiner keysThatMatch1 = new StringJoiner("Alg..");
 
-        for(String key : hybridTernarySearchTrie.keysThatMatch("Alg..")) {
+        for (String key : hybridTernarySearchTrie.keysThatMatch("Alg..")) {
             keysThatMatch1.add(key);
         }
         StdOut.println(keysThatMatch1.toString());
@@ -652,7 +652,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         StdOut.println("\nKeys that match Re");
         StringJoiner keysThatMatch2 = new StringJoiner(" ");
 
-        for(String key : hybridTernarySearchTrie.keysThatMatch("Re")) {
+        for (String key : hybridTernarySearchTrie.keysThatMatch("Re")) {
             keysThatMatch2.add(key);
         }
         StdOut.println(keysThatMatch2.toString());
@@ -661,7 +661,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         StdOut.println("\nKeys that match Tr.e");
         StringJoiner keysThatMatch3 = new StringJoiner(" ");
 
-        for(String key : hybridTernarySearchTrie.keysThatMatch("Tr.e")) {
+        for (String key : hybridTernarySearchTrie.keysThatMatch("Tr.e")) {
             keysThatMatch3.add(key);
         }
         StdOut.println(keysThatMatch3.toString());
@@ -670,7 +670,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         StdOut.println("\nKeys that match .");
         StringJoiner keysThatMatch4 = new StringJoiner(" ");
 
-        for(String key : hybridTernarySearchTrie.keysThatMatch(".")) {
+        for (String key : hybridTernarySearchTrie.keysThatMatch(".")) {
             keysThatMatch4.add(key);
         }
         StdOut.println(keysThatMatch4.toString());
@@ -705,14 +705,14 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         hybridTernarySearchTrie.put("ZKey", 12);
 
         StdOut.println("\nKeys after ABCKey and ZKey insert: ");
-        for(String key : hybridTernarySearchTrie.keys()) {
+        for (String key : hybridTernarySearchTrie.keys()) {
             StdOut.println(key);
         }
 
         hybridTernarySearchTrie.deleteMin();
 
         StdOut.println("\nKeys after deleteMin: ");
-        for(String key : hybridTernarySearchTrie.keys()) {
+        for (String key : hybridTernarySearchTrie.keys()) {
             StdOut.println(key);
         }
 
@@ -721,7 +721,7 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         hybridTernarySearchTrie.deleteMax();
 
         StdOut.println("\nKeys after deleteMax: ");
-        for(String key : hybridTernarySearchTrie.keys()) {
+        for (String key : hybridTernarySearchTrie.keys()) {
             StdOut.println(key);
         }
 
@@ -813,23 +813,22 @@ public class Exercise13_HybridTSTWithR2BranchingAtTheRoot {
         hybridTernarySearchTrie.delete("Z-Function");
 
         StdOut.println("\nKeys() after deleting Z-Function key");
-        for(String key : hybridTernarySearchTrie.keys()) {
+        for (String key : hybridTernarySearchTrie.keys()) {
             StdOut.println(key);
         }
 
         hybridTernarySearchTrie.delete("Rene");
 
         StdOut.println("\nKeys() after deleting Rene key");
-        for(String key : hybridTernarySearchTrie.keys()) {
+        for (String key : hybridTernarySearchTrie.keys()) {
             StdOut.println(key);
         }
 
         hybridTernarySearchTrie.delete("Re");
 
         StdOut.println("\nKeys() after deleting Re key");
-        for(String key : hybridTernarySearchTrie.keys()) {
+        for (String key : hybridTernarySearchTrie.keys()) {
             StdOut.println(key);
         }
     }
-
 }

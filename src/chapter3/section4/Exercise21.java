@@ -26,7 +26,7 @@ public class Exercise21 {
         LinearProbingHashTableAvgSearchMissCost<Integer, Integer> linearProbingHashTableAvgSearchMissCost =
                 exercise21.new LinearProbingHashTableAvgSearchMissCost<>(1000000);
 
-        for(int i = 0; i < 500000; i++) {
+        for (int i = 0; i < 500000; i++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             linearProbingHashTableAvgSearchMissCost.put(randomKey, randomKey);
         }

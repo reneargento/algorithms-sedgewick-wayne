@@ -18,7 +18,7 @@ public class Exercise46 {
     public FlowNetwork constructMaxLengthBipartiteMatchingProblem(int vertices) {
         FlowNetwork flowNetwork = new FlowNetwork(vertices);
 
-        for(int i = 0; i < vertices - 1; i++) {
+        for (int i = 0; i < vertices - 1; i++) {
             flowNetwork.addEdge(new FlowEdge(i, i + 1, 1));
         }
 
@@ -52,5 +52,4 @@ public class Exercise46 {
         StdOut.println("Augmenting path length: " + augmentingPathLength);
         StdOut.println("Expected: " + expectedAugmentingPathLength);
     }
-
 }

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Exercise47_RandomSparseDigraphs {
 
-    //A digraph is considered sparse if its number of different edges is within a small constant factor of V
+    // A digraph is considered sparse if its number of different edges is within a small constant factor of V
     public List<DigraphInterface> randomSparseDigraph(int numberOfDigraphs) {
 
         if (numberOfDigraphs < 0) {
@@ -22,7 +22,7 @@ public class Exercise47_RandomSparseDigraphs {
         List<DigraphInterface> randomSparseDigraphs = new ArrayList<>();
         int[] digraphVerticesCount = {10, 100, 1000, 10000};
 
-        for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+        for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
             int vertices = digraphVerticesCount[digraph % 4];
             int edges = vertices * 3;
 
@@ -44,7 +44,7 @@ public class Exercise47_RandomSparseDigraphs {
 
         List<DigraphInterface> randomSparseDigraphs = new ArrayList<>();
 
-        for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+        for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
             int edges = vertices * 3;
 
             Digraph randomSparseDigraph = randomDigraphs.erdosRenyiDigraph(vertices, edges);
@@ -54,12 +54,11 @@ public class Exercise47_RandomSparseDigraphs {
         return randomSparseDigraphs;
     }
 
-    //Parameter example: 100
+    // Parameter example: 100
     public static void main(String[] args) {
         int numberOfDigraphs = Integer.parseInt(args[0]);
 
         List<DigraphInterface> randomSparseDigraphs = new Exercise47_RandomSparseDigraphs().randomSparseDigraph(numberOfDigraphs);
         StdOut.println("Random sparse digraphs generated: " + (randomSparseDigraphs.size() == numberOfDigraphs));
     }
-
 }

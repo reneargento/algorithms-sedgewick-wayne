@@ -34,7 +34,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             return size;
         }
 
-        //O(lg N)
+        // O(lg N)
         public void insert(Key key) {
             size++;
 
@@ -55,7 +55,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             swim(newNode);
         }
 
-        //O(lg N)
+        // O(lg N)
         public Key deleteMax() {
             if (size == 0) {
                 throw new RuntimeException("Priority queue underflow");
@@ -64,7 +64,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             Key max = priorityQueue.leftChild.value;
             int parentNodeIndex = size / 2; //The index of the parent of the last node
 
-            //If we are deleting the root
+            // If we are deleting the root
             if (parentNodeIndex == 0) {
                 priorityQueue.leftChild = null;
                 return max;
@@ -89,11 +89,10 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             sink(priorityQueue.leftChild);
 
             size--;
-
             return max;
         }
 
-        //O(lg N)
+        // O(lg N)
         private void swim(PQNode node) {
 
             while (node.parent.value != null && ArrayUtil.less(node.parent.value, node.value)) {
@@ -106,15 +105,14 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             }
         }
 
-        //O(lg N)
+        // O(lg N)
         private void sink(PQNode node) {
             boolean isTheLeftChildTheHighestItem;
             Key highestItemValue;
 
-            //Repeat while the current node exists and has at least 1 child
+            // Repeat while the current node exists and has at least 1 child
             while (node != null && node.leftChild != null) {
-
-                //Check which child is bigger
+                // Check which child is bigger
                 if (node.rightChild != null) {
                     if (ArrayUtil.less(node.leftChild.value, node.rightChild.value)) {
                         isTheLeftChildTheHighestItem = false;
@@ -128,7 +126,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
                     highestItemValue = node.leftChild.value;
                 }
 
-                //Compare highest value child and parent
+                // Compare highest value child and parent
                 if (ArrayUtil.less(node.value, highestItemValue)) {
                     Key temp = node.value;
 
@@ -149,7 +147,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             }
         }
 
-        //O(lg N)
+        // O(lg N)
         private int[] generatePathToNode(int nodeIndex) {
             int pathSize = (int) Math.ceil(Math.log10(nodeIndex) / Math.log10(2)) + 1;
 
@@ -159,7 +157,7 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
 
             int[] pathToNode = new int[pathSize];
 
-            for(int i = pathSize - 1; i >= 0; i--) {
+            for (int i = pathSize - 1; i >= 0; i--) {
                 pathToNode[i] = nodeIndex;
 
                 nodeIndex /= 2;
@@ -168,12 +166,12 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
             return pathToNode;
         }
 
-        //O(lg N)
+        // O(lg N)
         private PQNode getNode(int[] pathToNode) {
             int currentIndex = 1;
             PQNode currentNode = priorityQueue.leftChild;
 
-            for(int i = 0; i < pathToNode.length && currentNode != null; i++) {
+            for (int i = 0; i < pathToNode.length && currentNode != null; i++) {
                 if (pathToNode[i] == currentIndex * 2) {
                     currentNode = currentNode.leftChild;
                     currentIndex = currentIndex * 2;
@@ -210,5 +208,4 @@ public class Exercise24_PriorityQueueExplicitLinks<Key extends Comparable> {
         StdOut.println("Item removed: " + priorityQueueExplicitLinks.deleteMax());
         StdOut.println("Item removed: " + priorityQueueExplicitLinks.deleteMax());
     }
-
 }

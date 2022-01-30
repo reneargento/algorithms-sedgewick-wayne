@@ -132,7 +132,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 
         DoubleNode currentNode;
 
-        for(currentNode = first; currentNode != null; currentNode = currentNode.next) {
+        for (currentNode = first; currentNode != null; currentNode = currentNode.next) {
             if (currentNode.item.equals(beforeItem)) {
                 break;
             }
@@ -165,7 +165,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 
         DoubleNode currentNode;
 
-        for(currentNode = first; currentNode != null; currentNode = currentNode.next) {
+        for (currentNode = first; currentNode != null; currentNode = currentNode.next) {
             if (currentNode.item.equals(afterNode)) {
                 break;
             }
@@ -338,5 +338,4 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
             return item;
         }
     }
-
 }

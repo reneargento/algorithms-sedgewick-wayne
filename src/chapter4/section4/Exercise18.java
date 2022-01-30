@@ -12,7 +12,6 @@ import java.util.LinkedList;
 public class Exercise18 {
 
     private class Path implements Comparable<Path> {
-
         private Path previousPath;
         private DirectedEdge directedEdge;
         private double weight;
@@ -71,7 +70,7 @@ public class Exercise18 {
             int source = 2 * jobs;
             int target = 2 * jobs + 1;
 
-            for(int job = 0; job < jobs; job++) {
+            for (int job = 0; job < jobs; job++) {
                 String[] jobInformation = precedenceConstraints[job].split("\\s+");
                 double duration = Double.parseDouble(jobInformation[0]);
 
@@ -79,7 +78,7 @@ public class Exercise18 {
                 edgeWeightedDigraph.addEdge(new DirectedEdge(source, job, 0));
                 edgeWeightedDigraph.addEdge(new DirectedEdge(job + jobs, target, 0));
 
-                for(int successors = 1; successors < jobInformation.length; successors++) {
+                for (int successors = 1; successors < jobInformation.length; successors++) {
                     int successor = Integer.parseInt(jobInformation[successors]);
                     edgeWeightedDigraph.addEdge(new DirectedEdge(job + jobs, successor, 0));
                 }
@@ -95,7 +94,7 @@ public class Exercise18 {
             printAllCriticalPaths(allPaths, target);
         }
 
-        //O((E + V) * lg P), where P is the number of paths in the graph
+        // O((E + V) * lg P), where P is the number of paths in the graph
         private PriorityQueueResize<Path> getAllPaths(EdgeWeightedDigraph edgeWeightedDigraph, int target) {
             Topological topological = new Topological(edgeWeightedDigraph);
             boolean isFirstVertexInTopologicalOrder = true;
@@ -103,7 +102,7 @@ public class Exercise18 {
             PriorityQueueResize<Path> allPaths = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MAX);
             Queue<Path> queue = new Queue<>();
 
-            for(int vertex : topological.order()) {
+            for (int vertex : topological.order()) {
                 if (isFirstVertexInTopologicalOrder) {
                     queue.enqueue(new Path(vertex));
                     isFirstVertexInTopologicalOrder = false;
@@ -113,7 +112,7 @@ public class Exercise18 {
                     while (!queue.isEmpty()) {
                         Path currentPath = queue.dequeue();
 
-                        for(DirectedEdge edge : edgeWeightedDigraph.adjacent(currentPath.lastVertexInPath)) {
+                        for (DirectedEdge edge : edgeWeightedDigraph.adjacent(currentPath.lastVertexInPath)) {
                             Path newPath = new Path(currentPath, edge);
                             newPaths.enqueue(newPath);
 
@@ -123,12 +122,11 @@ public class Exercise18 {
                         }
                     }
 
-                    for(Path newPath : newPaths) {
+                    for (Path newPath : newPaths) {
                         queue.enqueue(newPath);
                     }
                 }
             }
-
             return allPaths;
         }
 
@@ -144,7 +142,7 @@ public class Exercise18 {
 
                 boolean addArrowInPath = false;
 
-                for(DirectedEdge edge : criticalPath.getPath()) {
+                for (DirectedEdge edge : criticalPath.getPath()) {
                     // Avoid printing extra vertices
                     if (edge.from() < edge.to() && edge.to() != target) {
                         if (addArrowInPath) {
@@ -156,14 +154,12 @@ public class Exercise18 {
                         StdOut.print(edge.from());
                     }
                 }
-
                 StdOut.println();
             }
         }
     }
 
     public static void main(String[] args) {
-
         // Graph with two critical paths: 0->1->2->3 and 0->4->5
         // Both with total duration of 35
         String[] precedenceConstraints = new String[6];
@@ -179,5 +175,4 @@ public class Exercise18 {
 
         StdOut.println("\nExpected: \n0->4->5\n0->1->2->3");
     }
-
 }

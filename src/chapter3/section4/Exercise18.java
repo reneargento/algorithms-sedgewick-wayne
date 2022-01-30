@@ -9,12 +9,11 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise18 {
 
     private class SeparateChainingHashTableResize<Key, Value> extends SeparateChainingHashTable<Key, Value>{
-
         private int averageListSize;
 
-        //The largest prime <= 2^i for i = 1 to 31
-        //Used to distribute keys uniformly in the hash table after resizes
-        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        // The largest prime <= 2^i for i = 1 to 31
+        // Used to distribute keys uniformly in the hash table after resizes
+        // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
                 1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -33,7 +32,7 @@ public class Exercise18 {
             this.averageListSize = averageListSize;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable();
             }
 
@@ -54,7 +53,7 @@ public class Exercise18 {
             SeparateChainingHashTable<Key, Value> separateChainingHashTableTemp =
                     new SeparateChainingHashTable<>(newSize, averageListSize);
 
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 separateChainingHashTableTemp.put(key, get(key));
             }
 
@@ -115,23 +114,19 @@ public class Exercise18 {
         SeparateChainingHashTableResize<Integer, Integer> separateChainingHashTableResize =
                 exercise18.new SeparateChainingHashTableResize<>(5, 2);
 
-        for(int i = 0; i < 20; i++) {
+        for (int i = 0; i < 20; i++) {
             separateChainingHashTableResize.put(i, i);
         }
-
         StdOut.println("Expected: Resize - doubling hash table size 2x");
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             separateChainingHashTableResize.delete(i);
         }
-
         StdOut.println("Expected: Resize - shrinking hash table size");
 
-        for(int i = 10; i < 15; i++) {
+        for (int i = 10; i < 15; i++) {
             separateChainingHashTableResize.delete(i);
         }
-
         StdOut.println("Expected: Resize - shrinking hash table size");
     }
-
 }

@@ -22,7 +22,7 @@ public class Exercise15 {
             this.edges = 0;
             adjacent = (Bag<Integer>[]) new Bag[vertices];
 
-            for(int i = 0; i < vertices; i++) {
+            for (int i = 0; i < vertices; i++) {
                 adjacent[i] = new Bag<>();
             }
         }
@@ -36,7 +36,7 @@ public class Exercise15 {
                 String[] vertices = in.readLine().split(" ");
 
                 int vertex = Integer.parseInt(vertices[0]);
-                for(int i = 1; i < vertices.length; i++) {
+                for (int i = 1; i < vertices.length; i++) {
                    addEdge(vertex, Integer.parseInt(vertices[i]));
                 }
             }
@@ -64,10 +64,10 @@ public class Exercise15 {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(int neighbor : adjacent(vertex)) {
+                for (int neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
@@ -99,5 +99,4 @@ public class Exercise15 {
                 "11: 12 9\n" +
                 "12: 11 9");
     }
-
 }

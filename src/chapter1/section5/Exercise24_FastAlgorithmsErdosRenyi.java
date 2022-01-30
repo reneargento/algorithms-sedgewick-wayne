@@ -36,9 +36,9 @@ public class Exercise24_FastAlgorithmsErdosRenyi {
 
         int numberOfSites = 512;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
-            //Weighted QuickUnion
+            // Weighted QuickUnion
             UF weightedQuickUnion = new WeightedQuickUnion(numberOfSites);
 
             Stopwatch timer = new Stopwatch();
@@ -46,7 +46,7 @@ public class Exercise24_FastAlgorithmsErdosRenyi {
                     erdosRenyiGeneratingConnections(numberOfSites, weightedQuickUnion);
             double runningTimeWeightedQuickUnion = timer.elapsedTime();
 
-            //Weighted QuickUnion with path compression
+            // Weighted QuickUnion with path compression
             UF weightedQuickUnionPathCompression = new Exercise13_WeightedQUPathCompression()
                     .new WeightedQuickUnionPathCompression(numberOfSites);
 
@@ -59,16 +59,13 @@ public class Exercise24_FastAlgorithmsErdosRenyi {
 
             numberOfSites *= 2;
         }
-
         printResults(experiments);
     }
 
     private List<Exercise18_RandomGridGenerator.Connection> erdosRenyiGeneratingConnections(int numberOfSites, UF unionFind) {
-
         List<Exercise18_RandomGridGenerator.Connection> connectionsGenerated = new ArrayList<>();
 
-        while(unionFind.count() != 1) {
-
+        while (unionFind.count() != 1) {
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
 
@@ -85,17 +82,14 @@ public class Exercise24_FastAlgorithmsErdosRenyi {
     }
 
     private void erdosRenyiUsingConnections(UF unionFind, List<Exercise18_RandomGridGenerator.Connection> generatedConnections) {
-
         int connectionIndex = 0;
 
-        while(unionFind.count() != 1) {
-
+        while (unionFind.count() != 1) {
             Exercise18_RandomGridGenerator.Connection connection = generatedConnections.get(connectionIndex);
 
             if (!unionFind.connected(connection.p, connection.q)) {
                 unionFind.union(connection.p, connection.q);
             }
-
             connectionIndex++;
         }
     }
@@ -103,15 +97,11 @@ public class Exercise24_FastAlgorithmsErdosRenyi {
     private void printResults(List<Exercise24_FastAlgorithmsErdosRenyi.Experiment> experiments) {
         StdOut.printf("%12s %17s %23s\n", "Experiment |", "Number of Sites |",
                 "Ratio of Running Time |");
-
         int experimentId = 1;
 
-        for(Experiment experiment : experiments) {
-
+        for (Experiment experiment : experiments) {
             StdOut.printf("%7d %13d %23.1f\n", experimentId, experiment.numberOfSites, experiment.ratioBetweenUnionFindModels);
-
             experimentId++;
         }
     }
-
 }

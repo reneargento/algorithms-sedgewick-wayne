@@ -65,7 +65,7 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
         // the solution. To have tighter deadlines, we divide maxPossibleRelativeDeadlineDuration by 3.
         maxPossibleRelativeDeadlineDuration /= 3;
 
-        for(int job = 0; job < numberOfJobs; job++) {
+        for (int job = 0; job < numberOfJobs; job++) {
             // Duration
             double randomDuration = StdRandom.uniform(0, maxDuration + 1);
             jobDurations[job] = randomDuration;
@@ -80,7 +80,7 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
                 numberOfSuccessors = numberOfJobs - 1 - job;
             }
 
-            for(int precedence = 0; precedence < numberOfSuccessors; precedence++) {
+            for (int precedence = 0; precedence < numberOfSuccessors; precedence++) {
                 int jobSuccessorId = StdRandom.uniform(job + 1, numberOfJobs);
 
                 if (precedences.get(job).contains(jobSuccessorId)) {
@@ -99,7 +99,7 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
 
         // Only add relative deadlines to jobs with lower IDs to avoid negative cycles and increase chances of
         // problem feasibility
-        for(int deadline = 0; deadline < deadlines; deadline++) {
+        for (int deadline = 0; deadline < deadlines; deadline++) {
             int jobThatMustBeginNotLongAfterTheOther = StdRandom.uniform(numberOfJobs);
 
             if (jobThatMustBeginNotLongAfterTheOther == 0) {
@@ -133,12 +133,12 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
                 .append(String.format("%22s", "Must complete before"));
         problemDescription.append("\n");
 
-        for(int job = 0; job < jobDurations.length; job++) {
+        for (int job = 0; job < jobDurations.length; job++) {
             problemDescription.append(String.format("%5d", job))
                     .append(String.format("%10.2f", jobDurations[job]));
 
             StringJoiner precedences = new StringJoiner(" ");
-            for(int precedence : jobPrecedences.get(job)) {
+            for (int precedence : jobPrecedences.get(job)) {
                 precedences.add(String.valueOf(precedence));
             }
             problemDescription.append(String.format("%22s", precedences.toString()));
@@ -149,7 +149,7 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
         problemDescription.append("\n");
         problemDescription.append("Deadlines\n");
 
-        for(String relativeDeadline : relativeDeadlines) {
+        for (String relativeDeadline : relativeDeadlines) {
             problemDescription.append(relativeDeadline).append("\n");
         }
 
@@ -173,18 +173,18 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
         int target = 2 * numberOfJobs + 1;
 
         // Add direct successor relations
-        for(int job = 0; job < numberOfJobs; job++) {
+        for (int job = 0; job < numberOfJobs; job++) {
             edgeWeightedDigraph.addEdge(new DirectedEdge(job, job + numberOfJobs, jobDurations[job]));
             edgeWeightedDigraph.addEdge(new DirectedEdge(source, job, 0));
             edgeWeightedDigraph.addEdge(new DirectedEdge(job + numberOfJobs, target, 0));
 
-            for(int successor : jobPrecedences.get(job)) {
+            for (int successor : jobPrecedences.get(job)) {
                 edgeWeightedDigraph.addEdge(new DirectedEdge(job + numberOfJobs, successor, 0));
             }
         }
 
         // Add relative deadline relations
-        for(String relativeDeadline : relativeDeadlines) {
+        for (String relativeDeadline : relativeDeadlines) {
             String[] deadlineInformation = relativeDeadline.split(" +");
 
             int dependentJob = Integer.parseInt(deadlineInformation[0]);
@@ -198,8 +198,8 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
         // 1- Negate all edge weights
         EdgeWeightedDigraph edgeWeightedDigraphNegatedEdges = new EdgeWeightedDigraph(edgeWeightedDigraph.vertices());
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 edgeWeightedDigraphNegatedEdges.addEdge(new DirectedEdge(edge.from(), edge.to(), -edge.weight()));
             }
         }
@@ -212,7 +212,7 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
     private void printJobSchedules(BellmanFordSP bellmanFordSP, int numberOfJobs, int target) {
         StdOut.println("Start times:");
 
-        for(int job = 0; job < numberOfJobs; job++) {
+        for (int job = 0; job < numberOfJobs; job++) {
             double distance = bellmanFordSP.distTo(job);
 
             if (distance != 0) {
@@ -244,7 +244,7 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
         // Add relative deadlines to at most a third of jobs to increase chances of problem feasibility
         int deadlines = (int) (numberOfJobs * 0.3);
 
-        for(int problem = 1; problem <= numberOfProblemsToGenerate; problem++) {
+        for (int problem = 1; problem <= numberOfProblemsToGenerate; problem++) {
             StdOut.println("Parallel job scheduling with deadlines problem " + problem + ":\n");
 
             ParallelJobSchedulingWithDeadlinesProblem parallelJobSchedulingWithDeadlinesProblem =
@@ -264,5 +264,4 @@ public class Exercise59_ParallelJobSchedulingWithDeadlinesModel {
             }
         }
     }
-
 }

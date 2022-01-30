@@ -24,7 +24,7 @@ public class Exercise19 {
         int minLength = 6;
 
         Queue<String> highestFrequencyWords = new Exercise19().frequencyCounter(words, minLength);
-        for(String word : highestFrequencyWords) {
+        for (String word : highestFrequencyWords) {
             StdOut.println(word);
         }
 
@@ -32,11 +32,9 @@ public class Exercise19 {
     }
 
     private Queue<String> frequencyCounter(String[] words, int minLength) {
-
         BinarySearchSymbolTable<String, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(String word : words) {
-
+        for (String word : words) {
             if (word.length() < minLength) {
                 continue;
             }
@@ -52,7 +50,7 @@ public class Exercise19 {
         binarySearchSymbolTable.put(max, 0);
         int highestFrequency = 0;
 
-        for(String word : binarySearchSymbolTable.keys()) {
+        for (String word : binarySearchSymbolTable.keys()) {
             if (binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
                 max = word;
                 highestFrequency = binarySearchSymbolTable.get(word);
@@ -60,13 +58,11 @@ public class Exercise19 {
         }
 
         Queue<String> highestFrequencyWords = new Queue<>();
-        for(String word : binarySearchSymbolTable.keys()) {
+        for (String word : binarySearchSymbolTable.keys()) {
             if (binarySearchSymbolTable.get(word) == highestFrequency) {
                 highestFrequencyWords.enqueue(word);
             }
         }
-
         return highestFrequencyWords;
     }
-
 }

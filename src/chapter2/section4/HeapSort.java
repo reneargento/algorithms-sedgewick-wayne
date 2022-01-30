@@ -13,7 +13,7 @@ public class HeapSort {
     }
 
     private static void constructHeap(Comparable[] array) {
-        for(int i = array.length / 2; i >= 1; i--) {
+        for (int i = array.length / 2; i >= 1; i--) {
             sink(array, i, array.length - 1);
         }
     }
@@ -42,9 +42,7 @@ public class HeapSort {
             } else {
                 break;
             }
-
             index = biggestChildIndex;
         }
     }
-
 }

@@ -337,7 +337,7 @@ public class Exercise10_Size {
 
         StdOut.println("Node character: " + currentChar + " Size: " + currentNode.size);
 
-        for(char nextChar = 0; nextChar < TrieWithSize.R; nextChar++) {
+        for (char nextChar = 0; nextChar < TrieWithSize.R; nextChar++) {
             if (currentNode.next[nextChar] != null) {
                 printNodeSizes(currentNode.next[nextChar], nextChar);
             }
@@ -498,5 +498,4 @@ public class Exercise10_Size {
         StdOut.println("\nSize of TST: " + tstWithSize.size());
         StdOut.println("Expected: 5");
     }
-
 }

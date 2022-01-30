@@ -38,11 +38,11 @@ public class Exercise45_FastBellmanFord {
             maxPathDistance = maxWeight * (edgeWeightedDigraph.vertices() - 1);
             distances = (ArrayList<Integer>[]) new ArrayList[maxPathDistance * 2 + 1];
 
-            for(int distance = 0; distance < distances.length; distance++) {
+            for (int distance = 0; distance < distances.length; distance++) {
                 distances[distance] = new ArrayList<>();
             }
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Integer.MAX_VALUE;
             }
 
@@ -68,7 +68,6 @@ public class Exercise45_FastBellmanFord {
         // Does a linear scan to find the next closest vertex, but keeps track of the position of the last vertex found
         // to do a constant number of scans in the distances[] array during the entire algorithm
         private int getShortestDistanceVertex(int lastComputedShortestDistance) {
-
             while (distances[lastComputedShortestDistance].isEmpty()) {
                 lastComputedShortestDistance++;
 
@@ -89,7 +88,7 @@ public class Exercise45_FastBellmanFord {
         private int relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex) {
             int lastComputedShortestDistance = distTo[vertex] + maxPathDistance;
 
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 Integer neighbor = edge.to();
 
                 if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -131,7 +130,7 @@ public class Exercise45_FastBellmanFord {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
 
@@ -142,7 +141,7 @@ public class Exercise45_FastBellmanFord {
             int vertices = edgeTo.length;
             EdgeWeightedDigraph shortestPathsTree = new EdgeWeightedDigraph(vertices);
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 if (edgeTo[vertex] != null) {
                     shortestPathsTree.addEdge(edgeTo[vertex]);
                 }

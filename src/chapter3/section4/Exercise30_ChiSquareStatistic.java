@@ -19,15 +19,14 @@ public class Exercise30_ChiSquareStatistic {
             double keyCountOverSize = keysSize / (double) size;
 
             int[] keyCountByHashValue = new int[symbolTable.length];
-            for(int bucket = 0; bucket < symbolTable.length; bucket++) {
+            for (int bucket = 0; bucket < symbolTable.length; bucket++) {
                 keyCountByHashValue[bucket] = symbolTable[bucket].size;
             }
 
             double fSum = 0;
-            for(int i = 0; i < keyCountByHashValue.length; i++) {
+            for (int i = 0; i < keyCountByHashValue.length; i++) {
                 fSum += Math.pow(keyCountByHashValue[i] - keyCountOverSize, 2);
             }
-
             return sizeOverKeyCount * fSum;
         }
     }
@@ -37,7 +36,7 @@ public class Exercise30_ChiSquareStatistic {
         SeparateChainingHashTableChiSquare<Integer, Integer> separateChainingHashTableChiSquare =
                 chiSquareStatistic.new SeparateChainingHashTableChiSquare<>(100, 20);
 
-        for(int key = 0; key < 10000; key ++) {
+        for (int key = 0; key < 10000; key ++) {
             int randomIntegerKey = StdRandom.uniform(Integer.MAX_VALUE);
             separateChainingHashTableChiSquare.put(randomIntegerKey, randomIntegerKey);
         }
@@ -62,5 +61,4 @@ public class Exercise30_ChiSquareStatistic {
             StdOut.print("False");
         }
     }
-
 }

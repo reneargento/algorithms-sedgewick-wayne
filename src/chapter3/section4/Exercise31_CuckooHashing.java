@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  * Created by Rene Argento on 24/07/17.
  */
-//Based on http://www.keithschwarz.com/interesting/code/cuckoo-hashmap/CuckooHashMap.java.html
+// Based on http://www.keithschwarz.com/interesting/code/cuckoo-hashmap/CuckooHashMap.java.html
 @SuppressWarnings("unchecked")
 public class Exercise31_CuckooHashing {
 
@@ -70,12 +70,12 @@ public class Exercise31_CuckooHashing {
             keysAndValues = (Entry[][]) Array.newInstance(Entry.class,
                     2, size);
 
-            //The lg of the hash table size
-            //Used to distribute keys uniformly in the hash function
+            // The lg of the hash table size
+            // Used to distribute keys uniformly in the hash function
             int lgM = (int) (Math.log(size) / Math.log(2));
 
             hashFunctions = new HashFunction[2];
-            for(int i = 0; i < 2; i++) {
+            for (int i = 0; i < 2; i++) {
                 int randomCoefficientA = StdRandom.uniform(Integer.MAX_VALUE);
                 int randomCoefficientB = StdRandom.uniform(Integer.MAX_VALUE);
 
@@ -94,7 +94,7 @@ public class Exercise31_CuckooHashing {
         private void updateHashFunctions() {
             int lgM = (int) (Math.log(size) / Math.log(2));
 
-            for(int i = 0; i < 2; i++) {
+            for (int i = 0; i < 2; i++) {
                 int randomCoefficientA = StdRandom.uniform(Integer.MAX_VALUE);
                 int randomCoefficientB = StdRandom.uniform(Integer.MAX_VALUE);
 
@@ -118,22 +118,22 @@ public class Exercise31_CuckooHashing {
 
                 updateHashFunctions();
 
-                for(Entry[] keysAndValues : keysAndValues) {
+                for (Entry[] keysAndValues : keysAndValues) {
                     Arrays.fill(keysAndValues, null);
                 }
 
-                //Try to add all keys and values
-                //Hash table 1
-                for(Entry entry : oldEntries[0]) {
+                // Try to add all keys and values
+                // Hash table 1
+                for (Entry entry : oldEntries[0]) {
                     if (entry != null && tryToInsert(entry) != null) {
                         tryToResize = true;
                         break;
                     }
                 }
 
-                //Hash table 2
+                // Hash table 2
                 if (!tryToResize) {
-                    for(Entry entry : oldEntries[1]) {
+                    for (Entry entry : oldEntries[1]) {
                         if (entry != null && tryToInsert(entry) != null) {
                             tryToResize = true;
                             break;
@@ -149,8 +149,8 @@ public class Exercise31_CuckooHashing {
             Entry[] tempKeysAndValues = (Entry[]) Array.newInstance(Entry.class, keysSize);
             int tempKeysAndValuesIndex = 0;
 
-            for(int i = 0; i < 2; i++) {
-                for(Entry entry : keysAndValues[i]) {
+            for (int i = 0; i < 2; i++) {
+                for (Entry entry : keysAndValues[i]) {
                     if (entry != null) {
                         tempKeysAndValues[tempKeysAndValuesIndex++] = entry;
                     }
@@ -164,12 +164,12 @@ public class Exercise31_CuckooHashing {
 
                 updateHashFunctions();
 
-                for(Entry[] keysAndValues : keysAndValues) {
+                for (Entry[] keysAndValues : keysAndValues) {
                     Arrays.fill(keysAndValues, null);
                 }
 
-                //Try to add all keys and values
-                for(Entry entry : tempKeysAndValues) {
+                // Try to add all keys and values
+                for (Entry entry : tempKeysAndValues) {
                     if (tryToInsert(entry) != null) {
                         tryToRehash = true;
                         break;
@@ -182,7 +182,6 @@ public class Exercise31_CuckooHashing {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
-
             return get(key) != null;
         }
 
@@ -191,14 +190,13 @@ public class Exercise31_CuckooHashing {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            for(int hashTableIndex = 0; hashTableIndex < 2; hashTableIndex++) {
+            for (int hashTableIndex = 0; hashTableIndex < 2; hashTableIndex++) {
                 int hash = hashFunctions[hashTableIndex].hash(key);
 
                 if (keysAndValues[hashTableIndex][hash] != null && keysAndValues[hashTableIndex][hash].key.equals(key)) {
                     return keysAndValues[hashTableIndex][hash].value;
                 }
             }
-
             return null;
         }
 
@@ -212,8 +210,8 @@ public class Exercise31_CuckooHashing {
                 return;
             }
 
-            //Update key if it already exists
-            for(int hashTableIndex = 0; hashTableIndex < 2; hashTableIndex++) {
+            // Update key if it already exists
+            for (int hashTableIndex = 0; hashTableIndex < 2; hashTableIndex++) {
                 int hash = hashFunctions[hashTableIndex].hash(key);
 
                 if (keysAndValues[hashTableIndex][hash] != null && keysAndValues[hashTableIndex][hash].key.equals(key)) {
@@ -222,8 +220,8 @@ public class Exercise31_CuckooHashing {
                 }
             }
 
-            //Key does not exist, let's insert it
-            //Check if the number of keys is equal or more than half of the hash table size
+            // Key does not exist, let's insert it
+            // Check if the number of keys is equal or more than half of the hash table size
             if (keysSize >= size) {
                 resize(size * 2);
             }
@@ -247,11 +245,10 @@ public class Exercise31_CuckooHashing {
          * @return The last displaced entry, or null if all collisions were resolved.
          */
         private Entry tryToInsert(Entry entry) {
-
             int maxTries = size + 1;
             int hashTableIndex = 0;
 
-            for(int numberOfTries = 0; numberOfTries < maxTries; numberOfTries++) {
+            for (int numberOfTries = 0; numberOfTries < maxTries; numberOfTries++) {
                 int hash = hashFunctions[hashTableIndex].hash(entry.key);
 
                 if (keysAndValues[hashTableIndex][hash] == null) {
@@ -265,7 +262,6 @@ public class Exercise31_CuckooHashing {
                 entry = entryToDisplace;
                 hashTableIndex = (hashTableIndex + 1) % 2;
             }
-
             return entry;
         }
 
@@ -278,7 +274,7 @@ public class Exercise31_CuckooHashing {
                 return;
             }
 
-            for(int hashTableIndex = 0; hashTableIndex < 2; hashTableIndex++) {
+            for (int hashTableIndex = 0; hashTableIndex < 2; hashTableIndex++) {
                 int hash = hashFunctions[hashTableIndex].hash(key);
 
                 if (keysAndValues[hashTableIndex][hash] != null && keysAndValues[hashTableIndex][hash].key.equals(key)) {
@@ -297,8 +293,8 @@ public class Exercise31_CuckooHashing {
         public Iterable<Key> keys() {
             Queue<Key> keySet = new Queue<>();
 
-            for(int hashTableIndex = 0; hashTableIndex < keysAndValues.length; hashTableIndex++) {
-                for(Entry entry : keysAndValues[hashTableIndex]) {
+            for (int hashTableIndex = 0; hashTableIndex < keysAndValues.length; hashTableIndex++) {
+                for (Entry entry : keysAndValues[hashTableIndex]) {
                     if (entry != null) {
                         keySet.enqueue(entry.key);
                     }
@@ -307,17 +303,16 @@ public class Exercise31_CuckooHashing {
 
             if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keySet.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keySet.enqueue(key);
                 }
             }
-
             return keySet;
         }
     }
@@ -326,30 +321,29 @@ public class Exercise31_CuckooHashing {
         Exercise31_CuckooHashing exercise31_cuckooHashing = new Exercise31_CuckooHashing();
         CuckooHashing<Integer, Integer> cuckooHashing = exercise31_cuckooHashing.new CuckooHashing<>(16);
 
-        for(int key = 1; key < 10; key++) {
+        for (int key = 1; key < 10; key++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             cuckooHashing.put(randomKey, randomKey);
         }
 
         cuckooHashing.get(5);
 
-        for(Integer key : cuckooHashing.keys()) {
+        for (Integer key : cuckooHashing.keys()) {
             StdOut.print(key + " ");
         }
 
         StdOut.println();
 
-        for(int key = 1; key < 1000000; key++) {
+        for (int key = 1; key < 1000000; key++) {
             cuckooHashing.put(key, key);
         }
-        for(int key = 1; key < 1000000; key++) {
+        for (int key = 1; key < 1000000; key++) {
             cuckooHashing.delete(key);
         }
 
-        for(int key = 1; key < 1500000; key++) {
+        for (int key = 1; key < 1500000; key++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             cuckooHashing.put(randomKey, randomKey);
         }
     }
-
 }

@@ -33,7 +33,7 @@ public class Exercise22_VertexWeights {
             adjacent = (Bag<Integer>[]) new Bag[verticesCount];
             vertices = new WeightedVertex[verticesCount];
 
-            for(int vertex = 0; vertex < verticesCount; vertex++) {
+            for (int vertex = 0; vertex < verticesCount; vertex++) {
                 adjacent[vertex] = new Bag<>();
             }
         }
@@ -74,8 +74,8 @@ public class Exercise22_VertexWeights {
         public Iterable<Integer> edges() {
             Bag<Integer> bag = new Bag<>();
 
-            for(int vertex = 0; vertex < verticesCount; vertex++) {
-                for(int neighbor : adjacent[vertex]) {
+            for (int vertex = 0; vertex < verticesCount; vertex++) {
+                for (int neighbor : adjacent[vertex]) {
                     bag.add(neighbor);
                 }
             }
@@ -87,10 +87,10 @@ public class Exercise22_VertexWeights {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < verticesCount(); vertex++) {
+            for (int vertex = 0; vertex < verticesCount(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(int neighbor : adjacent(vertex)) {
+                for (int neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
@@ -115,13 +115,13 @@ public class Exercise22_VertexWeights {
             EdgeWeightedDigraph edgeWeightedDigraph =
                     new EdgeWeightedDigraph(verticesCount + vertexWeightedDigraph.edgesCount());
 
-            for(WeightedVertex weightedVertex : vertexWeightedDigraph.vertices) {
+            for (WeightedVertex weightedVertex : vertexWeightedDigraph.vertices) {
                 edgeWeightedDigraph.addEdge(new DirectedEdge(weightedVertex.id, weightedVertex.id + verticesCount,
                         weightedVertex.weight));
             }
 
-            for(int vertex = 0; vertex < verticesCount; vertex++) {
-                for(int neighbor : vertexWeightedDigraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < verticesCount; vertex++) {
+                for (int neighbor : vertexWeightedDigraph.adjacent(vertex)) {
                     edgeWeightedDigraph.addEdge(new DirectedEdge(vertex + verticesCount, neighbor, 0));
                 }
             }
@@ -181,11 +181,10 @@ public class Exercise22_VertexWeights {
 
         StdOut.print("\nPath to 5: ");
 
-        for(DirectedEdge edge : dijkstraVertexWeighted.pathTo(5)) {
+        for (DirectedEdge edge : dijkstraVertexWeighted.pathTo(5)) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
 
         StdOut.println("\nExpected:  0->7 7->1 1->8 8->2 2->9 9->4 4->11 11->5 5->12");
     }
-
 }

@@ -28,14 +28,14 @@ public class Exercise42_Partitioning {
 
             // First pass required to count the number of edges (EdgeWeightedGraph.edgesCount() also counts self-loops, which
             // are not returned in EdgeWeightedGraph.edge())
-            for(Edge edge : edgeWeightedGraph.edges()) {
+            for (Edge edge : edgeWeightedGraph.edges()) {
                 totalNumberOfEdges++;
             }
 
             Edge[] edges = new Edge[totalNumberOfEdges];
             int edgesIndex = 0;
 
-            for(Edge edge : edgeWeightedGraph.edges()) {
+            for (Edge edge : edgeWeightedGraph.edges()) {
                 edges[edgesIndex++] = edge;
             }
 
@@ -131,10 +131,9 @@ public class Exercise42_Partitioning {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
@@ -157,7 +156,7 @@ public class Exercise42_Partitioning {
         Exercise42_Partitioning.KruskalMSTPartitioning kruskalMSTPartitioning =
                 new Exercise42_Partitioning().new KruskalMSTPartitioning(edgeWeightedGraph);
 
-        for(Edge edge : kruskalMSTPartitioning.edges()) {
+        for (Edge edge : kruskalMSTPartitioning.edges()) {
             StdOut.println(edge);
         }
 
@@ -167,5 +166,4 @@ public class Exercise42_Partitioning {
                 "0-3 0.50000\n" +
                 "3-4 0.80000");
     }
-
 }

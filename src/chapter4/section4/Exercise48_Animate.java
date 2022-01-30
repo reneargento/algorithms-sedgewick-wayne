@@ -48,7 +48,7 @@ public class Exercise48_Animate {
             drawInitialVertices(randomCoordinates);
             drawInitialEdges(edgeWeightedDigraph, randomCoordinates);
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             distTo[source] = 0;
@@ -73,7 +73,7 @@ public class Exercise48_Animate {
         private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex, Coordinate[] randomCoordinates) {
             relaxed[vertex] = true;
 
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -111,7 +111,7 @@ public class Exercise48_Animate {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
 
@@ -130,18 +130,17 @@ public class Exercise48_Animate {
 
             int valueToExpand = 5;
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 double randomXCoordinate = StdRandom.uniform() * valueToExpand;
                 double randomYCoordinate = StdRandom.uniform() * valueToExpand;
 
                 vertexCoordinates[vertex] = drawUtilities.new Coordinate(randomXCoordinate, randomYCoordinate);
             }
-
             return vertexCoordinates;
         }
 
         private void drawInitialVertices(Coordinate[] coordinates) {
-            for(int vertex = 0; vertex < coordinates.length; vertex++) {
+            for (int vertex = 0; vertex < coordinates.length; vertex++) {
 
                 StdDraw.setPenColor(Color.LIGHT_GRAY);
                 StdDraw.filledCircle(coordinates[vertex].getXCoordinate(), coordinates[vertex].getYCoordinate(),
@@ -160,8 +159,8 @@ public class Exercise48_Animate {
             StdDraw.setPenRadius(0.002D);
             StdDraw.setPenColor(Color.BLACK);
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     int neighbor = edge.to();
                     DrawUtilities.drawArrow(coordinates[vertex], coordinates[neighbor], padding, arrowLength);
                 }
@@ -171,7 +170,7 @@ public class Exercise48_Animate {
         private void drawVerticesInShortestPath(Coordinate[] coordinates) {
             StdDraw.setPenRadius(0.002D);
 
-            for(int vertex = 0; vertex < coordinates.length; vertex++) {
+            for (int vertex = 0; vertex < coordinates.length; vertex++) {
                 if (relaxed[vertex]) {
                     StdDraw.setPenColor(Color.WHITE);
                     StdDraw.filledCircle(coordinates[vertex].getXCoordinate(), coordinates[vertex].getYCoordinate(),
@@ -195,7 +194,7 @@ public class Exercise48_Animate {
                 nextVertexInShortestPath = priorityQueue.minIndex();
             }
 
-            for(DirectedEdge edge : edgeTo) {
+            for (DirectedEdge edge : edgeTo) {
                 if (edge == null) {
                     continue;
                 }
@@ -217,7 +216,6 @@ public class Exercise48_Animate {
                 StdDraw.setPenColor(Color.RED);
                 DrawUtilities.drawArrow(coordinates[vertex1], coordinates[vertex2], padding, arrowLength);
             }
-
             sleep();
         }
 
@@ -233,7 +231,7 @@ public class Exercise48_Animate {
             StdDraw.setPenColor(Color.BLACK);
             StdDraw.setPenRadius(0.007D);
 
-            for(int vertex = 0; vertex < coordinates.length; vertex++) {
+            for (int vertex = 0; vertex < coordinates.length; vertex++) {
                 if (edgeTo[vertex] != null) {
                     DrawUtilities.drawArrow(coordinates[edgeTo[vertex].from()], coordinates[vertex], padding, arrowLength);
                 }
@@ -282,5 +280,4 @@ public class Exercise48_Animate {
         new Exercise48_Animate().new DijkstraSPAnimations(edgeWeightedDigraph, 0,-0.2, 5.2,
                         -0.2, 5.2, 0.2, 0.08,0.05);
     }
-
 }

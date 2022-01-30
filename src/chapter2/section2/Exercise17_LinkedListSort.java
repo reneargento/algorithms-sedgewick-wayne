@@ -71,7 +71,7 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
         linkedList.first = newSourceNode;
 
         StringJoiner sortedList = new StringJoiner(" ");
-        while(newSourceNode != null) {
+        while (newSourceNode != null) {
             sortedList.add(String.valueOf(newSourceNode.item));
             newSourceNode = newSourceNode.next;
         }
@@ -147,7 +147,7 @@ public class Exercise17_LinkedListSort<Item> implements Iterable<Item> {
             rightNode = rightNode.next;
         }
 
-        while(leftNode != middle.next && rightNode != high.next) {
+        while (leftNode != middle.next && rightNode != high.next) {
             if (leftNode.item.compareTo(rightNode.item) <= 0) {
                 aux.next = leftNode;
                 aux = leftNode;

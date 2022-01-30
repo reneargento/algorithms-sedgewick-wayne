@@ -61,33 +61,33 @@ public class Exercise38_Sensitivity {
 
         HashSet<EdgeInformation> edgesInformation = new HashSet<>();
 
-        for(DirectedEdge edge : edgeWeightedDigraph.edges()) {
+        for (DirectedEdge edge : edgeWeightedDigraph.edges()) {
             edgesInformation.add(new EdgeInformation(edge.from(), edge.to()));
         }
 
-        for(int i = 0; i < sensitivity.length; i++) {
-            for(int j = 0; j < sensitivity[0].length; j++) {
+        for (int i = 0; i < sensitivity.length; i++) {
+            for (int j = 0; j < sensitivity[0].length; j++) {
                 if (!edgesInformation.contains(new EdgeInformation(i, j))) {
                     sensitivity[i][j] = true;
                 }
             }
         }
 
-        for(int source = 0; source < edgeWeightedDigraph.vertices(); source++) {
+        for (int source = 0; source < edgeWeightedDigraph.vertices(); source++) {
             // 1- Run Dijkstra from source
             DijkstraSP dijkstraSP = new DijkstraSP(edgeWeightedDigraph, source);
 
             // 2- Compute downwards critical edges in paths from source
             int[] downwardCriticalEdgesCount = new int[edgeWeightedDigraph.vertices()];
 
-            for(DirectedEdge edge : edgeWeightedDigraph.edges()) {
+            for (DirectedEdge edge : edgeWeightedDigraph.edges()) {
                 if (dijkstraSP.distTo(edge.from()) + edge.weight() == dijkstraSP.distTo(edge.to())) {
                     downwardCriticalEdgesCount[edge.to()]++;
                 }
             }
 
             // 3- Check which edges adjacent to the source vertex are not upwards critical edges
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(source)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(source)) {
                 if (downwardCriticalEdgesCount[edge.to()] != 1) {
                     sensitivity[source][edge.to()] = true;
                 }
@@ -114,8 +114,8 @@ public class Exercise38_Sensitivity {
         boolean[][] sensitivity1 = sensitivity.computeSensitivity(edgeWeightedDigraph1);
 
         StdOut.print("Upwards critical edges 1: ");
-        for(int i = 0; i < sensitivity1.length; i++) {
-            for(int j = 0; j < sensitivity1[0].length; j++) {
+        for (int i = 0; i < sensitivity1.length; i++) {
+            for (int j = 0; j < sensitivity1[0].length; j++) {
                 if (!sensitivity1[i][j]) {
                     StdOut.print(i + "->" + j + " ");
                 }
@@ -135,15 +135,13 @@ public class Exercise38_Sensitivity {
         boolean[][] sensitivity2 = sensitivity.computeSensitivity(edgeWeightedDigraph2);
 
         StdOut.print("\nUpwards critical edges 2: ");
-        for(int i = 0; i < sensitivity2.length; i++) {
-            for(int j = 0; j < sensitivity2[0].length; j++) {
+        for (int i = 0; i < sensitivity2.length; i++) {
+            for (int j = 0; j < sensitivity2[0].length; j++) {
                 if (!sensitivity2[i][j]) {
                     StdOut.print(i + "->" + j + " ");
                 }
             }
         }
-
         StdOut.println("\nExpected: 0->4 2->3 4->1");
     }
-
 }

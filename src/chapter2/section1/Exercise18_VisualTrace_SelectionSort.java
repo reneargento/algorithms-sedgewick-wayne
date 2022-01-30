@@ -13,7 +13,7 @@ public class Exercise18_VisualTrace_SelectionSort {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -27,10 +27,10 @@ public class Exercise18_VisualTrace_SelectionSort {
     }
 
     private static void selectionSort(Comparable[] array) {
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             int minIndex = i;
 
-            for(int j = i + 1; j < array.length; j++) {
+            for (int j = i + 1; j < array.length; j++) {
                 if (array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
@@ -45,7 +45,6 @@ public class Exercise18_VisualTrace_SelectionSort {
     }
 
     private static void draw(Comparable[] array, int row, int ith, int min) {
-
         for (int i = 0; i < array.length; i++) {
             if (i == min) {
                 StdDraw.setPenColor(StdDraw.BOOK_RED);
@@ -57,9 +56,7 @@ public class Exercise18_VisualTrace_SelectionSort {
 
             double barHalfWidth = 0.08;
             double barHalfHeight = Double.parseDouble(String.valueOf(array[i])) / 2;
-
             StdDraw.filledRectangle(((double) i) / 3, barHalfHeight + row, barHalfWidth, barHalfHeight);
         }
     }
-
 }

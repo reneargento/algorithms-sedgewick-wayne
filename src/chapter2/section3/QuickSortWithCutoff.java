@@ -15,7 +15,6 @@ public class QuickSortWithCutoff {
     }
 
     private static void quickSort(Comparable[] array, int low, int high, int cutoffSize) {
-
         if (low >= high) {
             return;
         }
@@ -38,14 +37,14 @@ public class QuickSortWithCutoff {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot)) {
                 if (i == high) {
                     break;
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if (j == low) {
                     break;
                 }
@@ -58,9 +57,8 @@ public class QuickSortWithCutoff {
             ArrayUtil.exchange(array, i, j);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, j);
         return j;
     }
-
 }

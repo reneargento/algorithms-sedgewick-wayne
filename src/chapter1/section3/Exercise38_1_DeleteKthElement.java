@@ -55,7 +55,7 @@ public class Exercise38_1_DeleteKthElement<Item> implements Iterable<Item>{
     }
 
     private void moveItemsLeft(int firstIndex) {
-        for(int i = firstIndex; i < size; i++) {
+        for (int i = firstIndex; i < size; i++) {
             queue[i - 1] = queue[i];
         }
         queue[size - 1] = null; //to avoid loitering

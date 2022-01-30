@@ -53,12 +53,12 @@ public class SparseVector {
 
         SparseVector result = new SparseVector(dimension);
 
-        //Copy values
-        for(int key : hashTable.keys()) {
+        // Copy values
+        for (int key : hashTable.keys()) {
             result.put(key, get(key));
         }
-        //Sum values
-        for(int key : sparseVector.hashTable.keys()) {
+        // Sum values
+        for (int key : sparseVector.hashTable.keys()) {
             double sum = get(key) + sparseVector.get(key);
 
             if (sum != 0) {
@@ -78,15 +78,15 @@ public class SparseVector {
 
         double sum = 0;
 
-        //Iterate over the vector with the fewest nonzeros
+        // Iterate over the vector with the fewest nonzeros
         if (size() <= sparseVector.size()) {
-            for(int key : hashTable.keys()) {
+            for (int key : hashTable.keys()) {
                 if (sparseVector.hashTable.contains(key)) {
                     sum += get(key) * sparseVector.get(key);
                 }
             }
         } else {
-            for(int key : sparseVector.hashTable.keys()) {
+            for (int key : sparseVector.hashTable.keys()) {
                 if (hashTable.contains(key)) {
                     sum += get(key) * sparseVector.get(key);
                 }
@@ -99,7 +99,7 @@ public class SparseVector {
     public double dot(double[] that) {
         double sum = 0.0;
 
-        for(int key : hashTable.keys()) {
+        for (int key : hashTable.keys()) {
             sum += this.get(key) * that[key];
         }
 
@@ -116,9 +116,8 @@ public class SparseVector {
         return stringBuilder.toString();
     }
 
-    //Optimized hash map with primitive keys and values, not requiring autoboxing and unboxing
+    // Optimized hash map with primitive keys and values, not requiring autoboxing and unboxing
     private class HashSTintKeysdoubleValues {
-
         private int keysSize;
         private int size;
         private int[] keys;
@@ -126,9 +125,9 @@ public class SparseVector {
 
         private final static int EMPTY_KEY = Integer.MIN_VALUE;
 
-        //The largest prime <= 2^i for i = 1 to 31
-        //Used to distribute keys uniformly in the hash table after resizes
-        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        // The largest prime <= 2^i for i = 1 to 31
+        // Used to distribute keys uniformly in the hash table after resizes
+        // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
                 1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -136,8 +135,8 @@ public class SparseVector {
                 536870909, 1073741789, 2147483647
         };
 
-        //The lg of the hash table size
-        //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+        // The lg of the hash table size
+        // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
         private HashSTintKeysdoubleValues(int size) {
@@ -145,10 +144,9 @@ public class SparseVector {
             keys = new int[size];
             values = new double[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 keys[i] = EMPTY_KEY;
             }
-
             lgM = (int) (Math.log(size) / Math.log(2));
         }
 
@@ -166,7 +164,6 @@ public class SparseVector {
             if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
-
             return hash % size;
         }
 
@@ -177,7 +174,7 @@ public class SparseVector {
         private void resize(int newSize) {
             HashSTintKeysdoubleValues tempHashTable = new HashSTintKeysdoubleValues(newSize);
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i] != EMPTY_KEY) {
                     tempHashTable.put(keys[i], values[i]);
                 }
@@ -193,12 +190,11 @@ public class SparseVector {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
+            for (int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
                 if (keys[tableIndex] == key) {
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -207,12 +203,11 @@ public class SparseVector {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
+            for (int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
                 if (keys[tableIndex] == key) {
                     return values[tableIndex];
                 }
             }
-
             return EMPTY_KEY;
         }
 
@@ -227,7 +222,7 @@ public class SparseVector {
             }
 
             int tableIndex;
-            for(tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
+            for (tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
                 if (keys[tableIndex] == key) {
                     values[tableIndex] = value;
                     return;
@@ -280,21 +275,19 @@ public class SparseVector {
         public int[] keys() {
             Queue<Integer> keySet = new Queue<>();
 
-            for(int key : keys) {
+            for (int key : keys) {
                 if (key != EMPTY_KEY) {
                     keySet.enqueue(key);
                 }
             }
 
             int[] keys = new int[keySet.size()];
-            for(int i = 0; i < keys.length; i++) {
+            for (int i = 0; i < keys.length; i++) {
                 keys[i] = keySet.dequeue();
             }
 
             Arrays.sort(keys);
-
             return keys;
         }
     }
-
 }

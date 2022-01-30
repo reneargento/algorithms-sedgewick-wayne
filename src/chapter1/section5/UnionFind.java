@@ -15,7 +15,7 @@ public class UnionFind implements UF {
         ranks = new int[size];
         components = size;
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             leaders[i]  = i;
             ranks[i] = 0;
         }
@@ -29,7 +29,7 @@ public class UnionFind implements UF {
         return find(site1) == find(site2);
     }
 
-    //O(inverse Ackermann function)
+    // O(inverse Ackermann function)
     public int find(int site) {
         if (site == leaders[site]) {
             return site;
@@ -38,9 +38,8 @@ public class UnionFind implements UF {
         return leaders[site] = find(leaders[site]);
     }
 
-    //O(inverse Ackermann function)
+    // O(inverse Ackermann function)
     public void union(int site1, int site2) {
-
         int leader1 = find(site1);
         int leader2 = find(site2);
 
@@ -59,5 +58,4 @@ public class UnionFind implements UF {
 
         components--;
     }
-
 }

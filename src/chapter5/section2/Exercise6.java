@@ -157,7 +157,7 @@ public class Exercise6 {
         public String toString() {
             StringJoiner keys = new StringJoiner(", ");
 
-            for(String key : keys()) {
+            for (String key : keys()) {
                 keys.add(key);
             }
 
@@ -224,5 +224,4 @@ public class Exercise6 {
 
         StdOut.println("\nToString:\n" + stringSET);
     }
-
 }

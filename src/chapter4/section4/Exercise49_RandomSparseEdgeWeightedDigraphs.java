@@ -12,11 +12,10 @@ import java.util.List;
 public class Exercise49_RandomSparseEdgeWeightedDigraphs {
 
     public class RandomEdgeWeightedDigraphs {
-
         public EdgeWeightedDigraphInterface erdosRenyiDigraphUniformWeights(int vertices, int edges) {
             EdgeWeightedDigraphInterface edgeWeightedDigraph = new EdgeWeightedDigraph(vertices);
 
-            for(int edge = 0; edge < edges; edge++) {
+            for (int edge = 0; edge < edges; edge++) {
                 int vertexId1 = StdRandom.uniform(vertices);
                 int vertexId2 = StdRandom.uniform(vertices);
 
@@ -39,7 +38,7 @@ public class Exercise49_RandomSparseEdgeWeightedDigraphs {
         public EdgeWeightedDigraphInterface erdosRenyiDigraphGaussianWeights(int vertices, int edges) {
             EdgeWeightedDigraphInterface randomEdgeWeightedDigraph = new EdgeWeightedDigraph(vertices);
 
-            for(int edge = 0; edge < edges; edge++) {
+            for (int edge = 0; edge < edges; edge++) {
                 int vertexId1 = StdRandom.uniform(vertices);
                 int vertexId2 = StdRandom.uniform(vertices);
 
@@ -55,12 +54,11 @@ public class Exercise49_RandomSparseEdgeWeightedDigraphs {
 
                 randomEdgeWeightedDigraph.addEdge(newEdge);
             }
-
             return randomEdgeWeightedDigraph;
         }
     }
 
-    //A graph is considered sparse if its number of edges is within a small constant factor of V
+    // A graph is considered sparse if its number of edges is within a small constant factor of V
     public List<EdgeWeightedDigraphInterface> randomSparseEdgeWeightedDigraphsGenerator(int numberOfDigraphs,
                                                                                         boolean uniformWeightDistribution) {
         if (numberOfDigraphs < 0) {
@@ -72,7 +70,7 @@ public class Exercise49_RandomSparseEdgeWeightedDigraphs {
         List<EdgeWeightedDigraphInterface> randomEdgeWeightedDigraphs = new ArrayList<>();
         int[] digraphVerticesCount = {10, 100, 1000, 10000};
 
-        for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+        for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
             int vertices = digraphVerticesCount[digraph % 4];
             int edges = vertices * 3;
 
@@ -88,11 +86,10 @@ public class Exercise49_RandomSparseEdgeWeightedDigraphs {
 
             randomEdgeWeightedDigraphs.add(randomEdgeWeightedDigraph);
         }
-
         return randomEdgeWeightedDigraphs;
     }
 
-    //Parameter example: 100
+    // Parameter example: 100
     public static void main(String[] args) {
         int numberOfDigraphs = Integer.parseInt(args[0]);
 
@@ -109,5 +106,4 @@ public class Exercise49_RandomSparseEdgeWeightedDigraphs {
         StdOut.println("Random-sparse-edge-weighted-digraphs with gaussian weights distribution generated: "
                 + (randomSparseEdgeWeightedDigraphsGaussian.size() == numberOfDigraphs));
     }
-
 }

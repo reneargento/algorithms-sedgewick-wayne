@@ -31,7 +31,7 @@ public class Exercise24_SpellChecker {
                 return filteredWords;
             }
 
-            for(String word : allWords) {
+            for (String word : allWords) {
                 if (!trie.contains(word)) {
                     filteredWords.add(word);
                 }
@@ -57,7 +57,7 @@ public class Exercise24_SpellChecker {
                 return filteredWords;
             }
 
-            for(String word : allWords) {
+            for (String word : allWords) {
                 if (!ternarySearchTrie.contains(word)) {
                     filteredWords.add(word);
                 }
@@ -97,5 +97,4 @@ public class Exercise24_SpellChecker {
     public static void main(String[] args) {
         new Exercise24_SpellChecker().doExperiment(args);
     }
-
 }

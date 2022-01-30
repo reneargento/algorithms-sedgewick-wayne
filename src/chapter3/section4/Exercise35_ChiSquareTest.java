@@ -30,7 +30,7 @@ public class Exercise35_ChiSquareTest extends Exercise30_ChiSquareStatistic {
         SeparateChainingHashTableChiSquareTest<Integer, Integer> separateChainingHashTableIntegerChiSquareTest =
                 chiSquareTest.new SeparateChainingHashTableChiSquareTest<>(20, 5);
 
-        for(int i = 0; i < numberOfKeys; i++) {
+        for (int i = 0; i < numberOfKeys; i++) {
             int randomIntegerKey = StdRandom.uniform(Integer.MAX_VALUE);
             separateChainingHashTableIntegerChiSquareTest.put(randomIntegerKey, randomIntegerKey);
         }
@@ -54,7 +54,7 @@ public class Exercise35_ChiSquareTest extends Exercise30_ChiSquareStatistic {
         SeparateChainingHashTableChiSquareTest<Double, Double> separateChainingHashTableDoubleChiSquareTest =
                 chiSquareTest.new SeparateChainingHashTableChiSquareTest<>(20, 5);
 
-        for(int i = 0; i < numberOfKeys; i++) {
+        for (int i = 0; i < numberOfKeys; i++) {
             double randomDoubleKey = StdRandom.uniform();
             separateChainingHashTableDoubleChiSquareTest.put(randomDoubleKey, randomDoubleKey);
         }
@@ -78,11 +78,11 @@ public class Exercise35_ChiSquareTest extends Exercise30_ChiSquareStatistic {
         SeparateChainingHashTableChiSquareTest<String, String> separateChainingHashTableStringChiSquareTest =
                 chiSquareTest.new SeparateChainingHashTableChiSquareTest<>(20, 5);
 
-        for(int i = 0; i < numberOfKeys; i++) {
+        for (int i = 0; i < numberOfKeys; i++) {
             StringBuilder string = new StringBuilder();
 
-            for(int c = 0; c < 10; c++) {
-                //Generate random char between 'A' and 'z'
+            for (int c = 0; c < 10; c++) {
+                // Generate random char between 'A' and 'z'
                 char currentChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                         Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                 string.append(currentChar);

@@ -26,7 +26,7 @@ public class Exercise41_CrossoverToInterpolationSearch {
         int maxKey = 100000;
         int maxValue = 10;
 
-        for(int i = 1; i <= maxKey; i++) {
+        for (int i = 1; i <= maxKey; i++) {
             int randomValue = StdRandom.uniform(maxValue);
 
             binarySearchSymbolTable.put(i, randomValue);
@@ -63,5 +63,4 @@ public class Exercise41_CrossoverToInterpolationSearch {
             }
         }
     }
-
 }

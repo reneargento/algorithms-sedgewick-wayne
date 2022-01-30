@@ -15,7 +15,7 @@ public class Exercise18_VisualTrace_ShellSort {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -35,10 +35,9 @@ public class Exercise18_VisualTrace_ShellSort {
 
     private static void shellSort(Comparable[] array) {
         int incrementSequence = 1;
-
         int numberOfIncrementSequences = 0;
 
-        while(incrementSequence * 3 + 1 < array.length) {
+        while (incrementSequence * 3 + 1 < array.length) {
             incrementSequence *= 3;
             incrementSequence++;
 
@@ -48,11 +47,10 @@ public class Exercise18_VisualTrace_ShellSort {
         int rowToDraw = numberOfIncrementSequences;
 
         while (incrementSequence > 0) {
-
-            for(int i = incrementSequence; i < array.length; i++) {
+            for (int i = incrementSequence; i < array.length; i++) {
                 int j;
 
-                for(j = i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0; j -= incrementSequence) {
+                for (j = i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0; j -= incrementSequence) {
                     Comparable temp = array[j];
                     array[j] = array[j - incrementSequence];
                     array[j - incrementSequence] = temp;
@@ -70,7 +68,7 @@ public class Exercise18_VisualTrace_ShellSort {
 
         int numberOfIncrementSequences = 0;
 
-        while(incrementSequence * 3 + 1 < arraySize) {
+        while (incrementSequence * 3 + 1 < arraySize) {
             incrementSequence *= 3;
             incrementSequence++;
 
@@ -81,13 +79,10 @@ public class Exercise18_VisualTrace_ShellSort {
     }
 
     private static void draw(Comparable[] array, int rowToDraw, String textLabel) {
-
         StdDraw.setPenColor(StdDraw.BLACK);
-
         StdDraw.text(0, rowToDraw + 0.7, textLabel);
 
         for (int i = 0; i < array.length; i++) {
-
             double barHalfWidth = 0.08;
             double barHalfHeight = Double.parseDouble(String.valueOf(array[i])) / 2;
 

@@ -17,8 +17,8 @@ public class Exercise37_CriticalEdges {
         // It will be used to compute the shortest paths using the target vertex as a source.
         EdgeWeightedDigraph reverseDigraph = new EdgeWeightedDigraph(edgeWeightedDigraph.vertices());
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 reverseDigraph.addEdge(new DirectedEdge(edge.to(), edge.from(), edge.weight()));
             }
         }
@@ -49,13 +49,13 @@ public class Exercise37_CriticalEdges {
     private int[] getIslands(EdgeWeightedDigraph edgeWeightedDigraph, DijkstraSP dijkstraSP, int source, int target) {
         int[] islands = new int[edgeWeightedDigraph.vertices()];
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             islands[vertex] = -1;
         }
 
         int islandId = 0;
 
-        for(DirectedEdge edge : dijkstraSP.pathTo(target)) {
+        for (DirectedEdge edge : dijkstraSP.pathTo(target)) {
             if (islands[edge.from()] == -1) {
                 islands[edge.from()] = islandId++;
             }
@@ -74,7 +74,7 @@ public class Exercise37_CriticalEdges {
         while (!queue.isEmpty()) {
             int currentVertex = queue.dequeue();
 
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(currentVertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(currentVertex)) {
                 int neighbor = edge.to();
 
                 if (!visited[neighbor]) {
@@ -97,18 +97,18 @@ public class Exercise37_CriticalEdges {
         // the shortest path from source to target.
         double[] bypassPathLengths = new double[edgeWeightedDigraph.vertices()];
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             bypassPathLengths[vertex] = Double.POSITIVE_INFINITY;
         }
 
         HashSet<DirectedEdge> edgesInShortestPath = new HashSet<>();
-        for(DirectedEdge edge : dijkstraSP.pathTo(target)) {
+        for (DirectedEdge edge : dijkstraSP.pathTo(target)) {
             edgesInShortestPath.add(edge);
         }
 
         SegmentTree segmentTree = new SegmentTree(bypassPathLengths);
 
-        for(DirectedEdge edge : edgeWeightedDigraph.edges()) {
+        for (DirectedEdge edge : edgeWeightedDigraph.edges()) {
             if (!edgesInShortestPath.contains(edge)) {
                 int island1 = islands[edge.from()];
                 int island2 = islands[edge.to()];
@@ -136,14 +136,14 @@ public class Exercise37_CriticalEdges {
         SeparateChainingHashTable<Integer, DirectedEdge> edgesInShortestPath = new SeparateChainingHashTable<>();
         int edgeIndex = 0;
 
-        for(DirectedEdge edge : dijkstraSP.pathTo(target)) {
+        for (DirectedEdge edge : dijkstraSP.pathTo(target)) {
             edgesInShortestPath.put(edgeIndex++, edge);
         }
 
         int criticalEdgeId = 0;
         double highestBypassPathLength = Double.NEGATIVE_INFINITY;
 
-        for(int edgeId = 0; edgeId < edgeIndex; edgeId++) {
+        for (int edgeId = 0; edgeId < edgeIndex; edgeId++) {
             if (bypassPathLengths.rangeSumQuery(edgeId, edgeId) > highestBypassPathLength) {
                 highestBypassPathLength = bypassPathLengths.rangeSumQuery(edgeId, edgeId);
                 criticalEdgeId = edgeId;
@@ -256,5 +256,4 @@ public class Exercise37_CriticalEdges {
         }
         StdOut.println("Expected: 2->3 3.00");
     }
-
 }

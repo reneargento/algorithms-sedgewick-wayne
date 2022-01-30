@@ -11,7 +11,6 @@ import java.util.List;
 public class Exercise55_Prediction {
 
     private void doublingRatioExperiments() {
-
         int digraphsPerExperiment = 5;
         int initialVertices = 125;
         int initialEdges = initialVertices * 10;
@@ -21,7 +20,7 @@ public class Exercise55_Prediction {
 
         double totalTimePrevious = 0;
 
-        for(int digraph = 0; digraph < digraphsPerExperiment; digraph++) {
+        for (int digraph = 0; digraph < digraphsPerExperiment; digraph++) {
             EdgeWeightedDigraphInterface randomEdgeWeightedDigraphUniformWeights =
                     randomEdgeWeightedDigraphs.erdosRenyiDigraphUniformWeights(initialVertices, initialEdges);
 
@@ -33,12 +32,11 @@ public class Exercise55_Prediction {
         StdOut.println("Doubling ratio experiments:\n");
         StdOut.printf("%6s %6s %6s %6s\n", "Vertices | ", "Edges | ","Time | ", "Ratio");
 
-        for(int vertices = 250; vertices <= 4000; vertices += vertices) {
+        for (int vertices = 250; vertices <= 4000; vertices += vertices) {
             int edges = vertices * 10;
-
             double totalTimeSpent = 0;
 
-            for(int digraph = 0; digraph < digraphsPerExperiment; digraph++) {
+            for (int digraph = 0; digraph < digraphsPerExperiment; digraph++) {
                 EdgeWeightedDigraphInterface randomEdgeWeightedDigraphUniformWeights =
                         randomEdgeWeightedDigraphs.erdosRenyiDigraphUniformWeights(vertices, edges);
 
@@ -54,7 +52,6 @@ public class Exercise55_Prediction {
     }
 
     private void empiricalExperiments() {
-
         StdOut.println("\nEmpirical experiments:\n");
         StdOut.printf("%12s %8s %10s\n", "Vertices | ", "Edges | ", "Average time spent");
 
@@ -64,7 +61,6 @@ public class Exercise55_Prediction {
 
         Exercise49_RandomSparseEdgeWeightedDigraphs.RandomEdgeWeightedDigraphs randomEdgeWeightedDigraphs =
                 new Exercise49_RandomSparseEdgeWeightedDigraphs().new RandomEdgeWeightedDigraphs();
-
         boolean targetTimeReached = false;
 
         while (!targetTimeReached) {
@@ -72,7 +68,7 @@ public class Exercise55_Prediction {
             vertices += 1000;
             edges = vertices * 10;
 
-            for(int digraph = 0; digraph < digraphsPerExperiment; digraph++) {
+            for (int digraph = 0; digraph < digraphsPerExperiment; digraph++) {
                 EdgeWeightedDigraphInterface randomEdgeWeightedDigraphUniformWeights =
                         randomEdgeWeightedDigraphs.erdosRenyiDigraphUniformWeights(vertices, edges);
 
@@ -96,7 +92,7 @@ public class Exercise55_Prediction {
         Stopwatch stopwatch = new Stopwatch();
 
         // Compute all shortest paths in the graph
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             new DijkstraSP(edgeWeightedDigraph, vertex);
         }
 
@@ -112,5 +108,4 @@ public class Exercise55_Prediction {
         prediction.doublingRatioExperiments();
         prediction.empiricalExperiments();
     }
-
 }

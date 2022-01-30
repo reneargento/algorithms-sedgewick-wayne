@@ -10,7 +10,7 @@ import edu.princeton.cs.algs4.StdOut;
  * Created by Rene Argento on 09/11/17.
  */
 // Based on https://algs4.cs.princeton.edu/43mst/PrimMST.java.html
-    // and https://algs4.cs.princeton.edu/43mst/KruskalMST.java.html
+// and https://algs4.cs.princeton.edu/43mst/KruskalMST.java.html
 public class Exercise22_MinimumSpanningForest {
 
     public class PrimMinimumSpanningForest {
@@ -27,16 +27,15 @@ public class Exercise22_MinimumSpanningForest {
             distTo = new double[edgeWeightedGraph.vertices()];
             marked = new boolean[edgeWeightedGraph.vertices()];
 
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedGraph.vertices());
 
             ConnectedComponentsEdgeWeightedGraph connectedComponents = new ConnectedComponentsEdgeWeightedGraph(edgeWeightedGraph);
 
-            for(int connectedComponent = 0; connectedComponent < connectedComponents.count(); connectedComponent++) {
-
-                for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+            for (int connectedComponent = 0; connectedComponent < connectedComponents.count(); connectedComponent++) {
+                for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                     if (connectedComponents.id(vertex) == connectedComponent) {
                         prim(edgeWeightedGraph, vertex);
                         break;
@@ -58,7 +57,7 @@ public class Exercise22_MinimumSpanningForest {
             // Add vertex to the minimum spanning forest; update data structures
             marked[vertex] = true;
 
-            for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+            for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                 int otherVertex = edge.other(vertex);
                 if (marked[otherVertex]) {
                     continue; // vertex-otherVertex is ineligible
@@ -86,22 +85,20 @@ public class Exercise22_MinimumSpanningForest {
         public Iterable<Edge> edges() {
             Queue<Edge> minimumSpanningForest = new Queue<>();
 
-            for(int vertex = 0; vertex < edgeTo.length; vertex++) {
+            for (int vertex = 0; vertex < edgeTo.length; vertex++) {
                 if (edgeTo[vertex] != null) {
                     minimumSpanningForest.enqueue(edgeTo[vertex]);
                 }
             }
-
             return minimumSpanningForest;
         }
 
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
@@ -114,7 +111,6 @@ public class Exercise22_MinimumSpanningForest {
     // Its original version already computes either a minimum spanning tree (if the graph is connected) or
     // a minimum spanning forest (if the graph is not connected)
     public class KruskalMinimumSpanningForest {
-
         private Queue<Edge> minimumSpanningForest;
         private double weight;
 
@@ -122,7 +118,7 @@ public class Exercise22_MinimumSpanningForest {
             minimumSpanningForest = new Queue<>();
             PriorityQueueResize<Edge> priorityQueue = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
 
-            for(Edge edge : edgeWeightedGraph.edges()) {
+            for (Edge edge : edgeWeightedGraph.edges()) {
                 priorityQueue.insert(edge);
             }
 
@@ -140,7 +136,6 @@ public class Exercise22_MinimumSpanningForest {
 
                 unionFind.union(vertex1, vertex2);
                 minimumSpanningForest.enqueue(edge); // Add edge to the minimum spanning forest
-
                 weight += edge.weight();
             }
         }
@@ -152,17 +147,15 @@ public class Exercise22_MinimumSpanningForest {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
         public double eagerWeight() {
             return weight;
         }
-
     }
 
     public static void main(String[] args) {
@@ -195,7 +188,7 @@ public class Exercise22_MinimumSpanningForest {
         PrimMinimumSpanningForest primMinimumSpanningForest1 =
                 exercise22_minimumSpanningForest.new PrimMinimumSpanningForest(edgeWeightedGraph1);
 
-        for(Edge edge : primMinimumSpanningForest1.edges()) {
+        for (Edge edge : primMinimumSpanningForest1.edges()) {
             StdOut.println(edge);
         }
 
@@ -209,7 +202,7 @@ public class Exercise22_MinimumSpanningForest {
         PrimMinimumSpanningForest primMinimumSpanningForest2 =
                 exercise22_minimumSpanningForest.new PrimMinimumSpanningForest(edgeWeightedGraph2);
 
-        for(Edge edge : primMinimumSpanningForest2.edges()) {
+        for (Edge edge : primMinimumSpanningForest2.edges()) {
             StdOut.println(edge);
         }
 
@@ -226,7 +219,7 @@ public class Exercise22_MinimumSpanningForest {
         KruskalMinimumSpanningForest kruskalMinimumSpanningForest1 =
                 exercise22_minimumSpanningForest.new KruskalMinimumSpanningForest(edgeWeightedGraph1);
 
-        for(Edge edge : kruskalMinimumSpanningForest1.edges()) {
+        for (Edge edge : kruskalMinimumSpanningForest1.edges()) {
             StdOut.println(edge);
         }
 
@@ -240,7 +233,7 @@ public class Exercise22_MinimumSpanningForest {
         KruskalMinimumSpanningForest kruskalMinimumSpanningForest2 =
                 exercise22_minimumSpanningForest.new KruskalMinimumSpanningForest(edgeWeightedGraph2);
 
-        for(Edge edge : kruskalMinimumSpanningForest2.edges()) {
+        for (Edge edge : kruskalMinimumSpanningForest2.edges()) {
             StdOut.println(edge);
         }
 
@@ -252,5 +245,4 @@ public class Exercise22_MinimumSpanningForest {
                 "1-2 0.41000\n" +
                 "8-9 0.77000");
     }
-
 }

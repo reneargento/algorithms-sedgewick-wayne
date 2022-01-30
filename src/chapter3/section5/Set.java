@@ -630,7 +630,7 @@ public class Set<Key extends Comparable<Key>> {
         StringBuilder stringBuilder = new StringBuilder("{");
 
         boolean isFirstKey = true;
-        for(Key key : keys()) {
+        for (Key key : keys()) {
             if (isFirstKey) {
                 isFirstKey = false;
             } else {
@@ -643,5 +643,4 @@ public class Set<Key extends Comparable<Key>> {
         stringBuilder.append(" }");
         return stringBuilder.toString();
     }
-
 }

@@ -38,7 +38,7 @@ public class Exercise2 {
                 return;
             }
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
                     values[i] = value;
                     return;
@@ -59,7 +59,7 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
                     return values[i];
                 }
@@ -73,7 +73,7 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
                     keys[i] = keys[size - 1];
                     values[i] = values[size - 1];
@@ -82,7 +82,6 @@ public class Exercise2 {
                     values[size - 1] = null;
 
                     size--;
-
                     break;
                 }
             }
@@ -93,7 +92,7 @@ public class Exercise2 {
         }
 
         public boolean contains(Key key) {
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
                     return true;
                 }
@@ -105,7 +104,7 @@ public class Exercise2 {
         public Iterable<Key> keys() {
             Queue<Key> queue = new Queue<>();
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 queue.enqueue(keys[i]);
             }
 
@@ -122,21 +121,20 @@ public class Exercise2 {
             keys = tempKeys;
             values = tempValues;
         }
-
     }
 
     public static void main(String[] args) {
         Exercise2 exercise2 = new Exercise2();
         ArrayST<Integer, String> arrayST = exercise2.new ArrayST<>(2);
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             arrayST.put(i, "Value " + i);
         }
 
         arrayST.delete(4);
 
-        //Testing iterator
-        for(Integer key : arrayST.keys()) {
+        // Testing iterator
+        for (Integer key : arrayST.keys()) {
             StdOut.println("Key " + key + ": " + arrayST.get(key));
         }
 
@@ -151,5 +149,4 @@ public class Exercise2 {
                 "Key 7: Value 7\n" +
                 "Key 8: Value 8");
     }
-
 }

@@ -13,11 +13,11 @@ public class Exercise42_CopyStack<Item> extends Stack<Item> {
     public Exercise42_CopyStack(Stack<Item> stack) {
         Stack<Item> temp = new Stack<>();
 
-        for(Item item : stack) {
+        for (Item item : stack) {
             temp.push(item);
         }
 
-        for(Item item : temp) {
+        for (Item item : temp) {
             push(item);
         }
     }
@@ -57,5 +57,4 @@ public class Exercise42_CopyStack<Item> extends Stack<Item> {
         StdOut.println("Stack Copy: " + copyStackItems.toString());
         StdOut.println("Expected: 5 4 3 2 1");
     }
-
 }

@@ -25,10 +25,10 @@ public class FileUtil {
 
         List<String> wordsList = new ArrayList<>();
 
-        for(String line : lines) {
+        for (String line : lines) {
             String[] wordsInCurrentLine = line.split(" ");
 
-            for(String wordInCurrentLine : wordsInCurrentLine) {
+            for (String wordInCurrentLine : wordsInCurrentLine) {
                 if (wordInCurrentLine.equals("")) {
                     continue;
                 }
@@ -57,7 +57,7 @@ public class FileUtil {
         StringBuilder allCharacters = new StringBuilder();
         int lineNumber = 0;
 
-        for(String line : lines) {
+        for (String line : lines) {
             if (lineNumber != 0 && includeLineBreaks) {
                 allCharacters.append("\n");
             }
@@ -93,7 +93,7 @@ public class FileUtil {
     public static void writeFile(String filePath, List<String> data){
         StringBuilder output = new StringBuilder();
 
-        for(String line : data) {
+        for (String line : data) {
             output.append(line).append("\n");
         }
 

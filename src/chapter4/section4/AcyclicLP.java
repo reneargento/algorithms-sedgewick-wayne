@@ -10,8 +10,8 @@ public class AcyclicLP {
     public AcyclicLP(EdgeWeightedDigraph edgeWeightedDigraph, int source) {
         EdgeWeightedDigraph negatedEdgesDigraph = new EdgeWeightedDigraph(edgeWeightedDigraph.vertices());
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 DirectedEdge negatedEdge = new DirectedEdge(edge.from(), edge.to(), edge.weight() * -1);
                 negatedEdgesDigraph.addEdge(negatedEdge);
             }
@@ -35,5 +35,4 @@ public class AcyclicLP {
     public Iterable<DirectedEdge> pathTo(int vertex) {
         return acyclicSP.pathTo(vertex);
     }
-
 }

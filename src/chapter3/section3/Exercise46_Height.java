@@ -46,7 +46,7 @@ public class Exercise46_Height {
                 xAxisLabel, yAxisLabel);
         RedBlackBST<String, Integer> redBlackBST = new RedBlackBST<>();
 
-        for(String word : words) {
+        for (String word : words) {
 
             if (word.length() < minLength) {
                 continue;
@@ -66,15 +66,13 @@ public class Exercise46_Height {
         int height = bstHeight(redBlackBST);
         visualAccumulator.addDataValue(height, true);
 
-        for(String word : redBlackBST.keys()) {
+        for (String word : redBlackBST.keys()) {
             if (redBlackBST.get(word) > redBlackBST.get(max)) {
                 max = word;
             }
         }
 
         visualAccumulator.writeFinalMean();
-
         return max + " " + redBlackBST.get(max);
     }
-
 }

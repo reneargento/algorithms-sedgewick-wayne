@@ -13,7 +13,7 @@ public class Exercise18_VisualTrace_InsertionSort {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -27,10 +27,9 @@ public class Exercise18_VisualTrace_InsertionSort {
     }
 
     private static void insertionSort(Comparable[] array) {
-
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             int j;
-            for(j = i; j > 0 && array[j].compareTo(array[j - 1]) < 0; j--) {
+            for (j = i; j > 0 && array[j].compareTo(array[j - 1]) < 0; j--) {
                 Comparable temp = array[j];
                 array[j] = array[j - 1];
                 array[j - 1] = temp;
@@ -40,7 +39,6 @@ public class Exercise18_VisualTrace_InsertionSort {
     }
 
     private static void draw(Comparable[] array, int row, int ith, int jth) {
-
         for (int i = 0; i < array.length; i++) {
             if (i == jth) {
                 StdDraw.setPenColor(StdDraw.BOOK_RED);

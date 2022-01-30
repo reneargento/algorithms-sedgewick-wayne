@@ -162,11 +162,11 @@ public class Exercise35_BitonicShortestPath {
 
             // Create a map with vertices as keys and sorted outgoing edges as values
             SeparateChainingHashTable<Integer, VertexInformation> verticesInformation = new SeparateChainingHashTable<>();
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 DirectedEdge[] edges = new DirectedEdge[edgeWeightedDigraph.outdegree(vertex)];
 
                 int edgeIndex = 0;
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     edges[edgeIndex++] = edge;
                 }
 
@@ -193,7 +193,7 @@ public class Exercise35_BitonicShortestPath {
 
             // If we are relaxing edges for the second time, add all existing ascending paths to the priority queue
             if (!allCurrentPaths.isEmpty()) {
-                for(Path currentPath : allCurrentPaths) {
+                for (Path currentPath : allCurrentPaths) {
                     priorityQueue.insert(currentPath);
                 }
             }
@@ -262,7 +262,6 @@ public class Exercise35_BitonicShortestPath {
         }
 
         public Iterable<DirectedEdge> bitonicPathTo(int vertex) {
-
             if (!hasBitonicPathTo(vertex)) {
                 return null;
             }
@@ -307,11 +306,11 @@ public class Exercise35_BitonicShortestPath {
 
         StdOut.print("Bitonic shortest paths: ");
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             StdOut.print("\nPath from vertex 0 to vertex " + vertex + ": ");
 
             if (bitonicSP.hasBitonicPathTo(vertex)) {
-                for(DirectedEdge edge : bitonicSP.bitonicPathTo(vertex)) {
+                for (DirectedEdge edge : bitonicSP.bitonicPathTo(vertex)) {
                     StdOut.print(edge.from() + "->" + edge.to() + " (" + edge.weight() + ") ");
                 }
             } else {
@@ -340,10 +339,9 @@ public class Exercise35_BitonicShortestPath {
                 6, Double.POSITIVE_INFINITY
         };
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             StdOut.print("\nDistance to vertex " + vertex + ": " + bitonicSP.bitonicPathDistTo(vertex)
                     + " Expected: " + expectedDistances[vertex]);
         }
     }
-
 }

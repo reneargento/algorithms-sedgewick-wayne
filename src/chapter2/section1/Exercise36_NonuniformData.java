@@ -12,7 +12,6 @@ import java.util.Arrays;
 public class Exercise36_NonuniformData {
 
     public static void main(String[] args) {
-
         int arrayLength = Integer.parseInt(args[0]);
         int experiments = Integer.parseInt(args[1]);
 
@@ -20,13 +19,12 @@ public class Exercise36_NonuniformData {
     }
 
     private static void runAllExperiments(int initialArrayLength, int experiments) {
-
         int arrayLength = initialArrayLength;
 
         StdOut.printf("%15s %17s %8s\n", "Sort Type", "Array Length", "Time");
         StdOut.println("Half 0s and half 1s");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Comparable[] halfZeroHalfOneValuesArray = generateHalfZeroHalfOneValuesArray(arrayLength);
             runExperiments(halfZeroHalfOneValuesArray);
@@ -40,8 +38,7 @@ public class Exercise36_NonuniformData {
 
         StdOut.println("Half 0s, half remainder 1s, half remainder 2s, ...");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
-
+        for (int experiment = 0; experiment < experiments; experiment++) {
             Comparable[] halfDecrementedValuesArray = generateHalfIncrementingValuesArray(arrayLength);
             runExperiments(halfDecrementedValuesArray);
             arrayLength *= 2;
@@ -54,8 +51,7 @@ public class Exercise36_NonuniformData {
 
         StdOut.println("Half 0s and half random integers");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
-
+        for (int experiment = 0; experiment < experiments; experiment++) {
             Comparable[] halfZeroHalfRandomValuesArray = generateHalfZeroHalfRandomValuesArray(arrayLength);
             runExperiments(halfZeroHalfRandomValuesArray);
             arrayLength *= 2;
@@ -77,52 +73,42 @@ public class Exercise36_NonuniformData {
     }
 
     public static Comparable[] generateHalfZeroHalfOneValuesArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = i % 2 == 0? 0 : 1;
         }
-
         return array;
     }
 
     public static Comparable[] generateHalfIncrementingValuesArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
-
         generateHalfIncrementingValuesArray(array, 0, 0);
-
         return array;
     }
 
     private static void generateHalfIncrementingValuesArray(Comparable[] array, int startIndex, int value) {
-
         if (startIndex == array.length) {
             return;
         }
-
         int endIndex = startIndex + (array.length - startIndex) / 2;
 
-        for(int i = startIndex; i <= endIndex; i++) {
+        for (int i = startIndex; i <= endIndex; i++) {
             array[i] = value;
         }
-
         generateHalfIncrementingValuesArray(array, endIndex+1, value + 1);
     }
 
     public static Comparable[] generateHalfZeroHalfRandomValuesArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength / 2; i++) {
+        for (int i = 0; i < arrayLength / 2; i++) {
             array[i] = 0;
         }
 
-        for(int i = arrayLength / 2; i < arrayLength; i++) {
+        for (int i = arrayLength / 2; i < arrayLength; i++) {
             array[i] = StdRandom.uniform(Integer.MAX_VALUE);
         }
-
         return array;
     }
 
@@ -137,12 +123,10 @@ public class Exercise36_NonuniformData {
             case SHELL: ShellSort.shellSort(array);
                 break;
         }
-
         return timer.elapsedTime();
     }
 
     private static void printExperiment(SortTypes sortType, int arrayLength, double time) {
         StdOut.printf("%15s %17d %8.2f\n", sortType, arrayLength, time);
     }
-
 }

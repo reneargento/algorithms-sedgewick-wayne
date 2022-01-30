@@ -42,7 +42,7 @@ public class Exercise6 {
     private static void doExperiments(SortType sortType, int arrayLength, int numberOfExperiments,
                                       Map<Integer, Comparable[]> allInputArrays) {
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             numberOfArrayAccesses = 0;
 
@@ -68,7 +68,7 @@ public class Exercise6 {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
             Comparable[] array = generateRandomArray(arraySize);
             allArrays.put(i, array);
 
@@ -81,7 +81,7 @@ public class Exercise6 {
     private static Comparable[] generateRandomArray(int arrayLength) {
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.uniform();
         }
 
@@ -114,7 +114,7 @@ public class Exercise6 {
 
         for (int size = 1; size < array.length; size = size + size) {
 
-            for(int low = 0; low + size < array.length; low += size + size) {
+            for (int low = 0; low + size < array.length; low += size + size) {
                 int high = Math.min(low + size + size - 1, array.length - 1);
 
                 merge(array, aux, low, low + size - 1, high);
@@ -124,7 +124,7 @@ public class Exercise6 {
 
     @SuppressWarnings("unchecked")
     private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             aux[i] = array[i];
 
             numberOfArrayAccesses += 2;
@@ -162,5 +162,4 @@ public class Exercise6 {
 
         StdOut.printf("%6d %15d %11.0f\n", arrayLength, numberOfArrayAccesses, upperBound);
     }
-
 }

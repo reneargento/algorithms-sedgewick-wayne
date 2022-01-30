@@ -15,7 +15,6 @@ import java.awt.*;
 public class Exercise23 {
 
     private class MovieSymbolGraph {
-
         private class Vertex {
             String name;
             boolean isMovie;
@@ -56,7 +55,7 @@ public class Exercise23 {
                     vertexToIdMap.put(movieVertex, vertexToIdMap.size());
                 }
 
-                for(int i = 1; i < vertices.length; i++) {
+                for (int i = 1; i < vertices.length; i++) {
                     Vertex actorVertex = new Vertex(vertices[i], false);
 
                     if (!vertexToIdMap.contains(actorVertex)) {
@@ -67,19 +66,19 @@ public class Exercise23 {
 
             keys = new Vertex[vertexToIdMap.size()];
 
-            for(Vertex vertex : vertexToIdMap.keys()) {
+            for (Vertex vertex : vertexToIdMap.keys()) {
                 keys[vertexToIdMap.get(vertex)] = vertex;
             }
 
             graph = new Graph(vertexToIdMap.size());
-            //Seconds pass
+            // Seconds pass
             in = new In(stream);
 
             while (in.hasNextLine()) {
                 String[] vertices = in.readLine().split(separator);
 
                 int movieVertex = vertexToIdMap.get(new Vertex(vertices[0], true));
-                for(int i = 1; i < vertices.length; i++) {
+                for (int i = 1; i < vertices.length; i++) {
                     graph.addEdge(movieVertex, vertexToIdMap.get(new Vertex(vertices[i], false)));
                 }
             }
@@ -119,7 +118,7 @@ public class Exercise23 {
         double[] histogram = new double[MAX_BACON + 1];
         double maxFrequency = 0;
 
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             if (movieSymbolGraph.vertexInformation(vertex).isMovie) {
                 continue;
             }
@@ -129,7 +128,7 @@ public class Exercise23 {
             if (kevinBaconNumber == Integer.MAX_VALUE) {
                 kevinBaconNumber = MAX_BACON;
             } else {
-                //Divide by 2 because the relation in the graph is
+                // Divide by 2 because the relation in the graph is
                 // Actor ---- Movie ---- Actor
                 // So a distance of 2 in the graph is actually a Kevin Bacon number of 1
                 kevinBaconNumber /= 2;
@@ -141,7 +140,6 @@ public class Exercise23 {
                 maxFrequency = histogram[kevinBaconNumber];
             }
         }
-
         drawBaconHistogram(histogram, MAX_BACON, maxFrequency);
         printHistogramValues(histogram, MAX_BACON);
     }
@@ -194,8 +192,7 @@ public class Exercise23 {
     }
 
     private void printHistogramValues(double[] histogram, int INFINITY_ID) {
-
-        for(int i = 0; i < histogram.length; i++) {
+        for (int i = 0; i < histogram.length; i++) {
             if (histogram[i] == 0) {
                 break;
             }
@@ -207,5 +204,4 @@ public class Exercise23 {
     public static void main(String[] args) {
         new Exercise23().baconHistogram();
     }
-
 }

@@ -36,7 +36,7 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (key.equals(node.key)) {
                     return true;
                 }
@@ -50,7 +50,7 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Key cannot be null");
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (key.equals(node.key)) {
                     node.key = key;
                     return;
@@ -76,7 +76,7 @@ public class Exercise2 {
                 return;
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
@@ -88,7 +88,7 @@ public class Exercise2 {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 keys.enqueue(node.key);
             }
 
@@ -104,7 +104,7 @@ public class Exercise2 {
             StringBuilder stringBuilder = new StringBuilder("{");
 
             boolean isFirstKey = true;
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 if (isFirstKey) {
                     isFirstKey = false;
                 } else {
@@ -136,7 +136,7 @@ public class Exercise2 {
 
         StdOut.println("Keys() test");
 
-        for(Integer key : sequentialSearchSet.keys()) {
+        for (Integer key : sequentialSearchSet.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99 - Not necessarily in this order");
@@ -159,5 +159,4 @@ public class Exercise2 {
         sequentialSearchSet.delete(-5);
         StdOut.println(sequentialSearchSet);
     }
-
 }

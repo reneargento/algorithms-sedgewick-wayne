@@ -21,7 +21,7 @@ public class PrimMST {
         distTo = new double[edgeWeightedGraph.vertices()];
         marked = new boolean[edgeWeightedGraph.vertices()];
 
-        for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
             distTo[vertex] = Double.POSITIVE_INFINITY;
         }
         priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedGraph.vertices());
@@ -39,7 +39,7 @@ public class PrimMST {
         // Add vertex to the minimum spanning tree; update data structures
         marked[vertex] = true;
 
-        for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+        for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
             int otherVertex = edge.other(vertex);
             if (marked[otherVertex]) {
                 continue; // vertex-otherVertex is ineligible
@@ -67,25 +67,22 @@ public class PrimMST {
     public Iterable<Edge> edges() {
         Queue<Edge> minimumSpanningTree = new Queue<>();
 
-        for(int vertex = 1; vertex < edgeTo.length; vertex++) {
+        for (int vertex = 1; vertex < edgeTo.length; vertex++) {
             minimumSpanningTree.enqueue(edgeTo[vertex]);
         }
-
         return minimumSpanningTree;
     }
 
     public double lazyWeight() {
         double weight = 0;
 
-        for(Edge edge : edges()) {
+        for (Edge edge : edges()) {
             weight += edge.weight();
         }
-
         return weight;
     }
 
     public double eagerWeight() {
         return weight;
     }
-
 }

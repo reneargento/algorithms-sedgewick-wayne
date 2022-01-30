@@ -46,10 +46,10 @@ public class Exercise33_RandomTransactions {
 
         StdOut.printf("%13s %13s %13s\n", "Number of Transactions | ","Sort Method | ", "Time Spent");
 
-        for(int n = 0; n < values.length; n++) {
+        for (int n = 0; n < values.length; n++) {
             Exercise21_ComparableTransactions[] transactions = generateRandomTransactions(values[n]);
 
-            for(int i = 0; i < sortAlgorithms.length; i++) {
+            for (int i = 0; i < sortAlgorithms.length; i++) {
                 Exercise21_ComparableTransactions[] transactionsCopy = new Exercise21_ComparableTransactions[transactions.length];
                 System.arraycopy(transactions, 0, transactionsCopy, 0, transactions.length);
 
@@ -79,7 +79,7 @@ public class Exercise33_RandomTransactions {
     private Exercise21_ComparableTransactions[] generateRandomTransactions(int numberOfObjects) {
         Exercise21_ComparableTransactions[] transactions = new Exercise21_ComparableTransactions[numberOfObjects];
 
-        for(int i = 0; i < numberOfObjects; i++) {
+        for (int i = 0; i < numberOfObjects; i++) {
             String who = "Client " + (i + 1);
 
             int month = StdRandom.uniform(12) + 1;
@@ -100,5 +100,4 @@ public class Exercise33_RandomTransactions {
     private void printResults(int numberOfTransactions, String sortMethod, double timeSpent) {
         StdOut.printf("%22d %14s %16.2f\n", numberOfTransactions, sortMethod, timeSpent);
     }
-
 }

@@ -50,7 +50,7 @@ public class Exercise13 {
             String queryKey1 = StdIn.readString();
             String queryKey2 = StdIn.readString();
 
-            for(String key : symbolTable.keys(queryKey1, queryKey2)) {
+            for (String key : symbolTable.keys(queryKey1, queryKey2)) {
                 StdOut.println(key + " " + symbolTable.get(key));
             }
             StdOut.println();
@@ -60,5 +60,4 @@ public class Exercise13 {
     public static void main(String[] args) {
         new Exercise13().rangeLookupCSV(args);
     }
-
 }

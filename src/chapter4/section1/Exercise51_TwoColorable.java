@@ -20,7 +20,7 @@ public class Exercise51_TwoColorable {
             color = new boolean[graph.vertices()];
             edgesExamined = 0;
 
-            for(int source = 0; source < graph.vertices(); source++) {
+            for (int source = 0; source < graph.vertices(); source++) {
                 if (!visited[source]) {
                     dfs(graph, source);
                 }
@@ -30,7 +30,7 @@ public class Exercise51_TwoColorable {
         private void dfs(GraphInterface graph, int vertex) {
             visited[vertex] = true;
 
-            for(int neighbor : graph.adjacent(vertex)) {
+            for (int neighbor : graph.adjacent(vertex)) {
                 if (isTwoColorable) {
                     edgesExamined++;
                 }
@@ -47,7 +47,6 @@ public class Exercise51_TwoColorable {
         public boolean isBipartite() {
             return isTwoColorable;
         }
-
     }
 
     private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges) {
@@ -60,7 +59,7 @@ public class Exercise51_TwoColorable {
 
         Exercise40_RandomGraphs exercise40_randomGraphs = new Exercise40_RandomGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomGraph = exercise40_randomGraphs.erdosRenyiGraph(vertices, edges);
             totalEdgesExamined += doExperiment(randomGraph);
         }
@@ -73,7 +72,7 @@ public class Exercise51_TwoColorable {
 
         Exercise41_RandomSimpleGraphs exercise41_randomSimpleGraphs = new Exercise41_RandomSimpleGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomSimpleGraph = exercise41_randomSimpleGraphs.randomSimpleGraph(vertices, edges);
             totalEdgesExamined += doExperiment(randomSimpleGraph);
         }
@@ -87,7 +86,7 @@ public class Exercise51_TwoColorable {
         Exercise46_RandomIntervalGraphs exercise46_randomIntervalGraphs = new Exercise46_RandomIntervalGraphs();
         double defaultLength = 0.3;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomIntervalGraph = exercise46_randomIntervalGraphs.generateIntervalGraph(vertices, defaultLength);
             totalEdgesExamined += doExperiment(randomIntervalGraph);
         }
@@ -118,5 +117,4 @@ public class Exercise51_TwoColorable {
 
         new Exercise51_TwoColorable().generateGraphsAndDoExperiments(experiments, vertices, edges);
     }
-
 }

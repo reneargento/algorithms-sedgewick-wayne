@@ -11,13 +11,12 @@ public class Exercise45_RandomDigraphs {
     public Digraph erdosRenyiDigraph(int vertices, int edges) {
         Digraph randomDigraph = new Digraph(vertices);
 
-        for(int edge = 0; edge < edges; edge++) {
+        for (int edge = 0; edge < edges; edge++) {
             int vertexId1 = StdRandom.uniform(vertices);
             int vertexId2 = StdRandom.uniform(vertices);
 
             randomDigraph.addEdge(vertexId1, vertexId2);
         }
-
         return randomDigraph;
     }
 
@@ -28,5 +27,4 @@ public class Exercise45_RandomDigraphs {
         Digraph randomDigraph = new Exercise45_RandomDigraphs().erdosRenyiDigraph(vertices, edges);
         StdOut.println(randomDigraph);
     }
-
 }

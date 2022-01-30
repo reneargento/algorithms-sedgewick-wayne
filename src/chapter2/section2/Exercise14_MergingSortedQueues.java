@@ -29,7 +29,7 @@ public class Exercise14_MergingSortedQueues {
         Queue<Comparable> mergedQueue = mergeQueues(queue1, queue2);
 
         StdOut.print("Merged queues: ");
-        for(Comparable item : mergedQueue) {
+        for (Comparable item : mergedQueue) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 1 2 3 4 5 6 7 8 9");
@@ -38,7 +38,7 @@ public class Exercise14_MergingSortedQueues {
     public static Queue<Comparable> mergeQueues(Queue<Comparable> queue1, Queue<Comparable> queue2) {
         Queue<Comparable> mergedQueue = new Queue<>();
 
-        while(!queue1.isEmpty() && !queue2.isEmpty()) {
+        while (!queue1.isEmpty() && !queue2.isEmpty()) {
             if (queue1.peek().compareTo(queue2.peek()) <= 0) {
                 mergedQueue.enqueue(queue1.dequeue());
             } else {
@@ -46,13 +46,12 @@ public class Exercise14_MergingSortedQueues {
             }
         }
 
-        while(!queue1.isEmpty()) {
+        while (!queue1.isEmpty()) {
             mergedQueue.enqueue(queue1.dequeue());
         }
-        while(!queue2.isEmpty()) {
+        while (!queue2.isEmpty()) {
             mergedQueue.enqueue(queue2.dequeue());
         }
         return mergedQueue;
     }
-
 }

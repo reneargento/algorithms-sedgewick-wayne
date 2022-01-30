@@ -11,7 +11,6 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise29_SymbolTableWithRandomAccess {
 
     private class SymbolTableWithRandomAccess<Key, Value> {
-
         private SeparateChainingHashTable<Key, Value> separateChainingHashTable;
         private Exercise35_RandomQueue.RandomQueue<Key> randomQueue;
 
@@ -62,11 +61,10 @@ public class Exercise29_SymbolTableWithRandomAccess {
         StdOut.println("Get 20: " + symbolTableWithRandomAccess.get(20) + " Expected: null");
 
         StdOut.println("\nRandom key deletes");
-        for(int i = 0; i < 7; i++) {
+        for (int i = 0; i < 7; i++) {
             StdOut.println("Random key deleted: " + symbolTableWithRandomAccess.deleteRandomKey());
         }
 
         StdOut.println("Expected deleted values: 2 3 5 7 11 13 17 - Not necessarily in this order");
     }
-
 }

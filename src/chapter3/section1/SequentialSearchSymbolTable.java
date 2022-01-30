@@ -42,12 +42,11 @@ public class SequentialSearchSymbolTable<Key, Value> implements SymbolTable<Key,
             throw new IllegalArgumentException("Argument to get() cannot be null");
         }
 
-        for(Node node = first; node != null; node = node.next) {
+        for (Node node = first; node != null; node = node.next) {
             if (key.equals(node.key)) {
                 return node.value;
             }
         }
-
         return null;
     }
 
@@ -61,13 +60,12 @@ public class SequentialSearchSymbolTable<Key, Value> implements SymbolTable<Key,
             return;
         }
 
-        for(Node node = first; node != null; node = node.next) {
+        for (Node node = first; node != null; node = node.next) {
             if (key.equals(node.key)) {
                 node.value = value;
                 return;
             }
         }
-
         first = new Node(key, value, first);
         size++;
     }
@@ -87,7 +85,7 @@ public class SequentialSearchSymbolTable<Key, Value> implements SymbolTable<Key,
             return;
         }
 
-        for(Node node = first; node != null; node = node.next) {
+        for (Node node = first; node != null; node = node.next) {
             if (node.next != null && node.next.key.equals(key)) {
                 node.next = node.next.next;
                 size--;
@@ -99,11 +97,9 @@ public class SequentialSearchSymbolTable<Key, Value> implements SymbolTable<Key,
     public Iterable<Key> keys() {
         Queue<Key> keys = new Queue<>();
 
-        for(Node node = first; node != null; node = node.next) {
+        for (Node node = first; node != null; node = node.next) {
             keys.enqueue(node.key);
         }
-
         return keys;
     }
-
 }

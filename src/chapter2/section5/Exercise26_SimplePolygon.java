@@ -32,30 +32,29 @@ public class Exercise26_SimplePolygon {
         StdDraw.setPenRadius(0.005);
         StdDraw.enableDoubleBuffering();
 
-        for(int i = 0; i < point2Ds.length; i++) {
+        for (int i = 0; i < point2Ds.length; i++) {
             point2Ds[i].draw();
         }
 
-        //Draw the first point in red
+        // Draw the first point in red
         StdDraw.setPenColor(StdDraw.RED);
         StdDraw.setPenRadius(0.02);
         point2Ds[0].draw();
 
         Arrays.sort(point2Ds, point2Ds[0].polarAngleFromThisPointComparator);
 
-        //Draw line segments from the first point to each other point, one at a time, in polar order
+        // Draw line segments from the first point to each other point, one at a time, in polar order
         StdDraw.setPenRadius();
         StdDraw.setPenColor(StdDraw.BLUE);
 
-        for(int i = 1; i < point2Ds.length; i++) {
+        for (int i = 1; i < point2Ds.length; i++) {
             StdDraw.line(point2Ds[i - 1].x(), point2Ds[i - 1].y(), point2Ds[i].x(), point2Ds[i].y());
             StdDraw.show();
             StdDraw.pause(100);
         }
 
-        //Draw last line and finish the polygon
+        // Draw last line and finish the polygon
         StdDraw.line(point2Ds[point2Ds.length - 1].x(), point2Ds[point2Ds.length - 1].y(), point2Ds[0].x(), point2Ds[0].y());
         StdDraw.show();
     }
-
 }

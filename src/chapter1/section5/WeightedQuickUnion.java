@@ -14,7 +14,7 @@ public class WeightedQuickUnion implements UF{
         this.size = new int[size];
         count = size;
 
-        for(int i = 0; i < id.length; i++) {
+        for (int i = 0; i < id.length; i++) {
             id[i] = i;
             this.size[i] = 1;
         }
@@ -28,16 +28,16 @@ public class WeightedQuickUnion implements UF{
         return find(site1) == find(site2);
     }
 
-    //O(lg n)
+    // O(lg n)
     public int find(int site) {
-        while(site != id[site]) {
+        while (site != id[site]) {
             site = id[site];
         }
 
         return site;
     }
 
-    //O(lg n)
+    // O(lg n)
     public void union(int site1, int site2) {
         int parentId1 = find(site1);
         int parentId2 = find(site2);
@@ -60,5 +60,4 @@ public class WeightedQuickUnion implements UF{
     public int[] getSizes() {
         return size;
     }
-
 }

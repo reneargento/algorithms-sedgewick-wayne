@@ -19,7 +19,7 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Number of edges must be nonnegative");
             }
 
-            for(int i = 0; i < edges; i++) {
+            for (int i = 0; i < edges; i++) {
                 int vertexFrom = in.readInt();
                 int vertexTo = in.readInt();
                 double weight = in.readDouble();
@@ -33,10 +33,10 @@ public class Exercise2 {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(DirectedEdge neighbor : adjacent(vertex)) {
+                for (DirectedEdge neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
@@ -72,5 +72,4 @@ public class Exercise2 {
                 "4: 4->5 86.00 4-5 89.00 \n" +
                 "5: ");
     }
-
 }

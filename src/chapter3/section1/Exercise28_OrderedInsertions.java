@@ -108,7 +108,7 @@ public class Exercise28_OrderedInsertions {
                 return;
             }
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
                 values[i] = values[i - 1];
             }
@@ -136,7 +136,7 @@ public class Exercise28_OrderedInsertions {
             }
 
             int rank = rank(key);
-            for(int i = rank; i < size - 1; i++) {
+            for (int i = rank; i < size - 1; i++) {
                 keys[i] = keys[i + 1];
                 values[i] = values[i + 1];
             }
@@ -235,14 +235,13 @@ public class Exercise28_OrderedInsertions {
 
             Queue<Key> queue = new Queue<>();
 
-            for(int i = rank(low); i < rank(high); i++) {
+            for (int i = rank(low); i < rank(high); i++) {
                 queue.enqueue(keys[i]);
             }
 
             if (contains(high)) {
                 queue.enqueue(keys[rank(high)]);
             }
-
             return queue;
         }
 
@@ -266,10 +265,8 @@ public class Exercise28_OrderedInsertions {
         Exercise28_OrderedInsertions orderedInsertions = new Exercise28_OrderedInsertions();
         BinarySearchSymbolTable<Integer, String> binarySearchSymbolTable = orderedInsertions.new BinarySearchSymbolTable<>();
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             binarySearchSymbolTable.put(i, "Value i");
         }
-
     }
-
 }

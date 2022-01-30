@@ -17,7 +17,7 @@ public class Exercise21_RandomItems {
         String[] tenCharacterFixedStrings =
                 Exercise20_RandomFixedLengthWords.randomFixedLengthWords(50, 10);
 
-        for(int string = 0; string < numberOfStrings; string++) {
+        for (int string = 0; string < numberOfStrings; string++) {
             StringBuilder currentString = new StringBuilder();
 
             // Field 1: 4-character field
@@ -35,7 +35,7 @@ public class Exercise21_RandomItems {
             // Field 4: Variable 4 to 15 characters field
             int variableLengthFieldSize = StdRandom.uniform(4, 15 + 1);
 
-            for(int character = 0; character < variableLengthFieldSize; character++) {
+            for (int character = 0; character < variableLengthFieldSize; character++) {
                 char characterValue;
                 int isUpperCaseLetter = StdRandom.uniform(2);
 
@@ -49,10 +49,8 @@ public class Exercise21_RandomItems {
 
                 currentString.append(characterValue);
             }
-
             strings[string] = currentString.toString();
         }
-
         return strings;
     }
 
@@ -63,9 +61,8 @@ public class Exercise21_RandomItems {
         String[] randomStrings = Exercise21_RandomItems.randomItems(numberOfStrings, givenValues);
         StdOut.println("Random strings generated:");
 
-        for(String randomString : randomStrings) {
+        for (String randomString : randomStrings) {
             StdOut.println(randomString);
         }
     }
-
 }

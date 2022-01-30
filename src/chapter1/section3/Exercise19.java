@@ -32,7 +32,7 @@ public class Exercise19<Item> implements Iterable<Item>{
 			first.item = item;
 		} else {	
 			Node current;
-			for(current = first; current.next != null; current = current.next);
+			for (current = first; current.next != null; current = current.next);
 			
 			Node newNode = new Node();
 			newNode.item = item;
@@ -108,5 +108,4 @@ public class Exercise19<Item> implements Iterable<Item>{
         StdOut.println(listAfterRemove.toString());
         StdOut.println("Expected: 0 1 2");
 	}
-
 }

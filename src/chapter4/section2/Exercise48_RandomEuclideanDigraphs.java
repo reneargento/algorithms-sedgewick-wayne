@@ -15,13 +15,12 @@ public class Exercise48_RandomEuclideanDigraphs {
 
     public List<Exercise38_EuclideanDigraphs.EuclideanDigraph> generateRandomEuclideanDigraphs(int numberOfDigraphs,
                                                                                          int vertices, double radius) {
-
         if (numberOfDigraphs < 0) {
             throw new IllegalArgumentException("Number of digraphs cannot be negative");
         }
 
         List<Exercise38_EuclideanDigraphs.EuclideanDigraph> randomEuclideanDigraphs = new ArrayList<>();
-        for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+        for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
             Exercise38_EuclideanDigraphs.EuclideanDigraph randomEuclideanDigraph = randomEuclideanDigraph(vertices, radius);
             randomEuclideanDigraphs.add(randomEuclideanDigraph);
         }
@@ -36,7 +35,7 @@ public class Exercise48_RandomEuclideanDigraphs {
         Exercise38_EuclideanDigraphs.EuclideanDigraph.Vertex[] allVertices =
                 new Exercise38_EuclideanDigraphs.EuclideanDigraph.Vertex[vertices];
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             double randomXCoordinate = StdRandom.uniform();
             double randomYCoordinate = StdRandom.uniform();
 
@@ -47,8 +46,8 @@ public class Exercise48_RandomEuclideanDigraphs {
             randomEuclideanDigraph.addVertex(vertex);
         }
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
-            for(int otherVertex = vertexId + 1; otherVertex < vertices; otherVertex++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int otherVertex = vertexId + 1; otherVertex < vertices; otherVertex++) {
                 double distance = MathUtil.distanceBetweenPoints(allVertices[vertexId].coordinates.getXCoordinate(),
                         allVertices[vertexId].coordinates.getYCoordinate(),
                         allVertices[otherVertex].coordinates.getXCoordinate(),
@@ -68,7 +67,7 @@ public class Exercise48_RandomEuclideanDigraphs {
         return randomEuclideanDigraph;
     }
 
-    //Parameters example: 6 0.5 100
+    // Parameters example: 6 0.5 100
     public static void main(String[] args) {
         int vertices = Integer.parseInt(args[0]);
         double radius = Double.parseDouble(args[1]);
@@ -83,8 +82,8 @@ public class Exercise48_RandomEuclideanDigraphs {
 
         UnionFind unionFind = new UnionFind(vertices);
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
-            for(int neighbor : firstEuclideanDigraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
+            for (int neighbor : firstEuclideanDigraph.adjacent(vertex)) {
                 unionFind.union(vertex, neighbor);
             }
         }
@@ -96,5 +95,4 @@ public class Exercise48_RandomEuclideanDigraphs {
         StdOut.println("Expected to be connected (if it were an undirected graph): " + (radius > thresholdValue));
         StdOut.println("Would be connected (if it were an undirected graph): " + (unionFind.count() == 1));
     }
-
 }

@@ -16,7 +16,7 @@ public class Exercise7 {
             id = new int[size];
             count = size;
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
         }
@@ -44,7 +44,7 @@ public class Exercise7 {
                 return;
             }
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 if (id[i] == leaderId1) {
                     id[i] = leaderId2;
                 }
@@ -63,7 +63,7 @@ public class Exercise7 {
             id = new int[n];
             count = n;
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
         }
@@ -74,7 +74,7 @@ public class Exercise7 {
 
         //O(n)
         public int find(int site) {
-            while(site != id[site]) {
+            while (site != id[site]) {
                 site = id[site];
             }
 
@@ -116,5 +116,4 @@ public class Exercise7 {
 
         StdOut.println("Components: " + quickUnion.count + " Expected: 7");
     }
-
 }

@@ -25,7 +25,7 @@ public class Exercise31_DistinctValues {
             int distinct[] = new int[numberOfTrials];
             int distinctArrayIndex = 0;
 
-            for(int i = 0; i < numberOfTrials; i++) {
+            for (int i = 0; i < numberOfTrials; i++) {
                 int numberOfDistinctValues = distinctValues.countDistinctValues(numberOfValues, maxValue);
                 distinct[distinctArrayIndex++] = numberOfDistinctValues;
             }
@@ -55,8 +55,8 @@ public class Exercise31_DistinctValues {
         StdOut.printf("%13s %13s %13s %23s\n", "Values Generated | ", "Max Value | ", "Distinct Values | "
                 , "Expected Distinct Values");
 
-        for(int n = 0; n < values.length; n++) {
-            for(int m = 0 ; m < 3; m++) {
+        for (int n = 0; n < values.length; n++) {
+            for (int m = 0 ; m < 3; m++) {
                 int numberOfValues = values[n];
 
                 int maxValue = 0;
@@ -71,7 +71,7 @@ public class Exercise31_DistinctValues {
                 int distinct[] = new int[numberOfTrials];
                 int distinctArrayIndex = 0;
 
-                for(int trial = 0; trial < numberOfTrials; trial++) {
+                for (int trial = 0; trial < numberOfTrials; trial++) {
                     int distinctValues = countDistinctValues(numberOfValues, maxValue);
                     distinct[distinctArrayIndex++] = distinctValues;
                 }
@@ -88,7 +88,7 @@ public class Exercise31_DistinctValues {
     private int countDistinctValues(int numberOfValues, int maxValue) {
         int[] values = new int[maxValue];
 
-        for(int i = 0; i < numberOfValues; i++) {
+        for (int i = 0; i < numberOfValues; i++) {
             int generatedValue = StdRandom.uniform(maxValue);
             values[generatedValue]++;
         }
@@ -107,5 +107,4 @@ public class Exercise31_DistinctValues {
     private void printResults(int numberOfValues, int maxValue, double distinctValues, double expectedValue) {
         StdOut.printf("%16d %13d %18.2f %27.2f\n", numberOfValues, maxValue, distinctValues, expectedValue);
     }
-
 }

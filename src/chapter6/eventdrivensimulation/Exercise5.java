@@ -330,7 +330,7 @@ public class Exercise5 {
         public double temperature() {
             double totalTemperature = 0;
 
-            for(ParticleWithTemperature particle : particles) {
+            for (ParticleWithTemperature particle : particles) {
                 totalTemperature += particle.temperature();
             }
 
@@ -423,5 +423,4 @@ public class Exercise5 {
         CollisionSystem collisionSystem = exercise5.new CollisionSystem(particles);
         collisionSystem.simulate(10000, 0.5);
     }
-
 }

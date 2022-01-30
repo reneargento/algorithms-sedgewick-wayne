@@ -44,7 +44,7 @@ public class Exercise3_PriorityQueueUnorderedArray {
 
             int maxValueIndex = 0;
 
-            for(int i = 1; i < size; i++) {
+            for (int i = 1; i < size; i++) {
                 if (ArrayUtil.less(priorityQueue[maxValueIndex], priorityQueue[i])) {
                     maxValueIndex = i;
                 }
@@ -66,7 +66,6 @@ public class Exercise3_PriorityQueueUnorderedArray {
     }
 
     private static void testPriorityQueueUnorderedArray() {
-
         PriorityQueueUnorderedArray<Integer> priorityQueueUnorderedArray = new Exercise3_PriorityQueueUnorderedArray().new PriorityQueueUnorderedArray<>(5);
         priorityQueueUnorderedArray.insert(2);
         priorityQueueUnorderedArray.insert(10);
@@ -78,5 +77,4 @@ public class Exercise3_PriorityQueueUnorderedArray {
         StdOut.println("Max value: " + priorityQueueUnorderedArray.removeMax() + " - Expected: 2");
         StdOut.println("Max value: " + priorityQueueUnorderedArray.removeMax() + " - Expected: 1");
     }
-
 }

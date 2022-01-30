@@ -16,7 +16,7 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
         public EdgeWeightedGraph erdosRenyiGraphUniformWeights(int vertices, int edges) {
             EdgeWeightedGraph randomEdgeWeightedGraph = new EdgeWeightedGraph(vertices);
 
-            for(int edge = 0; edge < edges; edge++) {
+            for (int edge = 0; edge < edges; edge++) {
                 int vertexId1 = StdRandom.uniform(vertices);
                 int vertexId2 = StdRandom.uniform(vertices);
 
@@ -25,14 +25,13 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
 
                 randomEdgeWeightedGraph.addEdge(newEdge);
             }
-
             return randomEdgeWeightedGraph;
         }
 
         public EdgeWeightedGraph erdosRenyiGraphGaussianWeights(int vertices, int edges) {
             EdgeWeightedGraph randomEdgeWeightedGraph = new EdgeWeightedGraph(vertices);
 
-            for(int edge = 0; edge < edges; edge++) {
+            for (int edge = 0; edge < edges; edge++) {
                 int vertexId1 = StdRandom.uniform(vertices);
                 int vertexId2 = StdRandom.uniform(vertices);
 
@@ -41,12 +40,11 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
 
                 randomEdgeWeightedGraph.addEdge(newEdge);
             }
-
             return randomEdgeWeightedGraph;
         }
     }
 
-    //A graph is considered sparse if its number of edges is within a small constant factor of V
+    // A graph is considered sparse if its number of edges is within a small constant factor of V
     public List<EdgeWeightedGraph> randomSparseEdgeWeightedGraphsGenerator(int numberOfGraphs,
                                                                            boolean uniformWeightDistribution) {
         if (numberOfGraphs < 0) {
@@ -58,7 +56,7 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
         List<EdgeWeightedGraph> randomEdgeWeightedGraphs = new ArrayList<>();
         int[] graphVerticesCount = {10, 100, 1000, 10000};
 
-        for(int graph = 0; graph < numberOfGraphs; graph++) {
+        for (int graph = 0; graph < numberOfGraphs; graph++) {
             int vertices = graphVerticesCount[graph % 4];
             int edges = vertices * 3;
 
@@ -74,11 +72,10 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
 
             randomEdgeWeightedGraphs.add(randomEdgeWeightedGraph);
         }
-
         return randomEdgeWeightedGraphs;
     }
 
-    //Parameter example: 100
+    // Parameter example: 100
     public static void main(String[] args) {
         int numberOfGraphs = Integer.parseInt(args[0]);
 
@@ -95,5 +92,4 @@ public class Exercise34_RandomSparseEdgeWeightedGraphs {
         StdOut.println("Random-sparse-edge-weighted-graphs with gaussian weights distribution generated: "
                 + (randomSparseEdgeWeightedGraphsGaussian.size() == numberOfGraphs));
     }
-
 }

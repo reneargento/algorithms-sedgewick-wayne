@@ -32,8 +32,7 @@ public class Exercise35_PerformanceValidationI {
         frequencyCounter(currentWords, minLength);
         double previousRunningTime = initialTimer.elapsedTime();
 
-        for(int i = 0; i < numberOfExperiments; i++) {
-
+        for (int i = 0; i < numberOfExperiments; i++) {
             currentWords = new String[numberOfWords];
             System.arraycopy(words, 0, currentWords, 0, currentWords.length);
 
@@ -52,11 +51,9 @@ public class Exercise35_PerformanceValidationI {
     }
 
     private String frequencyCounter(String[] words, int minLength) {
-
         SequentialSearchSymbolTable<String, Integer> sequentialSearchSymbolTable = new SequentialSearchSymbolTable<>();
 
-        for(String word : words) {
-
+        for (String word : words) {
             if (word.length() < minLength) {
                 continue;
             }
@@ -71,7 +68,7 @@ public class Exercise35_PerformanceValidationI {
         String max = "";
         sequentialSearchSymbolTable.put(max, 0);
 
-        for(String word : sequentialSearchSymbolTable.keys()) {
+        for (String word : sequentialSearchSymbolTable.keys()) {
             if (sequentialSearchSymbolTable.get(word) > sequentialSearchSymbolTable.get(max)) {
                 max = word;
             }
@@ -83,5 +80,4 @@ public class Exercise35_PerformanceValidationI {
     private void printResults(int numberOfWords, double runningTime, double ratio, double lgRatio) {
         StdOut.printf("%15d %15.2f %10.2f %19.2f\n", numberOfWords, runningTime, ratio, lgRatio);
     }
-
 }

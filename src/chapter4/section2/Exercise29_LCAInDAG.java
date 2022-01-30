@@ -24,27 +24,27 @@ public class Exercise29_LCAInDAG {
         // 1- Find the sources in the graph
         int[] indegrees = new int[digraph.vertices()];
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            for(int neighbor : digraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            for (int neighbor : digraph.adjacent(vertex)) {
                 indegrees[neighbor]++;
             }
         }
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             if (indegrees[vertex] == 0) {
                 sources.add(vertex);
             }
         }
 
         // 2- Find the height of all vertices (the length of the longest distance from a source)
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             maxDistances[vertex] = -1;
         }
 
-        for(int source : sources.keys()) {
+        for (int source : sources.keys()) {
             int[] distanceFromCurrentSource = new int[digraph.vertices()];
 
-            for(int vertex = 0; vertex < distanceFromCurrentSource.length; vertex++) {
+            for (int vertex = 0; vertex < distanceFromCurrentSource.length; vertex++) {
                 distanceFromCurrentSource[vertex] = Integer.MAX_VALUE;
             }
 
@@ -59,7 +59,7 @@ public class Exercise29_LCAInDAG {
             while (!sourceDistanceQueue.isEmpty()) {
                 int currentVertex = sourceDistanceQueue.dequeue();
 
-                for(int neighbor : digraph.adjacent(currentVertex)) {
+                for (int neighbor : digraph.adjacent(currentVertex)) {
                     distanceFromCurrentSource[neighbor] = distanceFromCurrentSource[currentVertex] + 1;
                     sourceDistanceQueue.enqueue(neighbor);
 
@@ -92,7 +92,7 @@ public class Exercise29_LCAInDAG {
 
             vertex1Ancestors.add(currentVertex);
 
-            for(int neighbor : reverseDigraph.adjacent(currentVertex)) {
+            for (int neighbor : reverseDigraph.adjacent(currentVertex)) {
                 queue.enqueue(neighbor);
             }
         }
@@ -109,7 +109,7 @@ public class Exercise29_LCAInDAG {
                 commonAncestors.add(currentVertex);
             }
 
-            for(int neighbor : reverseDigraph.adjacent(currentVertex)) {
+            for (int neighbor : reverseDigraph.adjacent(currentVertex)) {
                 queue.enqueue(neighbor);
             }
         }
@@ -119,7 +119,7 @@ public class Exercise29_LCAInDAG {
         int maxDistance = -1;
         int lowestCommonAncestor = -1;
 
-        for(int commonAncestor : commonAncestors.keys()) {
+        for (int commonAncestor : commonAncestors.keys()) {
             if (maxDistances[commonAncestor] > maxDistance) {
                 maxDistance = maxDistances[commonAncestor];
                 lowestCommonAncestor = commonAncestor;
@@ -218,5 +218,4 @@ public class Exercise29_LCAInDAG {
         }
         StdOut.println(" Expected: There is no LCA in this DAG");
     }
-
 }

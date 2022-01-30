@@ -24,8 +24,8 @@ public class Exercise24_MultisourceShortestPaths {
                     new EdgeWeightedDigraph(edgeWeightedDigraph.vertices() + 1);
 
             // Copy graph
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     edgeWeightedDigraphWithExtraSource.addEdge(edge);
                 }
             }
@@ -33,7 +33,7 @@ public class Exercise24_MultisourceShortestPaths {
             // Add extra source connected to all sources
             int dummyVertexId = edgeWeightedDigraphWithExtraSource.vertices() - 1;
 
-            for(int source : sources.keys()) {
+            for (int source : sources.keys()) {
                 edgeWeightedDigraphWithExtraSource.addEdge(new DirectedEdge(dummyVertexId, source, 0));
             }
 
@@ -85,7 +85,7 @@ public class Exercise24_MultisourceShortestPaths {
 
         StdOut.print("Path to 5: ");
 
-        for(DirectedEdge edge : dijkstraMultisourceSP.pathTo(5)) {
+        for (DirectedEdge edge : dijkstraMultisourceSP.pathTo(5)) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
         StdOut.println("\nExpected:  8->7 7->5");
@@ -95,10 +95,9 @@ public class Exercise24_MultisourceShortestPaths {
 
         StdOut.print("Path to 6: ");
 
-        for(DirectedEdge edge : dijkstraMultisourceSP.pathTo(6)) {
+        for (DirectedEdge edge : dijkstraMultisourceSP.pathTo(6)) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
         StdOut.println("\nExpected:  8->1 1->3 3->6");
     }
-
 }

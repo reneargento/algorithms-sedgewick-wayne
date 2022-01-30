@@ -19,7 +19,7 @@ public class Exercise55_StrongComponents {
 
         Exercise45_RandomDigraphs exercise45_randomDigraphs = new Exercise45_RandomDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             DigraphInterface randomDigraph = exercise45_randomDigraphs.erdosRenyiDigraph(vertices, edges);
             doExperiment(randomDigraph, histogramRandomDigraphs);
         }
@@ -36,7 +36,7 @@ public class Exercise55_StrongComponents {
 
         Exercise46_RandomSimpleDigraphs exercise46_randomSimpleDigraphs = new Exercise46_RandomSimpleDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             DigraphInterface randomSimpleDigraph = exercise46_randomSimpleDigraphs.randomDigraph(vertices, edges);
             doExperiment(randomSimpleDigraph, histogramRandomSimpleDigraphs);
         }
@@ -55,7 +55,7 @@ public class Exercise55_StrongComponents {
 
         List<DigraphInterface> randomSparseDigraphs = exercise47_randomSparseDigraphs.randomSparseDigraph(experiments, vertices);
 
-        for(DigraphInterface randomSparseDigraph : randomSparseDigraphs) {
+        for (DigraphInterface randomSparseDigraph : randomSparseDigraphs) {
             doExperiment(randomSparseDigraph, histogramRandomSparseDigraphs);
         }
 
@@ -73,7 +73,7 @@ public class Exercise55_StrongComponents {
     }
 
     private void printResults(double[] histogram) {
-        for(int i = 1; i < histogram.length; i++) {
+        for (int i = 1; i < histogram.length; i++) {
             StdOut.printf("Strong components: %5d   Frequency: %5.0f\n", i, histogram[i]);
         }
     }
@@ -163,5 +163,4 @@ public class Exercise55_StrongComponents {
 
         new Exercise55_StrongComponents().generateDigraphsAndDoExperiments(experiments, vertices, edges);
     }
-
 }

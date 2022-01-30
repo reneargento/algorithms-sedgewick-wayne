@@ -13,7 +13,7 @@ public class ConnectedComponentsRecursiveDFS implements ConnectedComponents {
         visited = new boolean[graph.vertices()];
         id = new int[graph.vertices()];
 
-        for(int source = 0; source < graph.vertices(); source++) {
+        for (int source = 0; source < graph.vertices(); source++) {
             if (!visited[source]) {
                 dfs(graph, source);
                 count++;
@@ -25,7 +25,7 @@ public class ConnectedComponentsRecursiveDFS implements ConnectedComponents {
         visited[vertex] = true;
         id[vertex] = count;
 
-        for(int neighbor : graph.adjacent(vertex)) {
+        for (int neighbor : graph.adjacent(vertex)) {
             if (!visited[neighbor]) {
                 dfs(graph, neighbor);
             }
@@ -43,5 +43,4 @@ public class ConnectedComponentsRecursiveDFS implements ConnectedComponents {
     public int count() {
         return count;
     }
-
 }

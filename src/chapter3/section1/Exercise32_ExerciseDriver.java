@@ -29,10 +29,10 @@ public class Exercise32_ExerciseDriver {
         StdOut.printf("%28s %13s %12s\n", "Input Type | ", "Array Size | ","Running Time");
         String[] inputType = {ORDERED_INPUT, REVERSE_ORDERED_INPUT, SAME_KEYS_INPUT, KEYS_WITH_ONLY_2_VALUES_INPUT};
 
-        for(int input = 0; input < 4; input++) {
+        for (int input = 0; input < 4; input++) {
             Map<Integer, Comparable[]> allInputArrays = generateAllArrays(inputType[input], numberOfExperiments, initialArraySize);
 
-            for(int i = 0; i < numberOfExperiments; i++) {
+            for (int i = 0; i < numberOfExperiments; i++) {
                 Comparable[] array = allInputArrays.get(i);
 
                 Stopwatch timer = new Stopwatch();
@@ -49,7 +49,7 @@ public class Exercise32_ExerciseDriver {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] array;
 
@@ -78,7 +78,7 @@ public class Exercise32_ExerciseDriver {
     private static void testInput(Comparable[] keys, boolean verbose) {
         BinarySearchSymbolTable<Integer, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(int i = 0; i < keys.length; i++) {
+        for (int i = 0; i < keys.length; i++) {
             binarySearchSymbolTable.put((Integer) keys[i], i);
         }
 
@@ -228,5 +228,4 @@ public class Exercise32_ExerciseDriver {
     private static void printResults(String inputType, int arraySize, double runningTime) {
         StdOut.printf("%25s %13d %15.1f\n", inputType, arraySize, runningTime);
     }
-
 }

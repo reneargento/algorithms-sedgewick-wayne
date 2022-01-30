@@ -286,14 +286,14 @@ public class Exercise12 {
         StdOut.println("Size: " + binarySearchTree.size() + " Expected: 6");
 
         //Test get() and keys()
-        for(Integer key : binarySearchTree.keys()) {
+        for (Integer key : binarySearchTree.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 
         //Test delete()
         StdOut.println("\nDelete key 2");
         binarySearchTree.delete(2);
-        for(Integer key : binarySearchTree.keys()) {
+        for (Integer key : binarySearchTree.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 
@@ -320,7 +320,7 @@ public class Exercise12 {
         StdOut.println("\nDelete min (key 0)");
 
         binarySearchTree.deleteMin();
-        for(Integer key : binarySearchTree.keys()) {
+        for (Integer key : binarySearchTree.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 
@@ -328,19 +328,18 @@ public class Exercise12 {
         StdOut.println("\nDelete max (key 99)");
 
         binarySearchTree.deleteMax();
-        for(Integer key : binarySearchTree.keys()) {
+        for (Integer key : binarySearchTree.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 
         //Test keys() with range
         StdOut.println();
         StdOut.println("Keys in range [2, 10]");
-        for(Integer key : binarySearchTree.keys(2, 10)) {
+        for (Integer key : binarySearchTree.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 
         StdOut.println("Size: " + binarySearchTree.size() + " Expected: 3");
     }
-
 }
 

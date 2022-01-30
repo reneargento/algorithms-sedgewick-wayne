@@ -12,7 +12,6 @@ public class Exercise11_ExternalOneWayBranching {
 
     @SuppressWarnings("unchecked")
     public static class TrieNoExternalOneWayBranching<Value> {
-
         protected static final int R = 256;
         protected Node root = new Node();
 
@@ -41,7 +40,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (node == null) {
                 return 0;
             }
-
             return node.size;
         }
 
@@ -53,7 +51,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             return get(key) != null;
         }
 
@@ -114,17 +111,15 @@ public class Exercise11_ExternalOneWayBranching {
         }
 
         protected int compareStrings(String string1, String string2) {
-
             int minLength = Math.min(string1.length(), string2.length());
 
-            for(int i = 0; i < minLength; i++) {
+            for (int i = 0; i < minLength; i++) {
                 if (string1.charAt(i) < string2.charAt(i)) {
                     return -1;
                 } else if (string1.charAt(i) > string2.charAt(i)) {
                     return 1;
                 }
             }
-
             return string1.length() - string2.length();
         }
 
@@ -143,7 +138,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (!contains(key)) {
                 isNewKey = true;
             }
-
             root = put(root, key, value, 0, isNewKey);
         }
 
@@ -184,7 +178,6 @@ public class Exercise11_ExternalOneWayBranching {
 
                 // Key is new
                 for (int index = 1; index < maxLength; index++) {
-
                     if (index < nodeCharactersLength && digit - 1 + index < key.length()) {
                         char existingNodeCharacter = node.characters.charAt(index);
                         char newNodeCurrentCharacter = key.charAt(digit - 1 + index);
@@ -213,12 +206,10 @@ public class Exercise11_ExternalOneWayBranching {
                 char nextChar = key.charAt(digit);
                 node.next[nextChar] = put(node.next[nextChar], key, value, digit + 1, isNewKey);
             }
-
             return node;
         }
 
         private void splitNodes(Node originalNode, Node splitParentNode, String key, Value value, int index, int digit) {
-
             // The first child node will have as characters the substring before the split point
             if (index < originalNode.characters.length()) {
                 String remainingCharacters = originalNode.characters.substring(index, originalNode.characters.length());
@@ -266,7 +257,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (!contains(key)) {
                 return;
             }
-
             root = delete(root, key, 0);
         }
 
@@ -319,7 +309,6 @@ public class Exercise11_ExternalOneWayBranching {
                     }
                 }
             }
-
             return node;
         }
 
@@ -344,7 +333,6 @@ public class Exercise11_ExternalOneWayBranching {
             String realPrefix = nodeWithPrefix.prefix.toString();
 
             collect(nodeWithPrefix.node, new StringBuilder(realPrefix), keysWithPrefix);
-
             return keysWithPrefix;
         }
 
@@ -401,7 +389,6 @@ public class Exercise11_ExternalOneWayBranching {
                     nodeWithInformation.prefix.append(nextChar);
                 }
             }
-
             return getNodeWithPrefix(nodeWithInformation, key, digit + nodeCharactersLength);
         }
 
@@ -415,7 +402,6 @@ public class Exercise11_ExternalOneWayBranching {
             }
 
             for (char nextChar = 0; nextChar < R; nextChar++) {
-
                 if (node.next[nextChar] != null) {
 
                     String nextNodeCharacters;
@@ -533,13 +519,12 @@ public class Exercise11_ExternalOneWayBranching {
                     return search(node.next[nextChar], query, digit + nextNodeCharactersLength, length);
                 }
             }
-
             return length;
         }
 
         // Ordered methods
 
-         //Returns the highest key in the symbol table smaller than or equal to key.
+         // Returns the highest key in the symbol table smaller than or equal to key.
         public String floor(String key) {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
@@ -600,7 +585,6 @@ public class Exercise11_ExternalOneWayBranching {
                     break;
                 }
             }
-
             return lastKeyFound;
         }
 
@@ -609,7 +593,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             return ceiling(root, key, 0, new StringBuilder(), true);
         }
 
@@ -655,7 +638,6 @@ public class Exercise11_ExternalOneWayBranching {
                     prefix.delete(prefix.length() - nextNodeCharactersLength, prefix.length());
                 }
             }
-
             return null;
         }
 
@@ -663,7 +645,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Index cannot be negative and must be lower than trie size");
             }
-
             return select(root, index, new StringBuilder());
         }
 
@@ -699,7 +680,6 @@ public class Exercise11_ExternalOneWayBranching {
                     }
                 }
             }
-
             return null;
         }
 
@@ -707,7 +687,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             return rank(root, key, 0, 0, new StringBuilder());
         }
 
@@ -762,7 +741,6 @@ public class Exercise11_ExternalOneWayBranching {
         }
 
         private String min(Node node, StringBuilder prefix) {
-
             if (node.value != null) {
                 return prefix.toString();
             }
@@ -778,7 +756,6 @@ public class Exercise11_ExternalOneWayBranching {
                     return min(node.next[nextChar], prefix);
                 }
             }
-
             return prefix.toString();
         }
 
@@ -786,12 +763,10 @@ public class Exercise11_ExternalOneWayBranching {
             if (isEmpty()) {
                 return null;
             }
-
             return max(root, new StringBuilder());
         }
 
         private String max(Node node, StringBuilder prefix) {
-
             for (char nextChar = R - 1; true; nextChar--) {
                 if (node.next[nextChar] != null) {
                     if (node.next[nextChar].characters != null) {
@@ -808,7 +783,6 @@ public class Exercise11_ExternalOneWayBranching {
                     break;
                 }
             }
-
             return prefix.toString();
         }
 
@@ -816,7 +790,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (isEmpty()) {
                 return;
             }
-
             String minKey = min();
             delete(minKey);
         }
@@ -825,14 +798,12 @@ public class Exercise11_ExternalOneWayBranching {
             if (isEmpty()) {
                 return;
             }
-
             String maxKey = max();
             delete(maxKey);
         }
     }
 
     public static class TernarySearchTrieNoExternalOneWayBranching<Value> {
-
         protected int size;
         protected Node root;
 
@@ -916,17 +887,15 @@ public class Exercise11_ExternalOneWayBranching {
         }
 
         protected int compareStrings(String string1, String string2) {
-
             int minLength = Math.min(string1.length(), string2.length());
 
-            for(int i = 0; i < minLength; i++) {
+            for (int i = 0; i < minLength; i++) {
                 if (string1.charAt(i) < string2.charAt(i)) {
                     return -1;
                 } else if (string1.charAt(i) > string2.charAt(i)) {
                     return 1;
                 }
             }
-
             return string1.length() - string2.length();
         }
 
@@ -946,12 +915,10 @@ public class Exercise11_ExternalOneWayBranching {
                 isNewKey = true;
                 size++;
             }
-
             root = put(root, key, value, 0, isNewKey);
         }
 
         private Node put(Node node, String key, Value value, int digit, boolean isNewKey) {
-
             if (node == null) {
                 node = new Node();
                 node.characters = key.substring(digit, key.length());
@@ -968,7 +935,6 @@ public class Exercise11_ExternalOneWayBranching {
             } else if (currentChar > node.characters.charAt(0)) {
                 node.right = put(node.right, key, value, digit, isNewKey);
             } else {
-
                 if (node.characters.length() > 1) {
                     int nodeCharactersLength = node.characters.length();
 
@@ -1026,13 +992,11 @@ public class Exercise11_ExternalOneWayBranching {
                     node.size = node.size + 1;
                 }
             }
-
             return node;
         }
 
         private void splitNodes(Node originalNode, Node splitParentNode, String key, Value value, int index, int digit,
                                 boolean isNewNodeLeftChild) {
-
             // The current node will have as characters the substring before the split point
             if (index < originalNode.characters.length()) {
                 String remainingCharacters = originalNode.characters.substring(index, originalNode.characters.length());
@@ -1076,7 +1040,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (!contains(key)) {
                 return;
             }
-
             root = delete(root, key, 0);
             size--;
         }
@@ -1262,10 +1225,9 @@ public class Exercise11_ExternalOneWayBranching {
         }
 
         private int compareToPattern(String currentCharacters, String patternCharacters) {
-
             int minLength = Math.min(currentCharacters.length(), patternCharacters.length());
 
-            for(int i = 0; i < minLength; i++) {
+            for (int i = 0; i < minLength; i++) {
                 if (patternCharacters.charAt(i) == '.') {
                     continue;
                 }
@@ -1276,7 +1238,6 @@ public class Exercise11_ExternalOneWayBranching {
                     return 1;
                 }
             }
-
             return currentCharacters.length() - patternCharacters.length();
         }
 
@@ -1389,7 +1350,6 @@ public class Exercise11_ExternalOneWayBranching {
                     return leftKey;
                 }
             }
-
             return null;
         }
 
@@ -1452,7 +1412,6 @@ public class Exercise11_ExternalOneWayBranching {
                     return rightKey;
                 }
             }
-
             return null;
         }
 
@@ -1496,7 +1455,6 @@ public class Exercise11_ExternalOneWayBranching {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             return rank(root, key, 0, 0);
         }
 
@@ -1676,7 +1634,7 @@ public class Exercise11_ExternalOneWayBranching {
 
         // Keys() test
         StdOut.println("\nAll keys");
-        for(String key : trieNoExternalOneWayBranching.keys()) {
+        for (String key : trieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -1684,7 +1642,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys with prefix Alg");
         StringJoiner keysWithPrefix1 = new StringJoiner(" ");
 
-        for(String key : trieNoExternalOneWayBranching.keysWithPrefix("Alg")) {
+        for (String key : trieNoExternalOneWayBranching.keysWithPrefix("Alg")) {
             keysWithPrefix1.add(key);
         }
         StdOut.println(keysWithPrefix1.toString());
@@ -1693,7 +1651,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys with prefix T");
         StringJoiner keysWithPrefix2 = new StringJoiner(" ");
 
-        for(String key : trieNoExternalOneWayBranching.keysWithPrefix("T")) {
+        for (String key : trieNoExternalOneWayBranching.keysWithPrefix("T")) {
             keysWithPrefix2.add(key);
         }
         StdOut.println(keysWithPrefix2.toString());
@@ -1702,7 +1660,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys with prefix R");
         StringJoiner keysWithPrefix3 = new StringJoiner(" ");
 
-        for(String key : trieNoExternalOneWayBranching.keysWithPrefix("R")) {
+        for (String key : trieNoExternalOneWayBranching.keysWithPrefix("R")) {
             keysWithPrefix3.add(key);
         }
         StdOut.println(keysWithPrefix3.toString());
@@ -1711,7 +1669,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys with prefix ZZZ");
         StringJoiner keysWithPrefix4 = new StringJoiner(" ");
 
-        for(String key : trieNoExternalOneWayBranching.keysWithPrefix("ZZZ")) {
+        for (String key : trieNoExternalOneWayBranching.keysWithPrefix("ZZZ")) {
             keysWithPrefix4.add(key);
         }
         StdOut.println(keysWithPrefix4.toString());
@@ -1721,7 +1679,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys that match Alg..");
         StringJoiner keysThatMatch1 = new StringJoiner("Alg..");
 
-        for(String key : trieNoExternalOneWayBranching.keysThatMatch("Alg..")) {
+        for (String key : trieNoExternalOneWayBranching.keysThatMatch("Alg..")) {
             keysThatMatch1.add(key);
         }
         StdOut.println(keysThatMatch1.toString());
@@ -1730,7 +1688,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys that match Re");
         StringJoiner keysThatMatch2 = new StringJoiner(" ");
 
-        for(String key : trieNoExternalOneWayBranching.keysThatMatch("Re")) {
+        for (String key : trieNoExternalOneWayBranching.keysThatMatch("Re")) {
             keysThatMatch2.add(key);
         }
         StdOut.println(keysThatMatch2.toString());
@@ -1739,7 +1697,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys that match Tr.e");
         StringJoiner keysThatMatch3 = new StringJoiner(" ");
 
-        for(String key : trieNoExternalOneWayBranching.keysThatMatch("Tr.e")) {
+        for (String key : trieNoExternalOneWayBranching.keysThatMatch("Tr.e")) {
             keysThatMatch3.add(key);
         }
         StdOut.println(keysThatMatch3.toString());
@@ -1771,14 +1729,14 @@ public class Exercise11_ExternalOneWayBranching {
         trieNoExternalOneWayBranching.put("ZKey", 12);
 
         StdOut.println("\nKeys after ABCKey and ZKey insert: ");
-        for(String key : trieNoExternalOneWayBranching.keys()) {
+        for (String key : trieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
         trieNoExternalOneWayBranching.deleteMin();
 
         StdOut.println("\nKeys after deleteMin: ");
-        for(String key : trieNoExternalOneWayBranching.keys()) {
+        for (String key : trieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -1787,7 +1745,7 @@ public class Exercise11_ExternalOneWayBranching {
         trieNoExternalOneWayBranching.deleteMax();
 
         StdOut.println("\nKeys after deleteMax: ");
-        for(String key : trieNoExternalOneWayBranching.keys()) {
+        for (String key : trieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -1865,14 +1823,14 @@ public class Exercise11_ExternalOneWayBranching {
         trieNoExternalOneWayBranching.delete("Z-Function");
 
         StdOut.println("\nKeys() after deleting Z-Function key");
-        for(String key : trieNoExternalOneWayBranching.keys()) {
+        for (String key : trieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
         trieNoExternalOneWayBranching.delete("Rene");
 
         StdOut.println("\nKeys() after deleting Rene key");
-        for(String key : trieNoExternalOneWayBranching.keys()) {
+        for (String key : trieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -1881,7 +1839,7 @@ public class Exercise11_ExternalOneWayBranching {
         trieNoExternalOneWayBranching.delete("Re");
 
         StdOut.println("\nKeys() after deleting Re key");
-        for(String key : trieNoExternalOneWayBranching.keys()) {
+        for (String key : trieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
     }
@@ -1918,7 +1876,7 @@ public class Exercise11_ExternalOneWayBranching {
 
         // Keys() test
         StdOut.println("\nAll keys");
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -1926,7 +1884,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys with prefix Alg");
         StringJoiner keysWithPrefix1 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keysWithPrefix("Alg")) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keysWithPrefix("Alg")) {
             keysWithPrefix1.add(key);
         }
         StdOut.println(keysWithPrefix1.toString());
@@ -1935,7 +1893,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys with prefix T");
         StringJoiner keysWithPrefix2 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keysWithPrefix("T")) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keysWithPrefix("T")) {
             keysWithPrefix2.add(key);
         }
         StdOut.println(keysWithPrefix2.toString());
@@ -1944,7 +1902,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys with prefix R");
         StringJoiner keysWithPrefix3 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keysWithPrefix("R")) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keysWithPrefix("R")) {
             keysWithPrefix3.add(key);
         }
         StdOut.println(keysWithPrefix3.toString());
@@ -1953,7 +1911,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys with prefix ZZZ");
         StringJoiner keysWithPrefix4 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keysWithPrefix("ZZZ")) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keysWithPrefix("ZZZ")) {
             keysWithPrefix4.add(key);
         }
         StdOut.println(keysWithPrefix4.toString());
@@ -1963,7 +1921,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys that match Alg..");
         StringJoiner keysThatMatch1 = new StringJoiner("Alg..");
 
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keysThatMatch("Alg..")) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keysThatMatch("Alg..")) {
             keysThatMatch1.add(key);
         }
         StdOut.println(keysThatMatch1.toString());
@@ -1972,7 +1930,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys that match Re");
         StringJoiner keysThatMatch2 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keysThatMatch("Re")) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keysThatMatch("Re")) {
             keysThatMatch2.add(key);
         }
         StdOut.println(keysThatMatch2.toString());
@@ -1981,7 +1939,7 @@ public class Exercise11_ExternalOneWayBranching {
         StdOut.println("\nKeys that match Tr.e");
         StringJoiner keysThatMatch3 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keysThatMatch("Tr.e")) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keysThatMatch("Tr.e")) {
             keysThatMatch3.add(key);
         }
         StdOut.println(keysThatMatch3.toString());
@@ -2013,14 +1971,14 @@ public class Exercise11_ExternalOneWayBranching {
         ternarySearchTrieNoExternalOneWayBranching.put("ZKey", 12);
 
         StdOut.println("\nKeys after ABCKey and ZKey insert: ");
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
         ternarySearchTrieNoExternalOneWayBranching.deleteMin();
 
         StdOut.println("\nKeys after deleteMin: ");
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -2029,7 +1987,7 @@ public class Exercise11_ExternalOneWayBranching {
         ternarySearchTrieNoExternalOneWayBranching.deleteMax();
 
         StdOut.println("\nKeys after deleteMax: ");
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -2107,14 +2065,14 @@ public class Exercise11_ExternalOneWayBranching {
         ternarySearchTrieNoExternalOneWayBranching.delete("Z-Function");
 
         StdOut.println("\nKeys() after deleting Z-Function key");
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
         ternarySearchTrieNoExternalOneWayBranching.delete("Rene");
 
         StdOut.println("\nKeys() after deleting Rene key");
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -2123,9 +2081,8 @@ public class Exercise11_ExternalOneWayBranching {
         ternarySearchTrieNoExternalOneWayBranching.delete("Re");
 
         StdOut.println("\nKeys() after deleting Re key");
-        for(String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoExternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
     }
-
 }

@@ -14,7 +14,7 @@ public class Exercise45_StackGenerability {
     private static boolean willTheStackUnderflow(String[] inputValues) {
         int itemsCount = 0;
 
-        for(String input : inputValues) {
+        for (String input : inputValues) {
             if (input.equals("-")) {
                 itemsCount--;
             } else {
@@ -94,5 +94,4 @@ public class Exercise45_StackGenerability {
         StdOut.print("Input: 4 3 2 1 0 5 9 7 8 6 - ");
         StdOut.println(canAPermutationBeGenerated("4 3 2 1 0 5 9 7 8 6".split(" ")) + " Expected: false");
     }
-
 }

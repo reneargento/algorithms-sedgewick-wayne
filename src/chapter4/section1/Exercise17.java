@@ -28,16 +28,16 @@ public class Exercise17 {
             getProperties(graph);
         }
 
-        //O(V * (V + E))
+        // O(V * (V + E))
         private void getProperties(Graph graph) {
             diameter = 0;
             radius = Integer.MAX_VALUE;
             center = 0;
 
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+            for ( int vertex = 0; vertex < graph.vertices(); vertex++) {
                 BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, vertex);
 
-                for(int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
+                for (int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
                     if (otherVertex == vertex) {
                         continue;
                     }
@@ -73,13 +73,12 @@ public class Exercise17 {
         public long wiener() {
             return wienerIndex;
         }
-
     }
 
     public static void main(String[] args) {
         Exercise17 exercise17 = new Exercise17();
 
-        //Graph
+        // Graph
         // 0 -- 1 -- 2 -- 3 -- 4 -- 5 -- 6 -- 7 -- 8 -- 9 -- 10
 
         Graph graph = new Graph(11);
@@ -94,7 +93,7 @@ public class Exercise17 {
         graph.addEdge(8 ,9);
         graph.addEdge(9 ,10);
 
-        //Wiener index
+        // Wiener index
         /**
          *
          Vertex 0: 0 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55
@@ -114,5 +113,4 @@ public class Exercise17 {
         GraphProperties graphProperties = exercise17.new GraphProperties(graph);
         StdOut.println("Wiener index: " + graphProperties.wiener() + " Expected: 440");
     }
-
 }

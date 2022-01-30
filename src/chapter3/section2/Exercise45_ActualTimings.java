@@ -52,8 +52,7 @@ public class Exercise45_ActualTimings {
         double totalRunningTime = 0;
         Stopwatch timer;
 
-        for(String word : words) {
-
+        for (String word : words) {
             if (word.length() < minLength) {
                 continue;
             }
@@ -82,7 +81,7 @@ public class Exercise45_ActualTimings {
         totalRunningTime += timer.elapsedTime() * 1000;
         visualAccumulator.addDataValue(totalRunningTime, false);
 
-        for(String word : symbolTable.keys()) {
+        for (String word : symbolTable.keys()) {
             timer = new Stopwatch();
             int wordFrequency = symbolTable.get(word);
             totalRunningTime += timer.elapsedTime() * 1000;

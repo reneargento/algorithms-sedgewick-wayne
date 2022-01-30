@@ -97,7 +97,7 @@ public class Exercise37_AutoboxingPerformancePenalty {
         Stopwatch timer = new Stopwatch();
 
         //Trials only do a push and a pop operation
-        for(int i = 0; i < trials; i++) {
+        for (int i = 0; i < trials; i++) {
             if (!useGenericStack) {
                 fixedCapacityInteger.push(i);
                 fixedCapacityInteger.pop();
@@ -116,7 +116,7 @@ public class Exercise37_AutoboxingPerformancePenalty {
 
         double prev = timeTrial(125, false);
 
-        for(int n = 250; n <= 1000000000; n+=n) {
+        for (int n = 250; n <= 1000000000; n+=n) {
             double time = timeTrial(n, false);
 
             StdOut.printf("%6d %7.1f ", n, time);
@@ -129,7 +129,7 @@ public class Exercise37_AutoboxingPerformancePenalty {
 
         prev = timeTrial(125, true);
 
-        for(int n = 250; n < 1000000000; n+=n) {
+        for (int n = 250; n < 1000000000; n+=n) {
             double time = timeTrial(n, true);
 
             StdOut.printf("%6d %7.1f ", n, time);

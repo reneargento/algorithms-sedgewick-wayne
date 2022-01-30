@@ -31,18 +31,17 @@ public class Exercise25_InsertionSortWithoutExchanges {
 
     private static void insertionSortWithoutExchanges(Comparable[] array) {
 
-        for(int i = 1; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             Comparable aux = array[i];
 
             int j;
 
-            for(j = i; j > 0 && aux.compareTo(array[j - 1]) < 0; j--) {
+            for (j = i; j > 0 && aux.compareTo(array[j - 1]) < 0; j--) {
                 array[j] = array[j - 1];
             }
 
             array[j] = aux;
         }
-
     }
 
     private static void sortCompare() {
@@ -60,14 +59,13 @@ public class Exercise25_InsertionSortWithoutExchanges {
         double total = 0;
         Comparable[] array = new Comparable[length];
 
-        for(int experiment = 0; experiment < numberOfExperiments; experiment++) {
-            for(int i = 0; i < length; i++) {
+        for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
+            for (int i = 0; i < length; i++) {
                 array[i] = StdRandom.uniform();
             }
 
             total += time(insertionSortType, array);
         }
-
         return total;
     }
 
@@ -82,5 +80,4 @@ public class Exercise25_InsertionSortWithoutExchanges {
 
         return timer.elapsedTime();
     }
-
 }

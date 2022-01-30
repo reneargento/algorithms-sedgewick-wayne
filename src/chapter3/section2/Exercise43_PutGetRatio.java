@@ -31,8 +31,7 @@ public class Exercise43_PutGetRatio {
 
         BinarySearchTree<Integer, Integer> binarySearchTree = new BinarySearchTree<>();
 
-        for(Integer value : values) {
-
+        for (Integer value : values) {
             timer = new Stopwatch();
             boolean containsValue = binarySearchTree.contains(value); //contains() uses get() internally
             totalTimeSpentInGet += timer.elapsedTime();
@@ -57,7 +56,7 @@ public class Exercise43_PutGetRatio {
         binarySearchTree.put(max, 0);
         totalTimeSpentInPut += timer.elapsedTime();
 
-        for(Integer value : binarySearchTree.keys()) {
+        for (Integer value : binarySearchTree.keys()) {
             timer = new Stopwatch();
             if (binarySearchTree.get(value) > binarySearchTree.get(max)) {
                 totalTimeSpentInGet += timer.elapsedTime();
@@ -77,5 +76,4 @@ public class Exercise43_PutGetRatio {
     private void printResults(int numberOfKeys, double totalTimeSpentInPut, double totalTimeSpentInGet, double ratio) {
         StdOut.printf("%14d %20.2f %20.2f %11.2f\n", numberOfKeys, totalTimeSpentInPut, totalTimeSpentInGet, ratio);
     }
-
 }

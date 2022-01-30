@@ -61,10 +61,9 @@ public class Exercise2 {
 
             this.averageListSize = averageListSize;
 
-            for(int i = 0; i < numberOfBuckets; i++) {
+            for (int i = 0; i < numberOfBuckets; i++) {
                 buckets.add(null);
             }
-
             lgM = (int) (Math.log(numberOfBuckets) / Math.log(2));
         }
 
@@ -74,7 +73,6 @@ public class Exercise2 {
             if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
-
             return hash % numberOfBuckets;
         }
 
@@ -94,23 +92,21 @@ public class Exercise2 {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
-
             return get(key) != null;
         }
 
         private void resize(int newBucketSize) {
-
             List<Node> tempBuckets = buckets;
             buckets = new ArrayList<>(newBucketSize);
 
             numberOfBuckets = newBucketSize;
             keysSize = 0;
 
-            for(int i = 0; i < newBucketSize; i++) {
+            for (int i = 0; i < newBucketSize; i++) {
                 buckets.add(null);
             }
 
-            for(Node node : tempBuckets) {
+            for (Node node : tempBuckets) {
                 while (node != null) {
                     put(node.key, node.value);
                     node = node.next;
@@ -123,7 +119,7 @@ public class Exercise2 {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            //Get node at the head of the bucket
+            // Get node at the head of the bucket
             Node node = buckets.get(hash(key));
 
             while (node != null) {
@@ -132,7 +128,6 @@ public class Exercise2 {
                 }
                 node = node.next;
             }
-
             return null;
         }
 
@@ -146,17 +141,16 @@ public class Exercise2 {
                 return;
             }
 
-            //Get node at the head of the bucket
+            // Get node at the head of the bucket
             int bucketIndex = hash(key);
             Node node = buckets.get(bucketIndex);
 
-            //Update key value if it already exists
+            // Update key value if it already exists
             while (node != null) {
                 if (node.key.equals(key)) {
                     node.value = value;
                     return;
                 }
-
                 node = node.next;
             }
 
@@ -207,7 +201,7 @@ public class Exercise2 {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(int i = 0; i < buckets.size(); i++) {
+            for (int i = 0; i < buckets.size(); i++) {
                 if (buckets.get(i) != null) {
                     Node node = buckets.get(i);
 
@@ -220,20 +214,18 @@ public class Exercise2 {
 
             if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }
-
             return keys;
         }
-
     }
 
     public static void main(String[] args) {
@@ -260,7 +252,7 @@ public class Exercise2 {
         StdOut.println(separateChainingHashTableLinkedList.get(99));
 
         StdOut.println("\nKeys");
-        for(Integer key : separateChainingHashTableLinkedList.keys()) {
+        for (Integer key : separateChainingHashTableLinkedList.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5 1 2 9 10 33 99");
@@ -270,7 +262,7 @@ public class Exercise2 {
         separateChainingHashTableLinkedList.delete(2);
 
         StdOut.println("\nKeys");
-        for(Integer key : separateChainingHashTableLinkedList.keys()) {
+        for (Integer key : separateChainingHashTableLinkedList.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: 1 9 10 33 99");
@@ -288,5 +280,4 @@ public class Exercise2 {
         StdOut.println("Size, expected: 0");
         StdOut.println(separateChainingHashTableLinkedList.size());
     }
-
 }

@@ -17,10 +17,10 @@ public class Exercise17 {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(Edge neighbor : adjacent(vertex)) {
+                for (Edge neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
@@ -47,5 +47,4 @@ public class Exercise17 {
                 "4: 4-5 86.00000 4-5 89.00000 \n" +
                 "5: 4-5 86.00000 4-5 89.00000 2-5 33.00000");
     }
-
 }

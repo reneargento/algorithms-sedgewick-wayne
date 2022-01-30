@@ -16,7 +16,7 @@ public class Exercise15 {
 
         RedBlackBST<String, Integer> kGrams = new RedBlackBST<>();
 
-        for(int i = 0; i <= string.length() - k; i++) {
+        for (int i = 0; i <= string.length() - k; i++) {
             String kGram = string.substring(i, i + k);
             kGrams.put(kGram, i);
         }
@@ -30,7 +30,7 @@ public class Exercise15 {
 
         StdOut.println();
         RedBlackBST<String, Integer> kGrams = produceKGrams(string, k);
-        for(String kGram : kGrams.keys()) {
+        for (String kGram : kGrams.keys()) {
             StdOut.println(kGram + " " + kGrams.get(kGram));
         }
 
@@ -42,11 +42,10 @@ public class Exercise15 {
         String string = StdIn.readString();
 
         RedBlackBST<String, Integer> kGrams = new Exercise15().produceKGrams(string, k);
-        for(String kGram : kGrams.keys()) {
+        for (String kGram : kGrams.keys()) {
             StdOut.println(kGram + " " + kGrams.get(kGram));
         }
 
         new Exercise15().test();
     }
-
 }

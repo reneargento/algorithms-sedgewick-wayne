@@ -10,10 +10,10 @@ public class Exercise32_ParallelEdgeDetection {
     private int countParallelEdges(Graph graph) {
         int parallelEdges = 0;
 
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             boolean[] neighbors = new boolean[graph.vertices()];
 
-            for(int neighbor : graph.adjacent(vertex)) {
+            for (int neighbor : graph.adjacent(vertex)) {
                 if (!neighbors[neighbor]) {
                     neighbors[neighbor] = true;
                 } else {
@@ -52,5 +52,4 @@ public class Exercise32_ParallelEdgeDetection {
         graph3.addEdge(3, 0);
         StdOut.println(exercise32.countParallelEdges(graph3) + " Expected: 3");
     }
-
 }

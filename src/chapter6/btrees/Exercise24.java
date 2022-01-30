@@ -32,7 +32,7 @@ public class Exercise24 {
         StdOut.printf("%20s %14s %24s %18s\n", "Number of searches | ", "B-tree time | ", "Linear probing hashing time | ",
                 "Red-Black tree time");
 
-        for(int numberOfSearches : numberOfSearchValues) {
+        for (int numberOfSearches : numberOfSearchValues) {
             double[] results = new double[3];
 
             int[] randomKeysToSearch =
@@ -111,5 +111,4 @@ public class Exercise24 {
     public static void main(String[] args) {
         new Exercise24().doExperiment();
     }
-
 }

@@ -39,7 +39,7 @@ public class Exercise40_PlotsLinearProbing {
             costOfPutCompares++;
 
             int tableIndex;
-            for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
+            for (tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 costOfPutCompares++;
 
                 if (keys[tableIndex].equals(key)) {
@@ -58,7 +58,7 @@ public class Exercise40_PlotsLinearProbing {
         private void resize(int newSize) {
             LinearProbingHashTableCost<Key, Value> tempHashTable = new LinearProbingHashTableCost<>(newSize);
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i] != null) {
                     tempHashTable.putAndComputeCost(keys[i], values[i], false);
                 }
@@ -70,7 +70,6 @@ public class Exercise40_PlotsLinearProbing {
 
             costOfPutCompares += tempHashTable.costOfPutCompares;
         }
-
     }
 
     private static final String TALE_FILE_PATH = Constants.FILES_PATH + Constants.TALE_OF_TWO_CITIES_FILE;
@@ -82,7 +81,6 @@ public class Exercise40_PlotsLinearProbing {
     }
 
     private String frequencyCounter(String[] words, int minLength) {
-
         String title = "Linear-probing hash table costs using put() in FrequencyCounter";
         String xAxisLabel = "operations";
         String yAxisLabel = "equality tests";
@@ -95,7 +93,7 @@ public class Exercise40_PlotsLinearProbing {
         LinearProbingHashTableCost<String, Integer> linearProbingHashTableCost =
                 new LinearProbingHashTableCost<>(10);
 
-        for(String word : words) {
+        for (String word : words) {
 
             if (word.length() < minLength) {
                 continue;
@@ -115,7 +113,7 @@ public class Exercise40_PlotsLinearProbing {
         int cost = linearProbingHashTableCost.putAndComputeCost(max, 0, true);
         visualAccumulator.addDataValue(cost, true);
 
-        for(String word : linearProbingHashTableCost.keys()) {
+        for (String word : linearProbingHashTableCost.keys()) {
             if (linearProbingHashTableCost.get(word) > linearProbingHashTableCost.get(max)) {
                 max = word;
             }
@@ -125,5 +123,4 @@ public class Exercise40_PlotsLinearProbing {
 
         return max + " " + linearProbingHashTableCost.get(max);
     }
-
 }

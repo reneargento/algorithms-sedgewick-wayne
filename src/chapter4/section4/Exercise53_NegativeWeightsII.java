@@ -20,7 +20,7 @@ public class Exercise53_NegativeWeightsII {
         public EdgeWeightedDigraphInterface erdosRenyiDigraphUniformWeights(int vertices, int edges, int percentageToNegate) {
             List<Double> originalEdgeWeights = new ArrayList<>();
 
-            for(int edge = 0; edge < edges; edge++) {
+            for (int edge = 0; edge < edges; edge++) {
                 double uniformRandomWeight = StdRandom.uniform();
                 originalEdgeWeights.add(uniformRandomWeight);
             }
@@ -32,7 +32,7 @@ public class Exercise53_NegativeWeightsII {
         public EdgeWeightedDigraphInterface erdosRenyiDigraphGaussianWeights(int vertices, int edges, int percentageToNegate) {
             List<Double> originalEdgeWeights = new ArrayList<>();
 
-            for(int edge = 0; edge < edges; edge++) {
+            for (int edge = 0; edge < edges; edge++) {
                 double gaussianRandomWeight = StdRandom.gaussian();
                 originalEdgeWeights.add(gaussianRandomWeight);
             }
@@ -45,7 +45,7 @@ public class Exercise53_NegativeWeightsII {
                                                                                List<Double> updatedEdgeWeights) {
             EdgeWeightedDigraphInterface randomEdgeWeightedDigraph = new EdgeWeightedDigraph(vertices);
 
-            for(int edge = 0; edge < edges; edge++) {
+            for (int edge = 0; edge < edges; edge++) {
                 int vertexId1 = StdRandom.uniform(vertices);
                 int vertexId2 = StdRandom.uniform(vertices);
 
@@ -68,7 +68,7 @@ public class Exercise53_NegativeWeightsII {
     }
 
     public class RandomSparseEdgeWeightedDigraphsGenerator {
-        //A graph is considered sparse if its number of edges is within a small constant factor of V
+        // A graph is considered sparse if its number of edges is within a small constant factor of V
         public List<EdgeWeightedDigraphInterface> randomSparseEdgeWeightedDigraphsGenerator(int numberOfDigraphs,
                                                                                             boolean uniformWeightDistribution,
                                                                                             int percentageToNegate) {
@@ -81,7 +81,7 @@ public class Exercise53_NegativeWeightsII {
             List<EdgeWeightedDigraphInterface> randomEdgeWeightedDigraphs = new ArrayList<>();
             int[] digraphVerticesCount = {10, 100, 1000, 10000};
 
-            for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+            for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
                 int vertices = digraphVerticesCount[digraph % 4];
                 int edges = vertices * 3;
 
@@ -96,17 +96,14 @@ public class Exercise53_NegativeWeightsII {
                             randomEdgeWeightedDigraphsGenerator.erdosRenyiDigraphGaussianWeights(vertices, edges,
                                     percentageToNegate);
                 }
-
                 randomEdgeWeightedDigraphs.add(randomEdgeWeightedDigraph);
             }
-
             return randomEdgeWeightedDigraphs;
         }
     }
 
     // 2- Random Euclidean edge-weighted digraphs
     public class RandomEuclideanEdgeWeightedDigraphsGenerator {
-
         public List<EdgeWeightedDigraphInterface> generateRandomEuclideanEdgeWeightedDigraphs(int numberOfDigraphs,
                                                                                               int vertices, double radius,
                                                                                               int percentageToNegate) {
@@ -116,12 +113,11 @@ public class Exercise53_NegativeWeightsII {
 
             List<EdgeWeightedDigraphInterface> randomEuclideanEdgeWeightedDigraphs = new ArrayList<>();
 
-            for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+            for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
                 EdgeWeightedDigraphInterface randomEuclideanEdgeWeightedDigraph =
                         randomEuclideanEdgeWeightedDigraph(vertices, radius, percentageToNegate);
                 randomEuclideanEdgeWeightedDigraphs.add(randomEuclideanEdgeWeightedDigraph);
             }
-
             return randomEuclideanEdgeWeightedDigraphs;
         }
 
@@ -133,7 +129,7 @@ public class Exercise53_NegativeWeightsII {
             Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[] allVertices =
                     new Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[vertices];
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 double randomXCoordinate = StdRandom.uniform();
                 double randomYCoordinate = StdRandom.uniform();
 
@@ -147,8 +143,8 @@ public class Exercise53_NegativeWeightsII {
             List<Double> originalWeights = new ArrayList<>();
 
             // First pass to get original edge weights
-            for(int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
-                for(int vertexId2 = vertexId1 + 1; vertexId2 < vertices; vertexId2++) {
+            for (int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
+                for (int vertexId2 = vertexId1 + 1; vertexId2 < vertices; vertexId2++) {
 
                     double distance = MathUtil.distanceBetweenPoints(allVertices[vertexId1].coordinates.getXCoordinate(),
                             allVertices[vertexId1].coordinates.getYCoordinate(),
@@ -165,8 +161,8 @@ public class Exercise53_NegativeWeightsII {
             int updatedWeightsIndex = 0;
 
             // Second pass to add updated edges
-            for(int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
-                for(int vertexId2 = vertexId1 + 1; vertexId2 < vertices; vertexId2++) {
+            for (int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
+                for (int vertexId2 = vertexId1 + 1; vertexId2 < vertices; vertexId2++) {
 
                     double distance = MathUtil.distanceBetweenPoints(allVertices[vertexId1].coordinates.getXCoordinate(),
                             allVertices[vertexId1].coordinates.getYCoordinate(),
@@ -189,14 +185,12 @@ public class Exercise53_NegativeWeightsII {
                     }
                 }
             }
-
             return randomEuclideanEdgeWeightedDigraph;
         }
     }
 
     // 3- Random grid edge-weighted digraphs
     public class RandomGridEdgeWeightedDigraphsGenerator {
-
         public List<EdgeWeightedDigraphInterface> generateRandomGridEdgeWeightedDigraphs(int numberOfDigraphs,
                                                                                          int vertices, int extraEdges, int percentageToNegate) {
             if (numberOfDigraphs < 0) {
@@ -205,12 +199,11 @@ public class Exercise53_NegativeWeightsII {
 
             List<EdgeWeightedDigraphInterface> randomGridEdgeWeightedDigraphs = new ArrayList<>();
 
-            for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+            for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
                 EdgeWeightedDigraphInterface randomGridEdgeWeightedDigraph = randomGridEdgeWeightedDigraph(vertices,
                         extraEdges, percentageToNegate);
                 randomGridEdgeWeightedDigraphs.add(randomGridEdgeWeightedDigraph);
             }
-
             return randomGridEdgeWeightedDigraphs;
         }
 
@@ -238,7 +231,7 @@ public class Exercise53_NegativeWeightsII {
             Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[] allVertices =
                     new Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[vertices];
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 double randomXCoordinate = StdRandom.uniform();
                 double randomYCoordinate = StdRandom.uniform();
 
@@ -269,7 +262,7 @@ public class Exercise53_NegativeWeightsII {
             Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph randomEuclideanGridEdgeWeightedDigraph =
                     new Exercise27_ShortestPathsInEuclideanGraphs().new EuclideanEdgeWeightedDigraph(vertices);
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 int[] cellRowAndColumn = randomGridEdgeWeightedDigraphs.getCellRowAndColumn(vertexId, vertexNumberSqrt);
                 Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex vertex =
                         verticesGrid[cellRowAndColumn[0]][cellRowAndColumn[1]];
@@ -286,7 +279,7 @@ public class Exercise53_NegativeWeightsII {
                     randomGridEdgeWeightedDigraphs);
 
             // Also get the extra edges' original weights
-            for(DirectedEdge extraEdge : extraEdgesList) {
+            for (DirectedEdge extraEdge : extraEdgesList) {
                 originalEdgeWeights.add(extraEdge.weight());
             }
 
@@ -300,7 +293,6 @@ public class Exercise53_NegativeWeightsII {
             // Add extra edges with updated edge weights to the digraph
             addExtraEdges(randomEuclideanGridEdgeWeightedDigraph, extraEdgesList, allVertices, updatedEdgeWeights,
                     indexOfExtraEdges);
-
             return randomEuclideanGridEdgeWeightedDigraph;
         }
 
@@ -308,9 +300,9 @@ public class Exercise53_NegativeWeightsII {
                                                     Exercise51_RandomGridEdgeWeightedDigraphs randomGridEdgeWeightedDigraphs) {
             List<Double> originalWeights = new ArrayList<>();
 
-            for(int row = 0; row < vertexNumberSqrt; row++) {
-                for(int column = 0; column < vertexNumberSqrt; column++) {
-                    for(int i = 0; i < 4; i++) {
+            for (int row = 0; row < vertexNumberSqrt; row++) {
+                for (int column = 0; column < vertexNumberSqrt; column++) {
+                    for (int i = 0; i < 4; i++) {
                         int neighborRow = row + neighborRows[i];
                         int neighborColumn = column + neighborColumns[i];
 
@@ -329,7 +321,6 @@ public class Exercise53_NegativeWeightsII {
                     }
                 }
             }
-
             return originalWeights;
         }
 
@@ -339,9 +330,9 @@ public class Exercise53_NegativeWeightsII {
                                               Exercise51_RandomGridEdgeWeightedDigraphs randomGridEdgeWeightedDigraphs) {
             int updatedEdgeWeightsIndex = 0;
 
-            for(int row = 0; row < vertexNumberSqrt; row++) {
-                for(int column = 0; column < vertexNumberSqrt; column++) {
-                    for(int i = 0; i < 4; i++) {
+            for (int row = 0; row < vertexNumberSqrt; row++) {
+                for (int column = 0; column < vertexNumberSqrt; column++) {
+                    for (int i = 0; i < 4; i++) {
                         int neighborRow = row + neighborRows[i];
                         int neighborColumn = column + neighborColumns[i];
 
@@ -367,7 +358,7 @@ public class Exercise53_NegativeWeightsII {
                                    List<DirectedEdge> extraEdgesList,
                                    Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[] allVertices,
                                    List<Double> updatedEdgeWeights, int indexOfExtraEdges) {
-            for(DirectedEdge extraEdge : extraEdgesList) {
+            for (DirectedEdge extraEdge : extraEdgesList) {
                 int vertexId1 = extraEdge.from();
                 int vertexId2 = extraEdge.to();
 
@@ -397,19 +388,19 @@ public class Exercise53_NegativeWeightsII {
 
             List<EdgeWeightedDigraphInterface> randomEdgeWeightedDigraphs = new ArrayList<>();
 
-            for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+            for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
                 EdgeWeightedDigraphInterface randomEdgeWeightedDigraph = new EdgeWeightedDigraph(vertices);
 
                 List<Double> originalEdgeWeights = new ArrayList<>();
 
-                for(int edge = 0; edge < edges; edge++) {
+                for (int edge = 0; edge < edges; edge++) {
                     double randomWeight = StdRandom.uniform();
                     originalEdgeWeights.add(randomWeight);
                 }
 
                 List<Double> updatedEdgeWeights = negateRandomWeights(originalEdgeWeights, percentageToNegate);
 
-                for(int edge = 0; edge < edges; edge++) {
+                for (int edge = 0; edge < edges; edge++) {
                     int vertexId1 = StdRandom.uniform(vertices);
                     int vertexId2 = StdRandom.uniform(vertices);
 
@@ -429,7 +420,6 @@ public class Exercise53_NegativeWeightsII {
 
                 randomEdgeWeightedDigraphs.add(randomEdgeWeightedDigraph);
             }
-
             return randomEdgeWeightedDigraphs;
         }
     }
@@ -442,7 +432,7 @@ public class Exercise53_NegativeWeightsII {
         int numberOfEdgeWeightsToNegate = (int) (weights.size() * (percentage / 100.0));
 
         int[] edgeIndexesToShuffle = new int[weights.size()];
-        for(int index = 0; index < edgeIndexesToShuffle.length; index++) {
+        for (int index = 0; index < edgeIndexesToShuffle.length; index++) {
             edgeIndexesToShuffle[index] = index;
         }
 
@@ -450,13 +440,13 @@ public class Exercise53_NegativeWeightsII {
 
         HashSet<Integer> edgeIndexesToNegate = new HashSet<>();
 
-        for(int edgeIndex = 0; edgeIndex < numberOfEdgeWeightsToNegate; edgeIndex++) {
+        for (int edgeIndex = 0; edgeIndex < numberOfEdgeWeightsToNegate; edgeIndex++) {
             edgeIndexesToNegate.add(edgeIndexesToShuffle[edgeIndex]);
         }
 
         List<Double> updatedEdgeWeights = new ArrayList<>();
 
-        for(int index = 0; index < weights.size(); index++) {
+        for (int index = 0; index < weights.size(); index++) {
             double originalEdgeWeight = weights.get(index);
 
             if (edgeIndexesToNegate.contains(index)) {
@@ -465,7 +455,6 @@ public class Exercise53_NegativeWeightsII {
                 updatedEdgeWeights.add(originalEdgeWeight);
             }
         }
-
         return updatedEdgeWeights;
     }
 
@@ -485,7 +474,7 @@ public class Exercise53_NegativeWeightsII {
         StdOut.print("Updated weights: ");
 
         List<Double> updatedWeights = negativeWeightsII.negateRandomWeights(weights, percentageToNegateTest);
-        for(double updatedWeight : updatedWeights) {
+        for (double updatedWeight : updatedWeights) {
             StdOut.printf("%.2f ", updatedWeight);
         }
         StdOut.println("\nExpected: 2 out of 4 edges with negative weights");
@@ -539,8 +528,8 @@ public class Exercise53_NegativeWeightsII {
 
         UnionFind unionFind = new UnionFind(verticesInEuclideanDigraph);
 
-        for(int vertex = 0; vertex < verticesInEuclideanDigraph; vertex++) {
-            for(DirectedEdge edge : firstEuclideanEdgeWeightedDigraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < verticesInEuclideanDigraph; vertex++) {
+            for (DirectedEdge edge : firstEuclideanEdgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
                 unionFind.union(vertex, neighbor);
             }
@@ -565,5 +554,4 @@ public class Exercise53_NegativeWeightsII {
         EdgeWeightedDigraphInterface firstRandomGridEdgeWeightedDigraph = randomGridEdgeWeightedDigraphs.get(0);
         StdOut.println(firstRandomGridEdgeWeightedDigraph);
     }
-
 }

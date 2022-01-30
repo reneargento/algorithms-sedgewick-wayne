@@ -58,7 +58,7 @@ public class Exercise39_AverageCase {
         int[] binaryTreeSizes = {10000, 100000, 1000000};
         int numberOfExperiments = 100;
 
-        for(int i = 0; i < binaryTreeSizes.length; i++) {
+        for (int i = 0; i < binaryTreeSizes.length; i++) {
             List<Long> numberOfComparesSearchHits = new ArrayList<>();
             List<Long> numberOfComparesSearchMisses = new ArrayList<>();
 
@@ -68,7 +68,7 @@ public class Exercise39_AverageCase {
             totalNumberOfComparesForSearchHits = 0;
             totalNumberOfComparesForSearchMisses = 0;
 
-            for(int j = 0; j < numberOfExperiments; j++) {
+            for (int j = 0; j < numberOfExperiments; j++) {
                 computeAverageNumberOfComparesInSearch(binaryTreeSizes[i], numberOfComparesSearchHits, numberOfComparesSearchMisses);
             }
 
@@ -78,8 +78,8 @@ public class Exercise39_AverageCase {
             long totalSquareDeviationFromTheMeanSearchHits = 0;
             long totalSquareDeviationFromTheMeanSearchMisses = 0;
 
-            //Standard deviation for search hits
-            for(int j = 0; j < numberOfComparesSearchHits.size(); j++) {
+            // Standard deviation for search hits
+            for (int j = 0; j < numberOfComparesSearchHits.size(); j++) {
                 long numberOfCompares = numberOfComparesSearchHits.get(j);
 
                 long squareDeviationFromTheMean = (long) Math.pow((numberOfCompares - averageNumberOfCompareSearchHits), 2);
@@ -88,8 +88,8 @@ public class Exercise39_AverageCase {
             double varianceForSearchHits = totalSquareDeviationFromTheMeanSearchHits / averageNumberOfCompareSearchHits;
             double standardDeviationSearchHits = Math.sqrt(varianceForSearchHits);
 
-            //Standard deviation for search misses
-            for(int j = 0; j < numberOfComparesSearchMisses.size(); j++) {
+            // Standard deviation for search misses
+            for (int j = 0; j < numberOfComparesSearchMisses.size(); j++) {
                 long numberOfCompares = numberOfComparesSearchMisses.get(j);
 
                 long squareDeviationFromTheMean = (long) Math.pow((numberOfCompares - averageNumberOfCompareSearchMisses), 2);
@@ -115,12 +115,12 @@ public class Exercise39_AverageCase {
         int maxValue = 1000000;
         BinarySearchTreeCompareCount<Integer, Integer> binarySearchTree = new BinarySearchTreeCompareCount<>();
 
-        for(int i = 0; i < treeSize; i++) {
+        for (int i = 0; i < treeSize; i++) {
             int randomValue = StdRandom.uniform(maxValue);
             binarySearchTree.put(randomValue, randomValue);
         }
 
-        for(int i = 0; i < numberOfSearches; i++) {
+        for (int i = 0; i < numberOfSearches; i++) {
             int randomValue = StdRandom.uniform(maxValue);
             BinarySearchTreeCompareCount.SearchAnalysis searchAnalysis = binarySearchTree.getKey(randomValue);
 
@@ -141,5 +141,4 @@ public class Exercise39_AverageCase {
     public static void main(String[] args) {
         new Exercise39_AverageCase().doExperiment();
     }
-
 }

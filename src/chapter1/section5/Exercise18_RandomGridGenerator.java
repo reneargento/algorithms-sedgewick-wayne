@@ -24,7 +24,7 @@ public class Exercise18_RandomGridGenerator {
         Connection[] connections = new Exercise18_RandomGridGenerator().generate(numberOfSites);
 
         StdOut.println("Connections");
-        for(Connection connection : connections) {
+        for (Connection connection : connections) {
             StdOut.println(connection.p + " - " + connection.q);
         }
     }
@@ -40,8 +40,8 @@ public class Exercise18_RandomGridGenerator {
         3 * * - *
         4 * * * -
          */
-        for(int i = 0; i < numberOfSites; i++) {
-            for(int j = 0; j < numberOfSites; j++) {
+        for (int i = 0; i < numberOfSites; i++) {
+            for (int j = 0; j < numberOfSites; j++) {
                 if (i != j) {
                     Connection connection = new Connection(i, j);
                     randomBag.add(connection);
@@ -52,12 +52,11 @@ public class Exercise18_RandomGridGenerator {
         Connection[] connections = new Connection[randomBag.size()];
         int index = 0;
 
-        for(Connection connection : randomBag) {
+        for (Connection connection : randomBag) {
             connections[index] = connection;
             index++;
         }
 
         return connections;
     }
-
 }

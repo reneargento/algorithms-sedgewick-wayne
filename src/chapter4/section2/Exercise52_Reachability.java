@@ -21,7 +21,7 @@ public class Exercise52_Reachability {
 
         Exercise45_RandomDigraphs exercise45_randomDigraphs = new Exercise45_RandomDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             DigraphInterface randomDigraph = exercise45_randomDigraphs.erdosRenyiDigraph(vertices, edges);
             int experimentResult = doExperiment(randomDigraph);
             totalVerticesReached += experimentResult;
@@ -37,7 +37,7 @@ public class Exercise52_Reachability {
 
         Exercise46_RandomSimpleDigraphs exercise46_randomSimpleDigraphs = new Exercise46_RandomSimpleDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             DigraphInterface randomSimpleDigraph = exercise46_randomSimpleDigraphs.randomDigraph(vertices, edges);
             int experimentResult = doExperiment(randomSimpleDigraph);
             totalVerticesReached += experimentResult;
@@ -55,7 +55,7 @@ public class Exercise52_Reachability {
 
         List<DigraphInterface> randomSparseDigraphs = exercise47_randomSparseDigraphs.randomSparseDigraph(experiments, vertices);
 
-        for(DigraphInterface randomSparseDigraph : randomSparseDigraphs) {
+        for (DigraphInterface randomSparseDigraph : randomSparseDigraphs) {
             int experimentResult = doExperiment(randomSparseDigraph);
             totalVerticesReached += experimentResult;
         }
@@ -67,7 +67,6 @@ public class Exercise52_Reachability {
     }
 
     private int doExperiment(DigraphInterface digraph) {
-
         int totalVerticesReached = 0;
 
         int randomSourceVertex = StdRandom.uniform(digraph.vertices());
@@ -75,19 +74,18 @@ public class Exercise52_Reachability {
 
         dfs(digraph, randomSourceVertex, visited);
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             if (visited[vertex]) {
                 totalVerticesReached++;
             }
         }
-
         return totalVerticesReached;
     }
 
     private void dfs(DigraphInterface digraph, int sourceVertex, boolean[] visited) {
         visited[sourceVertex] = true;
 
-        for(int neighbor : digraph.adjacent(sourceVertex)) {
+        for (int neighbor : digraph.adjacent(sourceVertex)) {
             if (!visited[neighbor]) {
                 dfs(digraph, neighbor, visited);
             }
@@ -109,5 +107,4 @@ public class Exercise52_Reachability {
 
         new Exercise52_Reachability().generateDigraphsAndDoExperiments(experiments, vertices, edges);
     }
-
 }

@@ -21,7 +21,7 @@ public class SymbolGraph {
         while (in.hasNextLine()) {
             String[] vertices = in.readLine().split(separator);
 
-            for(int i = 0; i < vertices.length; i++) {
+            for (int i = 0; i < vertices.length; i++) {
                 if (!vertexNameToIdMap.contains(vertices[i])) {
                     vertexNameToIdMap.put(vertices[i], vertexNameToIdMap.size());
                 }
@@ -30,7 +30,7 @@ public class SymbolGraph {
 
         keys = new String[vertexNameToIdMap.size()];
 
-        for(String vertexName : vertexNameToIdMap.keys()) {
+        for (String vertexName : vertexNameToIdMap.keys()) {
             keys[vertexNameToIdMap.get(vertexName)] = vertexName;
         }
 
@@ -42,7 +42,7 @@ public class SymbolGraph {
             String[] vertices = in.readLine().split(separator);
 
             int vertex = vertexNameToIdMap.get(vertices[0]);
-            for(int i = 1; i < vertices.length; i++) {
+            for (int i = 1; i < vertices.length; i++) {
                 graph.addEdge(vertex, vertexNameToIdMap.get(vertices[i]));
             }
         }
@@ -63,5 +63,4 @@ public class SymbolGraph {
     public Graph graph() {
         return graph;
     }
-
 }

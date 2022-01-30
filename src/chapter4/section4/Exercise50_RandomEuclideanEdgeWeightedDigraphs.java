@@ -21,7 +21,7 @@ public class Exercise50_RandomEuclideanEdgeWeightedDigraphs {
 
         List<EdgeWeightedDigraphInterface> randomEuclideanEdgeWeightedDigraphs = new ArrayList<>();
 
-        for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+        for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
             EdgeWeightedDigraphInterface randomEuclideanEdgeWeightedDigraph =
                     randomEuclideanEdgeWeightedDigraph(vertices, radius);
             randomEuclideanEdgeWeightedDigraphs.add(randomEuclideanEdgeWeightedDigraph);
@@ -38,7 +38,7 @@ public class Exercise50_RandomEuclideanEdgeWeightedDigraphs {
         Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[] allVertices =
                 new Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[vertices];
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             double randomXCoordinate = StdRandom.uniform();
             double randomYCoordinate = StdRandom.uniform();
 
@@ -49,8 +49,8 @@ public class Exercise50_RandomEuclideanEdgeWeightedDigraphs {
             randomEuclideanEdgeWeightedDigraph.addVertex(vertex);
         }
 
-        for(int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
-            for(int vertexId2 = vertexId1 + 1; vertexId2 < vertices; vertexId2++) {
+        for (int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
+            for (int vertexId2 = vertexId1 + 1; vertexId2 < vertices; vertexId2++) {
 
                 double distance = MathUtil.distanceBetweenPoints(allVertices[vertexId1].coordinates.getXCoordinate(),
                         allVertices[vertexId1].coordinates.getYCoordinate(),
@@ -75,7 +75,7 @@ public class Exercise50_RandomEuclideanEdgeWeightedDigraphs {
         return randomEuclideanEdgeWeightedDigraph;
     }
 
-    //Parameters example: 6 0.5 100
+    // Parameters example: 6 0.5 100
     public static void main(String[] args) {
         int vertices = Integer.parseInt(args[0]);
         double radius = Double.parseDouble(args[1]);
@@ -87,12 +87,12 @@ public class Exercise50_RandomEuclideanEdgeWeightedDigraphs {
 
         EdgeWeightedDigraphInterface firstEuclideanEdgeWeightedDigraph = randomEuclideanEdgeWeightedDigraphs.get(0);
         // Not used in EdgeWeightedDigraphInterface
-        //firstEuclideanEdgeWeightedDigraph.show(-0.1, 1.1, -0.1, 1.1, 0.03, 0.01, 0.03);
+        // firstEuclideanEdgeWeightedDigraph.show(-0.1, 1.1, -0.1, 1.1, 0.03, 0.01, 0.03);
 
         UnionFind unionFind = new UnionFind(vertices);
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
-            for(DirectedEdge edge : firstEuclideanEdgeWeightedDigraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
+            for (DirectedEdge edge : firstEuclideanEdgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
                 unionFind.union(vertex, neighbor);
             }
@@ -108,5 +108,4 @@ public class Exercise50_RandomEuclideanEdgeWeightedDigraphs {
         StdOut.println("\nRandom Euclidean edge-weighted digraph:\n");
         StdOut.println(firstEuclideanEdgeWeightedDigraph);
     }
-
 }

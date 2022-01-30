@@ -29,7 +29,7 @@ public class ArrayUtil {
     }
 
     public static boolean isSorted(Comparable[] array) {
-        for(int i = 0; i < array.length - 1; i++) {
+        for (int i = 0; i < array.length - 1; i++) {
             if (more(array[i], array[i+1])) {
                 return false;
             }

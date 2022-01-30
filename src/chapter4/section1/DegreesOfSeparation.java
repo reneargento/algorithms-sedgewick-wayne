@@ -29,7 +29,7 @@ public class DegreesOfSeparation {
                 int destinationVertex = symbolGraph.index(sink);
 
                 if (breadthFirstPaths.hasPathTo(destinationVertex)) {
-                    for(int vertexInPath : breadthFirstPaths.pathTo(destinationVertex)) {
+                    for (int vertexInPath : breadthFirstPaths.pathTo(destinationVertex)) {
                         StdOut.println("    " + symbolGraph.name(vertexInPath));
                     }
                 } else {
@@ -40,5 +40,4 @@ public class DegreesOfSeparation {
             }
         }
     }
-
 }

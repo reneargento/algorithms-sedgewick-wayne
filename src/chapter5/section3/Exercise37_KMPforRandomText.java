@@ -40,10 +40,9 @@ public class Exercise37_KMPforRandomText {
     }
 
     private void doExperiment(int patternLength, int textLength, int experiments) {
-
         long totalNumberOfCompares = 0;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             String randomPattern = ArrayGenerator.generateRandomStringOfSpecifiedLength(patternLength);
             String randomText = ArrayGenerator.generateRandomStringOfSpecifiedLength(textLength);
 
@@ -66,5 +65,4 @@ public class Exercise37_KMPforRandomText {
 
         new Exercise37_KMPforRandomText().doExperiment(patternLength, textLength, experiments);
     }
-
 }

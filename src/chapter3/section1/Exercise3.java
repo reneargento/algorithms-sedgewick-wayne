@@ -51,7 +51,7 @@ public class Exercise3 {
                 return;
             }
 
-            //Check first node
+            // Check first node
             if (first.key.compareTo(key) == 0) {
                 first.value = value;
                 return;
@@ -61,8 +61,8 @@ public class Exercise3 {
                 return;
             }
 
-            //Check all other nodes
-            for(Node node = first; node != null; node = node.next) {
+            // Check all other nodes
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next != null) {
                     if (node.next.key.compareTo(key) == 0) {
                         node.next.value = value;
@@ -87,12 +87,11 @@ public class Exercise3 {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (node.key.compareTo(key) == 0) {
                     return node.value;
                 }
             }
-
             return null;
         }
 
@@ -105,15 +104,15 @@ public class Exercise3 {
                 return;
             }
 
-            //Check first node
+            // Check first node
             if (first.key.compareTo(key) == 0) {
                 first = first.next;
                 size--;
                 return;
             }
 
-            //Check all other nodes
-            for(Node node = first; node != null; node = node.next) {
+            // Check all other nodes
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next != null && node.next.key.compareTo(key) == 0) {
                     node.next = node.next.next;
                     size--;
@@ -123,12 +122,11 @@ public class Exercise3 {
         }
 
         public boolean contains(Key key) {
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (node.key.compareTo(key) == 0) {
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -145,12 +143,11 @@ public class Exercise3 {
                 throw new NoSuchElementException("Empty symbol table");
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next == null) {
                     return node.key;
                 }
             }
-
             return null;
         }
 
@@ -159,15 +156,15 @@ public class Exercise3 {
                 return null;
             }
 
-            //Check first node
+            // Check first node
             if (first.key.compareTo(key) > 0) {
                 return null;
             } else if (first.key.compareTo(key) == 0) {
                 return first.key;
             }
 
-            //Check all other nodes
-            for(Node node = first; node != null; node = node.next) {
+            // Check all other nodes
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next != null) {
                     if (node.next.key.compareTo(key) == 0) {
                         return node.next.key;
@@ -178,7 +175,6 @@ public class Exercise3 {
                     return node.key;
                 }
             }
-
             return null;
         }
 
@@ -187,14 +183,14 @@ public class Exercise3 {
                 return null;
             }
 
-            //Check first node
+            // Check first node
             if (first.key.compareTo(key) == 0
                     || first.key.compareTo(key) > 0) {
                 return first.key;
             }
 
-            //Check all other nodes
-            for(Node node = first; node != null; node = node.next) {
+            // Check all other nodes
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next != null) {
                     if (node.next.key.compareTo(key) == 0
                             || node.next.key.compareTo(key) > 0) {
@@ -202,21 +198,19 @@ public class Exercise3 {
                     }
                 }
             }
-
             return null;
         }
 
         public int rank(Key key) {
             int rank = 0;
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (node.key.compareTo(key) < 0) {
                     rank++;
                 } else {
                     break;
                 }
             }
-
             return rank;
         }
 
@@ -227,14 +221,12 @@ public class Exercise3 {
 
             int currentRank = 0;
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (currentRank == rank) {
                     return node.key;
                 }
-
                 currentRank++;
             }
-
             return null;
         }
 
@@ -242,7 +234,6 @@ public class Exercise3 {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(min());
         }
 
@@ -250,7 +241,6 @@ public class Exercise3 {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(max());
         }
 
@@ -258,7 +248,7 @@ public class Exercise3 {
             int size = 0;
             boolean inTheRange = false;
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (!inTheRange) {
                     if (node.key.compareTo(low) == 0
                             || node.key.compareTo(low) > 0) {
@@ -274,7 +264,6 @@ public class Exercise3 {
                     }
                 }
             }
-
             return size;
         }
 
@@ -282,7 +271,7 @@ public class Exercise3 {
             Queue<Key> keys = new Queue<>();
             boolean inTheRange = false;
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (!inTheRange) {
                     if (node.key.compareTo(low) == 0
                             || node.key.compareTo(low) > 0) {
@@ -298,27 +287,24 @@ public class Exercise3 {
                     }
                 }
             }
-
             return keys;
         }
 
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 keys.enqueue(node.key);
             }
-
             return keys;
         }
-
     }
 
     public static void main(String[] args) {
         Exercise3 exercise3 = new Exercise3();
         OrderedSequentialSearchST<Integer, String> orderedSequentialSearchST = exercise3.new OrderedSequentialSearchST<>();
 
-        //Test put() and get() and keys()
+        // Test put() and get() and keys()
         orderedSequentialSearchST.put(5, "Value 5");
         orderedSequentialSearchST.put(1, "Value 1");
         orderedSequentialSearchST.put(9, "Value 9");
@@ -328,76 +314,75 @@ public class Exercise3 {
 
         StdOut.println();
 
-        for(Integer key : orderedSequentialSearchST.keys()) {
+        for (Integer key : orderedSequentialSearchST.keys()) {
             StdOut.println("Key " + key + ": " + orderedSequentialSearchST.get(key));
         }
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         orderedSequentialSearchST.delete(2);
-        for(Integer key : orderedSequentialSearchST.keys()) {
+        for (Integer key : orderedSequentialSearchST.keys()) {
             StdOut.println("Key " + key + ": " + orderedSequentialSearchST.get(key));
         }
 
         StdOut.println();
 
-        //Test contains()
+        // Test contains()
         StdOut.println("Contains key 98: " + orderedSequentialSearchST.contains(98) + " Expected: false");
         StdOut.println("Contains key 99: " + orderedSequentialSearchST.contains(99) + " Expected: true");
 
-        //Test isEmpty()
+        // Test isEmpty()
         StdOut.println("Is empty: " + orderedSequentialSearchST.isEmpty() + " Expected: false");
 
-        //Test size()
+        // Test size()
         StdOut.println("Size: " + orderedSequentialSearchST.size() + " Expected: 5");
 
-        //Test min()
+        // Test min()
         StdOut.println("Min key: " + orderedSequentialSearchST.min() + " Expected: 0");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + orderedSequentialSearchST.max() + " Expected: 99");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + orderedSequentialSearchST.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + orderedSequentialSearchST.floor(15) + " Expected: 9");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + orderedSequentialSearchST.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + orderedSequentialSearchST.ceiling(15) + " Expected: 99");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key 9: " + orderedSequentialSearchST.rank(9) + " Expected: 3");
         StdOut.println("Rank of key 10: " + orderedSequentialSearchST.rank(10) + " Expected: 4");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + orderedSequentialSearchST.select(4) + " Expected: 99");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key 0)");
 
         orderedSequentialSearchST.deleteMin();
-        for(Integer key : orderedSequentialSearchST.keys()) {
+        for (Integer key : orderedSequentialSearchST.keys()) {
             StdOut.println("Key " + key + ": " + orderedSequentialSearchST.get(key));
         }
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 99)");
 
         orderedSequentialSearchST.deleteMax();
-        for(Integer key : orderedSequentialSearchST.keys()) {
+        for (Integer key : orderedSequentialSearchST.keys()) {
             StdOut.println("Key " + key + ": " + orderedSequentialSearchST.get(key));
         }
 
         StdOut.println();
 
-        //Test size()
+        // Test size()
         StdOut.println("Size of keys between 2 and 10: " + orderedSequentialSearchST.size(2, 10) + " Expected: 2");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println();
-        for(Integer key : orderedSequentialSearchST.keys(2, 10)) {
+        for (Integer key : orderedSequentialSearchST.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + orderedSequentialSearchST.get(key));
         }
     }
-
 }

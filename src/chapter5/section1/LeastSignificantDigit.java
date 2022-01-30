@@ -14,33 +14,32 @@ public class LeastSignificantDigit {
 
         String[] auxArray = new String[array.length];
 
-        for(int digit = stringsLength - 1; digit >= 0; digit--) {
+        for (int digit = stringsLength - 1; digit >= 0; digit--) {
             // Sort by key-indexed counting on digitTh char
 
             // Compute frequency counts
             int count[] = new int[alphabetSize + 1];
-            for(int i = 0; i < array.length; i++) {
+            for (int i = 0; i < array.length; i++) {
                 int digitIndex = array[i].charAt(digit);
                 count[digitIndex + 1]++;
             }
 
             // Transform counts to indices
-            for(int r = 0; r < alphabetSize; r++) {
+            for (int r = 0; r < alphabetSize; r++) {
                 count[r + 1] += count[r];
             }
 
             // Distribute
-            for(int i = 0; i < array.length; i++) {
+            for (int i = 0; i < array.length; i++) {
                 int digitIndex = array[i].charAt(digit);
                 int indexInAuxArray = count[digitIndex]++;
                 auxArray[indexInAuxArray] = array[i];
             }
 
             // Copy back
-            for(int i = 0; i < array.length; i++) {
+            for (int i = 0; i < array.length; i++) {
                 array[i] = auxArray[i];
             }
         }
     }
-
 }

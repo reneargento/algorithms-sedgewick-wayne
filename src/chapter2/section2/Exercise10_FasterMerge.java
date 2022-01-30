@@ -16,7 +16,7 @@ public class Exercise10_FasterMerge {
     private static Comparable[] generateRandomArray(int arrayLength) {
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.uniform();
         }
 
@@ -48,13 +48,13 @@ public class Exercise10_FasterMerge {
 
         int auxIndex = low;
 
-        for(int i = low; i <= middle; i++) {
+        for (int i = low; i <= middle; i++) {
             aux[auxIndex] = array[i];
 
             auxIndex++;
         }
 
-        for(int i = high; i >= middle + 1; i--) {
+        for (int i = high; i >= middle + 1; i--) {
             aux[auxIndex] = array[i];
 
             auxIndex++;
@@ -76,5 +76,4 @@ public class Exercise10_FasterMerge {
             arrayIndex++;
         }
     }
-
 }

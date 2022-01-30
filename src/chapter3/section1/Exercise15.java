@@ -17,25 +17,25 @@ public class Exercise15 {
         int[] numberOfSearches = { 1000, 1000000, 1000000000 };
 
         BinarySearchSymbolTable<Integer, String> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
-        for(int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 10000; i++) {
             binarySearchSymbolTable.put(i, "Value " + i);
         }
 
         StdOut.printf("%13s %25s\n", "Searches", "Percentage of total time spent on insertions");
 
-        for(int i = 0; i < numberOfSearches.length; i++) {
+        for (int i = 0; i < numberOfSearches.length; i++) {
             int numberOfInsertions = numberOfSearches[i] / 1000;
 
             Stopwatch totalTimeTimer = new Stopwatch();
 
-            for(int search = 0; search < numberOfSearches[i]; search++) {
+            for (int search = 0; search < numberOfSearches[i]; search++) {
                 int randomValueToSearch = StdRandom.uniform(1000000);
                 binarySearchSymbolTable.get(randomValueToSearch);
             }
 
             Stopwatch insertionsTimer = new Stopwatch();
 
-            for(int insertion = 0; insertion < numberOfInsertions; insertion++) {
+            for (int insertion = 0; insertion < numberOfInsertions; insertion++) {
                 int randomValueToInsert = StdRandom.uniform(1000000000);
                 binarySearchSymbolTable.put(randomValueToInsert, "Value " + randomValueToInsert);
             }

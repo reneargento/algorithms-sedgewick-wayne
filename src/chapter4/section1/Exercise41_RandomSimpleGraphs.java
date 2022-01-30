@@ -23,7 +23,7 @@ public class Exercise41_RandomSimpleGraphs {
             this.edges = 0;
             adjacent = (HashSet<Integer>[]) new HashSet[vertices];
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 adjacent[vertex] = new HashSet<>();
             }
         }
@@ -58,10 +58,10 @@ public class Exercise41_RandomSimpleGraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(int neighbor : adjacent(vertex)) {
+                for (int neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
@@ -69,7 +69,6 @@ public class Exercise41_RandomSimpleGraphs {
 
             return stringBuilder.toString();
         }
-
     }
 
     public Graph randomSimpleGraph(int vertices, int edges) {
@@ -102,5 +101,4 @@ public class Exercise41_RandomSimpleGraphs {
         Graph randomSimpleGraph = new Exercise41_RandomSimpleGraphs().randomSimpleGraph(vertices, edges);
         StdOut.println(randomSimpleGraph);
     }
-
 }

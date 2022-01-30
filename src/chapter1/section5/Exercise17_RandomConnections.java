@@ -26,7 +26,7 @@ public class Exercise17_RandomConnections {
 
         UnionFind unionFind = new UnionFind(numberOfSites);
 
-        while(unionFind.count() != 1) {
+        while (unionFind.count() != 1) {
 
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
@@ -44,5 +44,4 @@ public class Exercise17_RandomConnections {
 
         return connectionsGenerated;
     }
-
 }

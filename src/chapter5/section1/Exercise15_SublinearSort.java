@@ -17,7 +17,7 @@ public class Exercise15_SublinearSort {
             int bitsArrayIndex = 0;
 
             // Transform all int values to 32 bits
-            for(int value : array) {
+            for (int value : array) {
                 String binaryString = getBinaryStringWithInverseLeadingBit(value);
                 bits[bitsArrayIndex++] = binaryString;
             }
@@ -30,7 +30,7 @@ public class Exercise15_SublinearSort {
             InsertionSort.insertionSort(bits);
 
             // Transform bits to int values
-            for(int i = 0; i < array.length; i++) {
+            for (int i = 0; i < array.length; i++) {
                 array[i] = getIntFromBinaryStringWithInverseLeadingBit(bits[i]);
             }
         }
@@ -41,29 +41,29 @@ public class Exercise15_SublinearSort {
 
             String[] auxArray = new String[bits.length];
 
-            for(int digit = initialDigit; digit >= 0; digit--) {
+            for (int digit = initialDigit; digit >= 0; digit--) {
 
                 // Compute frequency counts
                 int[] count = new int[alphabetSize + 1];
-                for(int i = 0; i < bits.length; i++) {
+                for (int i = 0; i < bits.length; i++) {
                     int bitValue = Character.getNumericValue(bits[i].charAt(digit));
                     count[bitValue + 1]++;
                 }
 
                 // Transform counts to indices
-                for(int r = 0; r < alphabetSize; r++) {
+                for (int r = 0; r < alphabetSize; r++) {
                     count[r + 1] += count[r];
                 }
 
                 // Distribute
-                for(int i = 0; i < bits.length; i++) {
+                for (int i = 0; i < bits.length; i++) {
                     int bitValue = Character.getNumericValue(bits[i].charAt(digit));
                     int indexInAuxArray = count[bitValue]++;
                     auxArray[indexInAuxArray] = bits[i];
                 }
 
                 // Copy back
-                for(int i = 0; i < bits.length; i++) {
+                for (int i = 0; i < bits.length; i++) {
                     bits[i] = auxArray[i];
                 }
             }
@@ -75,7 +75,7 @@ public class Exercise15_SublinearSort {
 
             int zeroesToPadLeft = 31 - binaryString.length();
 
-            for(int i = 0; i < zeroesToPadLeft; i++) {
+            for (int i = 0; i < zeroesToPadLeft; i++) {
                 binaryString.insert(0, "0");
             }
 
@@ -96,7 +96,7 @@ public class Exercise15_SublinearSort {
             int value = 0;
             int bitIndex = 0;
 
-            for(int digit = bits.length() - 1; digit >= 1; digit--) {
+            for (int digit = bits.length() - 1; digit >= 1; digit--) {
                 if (bits.charAt(digit) == '1') {
                     value += Math.pow(2, bitIndex);
                 }
@@ -112,7 +112,6 @@ public class Exercise15_SublinearSort {
 
             return value;
         }
-
     }
 
     public static void main(String[] args) {
@@ -132,12 +131,11 @@ public class Exercise15_SublinearSort {
 
         StringJoiner sortedArray = new StringJoiner(", ");
 
-        for(int value : array) {
+        for (int value : array) {
             sortedArray.add(String.valueOf(value));
         }
 
         StdOut.println("Sorted array: " + sortedArray.toString());
         StdOut.println("Expected: -30, 0, 1000, 87997899, 1893288285, 2032847926, 2147483647");
     }
-
 }

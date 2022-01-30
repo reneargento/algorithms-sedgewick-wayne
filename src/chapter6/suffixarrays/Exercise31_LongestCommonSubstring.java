@@ -31,7 +31,7 @@ public class Exercise31_LongestCommonSubstring {
         int highestLCPLength = 0;
         int targetSuffixIndex = 0;
 
-        for(int i = 0; i < mergedTexts.length() - 1; i++) {
+        for (int i = 0; i < mergedTexts.length() - 1; i++) {
             // Both suffixes are from text 1
             if (suffixArray.index(i) < text1Length && suffixArray.index(i + 1) < text1Length) {
                 continue;
@@ -69,7 +69,7 @@ public class Exercise31_LongestCommonSubstring {
         int highestLCPLength = 0;
         int targetSuffixIndex = 0;
 
-        for(int i = 1; i < mergedTexts.length(); i++) {
+        for (int i = 1; i < mergedTexts.length(); i++) {
             // Both suffixes are from text 1
             if (suffixArray.index(i) < text1Length && suffixArray.index(i - 1) < text1Length) {
                 continue;
@@ -204,5 +204,4 @@ public class Exercise31_LongestCommonSubstring {
         String longestCommonSubstring3 = longestCommonSubstring.longestCommonSubstringMethod3(fileName1, fileName2);
         StdOut.println("Longest common substring 3: " + longestCommonSubstring3);
     }
-
 }

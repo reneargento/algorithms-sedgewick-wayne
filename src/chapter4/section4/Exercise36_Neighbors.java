@@ -40,7 +40,7 @@ public class Exercise36_Neighbors {
             distTo = new double[edgeWeightedDigraph.vertices()];
             priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedDigraph.vertices());
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             distTo[source] = 0;
@@ -52,7 +52,7 @@ public class Exercise36_Neighbors {
         }
 
         private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex, int maxDistance) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (distTo[neighbor] > distTo[vertex] + edge.weight()
@@ -84,12 +84,11 @@ public class Exercise36_Neighbors {
         public HashSet<Integer> verticesWithinMaxDistance() {
             HashSet<Integer> verticesWithinMaxDistance = new HashSet<>();
 
-            for(int vertex = 0; vertex < distTo.length; vertex++) {
+            for (int vertex = 0; vertex < distTo.length; vertex++) {
                 if (hasPathTo(vertex)) {
                     verticesWithinMaxDistance.add(vertex);
                 }
             }
-
             return verticesWithinMaxDistance;
         }
 
@@ -99,13 +98,11 @@ public class Exercise36_Neighbors {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
-
             return path;
         }
-
     }
 
     public static void main(String[] args) {
@@ -124,7 +121,7 @@ public class Exercise36_Neighbors {
 
         StdOut.println("Vertices within distance 20 from digraph 1:");
 
-        for(int vertex : dijkstraSPMaxDistance1.verticesWithinMaxDistance().keys()) {
+        for (int vertex : dijkstraSPMaxDistance1.verticesWithinMaxDistance().keys()) {
             StdOut.print(vertex + " ");
         }
         StdOut.println("\nExpected: 0 1 2 3");
@@ -140,16 +137,14 @@ public class Exercise36_Neighbors {
         edgeWeightedDigraph2.addEdge(new DirectedEdge(4, 7, 1));
 
         int maxDistance2 = 10;
-
         DijkstraSPMaxDistance dijkstraSPMaxDistance2 =
                 neighbors.new DijkstraSPMaxDistance(edgeWeightedDigraph2, 0, maxDistance2);
 
         StdOut.println("\nVertices within distance 10 from digraph 2:");
 
-        for(int vertex : dijkstraSPMaxDistance2.verticesWithinMaxDistance().keys()) {
+        for (int vertex : dijkstraSPMaxDistance2.verticesWithinMaxDistance().keys()) {
             StdOut.print(vertex + " ");
         }
         StdOut.println("\nExpected: 0 1 2 3 5");
     }
-
 }

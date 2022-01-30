@@ -10,7 +10,7 @@ public class TransitiveClosure {
     public TransitiveClosure(Digraph digraph) {
         allVerticesDFS = new DirectedDFS[digraph.vertices()];
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             allVerticesDFS[vertex] = new DirectedDFS(digraph, vertex);
         }
     }
@@ -18,5 +18,4 @@ public class TransitiveClosure {
     public boolean reachable(int vertex1, int vertex2) {
         return allVerticesDFS[vertex1].marked(vertex2);
     }
-
 }

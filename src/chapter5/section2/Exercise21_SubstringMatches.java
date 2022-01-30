@@ -74,7 +74,7 @@ public class Exercise21_SubstringMatches {
             }
 
             if (nodeWithPrefix.values != null) {
-                for(Value value : nodeWithPrefix.values) {
+                for (Value value : nodeWithPrefix.values) {
                     keysWithPrefix.enqueue(value);
                 }
             }
@@ -91,7 +91,7 @@ public class Exercise21_SubstringMatches {
             collect(node.left, prefix, queue);
 
             if (node.values != null) {
-                for(Value value : node.values) {
+                for (Value value : node.values) {
                     queue.enqueue(value);
                 }
             }
@@ -126,7 +126,6 @@ public class Exercise21_SubstringMatches {
     }
 
     public class SubstringMatch implements SubstringMatchAPI {
-
         private TernarySearchTrieWithValueList<String> ternarySearchTrie;
 
         SubstringMatch(List<String> strings) {
@@ -151,7 +150,6 @@ public class Exercise21_SubstringMatches {
 
         @Override
         public Iterable<String> keysWithSubstring(String substring) {
-
             HashSet<String> uniqueKeysWithSubstring = new HashSet<>();
 
             for (String key : ternarySearchTrie.keysWithPrefix(substring)) {
@@ -186,7 +184,7 @@ public class Exercise21_SubstringMatches {
         StdOut.println("Keys with substring Al");
         StringJoiner keysWithSubstring1 = new StringJoiner(" ");
 
-        for(String key : substringMatch.keysWithSubstring("Al")) {
+        for (String key : substringMatch.keysWithSubstring("Al")) {
             keysWithSubstring1.add(key);
         }
         StdOut.println(keysWithSubstring1.toString());
@@ -195,7 +193,7 @@ public class Exercise21_SubstringMatches {
         StdOut.println("\nKeys with substring gor");
         StringJoiner keysWithSubstring2 = new StringJoiner(" ");
 
-        for(String key : substringMatch.keysWithSubstring("gor")) {
+        for (String key : substringMatch.keysWithSubstring("gor")) {
             keysWithSubstring2.add(key);
         }
         StdOut.println(keysWithSubstring2.toString());
@@ -204,7 +202,7 @@ public class Exercise21_SubstringMatches {
         StdOut.println("\nKeys with substring ri");
         StringJoiner keysWithSubstring3 = new StringJoiner(" ");
 
-        for(String key : substringMatch.keysWithSubstring("ri")) {
+        for (String key : substringMatch.keysWithSubstring("ri")) {
             keysWithSubstring3.add(key);
         }
         StdOut.println(keysWithSubstring3.toString());
@@ -213,11 +211,10 @@ public class Exercise21_SubstringMatches {
         StdOut.println("\nKeys with substring e");
         StringJoiner keysWithSubstring4 = new StringJoiner(" ");
 
-        for(String key : substringMatch.keysWithSubstring("e")) {
+        for (String key : substringMatch.keysWithSubstring("e")) {
             keysWithSubstring4.add(key);
         }
         StdOut.println(keysWithSubstring4.toString());
         StdOut.println("Expected: Rene Reri Tree Trie Trie123");
     }
-
 }

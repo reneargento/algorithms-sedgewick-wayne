@@ -17,22 +17,22 @@ public class Exercise29_StequeWith2Stacks<Item> {
         tailStack = new Stack<>();
     }
 
-    //O(1)
+    // O(1)
     public int size() {
         return headStack.size() + tailStack.size();
     }
 
-    //O(1)
+    // O(1)
     public boolean isEmpty() {
         return headStack.isEmpty() && tailStack.isEmpty();
     }
 
-    //O(1)
+    // O(1)
     public void push(Item item) {
         headStack.push(item);
     }
 
-    //Amortized O(1)
+    // Amortized O(1)
     public Item pop() {
 
         if (isEmpty()) {
@@ -40,8 +40,8 @@ public class Exercise29_StequeWith2Stacks<Item> {
         }
 
         if (headStack.size() == 0) {
-            //Move all items from tail stack to head stack
-            while(!tailStack.isEmpty()) {
+            // Move all items from tail stack to head stack
+            while (!tailStack.isEmpty()) {
                 headStack.push(tailStack.pop());
             }
         }
@@ -49,7 +49,7 @@ public class Exercise29_StequeWith2Stacks<Item> {
         return headStack.pop();
     }
 
-    //O(1)
+    // O(1)
     public void enqueue(Item item) {
         tailStack.push(item);
     }
@@ -77,5 +77,4 @@ public class Exercise29_StequeWith2Stacks<Item> {
 
         StdOut.println("Expected output from pop(): 3 2 1 4");
     }
-
 }

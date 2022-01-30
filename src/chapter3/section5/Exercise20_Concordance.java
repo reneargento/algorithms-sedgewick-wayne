@@ -23,7 +23,7 @@ public class Exercise20_Concordance {
                 String wordLine = StdIn.readLine();
                 String[] words = wordLine.split(" ");
 
-                for(String word : words) {
+                for (String word : words) {
                     if (!concordanceMap.containsKey(word)) {
                         concordanceMap.put(word, new ArrayList<>());
                     }
@@ -32,16 +32,15 @@ public class Exercise20_Concordance {
                     wordIndex++;
                 }
             }
-
             return concordanceMap;
         }
 
         private void outputConcordance(Map<String, List<Integer>> concordance) {
-            for(String word : concordance.keySet()) {
+            for (String word : concordance.keySet()) {
                 StdOut.print(word);
                 boolean isFirstValue = true;
 
-                for(Integer positionInText : concordance.get(word)) {
+                for (Integer positionInText : concordance.get(word)) {
                     if (isFirstValue) {
                         isFirstValue = false;
                     } else {
@@ -50,18 +49,17 @@ public class Exercise20_Concordance {
 
                     StdOut.print(" " + positionInText);
                 }
-
                 StdOut.println();
             }
         }
     }
 
     public static void main(String[] args) {
-        //Test
+        // Test
         //  This is a text to test a concordance.
         //  The text has many words. This is a good test.
         //
-        //Expected output (not necessarily in this order)
+        // Expected output (not necessarily in this order)
         // This 0, 13
         // is 1, 14
         // a 2, 6, 15
@@ -81,5 +79,4 @@ public class Exercise20_Concordance {
         Map<String, List<Integer>> concordanceMap = concordance.readInputAndBuildConcordance();
         concordance.outputConcordance(concordanceMap);
     }
-
 }

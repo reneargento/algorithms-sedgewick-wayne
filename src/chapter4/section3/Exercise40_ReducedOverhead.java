@@ -38,7 +38,7 @@ public class Exercise40_ReducedOverhead {
             distTo = new double[edgeWeightedGraphSpaceEfficient.vertices()];
             marked = new boolean[edgeWeightedGraphSpaceEfficient.vertices()];
 
-            for(int vertex = 0; vertex < edgeWeightedGraphSpaceEfficient.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedGraphSpaceEfficient.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedGraphSpaceEfficient.vertices());
@@ -59,7 +59,7 @@ public class Exercise40_ReducedOverhead {
 
             double[] adjacentEdges = edgeWeightedGraphSpaceEfficient.adjacent(vertex);
 
-            for(int otherVertex = 0; otherVertex < adjacentEdges.length; otherVertex++) {
+            for (int otherVertex = 0; otherVertex < adjacentEdges.length; otherVertex++) {
                 if (marked[otherVertex] || adjacentEdges[otherVertex] == NO_CONNECTION) {
                     continue; // vertex-otherVertex is ineligible or non-existent
                 }
@@ -88,20 +88,18 @@ public class Exercise40_ReducedOverhead {
         public Iterable<Edge> edges() {
             Queue<Edge> minimumSpanningTree = new Queue<>();
 
-            for(int vertex = 1; vertex < edgeTo.length; vertex++) {
+            for (int vertex = 1; vertex < edgeTo.length; vertex++) {
                 minimumSpanningTree.enqueue(edgeTo[vertex]);
             }
-
             return minimumSpanningTree;
         }
 
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
@@ -113,7 +111,6 @@ public class Exercise40_ReducedOverhead {
     // Space efficient version of Kruskal's algorithm
     // Trade-off: it has runtime complexity of O(V^2)
     public class KruskalMSTSpaceEfficient {
-
         private Queue<Edge> minimumSpanningTree;
         private double weight;
 
@@ -122,7 +119,7 @@ public class Exercise40_ReducedOverhead {
             PriorityQueueResize<Edge> priorityQueue = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
 
             // The O(V^2) comes from the EdgeWeightedGraphSpaceEfficient.edges() method
-            for(Edge edge : edgeWeightedGraphSpaceEfficient.edges()) {
+            for (Edge edge : edgeWeightedGraphSpaceEfficient.edges()) {
                 priorityQueue.insert(edge);
             }
 
@@ -152,7 +149,7 @@ public class Exercise40_ReducedOverhead {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
 
@@ -166,12 +163,11 @@ public class Exercise40_ReducedOverhead {
 
     public class RandomEdgeWeightedGraphsSpaceEfficient {
 
-        public Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient erdosRenyiGraphUniformWeights(int vertices,
-                                                                                                                     int edges) {
+        public Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient erdosRenyiGraphUniformWeights(int vertices, int edges) {
             Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient randomEdgeWeightedGraphSpaceEfficient =
                     spaceEfficientDataStructures.new EdgeWeightedGraphSpaceEfficient(vertices);
 
-            for(int edge = 0; edge < edges; edge++) {
+            for (int edge = 0; edge < edges; edge++) {
                 int vertexId1 = StdRandom.uniform(vertices);
                 int vertexId2 = StdRandom.uniform(vertices);
 
@@ -184,12 +180,11 @@ public class Exercise40_ReducedOverhead {
             return randomEdgeWeightedGraphSpaceEfficient;
         }
 
-        public Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient erdosRenyiGraphGaussianWeights(int vertices,
-                                                                                                                      int edges) {
+        public Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient erdosRenyiGraphGaussianWeights(int vertices, int edges) {
             Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficient randomEdgeWeightedGraphSpaceEfficient =
                     spaceEfficientDataStructures.new EdgeWeightedGraphSpaceEfficient(vertices);
 
-            for(int edge = 0; edge < edges; edge++) {
+            for (int edge = 0; edge < edges; edge++) {
                 int vertexId1 = StdRandom.uniform(vertices);
                 int vertexId2 = StdRandom.uniform(vertices);
 
@@ -198,7 +193,6 @@ public class Exercise40_ReducedOverhead {
 
                 randomEdgeWeightedGraphSpaceEfficient.addEdge(newEdge);
             }
-
             return randomEdgeWeightedGraphSpaceEfficient;
         }
     }
@@ -239,10 +233,10 @@ public class Exercise40_ReducedOverhead {
             allVertices = new Vertex[vertices];
             adjacent = new double[vertices][vertices];
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 adjacent[vertex] = new double[vertices];
 
-                for(int adjacentVertex = 0; adjacentVertex < vertices; adjacentVertex++) {
+                for (int adjacentVertex = 0; adjacentVertex < vertices; adjacentVertex++) {
                     adjacent[vertex][adjacentVertex] = NO_CONNECTION;
                 }
             }
@@ -289,10 +283,10 @@ public class Exercise40_ReducedOverhead {
             StdDraw.setPenRadius(0.002D);
             StdDraw.setPenColor(Color.BLACK);
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 double[] adjacentEdges = adjacent(vertexId);
 
-                for(int otherVertexId = 0; otherVertexId < adjacentEdges.length; otherVertexId++) {
+                for (int otherVertexId = 0; otherVertexId < adjacentEdges.length; otherVertexId++) {
                     double edgeWeight = adjacentEdges[otherVertexId];
 
                     if (edgeWeight == NO_CONNECTION) {
@@ -308,7 +302,7 @@ public class Exercise40_ReducedOverhead {
                 }
             }
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 if (allVertices[vertexId] != null) {
 
                     StdDraw.setPenColor(Color.WHITE);
@@ -333,14 +327,13 @@ public class Exercise40_ReducedOverhead {
         public Iterable<Edge> edges() {
             Bag<Edge> edges = new Bag<>();
 
-            for(int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
-                for(int vertexId2 = vertexId1 + 1; vertexId2 < vertices; vertexId2++) {
+            for (int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
+                for (int vertexId2 = vertexId1 + 1; vertexId2 < vertices; vertexId2++) {
                     if (adjacent[vertexId1][vertexId2] != NO_CONNECTION) {
                         edges.add(new Edge(vertexId1, vertexId2, adjacent[vertexId1][vertexId2]));
                     }
                 }
             }
-
             return edges;
         }
 
@@ -348,10 +341,10 @@ public class Exercise40_ReducedOverhead {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
+            for (int vertexId1 = 0; vertexId1 < vertices; vertexId1++) {
                 stringBuilder.append(vertexId1).append(": ");
 
-                for(int vertexId2 = 0; vertexId2 < vertices; vertexId2++) {
+                for (int vertexId2 = 0; vertexId2 < vertices; vertexId2++) {
                     if (adjacent[vertexId1][vertexId2] != NO_CONNECTION) {
                         String formattedEdge = String.format("%d-%d %.5f", vertexId1, vertexId2, adjacent[vertexId1][vertexId2]);
                         stringBuilder.append(formattedEdge).append(" ");
@@ -359,13 +352,11 @@ public class Exercise40_ReducedOverhead {
                 }
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
 
     public class RandomEuclideanEdgeWeightedGraphSpaceEfficient {
-
         public Exercise28_SpaceEfficientDataStructures.EdgeWeightedGraphSpaceEfficientInterface randomEuclideanEdgeWeightedGraphSpaceEfficient(int vertices) {
             Exercise40_ReducedOverhead.EuclideanEdgeWeightedGraphSpaceEfficient euclideanEdgeWeightedGraphSpaceEfficient =
                     new Exercise40_ReducedOverhead().new EuclideanEdgeWeightedGraphSpaceEfficient(vertices);
@@ -373,7 +364,7 @@ public class Exercise40_ReducedOverhead {
             EuclideanEdgeWeightedGraphSpaceEfficient.Vertex[] allVertices =
                     new EuclideanEdgeWeightedGraphSpaceEfficient.Vertex[vertices];
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 double randomXCoordinate = StdRandom.uniform();
                 double randomYCoordinate = StdRandom.uniform();
 
@@ -384,8 +375,8 @@ public class Exercise40_ReducedOverhead {
                 euclideanEdgeWeightedGraphSpaceEfficient.addVertex(vertex);
             }
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                for(int otherVertexId = vertexId + 1; otherVertexId < vertices; otherVertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
+                for (int otherVertexId = vertexId + 1; otherVertexId < vertices; otherVertexId++) {
                     double distance = MathUtil.distanceBetweenPoints(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
                             allVertices[otherVertexId].xCoordinate, allVertices[otherVertexId].yCoordinate);
 
@@ -393,7 +384,6 @@ public class Exercise40_ReducedOverhead {
                     euclideanEdgeWeightedGraphSpaceEfficient.addEdge(edge);
                 }
             }
-
             return euclideanEdgeWeightedGraphSpaceEfficient;
         }
     }
@@ -406,7 +396,6 @@ public class Exercise40_ReducedOverhead {
     private static final int KRUSKAL_ID = 2;
 
     private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges, int euclideanGraphVertices) {
-
         StdOut.printf("%63s %18s %12s %10s %10s\n", "Edge Weighted Graph type | ", "MST Algorithm | ", "Vertices | ",
                 "Edges | ", "Average time spent");
 
@@ -431,11 +420,11 @@ public class Exercise40_ReducedOverhead {
 
         int graphTypeId = 0;
 
-        for(int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
-            for(int graphTypeSpaceEfficientId = 0; graphTypeSpaceEfficientId < 2; graphTypeSpaceEfficientId++) {
+        for (int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
+            for (int graphTypeSpaceEfficientId = 0; graphTypeSpaceEfficientId < 2; graphTypeSpaceEfficientId++) {
                 String mstAlgorithm = mstAlgorithms[mstAlgorithmType];
 
-                for(int experiment = 0; experiment < experiments; experiment++) {
+                for (int experiment = 0; experiment < experiments; experiment++) {
 
                     if (graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
                         EdgeWeightedGraph randomEdgeWeightedGraphUniformWeights =
@@ -462,11 +451,11 @@ public class Exercise40_ReducedOverhead {
         // Graph model 2: Random edge weighted graphs with gaussian weight distribution
         graphTypeId = 1;
 
-        for(int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
-            for(int graphTypeSpaceEfficientId = 0; graphTypeSpaceEfficientId < 2; graphTypeSpaceEfficientId++) {
+        for (int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
+            for (int graphTypeSpaceEfficientId = 0; graphTypeSpaceEfficientId < 2; graphTypeSpaceEfficientId++) {
                 String mstAlgorithm = mstAlgorithms[mstAlgorithmType];
 
-                for(int experiment = 0; experiment < experiments; experiment++) {
+                for (int experiment = 0; experiment < experiments; experiment++) {
 
                     if (graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
                         EdgeWeightedGraph randomEdgeWeightedGraphUniformWeights =
@@ -500,11 +489,11 @@ public class Exercise40_ReducedOverhead {
         // Running the experiment on a complete graph
         double radius = 1;
 
-        for(int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
-            for(int graphTypeSpaceEfficientId = 0; graphTypeSpaceEfficientId < 2; graphTypeSpaceEfficientId++) {
+        for (int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
+            for (int graphTypeSpaceEfficientId = 0; graphTypeSpaceEfficientId < 2; graphTypeSpaceEfficientId++) {
                 String mstAlgorithm = mstAlgorithms[mstAlgorithmType];
 
-                for(int experiment = 0; experiment < experiments; experiment++) {
+                for (int experiment = 0; experiment < experiments; experiment++) {
 
                     if (graphTypeSpaceEfficientId == DEFAULT_EDGE_WEIGHTED_GRAPH_ID) {
                         EdgeWeightedGraphInterface randomEdgeWeightedEuclideanGraph =
@@ -585,7 +574,6 @@ public class Exercise40_ReducedOverhead {
     }
 
     private void tests() {
-
         // Test PrimMSTSpaceEfficient
         StdOut.println("PrimMSTSpaceEfficient test");
 
@@ -602,7 +590,7 @@ public class Exercise40_ReducedOverhead {
 
         PrimMSTSpaceEfficient primMSTSpaceEfficient = new PrimMSTSpaceEfficient(edgeWeightedGraphSpaceEfficient);
 
-        for(Edge edge : primMSTSpaceEfficient.edges()) {
+        for (Edge edge : primMSTSpaceEfficient.edges()) {
             StdOut.println(edge);
         }
 
@@ -618,7 +606,7 @@ public class Exercise40_ReducedOverhead {
 
         KruskalMSTSpaceEfficient kruskalMSTSpaceEfficient = new KruskalMSTSpaceEfficient(edgeWeightedGraphSpaceEfficient);
 
-        for(Edge edge : kruskalMSTSpaceEfficient.edges()) {
+        for (Edge edge : kruskalMSTSpaceEfficient.edges()) {
             StdOut.println(edge);
         }
 
@@ -628,5 +616,4 @@ public class Exercise40_ReducedOverhead {
                 "0-3 0.50000\n" +
                 "3-4 0.80000");
     }
-
 }

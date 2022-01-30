@@ -17,7 +17,7 @@ public class ConnectedComponentsIterativeDFS implements ConnectedComponents {
         visited = new boolean[graph.vertices()];
         id = new int[graph.vertices()];
 
-        for(int source = 0; source < graph.vertices(); source++) {
+        for (int source = 0; source < graph.vertices(); source++) {
             if (!visited[source]) {
                 depthFirstSearchIterative(graph, source);
                 count++;
@@ -69,5 +69,4 @@ public class ConnectedComponentsIterativeDFS implements ConnectedComponents {
     public int count() {
         return count;
     }
-
 }

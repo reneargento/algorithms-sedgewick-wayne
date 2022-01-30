@@ -55,14 +55,13 @@ public class Exercise26_PrimitiveTypes {
         double total = 0;
         int[] array = new int[length];
 
-        for(int experiment=0; experiment < numberOfExperiments; experiment++) {
-            for(int i = 0; i < length; i++) {
+        for (int experiment=0; experiment < numberOfExperiments; experiment++) {
+            for (int i = 0; i < length; i++) {
                 array[i] = StdRandom.uniform(100);
             }
 
             total += time(insertionSortType, array, null);
         }
-
         return total;
     }
 
@@ -70,14 +69,13 @@ public class Exercise26_PrimitiveTypes {
         double total = 0;
         Integer[] array = new Integer[length];
 
-        for(int experiment=0; experiment < numberOfExperiments; experiment++) {
-            for(int i = 0; i < length; i++) {
+        for (int experiment=0; experiment < numberOfExperiments; experiment++) {
+            for (int i = 0; i < length; i++) {
                 array[i] = StdRandom.uniform(100);
             }
 
             total += time(insertionSortType, null, array);
         }
-
         return total;
     }
 
@@ -89,8 +87,6 @@ public class Exercise26_PrimitiveTypes {
         } else if (insertionSortType == InsertionSortType.NON_PRIMITIVE) {
             insertionSortNonPrimitive(arrayInteger);
         }
-
         return timer.elapsedTime();
     }
-
 }

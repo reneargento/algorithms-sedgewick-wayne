@@ -4,14 +4,13 @@ package chapter4.section1;
  * Created by Rene Argento on 15/09/17.
  */
 public class Cycle {
-
     private boolean[] visited;
     private boolean hasCycle;
 
     public Cycle(Graph graph) {
         visited = new boolean[graph.vertices()];
 
-        for(int source = 0; source < graph.vertices(); source++) {
+        for (int source = 0; source < graph.vertices(); source++) {
             if (!visited[source]) {
                 dfs(graph, source, source);
             }
@@ -21,7 +20,7 @@ public class Cycle {
     private void dfs(Graph graph, int vertex, int origin) {
         visited[vertex] = true;
 
-        for(int neighbor : graph.adjacent(vertex)) {
+        for (int neighbor : graph.adjacent(vertex)) {
             if (!visited[neighbor]) {
                 dfs(graph, neighbor, vertex);
             } else if (neighbor != origin) {
@@ -33,5 +32,4 @@ public class Cycle {
     public boolean hasCycle() {
         return hasCycle;
     }
-
 }

@@ -22,8 +22,8 @@ public class Exercise3 {
             edges = 0;
             adjacent = new double[vertices][vertices];
 
-            for(int vertex1 = 0; vertex1 < vertices; vertex1++) {
-                for(int vertex2 = 0; vertex2 < vertices; vertex2++) {
+            for (int vertex1 = 0; vertex1 < vertices; vertex1++) {
+                for (int vertex2 = 0; vertex2 < vertices; vertex2++) {
                     adjacent[vertex1][vertex2] = Double.POSITIVE_INFINITY;
                 }
             }
@@ -37,7 +37,7 @@ public class Exercise3 {
                 throw new IllegalArgumentException("Number of edges must be nonnegative");
             }
 
-            for(int i = 0; i < edges; i++) {
+            for (int i = 0; i < edges; i++) {
                 int vertexFrom = in.readInt();
                 int vertexTo = in.readInt();
                 double weight = in.readDouble();
@@ -75,7 +75,7 @@ public class Exercise3 {
         public Iterable<DirectedEdge> adjacent(int vertex) {
             Bag<DirectedEdge> adjacentEdges = new Bag<>();
 
-            for(int i = 0; i < adjacent.length; i++) {
+            for (int i = 0; i < adjacent.length; i++) {
                 if (hasEdge(vertex, i)) {
                     adjacentEdges.add(new DirectedEdge(vertex, i, adjacent[vertex][i]));
                 }
@@ -87,8 +87,8 @@ public class Exercise3 {
         public Iterable<DirectedEdge> edges() {
             Bag<DirectedEdge> edges = new Bag<>();
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
-                for(DirectedEdge edge : adjacent(vertex)) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
+                for (DirectedEdge edge : adjacent(vertex)) {
                     edges.add(edge);
                 }
             }
@@ -100,15 +100,14 @@ public class Exercise3 {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(DirectedEdge neighbor : adjacent(vertex)) {
+                for (DirectedEdge neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
@@ -139,5 +138,4 @@ public class Exercise3 {
                 "3: 3->2 0.58 \n" +
                 "4: 4->4 0.10");
     }
-
 }

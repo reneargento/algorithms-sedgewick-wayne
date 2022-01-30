@@ -27,7 +27,7 @@ public class Exercise47_RandomTransportationGraphs {
             while (in.hasNextLine()) {
                 String[] vertices = in.readLine().split(separator);
 
-                for(int i = 0; i < vertices.length; i++) {
+                for (int i = 0; i < vertices.length; i++) {
                     if (!vertexNameToIdMap.contains(vertices[i])) {
                         vertexNameToIdMap.put(vertices[i], vertexNameToIdMap.size());
                     }
@@ -36,7 +36,7 @@ public class Exercise47_RandomTransportationGraphs {
 
             keys = new String[vertexNameToIdMap.size()];
 
-            for(String vertexName : vertexNameToIdMap.keys()) {
+            for (String vertexName : vertexNameToIdMap.keys()) {
                 keys[vertexNameToIdMap.get(vertexName)] = vertexName;
             }
 
@@ -47,7 +47,7 @@ public class Exercise47_RandomTransportationGraphs {
             while (in.hasNextLine()) {
                 String[] vertices = in.readLine().split(separator);
 
-                for(int vertex = 0; vertex < vertices.length - 1; vertex++) {
+                for (int vertex = 0; vertex < vertices.length - 1; vertex++) {
                     //Since we need an EuclideanGraph, we get the coordinates first
 //                    int vertex1 = vertexNameToIdMap.get(vertices[vertex]);
 //                    int vertex2 = vertexNameToIdMap.get(vertices[vertex + 1]);
@@ -136,5 +136,4 @@ public class Exercise47_RandomTransportationGraphs {
                 new Exercise47_RandomTransportationGraphs().randomTransportation();
         euclideanGraph.show(-20, 120, 0, 120, 0.5);
     }
-
 }

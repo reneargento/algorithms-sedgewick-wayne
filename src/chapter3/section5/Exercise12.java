@@ -56,7 +56,7 @@ public class Exercise12 {
             boolean isFirstValue = true;
 
             if (symbolTable.contains(query)) {
-                for(String value : symbolTable.get(query)) {
+                for (String value : symbolTable.get(query)) {
                     if (isFirstValue) {
                         isFirstValue = false;
                     } else {
@@ -73,5 +73,4 @@ public class Exercise12 {
     public static void main(String[] args) {
         new Exercise12().lookupCSV(args);
     }
-
 }

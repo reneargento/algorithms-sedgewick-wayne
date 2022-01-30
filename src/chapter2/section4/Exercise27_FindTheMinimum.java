@@ -62,7 +62,7 @@ public class Exercise27_FindTheMinimum {
         }
 
         private void swim(int index) {
-            while(index / 2 >= 1 && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index])) {
+            while (index / 2 >= 1 && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index])) {
                 ArrayUtil.exchange(priorityQueue, index / 2, index);
 
                 index = index / 2;

@@ -84,17 +84,17 @@ public class Exercise31_DequeWith3Stacks<Item> {
         int fullStackHalfSize = fullStack.size() / 2;
 
         // Move half items from fullStack to middle stack
-        for(int i = 0; i < fullStackHalfSize; i++) {
+        for (int i = 0; i < fullStackHalfSize; i++) {
             middleStack.push(fullStack.pop());
         }
 
         // Move the other half items from fullStack to emptyStack
-        while(!fullStack.isEmpty()) {
+        while (!fullStack.isEmpty()) {
             emptyStack.push(fullStack.pop());
         }
 
         // Return all items from middle stack to fullStack
-        while(!middleStack.isEmpty()) {
+        while (!middleStack.isEmpty()) {
             fullStack.push(middleStack.pop());
         }
     }
@@ -126,5 +126,4 @@ public class Exercise31_DequeWith3Stacks<Item> {
 
         StdOut.println("Expected output from pop(): 2 7 8");
     }
-
 }

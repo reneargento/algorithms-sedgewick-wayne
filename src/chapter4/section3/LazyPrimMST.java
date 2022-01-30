@@ -50,7 +50,7 @@ public class LazyPrimMST {
         // Mark vertex and add to priority queue all edges from vertex to unmarked vertices
         marked[vertex] = true;
 
-        for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+        for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
             if (!marked[edge.other(vertex)]) {
                 priorityQueue.insert(edge);
             }
@@ -64,10 +64,9 @@ public class LazyPrimMST {
     public double lazyWeight() {
         double weight = 0;
 
-        for(Edge edge : edges()) {
+        for (Edge edge : edges()) {
             weight += edge.weight();
         }
-
         return weight;
     }
 

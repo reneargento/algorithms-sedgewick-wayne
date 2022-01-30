@@ -86,7 +86,7 @@ public class Exercise43_CostPlots {
                 xAxisLabel, yAxisLabel);
         RedBlackBSTCostPlots<String, Integer> redBlackBSTCostPlots = new RedBlackBSTCostPlots<>();
 
-        for(String word : words) {
+        for (String word : words) {
 
             if (word.length() < minLength) {
                 continue;
@@ -105,7 +105,7 @@ public class Exercise43_CostPlots {
         int cost = redBlackBSTCostPlots.putAndComputeCost(max, 0);
         visualAccumulator.addDataValue(cost, true);
 
-        for(String word : redBlackBSTCostPlots.keys()) {
+        for (String word : redBlackBSTCostPlots.keys()) {
             if (redBlackBSTCostPlots.get(word) > redBlackBSTCostPlots.get(max)) {
                 max = word;
             }
@@ -115,5 +115,4 @@ public class Exercise43_CostPlots {
 
         return max + " " + redBlackBSTCostPlots.get(max);
     }
-
 }

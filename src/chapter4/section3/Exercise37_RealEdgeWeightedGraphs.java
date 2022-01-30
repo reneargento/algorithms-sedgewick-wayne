@@ -20,7 +20,6 @@ import java.util.List;
 public class Exercise37_RealEdgeWeightedGraphs {
 
     private class EdgeWeightedGraph {
-
         private int vertices;
         private int edges;
         private SeparateChainingHashTable<Integer, Bag<Edge>> adjacent;
@@ -71,18 +70,17 @@ public class Exercise37_RealEdgeWeightedGraphs {
         public Iterable<Edge> edges() {
             Bag<Edge> edges = new Bag<>();
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 if (adjacent.get(vertex) == null) {
                     continue;
                 }
 
-                for(Edge edge : adjacent.get(vertex)) {
+                for (Edge edge : adjacent.get(vertex)) {
                     if (edge.other(vertex) > vertex) {
                         edges.add(edge);
                     }
                 }
             }
-
             return edges;
         }
 
@@ -90,18 +88,17 @@ public class Exercise37_RealEdgeWeightedGraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
                 if (adjacent.get(vertex) != null) {
-                    for(Edge edge : adjacent(vertex)) {
+                    for (Edge edge : adjacent(vertex)) {
                         stringBuilder.append(edge).append(" ");
                     }
                 }
 
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
@@ -117,7 +114,7 @@ public class Exercise37_RealEdgeWeightedGraphs {
 
         EdgeWeightedGraph fullGraph = new EdgeWeightedGraph();
 
-        for(int edge = 0; edge < edges; edge++) {
+        for (int edge = 0; edge < edges; edge++) {
             String[] connection = in.readLine().split(separator);
 
             int city1 = Integer.parseInt(connection[0]);
@@ -134,7 +131,7 @@ public class Exercise37_RealEdgeWeightedGraphs {
         List<Edge> allSubGraphEdges = new ArrayList<>();
         HashSet<Integer> chosenVertices = new HashSet<>();
 
-        for(int vertex = 0; vertex < randomVerticesToChoose; vertex++) {
+        for (int vertex = 0; vertex < randomVerticesToChoose; vertex++) {
             // Randomly choose a vertex between 1 and vertices
             int randomVertexId = StdRandom.uniform(vertices) + 1;
 
@@ -147,7 +144,7 @@ public class Exercise37_RealEdgeWeightedGraphs {
             graphToSubGraphMap.put(randomVertexId, subGraphVertexId1);
             randomSubGraph.addVertex(subGraphVertexId1);
 
-            for(Edge edge : fullGraph.adjacent(randomVertexId)) {
+            for (Edge edge : fullGraph.adjacent(randomVertexId)) {
                 int vertexId2 = edge.other(randomVertexId);
 
                 int subGraphVertexId2;
@@ -173,11 +170,11 @@ public class Exercise37_RealEdgeWeightedGraphs {
         int allSubGraphEdgesArrayIndex = 0;
         HashSet<Integer> edgesChosen = new HashSet<>();
 
-        for(Edge edge : allSubGraphEdges) {
+        for (Edge edge : allSubGraphEdges) {
             allSubGraphEdgesArray[allSubGraphEdgesArrayIndex++] = edge;
         }
 
-        for(int edge = 0; edge < randomEdgesToChoose; edge++) {
+        for (int edge = 0; edge < randomEdgesToChoose; edge++) {
             // Randomly choose an edge
             int randomEdgeId = StdRandom.uniform(allSubGraphEdgesArray.length);
 
@@ -195,7 +192,6 @@ public class Exercise37_RealEdgeWeightedGraphs {
 
             randomSubGraph.addEdge(newEdge);
         }
-
         return randomSubGraph;
     }
 
@@ -207,8 +203,6 @@ public class Exercise37_RealEdgeWeightedGraphs {
 
         EdgeWeightedGraph randomRealEdgeWeightedGraph = new Exercise37_RealEdgeWeightedGraphs().
                 randomRealEdgeWeightedGraph(randomVerticesToChoose, randomEdgesToChoose);
-
         StdOut.println(randomRealEdgeWeightedGraph);
     }
-
 }

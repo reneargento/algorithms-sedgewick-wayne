@@ -25,7 +25,7 @@ public class Exercise31_HistogramOfRunningTimes {
         int initialArraySize = Integer.parseInt(args[1]);
         int realArraySize = 1000;
 
-        for(int i = 0; i < NUMBER_OF_ARRAYS; i++) {
+        for (int i = 0; i < NUMBER_OF_ARRAYS; i++) {
             Comparable[] array = ArrayGenerator.generateRandomArray(realArraySize);
             doExperiment(numberOfExperiments, array, i);
 
@@ -39,7 +39,7 @@ public class Exercise31_HistogramOfRunningTimes {
         double minValue = Double.POSITIVE_INFINITY;
         double maxValue = 0;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
             Comparable[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
@@ -95,7 +95,7 @@ public class Exercise31_HistogramOfRunningTimes {
 
         double maxCount = 0;
 
-        for(int i = 0; i < runningTimesHistogram.length; i++) {
+        for (int i = 0; i < runningTimesHistogram.length; i++) {
             if (runningTimesHistogram[i] > maxCount) {
                 maxCount = runningTimesHistogram[i];
             }
@@ -163,5 +163,4 @@ public class Exercise31_HistogramOfRunningTimes {
 
         return bucketDescriptions;
     }
-
 }

@@ -20,10 +20,10 @@ public class Exercise40_ShortestDirectedCycle {
 
         // For each edge u->v check if v has a path to u
         // If there is a path, it is part of a cycle. Then, check if it has the shortest length
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             BreadthFirstDirectedPaths breadthFirstDirectedPaths = new BreadthFirstDirectedPaths(digraph, vertex);
 
-            for(int neighbor : reverseDigraph.adjacent(vertex)) {
+            for (int neighbor : reverseDigraph.adjacent(vertex)) {
                 if (breadthFirstDirectedPaths.hasPathTo(neighbor)) {
                     int cycleLength = breadthFirstDirectedPaths.distTo(neighbor) + 1;
 
@@ -31,7 +31,7 @@ public class Exercise40_ShortestDirectedCycle {
                         shortestCycleLength = cycleLength;
                         cycle = new ArrayList<>();
 
-                        for(int vertexInCycle : breadthFirstDirectedPaths.pathTo(neighbor)) {
+                        for (int vertexInCycle : breadthFirstDirectedPaths.pathTo(neighbor)) {
                             cycle.add(vertexInCycle);
                         }
                         cycle.add(vertex);
@@ -44,7 +44,6 @@ public class Exercise40_ShortestDirectedCycle {
             //There is no cycle in the graph
             return null;
         }
-
         return cycle;
     }
 
@@ -125,7 +124,7 @@ public class Exercise40_ShortestDirectedCycle {
 
         if (directedCycle4 != null) {
             StdOut.println("Shortest cycle 4 length: " + (directedCycle4.size() - 1));
-            for(int vertex : directedCycle4) {
+            for (int vertex : directedCycle4) {
                 StdOut.print(vertex + " ");
             }
         } else {
@@ -133,5 +132,4 @@ public class Exercise40_ShortestDirectedCycle {
         }
         StdOut.println("Expected: The digraph is a DAG");
     }
-
 }

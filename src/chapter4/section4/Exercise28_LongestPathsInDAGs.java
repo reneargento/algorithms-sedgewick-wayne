@@ -14,8 +14,8 @@ public class Exercise28_LongestPathsInDAGs {
         public AcyclicLP(EdgeWeightedDigraph edgeWeightedDigraph, int source) {
             EdgeWeightedDigraph negatedEdgesDigraph = new EdgeWeightedDigraph(edgeWeightedDigraph.vertices());
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     DirectedEdge negatedEdge = new DirectedEdge(edge.from(), edge.to(), edge.weight() * -1);
                     negatedEdgesDigraph.addEdge(negatedEdge);
                 }
@@ -39,7 +39,6 @@ public class Exercise28_LongestPathsInDAGs {
         public Iterable<DirectedEdge> pathTo(int vertex) {
             return acyclicSP.pathTo(vertex);
         }
-
     }
 
     public static void main(String[] args) {
@@ -58,7 +57,7 @@ public class Exercise28_LongestPathsInDAGs {
         int furthestVertex = -1;
         double longestDistance = Double.NEGATIVE_INFINITY;
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             if (acyclicLP.distTo(vertex) > longestDistance) {
                 longestDistance = acyclicLP.distTo(vertex);
                 furthestVertex = vertex;
@@ -70,11 +69,10 @@ public class Exercise28_LongestPathsInDAGs {
 
         StdOut.print("\nLongest path: ");
 
-        for(DirectedEdge edge : acyclicLP.pathTo(furthestVertex)) {
+        for (DirectedEdge edge : acyclicLP.pathTo(furthestVertex)) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
 
         StdOut.println("\nExpected: 0->1 1->3 3->5 5->6 6->7");
     }
-
 }

@@ -13,7 +13,7 @@ public class Exercise17_Animation {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -29,10 +29,10 @@ public class Exercise17_Animation {
     }
 
     private static void selectionSort(Comparable[] array) {
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             int minIndex = i;
 
-            for(int j = i + 1; j < array.length; j++) {
+            for (int j = i + 1; j < array.length; j++) {
                 if (array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
@@ -48,9 +48,9 @@ public class Exercise17_Animation {
 
     private static void insertionSort(Comparable[] array) {
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             int j;
-            for(j = i; j > 0 && array[j - 1].compareTo(array[j]) > 0; j--) {
+            for (j = i; j > 0 && array[j - 1].compareTo(array[j]) > 0; j--) {
                 Comparable temp = array[j];
                 array[j] = array[j - 1];
                 array[j - 1] = temp;
@@ -62,17 +62,16 @@ public class Exercise17_Animation {
     private static void shellSort(Comparable[] array) {
         int incrementSequence = 1;
 
-        while(incrementSequence * 3 + 1 < array.length) {
+        while (incrementSequence * 3 + 1 < array.length) {
             incrementSequence *= 3;
             incrementSequence++;
         }
 
         while (incrementSequence > 0) {
-
-            for(int i = incrementSequence; i < array.length; i++) {
+            for (int i = incrementSequence; i < array.length; i++) {
                 int j;
 
-                for(j = i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0;
+                for (j = i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0;
                     j -= incrementSequence) {
                     Comparable temp = array[j];
                     array[j] = array[j - incrementSequence];
@@ -133,5 +132,4 @@ public class Exercise17_Animation {
             StdDraw.filledRectangle(((double) i) / 3, barHalfHeight + 0.7, barHalfWidth, barHalfHeight);
         }
     }
-
 }

@@ -37,7 +37,7 @@ public class Exercise6 {
             this.size = size;
             keys = new int[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 keys[i] = EMPTY_KEY;
             }
 
@@ -69,7 +69,7 @@ public class Exercise6 {
         private void resize(int newSize) {
             HashSETint tempSet = new HashSETint(newSize);
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i] != EMPTY_KEY) {
                     tempSet.add(keys[i]);
                 }
@@ -84,7 +84,7 @@ public class Exercise6 {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
+            for (int tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
                 if (keys[tableIndex] == key) {
                     return true;
                 }
@@ -104,7 +104,7 @@ public class Exercise6 {
             }
 
             int tableIndex;
-            for(tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
+            for (tableIndex = hash(key); keys[tableIndex] != EMPTY_KEY; tableIndex = (tableIndex + 1) % size) {
                 if (keys[tableIndex] == key) {
                     keys[tableIndex] = key;
                     return;
@@ -153,14 +153,14 @@ public class Exercise6 {
         public int[] keys() {
             Queue<Integer> keySet = new Queue<>();
 
-            for(int key : keys) {
+            for (int key : keys) {
                 if (key != EMPTY_KEY) {
                     keySet.enqueue(key);
                 }
             }
 
             int[] keys = new int[keySet.size()];
-            for(int i = 0; i < keys.length; i++) {
+            for (int i = 0; i < keys.length; i++) {
                 keys[i] = keySet.dequeue();
             }
 
@@ -178,7 +178,7 @@ public class Exercise6 {
             StringBuilder stringBuilder = new StringBuilder("{");
 
             boolean isFirstKey = true;
-            for(int key : keys()) {
+            for (int key : keys()) {
                 if (isFirstKey) {
                     isFirstKey = false;
                 } else {
@@ -218,7 +218,7 @@ public class Exercise6 {
             this.size = size;
             keys = new double[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 keys[i] = EMPTY_VALUE;
             }
 
@@ -250,7 +250,7 @@ public class Exercise6 {
         private void resize(int newSize) {
             HashSETdouble tempSet = new HashSETdouble(newSize);
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i] != EMPTY_VALUE) {
                     tempSet.add(keys[i]);
                 }
@@ -265,7 +265,7 @@ public class Exercise6 {
                 throw new IllegalArgumentException("Invalid key");
             }
 
-            for(int tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
+            for (int tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
                 if (keys[tableIndex] == key) {
                     return true;
                 }
@@ -285,7 +285,7 @@ public class Exercise6 {
             }
 
             int tableIndex;
-            for(tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
+            for (tableIndex = hash(key); keys[tableIndex] != EMPTY_VALUE; tableIndex = (tableIndex + 1) % size) {
                 if (keys[tableIndex] == key) {
                     keys[tableIndex] = key;
                     return;
@@ -334,14 +334,14 @@ public class Exercise6 {
         public double[] keys() {
             Queue<Double> keySet = new Queue<>();
 
-            for(double key : keys) {
+            for (double key : keys) {
                 if (key != EMPTY_VALUE) {
                     keySet.enqueue(key);
                 }
             }
 
             double[] keys = new double[keySet.size()];
-            for(int i = 0; i < keys.length; i++) {
+            for (int i = 0; i < keys.length; i++) {
                 keys[i] = keySet.dequeue();
             }
 
@@ -359,7 +359,7 @@ public class Exercise6 {
             StringBuilder stringBuilder = new StringBuilder("{");
 
             boolean isFirstKey = true;
-            for(double key : keys()) {
+            for (double key : keys()) {
                 if (isFirstKey) {
                     isFirstKey = false;
                 } else {
@@ -397,7 +397,7 @@ public class Exercise6 {
 
         StdOut.println("Keys() test");
 
-        for(Integer key : hashSTint.keys()) {
+        for (Integer key : hashSTint.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99");
@@ -438,7 +438,7 @@ public class Exercise6 {
 
         StdOut.println("Keys() test");
 
-        for(Double key : hashSTdouble.keys()) {
+        for (Double key : hashSTdouble.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5.9 -2.2 -1.05 0.0 1.0 2.1 3.0 5.0 9.5 99.999");
@@ -461,5 +461,4 @@ public class Exercise6 {
         hashSTdouble.delete(-5.9);
         StdOut.println(hashSTdouble);
     }
-
 }

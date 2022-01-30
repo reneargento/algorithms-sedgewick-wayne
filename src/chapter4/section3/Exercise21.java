@@ -17,13 +17,11 @@ public class Exercise21 {
         public Iterable<Edge> edges() {
             Queue<Edge> minimumSpanningTree = new Queue<>();
 
-            for(int vertex = 1; vertex < edgeTo.length; vertex++) {
+            for (int vertex = 1; vertex < edgeTo.length; vertex++) {
                 minimumSpanningTree.enqueue(edgeTo[vertex]);
             }
-
             return minimumSpanningTree;
         }
-
     }
 
     public static void main(String[] args) {
@@ -36,7 +34,7 @@ public class Exercise21 {
 
         Exercise21.PrimMSTWithEdges primMSTWithEdges = new Exercise21().new PrimMSTWithEdges(edgeWeightedGraph);
 
-        for(Edge edge : primMSTWithEdges.edges()) {
+        for (Edge edge : primMSTWithEdges.edges()) {
             StdOut.println(edge);
         }
 
@@ -46,5 +44,4 @@ public class Exercise21 {
                 "2-3 0.20000\n" +
                 "2-4 0.70000");
     }
-
 }

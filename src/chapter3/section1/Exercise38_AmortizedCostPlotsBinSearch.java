@@ -114,7 +114,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 numberOfArrayAccesses += size;
             }
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
                 numberOfArrayAccesses += 2;
 
@@ -148,7 +148,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
             int[] rankResult = rank(key);
             int rank = rankResult[0];
 
-            for(int i = rank; i < size - 1; i++) {
+            for (int i = rank; i < size - 1; i++) {
                 keys[i] = keys[i + 1];
                 values[i] = values[i + 1];
             }
@@ -216,7 +216,6 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(min());
         }
 
@@ -224,7 +223,6 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(max());
         }
 
@@ -263,7 +261,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
             int[] rankHighResult = rank(high);
             int rankHigh = rankHighResult[0];
 
-            for(int i = rankLow; i < rankHigh; i++) {
+            for (int i = rankLow; i < rankHigh; i++) {
                 queue.enqueue(keys[i]);
             }
 
@@ -299,7 +297,6 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
     }
 
     private String frequencyCounter(String[] words, int minLength) {
-
         String title = "BinarySearchST costs using put() in FrequencyCounter";
         String xAxisLabel = "operations";
         String yAxisLabel = "cost";
@@ -311,8 +308,7 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
                 xAxisLabel, yAxisLabel);
         BinarySearchSymbolTable<String, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(String word : words) {
-
+        for (String word : words) {
             if (word.length() < minLength) {
                 continue;
             }
@@ -330,15 +326,13 @@ public class Exercise38_AmortizedCostPlotsBinSearch {
         int numberOfArrayAccesses = binarySearchSymbolTable.put(max, 0);
         visualAccumulator.addDataValue(numberOfArrayAccesses, true);
 
-        for(String word : binarySearchSymbolTable.keys()) {
+        for (String word : binarySearchSymbolTable.keys()) {
             if (binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
                 max = word;
             }
         }
 
         visualAccumulator.writeFinalMean();
-
         return max + " " + binarySearchSymbolTable.get(max);
     }
-
 }

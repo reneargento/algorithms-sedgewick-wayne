@@ -74,7 +74,7 @@ public class Exercise3 {
                 resize(keys.length * 2);
             }
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
             }
             keys[rank] = key;
@@ -108,7 +108,7 @@ public class Exercise3 {
             }
 
             int rank = rank(key);
-            for(int i = rank; i < size - 1; i++) {
+            for (int i = rank; i < size - 1; i++) {
                 keys[i] = keys[i + 1];
             }
 
@@ -205,7 +205,7 @@ public class Exercise3 {
 
             Queue<Key> queue = new Queue<>();
 
-            for(int i = rank(low); i < rank(high); i++) {
+            for (int i = rank(low); i < rank(high); i++) {
                 queue.enqueue(keys[i]);
             }
 
@@ -235,7 +235,7 @@ public class Exercise3 {
             StringBuilder stringBuilder = new StringBuilder("{");
 
             boolean isFirstKey = true;
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 if (isFirstKey) {
                     isFirstKey = false;
                 } else {
@@ -267,7 +267,7 @@ public class Exercise3 {
 
         StdOut.println("Keys() test");
 
-        for(Integer key : binarySearchSet.keys()) {
+        for (Integer key : binarySearchSet.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99");
@@ -299,7 +299,7 @@ public class Exercise3 {
         StdOut.println("\nDelete key 2");
         binarySearchSet.delete(2);
 
-        for(Integer key : binarySearchSet.keys()) {
+        for (Integer key : binarySearchSet.keys()) {
             StdOut.print(key + " ");
         }
 
@@ -307,7 +307,7 @@ public class Exercise3 {
         StdOut.println("\n\nDelete min (key -5)");
         binarySearchSet.deleteMin();
 
-        for(Integer key : binarySearchSet.keys()) {
+        for (Integer key : binarySearchSet.keys()) {
             StdOut.print(key + " ");
         }
 
@@ -315,25 +315,25 @@ public class Exercise3 {
         StdOut.println("\n\nDelete max (key 99)");
         binarySearchSet.deleteMax();
 
-        for(Integer key : binarySearchSet.keys()) {
+        for (Integer key : binarySearchSet.keys()) {
             StdOut.print(key + " ");
         }
 
         //Test keys() with range
         StdOut.println("\n\nKeys in range [2, 10]");
-        for(Integer key : binarySearchSet.keys(2, 10)) {
+        for (Integer key : binarySearchSet.keys(2, 10)) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\n\nKeys in range [-4, -1]");
-        for(Integer key : binarySearchSet.keys(-4, -1)) {
+        for (Integer key : binarySearchSet.keys(-4, -1)) {
             StdOut.print(key + " ");
         }
 
         //Delete all
         StdOut.println("\n\nDelete all");
         while (binarySearchSet.size() > 0) {
-            for(Integer key : binarySearchSet.keys()) {
+            for (Integer key : binarySearchSet.keys()) {
                 StdOut.print(key + " ");
             }
 
@@ -342,5 +342,4 @@ public class Exercise3 {
             StdOut.println();
         }
     }
-
 }

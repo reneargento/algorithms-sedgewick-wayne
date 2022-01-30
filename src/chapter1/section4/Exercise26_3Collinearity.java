@@ -17,7 +17,7 @@ public class Exercise26_3Collinearity {
         Exercise26_3Collinearity exercise26_3Collinearity = new Exercise26_3Collinearity();
 
         Point2D[] points = new Point2D[6];
-        for(int i = 0; i < points.length; i++) {
+        for (int i = 0; i < points.length; i++) {
             Point2D point = new Point2D(i, i + 1.5);
             points[i] = point;
         }
@@ -59,7 +59,7 @@ public class Exercise26_3Collinearity {
 
         boolean allYCoordinatesAreXCubic = true;
 
-        for(Point2D point2D : points) {
+        for (Point2D point2D : points) {
 
             if (point2D.y() != Math.pow(point2D.x(), 3)) {
                 allYCoordinatesAreXCubic = false;
@@ -80,8 +80,8 @@ public class Exercise26_3Collinearity {
 
         Map<Double, List<Integer>> slopes = new HashMap<>();
 
-        for(int i = 0; i < points.length; i++) {
-            for(int j = i + 1; j < points.length; j++) {
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i + 1; j < points.length; j++) {
                 double slope;
 
                 if (points[i].x() - points[j].x() == 0) {
@@ -110,7 +110,7 @@ public class Exercise26_3Collinearity {
 
         int triples = 0;
 
-        for(int i = 0; i < points.length; i++) {
+        for (int i = 0; i < points.length; i++) {
             for (int j = i + 1; j < points.length; j++) {
                 double slope;
 
@@ -159,7 +159,7 @@ public class Exercise26_3Collinearity {
 
         Map<Double, List<Integer>> pointsX = new HashMap<>();
 
-        for(int i = 0; i < points.length; i++) {
+        for (int i = 0; i < points.length; i++) {
             List<Integer> pointIndexes = pointsX.get(points[i].x());
 
             if (pointIndexes == null) {
@@ -174,8 +174,8 @@ public class Exercise26_3Collinearity {
 
         int triples = 0;
 
-        for(int i = 0; i < points.length - 1; i++) {
-            for(int j = i + 1; j < points.length; j++) {
+        for (int i = 0; i < points.length - 1; i++) {
+            for (int j = i + 1; j < points.length; j++) {
 
                 double complementPoint = -1 * (points[i].x() + points[j].x());
                 List<Integer> pointIndexes = pointsX.get(complementPoint);
@@ -190,8 +190,6 @@ public class Exercise26_3Collinearity {
                 }
             }
         }
-
         return triples;
     }
-
 }

@@ -17,7 +17,7 @@ public class Exercise17_FiniteMathematicalSets {
             universeArray = universe;
             this.universe = new HashSet<>();
 
-            for(Key key : universe) {
+            for (Key key : universe) {
                 this.universe.add(key);
             }
         }
@@ -33,7 +33,7 @@ public class Exercise17_FiniteMathematicalSets {
         public MathSET<Key> complement() {
             MathSET<Key> complement = new MathSET<>(universeArray);
 
-            for(Key key : universeArray) {
+            for (Key key : universeArray) {
                 if (!contains(key)) {
                     complement.add(key);
                 }
@@ -43,7 +43,7 @@ public class Exercise17_FiniteMathematicalSets {
         }
 
         public void union(MathSET<Key> mathSetToUnite) {
-            for(Key key : mathSetToUnite.keys()) {
+            for (Key key : mathSetToUnite.keys()) {
                 if (!contains(key)) {
                     add(key);
                 }
@@ -53,7 +53,7 @@ public class Exercise17_FiniteMathematicalSets {
         public void intersection(MathSET<Key> mathSetToIntersect) {
             Iterable<Key> keysInMathSet = keys();
 
-            for(Key key : keysInMathSet) {
+            for (Key key : keysInMathSet) {
                 if (!mathSetToIntersect.contains(key)) {
                     delete(key);
                 }
@@ -84,7 +84,7 @@ public class Exercise17_FiniteMathematicalSets {
         Integer[] universe = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         MathSET<Integer> mathSET = finiteMathematicalSets.new MathSET<>(universe);
 
-        //Test add
+        // Test add
         mathSET.add(0);
         mathSET.add(2);
         mathSET.add(4);
@@ -131,5 +131,4 @@ public class Exercise17_FiniteMathematicalSets {
         StdOut.println(mathSET);
         StdOut.println("Expected: { 4, 8, 9 }");
     }
-
 }

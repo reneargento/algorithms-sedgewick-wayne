@@ -28,7 +28,7 @@ public class Exercise16_BestCase {
     private static int[] bestCaseArray(int arraySize) {
         int[] bestCaseArray = new int[arraySize];
 
-        for(int i = 0; i < arraySize; i++) {
+        for (int i = 0; i < arraySize; i++) {
             bestCaseArray[i] = i;
         }
 
@@ -37,7 +37,6 @@ public class Exercise16_BestCase {
     }
 
     private static void bestCaseArray(int[] array, int low, int high) {
-
         if (low >= high) {
             return;
         }
@@ -51,5 +50,4 @@ public class Exercise16_BestCase {
         array[low] = array[middle];
         array[middle] = temp;
     }
-
 }

@@ -13,7 +13,7 @@ public class TwoColor {
         visited = new boolean[graph.vertices()];
         color = new boolean[graph.vertices()];
 
-        for(int source = 0; source < graph.vertices(); source++) {
+        for (int source = 0; source < graph.vertices(); source++) {
             if (!visited[source]) {
                 dfs(graph, source);
             }
@@ -24,7 +24,7 @@ public class TwoColor {
         visited[vertex] = true;
 
         if (graph.adjacent(vertex) != null) {
-            for(int neighbor : graph.adjacent(vertex)) {
+            for (int neighbor : graph.adjacent(vertex)) {
                 if (!visited[neighbor]) {
                     color[neighbor] = !color[vertex];
                     dfs(graph, neighbor);
@@ -39,5 +39,4 @@ public class TwoColor {
     public boolean isBipartite() {
         return isTwoColorable;
     }
-
 }

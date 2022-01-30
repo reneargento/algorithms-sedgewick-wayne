@@ -56,17 +56,15 @@ public class Exercise8 {
         if (currentFrequency > 1) {
             count += (currentFrequency - 1) * currentFrequency / 2;
         }
-
         return count;
     }
 
     // O(n) solution
     private static int countNumberOfPairs2(int[] values) {
-
         Map<Integer, Integer> valuesMap = new HashMap<>();
         int equalNumbersCount = 0;
 
-        for(int i = 0; i < values.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             int count = 0;
             if (valuesMap.containsKey(values[i])) {
                 count = valuesMap.get(values[i]);
@@ -75,14 +73,12 @@ public class Exercise8 {
             valuesMap.put(values[i], count);
         }
 
-        for(int numberKey : valuesMap.keySet()) {
+        for (int numberKey : valuesMap.keySet()) {
             if (valuesMap.get(numberKey) > 1) {
                 int n = valuesMap.get(numberKey);
                 equalNumbersCount += (n - 1) * n / 2;
             }
         }
-
         return equalNumbersCount;
     }
-
 }

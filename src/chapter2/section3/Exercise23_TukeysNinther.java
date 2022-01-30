@@ -27,7 +27,7 @@ public class Exercise23_TukeysNinther {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
             Comparable[] array = ArrayGenerator.generateRandomArrayWith3Values(arraySize);
             allInputArrays.put(i, array);
 
@@ -38,14 +38,12 @@ public class Exercise23_TukeysNinther {
     }
 
     private static void doExperiment(int numberOfExperiments, int initialArraySize, Map<Integer, Comparable[]> allInputArrays) {
-
         StdOut.printf("%13s %16s %38s %52s\n", "Array Size | ", "QuickSort 3-Way |", "QuickSort with fast 3-way partitioning | ",
                 "QuickSort w/ fast 3-way partitioning + Tukey Ninther");
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
-
+        for (int i = 0; i < numberOfExperiments; i++) {
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] arrayCopy1 = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, arrayCopy1, 0, originalArray.length);
@@ -147,10 +145,10 @@ public class Exercise23_TukeysNinther {
 
         i = j + 1;
 
-        for(int k = low; k <= p; k++) {
+        for (int k = low; k <= p; k++) {
             ArrayUtil.exchange(array, k, j--);
         }
-        for(int k = high; k >= q; k--) {
+        for (int k = high; k >= q; k--) {
             ArrayUtil.exchange(array, k, i++);
         }
 
@@ -189,5 +187,4 @@ public class Exercise23_TukeysNinther {
         StdOut.printf("%10d %18.1f %40.1f %55.1f\n", arraySize, quickSort3WayRunningTime, quickSortWithFast3WayPartitioningRunningTime,
                 quickSortWithFast3WayPartitioningTukeyNintherRunningTime);
     }
-
 }

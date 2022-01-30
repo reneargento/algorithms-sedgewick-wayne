@@ -59,7 +59,7 @@ public class Exercise11 {
 
         StdOut.println("Insertion Sort");
         int[] insertionSortPermutation = new int[array.length];
-        for(int i = 0; i < insertionSortPermutation.length; i++) {
+        for (int i = 0; i < insertionSortPermutation.length; i++) {
             insertionSortPermutation[insertionSortCopy[i].originalIndex] = i;
         }
         printPermutation(insertionSortPermutation);
@@ -72,7 +72,7 @@ public class Exercise11 {
         StdOut.println();
         StdOut.println("Selection Sort");
         int[] selectionSortPermutation = new int[array.length];
-        for(int i = 0; i < selectionSortPermutation.length; i++) {
+        for (int i = 0; i < selectionSortPermutation.length; i++) {
             selectionSortPermutation[selectionSortCopy[i].originalIndex] = i;
         }
         printPermutation(selectionSortPermutation);
@@ -85,7 +85,7 @@ public class Exercise11 {
         StdOut.println();
         StdOut.println("Shell Sort");
         int[] shellSortPermutation = new int[array.length];
-        for(int i = 0; i < shellSortPermutation.length; i++) {
+        for (int i = 0; i < shellSortPermutation.length; i++) {
             shellSortPermutation[shellSortCopy[i].originalIndex] = i;
         }
         printPermutation(shellSortPermutation);
@@ -98,7 +98,7 @@ public class Exercise11 {
         StdOut.println();
         StdOut.println("Merge Sort");
         int[] mergeSortPermutation = new int[array.length];
-        for(int i = 0; i < mergeSortPermutation.length; i++) {
+        for (int i = 0; i < mergeSortPermutation.length; i++) {
             mergeSortPermutation[mergeSortCopy[i].originalIndex] = i;
         }
         printPermutation(mergeSortPermutation);
@@ -111,7 +111,7 @@ public class Exercise11 {
         StdOut.println();
         StdOut.println("Quick Sort");
         int[] quickSortPermutation = new int[array.length];
-        for(int i = 0; i < quickSortPermutation.length; i++) {
+        for (int i = 0; i < quickSortPermutation.length; i++) {
             quickSortPermutation[quickSortCopy[i].originalIndex] = i;
         }
         printPermutation(quickSortPermutation);
@@ -124,14 +124,14 @@ public class Exercise11 {
         StdOut.println();
         StdOut.println("Heap Sort");
         int[] heapSortPermutation = new int[array.length];
-        for(int i = 0; i < heapSortPermutation.length; i++) {
+        for (int i = 0; i < heapSortPermutation.length; i++) {
             heapSortPermutation[heapSortCopy[i + 1].originalIndex] = i;
         }
         printPermutation(heapSortPermutation);
     }
 
     private void printPermutation(int[] permutation) {
-        for(int i = 0; i < permutation.length; i++) {
+        for (int i = 0; i < permutation.length; i++) {
             StdOut.println("Original index: " + i + " - New index: " + permutation[i]);
         }
     }

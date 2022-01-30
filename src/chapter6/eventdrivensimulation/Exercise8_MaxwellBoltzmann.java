@@ -154,14 +154,14 @@ public class Exercise8_MaxwellBoltzmann {
             Font particlesFont = new Font(fontName, Font.PLAIN, 14);
             StdDraw.setFont(particlesFont);
 
-            for(int y = 0; y < maxY; y++) {
+            for (int y = 0; y < maxY; y++) {
                 StdDraw.text(leftMargin, y, String.valueOf(y));
             }
 
             Font velocitiesFont = new Font(fontName, Font.PLAIN, 10);
             StdDraw.setFont(velocitiesFont);
 
-            for(int x = 0; x < histogram.length; x++) {
+            for (int x = 0; x < histogram.length; x++) {
                 StdDraw.text(x + 1, -0.25, velocityDescriptions[x].substring(0, lineBreakIndex));
                 StdDraw.text(x + 1, -0.5, velocityDescriptions[x].substring(lineBreakIndex));
             }
@@ -184,7 +184,7 @@ public class Exercise8_MaxwellBoltzmann {
         public double temperature() {
             double totalTemperature = 0;
 
-            for(ParticleInterface particle : particles) {
+            for (ParticleInterface particle : particles) {
                 ParticleWithTemperature particleWithTemperature = (ParticleWithTemperature) particle;
                 totalTemperature += particleWithTemperature.temperature();
             }
@@ -274,6 +274,5 @@ public class Exercise8_MaxwellBoltzmann {
 
         new Exercise8_MaxwellBoltzmann().doExperiment(numberOfParticles, simulationTime, hertz);
     }
-
 }
 

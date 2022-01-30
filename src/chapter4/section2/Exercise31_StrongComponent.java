@@ -12,13 +12,13 @@ import java.util.Set;
  */
 public class Exercise31_StrongComponent {
 
-    //O(sc * (V + E)) where sc is the number of strong components
+    // O(sc * (V + E)) where sc is the number of strong components
     public List<Set<Integer>> getAllStrongComponents(Digraph digraph) {
         List<Set<Integer>> strongComponents = new ArrayList<>();
         Set<Integer> verticesAlreadyInAnotherSCC = new HashSet<>();
 
         // For every vertex that is not yet in a strong component, compute its strong component
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             if (verticesAlreadyInAnotherSCC.contains(vertex)) {
                 continue;
             }
@@ -32,7 +32,7 @@ public class Exercise31_StrongComponent {
         return strongComponents;
     }
 
-    //O(V + E)
+    // O(V + E)
     public Set<Integer> getStrongComponent(Digraph digraph, int sourceVertex, Set<Integer> verticesAlreadyInAnotherSCC) {
         Set<Integer> strongComponent = new HashSet<>();
         strongComponent.add(sourceVertex);
@@ -45,7 +45,7 @@ public class Exercise31_StrongComponent {
         Set<Integer> verticesThatCannotReachSource = new HashSet<>();
 
         // 2- Find vertices that can reach the source vertex
-        for(int vertexReachableFromSource : verticesReachableFromSource) {
+        for (int vertexReachableFromSource : verticesReachableFromSource) {
             if (vertexReachableFromSource == sourceVertex) {
                 continue;
             }
@@ -68,7 +68,7 @@ public class Exercise31_StrongComponent {
     private void dfsFromSource(Digraph digraph, Set<Integer> verticesReached, int vertex) {
         verticesReached.add(vertex);
 
-        for(int neighbor : digraph.adjacent(vertex)) {
+        for (int neighbor : digraph.adjacent(vertex)) {
             if (!verticesReached.contains(neighbor)) {
                 dfsFromSource(digraph, verticesReached, neighbor);
             }
@@ -84,7 +84,7 @@ public class Exercise31_StrongComponent {
 
         visited.add(vertex);
 
-        for(int neighbor : digraph.adjacent(vertex)) {
+        for (int neighbor : digraph.adjacent(vertex)) {
             if (!visited.contains(neighbor)
                     && !verticesAlreadyInAnotherSCC.contains(neighbor)
                     && !verticesThatCannotReachSource.contains(neighbor)) {
@@ -114,7 +114,7 @@ public class Exercise31_StrongComponent {
         digraph1.addEdge(4, 3);
 
         Set<Integer> strongComponent1 = strongComponent.getStrongComponent(digraph1, 2, new HashSet<>());
-        for(int vertexInStrongComponent : strongComponent1) {
+        for (int vertexInStrongComponent : strongComponent1) {
             StdOut.print(vertexInStrongComponent + " ");
         }
         StdOut.println("\nExpected: 0 1 2 3 4");
@@ -130,7 +130,7 @@ public class Exercise31_StrongComponent {
         digraph2.addEdge(4, 3);
 
         Set<Integer> strongComponent2 = strongComponent.getStrongComponent(digraph2, 2, new HashSet<>());
-        for(int vertexInStrongComponent : strongComponent2) {
+        for (int vertexInStrongComponent : strongComponent2) {
             StdOut.print(vertexInStrongComponent + " ");
         }
         StdOut.println("\nExpected: 0 1 2");
@@ -144,7 +144,7 @@ public class Exercise31_StrongComponent {
         digraphWorstCase.addEdge(3, 4);
 
         Set<Integer> strongComponent3 = strongComponent.getStrongComponent(digraphWorstCase, 0, new HashSet<>());
-        for(int vertexInStrongComponent : strongComponent3) {
+        for (int vertexInStrongComponent : strongComponent3) {
             StdOut.print(vertexInStrongComponent + " ");
         }
         StdOut.println("\nExpected: 0");
@@ -153,8 +153,8 @@ public class Exercise31_StrongComponent {
         StdOut.println("\nAll strong components 1:");
 
         List<Set<Integer>> strongComponents1 = strongComponent.getAllStrongComponents(digraph1);
-        for(Set<Integer> currentStrongComponent : strongComponents1) {
-            for(int vertexInStrongComponent : currentStrongComponent) {
+        for (Set<Integer> currentStrongComponent : strongComponents1) {
+            for (int vertexInStrongComponent : currentStrongComponent) {
                 StdOut.print(vertexInStrongComponent + " ");
             }
             StdOut.println();
@@ -165,8 +165,8 @@ public class Exercise31_StrongComponent {
         StdOut.println("All strong components 2:");
 
         List<Set<Integer>> strongComponents2 = strongComponent.getAllStrongComponents(digraph2);
-        for(Set<Integer> currentStrongComponent : strongComponents2) {
-            for(int vertexInStrongComponent : currentStrongComponent) {
+        for (Set<Integer> currentStrongComponent : strongComponents2) {
+            for (int vertexInStrongComponent : currentStrongComponent) {
                 StdOut.print(vertexInStrongComponent + " ");
             }
             StdOut.println();
@@ -177,13 +177,12 @@ public class Exercise31_StrongComponent {
         StdOut.println("All strong components 3:");
 
         List<Set<Integer>> strongComponents3 = strongComponent.getAllStrongComponents(digraphWorstCase);
-        for(Set<Integer> currentStrongComponent : strongComponents3) {
-            for(int vertexInStrongComponent : currentStrongComponent) {
+        for (Set<Integer> currentStrongComponent : strongComponents3) {
+            for (int vertexInStrongComponent : currentStrongComponent) {
                 StdOut.print(vertexInStrongComponent + " ");
             }
             StdOut.println();
         }
         StdOut.println("Expected: \n0 \n1 \n2 \n3 \n4");
     }
-
 }

@@ -32,17 +32,17 @@ public class Exercise22_FullyIndexedCSV {
                 if (isFirstLine) {
                     hashMapArray = (HashMap<String, List<String>>[]) new HashMap[tokens.length];
 
-                    for(int i = 0; i < hashMapArray.length; i++) {
+                    for (int i = 0; i < hashMapArray.length; i++) {
                         hashMapArray[i] = new HashMap<>();
                     }
 
                     isFirstLine = false;
                 }
 
-                for(int keyField = 0; keyField < tokens.length; keyField++) {
+                for (int keyField = 0; keyField < tokens.length; keyField++) {
                     List<String> values = new ArrayList<>();
 
-                    for(int valueField = 0; valueField < tokens.length; valueField++) {
+                    for (int valueField = 0; valueField < tokens.length; valueField++) {
                         if (valueField != keyField) {
                             values.add(tokens[valueField]);
                         }
@@ -118,5 +118,4 @@ public class Exercise22_FullyIndexedCSV {
             StdOut.println(fullLookupCSV.get(keyField, valueField, query));
         }
     }
-
 }

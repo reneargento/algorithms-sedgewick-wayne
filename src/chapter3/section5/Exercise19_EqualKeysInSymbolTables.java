@@ -43,24 +43,22 @@ public class Exercise19_EqualKeysInSymbolTables {
             }
 
             public Value get(Key key) {
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (key.equals(node.key)) {
                         return node.value;
                     }
                 }
-
                 return null;
             }
 
             public Iterable<Value> getAll(Key key) {
                 Queue<Value> values = new Queue<>();
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (node.key.equals(key)) {
                         values.enqueue(node.value);
                     }
                 }
-
                 return values;
             }
 
@@ -76,7 +74,7 @@ public class Exercise19_EqualKeysInSymbolTables {
                     return;
                 }
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
@@ -88,13 +86,11 @@ public class Exercise19_EqualKeysInSymbolTables {
             public Iterable<Key> keys() {
                 Queue<Key> keys = new Queue<>();
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     keys.enqueue(node.key);
                 }
-
                 return keys;
             }
-
         }
 
         private int averageListSize;
@@ -106,9 +102,9 @@ public class Exercise19_EqualKeysInSymbolTables {
         private static final int DEFAULT_HASH_TABLE_SIZE = 997;
         private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
 
-        //The largest prime <= 2^i for i = 1 to 31
-        //Used to distribute keys uniformly in the hash table after resizes
-        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        // The largest prime <= 2^i for i = 1 to 31
+        // Used to distribute keys uniformly in the hash table after resizes
+        // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
                 1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -116,8 +112,8 @@ public class Exercise19_EqualKeysInSymbolTables {
                 536870909, 1073741789, 2147483647
         };
 
-        //The lg of the hash table size
-        //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+        // The lg of the hash table size
+        // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
         public SeparateChainingMultiST() {
@@ -129,10 +125,9 @@ public class Exercise19_EqualKeysInSymbolTables {
             this.averageListSize = averageListSize;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
-
             lgM = (int) (Math.log(size) / Math.log(2));
         }
 
@@ -150,7 +145,6 @@ public class Exercise19_EqualKeysInSymbolTables {
             if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
-
             return hash % size;
         }
 
@@ -162,7 +156,6 @@ public class Exercise19_EqualKeysInSymbolTables {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
-
             return get(key) != null;
         }
 
@@ -170,10 +163,9 @@ public class Exercise19_EqualKeysInSymbolTables {
             SeparateChainingMultiST<Key, Value> separateChainingMultiSTTemp =
                     new SeparateChainingMultiST<>(newSize, averageListSize);
 
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 separateChainingMultiSTTemp.put(key, get(key));
             }
-
             symbolTable = separateChainingMultiSTTemp.symbolTable;
             size = separateChainingMultiSTTemp.size;
         }
@@ -182,7 +174,6 @@ public class Exercise19_EqualKeysInSymbolTables {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
-
             return symbolTable[hash(key)].get(key);
         }
 
@@ -243,18 +234,16 @@ public class Exercise19_EqualKeysInSymbolTables {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
-                for(Key key : sequentialSearchST.keys()) {
+            for (SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
+                for (Key key : sequentialSearchST.keys()) {
                     keys.enqueue(key);
                 }
             }
-
             return keys;
         }
     }
 
     public class BinarySearchMultiST<Key extends Comparable<Key>, Value> {
-
         private Key[] keys;
         private Value[] values;
         private int size;
@@ -313,14 +302,13 @@ public class Exercise19_EqualKeysInSymbolTables {
             int rankFirst = rankFirst(key);
             int rankLast = rankLast(key);
 
-            for(int index = rankFirst; index < rankLast; index++) {
+            for (int index = rankFirst; index < rankLast; index++) {
                 values.enqueue(this.values[index]);
             }
 
             if (rankLast < size && keys[rankLast].equals(key)) {
                 values.enqueue(this.values[rankLast]);
             }
-
             return values;
         }
 
@@ -386,7 +374,7 @@ public class Exercise19_EqualKeysInSymbolTables {
             }
         }
 
-        //In the case of duplicates, return the rank of the rightmost key
+        // In the case of duplicates, return the rank of the rightmost key
         public int rank(Key key) {
             return rankLast(key);
         }
@@ -407,7 +395,7 @@ public class Exercise19_EqualKeysInSymbolTables {
 
             int rank = rankLast(key);
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
                 values[i] = values[i - 1];
             }
@@ -427,7 +415,7 @@ public class Exercise19_EqualKeysInSymbolTables {
 
             while (contains(key)) {
                 int rank = rankLast(key);
-                for(int i = rank; i < size - 1; i++) {
+                for (int i = rank; i < size - 1; i++) {
                     keys[i] = keys[i + 1];
                     values[i] = values[i + 1];
                 }
@@ -538,14 +526,13 @@ public class Exercise19_EqualKeysInSymbolTables {
             int rankFirstLow = rankFirst(low);
             int rankLastHigh = rankLast(high);
 
-            for(int i = rankFirstLow; i < rankLastHigh; i++) {
+            for (int i = rankFirstLow; i < rankLastHigh; i++) {
                 queue.enqueue(keys[i]);
             }
 
             if (contains(high)) {
                 queue.enqueue(keys[rankLastHigh]);
             }
-
             return queue;
         }
 
@@ -575,10 +562,10 @@ public class Exercise19_EqualKeysInSymbolTables {
         StdOut.println("*********** SeparateChainingMultiST tests ***********");
         SeparateChainingMultiST<Integer, Integer> separateChainingMultiST = new SeparateChainingMultiST<>();
 
-        //Test isEmpty()
+        // Test isEmpty()
         StdOut.println("\nIsEmpty: " + separateChainingMultiST.isEmpty() + " Expected: true");
 
-        //Test put()
+        // Test put()
         separateChainingMultiST.put(0, 0);
         separateChainingMultiST.put(0, 1);
         separateChainingMultiST.put(0, 2);
@@ -600,10 +587,10 @@ public class Exercise19_EqualKeysInSymbolTables {
         separateChainingMultiST.put(23, 23);
         separateChainingMultiST.put(24, 100);
 
-        //Test keys()
+        // Test keys()
         StdOut.println("\nKeys() test");
 
-        for(Integer key : separateChainingMultiST.keys()) {
+        for (Integer key : separateChainingMultiST.keys()) {
             StdOut.println(key + " " + separateChainingMultiST.get(key));
         }
         StdOut.println("\nExpected: (Not necessarily in this order)");
@@ -624,54 +611,54 @@ public class Exercise19_EqualKeysInSymbolTables {
         StdOut.println("23 23");
         StdOut.println("24 100");
 
-        //Test getAll()
+        // Test getAll()
         StdOut.println("\nGet all values of key 0");
-        for(Integer value : separateChainingMultiST.getAll(0)) {
+        for (Integer value : separateChainingMultiST.getAll(0)) {
             StdOut.print(value + " ");
         }
         StdOut.println("\nExpected: 0 1 2 2 - Not necessarily in this order");
 
         StdOut.println("\nGet all values of key 100");
-        for(Integer value : separateChainingMultiST.getAll(100)) {
+        for (Integer value : separateChainingMultiST.getAll(100)) {
             StdOut.print(value + " ");
         }
         StdOut.println("\nExpected: ");
 
         StdOut.println("\nGet all values of key 20");
-        for(Integer value : separateChainingMultiST.getAll(20)) {
+        for (Integer value : separateChainingMultiST.getAll(20)) {
             StdOut.print(value + " ");
         }
         StdOut.println("\nExpected: 0 1 2 20 - Not necessarily in this order");
 
         StdOut.println("\nGet all values of key 22");
-        for(Integer value : separateChainingMultiST.getAll(22)) {
+        for (Integer value : separateChainingMultiST.getAll(22)) {
             StdOut.print(value + " ");
         }
         StdOut.println("\nExpected: 22");
 
-        //Test size()
+        // Test size()
         StdOut.println("\nKeys size: " + separateChainingMultiST.size() + " Expected: 16");
 
-        //Test contains()
+        // Test contains()
         StdOut.println("\nContains 0: " + separateChainingMultiST.contains(0) + " Expected: true");
         StdOut.println("Contains 100: " + separateChainingMultiST.contains(100) + " Expected: false");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 5");
         separateChainingMultiST.delete(5);
-        for(Integer key : separateChainingMultiST.keys()) {
+        for (Integer key : separateChainingMultiST.keys()) {
             StdOut.println(key + " " + separateChainingMultiST.get(key));
         }
 
         StdOut.println("\nDelete key 24");
         separateChainingMultiST.delete(24);
-        for(Integer key : separateChainingMultiST.keys()) {
+        for (Integer key : separateChainingMultiST.keys()) {
             StdOut.println(key + " " + separateChainingMultiST.get(key));
         }
 
         StdOut.println("\nDelete key 0");
         separateChainingMultiST.delete(0);
-        for(Integer key : separateChainingMultiST.keys()) {
+        for (Integer key : separateChainingMultiST.keys()) {
             StdOut.println(key + " " + separateChainingMultiST.get(key));
         }
 
@@ -683,10 +670,10 @@ public class Exercise19_EqualKeysInSymbolTables {
         StdOut.println("\n*********** BinarySearchMultiST tests ***********");
         BinarySearchMultiST<Integer, Integer> binarySearchMultiST = new BinarySearchMultiST<>();
 
-        //Test isEmpty()
+        // Test isEmpty()
         StdOut.println("\nIsEmpty: " + binarySearchMultiST.isEmpty() + " Expected: true");
 
-        //Test put()
+        // Test put()
         binarySearchMultiST.put(0, 0);
         binarySearchMultiST.put(0, 1);
         binarySearchMultiST.put(0, 2);
@@ -708,9 +695,9 @@ public class Exercise19_EqualKeysInSymbolTables {
         binarySearchMultiST.put(23, 23);
         binarySearchMultiST.put(24, 100);
 
-        //Test keys()
+        // Test keys()
         StdOut.println("\nKeys() test");
-        for(Integer key : binarySearchMultiST.keys()) {
+        for (Integer key : binarySearchMultiST.keys()) {
             StdOut.println(key + " " + binarySearchMultiST.get(key));
         }
         StdOut.println("\nExpected:");
@@ -731,71 +718,71 @@ public class Exercise19_EqualKeysInSymbolTables {
         StdOut.println("23 23");
         StdOut.println("24 100");
 
-        //Test getAll()
+        // Test getAll()
         StdOut.println("\nGet all values of key 0");
-        for(Integer value : binarySearchMultiST.getAll(0)) {
+        for (Integer value : binarySearchMultiST.getAll(0)) {
             StdOut.print(value + " ");
         }
         StdOut.println("\nExpected: 0 1 2 2 - Not necessarily in this order");
 
         StdOut.println("\nGet all values of key 100");
-        for(Integer value : binarySearchMultiST.getAll(100)) {
+        for (Integer value : binarySearchMultiST.getAll(100)) {
             StdOut.print(value + " ");
         }
         StdOut.println("\nExpected: ");
 
         StdOut.println("\nGet all values of key 20");
-        for(Integer value : binarySearchMultiST.getAll(20)) {
+        for (Integer value : binarySearchMultiST.getAll(20)) {
             StdOut.print(value + " ");
         }
         StdOut.println("\nExpected: 0 1 2 20 - Not necessarily in this order");
 
         StdOut.println("\nGet all values of key 22");
-        for(Integer value : binarySearchMultiST.getAll(22)) {
+        for (Integer value : binarySearchMultiST.getAll(22)) {
             StdOut.print(value + " ");
         }
         StdOut.println("\nExpected: 22");
 
-        //Test size()
+        // Test size()
         StdOut.println("\nKeys size: " + binarySearchMultiST.size() + " Expected: 16");
 
-        //Test size() with range
+        // Test size() with range
         StdOut.println("Keys size [0, 20]: " + binarySearchMultiST.size(0, 20) + " Expected: 12");
 
-        //Test contains()
+        // Test contains()
         StdOut.println("\nContains 8: " + binarySearchMultiST.contains(8) + " Expected: true");
         StdOut.println("Contains 9: " + binarySearchMultiST.contains(9) + " Expected: false");
 
-        //Test min()
+        // Test min()
         StdOut.println("\nMin key: " + binarySearchMultiST.min() + " Expected: 0");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + binarySearchMultiST.max() + " Expected: 24");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + binarySearchMultiST.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + binarySearchMultiST.floor(15) + " Expected: 8");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + binarySearchMultiST.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + binarySearchMultiST.ceiling(15) + " Expected: 20");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 3: " + binarySearchMultiST.select(3) + " Expected: 0");
         StdOut.println("Select key of rank 4: " + binarySearchMultiST.select(4) + " Expected: 5");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("RankFirst of key 8: " + binarySearchMultiST.rankFirst(8) + " Expected: 6");
         StdOut.println("RankFirst of key 9: " + binarySearchMultiST.rankFirst(9) + " Expected: 8");
         StdOut.println("RankLast of key 9: " + binarySearchMultiST.rankLast(9) + " Expected: 8");
         StdOut.println("RankFirst of key 20: " + binarySearchMultiST.rankFirst(20) + " Expected: 8");
         StdOut.println("RankLast of key 20: " + binarySearchMultiST.rankLast(20) + " Expected: 11");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 20");
         binarySearchMultiST.delete(20);
 
-        for(Integer key : binarySearchMultiST.keys()) {
+        for (Integer key : binarySearchMultiST.keys()) {
             StdOut.println(key + " " + binarySearchMultiST.get(key));
         }
         StdOut.println("\nKeys size: " + binarySearchMultiST.size() + " Expected: 12");
@@ -803,52 +790,51 @@ public class Exercise19_EqualKeysInSymbolTables {
         StdOut.println("\nDelete key 5");
         binarySearchMultiST.delete(5);
 
-        for(Integer key : binarySearchMultiST.keys()) {
+        for (Integer key : binarySearchMultiST.keys()) {
             StdOut.println(key + " " + binarySearchMultiST.get(key));
         }
         StdOut.println("\nKeys size: " + binarySearchMultiST.size() + " Expected: 10");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key 0)");
         binarySearchMultiST.deleteMin();
 
-        for(Integer key : binarySearchMultiST.keys()) {
+        for (Integer key : binarySearchMultiST.keys()) {
             StdOut.println(key + " " + binarySearchMultiST.get(key));
         }
         StdOut.println("\nKeys size: " + binarySearchMultiST.size() + " Expected: 6");
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 24)");
         binarySearchMultiST.deleteMax();
 
-        for(Integer key : binarySearchMultiST.keys()) {
+        for (Integer key : binarySearchMultiST.keys()) {
             StdOut.println(key + " " + binarySearchMultiST.get(key));
         }
         StdOut.println("\nKeys size: " + binarySearchMultiST.size() + " Expected: 5");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
-        for(Integer key : binarySearchMultiST.keys(2, 10)) {
+        for (Integer key : binarySearchMultiST.keys(2, 10)) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\n\nKeys in range [20, 22]");
-        for(Integer key : binarySearchMultiST.keys(20, 22)) {
+        for (Integer key : binarySearchMultiST.keys(20, 22)) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\n\nIsEmpty: " + binarySearchMultiST.isEmpty() + " Expected: false");
 
-        //Delete all
+        // Delete all
         StdOut.println("\nDelete all");
         while (binarySearchMultiST.size() > 0) {
-            for(Integer key : binarySearchMultiST.keys()) {
+            for (Integer key : binarySearchMultiST.keys()) {
                 StdOut.println(key + " " + binarySearchMultiST.get(key));
             }
-            //binarySearchMultiST.delete(binarySearchMultiST.select(0));
+            // binarySearchMultiST.delete(binarySearchMultiST.select(0));
             binarySearchMultiST.delete(binarySearchMultiST.select(binarySearchMultiST.size() - 1));
             StdOut.println();
         }
     }
-
 }

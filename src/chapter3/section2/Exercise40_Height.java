@@ -45,10 +45,10 @@ public class Exercise40_Height {
         int[] binaryTreeSizes = {10000, 100000, 1000000};
         int numberOfExperiments = 100;
 
-        for(int i = 0; i < binaryTreeSizes.length; i++) {
+        for (int i = 0; i < binaryTreeSizes.length; i++) {
             totalHeights = 0;
 
-            for(int j = 0; j < numberOfExperiments; j++) {
+            for (int j = 0; j < numberOfExperiments; j++) {
                 computeBSTHeight(binaryTreeSizes[i]);
             }
 
@@ -65,7 +65,7 @@ public class Exercise40_Height {
         int maxValue = 10000000;
         BinarySearchTreeHeight<Integer, Integer> binarySearchTree = new BinarySearchTreeHeight<>();
 
-        for(int i = 0; i < treeSize; i++) {
+        for (int i = 0; i < treeSize; i++) {
             int randomValue = StdRandom.uniform(maxValue);
             binarySearchTree.put(randomValue, randomValue);
         }
@@ -76,5 +76,4 @@ public class Exercise40_Height {
     public static void main(String[] args) {
         new Exercise40_Height().doExperiment();
     }
-
 }

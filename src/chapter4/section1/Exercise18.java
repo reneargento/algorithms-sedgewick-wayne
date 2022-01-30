@@ -38,16 +38,16 @@ public class Exercise18 {
             computeGirth(graph);
         }
 
-        //O(V * (V + E))
+        // O(V * (V + E))
         private void getProperties(Graph graph) {
             diameter = 0;
             radius = Integer.MAX_VALUE;
             center = 0;
 
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < graph.vertices(); vertex++) {
                 BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, vertex);
 
-                for(int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
+                for (int otherVertex = 0; otherVertex < graph.vertices(); otherVertex++) {
                     if (otherVertex == vertex) {
                         continue;
                     }
@@ -65,9 +65,9 @@ public class Exercise18 {
             }
         }
 
-        //O(V * (V + E))
+        // O(V * (V + E))
         private void computeGirth(Graph graph) {
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < graph.vertices(); vertex++) {
                 int shortestCycle = bfsToGetShortestCycle(graph, vertex);
                 girth = Math.min(girth, shortestCycle);
             }
@@ -88,7 +88,7 @@ public class Exercise18 {
             while (!queue.isEmpty()) {
                 int currentVertex = queue.dequeue();
 
-                for(int neighbor : graph.adjacent(currentVertex)) {
+                for (int neighbor : graph.adjacent(currentVertex)) {
                     if (!visited[neighbor]) {
                         visited[neighbor] = true;
                         distTo[neighbor] = distTo[currentVertex] + 1;
@@ -173,5 +173,4 @@ public class Exercise18 {
         GraphProperties graphProperties4 = exercise18.new GraphProperties(graph4, false);
         StdOut.println("Girth 4: " + graphProperties4.girth() + " Expected: 2147483647");
     }
-
 }

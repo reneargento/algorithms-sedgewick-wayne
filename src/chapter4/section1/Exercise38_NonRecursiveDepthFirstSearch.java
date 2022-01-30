@@ -18,7 +18,7 @@ public class Exercise38_NonRecursiveDepthFirstSearch {
 
             StdOut.print("Visit order: ");
 
-            for(int vertexId = 0; vertexId < graph.vertices(); vertexId++) {
+            for (int vertexId = 0; vertexId < graph.vertices(); vertexId++) {
                 if (!visited[vertexId]) {
                     depthFirstSearchIterative(graph, vertexId, visited);
                 }
@@ -68,7 +68,7 @@ public class Exercise38_NonRecursiveDepthFirstSearch {
         DepthFirstSearchIterative depthFirstSearchIterative = nonRecursiveDepthFirstSearch.new DepthFirstSearchIterative();
 
         Graph graph = new Graph(12);
-        //Component 1
+        // Component 1
         graph.addEdge(0, 7);
         graph.addEdge(0, 1);
         graph.addEdge(2, 1);
@@ -79,10 +79,10 @@ public class Exercise38_NonRecursiveDepthFirstSearch {
         graph.addEdge(1, 5);
         graph.addEdge(5, 6);
 
-        //Component 2
-        //vertex 9 (isolated vertex)
+        // Component 2
+        // vertex 9 (isolated vertex)
 
-        //Component 3
+        // Component 3
         graph.addEdge(11, 10);
         graph.addEdge(10, 8);
 
@@ -90,5 +90,4 @@ public class Exercise38_NonRecursiveDepthFirstSearch {
 
         StdOut.println("\nExpected: Visit order: 0 2 1 5 6 4 3 7 8 10 11 9");
     }
-
 }

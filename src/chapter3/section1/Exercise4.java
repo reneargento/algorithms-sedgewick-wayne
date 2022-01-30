@@ -96,12 +96,11 @@ public class Exercise4 {
         eventSchedule.put(new Time(9, 21, 0), new Event("Chicago"));
         eventSchedule.put(new Time(9, 37, 44), new Event("Phoenix"));
 
-        for(Time time : eventSchedule.keys()) {
+        for (Time time : eventSchedule.keys()) {
             StdOut.println(time + " " + eventSchedule.get(time));
         }
 
         StdOut.println("\nSelect 3: " + eventSchedule.select(3) + " Expected: 09:10:00");
         StdOut.println("Max: " + eventSchedule.max() + " Expected: 09:37:44");
     }
-
 }

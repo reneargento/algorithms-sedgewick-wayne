@@ -29,7 +29,7 @@ public class Exercise29_Deletion {
                 int symbolTableSize = symbolTable[hash1].size;
 
                 symbolTable[hash1].delete(key);
-                //Key is not on the shorter list
+                // Key is not on the shorter list
                 if (symbolTableSize == symbolTable[hash1].size) {
                     symbolTable[hash2].delete(key);
                 }
@@ -37,7 +37,7 @@ public class Exercise29_Deletion {
                 int symbolTableSize = symbolTable[hash2].size;
 
                 symbolTable[hash2].delete(key);
-                //Key is not on the shorter list
+                // Key is not on the shorter list
                 if (symbolTableSize == symbolTable[hash2].size) {
                     symbolTable[hash1].delete(key);
                 }
@@ -55,7 +55,7 @@ public class Exercise29_Deletion {
             super(size);
         }
 
-        //Eager delete in double hashing requires a rehash() operation, making it O(n)
+        // Eager delete in double hashing requires a rehash() operation, making it O(n)
         public void eagerDelete(Key key) {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
@@ -88,7 +88,7 @@ public class Exercise29_Deletion {
             DoubleHashingHashTableDelete<Key, Value> tempHashTable =
                     new DoubleHashingHashTableDelete<>(size);
 
-            for(int i = 0; i < keys.length; i++) {
+            for (int i = 0; i < keys.length; i++) {
                 if (values[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
@@ -101,32 +101,31 @@ public class Exercise29_Deletion {
 
     public static void main(String[] args) {
         Exercise29_Deletion deletion = new Exercise29_Deletion();
-        //Double probing test
+        // Double probing test
         SeparateChainingHashTableDoubleProbingDelete separateChainingHashTableDoubleProbingDelete =
                 deletion.new SeparateChainingHashTableDoubleProbingDelete();
 
-        for(int key = 1; key <= 100; key++) {
+        for (int key = 1; key <= 100; key++) {
             separateChainingHashTableDoubleProbingDelete.put(key, key);
         }
         StdOut.println("Size: " + separateChainingHashTableDoubleProbingDelete.size() + " Expected: 100");
 
-        for(int key = 1; key <= 100; key += 2) {
+        for (int key = 1; key <= 100; key += 2) {
             separateChainingHashTableDoubleProbingDelete.delete(key);
         }
         StdOut.println("Size: " + separateChainingHashTableDoubleProbingDelete.size() + " Expected: 50");
 
-        //Double hashing test
+        // Double hashing test
         DoubleHashingHashTableDelete doubleHashingHashTableDelete = deletion.new DoubleHashingHashTableDelete(50);
 
-        for(int key = 1; key <= 100; key++) {
+        for (int key = 1; key <= 100; key++) {
             doubleHashingHashTableDelete.put(key, key);
         }
         StdOut.println("\nSize: " + doubleHashingHashTableDelete.size() + " Expected: 100");
 
-        for(int key = 1; key <= 100; key += 2) {
+        for (int key = 1; key <= 100; key += 2) {
             doubleHashingHashTableDelete.eagerDelete(key);
         }
         StdOut.println("Size: " + doubleHashingHashTableDelete.size() + " Expected: 50");
     }
-
 }

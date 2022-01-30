@@ -18,11 +18,11 @@ public class Exercise43_ReachableVertexInDigraph {
         KosarajuSharirSCC kosarajuSharirSCC = new KosarajuSharirSCC(digraph);
 
         List<Integer>[] strongComponents = (List<Integer>[]) new ArrayList[kosarajuSharirSCC.count()];
-        for(int scc = 0; scc < strongComponents.length; scc++) {
+        for (int scc = 0; scc < strongComponents.length; scc++) {
             strongComponents[scc] = new ArrayList<>();
         }
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             int sccId = kosarajuSharirSCC.id(vertex);
             strongComponents[sccId].add(vertex);
         }
@@ -37,19 +37,18 @@ public class Exercise43_ReachableVertexInDigraph {
         dfs(reverseDigraph, vertexInLastStrongComponent, visited);
 
         // 4- If all vertices were visited, then the vertex is reachable from every other vertex
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             if (!visited[vertex]) {
                 return false;
             }
         }
-
         return true;
     }
 
     private void dfs(Digraph digraph, int vertex, boolean[] visited) {
         visited[vertex] = true;
 
-        for(int neighbor : digraph.adjacent(vertex)) {
+        for (int neighbor : digraph.adjacent(vertex)) {
             if (!visited[neighbor]) {
                 dfs(digraph, neighbor, visited);
             }
@@ -70,12 +69,11 @@ public class Exercise43_ReachableVertexInDigraph {
         // 3- Check if there is only one sink in the kernel DAG
         int sinks = 0;
 
-        for(int vertex = 0; vertex < kernelDAG.vertices(); vertex++) {
+        for (int vertex = 0; vertex < kernelDAG.vertices(); vertex++) {
             if (kernelDAG.outdegree(vertex) == 0) {
                 sinks++;
             }
         }
-
         return sinks == 1;
     }
 
@@ -153,5 +151,4 @@ public class Exercise43_ReachableVertexInDigraph {
         StdOut.println("Reachable 6: " + reachableVertexInDigraph.hasVertexReachableFromEveryOtherVertex2(digraph6)
                 + " Expected: true");
     }
-
 }

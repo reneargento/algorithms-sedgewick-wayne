@@ -51,21 +51,20 @@ public class Exercise30_CornerCases {
     }
 
     private static void doExperiment(Map<Integer, Comparable[]> allInputArrays) {
-
         StdOut.printf("%13s %25s %23s %30s\n", "Array Size | ", "Type | ","QuickSort W/ Random Shuffle |", "QuickSort W/O Random Shuffle");
 
-        for(int i = 0; i < allInputArrays.size(); i++) {
+        for (int i = 0; i < allInputArrays.size(); i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
-            //QuickSort with initial random shuffle
+            // QuickSort with initial random shuffle
             Stopwatch quickSortWithRandomShuffleTimer = new Stopwatch();
             QuickSort.quickSort(originalArray);
             double quickSortWithRandomShuffleRunningTime = quickSortWithRandomShuffleTimer.elapsedTime();
 
-            //QuickSort without initial random shuffle
+            // QuickSort without initial random shuffle
             Stopwatch quickSortWithoutRandomShuffleTimer = new Stopwatch();
             quickSortWithoutRandomShuffle(array);
             double quickSortWithoutRandomShuffleRunningTime = quickSortWithoutRandomShuffleTimer.elapsedTime();
@@ -95,7 +94,6 @@ public class Exercise30_CornerCases {
             case 6: arrayType = "HalfZeroHalfRandomValues";
                 break;
         }
-
         return arrayType;
     }
 
@@ -104,7 +102,6 @@ public class Exercise30_CornerCases {
     }
 
     private static void quickSort(Comparable[] array, int low, int high) {
-
         if (low >= high) {
             return;
         }
@@ -120,14 +117,14 @@ public class Exercise30_CornerCases {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot)) {
                 if (i == high) {
                     break;
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if (j == low) {
                     break;
                 }
@@ -140,7 +137,7 @@ public class Exercise30_CornerCases {
             ArrayUtil.exchange(array, i, j);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, j);
         return j;
     }
@@ -149,5 +146,4 @@ public class Exercise30_CornerCases {
                                      double quickSortWithoutRandomShuffleRunningTime) {
         StdOut.printf("%10d %25s %30.1f %32.1f\n", arraySize, typeOfArray, quickSortWithRandomShuffleRunningTime, quickSortWithoutRandomShuffleRunningTime);
     }
-
 }

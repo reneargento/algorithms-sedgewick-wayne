@@ -42,7 +42,6 @@ public class Exercise26_FrequencyCountDictionary {
     }
 
     private void frequencyCounter(String dictionaryFile, String[] words) {
-
         String[] wordsInDictionary = FileUtil.getAllStringsFromFile(dictionaryFile);
 
         if (wordsInDictionary == null) {
@@ -56,8 +55,7 @@ public class Exercise26_FrequencyCountDictionary {
 
         int orderOfWordsFound = 0;
 
-        for(String word : words) {
-
+        for (String word : words) {
             if (!wordsSet.contains(word)) {
                 continue;
             }
@@ -78,11 +76,11 @@ public class Exercise26_FrequencyCountDictionary {
 
         Word[] wordsFromSymbolTable = new Word[binarySearchSymbolTable.size()];
         int wordsArrayIndex = 0;
-        for(String word : binarySearchSymbolTable.keys()) {
+        for (String word : binarySearchSymbolTable.keys()) {
             wordsFromSymbolTable[wordsArrayIndex++] = binarySearchSymbolTable.get(word);
         }
 
-        //Sort word arrays by frequency
+        // Sort word arrays by frequency
         Arrays.sort(wordsFromSymbolTable, new Comparator<Word>() {
             @Override
             public int compare(Word word1, Word word2) {
@@ -90,12 +88,12 @@ public class Exercise26_FrequencyCountDictionary {
             }
         });
 
-        //Print results by frequency
+        // Print results by frequency
         StdOut.println("Words sorted by frequency");
         StdOut.printf("%14s %15s %17s\n", "Word | ","Frequency | ", "Order found in file");
         printWordFrequencies(wordsFromSymbolTable);
 
-        //Sort word arrays by order
+        // Sort word arrays by order
         Arrays.sort(wordsFromSymbolTable, new Comparator<Word>() {
             @Override
             public int compare(Word word1, Word word2) {
@@ -103,16 +101,15 @@ public class Exercise26_FrequencyCountDictionary {
             }
         });
 
-        //Print results by order
+        // Print results by order
         StdOut.println("\nWords sorted by order found in the dictionary file");
         StdOut.printf("%14s %15s %17s\n", "Word | ","Frequency | ", "Order found in file");
         printWordFrequencies(wordsFromSymbolTable);
     }
 
     private void printWordFrequencies(Word[] words) {
-        for(Word word : words) {
+        for (Word word : words) {
             StdOut.printf("%11s %15d %22d\n", word.wordValue, word.frequency, word.orderFoundInFile);
         }
     }
-
 }

@@ -161,12 +161,11 @@ public class Exercise41_Delete {
         while (redBlackBST.size() > 0) {
             redBlackBST.delete(redBlackBST.select(0));
         }
-
         StdOut.println("Final size after deleting all keys: " + redBlackBST.size());
     }
 
     private void printKeys(RedBlackBSTDelete<Integer, Integer> redBlackBST) {
-        for(Integer key : redBlackBST.keys()) {
+        for (Integer key : redBlackBST.keys()) {
             StdOut.println(key);
         }
         StdOut.println();

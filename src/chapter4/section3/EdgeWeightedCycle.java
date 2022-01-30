@@ -18,7 +18,7 @@ public class EdgeWeightedCycle {
     public EdgeWeightedCycle(EdgeWeightedGraphInterface edgeWeightedGraph) {
         initVariables(edgeWeightedGraph);
 
-        for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
             if (cycleFound) {
                 break;
             }
@@ -34,7 +34,7 @@ public class EdgeWeightedCycle {
     public EdgeWeightedCycle(EdgeWeightedGraphInterface edgeWeightedGraph, HashSet<Integer> vertices) {
         initVariables(edgeWeightedGraph);
 
-        for(int vertex : vertices.keys()) {
+        for (int vertex : vertices.keys()) {
             if (cycleFound) {
                 break;
             }
@@ -58,7 +58,7 @@ public class EdgeWeightedCycle {
         onStack[vertex] = true;
         visited[vertex] = true;
 
-        for(Edge neighbor : edgeWeightedGraph.adjacent(vertex)) {
+        for (Edge neighbor : edgeWeightedGraph.adjacent(vertex)) {
             if (visitedEdges.contains(neighbor)) {
                 continue;
             }
@@ -75,7 +75,7 @@ public class EdgeWeightedCycle {
                 cycleFound = true;
                 cycle = new Stack<>();
 
-                for(int currentVertex = vertex; currentVertex != neighborVertex;
+                for (int currentVertex = vertex; currentVertex != neighborVertex;
                     currentVertex = edgeTo[currentVertex].other(currentVertex)) {
                     cycle.push(edgeTo[currentVertex]);
                 }
@@ -94,5 +94,4 @@ public class EdgeWeightedCycle {
     public Stack<Edge> cycle() {
         return cycle;
     }
-
 }

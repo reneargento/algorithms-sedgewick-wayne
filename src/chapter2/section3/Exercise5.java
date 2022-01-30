@@ -11,7 +11,6 @@ import java.util.StringJoiner;
 public class Exercise5 {
 
     public static void main(String[] args) {
-
         int arrayLength = Integer.parseInt(args[0]);
         Comparable array[] = ArrayGenerator.generateRandomArrayWith2Values(arrayLength);
 
@@ -39,7 +38,7 @@ public class Exercise5 {
 
         Comparable pivot = array[0];
 
-        while(i <= gt) {
+        while (i <= gt) {
             int comparison = array[i].compareTo(pivot);
 
             if (comparison < 0) {
@@ -60,5 +59,4 @@ public class Exercise5 {
         array[position1] = array[position2];
         array[position2] = temp;
     }
-
 }

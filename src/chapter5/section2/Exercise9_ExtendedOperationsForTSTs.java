@@ -24,7 +24,6 @@ public class Exercise9_ExtendedOperationsForTSTs {
             }
 
             Queue<String> keysWithPrefix = new Queue<>();
-
             Node nodeWithPrefix = get(root, prefix, 0);
 
             if (nodeWithPrefix == null) {
@@ -138,7 +137,7 @@ public class Exercise9_ExtendedOperationsForTSTs {
         // keys() test
 
         StringJoiner initialKeys = new StringJoiner(" ");
-        for(String key : tstExtended.keys()) {
+        for (String key : tstExtended.keys()) {
             initialKeys.add(key);
         }
         StdOut.println("Initial keys: " + initialKeys.toString());
@@ -147,21 +146,21 @@ public class Exercise9_ExtendedOperationsForTSTs {
         // keysWithPrefix() test
 
         StringJoiner keysWithPrefix1 = new StringJoiner(" ");
-        for(String key : tstExtended.keysWithPrefix("A")) {
+        for (String key : tstExtended.keysWithPrefix("A")) {
             keysWithPrefix1.add(key);
         }
         StdOut.println("\nKeys with prefix A: " + keysWithPrefix1.toString());
         StdOut.println("Expected:           Algo Algor Algorithms");
 
         StringJoiner keysWithPrefix2 = new StringJoiner(" ");
-        for(String key : tstExtended.keysWithPrefix("R")) {
+        for (String key : tstExtended.keysWithPrefix("R")) {
             keysWithPrefix2.add(key);
         }
         StdOut.println("Keys with prefix R: " + keysWithPrefix2.toString());
         StdOut.println("Expected:           Re Rene");
 
         StringJoiner keysWithPrefix3 = new StringJoiner(" ");
-        for(String key : tstExtended.keysWithPrefix("Z")) {
+        for (String key : tstExtended.keysWithPrefix("Z")) {
             keysWithPrefix3.add(key);
         }
         StdOut.println("Keys with prefix Z: " + keysWithPrefix3.toString());
@@ -170,14 +169,14 @@ public class Exercise9_ExtendedOperationsForTSTs {
         // keysThatMatch() test
 
         StringJoiner keysThatMatch1 = new StringJoiner(" ");
-        for(String key : tstExtended.keysThatMatch("Tr.e")) {
+        for (String key : tstExtended.keysThatMatch("Tr.e")) {
             keysThatMatch1.add(key);
         }
         StdOut.println("\nKeys that match pattern Tr.e: " + keysThatMatch1.toString());
         StdOut.println("Expected:                     Tree Trie");
 
         StringJoiner keysThatMatch2 = new StringJoiner(" ");
-        for(String key : tstExtended.keysThatMatch("R.")) {
+        for (String key : tstExtended.keysThatMatch("R.")) {
             keysThatMatch2.add(key);
         }
         StdOut.println("Keys that match pattern R.: " + keysThatMatch2.toString());
@@ -197,5 +196,4 @@ public class Exercise9_ExtendedOperationsForTSTs {
         StdOut.println("Longest prefix of Quicksort: " + longestPrefixOf3);
         StdOut.println("Expected: ");
     }
-
 }

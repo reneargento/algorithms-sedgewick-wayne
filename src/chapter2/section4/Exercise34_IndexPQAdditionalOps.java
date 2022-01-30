@@ -26,7 +26,7 @@ public class Exercise34_IndexPQAdditionalOps {
             pq = new int[size + 1];
             qp = new int[size + 1];
 
-            for(int i = 0; i < qp.length; i++) {
+            for (int i = 0; i < qp.length; i++) {
                 qp[i] = -1;
             }
         }
@@ -131,7 +131,7 @@ public class Exercise34_IndexPQAdditionalOps {
         }
 
         private void swim(int index) {
-            while(index / 2 >= 1 && more(index / 2, index)) {
+            while (index / 2 >= 1 && more(index / 2, index)) {
                 exchange(index / 2, index);
                 index = index / 2;
             }

@@ -95,7 +95,7 @@ public class DWayPriorityQueue<Key extends Comparable<Key>> {
 
             int selectedChildIndex = childSmallestIndex;
 
-            for(int childIndex = childSmallestIndex + 1; childIndex <= childHighestIndex; childIndex++) {
+            for (int childIndex = childSmallestIndex + 1; childIndex <= childHighestIndex; childIndex++) {
                 if (childIndex <= size &&
                         (
                                 (orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[selectedChildIndex], priorityQueue[childIndex]))

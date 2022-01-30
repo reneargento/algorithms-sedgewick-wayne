@@ -10,7 +10,6 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise13 {
 
     public class BreadthFirstPathsDistTo {
-
         private boolean[] visited;
         private int[] edgeTo;
         private final int source;
@@ -25,7 +24,7 @@ public class Exercise13 {
             distTo = new int[graph.vertices()];
 
             distTo[source] = 0;
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < graph.vertices(); vertex++) {
                 if (vertex == source) {
                     continue;
                 }
@@ -44,7 +43,7 @@ public class Exercise13 {
             while (!queue.isEmpty()) {
                 int currentVertex = queue.dequeue();
 
-                for(int neighbor : graph.adjacent(currentVertex)) {
+                for (int neighbor : graph.adjacent(currentVertex)) {
                     if (!visited[neighbor]) {
                         visited[neighbor] = true;
 
@@ -57,12 +56,12 @@ public class Exercise13 {
             }
         }
 
-        //O(1)
+        // O(1)
         public int distTo(int vertex) {
             return distTo[vertex];
         }
 
-        //O(1)
+        // O(1)
         public int edgeTo(int vertex) {
             return edgeTo[vertex];
         }
@@ -78,17 +77,16 @@ public class Exercise13 {
 
             Stack<Integer> path = new Stack<>();
 
-            for(int currentVertex = vertex; currentVertex != source; currentVertex = edgeTo[currentVertex]) {
+            for (int currentVertex = vertex; currentVertex != source; currentVertex = edgeTo[currentVertex]) {
                 path.push(currentVertex);
             }
-
             path.push(source);
             return path;
         }
     }
 
     public static void main(String[] args) {
-        //tinyGex2 graph from the book
+        // tinyGex2 graph from the book
         Graph graph = new Graph(12);
         graph.addEdge(8 ,4);
         graph.addEdge(2 ,3);
@@ -115,5 +113,4 @@ public class Exercise13 {
         StdOut.println("Distance from 0 to 8: " + breadthFirstPathsDistTo.distTo(8) + " Expected: 2147483647");
         StdOut.println("Distance from 0 to 9: " + breadthFirstPathsDistTo.distTo(9) + " Expected: 2147483647");
     }
-
 }

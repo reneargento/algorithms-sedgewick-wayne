@@ -54,8 +54,7 @@ public class Exercise34_HashCost {
             }
 
             public Value get(Key key) {
-
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     long initTime = System.nanoTime();
                     boolean isEqualKeys = key.equals(node.key);
                     timeSpent[1] += System.nanoTime() - initTime;
@@ -69,8 +68,7 @@ public class Exercise34_HashCost {
             }
 
             public void put(Key key, Value value) {
-
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     long initTime = System.nanoTime();
                     boolean isEqualKeys = key.equals(node.key);
                     timeSpent[1] += System.nanoTime() - initTime;
@@ -86,7 +84,6 @@ public class Exercise34_HashCost {
             }
 
             public void delete(Key key) {
-
                 long initTime = System.nanoTime();
                 boolean isEqualKeys = first.key.equals(key);
                 timeSpent[1] += System.nanoTime() - initTime;
@@ -97,7 +94,7 @@ public class Exercise34_HashCost {
                     return;
                 }
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (node.next != null) {
                         initTime = System.nanoTime();
                         isEqualKeys = node.next.key.equals(key);
@@ -115,13 +112,12 @@ public class Exercise34_HashCost {
             public Iterable<Key> keys() {
                 Queue<Key> keys = new Queue<>();
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     keys.enqueue(node.key);
                 }
 
                 return keys;
             }
-
         }
 
         private int averageListSize;
@@ -133,9 +129,9 @@ public class Exercise34_HashCost {
         private static final int DEFAULT_HASH_TABLE_SIZE = 997;
         private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
 
-        //The largest prime <= 2^i for i = 1 to 31
-        //Used to distribute keys uniformly in the hash table after resizes
-        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        // The largest prime <= 2^i for i = 1 to 31
+        // Used to distribute keys uniformly in the hash table after resizes
+        // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
                 1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -143,8 +139,8 @@ public class Exercise34_HashCost {
                 536870909, 1073741789, 2147483647
         };
 
-        //The lg of the hash table size
-        //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+        // The lg of the hash table size
+        // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
         public SeparateChainingHashTableHashCost() {
@@ -156,7 +152,7 @@ public class Exercise34_HashCost {
             this.averageListSize = averageListSize;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable();
             }
 
@@ -177,7 +173,6 @@ public class Exercise34_HashCost {
             if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
-
             return hash % size;
         }
 
@@ -189,7 +184,6 @@ public class Exercise34_HashCost {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
-
             return get(key) != null;
         }
 
@@ -197,7 +191,7 @@ public class Exercise34_HashCost {
             SeparateChainingHashTableHashCost<Key, Value> separateChainingHashTableTemp =
                     new SeparateChainingHashTableHashCost<>(newSize, averageListSize);
 
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 separateChainingHashTableTemp.put(key, get(key), false);
             }
 
@@ -287,40 +281,37 @@ public class Exercise34_HashCost {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
-                for(Key key : sequentialSearchST.keys()) {
+            for (SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
+                for (Key key : sequentialSearchST.keys()) {
                     keys.enqueue(key);
                 }
             }
 
             if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }
-
             return keys;
         }
-
     }
 
     private class LinearProbingHashTableHashCost<Key, Value> implements HashTable<Key, Value> {
-
         private int keysSize;
         private int size;
         private Key[] keys;
         private Value[] values;
 
-        //The largest prime <= 2^i for i = 1 to 31
-        //Used to distribute keys uniformly in the hash table after resizes
-        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        // The largest prime <= 2^i for i = 1 to 31
+        // Used to distribute keys uniformly in the hash table after resizes
+        // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
                 1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -328,8 +319,8 @@ public class Exercise34_HashCost {
                 536870909, 1073741789, 2147483647
         };
 
-        //The lg of the hash table size
-        //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+        // The lg of the hash table size
+        // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
         LinearProbingHashTableHashCost(int size) {
@@ -350,14 +341,13 @@ public class Exercise34_HashCost {
             if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
-
             return hash % size;
         }
 
         private void resize(int newSize) {
             LinearProbingHashTableHashCost<Key, Value> tempHashTable = new LinearProbingHashTableHashCost<>(newSize);
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
@@ -372,7 +362,6 @@ public class Exercise34_HashCost {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
-
             return get(key) != null;
         }
 
@@ -380,14 +369,13 @@ public class Exercise34_HashCost {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
-
             resetTimers();
 
             long initTime = System.nanoTime();
             int hash = hash(key);
             timeSpent[0] += System.nanoTime() - initTime;
 
-            for(int tableIndex = hash; keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
+            for (int tableIndex = hash; keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 initTime = System.nanoTime();
                 boolean isEqualKeys = keys[tableIndex].equals(key);
                 timeSpent[1] += System.nanoTime() - initTime;
@@ -396,7 +384,6 @@ public class Exercise34_HashCost {
                     return values[tableIndex];
                 }
             }
-
             return null;
         }
 
@@ -427,7 +414,7 @@ public class Exercise34_HashCost {
             int tableIndex = hash(key);
             timeSpent[0] += System.nanoTime() - initTime;
 
-            for(; keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
+            for (; keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 initTime = System.nanoTime();
                 boolean isEqualKeys = keys[tableIndex].equals(key);
                 timeSpent[1] += System.nanoTime() - initTime;
@@ -497,7 +484,7 @@ public class Exercise34_HashCost {
         public Iterable<Key> keys() {
             Queue<Key> keySet = new Queue<>();
 
-            for(Object key : keys) {
+            for (Object key : keys) {
                 if (key != null) {
                     keySet.enqueue((Key) key);
                 }
@@ -505,17 +492,16 @@ public class Exercise34_HashCost {
 
             if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keySet.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keySet.enqueue(key);
                 }
             }
-
             return keySet;
         }
 
@@ -523,7 +509,6 @@ public class Exercise34_HashCost {
             timeSpent[0] = 0;
             timeSpent[1] = 0;
         }
-
     }
 
     enum InputType {
@@ -574,7 +559,7 @@ public class Exercise34_HashCost {
 
         int numberOfKeys = 1000000;
 
-        for(int key = 0; key < numberOfKeys; key++) {
+        for (int key = 0; key < numberOfKeys; key++) {
             switch (inputType) {
                 case INTEGER:
                     int integerKey = StdRandom.uniform(numberOfKeys * 10);
@@ -586,8 +571,8 @@ public class Exercise34_HashCost {
                     break;
                 case STRING:
                     StringBuilder string = new StringBuilder();
-                    for(int c = 0; c < 10; c++) {
-                        //Generate random char between 'A' and 'z'
+                    for (int c = 0; c < 10; c++) {
+                        // Generate random char between 'A' and 'z'
                         char currentChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                                 Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                         string.append(currentChar);
@@ -597,7 +582,6 @@ public class Exercise34_HashCost {
                     hashTable.put(stringKey, stringKey);
                     break;
             }
-
             totalTimeSpentOnHash += HashTable.timeSpent[0];
             totalTimeSpentOnCompares += HashTable.timeSpent[1];
         }
@@ -609,7 +593,7 @@ public class Exercise34_HashCost {
         totalTimeSpentOnHash = 0;
         totalTimeSpentOnCompares = 0;
 
-        for(int key = 0; key < numberOfKeys; key++) {
+        for (int key = 0; key < numberOfKeys; key++) {
             switch (inputType) {
                 case INTEGER:
                     int randomIntegerKey = StdRandom.uniform(numberOfKeys * 2);
@@ -621,8 +605,8 @@ public class Exercise34_HashCost {
                     break;
                 case STRING:
                     StringBuilder string = new StringBuilder();
-                    for(int c = 0; c < 10; c++) {
-                        //Generate random char between 'A' and 'z'
+                    for (int c = 0; c < 10; c++) {
+                        // Generate random char between 'A' and 'z'
                         char currentChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                                 Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                         string.append(currentChar);
@@ -632,7 +616,6 @@ public class Exercise34_HashCost {
                     hashTable.get(stringKey);
                     break;
             }
-
             totalTimeSpentOnHash += HashTable.timeSpent[0];
             totalTimeSpentOnCompares += HashTable.timeSpent[1];
         }
@@ -644,7 +627,7 @@ public class Exercise34_HashCost {
         totalTimeSpentOnHash = 0;
         totalTimeSpentOnCompares = 0;
 
-        for(int key = 0; key < numberOfKeys; key++) {
+        for (int key = 0; key < numberOfKeys; key++) {
             switch (inputType) {
                 case INTEGER:
                     int randomIntegerKey = StdRandom.uniform(numberOfKeys * 2);
@@ -656,8 +639,8 @@ public class Exercise34_HashCost {
                     break;
                 case STRING:
                     StringBuilder string = new StringBuilder();
-                    for(int c = 0; c < 10; c++) {
-                        //Generate random char between 'A' and 'z'
+                    for (int c = 0; c < 10; c++) {
+                        // Generate random char between 'A' and 'z'
                         char currentChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                                 Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                         string.append(currentChar);
@@ -676,5 +659,4 @@ public class Exercise34_HashCost {
         StdOut.println("Ratio of time required for hash() to the time required for compareTo() on delete() operation: " +
                 String.format("%.2f", hashToCompareRatioOnDelete));
     }
-
 }

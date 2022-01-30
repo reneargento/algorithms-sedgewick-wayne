@@ -11,7 +11,6 @@ import java.util.List;
 public class Exercise7 {
 
     public class Degrees {
-
         private int[] indegrees;
         private int[] outdegrees;
         private List<Integer> sources;
@@ -25,14 +24,14 @@ public class Exercise7 {
             sinks = new ArrayList<>();
             isMap = true;
 
-            for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-                for(int neighbor : digraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
+                for (int neighbor : digraph.adjacent(vertex)) {
                     indegrees[neighbor]++;
                     outdegrees[vertex]++;
                 }
             }
 
-            for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
                 if (indegrees[vertex] == 0) {
                     sources.add(vertex);
                 }
@@ -98,13 +97,13 @@ public class Exercise7 {
         StdOut.println();
 
         StdOut.print("Sources: ");
-        for(int source : degrees1.sources()) {
+        for (int source : degrees1.sources()) {
             StdOut.print(source + " ");
         }
         StdOut.print("\nExpected: 0 2 4 5");
 
         StdOut.print("\n\nSinks: ");
-        for(int sink : degrees1.sinks()) {
+        for (int sink : degrees1.sinks()) {
             StdOut.print(sink + " ");
         }
         StdOut.print("\nExpected: 1 5");
@@ -142,18 +141,17 @@ public class Exercise7 {
         StdOut.println();
 
         StdOut.print("Sources: ");
-        for(int source : degrees2.sources()) {
+        for (int source : degrees2.sources()) {
             StdOut.print(source + " ");
         }
         StdOut.print("\nExpected: 4");
 
         StdOut.print("\n\nSinks: ");
-        for(int sink : degrees2.sinks()) {
+        for (int sink : degrees2.sinks()) {
             StdOut.print(sink + " ");
         }
         StdOut.print("\nExpected: ");
 
         StdOut.println("\nIs map: " + degrees2.isMap() + " Expected: true");
     }
-
 }

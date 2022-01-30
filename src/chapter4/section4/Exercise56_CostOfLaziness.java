@@ -29,12 +29,12 @@ public class Exercise56_CostOfLaziness {
         Exercise49_RandomSparseEdgeWeightedDigraphs.RandomEdgeWeightedDigraphs randomEdgeWeightedDigraphs =
                 new Exercise49_RandomSparseEdgeWeightedDigraphs().new RandomEdgeWeightedDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedDigraphInterface randomEdgeWeightedDigraphUniformWeights =
                     randomEdgeWeightedDigraphs.erdosRenyiDigraphUniformWeights(uniformWeightDigraphVertices, edges);
             int randomSource = StdRandom.uniform(uniformWeightDigraphVertices);
 
-            for(int dijkstraAlgorithmType = 0; dijkstraAlgorithmType < 2; dijkstraAlgorithmType++) {
+            for (int dijkstraAlgorithmType = 0; dijkstraAlgorithmType < 2; dijkstraAlgorithmType++) {
 
                 if (dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
                     totalTimeSpentLazyDijkstra += doExperiment(randomEdgeWeightedDigraphUniformWeights, randomSource,
@@ -61,14 +61,14 @@ public class Exercise56_CostOfLaziness {
         Exercise50_RandomEuclideanEdgeWeightedDigraphs randomEuclideanEdgeWeightedDigraphs =
                 new Exercise50_RandomEuclideanEdgeWeightedDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedDigraphInterface euclideanEdgeWeightedDigraph =
                     randomEuclideanEdgeWeightedDigraphs.randomEuclideanEdgeWeightedDigraph(euclideanDigraphVertices, radius);
 
             edges = euclideanEdgeWeightedDigraph.edgesCount();
             int randomSource = StdRandom.uniform(euclideanDigraphVertices);
 
-            for(int dijkstraAlgorithmType = 0; dijkstraAlgorithmType < 2; dijkstraAlgorithmType++) {
+            for (int dijkstraAlgorithmType = 0; dijkstraAlgorithmType < 2; dijkstraAlgorithmType++) {
 
                 if (dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
                     totalTimeSpentLazyDijkstra += doExperiment(euclideanEdgeWeightedDigraph, randomSource, LAZY_DIJKSTRA_ID);
@@ -90,14 +90,14 @@ public class Exercise56_CostOfLaziness {
         Exercise51_RandomGridEdgeWeightedDigraphs randomGridEdgeWeightedDigraphs =
                 new Exercise51_RandomGridEdgeWeightedDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedDigraphInterface gridEdgeWeightedDigraph =
                     randomGridEdgeWeightedDigraphs.randomGridEdgeWeightedDigraph(gridDigraphVertices, gridDigraphExtraEdges);
 
             edges = gridEdgeWeightedDigraph.edgesCount();
             int randomSource = StdRandom.uniform(gridDigraphVertices);
 
-            for(int dijkstraAlgorithmType = 0; dijkstraAlgorithmType < 2; dijkstraAlgorithmType++) {
+            for (int dijkstraAlgorithmType = 0; dijkstraAlgorithmType < 2; dijkstraAlgorithmType++) {
 
                 if (dijkstraAlgorithmType == LAZY_DIJKSTRA_ID) {
                     totalTimeSpentLazyDijkstra += doExperiment(gridEdgeWeightedDigraph, randomSource, LAZY_DIJKSTRA_ID);

@@ -19,13 +19,12 @@ public class Exercise34_CornerCases {
     }
 
     private static void runAllExperiments(int initialArrayLength, int experiments) {
-
         int arrayLength = initialArrayLength;
 
         StdOut.printf("%15s %17s %8s\n", "Sort Type", "Array Length", "Time");
         StdOut.println("ORDERED ARRAY");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Comparable[] orderedArray = generateOrderedArray(arrayLength);
             runExperiments(orderedArray);
@@ -39,7 +38,7 @@ public class Exercise34_CornerCases {
 
         StdOut.println("REVERSE ORDERED ARRAY");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Comparable[] reverseOrderedArray = generateReverseOrderedArray(arrayLength);
             runExperiments(reverseOrderedArray);
@@ -53,7 +52,7 @@ public class Exercise34_CornerCases {
 
         StdOut.println("SAME KEYS ARRAY");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Comparable[] equalKeysArray = generateEqualKeysArray(arrayLength);
             runExperiments(equalKeysArray);
@@ -67,7 +66,7 @@ public class Exercise34_CornerCases {
 
         StdOut.println("TWO VALUES ARRAY");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Comparable[] twoValuesArray = generateTwoValuesArray(arrayLength);
             runExperiments(twoValuesArray);
@@ -106,52 +105,43 @@ public class Exercise34_CornerCases {
     }
 
     private static Comparable[] generateOrderedArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = i;
         }
-
         return array;
     }
 
     private static Comparable[] generateReverseOrderedArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = arrayLength - i;
         }
-
         return array;
     }
 
     private static Comparable[] generateEqualKeysArray(int arrayLength) {
-
         Integer equalKey = 100;
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = equalKey;
         }
-
         return array;
     }
 
     private static Comparable[] generateTwoValuesArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             if (i % 2 == 0) {
                 array[i] = 0;
             } else {
                 array[i] = 1;
             }
         }
-
         return array;
     }
 
@@ -174,12 +164,10 @@ public class Exercise34_CornerCases {
             case SHELL: ShellSort.shellSort(array);
                 break;
         }
-
         return timer.elapsedTime();
     }
 
     private static void printExperiment(SortTypes sortType, int arrayLength, double time) {
         StdOut.printf("%15s %17d %8.2f\n", sortType, arrayLength, time);
     }
-
 }

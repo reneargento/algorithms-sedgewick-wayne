@@ -17,7 +17,7 @@ public class Exercise12_QuickUnionPathCompression {
             id = new int[size];
             count = size;
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
         }
@@ -92,5 +92,4 @@ public class Exercise12_QuickUnionPathCompression {
 
         StdOut.println("Components: " + quickUnionPathCompression2.count + " Expected: 3");
     }
-
 }

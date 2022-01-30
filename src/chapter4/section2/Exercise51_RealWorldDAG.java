@@ -44,7 +44,7 @@ public class Exercise51_RealWorldDAG {
             this();
             int edges = in.readInt();
 
-            for(int i = 0; i < edges; i++) {
+            for (int i = 0; i < edges; i++) {
                 int vertex1 = in.readInt();
                 int vertex2 = in.readInt();
                 addEdge(vertex1, vertex2);
@@ -109,8 +109,8 @@ public class Exercise51_RealWorldDAG {
         public Digraph reverse() {
             Digraph reverse = new Digraph();
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
-                for(int neighbor : adjacent(vertex)) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
+                for (int neighbor : adjacent(vertex)) {
                     reverse.addEdge(neighbor, vertex);
                 }
             }
@@ -121,11 +121,11 @@ public class Exercise51_RealWorldDAG {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
                 if (adjacent(vertex) != null) {
-                    for(int neighbor : adjacent(vertex)) {
+                    for (int neighbor : adjacent(vertex)) {
                         stringBuilder.append(neighbor).append(" ");
                     }
                 }
@@ -157,7 +157,7 @@ public class Exercise51_RealWorldDAG {
             edgeTo = new int[digraph.vertices()];
             visited = new boolean[digraph.vertices()];
 
-            for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
                 if (!visited[vertex]) {
                     dfs(digraph, vertex);
                 }
@@ -169,7 +169,7 @@ public class Exercise51_RealWorldDAG {
             visited[vertex] = true;
 
             if (digraph.adjacent(vertex) != null) {
-                for(int neighbor : digraph.adjacent(vertex)) {
+                for (int neighbor : digraph.adjacent(vertex)) {
                     if (hasCycle()) {
                         return;
                     } else if (!visited[neighbor]) {
@@ -178,7 +178,7 @@ public class Exercise51_RealWorldDAG {
                     } else if (onStack[neighbor]) {
                         cycle = new Stack<>();
 
-                        for(int currentVertex = vertex; currentVertex != neighbor; currentVertex = edgeTo[currentVertex]) {
+                        for (int currentVertex = vertex; currentVertex != neighbor; currentVertex = edgeTo[currentVertex]) {
                             cycle.push(currentVertex);
                         }
 
@@ -234,17 +234,17 @@ public class Exercise51_RealWorldDAG {
             randomSubDigraph.addVertex(subDigraphVertexId1);
 
             // Outward edges
-            for(int neighbor : fullDigraph.adjacent(randomVertexId)) {
+            for (int neighbor : fullDigraph.adjacent(randomVertexId)) {
                 if (digraphToSubDigraphMap.contains(neighbor)) {
                     int subDigraphVertexId2 = digraphToSubDigraphMap.get(neighbor);
                     allSubDigraphEdges.add(new DirectedEdge(subDigraphVertexId1, subDigraphVertexId2));
                 }
             }
             // Inward edges
-            for(int subDigraphVertexId = 0; subDigraphVertexId < randomSubDigraph.vertices(); subDigraphVertexId++) {
+            for (int subDigraphVertexId = 0; subDigraphVertexId < randomSubDigraph.vertices(); subDigraphVertexId++) {
                 int fullDigraphVertexId = subDigraphToDigraphMap.get(subDigraphVertexId);
 
-                for(int neighbor : fullDigraph.adjacent(fullDigraphVertexId)) {
+                for (int neighbor : fullDigraph.adjacent(fullDigraphVertexId)) {
                     if (neighbor == randomVertexId) {
                         allSubDigraphEdges.add(new DirectedEdge(subDigraphVertexId, subDigraphVertexId1));
                     }
@@ -258,7 +258,7 @@ public class Exercise51_RealWorldDAG {
         }
 
         // Randomly choose edges
-        for(int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
+        for (int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
             int randomEdgeId = StdRandom.uniform(edgeIndex, allSubDigraphEdges.size());
 
             DirectedEdge randomEdge = allSubDigraphEdges.get(randomEdgeId);
@@ -314,5 +314,4 @@ public class Exercise51_RealWorldDAG {
 
         StdOut.println(randomRealDAG);
     }
-
 }

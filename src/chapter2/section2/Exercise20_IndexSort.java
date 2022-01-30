@@ -70,17 +70,15 @@ public class Exercise20_IndexSort {
         int[] aux = new int[array.length];
         int[] indexSort = new int[array.length];
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             indexSort[i] = i;
         }
 
         indexSort(array, aux, indexSort, 0, array.length - 1);
-
         return indexSort;
     }
 
     private static void indexSort(Comparable[] array, int[] aux, int[] indexSort, int low, int high) {
-
         if (low >= high) {
             return;
         }
@@ -95,8 +93,7 @@ public class Exercise20_IndexSort {
 
     @SuppressWarnings("unchecked")
     private static void merge(Comparable[] array, int[] aux, int[] indexSort, int low, int middle, int high) {
-
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             aux[i] = indexSort[i];
         }
 
@@ -105,7 +102,6 @@ public class Exercise20_IndexSort {
         int arrayIndex = low;
 
         while (leftIndex <= middle && rightIndex <= high) {
-
             if (array[aux[leftIndex]].compareTo(array[aux[rightIndex]]) <= 0) {
                 indexSort[arrayIndex] = aux[leftIndex];
 
@@ -130,13 +126,11 @@ public class Exercise20_IndexSort {
             return false;
         }
 
-        for(int i = 0; i < expectedIndexSortedArray.length; i++) {
+        for (int i = 0; i < expectedIndexSortedArray.length; i++) {
             if (expectedIndexSortedArray[i] != indexSortedArray[i]) {
                 return false;
             }
         }
-
         return true;
     }
-
 }

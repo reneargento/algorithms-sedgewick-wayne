@@ -42,15 +42,14 @@ public class JohnsonAllCycles {
         KosarajuSharirSCCWeighted kosarajuSharirSCCWeighted = new KosarajuSharirSCCWeighted(edgeWeightedDigraph);
         List<Integer>[] stronglyConnectedComponents = kosarajuSharirSCCWeighted.getSCCs();
 
-        for(List<Integer> stronglyConnectedComponent : stronglyConnectedComponents) {
-
+        for (List<Integer> stronglyConnectedComponent : stronglyConnectedComponents) {
             if (stronglyConnectedComponent.size() == 1) {
                 continue;
             }
 
             EdgeWeightedDigraphInterface sccSubGraph = createSubGraphFromSCC(edgeWeightedDigraph, stronglyConnectedComponent);
 
-            for(int vertexToProcess : stronglyConnectedComponent) {
+            for (int vertexToProcess : stronglyConnectedComponent) {
                 if (sccSubGraph.outdegree(vertexToProcess) == 0) {
                     continue;
                 }
@@ -77,7 +76,7 @@ public class JohnsonAllCycles {
             stackOfEdges.push(currentEdge);
         }
 
-        for(DirectedEdge edge : edgeWeightedDigraph.adjacent(currentVertex)) {
+        for (DirectedEdge edge : edgeWeightedDigraph.adjacent(currentVertex)) {
             int neighbor = edge.to();
 
             // If neighbor is the same as the start vertex, a cycle was found.
@@ -116,7 +115,7 @@ public class JohnsonAllCycles {
         } else {
             // If no cycle was found, add the current vertex to its neighbors blockedVerticesMap.
             // If any of those neighbors ever get unblocked, then unblock the current vertex as well.
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(currentVertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(currentVertex)) {
                 int neighbor = edge.to();
 
                 HashSet<Integer> dependentVerticesFromNeighbor = blockedVerticesMap.get(neighbor);
@@ -135,7 +134,6 @@ public class JohnsonAllCycles {
         if (!stackOfEdges.isEmpty()) {
             stackOfEdges.pop();
         }
-
         return foundCycle;
     }
 
@@ -145,12 +143,11 @@ public class JohnsonAllCycles {
         HashSet<Integer> dependentVertices = blockedVerticesMap.get(vertex);
         if (dependentVertices != null) {
 
-            for(int dependentVertex : dependentVertices.keys()) {
+            for (int dependentVertex : dependentVertices.keys()) {
                 if (blockedVerticesSet.contains(dependentVertex)) {
                     unblock(dependentVertex);
                 }
             }
-
             blockedVerticesMap.delete(vertex);
         }
     }
@@ -158,14 +155,14 @@ public class JohnsonAllCycles {
     private EdgeWeightedDigraphInterface createSubGraphFromSCC(EdgeWeightedDigraphInterface edgeWeightedDigraph,
                                                                List<Integer> stronglyConnectedComponent) {
         HashSet<Integer> verticesInSCC = new HashSet<>();
-        for(int vertex : stronglyConnectedComponent) {
+        for (int vertex : stronglyConnectedComponent) {
             verticesInSCC.add(vertex);
         }
 
         EdgeWeightedDigraphInterface subGraph = new EdgeWeightedDigraph(edgeWeightedDigraph.vertices());
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (!verticesInSCC.contains(vertex) || !verticesInSCC.contains(neighbor)) {
@@ -175,7 +172,6 @@ public class JohnsonAllCycles {
                 subGraph.addEdge(new DirectedEdge(vertex, edge.to(), edge.weight()));
             }
         }
-
         return subGraph;
     }
 
@@ -184,8 +180,8 @@ public class JohnsonAllCycles {
                                                                         int vertexToRemove) {
         EdgeWeightedDigraphInterface subGraph = new EdgeWeightedDigraph(edgeWeightedDigraph.vertices());
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (vertex == vertexToRemove || neighbor == vertexToRemove) {
@@ -195,7 +191,6 @@ public class JohnsonAllCycles {
                 subGraph.addEdge(new DirectedEdge(vertex, edge.to(), edge.weight()));
             }
         }
-
         return subGraph;
     }
 
@@ -207,18 +202,18 @@ public class JohnsonAllCycles {
     public List<List<Integer>> getAllCyclesByVerticesInOrder() {
         List<List<Integer>>[] cyclesByInitialVertex = (List<List<Integer>>[]) new ArrayList[verticesCount];
 
-        for(int cycles = 0; cycles < cyclesByInitialVertex.length; cycles++) {
+        for (int cycles = 0; cycles < cyclesByInitialVertex.length; cycles++) {
             cyclesByInitialVertex[cycles] = new ArrayList<>();
         }
 
-        for(List<Integer> cycle : allCyclesByVertices) {
+        for (List<Integer> cycle : allCyclesByVertices) {
             int initialVertex = cycle.get(0);
             cyclesByInitialVertex[initialVertex].add(cycle);
         }
 
         List<List<Integer>> allCyclesInOrder = new ArrayList<>();
 
-        for(List<List<Integer>> cycles : cyclesByInitialVertex) {
+        for (List<List<Integer>> cycles : cyclesByInitialVertex) {
             allCyclesInOrder.addAll(cycles);
         }
 

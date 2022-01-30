@@ -15,59 +15,59 @@ public class Exercise41_DoubleProbing {
 
         StdOut.printf("%12s %20s %20s\n", "Operation | ","Separate-chaining HT time | ", "Double probing HT time");
 
-        //Put tests
+        // Put tests
         int[] randomKeysPut = new int[1000000];
 
-        for(int i = 0; i < randomKeysPut.length; i++) {
+        for (int i = 0; i < randomKeysPut.length; i++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             randomKeysPut[i] = randomKey;
         }
 
         Stopwatch stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysPut.length; i++) {
+        for (int i = 0; i < randomKeysPut.length; i++) {
             separateChainingHashTable.put(randomKeysPut[i], randomKeysPut[i]);
         }
         double timeSpentOnPutSeparateChaining = stopwatch.elapsedTime();
 
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysPut.length; i++) {
+        for (int i = 0; i < randomKeysPut.length; i++) {
             doubleProbingHashTable.put(randomKeysPut[i], randomKeysPut[i]);
         }
         double timeSpentOnPutDoubleProbing = stopwatch.elapsedTime();
 
         printResults("Put", timeSpentOnPutSeparateChaining, timeSpentOnPutDoubleProbing);
 
-        //Get tests
+        // Get tests
         int[] randomKeysGet = new int[500000];
 
-        for(int i = 0; i < randomKeysGet.length; i++) {
+        for (int i = 0; i < randomKeysGet.length; i++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             randomKeysGet[i] = randomKey;
         }
 
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysGet.length; i++) {
+        for (int i = 0; i < randomKeysGet.length; i++) {
             separateChainingHashTable.get(randomKeysGet[i]);
         }
         double timeSpentOnGetSeparateChaining = stopwatch.elapsedTime();
 
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysGet.length; i++) {
+        for (int i = 0; i < randomKeysGet.length; i++) {
             doubleProbingHashTable.get(randomKeysGet[i]);
         }
         double timeSpentOnGetDoubleProbing = stopwatch.elapsedTime();
 
         printResults("Get", timeSpentOnGetSeparateChaining, timeSpentOnGetDoubleProbing);
 
-        //Delete tests
+        // Delete tests
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysPut.length / 2; i++) {
+        for (int i = 0; i < randomKeysPut.length / 2; i++) {
             separateChainingHashTable.delete(randomKeysPut[i]);
         }
         double timeSpentOnDeleteSeparateChaining = stopwatch.elapsedTime();
 
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysPut.length / 2; i++) {
+        for (int i = 0; i < randomKeysPut.length / 2; i++) {
             doubleProbingHashTable.delete(randomKeysPut[i]);
         }
         double timeSpentOnDeleteDoubleProbing = stopwatch.elapsedTime();
@@ -82,5 +82,4 @@ public class Exercise41_DoubleProbing {
     public static void main(String[] args) {
         new Exercise41_DoubleProbing().doExperiment();
     }
-
 }

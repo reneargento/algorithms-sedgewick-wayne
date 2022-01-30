@@ -62,7 +62,7 @@ public class PriorityQueue<Key extends Comparable<Key>> {
     }
 
     private void swim(int index) {
-        while(index / 2 >= 1) {
+        while (index / 2 >= 1) {
             if ((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], priorityQueue[index]))
                     || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index / 2], priorityQueue[index]))) {
                 ArrayUtil.exchange(priorityQueue, index / 2, index);

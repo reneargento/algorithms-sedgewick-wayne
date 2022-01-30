@@ -36,22 +36,22 @@ public class Exercise41_OddLengthDirectedCycle {
 
         Set<Integer>[] strongComponents = (Set<Integer>[]) new HashSet[kosarajuSharirSCC.count()];
 
-        for(int scc = 0; scc < strongComponents.length; scc++) {
+        for (int scc = 0; scc < strongComponents.length; scc++) {
             strongComponents[scc] = new HashSet<>();
         }
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             int strongComponentId = kosarajuSharirSCC.id(vertex);
             strongComponents[strongComponentId].add(vertex);
         }
 
-        for(int scc = 0; scc < strongComponents.length; scc++) {
+        for (int scc = 0; scc < strongComponents.length; scc++) {
             // Uses optimized graph to make the algorithm O(V + E) instead of O(V^2)
             // (No need to initialize all adjacency lists for the subGraphs)
             OptimizedGraph subGraph = new OptimizedGraph(digraph.vertices());
 
-            for(int vertex : strongComponents[scc]) {
-                for(int neighbor : digraph.adjacent(vertex)) {
+            for (int vertex : strongComponents[scc]) {
+                for (int neighbor : digraph.adjacent(vertex)) {
                     if (strongComponents[scc].contains(neighbor)) {
                         subGraph.addEdge(vertex, neighbor);
                     }
@@ -111,5 +111,4 @@ public class Exercise41_OddLengthDirectedCycle {
         StdOut.println("Has odd length directed cycle: " + oddLengthDirectedCycle.hasOddLengthDirectedCycle(digraph4)
                 + " Expected: false");
     }
-
 }

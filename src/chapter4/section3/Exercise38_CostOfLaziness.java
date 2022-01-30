@@ -24,11 +24,11 @@ public class Exercise38_CostOfLaziness {
         Exercise34_RandomSparseEdgeWeightedGraphs.RandomEdgeWeightedGraphs randomEdgeWeightedGraphs =
                 new Exercise34_RandomSparseEdgeWeightedGraphs().new RandomEdgeWeightedGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraph randomEdgeWeightedGraphUniformWeights =
                     randomEdgeWeightedGraphs.erdosRenyiGraphUniformWeights(vertices, edges);
 
-            for(int mstAlgorithmType = 0; mstAlgorithmType < 2; mstAlgorithmType++) {
+            for (int mstAlgorithmType = 0; mstAlgorithmType < 2; mstAlgorithmType++) {
                 boolean isLazyPrim = mstAlgorithmType == 0;
 
                 if (isLazyPrim) {
@@ -48,11 +48,11 @@ public class Exercise38_CostOfLaziness {
         // Graph model 2: Random edge weighted graphs with gaussian weight distribution
         graphType = "Random graph w/ gaussian weight distribution";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraph randomEdgeWeightedGraphGaussianWeights =
                     randomEdgeWeightedGraphs.erdosRenyiGraphGaussianWeights(vertices, edges);
 
-            for(int mstAlgorithmType = 0; mstAlgorithmType < 2; mstAlgorithmType++) {
+            for (int mstAlgorithmType = 0; mstAlgorithmType < 2; mstAlgorithmType++) {
                 boolean isLazyPrim = mstAlgorithmType == 0;
 
                 if (isLazyPrim) {
@@ -77,13 +77,13 @@ public class Exercise38_CostOfLaziness {
         // Running the experiment on a complete graph
         double radius = 1;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraphInterface randomEdgeWeightedEuclideanGraph =
                     randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices, radius);
 
             edges = randomEdgeWeightedEuclideanGraph.edgesCount();
 
-            for(int mstAlgorithmType = 0; mstAlgorithmType < 2; mstAlgorithmType++) {
+            for (int mstAlgorithmType = 0; mstAlgorithmType < 2; mstAlgorithmType++) {
                 boolean isLazyPrim = mstAlgorithmType == 0;
 
                 if (isLazyPrim) {
@@ -136,5 +136,4 @@ public class Exercise38_CostOfLaziness {
 
         new Exercise38_CostOfLaziness().generateGraphsAndDoExperiments(experiments, vertices, edges, euclideanGraphVertices);
     }
-
 }

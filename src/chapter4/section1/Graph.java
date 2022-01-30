@@ -18,7 +18,7 @@ public class Graph implements GraphInterface {
         this.edges = 0;
         adjacent = (Bag<Integer>[]) new Bag[vertices];
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
             adjacent[vertex] = new Bag<>();
         }
     }
@@ -27,7 +27,7 @@ public class Graph implements GraphInterface {
         this(in.readInt());
         int edges = in.readInt();
 
-        for(int i = 0; i < edges; i++) {
+        for (int i = 0; i < edges; i++) {
             int vertex1 = in.readInt();
             int vertex2 = in.readInt();
             addEdge(vertex1, vertex2);
@@ -68,10 +68,10 @@ public class Graph implements GraphInterface {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int vertex = 0; vertex < vertices(); vertex++) {
+        for (int vertex = 0; vertex < vertices(); vertex++) {
             stringBuilder.append(vertex).append(": ");
 
-            for(int neighbor : adjacent(vertex)) {
+            for (int neighbor : adjacent(vertex)) {
                 stringBuilder.append(neighbor).append(" ");
             }
             stringBuilder.append("\n");
@@ -79,5 +79,4 @@ public class Graph implements GraphInterface {
 
         return stringBuilder.toString();
     }
-
 }

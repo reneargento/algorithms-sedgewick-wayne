@@ -2143,7 +2143,7 @@ public class Exercise35_23Trees {
     }
 
     public static void main(String[] args) {
-        //Expected 2-3 tree
+        // Expected 2-3 tree
         //                1
         //         -1           5 9
         //    -5 -2   0   2   3  7   99
@@ -2186,31 +2186,31 @@ public class Exercise35_23Trees {
 
         StdOut.println("Keys() test");
 
-        for(Integer key : twoThreeST.keys()) {
+        for (Integer key : twoThreeST.keys()) {
             StdOut.println("Key " + key + ": " + twoThreeST.get(key));
         }
         StdOut.println("Expected: -5 -2 -1 0 1 2 3 5 7 9 99\n");
 
-        //Test min()
+        // Test min()
         StdOut.println("Min key: " + twoThreeST.min() + " Expected: -5");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + twoThreeST.max() + " Expected: 99");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + twoThreeST.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + twoThreeST.floor(15) + " Expected: 9");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + twoThreeST.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + twoThreeST.ceiling(15) + " Expected: 99");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + twoThreeST.select(4) + " Expected: 1");
         StdOut.println("Select key of rank 7: " + twoThreeST.select(7) + " Expected: 5");
         StdOut.println("Select key of rank 8: " + twoThreeST.select(8) + " Expected: 7");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key -5: " + twoThreeST.rank(-5) + " Expected: 0");
         StdOut.println("Rank of key -4: " + twoThreeST.rank(-4) + " Expected: 1");
         StdOut.println("Rank of key 7: " + twoThreeST.rank(7) + " Expected: 8");
@@ -2218,55 +2218,55 @@ public class Exercise35_23Trees {
         StdOut.println("Rank of key 10: " + twoThreeST.rank(10) + " Expected: 10");
         StdOut.println("Rank of key 100: " + twoThreeST.rank(100) + " Expected: 11");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         twoThreeST.delete(2);
 
-        for(Integer key : twoThreeST.keys()) {
+        for (Integer key : twoThreeST.keys()) {
             StdOut.println("Key " + key + ": " + twoThreeST.get(key));
         }
         StdOut.println("Is BST: " + twoThreeST.isBST() + " Expected: true");
         StdOut.println("Size consistent: " + twoThreeST.isSubtreeCountConsistent() + " Expected: true");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key -5)");
         twoThreeST.deleteMin();
 
-        for(Integer key : twoThreeST.keys()) {
+        for (Integer key : twoThreeST.keys()) {
             StdOut.println("Key " + key + ": " + twoThreeST.get(key));
         }
         StdOut.println("Is BST: " + twoThreeST.isBST() + " Expected: true");
         StdOut.println("Size consistent: " + twoThreeST.isSubtreeCountConsistent() + " Expected: true");
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 99)");
         twoThreeST.deleteMax();
 
-        for(Integer key : twoThreeST.keys()) {
+        for (Integer key : twoThreeST.keys()) {
             StdOut.println("Key " + key + ": " + twoThreeST.get(key));
         }
         StdOut.println("Is BST: " + twoThreeST.isBST() + " Expected: true");
         StdOut.println("Size consistent: " + twoThreeST.isSubtreeCountConsistent() + " Expected: true");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
-        for(Integer key : twoThreeST.keys(2, 10)) {
+        for (Integer key : twoThreeST.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + twoThreeST.get(key));
         }
 
         StdOut.println("\nKeys in range [-4, -1]");
-        for(Integer key : twoThreeST.keys(-4, -1)) {
+        for (Integer key : twoThreeST.keys(-4, -1)) {
             StdOut.println("Key " + key + ": " + twoThreeST.get(key));
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\nDelete all");
         while (twoThreeST.size() > 0) {
-            for(Integer key : twoThreeST.keys()) {
+            for (Integer key : twoThreeST.keys()) {
                 StdOut.println("Key " + key + ": " + twoThreeST.get(key));
             }
 
-            //twoThreeST.delete(twoThreeST.select(0));
+            // twoThreeST.delete(twoThreeST.select(0));
             twoThreeST.delete(twoThreeST.select(twoThreeST.size() - 1));
             StdOut.println("Is BST: " + twoThreeST.isBST() + " Expected: true");
             StdOut.println("Size consistent: " + twoThreeST.isSubtreeCountConsistent() + " Expected: true");
@@ -2274,5 +2274,4 @@ public class Exercise35_23Trees {
             StdOut.println();
         }
     }
-
 }

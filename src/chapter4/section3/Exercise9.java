@@ -19,7 +19,7 @@ public class Exercise9 {
                 throw new IllegalArgumentException("Number of edges must be nonnegative");
             }
 
-            for(int i = 0; i < edges; i++) {
+            for (int i = 0; i < edges; i++) {
                 int vertex1 = in.readInt();
                 int vertex2 = in.readInt();
                 double weight = in.readDouble();
@@ -36,5 +36,4 @@ public class Exercise9 {
                 new Exercise9().new EdgeWeightedGraphWithInputStreamConstructor(new In(tinyEWGFilePath));
         StdOut.println(edgeWeightedGraph);
     }
-
 }

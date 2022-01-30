@@ -22,7 +22,7 @@ public class Exercise40_CrossoverToBinarySearch {
 
         int maxKey = 100000;
 
-        for(int i = 1; i <= maxKey; i++) {
+        for (int i = 1; i <= maxKey; i++) {
 
             sequentialSearchSymbolTable.put(i, i);
             binarySearchSymbolTable.put(i, i);
@@ -62,5 +62,4 @@ public class Exercise40_CrossoverToBinarySearch {
             }
         }
     }
-
 }

@@ -18,7 +18,7 @@ public class EdgeWeightedDigraph implements EdgeWeightedDigraphInterface {
         edges = 0;
         adjacent = (Bag<DirectedEdge>[]) new Bag[vertices];
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
             adjacent[vertex] = new Bag<>();
         }
     }
@@ -31,7 +31,7 @@ public class EdgeWeightedDigraph implements EdgeWeightedDigraphInterface {
             throw new IllegalArgumentException("Number of edges must be nonnegative");
         }
 
-        for(int i = 0; i < edges; i++) {
+        for (int i = 0; i < edges; i++) {
             int vertexFrom = in.readInt();
             int vertexTo = in.readInt();
             double weight = in.readDouble();
@@ -65,8 +65,8 @@ public class EdgeWeightedDigraph implements EdgeWeightedDigraphInterface {
     public Iterable<DirectedEdge> edges() {
         Bag<DirectedEdge> bag = new Bag<>();
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
-            for(DirectedEdge edge : adjacent[vertex]) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
+            for (DirectedEdge edge : adjacent[vertex]) {
                 bag.add(edge);
             }
         }
@@ -77,8 +77,8 @@ public class EdgeWeightedDigraph implements EdgeWeightedDigraphInterface {
     public EdgeWeightedDigraph reverse() {
         EdgeWeightedDigraph reverse = new EdgeWeightedDigraph(vertices);
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
-            for(DirectedEdge edge : adjacent(vertex)) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
+            for (DirectedEdge edge : adjacent(vertex)) {
                 int neighbor = edge.to();
                 reverse.addEdge(new DirectedEdge(neighbor, vertex, edge.weight()));
             }
@@ -91,10 +91,10 @@ public class EdgeWeightedDigraph implements EdgeWeightedDigraphInterface {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int vertex = 0; vertex < vertices(); vertex++) {
+        for (int vertex = 0; vertex < vertices(); vertex++) {
             stringBuilder.append(vertex).append(": ");
 
-            for(DirectedEdge neighbor : adjacent(vertex)) {
+            for (DirectedEdge neighbor : adjacent(vertex)) {
                 stringBuilder.append(neighbor).append(" ");
             }
             stringBuilder.append("\n");
@@ -102,5 +102,4 @@ public class EdgeWeightedDigraph implements EdgeWeightedDigraphInterface {
 
         return stringBuilder.toString();
     }
-
 }

@@ -77,7 +77,7 @@ public class Exercise24_StablePriorityQueue {
         }
 
         private void swim(int index) {
-            while(index / 2 >= 1) {
+            while (index / 2 >= 1) {
                 if ((orientation == Orientation.MAX && less(index / 2, index))
                         || (orientation == Orientation.MIN && more(index / 2, index))) {
                     exchange(index / 2, index);
@@ -198,5 +198,4 @@ public class Exercise24_StablePriorityQueue {
             StdOut.println(priorityQueueStable.deleteTop());
         }
     }
-
 }

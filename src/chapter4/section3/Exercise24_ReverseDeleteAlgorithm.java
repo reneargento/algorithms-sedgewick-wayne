@@ -19,20 +19,20 @@ public class Exercise24_ReverseDeleteAlgorithm {
         // edgeWeightedGraph.edgesCount() counts self-loops so we need to compute the count in some other way
         // In this case the list edgesList is used, just to compute the count of edges that are not self-loops
         List<Edge> edgesList = new ArrayList<>();
-        for(Edge edge : edgeWeightedGraph.edges()) {
+        for (Edge edge : edgeWeightedGraph.edges()) {
             edgesList.add(edge);
         }
 
         Edge[] edges = new Edge[edgesList.size()];
         int edgesArrayIndex = 0;
 
-        for(Edge edge : edgeWeightedGraph.edges()) {
+        for (Edge edge : edgeWeightedGraph.edges()) {
             edges[edgesArrayIndex++] = edge;
         }
 
         Arrays.sort(edges, Collections.reverseOrder());
 
-        for(Edge edge : edges) {
+        for (Edge edge : edges) {
             edgeWeightedGraph.deleteEdge(edge);
 
             ConnectedComponentsEdgeWeightedGraph connectedComponentsEdgeWeightedGraph =
@@ -45,7 +45,7 @@ public class Exercise24_ReverseDeleteAlgorithm {
 
         Queue<Edge> minimumSpanningTree = new Queue<>();
 
-        for(Edge edge : edgeWeightedGraph.edges()) {
+        for (Edge edge : edgeWeightedGraph.edges()) {
             minimumSpanningTree.enqueue(edge);
         }
 
@@ -82,7 +82,7 @@ public class Exercise24_ReverseDeleteAlgorithm {
 
         Queue<Edge> minimumSpanningTree1 = reverseDeleteAlgorithm.minimumSpanningTreeWithReverseDelete(edgeWeightedGraph1);
 
-        for(Edge edge : minimumSpanningTree1) {
+        for (Edge edge : minimumSpanningTree1) {
             StdOut.println(edge);
         }
 
@@ -96,7 +96,7 @@ public class Exercise24_ReverseDeleteAlgorithm {
 
         Queue<Edge> minimumSpanningTree2 = reverseDeleteAlgorithm.minimumSpanningTreeWithReverseDelete(edgeWeightedGraph2);
 
-        for(Edge edge : minimumSpanningTree2) {
+        for (Edge edge : minimumSpanningTree2) {
             StdOut.println(edge);
         }
 
@@ -110,5 +110,4 @@ public class Exercise24_ReverseDeleteAlgorithm {
                 "1-2 0.41000\n" +
                 "0-1 0.30000");
     }
-
 }

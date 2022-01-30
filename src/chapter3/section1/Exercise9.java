@@ -19,20 +19,19 @@ public class Exercise9 {
         String[] words = FileUtil.getAllStringsFromFile(filePath);
 
         StdOut.printf("%12s %16s %16s\n", "Length cutoff", "Last word inserted", "Words processed");
-        for(int i = 0; i < minLengths.length; i++) {
+        for (int i = 0; i < minLengths.length; i++) {
             frequencyCounter(words, minLengths[i]);
         }
     }
 
     private void frequencyCounter(String[] words, int minLength) {
-
         int totalWordsProcessed = 0;
         int wordsProcessedPriorToLastInsertion = 0;
         String lastWordInserted = "";
 
         BinarySearchSymbolTable<String, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(String word : words) {
+        for (String word : words) {
             totalWordsProcessed++;
 
             if (word.length() < minLength) {
@@ -51,17 +50,15 @@ public class Exercise9 {
         String max = "";
         binarySearchSymbolTable.put(max, 0);
 
-        for(String word : binarySearchSymbolTable.keys()) {
+        for (String word : binarySearchSymbolTable.keys()) {
             if (binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
                 max = word;
             }
         }
-
         printResults(minLength, lastWordInserted, wordsProcessedPriorToLastInsertion);
     }
 
     private void printResults(int lengthCutoff, String lastWordInserted, int wordsProcessedPriorToLastInsertion) {
         StdOut.printf("%13d %18s %16d\n", lengthCutoff, lastWordInserted, wordsProcessedPriorToLastInsertion);
     }
-
 }

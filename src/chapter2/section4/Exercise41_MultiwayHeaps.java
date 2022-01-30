@@ -30,7 +30,7 @@ public class Exercise41_MultiwayHeaps {
 
         private void constructHeap() {
             // No need to sink the leaves
-            for(int i = array.length / numberOfChildrenPerNode + 1; i >= 1; i--) {
+            for (int i = array.length / numberOfChildrenPerNode + 1; i >= 1; i--) {
                 sink(array, i, array.length - 1);
             }
         }
@@ -54,7 +54,7 @@ public class Exercise41_MultiwayHeaps {
 
                 int biggestChildIndex = smallestChildIndex;
 
-                for(int childIndex = smallestChildIndex + 1; childIndex <= highestChildIndex; childIndex++) {
+                for (int childIndex = smallestChildIndex + 1; childIndex <= highestChildIndex; childIndex++) {
 
                     numberOfCompares++;
                     if (childIndex <= endIndex && ArrayUtil.less(array[biggestChildIndex], array[childIndex])) {
@@ -82,7 +82,7 @@ public class Exercise41_MultiwayHeaps {
         int[] arraySizes = {1000, 1000000, 100000000};
 
         Map<Integer, Comparable[] > allInputArrays = new HashMap<>();
-        for(int i = 0; i < arraySizes.length; i++) {
+        for (int i = 0; i < arraySizes.length; i++) {
             Comparable[] array = ArrayGenerator.generateDistinctValuesShuffledArray(arraySizes[i]);
             array[0] = null; //0 index is not used on heaps
             allInputArrays.put(i, array);
@@ -97,7 +97,7 @@ public class Exercise41_MultiwayHeaps {
         StdOut.printf("%13s %25s %25s %25s\n", "Array Size | ","Number of Compares Std Impl | ", "Number of Compares 3-Ary Heap | "
                 , "Number of Compares 4-Ary Heap");
 
-        for(int i = 0; i < allInputArrays.size(); i++) {
+        for (int i = 0; i < allInputArrays.size(); i++) {
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] arrayCopy1 = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, arrayCopy1, 0, originalArray.length);

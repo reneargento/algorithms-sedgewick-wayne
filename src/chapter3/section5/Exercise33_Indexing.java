@@ -17,13 +17,12 @@ public class Exercise33_Indexing {
             LinearProbingHashTable<String, Queue<String>> symbolTable1 = new LinearProbingHashTable<>(997);
             LinearProbingHashTable<String, Queue<String>> symbolTable2 = new LinearProbingHashTable<>(997);
 
-            //Using Java's set to avoid duplicate keys and to transform it in an array with the toArray() method later
+            // Using Java's set to avoid duplicate keys and to transform it in an array with the toArray() method later
             java.util.Set<String> keys = new java.util.HashSet<>();
 
             boolean isTitleRow = true;
 
             while (in.hasNextLine()) {
-
                 String[] tokens = in.readLine().split(separator);
 
                 if (isTitleRow) {
@@ -33,7 +32,7 @@ public class Exercise33_Indexing {
 
                 String key = tokens[0];
 
-                for(int i = 1; i < tokens.length; i++) {
+                for (int i = 1; i < tokens.length; i++) {
                     String value = tokens[i];
 
                     if (!symbolTable1.contains(key)) {
@@ -53,9 +52,9 @@ public class Exercise33_Indexing {
 
             String[] keysArray = keys.toArray(new String[keys.size()]);
 
-            //Queries
-            for(int i = 0; i < numberOfQueries; i++) {
-                //Randomly chooses if this query will be a key hit or a key miss
+            // Queries
+            for (int i = 0; i < numberOfQueries; i++) {
+                // Randomly chooses if this query will be a key hit or a key miss
                 int keyHit = StdRandom.uniform(2);
                 boolean isKeyHit = keyHit == 1;
 
@@ -69,14 +68,14 @@ public class Exercise33_Indexing {
                 }
 
                 if (symbolTable1.contains(query)) {
-                    for(String value : symbolTable1.get(query)) {
-                        //Loop through values
+                    for (String value : symbolTable1.get(query)) {
+                        // Loop through values
                     }
                 }
 
                 if (symbolTable2.contains(query)) {
-                    for(String value : symbolTable2.get(query)) {
-                        //Loop through values
+                    for (String value : symbolTable2.get(query)) {
+                        // Loop through values
                     }
                 }
             }
@@ -85,15 +84,13 @@ public class Exercise33_Indexing {
         private String generateRandomKey() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
                 int ascIIRandomValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                         Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                 stringBuilder.append(((char) ascIIRandomValue));
             }
-
             return stringBuilder.toString();
         }
-
     }
 
     private static final String LARGE_INPUT_FILE_PATH1 = Constants.FILES_PATH + Constants.SURNAMES_CSV_FILE;
@@ -109,8 +106,8 @@ public class Exercise33_Indexing {
 
         StdOut.printf("%18s %20s %10s\n", "Large input | ", "Number of queries | ", "Time spent");
 
-        for(int q = 0; q < numberOfQueries.length; q++) {
-            for(int f = 0; f < filePaths.length; f++) {
+        for (int q = 0; q < numberOfQueries.length; q++) {
+            for (int f = 0; f < filePaths.length; f++) {
                 Stopwatch stopwatch = new Stopwatch();
                 lookupIndex.lookupIndex(filePaths[f], SEPARATOR, numberOfQueries[q]);
                 double timeSpent = stopwatch.elapsedTime();
@@ -127,5 +124,4 @@ public class Exercise33_Indexing {
     public static void main(String[] args) {
         new Exercise33_Indexing().doExperiment();
     }
-
 }

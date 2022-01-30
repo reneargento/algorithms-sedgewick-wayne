@@ -201,7 +201,7 @@ public class Exercise25_PointsInThePlane {
         StdOut.println("Order by X coordinate");
         Arrays.sort(points, new XOrder());
 
-        for(Point2D point2D : points) {
+        for (Point2D point2D : points) {
             StdOut.print(point2D.x + " ");
         }
 
@@ -211,7 +211,7 @@ public class Exercise25_PointsInThePlane {
         StdOut.println("\nOrder by Y coordinate");
         Arrays.sort(points, new YOrder());
 
-        for(Point2D point2D : points) {
+        for (Point2D point2D : points) {
             StdOut.print(point2D.y + " ");
         }
 
@@ -221,7 +221,7 @@ public class Exercise25_PointsInThePlane {
         StdOut.println("\nOrder by distance from origin");
         Arrays.sort(points, new DistanceFromOriginOrder());
 
-        for(Point2D point2D : points) {
+        for (Point2D point2D : points) {
             StdOut.print(point2D.x + " ");
         }
 
@@ -231,7 +231,7 @@ public class Exercise25_PointsInThePlane {
         StdOut.println("\nOrder by distance from specified point");
         Arrays.sort(points, point2D2.distanceFromPointComparator);
 
-        for(Point2D point2D : points) {
+        for (Point2D point2D : points) {
             StdOut.print(point2D.x + " ");
         }
 
@@ -241,11 +241,10 @@ public class Exercise25_PointsInThePlane {
         StdOut.println("\nOrder by polar angle distance from specified point");
         Arrays.sort(points, point2D2.polarAngleFromThisPointComparator);
 
-        for(Point2D point2D : points) {
+        for (Point2D point2D : points) {
             StdOut.print(point2D.x + " ");
         }
 
         StdOut.println("\nExpected: 92.12 0.2 20.0 30.0");
     }
-
 }

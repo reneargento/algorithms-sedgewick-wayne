@@ -27,7 +27,7 @@ public class Exercise29_SortFilesBySizeAndDate {
             return;
         }
 
-        for(File file : sortedFiles) {
+        for (File file : sortedFiles) {
             StdOut.println(file);
         }
     }
@@ -40,7 +40,7 @@ public class Exercise29_SortFilesBySizeAndDate {
         }
 
         List<File> allFiles = new ArrayList<>();
-        for(File file : filesInCurrentDirectory) {
+        for (File file : filesInCurrentDirectory) {
             if (!file.isDirectory()) {
                 allFiles.add(file);
             }
@@ -61,7 +61,7 @@ public class Exercise29_SortFilesBySizeAndDate {
          * -s -t and -n can be followed by -d to specify a decreasing order
          *  if nothing is specified, the default is increasing order
          */
-        for(int i = flags.length - 1; i >= 0; i--) {
+        for (int i = flags.length - 1; i >= 0; i--) {
             String flag = flags[i];
 
             boolean isDecreasing = flag.equals("-d");
@@ -195,5 +195,4 @@ public class Exercise29_SortFilesBySizeAndDate {
             }
         };
     }
-
 }

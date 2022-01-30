@@ -25,7 +25,7 @@ public class Exercise22_Timings {
         // Key generator 1: Random decimal keys
         String randomStringType = "Decimal keys";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             String[] randomStringsLSD = Exercise18_RandomDecimalKeys.randomDecimalKeys(numberOfStrings, numberOfCharacters);
 
             String[] randomStringsMSD = new String[randomStringsLSD.length];
@@ -50,7 +50,7 @@ public class Exercise22_Timings {
         // Key generator 2: Random CA license plates
         randomStringType = "CA license plates";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             String[] randomStringsLSD = Exercise19_RandomCALicensePlates.randomPlatesCA(numberOfStrings);
 
             String[] randomStringsMSD = new String[randomStringsLSD.length];
@@ -75,7 +75,7 @@ public class Exercise22_Timings {
         // Key generator 3: Random fixed-length words
         randomStringType = "Fixed length words";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             String[] randomStringsLSD =  Exercise20_RandomFixedLengthWords.randomFixedLengthWords(numberOfStrings,
                     numberOfCharacters);
 
@@ -101,7 +101,7 @@ public class Exercise22_Timings {
         // Key generator 4: Random variable length items
         randomStringType = "Variable length items";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             // LSD algorithm cannot be used here
             String[] randomStringsMSD =  Exercise21_RandomItems.randomItems(numberOfStrings, randomItemsGivenValues);
 
@@ -162,5 +162,4 @@ public class Exercise22_Timings {
         new Exercise22_Timings().generateStringsAndDoExperiments(experiments, numberOfStrings, numberOfCharacters,
                 randomItemsGivenValues);
     }
-
 }

@@ -11,7 +11,6 @@ import java.util.Comparator;
 public class Exercise27_OneDimensionalIntervals {
 
     private class Interval1D {
-
         private double left;
         private double right;
 
@@ -112,35 +111,31 @@ public class Exercise27_OneDimensionalIntervals {
 
         Interval1D[] interval1Ds = {interval1, interval2, interval3, interval4, interval5};
 
-        //Order by left endpoint
+        // Order by left endpoint
         StdOut.println("Order by left endpoint");
 
         Arrays.sort(interval1Ds, oneDimensionalIntervals.comparatorByLeftEndpoint());
-        for(Interval1D interval1D : interval1Ds) {
+        for (Interval1D interval1D : interval1Ds) {
             StdOut.print(interval1D + " ");
         }
-
         StdOut.println("\nExpected: (-10.0, 30.0) (22.34, 22.38) (30.0, 45.2) (40.0, 100.0) (90.0, 95.0)");
 
-        //Order by right endpoint
+        // Order by right endpoint
         StdOut.println("\nOrder by right endpoint");
 
         Arrays.sort(interval1Ds, oneDimensionalIntervals.comparatorByRightEndpoint());
-        for(Interval1D interval1D : interval1Ds) {
+        for (Interval1D interval1D : interval1Ds) {
             StdOut.print(interval1D + " ");
         }
-
         StdOut.println("\nExpected: (22.34, 22.38) (-10.0, 30.0) (30.0, 45.2) (90.0, 95.0) (40.0, 100.0)");
 
-        //Order by length
+        // Order by length
         StdOut.println("\nOrder by length");
 
         Arrays.sort(interval1Ds, oneDimensionalIntervals.comparatorByLength());
-        for(Interval1D interval1D : interval1Ds) {
+        for (Interval1D interval1D : interval1Ds) {
             StdOut.print(interval1D + " ");
         }
-
         StdOut.println("\nExpected: (22.34, 22.38) (90.0, 95.0) (30.0, 45.2) (-10.0, 30.0) (40.0, 100.0)");
     }
-
 }

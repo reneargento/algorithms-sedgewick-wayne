@@ -74,7 +74,7 @@ public class Exercise15_1_TwoSumFaster {
             return 0;
         }
 
-        while(start < end) {
+        while (start < end) {
             if (array[start] + array[end] > 0) {
                 end--;
             } else if (array[start] + array[end] < 0) {
@@ -127,5 +127,4 @@ public class Exercise15_1_TwoSumFaster {
     private static int handleZerosEdgeCase(int numberOfZeros) {
         return (numberOfZeros * (numberOfZeros - 1)) / 2;
     }
-
 }

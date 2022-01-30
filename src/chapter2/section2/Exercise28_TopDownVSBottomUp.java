@@ -35,7 +35,7 @@ public class Exercise28_TopDownVSBottomUp {
 
         int numberOfExperiments = 4;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
             Comparable[] currentArray = arrays.get(i);
 
             double timeTopDownMergeSort = time(MergeSortType.TOP_DOWN, currentArray);
@@ -47,7 +47,6 @@ public class Exercise28_TopDownVSBottomUp {
     }
 
     public static double time(MergeSortType mergeSortType, Comparable[] originalArray) {
-
         Comparable[] copyArray = new Comparable[originalArray.length];
         System.arraycopy(originalArray, 0, copyArray, 0, originalArray.length);
 
@@ -61,5 +60,4 @@ public class Exercise28_TopDownVSBottomUp {
 
         return timer.elapsedTime();
     }
-
 }

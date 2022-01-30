@@ -111,7 +111,7 @@ public class Exercise43_ResizingArraysVersusLinkedList<Item> {
 
             Item[] newValues = (Item[]) new Object[newCapacity];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 newValues[i] = values[i];
             }
 
@@ -135,10 +135,10 @@ public class Exercise43_ResizingArraysVersusLinkedList<Item> {
 
         double[][] runningTimes = new double[resizingArrayRunningTimes.size()][2];
 
-        for(int i = 0; i < resizingArrayRunningTimes.size(); i++) {
+        for (int i = 0; i < resizingArrayRunningTimes.size(); i++) {
             runningTimes[i][0] = resizingArrayRunningTimes.get(i);
         }
-        for(int i = 0; i < linkedListRunningTimes.size(); i++) {
+        for (int i = 0; i < linkedListRunningTimes.size(); i++) {
             runningTimes[i][1] = linkedListRunningTimes.get(i);
         }
 
@@ -149,11 +149,10 @@ public class Exercise43_ResizingArraysVersusLinkedList<Item> {
 
         List<Double> runningTimes = new LinkedList<>();
 
-        for(int n = INITIAL_NUMBER_OF_OPERATIONS; n <= FINAL_NUMBER_OF_OPERATIONS; n += n) {
+        for (int n = INITIAL_NUMBER_OF_OPERATIONS; n <= FINAL_NUMBER_OF_OPERATIONS; n += n) {
             double runningTime = timeTrial(n, stack);
             runningTimes.add(runningTime);
         }
-
         return runningTimes;
     }
 
@@ -161,7 +160,7 @@ public class Exercise43_ResizingArraysVersusLinkedList<Item> {
         int max = 1000000;
         int[] numbers = new int[n];
 
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             numbers[i] = StdRandom.uniform(-max, max);
         }
 
@@ -169,11 +168,11 @@ public class Exercise43_ResizingArraysVersusLinkedList<Item> {
 
         //N pushes and pop operations
 
-        for(int number : numbers) {
+        for (int number : numbers) {
             stack.push(number);
         }
 
-        while(!stack.isEmpty()) {
+        while (!stack.isEmpty()) {
             stack.pop();
         }
 
@@ -185,7 +184,7 @@ public class Exercise43_ResizingArraysVersusLinkedList<Item> {
 
         int numberOfOperations = INITIAL_NUMBER_OF_OPERATIONS;
 
-        for(int i = 0; i < runningTimes.length; i++) {
+        for (int i = 0; i < runningTimes.length; i++) {
             StdOut.printf("%13d %7.1f %6.1f", numberOfOperations, runningTimes[i][0], runningTimes[i][1]);
             StdOut.printf("%9.1f\n", runningTimes[i][0] / runningTimes[i][1]);
 

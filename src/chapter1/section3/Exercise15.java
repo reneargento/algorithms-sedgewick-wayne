@@ -32,11 +32,10 @@ public class Exercise15 {
 
 		Queue<String> queue = new Queue<>();
 
-		for(String string : stringsInput) {
+		for (String string : stringsInput) {
 			queue.enqueue(string);
 		}
 		
 		printItems(queue, k);
 	}
-	
 }

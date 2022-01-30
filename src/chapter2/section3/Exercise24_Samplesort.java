@@ -34,20 +34,19 @@ public class Exercise24_Samplesort {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
-
+        for (int i = 0; i < numberOfExperiments; i++) {
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
-            //Default QuickSort
+            // Default QuickSort
             Stopwatch quickSortTimer = new Stopwatch();
 
             QuickSort.quickSort(originalArray);
 
             double quickSortRunningTime = quickSortTimer.elapsedTime();
 
-            //SampleSort
+            // SampleSort
             Stopwatch sampleSortTimer = new Stopwatch();
 
             sampleSort(array, sampleSize);
@@ -66,7 +65,6 @@ public class Exercise24_Samplesort {
     }
 
     private static void sampleSort(Comparable[] array, int low, int high, int sampleSize) {
-
         if (low >= high) {
             return;
         }
@@ -77,7 +75,6 @@ public class Exercise24_Samplesort {
     }
 
     private static int partition(Comparable[] array, int low, int high, int sampleSize) {
-
         if (sampleSize <= high - low + 1) {
             InsertionSort.insertionSort(array, low, low + sampleSize - 1);
             int pivotIndex = low + sampleSize / 2; // Median of the sample
@@ -89,14 +86,14 @@ public class Exercise24_Samplesort {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot)) {
                 if (i == high) {
                     break;
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if (j == low) {
                     break;
                 }
@@ -109,7 +106,7 @@ public class Exercise24_Samplesort {
             ArrayUtil.exchange(array, i, j);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, j);
         return j;
     }

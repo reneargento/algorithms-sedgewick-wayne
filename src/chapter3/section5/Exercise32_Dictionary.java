@@ -43,7 +43,7 @@ public class Exercise32_Dictionary {
             String[] keysArray = keys.toArray(new String[keys.size()]);
 
             // Queries
-            for(int i = 0; i < numberOfQueries; i++) {
+            for (int i = 0; i < numberOfQueries; i++) {
                 // Randomly chooses if this will be a key hit or a key miss query
                 int keyHit = StdRandom.uniform(2);
                 boolean isKeyHit = keyHit == 1;
@@ -66,15 +66,13 @@ public class Exercise32_Dictionary {
         private String generateRandomKey() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
                 int ascIIRandomValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                         Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
                 stringBuilder.append(((char) ascIIRandomValue));
             }
-
             return stringBuilder.toString();
         }
-
     }
 
     private static final String LARGE_INPUT_FILE_PATH1 = Constants.FILES_PATH + Constants.SURNAMES_CSV_FILE;
@@ -89,8 +87,8 @@ public class Exercise32_Dictionary {
 
         StdOut.printf("%18s %20s %10s\n", "Large input | ", "Number of queries | ", "Time spent");
 
-        for(int q = 0; q < numberOfQueries.length; q++) {
-            for(int f = 0; f < filePaths.length; f++) {
+        for (int q = 0; q < numberOfQueries.length; q++) {
+            for (int f = 0; f < filePaths.length; f++) {
                 In in = new In(filePaths[f]);
                 String line = in.readLine();
                 String[] tokens = line.split(",");
@@ -114,5 +112,4 @@ public class Exercise32_Dictionary {
     public static void main(String[] args) {
         new Exercise32_Dictionary().doExperiment();
     }
-
 }

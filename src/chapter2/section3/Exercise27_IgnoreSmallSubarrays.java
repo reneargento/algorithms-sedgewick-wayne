@@ -33,7 +33,7 @@ public class Exercise27_IgnoreSmallSubarrays {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
@@ -63,7 +63,6 @@ public class Exercise27_IgnoreSmallSubarrays {
     }
 
     private static void quickSort(Comparable[] array, int low, int high) {
-
         if (low >= high) {
             return;
         }
@@ -86,14 +85,14 @@ public class Exercise27_IgnoreSmallSubarrays {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot)) {
                 if (i == high) {
                     break;
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if (j == low) {
                     break;
                 }
@@ -106,7 +105,7 @@ public class Exercise27_IgnoreSmallSubarrays {
             ArrayUtil.exchange(array, i, j);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, j);
         return j;
     }
@@ -114,5 +113,4 @@ public class Exercise27_IgnoreSmallSubarrays {
     private static void printResults(int arraySize, double quickSortWithCutoffRunningTime, double quickSortIgnoringSmallSubArraysRunningTime) {
         StdOut.printf("%10d %35.1f %37.1f\n", arraySize, quickSortWithCutoffRunningTime, quickSortIgnoringSmallSubArraysRunningTime);
     }
-
 }

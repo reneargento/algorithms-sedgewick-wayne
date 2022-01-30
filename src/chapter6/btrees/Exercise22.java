@@ -25,7 +25,7 @@ public class Exercise22 {
 
         StdOut.printf("%20s %14s %16s\n", "Number of searches | ", "B-tree time | ", "Binary search time");
 
-        for(int numberOfSearches : numberOfSearchValues) {
+        for (int numberOfSearches : numberOfSearchValues) {
             double[] results = new double[2];
 
             int[] randomKeysToSearch =
@@ -76,5 +76,4 @@ public class Exercise22 {
     public static void main(String[] args) {
         new Exercise22().doExperiment();
     }
-
 }

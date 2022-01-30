@@ -25,7 +25,7 @@ public class Exercise25_WorstCaseGenerator {
             edges = 0;
             adjacent = (Queue<Edge>[]) new Queue[vertices];
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 adjacent[vertex] = new Queue<>();
             }
         }
@@ -38,7 +38,7 @@ public class Exercise25_WorstCaseGenerator {
                 throw new IllegalArgumentException("Number of edges must be nonnegative");
             }
 
-            for(int i = 0; i < edges; i++) {
+            for (int i = 0; i < edges; i++) {
                 int vertex1 = in.readInt();
                 int vertex2 = in.readInt();
                 double weight = in.readDouble();
@@ -72,8 +72,8 @@ public class Exercise25_WorstCaseGenerator {
         public Iterable<Edge> edges() {
             Bag<Edge> edges = new Bag<>();
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
-                for(Edge edge : adjacent[vertex]) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
+                for (Edge edge : adjacent[vertex]) {
                     if (edge.other(vertex) > vertex) {
                         edges.add(edge);
                     }
@@ -87,10 +87,10 @@ public class Exercise25_WorstCaseGenerator {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(Edge neighbor : adjacent(vertex)) {
+                for (Edge neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
@@ -105,8 +105,8 @@ public class Exercise25_WorstCaseGenerator {
     public EdgeWeightedGraph generateWorstCaseGraphForLazyPrim(int vertices) {
         EdgeWeightedGraph edgeWeightedGraph = new EdgeWeightedGraph(vertices);
 
-        for(int vertex1 = 0; vertex1 < vertices; vertex1++) {
-            for(int vertex2 = vertex1 + 1; vertex2 < vertices; vertex2++) {
+        for (int vertex1 = 0; vertex1 < vertices; vertex1++) {
+            for (int vertex2 = vertex1 + 1; vertex2 < vertices; vertex2++) {
                 double weight = StdRandom.uniform();
                 Edge edge = new Edge(vertex1, vertex2, weight);
                 edgeWeightedGraph.addEdge(edge);
@@ -127,10 +127,10 @@ public class Exercise25_WorstCaseGenerator {
         double maxWeight = StdRandom.uniform();
         double valueToDecrease = 0.00001;
 
-        for(int vertex1 = 0; vertex1 < vertices; vertex1++) {
+        for (int vertex1 = 0; vertex1 < vertices; vertex1++) {
             valueToDecrease = valueToDecrease + 0.00001;
 
-            for(int vertex2 = vertex1 + 1; vertex2 < vertices; vertex2++) {
+            for (int vertex2 = vertex1 + 1; vertex2 < vertices; vertex2++) {
                 double weight = maxWeight - valueToDecrease;
                 Edge edge = new Edge(vertex1, vertex2, weight);
                 edgeWeightedGraph.addEdge(edge);
@@ -151,5 +151,4 @@ public class Exercise25_WorstCaseGenerator {
                 worstCaseGenerator.generateWorstCaseGraphForEagerPrim(numberOfVertices);
         StdOut.println(worstCaseForEagerPrim);
     }
-
 }

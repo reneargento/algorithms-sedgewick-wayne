@@ -34,7 +34,7 @@ public class Exercise12_Alphabet {
 
             charToIndexMap = new SeparateChainingHashTable<>();
 
-            for(int index = 0; index < indexToChar.length; index++) {
+            for (int index = 0; index < indexToChar.length; index++) {
                 charToIndexMap.put(indexToChar[index], index);
             }
         }
@@ -71,7 +71,7 @@ public class Exercise12_Alphabet {
             int[] indices = new int[string.length()];
             char[] chars = string.toCharArray();
 
-            for(int i = 0; i < chars.length; i++) {
+            for (int i = 0; i < chars.length; i++) {
                 indices[i] = toIndex(chars[i]);
             }
 
@@ -81,7 +81,7 @@ public class Exercise12_Alphabet {
         public String toChars(int[] indices) {
             StringBuilder chars = new StringBuilder();
 
-            for(int i = 0; i < indices.length; i++) {
+            for (int i = 0; i < indices.length; i++) {
                 chars.append(toChar(indices[i]));
             }
 
@@ -92,34 +92,33 @@ public class Exercise12_Alphabet {
     public class LSDGeneralAlphabet {
 
         public void lsdSort(AlphabetAPI alphabet, String[] array, int stringsLength) {
-
             int alphabetSize = alphabet.R();
             String[] auxArray = new String[array.length];
 
-            for(int digit = stringsLength - 1; digit >= 0; digit--) {
+            for (int digit = stringsLength - 1; digit >= 0; digit--) {
                 // Sort by key-indexed counting on digitTh char
 
                 // Compute frequency counts
                 int count[] = new int[alphabetSize + 1];
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     int digitIndex = alphabet.toIndex(array[i].charAt(digit));
                     count[digitIndex + 1]++;
                 }
 
                 // Transform counts to indices
-                for(int r = 0; r < alphabetSize; r++) {
+                for (int r = 0; r < alphabetSize; r++) {
                     count[r + 1] += count[r];
                 }
 
                 // Distribute
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     int digitIndex = alphabet.toIndex(array[i].charAt(digit));
                     int indexInAuxArray = count[digitIndex]++;
                     auxArray[indexInAuxArray] = array[i];
                 }
 
                 // Copy back
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     array[i] = auxArray[i];
                 }
             }
@@ -127,7 +126,6 @@ public class Exercise12_Alphabet {
     }
 
     public class MSDGeneralAlphabet {
-
         private int alphabetSize;
         private final int CUTOFF_FOR_SMALL_SUBARRAYS = 15;
         private String[] auxArray;
@@ -151,30 +149,30 @@ public class Exercise12_Alphabet {
 
             // Compute frequency counts
             int[] count = new int[alphabetSize + 2];
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 int digitIndex = charAt(array[i], digit) + 2;
                 count[digitIndex]++;
             }
 
             // Transform counts to indices
-            for(int r = 0; r < alphabetSize + 1; r++) {
+            for (int r = 0; r < alphabetSize + 1; r++) {
                 count[r + 1] += count[r];
             }
 
             // Distribute
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 int digitIndex = charAt(array[i], digit) + 1;
                 int indexInAuxArray = count[digitIndex]++;
                 auxArray[indexInAuxArray] = array[i];
             }
 
             // Copy back
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 array[i] = auxArray[i - low];
             }
 
             // Recursively sort for each character value
-            for(int r = 0; r < alphabetSize; r++) {
+            for (int r = 0; r < alphabetSize; r++) {
                 sort(array, low + count[r], low + count[r + 1] - 1,digit + 1);
             }
         }
@@ -234,7 +232,7 @@ public class Exercise12_Alphabet {
         StdOut.print("toIndices(Aemj): ");
         StringJoiner toIndicesStringJoiner = new StringJoiner(" ");
 
-        for(int index : toIndices) {
+        for (int index : toIndices) {
             toIndicesStringJoiner.add(String.valueOf(index));
         }
 
@@ -270,7 +268,7 @@ public class Exercise12_Alphabet {
 
         StringJoiner sortedArray1 = new StringJoiner(" ");
 
-        for(String stringInSortedArray : array1) {
+        for (String stringInSortedArray : array1) {
             sortedArray1.add(stringInSortedArray);
         }
         StdOut.println("Sorted array 1");
@@ -290,7 +288,7 @@ public class Exercise12_Alphabet {
 
         StringJoiner sortedArray2 = new StringJoiner(" ");
 
-        for(String stringInSortedArray : array2) {
+        for (String stringInSortedArray : array2) {
             sortedArray2.add(stringInSortedArray);
         }
         StdOut.println("Sorted array 2");
@@ -298,5 +296,4 @@ public class Exercise12_Alphabet {
         StdOut.println("Expected: \n3WayStringQuickSort Alg Algorithms Arg Argento BFS Bellman DFS Dijkstra Floyd Ford " +
                 "Johnson LSD MSD Rene Sedgewick Warshall Wayne\n");
     }
-
 }

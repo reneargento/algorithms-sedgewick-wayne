@@ -22,7 +22,7 @@ public class Exercise53_PathLengthsInDFS {
 
         Exercise45_RandomDigraphs exercise45_randomDigraphs = new Exercise45_RandomDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             DigraphInterface randomDigraph = exercise45_randomDigraphs.erdosRenyiDigraph(vertices, edges);
             int[] experimentResults = doExperiment(randomDigraph);
 
@@ -40,7 +40,7 @@ public class Exercise53_PathLengthsInDFS {
 
         Exercise46_RandomSimpleDigraphs exercise46_randomSimpleDigraphs = new Exercise46_RandomSimpleDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             DigraphInterface randomSimpleDigraph = exercise46_randomSimpleDigraphs.randomDigraph(vertices, edges);
             int[] experimentResults = doExperiment(randomSimpleDigraph);
 
@@ -60,7 +60,7 @@ public class Exercise53_PathLengthsInDFS {
 
         List<DigraphInterface> randomSparseDigraphs = exercise47_randomSparseDigraphs.randomSparseDigraph(experiments, vertices);
 
-        for(DigraphInterface randomSparseDigraph : randomSparseDigraphs) {
+        for (DigraphInterface randomSparseDigraph : randomSparseDigraphs) {
             int[] experimentResults = doExperiment(randomSparseDigraph);
 
             totalPathsFound += experimentResults[0];
@@ -68,12 +68,10 @@ public class Exercise53_PathLengthsInDFS {
         }
 
         int edgesInSparseDigraphs = vertices * 3;
-
         computeAndPrintResults(digraphType, experiments, vertices, edgesInSparseDigraphs, totalPathsFound, totalPathLengths);
     }
 
     private int[] doExperiment(DigraphInterface digraph) {
-
         int[] experimentResult = new int[2];
         int totalPathLength = 0;
 
@@ -84,7 +82,7 @@ public class Exercise53_PathLengthsInDFS {
         boolean foundPath = depthFirstDirectedPaths.hasPathTo(randomDestinationVertex);
 
         if (foundPath) {
-            for(int vertexInPath : depthFirstDirectedPaths.pathTo(randomDestinationVertex)) {
+            for (int vertexInPath : depthFirstDirectedPaths.pathTo(randomDestinationVertex)) {
                 totalPathLength++;
             }
         }
@@ -116,5 +114,4 @@ public class Exercise53_PathLengthsInDFS {
 
         new Exercise53_PathLengthsInDFS().generateDigraphsAndDoExperiments(experiments, vertices, edges);
     }
-
 }

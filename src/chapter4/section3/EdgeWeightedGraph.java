@@ -18,7 +18,7 @@ public class EdgeWeightedGraph implements EdgeWeightedGraphInterface {
         edges = 0;
         adjacent = (Bag<Edge>[]) new Bag[vertices];
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
             adjacent[vertex] = new Bag<>();
         }
     }
@@ -31,7 +31,7 @@ public class EdgeWeightedGraph implements EdgeWeightedGraphInterface {
             throw new IllegalArgumentException("Number of edges must be nonnegative");
         }
 
-        for(int i = 0; i < edges; i++) {
+        for (int i = 0; i < edges; i++) {
             int vertex1 = in.readInt();
             int vertex2 = in.readInt();
             double weight = in.readDouble();
@@ -65,8 +65,8 @@ public class EdgeWeightedGraph implements EdgeWeightedGraphInterface {
     public Iterable<Edge> edges() {
         Bag<Edge> edges = new Bag<>();
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
-            for(Edge edge : adjacent[vertex]) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
+            for (Edge edge : adjacent[vertex]) {
                 if (edge.other(vertex) > vertex) {
                     edges.add(edge);
                 }
@@ -80,10 +80,10 @@ public class EdgeWeightedGraph implements EdgeWeightedGraphInterface {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int vertex = 0; vertex < vertices(); vertex++) {
+        for (int vertex = 0; vertex < vertices(); vertex++) {
             stringBuilder.append(vertex).append(": ");
 
-            for(Edge neighbor : adjacent(vertex)) {
+            for (Edge neighbor : adjacent(vertex)) {
                 stringBuilder.append(neighbor).append(" ");
             }
             stringBuilder.append("\n");

@@ -82,7 +82,7 @@ public class Exercise35_RandomQueue {
             int count = 0;
             StdOut.println("Hand " + (i + 1));
 
-            while(count < 13) {
+            while (count < 13) {
                 StdOut.println(randomQueue.dequeue());
                 count++;
             }

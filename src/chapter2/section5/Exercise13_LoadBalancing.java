@@ -96,7 +96,7 @@ public class Exercise13_LoadBalancing {
         Job[] jobs = new Job[input.length];
         int jobsIndex = 0;
 
-        for(String jobString : input) {
+        for (String jobString : input) {
             String[] jobDescription = jobString.split(" ");
             String name = jobDescription[0];
             int processingTime = Integer.parseInt(jobDescription[1]);
@@ -107,7 +107,7 @@ public class Exercise13_LoadBalancing {
         Arrays.sort(jobs);
 
         PriorityQueue<Processor> heap = new PriorityQueue<>();
-        for(int i = 0; i < numberOfProcessors; i++) {
+        for (int i = 0; i < numberOfProcessors; i++) {
             Processor processor = new Processor("Processor " + i);
             heap.add(processor);
         }
@@ -125,10 +125,9 @@ public class Exercise13_LoadBalancing {
     }
 
     private void loadBalanceAndPrintSchedule(Job[] jobs, PriorityQueue<Processor> heap) {
-
-        for(int i = 0; i < jobs.length; i++) {
+        for (int i = 0; i < jobs.length; i++) {
             Processor nextProcessorAvailable = heap.remove();
-            //Assign job to the next available processor
+            // Assign job to the next available processor
             nextProcessorAvailable.assignJob(jobs[i]);
             nextProcessorAvailable.sumOfJobsAssignedProcessingTime += jobs[i].processingTime;
 
@@ -136,7 +135,5 @@ public class Exercise13_LoadBalancing {
 
             heap.add(nextProcessorAvailable);
         }
-
     }
-
 }

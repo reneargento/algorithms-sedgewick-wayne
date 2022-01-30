@@ -38,7 +38,7 @@ public class Exercise12_SublinearExtraSpace {
     private static Comparable[] generateRandomArray(int arrayLength) {
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.uniform();
         }
 
@@ -46,16 +46,16 @@ public class Exercise12_SublinearExtraSpace {
     }
 
     private static void selectionSortBlocks(Comparable[] array, int blockSize) {
-        for(int i = 0; i < array.length; i += blockSize) {
+        for (int i = 0; i < array.length; i += blockSize) {
             selectionSort(array, i, i + blockSize - 1);
         }
     }
 
     private static void selectionSort(Comparable[] array, int low, int high) {
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             int minIndex = i;
 
-            for(int j = i + 1; j <= high; j++) {
+            for (int j = i + 1; j <= high; j++) {
                 if (array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
@@ -70,7 +70,7 @@ public class Exercise12_SublinearExtraSpace {
     private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
         int auxIndex = 0;
 
-        for(int i = low; i <= middle; i++) {
+        for (int i = low; i <= middle; i++) {
             aux[auxIndex] = array[i];
             auxIndex++;
         }

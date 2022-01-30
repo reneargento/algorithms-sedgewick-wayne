@@ -31,7 +31,7 @@ public class Exercise49_RandomGridDigraph {
 
         List<Exercise38_EuclideanDigraphs.EuclideanDigraph> randomGridDigraphs = new ArrayList<>();
 
-        for(int graph = 0; graph < numberOfDigraphs; graph++) {
+        for (int graph = 0; graph < numberOfDigraphs; graph++) {
             Exercise38_EuclideanDigraphs.EuclideanDigraph randomGridDigraph = randomGridDigraph(vertices, extraEdges);
             randomGridDigraphs.add(randomGridDigraph);
         }
@@ -58,7 +58,7 @@ public class Exercise49_RandomGridDigraph {
         Exercise38_EuclideanDigraphs.EuclideanDigraph.Vertex[] allVertices =
                 new Exercise38_EuclideanDigraphs.EuclideanDigraph.Vertex[vertices];
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             double randomXCoordinate = StdRandom.uniform();
             double randomYCoordinate = StdRandom.uniform();
 
@@ -87,7 +87,7 @@ public class Exercise49_RandomGridDigraph {
         Exercise38_EuclideanDigraphs.EuclideanDigraph randomEuclideanGridDigraph =
                 new Exercise38_EuclideanDigraphs().new EuclideanDigraph(vertices);
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             int[] cellRowAndColumn = getCellRowAndColumn(vertexId, vertexNumberSqrt);
             Exercise38_EuclideanDigraphs.EuclideanDigraph.Vertex vertex = verticesGrid[cellRowAndColumn[0]][cellRowAndColumn[1]];
 
@@ -107,7 +107,7 @@ public class Exercise49_RandomGridDigraph {
                                            Exercise38_EuclideanDigraphs.EuclideanDigraph.Vertex[] allVertices) {
         List<Edge> extraEdgesList = new ArrayList<>();
 
-        while(extraEdges > 0) {
+        while (extraEdges > 0) {
             int randomVertexId1 = StdRandom.uniform(vertices);
             int randomVertexId2 = StdRandom.uniform(vertices);
 
@@ -166,7 +166,7 @@ public class Exercise49_RandomGridDigraph {
                 int row = 0;
 
                 // Remove right column
-                for(int i = 0; i < vertexNumberSqrt; i++) {
+                for (int i = 0; i < vertexNumberSqrt; i++) {
                     row++;
                     int removedVertexId = (row * originalVertexNumberSqrt) - shrinkTimes;
                     removedVertices.add(removedVertexId);
@@ -175,13 +175,13 @@ public class Exercise49_RandomGridDigraph {
                 int nextVertexRemoved = row * originalVertexNumberSqrt;
 
                 // Remove last row
-                for(int i = 0; i < vertexNumberSqrt + 1; i++) {
+                for (int i = 0; i < vertexNumberSqrt + 1; i++) {
                     removedVertices.add(nextVertexRemoved);
                     nextVertexRemoved++;
                 }
 
                 List<Edge> extraEdgesToRemoveAfterShrinking = new ArrayList<>();
-                for(Edge extraEdge : extraEdgesList) {
+                for (Edge extraEdge : extraEdgesList) {
                     if (removedVertices.contains(extraEdge.tailVertex) || removedVertices.contains(extraEdge.headVertex)) {
                         extraEdgesToRemoveAfterShrinking.add(extraEdge);
                     }
@@ -206,7 +206,7 @@ public class Exercise49_RandomGridDigraph {
                                    Exercise38_EuclideanDigraphs.EuclideanDigraph.Vertex[][] verticesGrid) {
         int currentVertexId = 0;
 
-        for(int row = 0; row < vertexNumberSqrt; row++) {
+        for (int row = 0; row < vertexNumberSqrt; row++) {
             for (int column = 0; column < vertexNumberSqrt; column++) {
                 allVertices[verticesGrid[row][column].id].id = currentVertexId;
                 verticesGrid[row][column].id = currentVertexId;
@@ -222,9 +222,9 @@ public class Exercise49_RandomGridDigraph {
         int[] neighborRows = {-1, 1, 0 ,0};
         int[] neighborColumns = {0, 0, -1 ,1};
 
-        for(int row = 0; row < vertexNumberSqrt; row++) {
-            for(int column = 0; column < vertexNumberSqrt; column++) {
-                for(int i = 0; i < 4; i++) {
+        for (int row = 0; row < vertexNumberSqrt; row++) {
+            for (int column = 0; column < vertexNumberSqrt; column++) {
+                for (int i = 0; i < 4; i++) {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
@@ -232,7 +232,7 @@ public class Exercise49_RandomGridDigraph {
                         int vertexId1 = getVertexId(row, column, vertexNumberSqrt);
                         int vertexId2 = getVertexId(neighborRow, neighborColumn, vertexNumberSqrt);
 
-                        //Used to avoid connecting vertices more than once
+                        // Used to avoid connecting vertices more than once
                         if (vertexId1 < vertexId2) {
                             int randomDirection = StdRandom.uniform(2);
                             if (randomDirection == 0) {
@@ -250,7 +250,7 @@ public class Exercise49_RandomGridDigraph {
     private void addExtraEdges(Exercise38_EuclideanDigraphs.EuclideanDigraph randomEuclideanGridDigraph,
                                List<Edge> extraEdgesList,
                                Exercise38_EuclideanDigraphs.EuclideanDigraph.Vertex[] allVertices) {
-        for(Edge extraEdge : extraEdgesList) {
+        for (Edge extraEdge : extraEdgesList) {
             // We have to access allVertices[] here because it has the updated vertex ids (in the cases where graph
             // shrinking occurred).
             randomEuclideanGridDigraph.addEdge(allVertices[extraEdge.tailVertex].id, allVertices[extraEdge.headVertex].id);
@@ -289,5 +289,4 @@ public class Exercise49_RandomGridDigraph {
 
         StdOut.println(firstRandomGridDigraph);
     }
-
 }

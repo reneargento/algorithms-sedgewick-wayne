@@ -56,14 +56,14 @@ public class TopDownMergeSort {
 
     //Other possible merge implementation
 //    private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-//        for(int i = low; i <= high; i++) {
+//        for (int i = low; i <= high; i++) {
 //            aux[i] = array[i];
 //        }
 //
 //        int leftIndex = low;
 //        int rightIndex = middle + 1;
 //
-//        for(int i = low; i <= high; i++) {
+//        for (int i = low; i <= high; i++) {
 //            if (leftIndex > middle) {
 //                array[i] = aux[rightIndex];
 //                rightIndex++;
@@ -79,5 +79,4 @@ public class TopDownMergeSort {
 //            }
 //        }
 //    }
-
 }

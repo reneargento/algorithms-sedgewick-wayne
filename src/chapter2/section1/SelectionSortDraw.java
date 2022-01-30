@@ -15,7 +15,7 @@ public class SelectionSortDraw {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -37,10 +37,10 @@ public class SelectionSortDraw {
     }
 
     public static void selectionSort(Comparable[] array) {
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             int minIndex = i;
 
-            for(int j = i + 1; j < array.length; j++) {
+            for (int j = i + 1; j < array.length; j++) {
                 if (array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
@@ -99,5 +99,4 @@ public class SelectionSortDraw {
             StdDraw.text(i, row, String.format("%.1f", Double.parseDouble(String.valueOf(array[i]))));
         }
     }
-
 }

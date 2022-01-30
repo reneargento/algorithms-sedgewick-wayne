@@ -11,14 +11,14 @@ public class Exercise36_ListLengthRange {
     private void doExperiment() {
         int[] keySizes = {1000, 10000, 100000, 1000000};
 
-        for(int keySizeIndex = 0; keySizeIndex < keySizes.length; keySizeIndex++) {
+        for (int keySizeIndex = 0; keySizeIndex < keySizes.length; keySizeIndex++) {
             int numberOfKeys = keySizes[keySizeIndex];
             StdOut.println("N = " + numberOfKeys);
 
             SeparateChainingHashTableFixedSize<Integer, Integer> separateChainingHashTableFixedSize =
                     new SeparateChainingHashTableFixedSize<>(numberOfKeys / 100);
 
-            for(int i = 0; i < numberOfKeys; i++) {
+            for (int i = 0; i < numberOfKeys; i++) {
                 int randomIntegerKey = StdRandom.uniform(Integer.MAX_VALUE);
                 separateChainingHashTableFixedSize.put(randomIntegerKey, randomIntegerKey);
             }
@@ -26,7 +26,7 @@ public class Exercise36_ListLengthRange {
             int shortestListLength = Integer.MAX_VALUE;
             int longestListLength = Integer.MIN_VALUE;
 
-            for(SeparateChainingHashTableFixedSize.SequentialSearchSymbolTable list :
+            for (SeparateChainingHashTableFixedSize.SequentialSearchSymbolTable list :
                     separateChainingHashTableFixedSize.symbolTable) {
                 if (list != null) {
                     if (list.size() < shortestListLength) {
@@ -47,5 +47,4 @@ public class Exercise36_ListLengthRange {
         Exercise36_ListLengthRange listLengthRange = new Exercise36_ListLengthRange();
         listLengthRange.doExperiment();
     }
-
 }

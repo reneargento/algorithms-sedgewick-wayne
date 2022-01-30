@@ -12,7 +12,7 @@ public class Exercise37_JosephusProblem {
 
         Queue<Integer> queue = new Queue<>();
 
-        for(int i = 0; i < numberOfPeople; i++) {
+        for (int i = 0; i < numberOfPeople; i++) {
             queue.enqueue(i);
         }
 
@@ -36,5 +36,4 @@ public class Exercise37_JosephusProblem {
         StdOut.println("Order in which people are eliminated:");
         josephusProblem(personOrder, numberOfPeople);
     }
-
 }

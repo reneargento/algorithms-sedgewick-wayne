@@ -23,11 +23,11 @@ public class Exercise25_ShortestPathsBetweenTwoSubsets {
             priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedDigraph.vertices());
             closestVertexInSubsetT = -1;
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
 
-            for(int source : subsetS.keys()) {
+            for (int source : subsetS.keys()) {
                 distTo[source] = 0;
                 priorityQueue.insert(source, 0.0);
             }
@@ -44,7 +44,7 @@ public class Exercise25_ShortestPathsBetweenTwoSubsets {
         }
 
         private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -66,13 +66,11 @@ public class Exercise25_ShortestPathsBetweenTwoSubsets {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[closestVertexInSubsetT]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[closestVertexInSubsetT]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
-
             return path;
         }
-
     }
 
     public static void main(String[] args) {
@@ -105,10 +103,9 @@ public class Exercise25_ShortestPathsBetweenTwoSubsets {
                 new Exercise25_ShortestPathsBetweenTwoSubsets().new DijkstraSPTwoSubsets(edgeWeightedDigraph, subsetS, subsetT);
         StdOut.print("Shortest path from subset S to subset T: ");
 
-        for(DirectedEdge edge : dijkstraSPTwoSubsets.getShortestPathFromStoT()) {
+        for (DirectedEdge edge : dijkstraSPTwoSubsets.getShortestPathFromStoT()) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
         StdOut.println("\nExpected: 0->4 4->5");
     }
-
 }

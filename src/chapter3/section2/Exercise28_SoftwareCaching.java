@@ -368,7 +368,7 @@ public class Exercise28_SoftwareCaching {
 
         BinarySearchTree<Integer, String> binarySearchTree = softwareCaching.new BinarySearchTree<>();
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             binarySearchTree.put(i, "Value " + i);
         }
 
@@ -415,5 +415,4 @@ public class Exercise28_SoftwareCaching {
         binarySearchTree.get(9);
         StdOut.println("Expected: cache hit");
     }
-
 }

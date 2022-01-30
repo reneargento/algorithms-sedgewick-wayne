@@ -30,14 +30,14 @@ public class QuickSort {
         int lowIndex = low;
         int highIndex = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++lowIndex], pivot)) {
                 if (lowIndex == high) {
                     break;
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--highIndex])) {
+            while (ArrayUtil.less(pivot, array[--highIndex])) {
                 if (highIndex == low) {
                     break;
                 }
@@ -50,9 +50,8 @@ public class QuickSort {
             ArrayUtil.exchange(array, lowIndex, highIndex);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, highIndex);
         return highIndex;
     }
-
 }

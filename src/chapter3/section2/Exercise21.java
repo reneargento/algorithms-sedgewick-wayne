@@ -39,7 +39,7 @@ public class Exercise21 {
         StdOut.println("Size: " + binarySearchTree.size() + " Expected: 6\n");
 
         //Test get() and keys()
-        for(Integer key : binarySearchTree.keys()) {
+        for (Integer key : binarySearchTree.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 

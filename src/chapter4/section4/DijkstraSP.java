@@ -18,7 +18,7 @@ public class DijkstraSP {
         distTo = new double[edgeWeightedDigraph.vertices()];
         priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedDigraph.vertices());
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             distTo[vertex] = Double.POSITIVE_INFINITY;
         }
         distTo[source] = 0;
@@ -30,7 +30,7 @@ public class DijkstraSP {
     }
 
     private void relax(EdgeWeightedDigraphInterface edgeWeightedDigraph, int vertex) {
-        for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
             int neighbor = edge.to();
 
             if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -64,11 +64,9 @@ public class DijkstraSP {
         }
 
         Stack<DirectedEdge> path = new Stack<>();
-        for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+        for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
             path.push(edge);
         }
-
         return path;
     }
-
 }

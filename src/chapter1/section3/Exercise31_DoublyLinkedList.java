@@ -73,7 +73,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 
 		DoubleNode currentNode;
 
-		for(currentNode = first; currentNode != null; currentNode = currentNode.next) {
+		for (currentNode = first; currentNode != null; currentNode = currentNode.next) {
 			if (currentNode.item.equals(beforeItem)) {
 				break;
 			}
@@ -106,7 +106,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 
 		DoubleNode currentNode;
 
-		for(currentNode = first; currentNode != null; currentNode = currentNode.next) {
+		for (currentNode = first; currentNode != null; currentNode = currentNode.next) {
 			if (currentNode.item.equals(afterNode)) {
 				break;
 			}
@@ -168,7 +168,6 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 		last = last.previous;
 
 		size--;
-
 		return item;
 	}
 
@@ -218,7 +217,6 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 		}
 
 		size--;
-
 		return item;
 	}
 
@@ -243,7 +241,6 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 			currentNode = currentNode.next;
 
 			index++;
-
 			return item;
 		}
 	}
@@ -296,5 +293,4 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
         StdOut.println("\nDoubly linked list items after deletions: " + doublyLinkedListItems.toString());
         StdOut.println("Expected: 10 997");
 	}
-	
 }

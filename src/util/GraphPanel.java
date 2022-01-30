@@ -43,7 +43,7 @@ public class GraphPanel extends JPanel {
 
         values = new ArrayList<>();
 
-        for(Integer value : valuesInteger) {
+        for (Integer value : valuesInteger) {
             values.add((double) value);
         }
     }

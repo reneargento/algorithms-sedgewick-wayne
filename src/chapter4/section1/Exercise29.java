@@ -20,7 +20,7 @@ public class Exercise29 {
             visited = new boolean[graph.vertices()];
             edgeTo = new int[graph.vertices()];
 
-            for(int source = 0; source < graph.vertices(); source++) {
+            for (int source = 0; source < graph.vertices(); source++) {
                 if (!visited[source]) {
                     dfs(graph, source, source);
                 }
@@ -31,7 +31,7 @@ public class Exercise29 {
             visited[vertex] = true;
             edgeTo[vertex] = origin;
 
-            for(int neighbor : graph.adjacent(vertex)) {
+            for (int neighbor : graph.adjacent(vertex)) {
                 if (!visited[neighbor]) {
                     dfs(graph, neighbor, vertex);
                 } else if (neighbor != origin
@@ -80,5 +80,4 @@ public class Exercise29 {
                 exercise29.new CycleThatDoesNotCountParallelEdgesOrSelfLoops(graphWithSelfLoop);
         StdOut.println("Has cycle (graph with self-loop): " + cycle3.hasCycle() + " Expected: false");
     }
-
 }

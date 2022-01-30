@@ -20,7 +20,7 @@ public class DepthFirstOrder {
         reversePostOrder = new Stack<>();
         visited = new boolean[edgeWeightedDigraph.vertices()];
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             if (!visited[vertex]) {
                 dfs(edgeWeightedDigraph, vertex);
             }
@@ -32,7 +32,7 @@ public class DepthFirstOrder {
 
         visited[vertex] = true;
 
-        for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
             int neighbor = edge.to();
 
             if (!visited[neighbor]) {
@@ -55,5 +55,4 @@ public class DepthFirstOrder {
     public Iterable<Integer> reversePostOrder() {
         return reversePostOrder;
     }
-
 }

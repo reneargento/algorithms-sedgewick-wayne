@@ -619,50 +619,50 @@ public class Exercise11 {
         multiset.add(24);
 
         StdOut.println("Keys() test");
-        for(Integer key : multiset.keys()) {
+        for (Integer key : multiset.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: 0 0 0 0 5 5 8 8 20 20 20 20 21 22 23 24");
 
-        //Test size()
+        // Test size()
         StdOut.println("Keys size: " + multiset.size() + " Expected: 16");
 
-        //Test size() with range
+        // Test size() with range
         StdOut.println("Keys size [0, 20]: " + multiset.size(0, 20) + " Expected: 12");
 
-        //Test contains()
+        // Test contains()
         StdOut.println("\nContains 8: " + multiset.contains(8) + " Expected: true");
         StdOut.println("Contains 9: " + multiset.contains(9) + " Expected: false");
 
-        //Test min()
+        // Test min()
         StdOut.println("\nMin key: " + multiset.min() + " Expected: 0");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + multiset.max() + " Expected: 24");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + multiset.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + multiset.floor(15) + " Expected: 8");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + multiset.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + multiset.ceiling(15) + " Expected: 20");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 3: " + multiset.select(3) + " Expected: 0");
         StdOut.println("Select key of rank 4: " + multiset.select(4) + " Expected: 5");
 
-        //Test rank()
-        //Note that the expected rank of key 8 is 7 and not 6, because we are assuming that rank returns the index
+        // Test rank()
+        // Note that the expected rank of key 8 is 7 and not 6, because we are assuming that rank returns the index
         // of the rightmost key when there are duplicates
         StdOut.println("Rank of key 8: " + multiset.rank(8) + " Expected: 7");
         StdOut.println("Rank of key 9: " + multiset.rank(9) + " Expected: 8");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 20");
         multiset.delete(20);
 
-        for(Integer key : multiset.keys()) {
+        for (Integer key : multiset.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nKeys size: " + multiset.size() + " Expected: 12");
@@ -670,50 +670,49 @@ public class Exercise11 {
         StdOut.println("\nDelete key 5");
         multiset.delete(5);
 
-        for(Integer key : multiset.keys()) {
+        for (Integer key : multiset.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nKeys size: " + multiset.size() + " Expected: 10");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key 0)");
         multiset.deleteMin();
 
-        for(Integer key : multiset.keys()) {
+        for (Integer key : multiset.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nKeys size: " + multiset.size() + " Expected: 6");
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 24)");
         multiset.deleteMax();
 
-        for(Integer key : multiset.keys()) {
+        for (Integer key : multiset.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nKeys size: " + multiset.size() + " Expected: 5");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
-        for(Integer key : multiset.keys(2, 10)) {
+        for (Integer key : multiset.keys(2, 10)) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\n\nKeys in range [20, 22]");
-        for(Integer key : multiset.keys(20, 22)) {
+        for (Integer key : multiset.keys(20, 22)) {
             StdOut.print(key + " ");
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\n\nDelete all");
         while (multiset.size() > 0) {
-            for(Integer key : multiset.keys()) {
+            for (Integer key : multiset.keys()) {
                 StdOut.print(key + " ");
             }
-            //multiset.delete(multiset.select(0));
+            // multiset.delete(multiset.select(0));
             multiset.delete(multiset.select(multiset.size() - 1));
             StdOut.println();
         }
     }
-
 }

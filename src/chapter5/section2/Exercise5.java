@@ -869,7 +869,7 @@ public class Exercise5 {
 
             Queue<String> otherKeys = collect(nodeWithPrefix.middle, new StringBuilder(prefix));
 
-            for(String key : otherKeys) {
+            for (String key : otherKeys) {
                 keysWithPrefix.enqueue(key);
             }
 
@@ -905,7 +905,6 @@ public class Exercise5 {
                     stack.push(new NodeWithInformation(currentNode.left, currentPrefix));
                 }
             }
-
             return queue;
         }
 
@@ -1113,7 +1112,6 @@ public class Exercise5 {
                     }
                 }
             }
-
             return null;
         }
 
@@ -1154,7 +1152,6 @@ public class Exercise5 {
                     }
                 }
             }
-
             return key;
         }
 
@@ -1199,7 +1196,6 @@ public class Exercise5 {
                     }
                 }
             }
-
             return rank;
         }
 
@@ -1225,7 +1221,6 @@ public class Exercise5 {
                     stack.push(currentNode.left);
                 }
             }
-
             return size;
         }
 
@@ -1247,7 +1242,6 @@ public class Exercise5 {
                 }
                 minKey.append(minNode.character);
             }
-
             return minKey.toString();
         }
 
@@ -1261,7 +1255,6 @@ public class Exercise5 {
             while (currentNode.left != null) {
                 currentNode = currentNode.left;
             }
-
             return currentNode;
         }
 
@@ -1283,7 +1276,6 @@ public class Exercise5 {
                 }
                 maxKey.append(maxNode.character);
             }
-
             return maxKey.toString();
         }
 
@@ -1297,7 +1289,6 @@ public class Exercise5 {
             while (currentNode.right != null) {
                 currentNode = currentNode.right;
             }
-
             return currentNode;
         }
 
@@ -1317,7 +1308,6 @@ public class Exercise5 {
             while (currentNode.left != null) {
                 currentNode = currentNode.left;
             }
-
             return currentNode.right;
         }
 
@@ -1370,7 +1360,7 @@ public class Exercise5 {
         StdOut.println("\nKeys with prefix Alg");
         StringJoiner keysWithPrefix1 = new StringJoiner(" ");
 
-        for(String key : trieIterative.keysWithPrefix("Alg")) {
+        for (String key : trieIterative.keysWithPrefix("Alg")) {
             keysWithPrefix1.add(key);
         }
         StdOut.println(keysWithPrefix1.toString());
@@ -1379,7 +1369,7 @@ public class Exercise5 {
         StdOut.println("\nKeys with prefix T");
         StringJoiner keysWithPrefix2 = new StringJoiner(" ");
 
-        for(String key : trieIterative.keysWithPrefix("T")) {
+        for (String key : trieIterative.keysWithPrefix("T")) {
             keysWithPrefix2.add(key);
         }
         StdOut.println(keysWithPrefix2.toString());
@@ -1388,7 +1378,7 @@ public class Exercise5 {
         StdOut.println("\nKeys with prefix R");
         StringJoiner keysWithPrefix3 = new StringJoiner(" ");
 
-        for(String key : trieIterative.keysWithPrefix("R")) {
+        for (String key : trieIterative.keysWithPrefix("R")) {
             keysWithPrefix3.add(key);
         }
         StdOut.println(keysWithPrefix3.toString());
@@ -1397,7 +1387,7 @@ public class Exercise5 {
         StdOut.println("\nKeys with prefix ZZZ");
         StringJoiner keysWithPrefix4 = new StringJoiner(" ");
 
-        for(String key : trieIterative.keysWithPrefix("ZZZ")) {
+        for (String key : trieIterative.keysWithPrefix("ZZZ")) {
             keysWithPrefix4.add(key);
         }
         StdOut.println(keysWithPrefix4.toString());
@@ -1407,7 +1397,7 @@ public class Exercise5 {
         StdOut.println("\nKeys that match Alg..");
         StringJoiner keysThatMatch1 = new StringJoiner("Alg..");
 
-        for(String key : trieIterative.keysThatMatch("Alg..")) {
+        for (String key : trieIterative.keysThatMatch("Alg..")) {
             keysThatMatch1.add(key);
         }
         StdOut.println(keysThatMatch1.toString());
@@ -1416,7 +1406,7 @@ public class Exercise5 {
         StdOut.println("\nKeys that match Re");
         StringJoiner keysThatMatch2 = new StringJoiner(" ");
 
-        for(String key : trieIterative.keysThatMatch("Re")) {
+        for (String key : trieIterative.keysThatMatch("Re")) {
             keysThatMatch2.add(key);
         }
         StdOut.println(keysThatMatch2.toString());
@@ -1425,7 +1415,7 @@ public class Exercise5 {
         StdOut.println("\nKeys that match Tr.e");
         StringJoiner keysThatMatch3 = new StringJoiner(" ");
 
-        for(String key : trieIterative.keysThatMatch("Tr.e")) {
+        for (String key : trieIterative.keysThatMatch("Tr.e")) {
             keysThatMatch3.add(key);
         }
         StdOut.println(keysThatMatch3.toString());
@@ -1457,14 +1447,14 @@ public class Exercise5 {
         trieIterative.put("ZKey", 12);
 
         StdOut.println("\nKeys after ABCKey and ZKey insert: ");
-        for(String key : trieIterative.keys()) {
+        for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
 
         trieIterative.deleteMin();
 
         StdOut.println("\nKeys after deleteMin: ");
-        for(String key : trieIterative.keys()) {
+        for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
 
@@ -1473,7 +1463,7 @@ public class Exercise5 {
         trieIterative.deleteMax();
 
         StdOut.println("\nKeys after deleteMax: ");
-        for(String key : trieIterative.keys()) {
+        for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
 
@@ -1551,21 +1541,21 @@ public class Exercise5 {
         trieIterative.delete("Z-Function");
 
         StdOut.println("\nKeys() after deleting Z-Function key");
-        for(String key : trieIterative.keys()) {
+        for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
 
         trieIterative.delete("Re");
 
         StdOut.println("\nKeys() after deleting Re key");
-        for(String key : trieIterative.keys()) {
+        for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
 
         trieIterative.delete("Rene");
 
         StdOut.println("\nKeys() after deleting Rene key");
-        for(String key : trieIterative.keys()) {
+        for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
     }
@@ -1603,7 +1593,7 @@ public class Exercise5 {
         StdOut.println("\nKeys with prefix Alg");
         StringJoiner keysWithPrefix1 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieIterative.keysWithPrefix("Alg")) {
+        for (String key : ternarySearchTrieIterative.keysWithPrefix("Alg")) {
             keysWithPrefix1.add(key);
         }
         StdOut.println(keysWithPrefix1.toString());
@@ -1612,7 +1602,7 @@ public class Exercise5 {
         StdOut.println("\nKeys with prefix T");
         StringJoiner keysWithPrefix2 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieIterative.keysWithPrefix("T")) {
+        for (String key : ternarySearchTrieIterative.keysWithPrefix("T")) {
             keysWithPrefix2.add(key);
         }
         StdOut.println(keysWithPrefix2.toString());
@@ -1621,7 +1611,7 @@ public class Exercise5 {
         StdOut.println("\nKeys with prefix R");
         StringJoiner keysWithPrefix3 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieIterative.keysWithPrefix("R")) {
+        for (String key : ternarySearchTrieIterative.keysWithPrefix("R")) {
             keysWithPrefix3.add(key);
         }
         StdOut.println(keysWithPrefix3.toString());
@@ -1630,7 +1620,7 @@ public class Exercise5 {
         StdOut.println("\nKeys with prefix ZZZ");
         StringJoiner keysWithPrefix4 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieIterative.keysWithPrefix("ZZZ")) {
+        for (String key : ternarySearchTrieIterative.keysWithPrefix("ZZZ")) {
             keysWithPrefix4.add(key);
         }
         StdOut.println(keysWithPrefix4.toString());
@@ -1640,7 +1630,7 @@ public class Exercise5 {
         StdOut.println("\nKeys that match Alg..");
         StringJoiner keysThatMatch1 = new StringJoiner("Alg..");
 
-        for(String key : ternarySearchTrieIterative.keysThatMatch("Alg..")) {
+        for (String key : ternarySearchTrieIterative.keysThatMatch("Alg..")) {
             keysThatMatch1.add(key);
         }
         StdOut.println(keysThatMatch1.toString());
@@ -1649,7 +1639,7 @@ public class Exercise5 {
         StdOut.println("\nKeys that match Re");
         StringJoiner keysThatMatch2 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieIterative.keysThatMatch("Re")) {
+        for (String key : ternarySearchTrieIterative.keysThatMatch("Re")) {
             keysThatMatch2.add(key);
         }
         StdOut.println(keysThatMatch2.toString());
@@ -1658,7 +1648,7 @@ public class Exercise5 {
         StdOut.println("\nKeys that match Tr.e");
         StringJoiner keysThatMatch3 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieIterative.keysThatMatch("Tr.e")) {
+        for (String key : ternarySearchTrieIterative.keysThatMatch("Tr.e")) {
             keysThatMatch3.add(key);
         }
         StdOut.println(keysThatMatch3.toString());
@@ -1690,14 +1680,14 @@ public class Exercise5 {
         ternarySearchTrieIterative.put("ZKey", 12);
 
         StdOut.println("\nKeys after ABCKey and ZKey insert: ");
-        for(String key : ternarySearchTrieIterative.keys()) {
+        for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
 
         ternarySearchTrieIterative.deleteMin();
 
         StdOut.println("\nKeys after deleteMin: ");
-        for(String key : ternarySearchTrieIterative.keys()) {
+        for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
 
@@ -1706,7 +1696,7 @@ public class Exercise5 {
         ternarySearchTrieIterative.deleteMax();
 
         StdOut.println("\nKeys after deleteMax: ");
-        for(String key : ternarySearchTrieIterative.keys()) {
+        for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
 
@@ -1784,23 +1774,22 @@ public class Exercise5 {
         ternarySearchTrieIterative.delete("Z-Function");
 
         StdOut.println("\nKeys() after deleting Z-Function key");
-        for(String key : ternarySearchTrieIterative.keys()) {
+        for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
 
         ternarySearchTrieIterative.delete("Re");
 
         StdOut.println("\nKeys() after deleting Re key");
-        for(String key : ternarySearchTrieIterative.keys()) {
+        for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
 
         ternarySearchTrieIterative.delete("Rene");
 
         StdOut.println("\nKeys() after deleting Rene key");
-        for(String key : ternarySearchTrieIterative.keys()) {
+        for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
     }
-
 }

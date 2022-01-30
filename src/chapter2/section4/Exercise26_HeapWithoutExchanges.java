@@ -62,7 +62,7 @@ public class Exercise26_HeapWithoutExchanges {
 
             boolean exchangeRequired = false;
 
-            while(index / 2 >= 1) {
+            while (index / 2 >= 1) {
                 if ((orientation == Orientation.MAX && ArrayUtil.less(priorityQueue[index / 2], aux))
                         || (orientation == Orientation.MIN && ArrayUtil.more(priorityQueue[index / 2], aux))) {
                     priorityQueue[index] = priorityQueue[index / 2];
@@ -105,8 +105,8 @@ public class Exercise26_HeapWithoutExchanges {
                 index = selectedChildIndex;
             }
 
-            //No need to check if an exchange is required.
-            //The value of index is only updated when an exchange happens.
+            // No need to check if an exchange is required.
+            // The value of index is only updated when an exchange happens.
             priorityQueue[index] = aux;
         }
     }
@@ -128,5 +128,4 @@ public class Exercise26_HeapWithoutExchanges {
         StdOut.println("Item removed: " + priorityQueue.deleteTop() + " Expected: 7");
         StdOut.println("Item removed: " + priorityQueue.deleteTop() + " Expected: 2");
     }
-
 }

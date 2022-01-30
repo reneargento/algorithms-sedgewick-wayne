@@ -22,7 +22,7 @@ public class Exercise29_Randomization {
 
         int arraySize = 1000;
 
-        for(int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
+        for (int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
             Comparable[] array = ArrayGenerator.generateDistinctValuesShuffledArray(arraySize);
             allInputArrays.put(i, array);
 
@@ -33,27 +33,25 @@ public class Exercise29_Randomization {
     }
 
     private static void doExperiment(Map<Integer, Comparable[]> allInputArrays) {
-
         int[] cutoffSizes = {10, 20, 50};
 
         StdOut.printf("%13s %13s %30s %23s\n", "Cutoff Size | ", "Array Size | ", "QuickSort W/ Randomized Array Running Time |",
                 "QuickSort W/ Random Pivot");
 
-        for(int cutoffSize : cutoffSizes) {
-            for(int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
-
+        for (int cutoffSize : cutoffSizes) {
+            for (int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
                 Comparable[] originalArray = allInputArrays.get(i);
                 Comparable[] arrayCopy1 = new Comparable[originalArray.length];
                 System.arraycopy(originalArray, 0, arrayCopy1, 0, originalArray.length);
                 Comparable[] arrayCopy2 = new Comparable[originalArray.length];
                 System.arraycopy(originalArray, 0, arrayCopy2, 0, originalArray.length);
 
-                //QuickSort with cutoff and randomized array
+                // QuickSort with cutoff and randomized array
                 Stopwatch quickSortWithRandomizedArrayTimer = new Stopwatch();
                 QuickSortWithCutoff.quickSortWithCutoff(arrayCopy1, cutoffSize);
                 double quickSortWithRandomizedArrayRunningTime = quickSortWithRandomizedArrayTimer.elapsedTime();
 
-                //QuickSort with cutoff and choosing a random pivot
+                // QuickSort with cutoff and choosing a random pivot
                 Stopwatch quickSortWithRandomPivotTimer = new Stopwatch();
                 quickSortWithCutoffAndRandomPivot(arrayCopy2, cutoffSize);
                 double quickSortWithRandomPivotRunningTime = quickSortWithRandomPivotTimer.elapsedTime();
@@ -69,7 +67,6 @@ public class Exercise29_Randomization {
     }
 
     private static void quickSort(Comparable[] array, int low, int high, int cutoffSize) {
-
         if (low >= high) {
             return;
         }
@@ -87,7 +84,6 @@ public class Exercise29_Randomization {
     }
 
     private static int partition(Comparable[] array, int low, int high) {
-
         int randomPivotIndex = StdRandom.uniform(low, high + 1);
         ArrayUtil.exchange(array, low, randomPivotIndex);
         Comparable pivot = array[low];
@@ -95,14 +91,14 @@ public class Exercise29_Randomization {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot)) {
                 if (i == high) {
                     break;
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if (j == low) {
                     break;
                 }
@@ -115,7 +111,7 @@ public class Exercise29_Randomization {
             ArrayUtil.exchange(array, i, j);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, j);
         return j;
     }
@@ -123,5 +119,4 @@ public class Exercise29_Randomization {
     private static void printResults(int cutoffSize, int arraySize, double quickSortWithRandomizedArrayRunningTime, double quickSortWithRandomPivotRunningTime) {
         StdOut.printf("%11d %13d %45.1f %27.1f\n", cutoffSize, arraySize, quickSortWithRandomizedArrayRunningTime, quickSortWithRandomPivotRunningTime);
     }
-
 }

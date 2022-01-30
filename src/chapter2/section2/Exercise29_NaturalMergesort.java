@@ -32,7 +32,7 @@ public class Exercise29_NaturalMergesort {
         Long[] array = new Long[length];
         Random random = new Random();
 
-        for(int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
             array[i] = random.nextLong();
         }
 
@@ -43,7 +43,7 @@ public class Exercise29_NaturalMergesort {
 
         int numberOfExperiments = arrays.size();
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
             Long[] currentArray = arrays.get(i);
 
             long numberOfPasses = naturalMergesort(currentArray);
@@ -54,7 +54,6 @@ public class Exercise29_NaturalMergesort {
     }
 
     private static int naturalMergesort(Long[] array) {
-
         int numberOfPasses = 1;
 
         if (array == null || array.length == 1) {
@@ -69,7 +68,7 @@ public class Exercise29_NaturalMergesort {
 
         boolean secondSubArray = false;
 
-        for(int i = 1; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
 
             if (array[i].compareTo(array[i - 1]) < 0) {
                 if (!secondSubArray) {
@@ -97,5 +96,4 @@ public class Exercise29_NaturalMergesort {
 
         return numberOfPasses;
     }
-
 }

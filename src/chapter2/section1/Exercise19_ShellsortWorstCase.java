@@ -29,15 +29,15 @@ public class Exercise19_ShellsortWorstCase {
             comparesCount = 0;
             int incrementSequence = 1;
 
-            while(incrementSequence * 3 + 1 < array.length) {
+            while (incrementSequence * 3 + 1 < array.length) {
                 incrementSequence *= 3;
                 incrementSequence++;
             }
 
             while (incrementSequence > 0) {
 
-                for(int i = incrementSequence; i < array.length; i++) {
-                    for(int j = i; j >= incrementSequence; j -= incrementSequence) {
+                for (int i = incrementSequence; i < array.length; i++) {
+                    for (int j = i; j >= incrementSequence; j -= incrementSequence) {
                         comparesCount++;
                         if (array[j].compareTo(array[j - incrementSequence]) < 0) {
                             Comparable temp = array[j];
@@ -48,7 +48,6 @@ public class Exercise19_ShellsortWorstCase {
                         }
                     }
                 }
-
                 incrementSequence /= 3;
             }
         }
@@ -100,5 +99,4 @@ public class Exercise19_ShellsortWorstCase {
         }
         StdOut.println(arrayDescription);
     }
-
 }

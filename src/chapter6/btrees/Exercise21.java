@@ -103,8 +103,8 @@ public class Exercise21 {
 
         StdOut.printf("%11s %17s %27s\n", "Order M | ", "Number of items | ", "AVG Number of External Pages");
 
-        for(int order : orderValues) {
-            for(int numberOfItems : numberOfItemValues) {
+        for (int order : orderValues) {
+            for (int numberOfItems : numberOfItemValues) {
                 int totalNumberOfExternalNodes = 0;
 
                 for (int experiment = 0; experiment < numberOfExperimentsPerConfiguration; experiment++) {
@@ -135,5 +135,4 @@ public class Exercise21 {
         int numberOfExperimentsPerConfiguration = Integer.parseInt(args[0]);
         new Exercise21().doExperiment(numberOfExperimentsPerConfiguration);
     }
-
 }

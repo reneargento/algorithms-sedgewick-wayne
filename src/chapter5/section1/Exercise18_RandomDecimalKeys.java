@@ -11,17 +11,16 @@ public class Exercise18_RandomDecimalKeys {
     public static String[] randomDecimalKeys(int numberOfStrings, int numberOfDigits) {
         String[] strings = new String[numberOfStrings];
 
-        for(int string = 0; string < numberOfStrings; string++) {
+        for (int string = 0; string < numberOfStrings; string++) {
             StringBuilder currentString = new StringBuilder();
 
-            for(int digit = 0; digit < numberOfDigits; digit++) {
+            for (int digit = 0; digit < numberOfDigits; digit++) {
                 int digitValue = StdRandom.uniform(10);
                 currentString.append(digitValue);
             }
 
             strings[string] = currentString.toString();
         }
-
         return strings;
     }
 
@@ -32,9 +31,8 @@ public class Exercise18_RandomDecimalKeys {
         String[] randomStrings = Exercise18_RandomDecimalKeys.randomDecimalKeys(numberOfStrings, numberOfDigits);
         StdOut.println("Random strings generated:");
 
-        for(String randomString : randomStrings) {
+        for (String randomString : randomStrings) {
             StdOut.println(randomString);
         }
     }
-
 }

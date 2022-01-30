@@ -32,7 +32,7 @@ public class Exercise30<Item> implements Iterable<Item> {
 			first.item = item;
 		} else {	
 			Node current;
-			for(current = first; current.next != null; current = current.next);
+			for (current = first; current.next != null; current = current.next);
 			
 			Node newNode = new Node();
 			newNode.item = item;
@@ -52,7 +52,7 @@ public class Exercise30<Item> implements Iterable<Item> {
 			Node current;
 			int count = 1;
 			
-			for(current = first; current != null; current = current.next) {
+			for (current = first; current != null; current = current.next) {
 				if (count == k-1 && current.next != null) {
 					current.next = current.next.next;
 					break;
@@ -81,7 +81,7 @@ public class Exercise30<Item> implements Iterable<Item> {
 		first = current;
 		current.next = old;
 		
-		while(newNode != null) {
+		while (newNode != null) {
 			old = current;
 			current = newNode;
 
@@ -94,11 +94,11 @@ public class Exercise30<Item> implements Iterable<Item> {
 		return first;
 	}
 	
-	//Improved implementation 
+	// Improved implementation
 	public Node reverse2() {
 		Node reverse = null;
 		
-		while(first != null) {
+		while (first != null) {
 			Node second = first.next;
 			first.next = reverse;
 			reverse = first;
@@ -109,7 +109,7 @@ public class Exercise30<Item> implements Iterable<Item> {
 		return reverse;
 	}
 	
-	//Recursive solution
+	// Recursive solution
 	public void reverse3() {
 		first = reverse3Impl(first);
 	}
@@ -170,5 +170,4 @@ public class Exercise30<Item> implements Iterable<Item> {
         StdOut.println("Reverse list items: " + listItems.toString());
         StdOut.println("Expected: 4 3 2 1");
 	}
-	
 }

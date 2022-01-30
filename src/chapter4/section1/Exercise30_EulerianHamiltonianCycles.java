@@ -44,7 +44,7 @@ public class Exercise30_EulerianHamiltonianCycles {
             // Necessary condition: all vertices have even degree
             // (this test is needed or it might find an Eulerian path instead of an Eulerian cycle)
             // An Eulerian path have exactly 2 vertices with even degrees
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < graph.vertices(); vertex++) {
                 if (graph.degree(vertex) % 2 != 0) {
                     return null;
                 }
@@ -52,15 +52,15 @@ public class Exercise30_EulerianHamiltonianCycles {
 
             // Create local view of adjacency lists, to iterate one vertex at a time
             Queue<Edge>[] adjacent = (Queue<Edge>[]) new Queue[graph.vertices()];
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < graph.vertices(); vertex++) {
                 adjacent[vertex] = new Queue<>();
             }
 
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < graph.vertices(); vertex++) {
                 int selfLoops = 0;
 
-                for(int neighbor : graph.adjacent(vertex)) {
-                    //Careful with self-loops
+                for (int neighbor : graph.adjacent(vertex)) {
+                    // Careful with self-loops
                     if (vertex == neighbor) {
                         if (selfLoops % 2 == 0) {
                             Edge edge = new Edge(vertex, neighbor);
@@ -79,7 +79,7 @@ public class Exercise30_EulerianHamiltonianCycles {
                 }
             }
 
-            //Start the cycle with a non-isolated vertex
+            // Start the cycle with a non-isolated vertex
             int nonIsolatedVertex = nonIsolatedVertex(graph);
             Stack<Integer> dfsStack = new Stack<>();
             dfsStack.push(nonIsolatedVertex);
@@ -115,7 +115,7 @@ public class Exercise30_EulerianHamiltonianCycles {
         private int nonIsolatedVertex(Graph graph) {
             int nonIsolatedVertex = -1;
 
-            for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < graph.vertices(); vertex++) {
                 if (graph.degree(vertex) > 0) {
                     nonIsolatedVertex = vertex;
                     break;
@@ -161,7 +161,7 @@ public class Exercise30_EulerianHamiltonianCycles {
         }
         StdOut.println("Expected: 0-3 3-2 2-1 1-0\n");
 
-        //Note that vertex 12 is an isolated vertex
+        // Note that vertex 12 is an isolated vertex
         Graph graphWithEulerCycle2 = new Graph(13);
         graphWithEulerCycle2.addEdge(0, 9);
         graphWithEulerCycle2.addEdge(0, 3);
@@ -227,5 +227,4 @@ public class Exercise30_EulerianHamiltonianCycles {
         }
         StdOut.println();
     }
-
 }

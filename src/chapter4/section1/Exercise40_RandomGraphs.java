@@ -11,7 +11,7 @@ public class Exercise40_RandomGraphs {
     public Graph erdosRenyiGraph(int vertices, int edges) {
         Graph randomGraph = new Graph(vertices);
 
-        for(int edge = 0; edge < edges; edge++) {
+        for (int edge = 0; edge < edges; edge++) {
             int vertexId1 = StdRandom.uniform(vertices);
             int vertexId2 = StdRandom.uniform(vertices);
 
@@ -28,5 +28,4 @@ public class Exercise40_RandomGraphs {
         Graph randomGraph = new Exercise40_RandomGraphs().erdosRenyiGraph(vertices, edges);
         StdOut.println(randomGraph);
     }
-
 }

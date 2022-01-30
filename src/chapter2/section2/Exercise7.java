@@ -15,19 +15,15 @@ public class Exercise7 {
     private static int numberOfCompares;
 
     public static void main(String[] args) {
-
         boolean isMonotonicallyIncreasing = doExperiments(512);
         StdOut.println("Is Monotonically Increasing: " + isMonotonicallyIncreasing);
     }
 
     private static boolean doExperiments(int numberOfExperiments) {
-
         int previousNumberOfCompares = -1;
-
         List<Double> values = new ArrayList<>();
 
-        for(int i = 0; i < numberOfExperiments; i++) {
-
+        for (int i = 0; i < numberOfExperiments; i++) {
             double randomValue = StdRandom.uniform();
             values.add(randomValue);
 
@@ -50,16 +46,13 @@ public class Exercise7 {
 
     private static void topDownMergeSort(Comparable[] array) {
         Comparable[] aux = new Comparable[array.length];
-
         topDownMergeSort(array, aux, 0, array.length - 1);
     }
 
     private static void topDownMergeSort(Comparable[] array, Comparable[] aux, int low, int high) {
-
         if (high <= low) {
             return;
         }
-
         int middle = low + (high - low) / 2;
 
         topDownMergeSort(array, aux, low, middle);
@@ -70,7 +63,7 @@ public class Exercise7 {
 
     @SuppressWarnings("unchecked")
     private static void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -98,5 +91,4 @@ public class Exercise7 {
             arrayIndex++;
         }
     }
-
 }

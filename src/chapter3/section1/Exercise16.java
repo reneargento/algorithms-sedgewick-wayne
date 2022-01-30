@@ -99,7 +99,7 @@ public class Exercise16 {
                 resize(keys.length * 2);
             }
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
                 values[i] = values[i - 1];
             }
@@ -125,7 +125,7 @@ public class Exercise16 {
             }
 
             int rank = rank(key);
-            for(int i = rank; i < size - 1; i++) {
+            for (int i = rank; i < size - 1; i++) {
                 keys[i] = keys[i + 1];
                 values[i] = values[i + 1];
             }
@@ -169,7 +169,6 @@ public class Exercise16 {
             if (rank == size) {
                 return null;
             }
-
             return keys[rank];
         }
 
@@ -183,7 +182,6 @@ public class Exercise16 {
             if (rank == 0) {
                 return null;
             }
-
             return keys[rank - 1];
         }
 
@@ -191,7 +189,6 @@ public class Exercise16 {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(min());
         }
 
@@ -199,7 +196,6 @@ public class Exercise16 {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(max());
         }
 
@@ -224,14 +220,13 @@ public class Exercise16 {
 
             Queue<Key> queue = new Queue<>();
 
-            for(int i = rank(low); i < rank(high); i++) {
+            for (int i = rank(low); i < rank(high); i++) {
                 queue.enqueue(keys[i]);
             }
 
             if (contains(high)) {
                 queue.enqueue(keys[rank(high)]);
             }
-
             return queue;
         }
 
@@ -263,33 +258,32 @@ public class Exercise16 {
         binarySearchSymbolTable.put(99, "Value 99");
 
         StdOut.println("All values:");
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
 
         StdOut.println("\nDelete key 2:");
         binarySearchSymbolTable.delete(2);
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
 
         StdOut.println("\nDelete key 0:");
         binarySearchSymbolTable.delete(0);
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
 
         StdOut.println("\nDelete key 99:");
         binarySearchSymbolTable.delete(99);
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
 
         StdOut.println("\nDelete all keys:");
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             binarySearchSymbolTable.delete(key);
         }
         StdOut.println("Is empty: " + binarySearchSymbolTable.isEmpty() + " Expected: true");
     }
-
 }

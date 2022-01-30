@@ -22,24 +22,24 @@ public class Exercise17 {
 //        StdOut.println();
 //        generateRandomKeys(2);
 
-        //Output from the above methods
-        //Random keys 1: P Z R X W H F N B L J I E Q C V
-        //Random keys 2: R C J O N E L U W F V S G I K Z
+        // Output from the above methods
+        // Random keys 1: P Z R X W H F N B L J I E Q C V
+        // Random keys 2: R C J O N E L U W F V S G I K Z
         char[] randomKeys1 = {'P', 'Z', 'R', 'X', 'W', 'H', 'F', 'N', 'B', 'L', 'J', 'I', 'E', 'Q', 'C', 'V'};
         char[] randomKeys2 = {'R', 'C', 'J', 'O', 'N', 'E', 'L', 'U', 'W', 'F', 'V', 'S', 'G', 'I', 'K', 'Z'};
 
         generateRedBlackBSTAndDraw(randomKeys1);
-        //generateRedBlackBSTAndDraw(randomKeys2);
+        // generateRedBlackBSTAndDraw(randomKeys2);
 
-        //generateBSTAndDraw(randomKeys1);
-        //generateBSTAndDraw(randomKeys2);
+        // generateBSTAndDraw(randomKeys1);
+        // generateBSTAndDraw(randomKeys2);
     }
 
     private void generateRandomKeys(int randomKeysSetIndex) {
         char[] keys = ArrayGenerator.generateRandomUniqueUppercaseChars(NUMBER_OF_KEYS);
 
         StdOut.print("Random keys " + randomKeysSetIndex + ": ");
-        for(char key : keys) {
+        for (char key : keys) {
             StdOut.print(key + " ");
         }
     }
@@ -49,10 +49,9 @@ public class Exercise17 {
         Exercise31_TreeDrawing.RedBlackBSTDrawable<Character, Character> redBlackBSTDrawable =
                 treeDrawingRedBlackBST.new RedBlackBSTDrawable();
 
-        for(char value : values) {
+        for (char value : values) {
             redBlackBSTDrawable.put(value, value);
         }
-
         redBlackBSTDrawable.draw();
     }
 
@@ -61,11 +60,9 @@ public class Exercise17 {
         Exercise38_TreeDrawing.BinarySearchTreeDrawable<Character, Character> binarySearchTreeDrawable =
                 treeDrawingBST.new BinarySearchTreeDrawable();
 
-        for(char value : values) {
+        for (char value : values) {
             binarySearchTreeDrawable.put(value, value);
         }
-
         binarySearchTreeDrawable.draw();
     }
-
 }

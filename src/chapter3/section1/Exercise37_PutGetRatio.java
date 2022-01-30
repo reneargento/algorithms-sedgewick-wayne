@@ -24,7 +24,7 @@ public class Exercise37_PutGetRatio {
 
         StdOut.printf("%21s %20s %20s %8s\n", "Input | ","Running Time Put | ", "Running Time Get | ", "Ratio");
 
-        for(int i = 0; i < numberOfBits.length; i++) {
+        for (int i = 0; i < numberOfBits.length; i++) {
             int lowerBoundValue = 0;
             int higherBoundValue = 0;
 
@@ -42,7 +42,6 @@ public class Exercise37_PutGetRatio {
             int[] randomValues = ArrayGenerator.generateRandomIntegerArray(1000000, lowerBoundValue, higherBoundValue);
 
             double[] result = frequencyCounter(randomValues);
-
             printResults(input[i], result[0], result[1], result[2]);
         }
 
@@ -53,15 +52,13 @@ public class Exercise37_PutGetRatio {
     }
 
     private double[] frequencyCounter(int[] values) {
-
         double totalTimeSpentInPut = 0;
         double totalTimeSpentInGet = 0;
         Stopwatch timer;
 
         BinarySearchSymbolTable<Integer, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(Integer value : values) {
-
+        for (Integer value : values) {
             timer = new Stopwatch();
             boolean containsValue = binarySearchSymbolTable.contains(value); //contains() uses get() internally
             totalTimeSpentInGet += timer.elapsedTime();
@@ -86,7 +83,7 @@ public class Exercise37_PutGetRatio {
         binarySearchSymbolTable.put(max, 0);
         totalTimeSpentInPut += timer.elapsedTime();
 
-        for(Integer value : binarySearchSymbolTable.keys()) {
+        for (Integer value : binarySearchSymbolTable.keys()) {
             timer = new Stopwatch();
             if (binarySearchSymbolTable.get(value) > binarySearchSymbolTable.get(max)) {
                 totalTimeSpentInGet += timer.elapsedTime();
@@ -99,20 +96,17 @@ public class Exercise37_PutGetRatio {
         totalTimeSpentInGet += timer.elapsedTime();
 
         double ratio = totalTimeSpentInPut / totalTimeSpentInGet;
-
         return new double[]{totalTimeSpentInPut, totalTimeSpentInGet, ratio};
     }
 
     private double[] frequencyCounter(String[] words, int minLength) {
-
         double totalTimeSpentInPut = 0;
         double totalTimeSpentInGet = 0;
         Stopwatch timer;
 
         BinarySearchSymbolTable<String, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(String word : words) {
-
+        for (String word : words) {
             if (word.length() < minLength) {
                 continue;
             }
@@ -137,7 +131,7 @@ public class Exercise37_PutGetRatio {
         binarySearchSymbolTable.put(max, 0);
         totalTimeSpentInPut += timer.elapsedTime();
 
-        for(String word : binarySearchSymbolTable.keys()) {
+        for (String word : binarySearchSymbolTable.keys()) {
             timer = new Stopwatch();
             if (binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
                 totalTimeSpentInGet += timer.elapsedTime();
@@ -150,12 +144,10 @@ public class Exercise37_PutGetRatio {
         totalTimeSpentInGet += timer.elapsedTime();
 
         double ratio = totalTimeSpentInPut / totalTimeSpentInGet;
-
         return new double[]{totalTimeSpentInPut, totalTimeSpentInGet, ratio};
     }
 
     private void printResults(String input, double totalTimeSpentInPut, double totalTimeSpentInGet, double ratio) {
         StdOut.printf("%18s %20.2f %20.2f %11.2f\n", input, totalTimeSpentInPut, totalTimeSpentInGet, ratio);
     }
-
 }

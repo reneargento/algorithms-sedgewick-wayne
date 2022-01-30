@@ -80,7 +80,7 @@ public class Exercise44_TextEditorBuffer<Item> {
     public void right(int k) {
         int count = 0;
 
-        while(count < k && sizeRight > 0) {
+        while (count < k && sizeRight > 0) {
             Item item = firstRightStack.item;
 
             insert(item);
@@ -101,12 +101,12 @@ public class Exercise44_TextEditorBuffer<Item> {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("Left Stack: ");
-        for(Node current = firstLeftStack; current != null; current = current.next) {
+        for (Node current = firstLeftStack; current != null; current = current.next) {
             stringBuilder.append(current.item).append(" ");
         }
 
         stringBuilder.append("\nRight Stack: ");
-        for(Node current = firstRightStack; current != null; current = current.next) {
+        for (Node current = firstRightStack; current != null; current = current.next) {
             stringBuilder.append(current.item).append(" ");
         }
 
@@ -157,5 +157,4 @@ public class Exercise44_TextEditorBuffer<Item> {
                 "Left Stack: n e R \n" +
                 "Right Stack: ");
     }
-
 }

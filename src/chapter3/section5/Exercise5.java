@@ -495,7 +495,7 @@ public class Exercise5 {
             keys(root, queue, low, high);
 
             int[] keys = new int[queue.size()];
-            for(int i = 0; i < keys.length; i++) {
+            for (int i = 0; i < keys.length; i++) {
                 keys[i] = queue.dequeue();
             }
 
@@ -562,7 +562,6 @@ public class Exercise5 {
     }
 
     class STdouble<Value> {
-
         private static final boolean RED = true;
         private static final boolean BLACK = false;
 
@@ -595,7 +594,6 @@ public class Exercise5 {
             if (node == null) {
                 return 0;
             }
-
             return node.size;
         }
 
@@ -607,7 +605,6 @@ public class Exercise5 {
             if (node == null) {
                 return false;
             }
-
             return node.color == RED;
         }
 
@@ -737,7 +734,6 @@ public class Exercise5 {
             if (root == null) {
                 throw new NoSuchElementException("Empty symbol table");
             }
-
             return min(root).key;
         }
 
@@ -745,7 +741,6 @@ public class Exercise5 {
             if (node.left == null) {
                 return node;
             }
-
             return min(node.left);
         }
 
@@ -753,7 +748,6 @@ public class Exercise5 {
             if (root == null) {
                 throw new NoSuchElementException("Empty symbol table");
             }
-
             return max(root).key;
         }
 
@@ -761,17 +755,15 @@ public class Exercise5 {
             if (node.right == null) {
                 return node;
             }
-
             return max(node.right);
         }
 
-        //Returns the highest key in the symbol table smaller than or equal to key.
+        // Returns the highest key in the symbol table smaller than or equal to key.
         public double floor(double key) {
             Node node = floor(root, key);
             if (node == null) {
                 return EMPTY_KEY;
             }
-
             return node.key;
         }
 
@@ -794,13 +786,12 @@ public class Exercise5 {
             }
         }
 
-        //Returns the smallest key in the symbol table greater than or equal to key.
+        // Returns the smallest key in the symbol table greater than or equal to key.
         public double ceiling(double key) {
             Node node = ceiling(root, key);
             if (node == null) {
                 return EMPTY_KEY;
             }
-
             return node.key;
         }
 
@@ -827,7 +818,6 @@ public class Exercise5 {
             if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than symbol table size");
             }
-
             return select(root, index).key;
         }
 
@@ -852,7 +842,7 @@ public class Exercise5 {
                 return 0;
             }
 
-            //Returns the number of keys less than node.key in the subtree rooted at node
+            // Returns the number of keys less than node.key in the subtree rooted at node
             if (key < node.key) {
                 return rank(node.left, key);
             } else if (key > node.key) {
@@ -982,7 +972,7 @@ public class Exercise5 {
         }
 
         private Node moveRedLeft(Node node) {
-            //Assuming that node is red and both node.left and node.left.left are black,
+            // Assuming that node is red and both node.left and node.left.left are black,
             // make node.left or one of its children red
             flipColors(node);
 
@@ -991,12 +981,11 @@ public class Exercise5 {
                 node = rotateLeft(node);
                 flipColors(node);
             }
-
             return node;
         }
 
         private Node moveRedRight(Node node) {
-            //Assuming that node is red and both node.right and node.right.left are black,
+            // Assuming that node is red and both node.right and node.right.left are black,
             // make node.right or one of its children red
             flipColors(node);
 
@@ -1004,7 +993,6 @@ public class Exercise5 {
                 node = rotateRight(node);
                 flipColors(node);
             }
-
             return node;
         }
 
@@ -1026,7 +1014,6 @@ public class Exercise5 {
             }
 
             node.size = size(node.left) + 1 + size(node.right);
-
             return node;
         }
 
@@ -1046,10 +1033,9 @@ public class Exercise5 {
             keys(root, queue, low, high);
 
             double[] keys = new double[queue.size()];
-            for(int i = 0; i < keys.length; i++) {
+            for (int i = 0; i < keys.length; i++) {
                 keys[i] = queue.dequeue();
             }
-
             return keys;
         }
 
@@ -1113,7 +1099,6 @@ public class Exercise5 {
     }
 
     private class SparseVectorIntKeys {
-
         private STint<Double> stInt;
 
         public SparseVectorIntKeys() {
@@ -1139,17 +1124,15 @@ public class Exercise5 {
         public double dot(double[] that) {
             double sum = 0.0;
 
-            for(int key : stInt.keys()) {
+            for (int key : stInt.keys()) {
                 sum += that[key] * this.get(key);
             }
-
             return sum;
         }
 
     }
 
     private class SparseVectorDoubleKeys {
-
         private STdouble<Double> stDouble;
 
         public SparseVectorDoubleKeys() {
@@ -1175,13 +1158,11 @@ public class Exercise5 {
         public double dot(double[] that) {
             double sum = 0.0;
 
-            for(double key : stDouble.keys()) {
+            for (double key : stDouble.keys()) {
                 sum += that[(int) key] * this.get(key);
             }
-
             return sum;
         }
-
     }
 
     public static void main(String[] args) {
@@ -1191,14 +1172,14 @@ public class Exercise5 {
     }
 
     private void testSTint() {
-        //Matrix
+        // Matrix
         // 0  .90    0    0    0
         // 0    0  .36  .36  .18
         // 0    0    0  .90    0
         // .90  0    0    0    0
         // .47  0  .47    0    0
 
-        //Vector
+        // Vector
         // .05
         // .04
         // .36
@@ -1231,12 +1212,12 @@ public class Exercise5 {
 
         double[] resultVector = new double[vector.length];
 
-        for(int matrixColumn = 0; matrixColumn < matrix.length; matrixColumn++) {
+        for (int matrixColumn = 0; matrixColumn < matrix.length; matrixColumn++) {
             resultVector[matrixColumn] = matrix[matrixColumn].dot(vector);
         }
 
         StdOut.println("\nResult");
-        for(double value : resultVector) {
+        for (double value : resultVector) {
             StdOut.printf("%.3f\n", value);
         }
 
@@ -1249,14 +1230,14 @@ public class Exercise5 {
     }
 
     private void testSTdouble() {
-        //Matrix
+        // Matrix
         // 0  .90    0    0    0
         // 0    0  .36  .36  .18
         // 0    0    0  .90    0
         // .90  0    0    0    0
         // .47  0  .47    0    0
 
-        //Vector
+        // Vector
         // .05
         // .04
         // .36
@@ -1289,12 +1270,12 @@ public class Exercise5 {
 
         double[] resultVector = new double[vector.length];
 
-        for(int matrixColumn = 0; matrixColumn < matrix.length; matrixColumn++) {
+        for (int matrixColumn = 0; matrixColumn < matrix.length; matrixColumn++) {
             resultVector[matrixColumn] = matrix[matrixColumn].dot(vector);
         }
 
         StdOut.println("\nResult");
-        for(double value : resultVector) {
+        for (double value : resultVector) {
             StdOut.printf("%.3f\n", value);
         }
 
@@ -1305,5 +1286,4 @@ public class Exercise5 {
                 "0.045\n" +
                 "0.193");
     }
-
 }

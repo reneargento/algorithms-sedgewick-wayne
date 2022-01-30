@@ -31,7 +31,7 @@ public class Exercise19_MedianOf5Partitioning {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] arrayCopy1 = new Comparable[originalArray.length];
@@ -95,7 +95,7 @@ public class Exercise19_MedianOf5Partitioning {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot)) {
                 //Since we are using a random sample, we cannot guarantee that we will always have a higher element than the pivot
                 // on the right end.
@@ -105,7 +105,7 @@ public class Exercise19_MedianOf5Partitioning {
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--j]));
+            while (ArrayUtil.less(pivot, array[--j]));
 
             if (i >= j) {
                 break;
@@ -218,5 +218,4 @@ public class Exercise19_MedianOf5Partitioning {
     private static void printResults(int arraySize, double defaultQuickSortRunningTime, double quickSortWithMedianOfThree, double quickSortWithMedianOfFive) {
         StdOut.printf("%10d %25.1f %32.1f %33.1f\n", arraySize, defaultQuickSortRunningTime, quickSortWithMedianOfThree, quickSortWithMedianOfFive);
     }
-
 }

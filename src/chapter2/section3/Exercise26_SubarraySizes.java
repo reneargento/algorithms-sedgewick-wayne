@@ -34,7 +34,7 @@ public class Exercise26_SubarraySizes {
 
         List<double[]> allSubArraySizes = new ArrayList<>();
 
-        for(int cutoffSize : cutoffSizes) {
+        for (int cutoffSize : cutoffSizes) {
 
             Comparable[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
@@ -45,7 +45,7 @@ public class Exercise26_SubarraySizes {
             allSubArraySizes.add(subArraySizesHistogram);
         }
 
-        for(int i = 0; i < cutoffSizes.length; i++) {
+        for (int i = 0; i < cutoffSizes.length; i++) {
             histogram(allSubArraySizes.get(i), cutoffSizes[i]);
 
             try {
@@ -92,14 +92,14 @@ public class Exercise26_SubarraySizes {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot)) {
                 if (i == high) {
                     break;
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if (j == low) {
                     break;
                 }
@@ -124,7 +124,7 @@ public class Exercise26_SubarraySizes {
     private void histogram(double[] subArraySizesHistogram, int cutoff) {
         double maxCount = 0;
 
-        for(int i = 0; i < subArraySizesHistogram.length; i++) {
+        for (int i = 0; i < subArraySizesHistogram.length; i++) {
             if (subArraySizesHistogram[i] > maxCount) {
                 maxCount = subArraySizesHistogram[i];
             }
@@ -204,5 +204,4 @@ public class Exercise26_SubarraySizes {
 
         return bucketDescriptions;
     }
-
 }

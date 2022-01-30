@@ -143,7 +143,7 @@ public class Exercise22_Proof {
             visited = new boolean[digraph.vertices()];
             newStates = new Bag<>();
 
-            for(State source : sources) {
+            for (State source : sources) {
                 if (!visited[source.id]) {
                     dfs(digraph, source);
                 }
@@ -154,7 +154,7 @@ public class Exercise22_Proof {
             visited[source.id] = true;
             newStates.add(source);
 
-            for(int neighbor : digraph.adjacent(source.id)) {
+            for (int neighbor : digraph.adjacent(source.id)) {
                 if (!visited[neighbor]) {
                     State newState = new State(neighbor, source);
                     newStates.add(newState);
@@ -252,5 +252,4 @@ public class Exercise22_Proof {
         regularExpressionMatcherWithProof5.recognizes(text9);
         StdOut.println("Expected: Text was not recognized by the DFA");
     }
-
 }

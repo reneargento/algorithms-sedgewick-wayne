@@ -69,21 +69,19 @@ public class Exercise34_SymbolGraph {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex : adjacent.keys()) {
+            for (int vertex : adjacent.keys()) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(int neighbor : adjacent(vertex)) {
+                for (int neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
 
     public class SymbolGraphOnePass {
-
         private SeparateChainingHashTable<String, Integer> vertexNameToIdMap;
         private String[] keys;
         private Graph graph;
@@ -98,7 +96,7 @@ public class Exercise34_SymbolGraph {
                 String[] vertices = in.readLine().split(separator);
 
                 // Create vertices
-                for(int i = 0; i < vertices.length; i++) {
+                for (int i = 0; i < vertices.length; i++) {
                     if (!vertexNameToIdMap.contains(vertices[i])) {
                         vertexNameToIdMap.put(vertices[i], vertexNameToIdMap.size());
                     }
@@ -106,14 +104,14 @@ public class Exercise34_SymbolGraph {
 
                 // Add edges
                 int vertex = vertexNameToIdMap.get(vertices[0]);
-                for(int i = 1; i < vertices.length; i++) {
+                for (int i = 1; i < vertices.length; i++) {
                     graph.addEdge(vertex, vertexNameToIdMap.get(vertices[i]));
                 }
             }
 
             keys = new String[vertexNameToIdMap.size()];
 
-            for(String vertexName : vertexNameToIdMap.keys()) {
+            for (String vertexName : vertexNameToIdMap.keys()) {
                 keys[vertexNameToIdMap.get(vertexName)] = vertexName;
             }
         }
@@ -133,7 +131,6 @@ public class Exercise34_SymbolGraph {
         public Graph graph() {
             return graph;
         }
-
     }
 
     public static void main(String[] args) {
@@ -148,5 +145,4 @@ public class Exercise34_SymbolGraph {
         StdOut.println("Vertices: " + graph.vertices() + " Expected: 119429");
         StdOut.println("Edges: " + graph.edges() + " Expected: 202927");
     }
-
 }

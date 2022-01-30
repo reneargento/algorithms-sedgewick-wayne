@@ -31,7 +31,7 @@ public class Exercise24_NonOverlappingIntervalSearch {
         NonOverlappingIntervalFinder(List<Interval> intervals) {
             redBlackBST = new RedBlackBST<>();
 
-            for(Interval interval : intervals) {
+            for (Interval interval : intervals) {
                 redBlackBST.put(interval.start, interval);
             }
         }
@@ -72,5 +72,4 @@ public class Exercise24_NonOverlappingIntervalSearch {
         StdOut.println("Find 5669321: " + nonOverlappingIntervalFinder.findInterval(5669321) + " Expected: 4");
         StdOut.println("Find 5669322: " + nonOverlappingIntervalFinder.findInterval(5669322) + " Expected: -1");
     }
-
 }

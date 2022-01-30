@@ -100,7 +100,7 @@ public class Exercise7 {
                 }
 
                 if (pathsToCurrentVertex <= kPaths) {
-                    for(DirectedEdge edge : edgeWeightedDigraph.adjacent(lastVertexInPath)) {
+                    for (DirectedEdge edge : edgeWeightedDigraph.adjacent(lastVertexInPath)) {
                         // Do not repeat vertices - we are interested in paths and not walks
                         if (!currentPath.verticesInPath.contains(edge.to())) {
                             Path newPath = new Path(currentPath, edge);
@@ -109,7 +109,6 @@ public class Exercise7 {
                     }
                 }
             }
-
             return paths;
         }
     }
@@ -155,7 +154,7 @@ public class Exercise7 {
         if (secondShortestPath1 == null) {
             StdOut.println("There is only one shortest path from 2 to 4");
         } else {
-            for(DirectedEdge directedEdge : secondShortestPath1.getPath()) {
+            for (DirectedEdge directedEdge : secondShortestPath1.getPath()) {
                 StdOut.print(directedEdge + " ");
             }
         }
@@ -167,7 +166,7 @@ public class Exercise7 {
         if (secondShortestPath2 == null) {
             StdOut.println("There is only one shortest path from 6 to 5");
         } else {
-            for(DirectedEdge directedEdge : secondShortestPath2.getPath()) {
+            for (DirectedEdge directedEdge : secondShortestPath2.getPath()) {
                 StdOut.print(directedEdge + " ");
             }
         }
@@ -179,11 +178,10 @@ public class Exercise7 {
         if (secondShortestPath3 == null) {
             StdOut.println("There is only one shortest path from 6 to 2");
         } else {
-            for(DirectedEdge directedEdge : secondShortestPath3.getPath()) {
+            for (DirectedEdge directedEdge : secondShortestPath3.getPath()) {
                 StdOut.print(directedEdge + " ");
             }
         }
         StdOut.println("Expected: There is only one shortest path from 6 to 2");
     }
-
 }

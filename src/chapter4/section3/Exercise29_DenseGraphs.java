@@ -22,7 +22,7 @@ public class Exercise29_DenseGraphs {
             distTo = new double[edgeWeightedGraph.vertices()];
             marked = new boolean[edgeWeightedGraph.vertices()];
 
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
 
@@ -40,7 +40,7 @@ public class Exercise29_DenseGraphs {
             // Add vertex to the minimum spanning tree; update data structures
             marked[vertex] = true;
 
-            for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+            for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                 int otherVertex = edge.other(vertex);
                 if (marked[otherVertex]) {
                     continue; // vertex-otherVertex is ineligible
@@ -61,7 +61,7 @@ public class Exercise29_DenseGraphs {
             int nextVertexToVisit = -1;
             double minEdgeWeight = Double.POSITIVE_INFINITY;
 
-            for(int vertexToVisit = 0; vertexToVisit < edgeWeightedGraph.vertices(); vertexToVisit++) {
+            for (int vertexToVisit = 0; vertexToVisit < edgeWeightedGraph.vertices(); vertexToVisit++) {
                 if (!marked[vertexToVisit] && distTo[vertexToVisit] < minEdgeWeight) {
                     nextVertexToVisit = vertexToVisit;
                     minEdgeWeight = distTo[vertexToVisit];
@@ -74,7 +74,7 @@ public class Exercise29_DenseGraphs {
         public Iterable<Edge> edges() {
             Queue<Edge> minimumSpanningTree = new Queue<>();
 
-            for(int vertex = 1; vertex < edgeTo.length; vertex++) {
+            for (int vertex = 1; vertex < edgeTo.length; vertex++) {
                 minimumSpanningTree.enqueue(edgeTo[vertex]);
             }
 
@@ -84,7 +84,7 @@ public class Exercise29_DenseGraphs {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
 
@@ -112,7 +112,7 @@ public class Exercise29_DenseGraphs {
         PrimMSTDenseGraphs primMSTDenseGraphs =
                 exercise29_denseGraphs.new PrimMSTDenseGraphs(edgeWeightedGraph);
 
-        for(Edge edge : primMSTDenseGraphs.edges()) {
+        for (Edge edge : primMSTDenseGraphs.edges()) {
             StdOut.println(edge);
         }
 
@@ -122,5 +122,4 @@ public class Exercise29_DenseGraphs {
                 "0-3 0.50000\n" +
                 "3-4 0.80000");
     }
-
 }

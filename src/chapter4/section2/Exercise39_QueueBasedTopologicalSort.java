@@ -27,13 +27,13 @@ public class Exercise39_QueueBasedTopologicalSort {
         int[] topologicalSort = new int[digraph.vertices()];
         int topologicalSortIndex = 0;
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            for(int neighbor : digraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            for (int neighbor : digraph.adjacent(vertex)) {
                 indegree[neighbor]++;
             }
         }
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             if (indegree[vertex] == 0) {
                 sources.enqueue(vertex);
             }
@@ -45,7 +45,7 @@ public class Exercise39_QueueBasedTopologicalSort {
             ranks[currentSource] = topologicalSortIndex;
             topologicalSort[topologicalSortIndex++] = currentSource;
 
-            for(int neighbor : digraph.adjacent(currentSource)) {
+            for (int neighbor : digraph.adjacent(currentSource)) {
                 indegree[neighbor]--;
 
                 if (indegree[neighbor] == 0) {
@@ -71,7 +71,7 @@ public class Exercise39_QueueBasedTopologicalSort {
 
         StdOut.println("Topological order 1: ");
 
-        for(int vertex : topologicalOrder1) {
+        for (int vertex : topologicalOrder1) {
             StdOut.print(vertex + " ");
         }
         StdOut.println("\nExpected: 0 1 2 3 4");
@@ -86,7 +86,7 @@ public class Exercise39_QueueBasedTopologicalSort {
 
         StdOut.println("\nTopological order 2: ");
 
-        for(int vertex : topologicalOrder2) {
+        for (int vertex : topologicalOrder2) {
             StdOut.print(vertex + " ");
         }
         StdOut.println("\nExpected: 0 3 1 4 2 5 ");
@@ -107,10 +107,9 @@ public class Exercise39_QueueBasedTopologicalSort {
 
         StdOut.println("\nTopological order 3: ");
 
-        for(int vertex : topologicalOrder3) {
+        for (int vertex : topologicalOrder3) {
             StdOut.print(vertex + " ");
         }
         StdOut.println("\nExpected: 0 4 1 5 6 7 8 2 3");
     }
-
 }

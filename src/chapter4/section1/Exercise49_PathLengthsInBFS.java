@@ -19,7 +19,7 @@ public class Exercise49_PathLengthsInBFS {
 
         Exercise40_RandomGraphs exercise40_randomGraphs = new Exercise40_RandomGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomGraph = exercise40_randomGraphs.erdosRenyiGraph(vertices, edges);
             int[] experimentResults = doExperiment(randomGraph);
 
@@ -37,7 +37,7 @@ public class Exercise49_PathLengthsInBFS {
 
         Exercise41_RandomSimpleGraphs exercise41_randomSimpleGraphs = new Exercise41_RandomSimpleGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomSimpleGraph = exercise41_randomSimpleGraphs.randomSimpleGraph(vertices, edges);
             int[] experimentResults = doExperiment(randomSimpleGraph);
 
@@ -56,7 +56,7 @@ public class Exercise49_PathLengthsInBFS {
         Exercise46_RandomIntervalGraphs exercise46_randomIntervalGraphs = new Exercise46_RandomIntervalGraphs();
         double defaultLength = 0.3;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomIntervalGraph = exercise46_randomIntervalGraphs.generateIntervalGraph(vertices, defaultLength);
             int[] experimentResults = doExperiment(randomIntervalGraph);
 
@@ -68,7 +68,6 @@ public class Exercise49_PathLengthsInBFS {
     }
 
     private int[] doExperiment(GraphInterface graph) {
-
         int[] experimentResult = new int[2];
         int totalPathLength = 0;
 
@@ -79,11 +78,10 @@ public class Exercise49_PathLengthsInBFS {
         boolean foundPath = breadthFirstPaths.hasPathTo(randomDestinationVertex);
 
         if (foundPath) {
-            for(int vertexInPath : breadthFirstPaths.pathTo(randomDestinationVertex)) {
+            for (int vertexInPath : breadthFirstPaths.pathTo(randomDestinationVertex)) {
                 totalPathLength++;
             }
         }
-
         experimentResult[0] = foundPath ? 1 : 0;
         experimentResult[1] = totalPathLength;
         return experimentResult;
@@ -108,5 +106,4 @@ public class Exercise49_PathLengthsInBFS {
 
         new Exercise49_PathLengthsInBFS().generateGraphsAndDoExperiments(experiments, vertices, edges);
     }
-
 }

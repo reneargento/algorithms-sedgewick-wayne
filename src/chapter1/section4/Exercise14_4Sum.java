@@ -83,9 +83,9 @@ public class Exercise14_4Sum {
 
         int count = 0;
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             for (int j = i + 1; j < array.length; j++) {
-                for(int k = j + 1; k < array.length; k++) {
+                for (int k = j + 1; k < array.length; k++) {
 
                     int searchElement = -1 * (array[i] + array[j] + array[k]);
                     int elementIndexLeft = binarySearch(array, searchElement, 0, array.length - 1, true);
@@ -113,12 +113,10 @@ public class Exercise14_4Sum {
                 }
             }
         }
-
         return count;
     }
 
     private static int binarySearch(int[] array, int target, int low, int high, boolean searchLow) {
-
         if (low > high) {
             return -1;
         }

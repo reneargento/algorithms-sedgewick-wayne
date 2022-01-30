@@ -174,7 +174,7 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item> {
             reverseTailCopy = new Stack<>();
 
             if (!isPerformingRecopy) {
-                for(Item item : tail) {
+                for (Item item : tail) {
                     reverseTailCopy.push(item);
                 }
 
@@ -241,7 +241,6 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] args) {
-
         Exercise49_QueueWithStacks<Integer> queueWithStacks = new Exercise49_QueueWithStacks<>();
         queueWithStacks.enqueue(0);
 
@@ -289,5 +288,4 @@ public class Exercise49_QueueWithStacks<Item> implements Iterable<Item> {
         StdOut.println("Queue items: " + queueItems3.toString());
         StdOut.println("Expected: 4");
     }
-
 }

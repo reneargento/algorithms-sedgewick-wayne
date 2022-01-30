@@ -27,7 +27,7 @@ public class Exercise43_ListingFiles {
         File[] fileList = file.listFiles();
 
         if (fileList != null) {
-            for(File fileItem : fileList) {
+            for (File fileItem : fileList) {
 
                 if (fileItem.isFile()) {
                     addFileToQueue(fileItem, depth);
@@ -41,7 +41,7 @@ public class Exercise43_ListingFiles {
     private void addFileToQueue(File file, int depth) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int i = 0; i < depth; i++) {
+        for (int i = 0; i < depth; i++) {
             stringBuilder.append("  ");
         }
 
@@ -57,9 +57,8 @@ public class Exercise43_ListingFiles {
         Exercise43_ListingFiles listFiles = new Exercise43_ListingFiles();
         listFiles.listFiles(folder, 0);
 
-        for(String fileName : listFiles.fileQueue) {
+        for (String fileName : listFiles.fileQueue) {
             StdOut.println(fileName);
         }
     }
-
 }

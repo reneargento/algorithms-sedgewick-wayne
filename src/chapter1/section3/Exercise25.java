@@ -38,7 +38,7 @@ public class Exercise25<Item> implements Iterable<Item> {
 			first.item = item;
 		} else {	
 			Node current;
-			for(current = first; current.next != null; current = current.next);
+			for (current = first; current.next != null; current = current.next);
 			
 			Node newNode = new Node();
 			newNode.item = item;
@@ -74,7 +74,7 @@ public class Exercise25<Item> implements Iterable<Item> {
 			Node current;
 			int count = 1;
 			
-			for(current = first; current != null; current = current.next) {
+			for (current = first; current != null; current = current.next) {
 				if (count == k - 1 && current.next != null) {
 					current.next = current.next.next;
 					break;
@@ -108,7 +108,7 @@ public class Exercise25<Item> implements Iterable<Item> {
 		
 		Node current;
 		
-		for(current = first; current != null; current = current.next) {
+		for (current = first; current != null; current = current.next) {
 			if (current.item.equals(node.item)) {
 				if (current.next != null) {
 					current.next = current.next.next;
@@ -189,5 +189,4 @@ public class Exercise25<Item> implements Iterable<Item> {
         StdOut.println(listAfterInsert.toString());
         StdOut.println("Expected: 0 1 2 99 3 4");
 	}
-	
 }

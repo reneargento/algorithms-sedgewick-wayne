@@ -14,10 +14,10 @@ public class Arbitrage {
 
         EdgeWeightedDigraph edgeWeightedDigraph = new EdgeWeightedDigraph(vertices);
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
             name[vertex] = StdIn.readString();
 
-            for(int neighbor = 0; neighbor < vertices; neighbor++) {
+            for (int neighbor = 0; neighbor < vertices; neighbor++) {
                 double rate = StdIn.readDouble();
                 DirectedEdge edge = new DirectedEdge(vertex, neighbor, -Math.log(rate));
                 edgeWeightedDigraph.addEdge(edge);
@@ -29,7 +29,7 @@ public class Arbitrage {
         if (bellmanFordSP.hasNegativeCycle()) {
             double stake = 1000.0;
 
-            for(DirectedEdge edge : bellmanFordSP.negativeCycle()) {
+            for (DirectedEdge edge : bellmanFordSP.negativeCycle()) {
                 StdOut.printf("%10.5f %s ", stake, name[edge.from()]);
                 stake *= Math.exp(-edge.weight());
                 StdOut.printf("= %10.5f %s\n", stake, name[edge.to()]);

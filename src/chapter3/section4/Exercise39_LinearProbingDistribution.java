@@ -18,8 +18,8 @@ public class Exercise39_LinearProbingDistribution {
         public double getAverageCostOfSearchMissFromClusterLengths() {
             long totalCostOfSearchMisses = 0;
 
-            //Simulates a search miss starting at each array position
-            for(int i = 0; i < size; i++) {
+            // Simulates a search miss starting at each array position
+            for (int i = 0; i < size; i++) {
                 int index = i;
                 totalCostOfSearchMisses++;
 
@@ -32,8 +32,8 @@ public class Exercise39_LinearProbingDistribution {
             return totalCostOfSearchMisses / (double) size;
         }
 
-        //Proposition M
-        //Expected average cost of search miss = ~1/2 * (1 + (1 / (1 - a)^2))
+        // Proposition M
+        // Expected average cost of search miss = ~1/2 * (1 + (1 / (1 - a)^2))
         public double getExpectedAverageCostOfSearchMiss() {
             double loadFactor = getLoadFactor();
             return 0.5 * (1 + (1 / Math.pow(1 - loadFactor, 2)));
@@ -45,13 +45,13 @@ public class Exercise39_LinearProbingDistribution {
 
         int[] hashTableSizes = {1000, 10000, 100000, 1000000};
 
-        for(int hashTableSizeIndex = 0; hashTableSizeIndex < hashTableSizes.length; hashTableSizeIndex++) {
+        for (int hashTableSizeIndex = 0; hashTableSizeIndex < hashTableSizes.length; hashTableSizeIndex++) {
             int hashTableSize = hashTableSizes[hashTableSizeIndex];
 
             LinearProbingHashTableAvgSearchMissCost<Integer, Integer> linearProbingHashTableAvgSearchMissCost =
                     new LinearProbingHashTableAvgSearchMissCost(hashTableSize);
 
-            for(int i = 0; i < hashTableSize / 2; i++) {
+            for (int i = 0; i < hashTableSize / 2; i++) {
                 int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
                 linearProbingHashTableAvgSearchMissCost.put(randomKey, randomKey);
             }
@@ -69,5 +69,4 @@ public class Exercise39_LinearProbingDistribution {
     public static void main(String[] args) {
         new Exercise39_LinearProbingDistribution().doExperiment();
     }
-
 }

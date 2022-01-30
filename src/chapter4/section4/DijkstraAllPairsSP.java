@@ -10,7 +10,7 @@ public class DijkstraAllPairsSP {
     DijkstraAllPairsSP(EdgeWeightedDigraph edgeWeightedDigraph) {
         allPairsShortestPaths = new DijkstraSP[edgeWeightedDigraph.vertices()];
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             allPairsShortestPaths[vertex] = new DijkstraSP(edgeWeightedDigraph, vertex);
         }
     }
@@ -22,5 +22,4 @@ public class DijkstraAllPairsSP {
     public double distance (int source, int target) {
         return allPairsShortestPaths[source].distTo(target);
     }
-
 }

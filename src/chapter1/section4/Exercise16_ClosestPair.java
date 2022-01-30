@@ -30,7 +30,7 @@ public class Exercise16_ClosestPair {
 
         Arrays.sort(array);
 
-        for(int i = 0; i < array.length - 1; i++) {
+        for (int i = 0; i < array.length - 1; i++) {
             if (Math.abs(array[i] - array[i + 1]) < currentMinimumDifference) {
                 currentMinimumDifference = Math.abs(array[i] - array[i + 1]);
 
@@ -38,8 +38,6 @@ public class Exercise16_ClosestPair {
                 closestPair[1] = array[i + 1];
             }
         }
-
         return closestPair;
     }
-
 }

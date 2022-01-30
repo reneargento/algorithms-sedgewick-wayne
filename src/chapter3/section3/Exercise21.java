@@ -41,7 +41,7 @@ public class Exercise21 {
 
         RedBlackBST<Integer, String> redBlackBST = new RedBlackBST<>();
 
-        while(!StdIn.isEmpty()) {
+        while (!StdIn.isEmpty()) {
             Integer key = StdIn.readInt();
             redBlackBST.put(key, "Value " + key);
         }
@@ -49,7 +49,7 @@ public class Exercise21 {
         if (testType == -1 || testType == 0) {
             StdOut.println("Keys() test");
 
-            for(Integer key : redBlackBST.keys()) {
+            for (Integer key : redBlackBST.keys()) {
                 StdOut.println("Key " + key + ": " + redBlackBST.get(key));
             }
 
@@ -57,75 +57,74 @@ public class Exercise21 {
         }
 
         if (testType == -1 || testType == 1) {
-            //Test min()
+            // Test min()
             StdOut.println("Min key: " + redBlackBST.min() + " Expected: 0");
         }
 
         if (testType == -1 || testType == 2) {
-            //Test max()
+            // Test max()
             StdOut.println("Max key: " + redBlackBST.max() + " Expected: 99");
         }
 
         if (testType == -1 || testType == 3) {
-            //Test floor()
+            // Test floor()
             StdOut.println("Floor of 5: " + redBlackBST.floor(5) + " Expected: 5");
             StdOut.println("Floor of 15: " + redBlackBST.floor(15) + " Expected: 9");
         }
 
         if (testType == -1 || testType == 4) {
-            //Test ceiling()
+            // Test ceiling()
             StdOut.println("Ceiling of 5: " + redBlackBST.ceiling(5) + " Expected: 5");
             StdOut.println("Ceiling of 15: " + redBlackBST.ceiling(15) + " Expected: 99");
         }
 
         if (testType == -1 || testType == 5) {
-            //Test select()
+            // Test select()
             StdOut.println("Select key of rank 4: " + redBlackBST.select(4) + " Expected: 9");
         }
 
         if (testType == -1 || testType == 6) {
-            //Test rank()
+            // Test rank()
             StdOut.println("Rank of key 9: " + redBlackBST.rank(9) + " Expected: 4");
             StdOut.println("Rank of key 10: " + redBlackBST.rank(10) + " Expected: 5");
         }
 
         if (testType == -1 || testType == 7) {
-            //Test delete()
+            // Test delete()
             StdOut.println("\nDelete key 2");
             redBlackBST.delete(2);
 
-            for(Integer key : redBlackBST.keys()) {
+            for (Integer key : redBlackBST.keys()) {
                 StdOut.println("Key " + key + ": " + redBlackBST.get(key));
             }
         }
 
         if (testType == -1 || testType == 8) {
-            //Test deleteMin()
+            // Test deleteMin()
             StdOut.println("\nDelete min (key 0)");
             redBlackBST.deleteMin();
 
-            for(Integer key : redBlackBST.keys()) {
+            for (Integer key : redBlackBST.keys()) {
                 StdOut.println("Key " + key + ": " + redBlackBST.get(key));
             }
         }
 
         if (testType == -1 || testType == 9) {
-            //Test deleteMax()
+            // Test deleteMax()
             StdOut.println("\nDelete max (key 99)");
             redBlackBST.deleteMax();
 
-            for(Integer key : redBlackBST.keys()) {
+            for (Integer key : redBlackBST.keys()) {
                 StdOut.println("Key " + key + ": " + redBlackBST.get(key));
             }
         }
 
         if (testType == -1 || testType == 10) {
-            //Test keys() with range
+            // Test keys() with range
             StdOut.println("\nKeys in range [2, 10]");
-            for(Integer key : redBlackBST.keys(2, 10)) {
+            for (Integer key : redBlackBST.keys(2, 10)) {
                 StdOut.println("Key " + key + ": " + redBlackBST.get(key));
             }
         }
     }
-
 }

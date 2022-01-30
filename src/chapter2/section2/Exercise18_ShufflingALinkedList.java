@@ -77,7 +77,7 @@ public class Exercise18_ShufflingALinkedList<Item> {
 
             StringJoiner shuffledList = new StringJoiner(" ");
 
-            while(newHead != null) {
+            while (newHead != null) {
                 shuffledList.add(String.valueOf(newHead.item));
                 newHead = newHead.next;
             }
@@ -119,7 +119,7 @@ public class Exercise18_ShufflingALinkedList<Item> {
         Exercise18_ShufflingALinkedList.Node slow = source;
         Exercise18_ShufflingALinkedList.Node fast = source;
 
-        while(fast.next != null && fast.next.next != null) {
+        while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
@@ -135,7 +135,7 @@ public class Exercise18_ShufflingALinkedList<Item> {
         int firstHalfLength = listSizes[0];
         int secondHalfLength = listSizes[1];
 
-        while(firstHalf != null && secondHalf != null) {
+        while (firstHalf != null && secondHalf != null) {
             double random = StdRandom.uniform();
             // Select elements according to the Gilbert–Shannon–Reeds model
             double selectFromFirstHalfProbability = firstHalfLength / (double) (firstHalfLength + secondHalfLength);
@@ -178,5 +178,4 @@ public class Exercise18_ShufflingALinkedList<Item> {
         }
         return new int[]{firstHalfLength, secondHalfLength};
     }
-
 }

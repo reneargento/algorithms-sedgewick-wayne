@@ -24,7 +24,7 @@ public class Exercise8 {
 
         BinarySearchSymbolTable<String, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(String word : words) {
+        for (String word : words) {
             if (word.length() < minLength) {
                 continue;
             }
@@ -39,7 +39,7 @@ public class Exercise8 {
         String max = "";
         binarySearchSymbolTable.put(max, 0);
 
-        for(String word : binarySearchSymbolTable.keys()) {
+        for (String word : binarySearchSymbolTable.keys()) {
             if (binarySearchSymbolTable.get(word) > binarySearchSymbolTable.get(max)) {
                 max = word;
             }
@@ -47,5 +47,4 @@ public class Exercise8 {
 
         return max + " Frequency: " + binarySearchSymbolTable.get(max);
     }
-
 }

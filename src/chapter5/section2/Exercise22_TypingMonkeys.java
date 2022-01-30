@@ -66,7 +66,7 @@ public class Exercise22_TypingMonkeys {
 
         double[] frequencies = new double[maxWordLength + 1];
 
-        for(int wordLength : frequencyMap.keys()) {
+        for (int wordLength : frequencyMap.keys()) {
             double wordLengthFrequency = frequencyMap.get(wordLength) / (double) numberOfWordsToGenerate;
             frequencies[wordLength] = wordLengthFrequency;
         }
@@ -87,9 +87,8 @@ public class Exercise22_TypingMonkeys {
         double[] frequencies = new Exercise22_TypingMonkeys().getFrequencyDistribution(numberOfWordsToGenerate, probability);
 
         StdOut.println("Frequency distribution estimate\n");
-        for(int i = 0; i < frequencies.length; i++) {
+        for (int i = 0; i < frequencies.length; i++) {
             StdOut.printf("%12s %.3f\n", "Length " + i + ": ", frequencies[i]);
         }
     }
-
 }

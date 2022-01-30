@@ -1061,7 +1061,7 @@ public class Exercise29_OptimalStorage {
     }
 
     public static void main(String[] args) {
-        //Expected 2-3 tree
+        // Expected 2-3 tree
         //
         //                 (B)1
         //         (B)-1          (B)5
@@ -1106,84 +1106,84 @@ public class Exercise29_OptimalStorage {
 
         StdOut.println("Keys() test");
 
-        for(Integer key : redBlackBSTOptimalStorage.keys()) {
+        for (Integer key : redBlackBSTOptimalStorage.keys()) {
             StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
         }
         StdOut.println("Expected: -5 -2 -1 0 1 2 3 5 9 99\n");
 
-        //Test min()
+        // Test min()
         StdOut.println("Min key: " + redBlackBSTOptimalStorage.min() + " Expected: -5");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + redBlackBSTOptimalStorage.max() + " Expected: 99");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + redBlackBSTOptimalStorage.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + redBlackBSTOptimalStorage.floor(15) + " Expected: 9");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + redBlackBSTOptimalStorage.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + redBlackBSTOptimalStorage.ceiling(15) + " Expected: 99");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + redBlackBSTOptimalStorage.select(4) + " Expected: 1");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key 9: " + redBlackBSTOptimalStorage.rank(9) + " Expected: 8");
         StdOut.println("Rank of key 10: " + redBlackBSTOptimalStorage.rank(10) + " Expected: 9");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         redBlackBSTOptimalStorage.delete(2);
 
-        for(Integer key : redBlackBSTOptimalStorage.keys()) {
+        for (Integer key : redBlackBSTOptimalStorage.keys()) {
             StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
         }
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
         StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         StdOut.println("Size consistent: " + redBlackBSTOptimalStorage.isSubtreeCountConsistent() + " Expected: true");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key -5)");
         redBlackBSTOptimalStorage.deleteMin();
 
-        for(Integer key : redBlackBSTOptimalStorage.keys()) {
+        for (Integer key : redBlackBSTOptimalStorage.keys()) {
             StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
         }
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
         StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         StdOut.println("Size consistent: " + redBlackBSTOptimalStorage.isSubtreeCountConsistent() + " Expected: true");
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 99)");
         redBlackBSTOptimalStorage.deleteMax();
 
-        for(Integer key : redBlackBSTOptimalStorage.keys()) {
+        for (Integer key : redBlackBSTOptimalStorage.keys()) {
             StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
         }
         StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
         StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
         StdOut.println("Size consistent: " + redBlackBSTOptimalStorage.isSubtreeCountConsistent() + " Expected: true");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
-        for(Integer key : redBlackBSTOptimalStorage.keys(2, 10)) {
+        for (Integer key : redBlackBSTOptimalStorage.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
         }
 
         StdOut.println("\nKeys in range [-4, -1]");
-        for(Integer key : redBlackBSTOptimalStorage.keys(-4, -1)) {
+        for (Integer key : redBlackBSTOptimalStorage.keys(-4, -1)) {
             StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\nDelete all");
         while (redBlackBSTOptimalStorage.size() > 0) {
-            for(Integer key : redBlackBSTOptimalStorage.keys()) {
+            for (Integer key : redBlackBSTOptimalStorage.keys()) {
                 StdOut.println("Key " + key + ": " + redBlackBSTOptimalStorage.get(key));
             }
 
-            //redBlackBSTOptimalStorage.delete(redBlackBSTOptimalStorage.select(0));
+            // redBlackBSTOptimalStorage.delete(redBlackBSTOptimalStorage.select(0));
             redBlackBSTOptimalStorage.delete(redBlackBSTOptimalStorage.select(redBlackBSTOptimalStorage.size() - 1));
             StdOut.println("Is valid 2-3 tree: " + redBlackBSTOptimalStorage.isValid23Tree() + " Expected: true");
             StdOut.println("Is balanced: " + redBlackBSTOptimalStorage.isBalanced() + " Expected: true");
@@ -1192,5 +1192,4 @@ public class Exercise29_OptimalStorage {
             StdOut.println();
         }
     }
-
 }

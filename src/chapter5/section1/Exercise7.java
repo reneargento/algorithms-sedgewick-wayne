@@ -20,21 +20,20 @@ public class Exercise7 {
 
         Queue<String> count[] = new Queue[alphabetSize + 1];
 
-        for(int r = 0; r < count.length; r++) {
+        for (int r = 0; r < count.length; r++) {
             count[r] = new Queue();
         }
 
         for (int digit = stringsLength - 1; digit >= 0; digit--) {
-
             // Compute frequency counts
-            for(int i = 0; i < array.length; i++) {
+            for (int i = 0; i < array.length; i++) {
                 int digitIndex = array[i].charAt(digit);
                 count[digitIndex].enqueue(array[i]);
             }
 
             // Distribute and copy back
             int indexArray = 0;
-            for(int r = 0; r < count.length; r++) {
+            for (int r = 0; r < count.length; r++) {
                 while (!count[r].isEmpty()) {
                     String string = count[r].dequeue();
                     array[indexArray++] = string;
@@ -63,7 +62,7 @@ public class Exercise7 {
 
         StringJoiner sortedArray = new StringJoiner(" ");
 
-        for(String string : array) {
+        for (String string : array) {
             sortedArray.add(string);
         }
         StdOut.println("Sorted array");
@@ -72,5 +71,4 @@ public class Exercise7 {
                 "1ICK750 1ICK750 1OHV845 1OHV845 1OHV845 2IYE230 2RLA629 2RLA629 3ATW723 3CIO720 3CIO720 " +
                 "4JZY524 4PGC938");
     }
-
 }

@@ -26,7 +26,7 @@ public class Exercise37_Hybrid {
             this.size = size;
             symbolTable = new RedBlackBST[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 symbolTable[i] = new RedBlackBST<>();
             }
         }
@@ -95,26 +95,24 @@ public class Exercise37_Hybrid {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(RedBlackBST redBlackBST : symbolTable) {
-                for(Object key : redBlackBST.keys()) {
+            for (RedBlackBST redBlackBST : symbolTable) {
+                for (Object key : redBlackBST.keys()) {
                     keys.enqueue((Key) key);
                 }
             }
 
             Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-            for(int i = 0; i < keysToBeSorted.length; i++) {
+            for (int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keys.dequeue();
             }
 
             Arrays.sort(keysToBeSorted);
 
-            for(Key key : keysToBeSorted) {
+            for (Key key : keysToBeSorted) {
                 keys.enqueue(key);
             }
-
             return keys;
         }
-
     }
 
     private void doExperiment() {
@@ -125,63 +123,62 @@ public class Exercise37_Hybrid {
 
         StdOut.printf("%12s %20s %16s\n", "Operation | ","Sequential Search time | ", "Red-black BST time");
 
-        //Put tests
+        // Put tests
         int[] randomKeysPut = new int[1000000];
 
-        for(int i = 0; i < randomKeysPut.length; i++) {
+        for (int i = 0; i < randomKeysPut.length; i++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             randomKeysPut[i] = randomKey;
         }
 
         Stopwatch stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysPut.length; i++) {
+        for (int i = 0; i < randomKeysPut.length; i++) {
             separateChainingHashTable.put(randomKeysPut[i], randomKeysPut[i]);
         }
         double timeSpentOnPutSequentialSearch = stopwatch.elapsedTime();
 
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysPut.length; i++) {
+        for (int i = 0; i < randomKeysPut.length; i++) {
             separateChainingHashTableWithRedBlackBST.put(randomKeysPut[i], randomKeysPut[i]);
         }
         double timeSpentOnPutRedBlackBST = stopwatch.elapsedTime();
 
         printResults("Put", timeSpentOnPutSequentialSearch, timeSpentOnPutRedBlackBST);
 
-        //Get tests
+        // Get tests
         int[] randomKeysGet = new int[500000];
 
-        for(int i = 0; i < randomKeysGet.length; i++) {
+        for (int i = 0; i < randomKeysGet.length; i++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             randomKeysGet[i] = randomKey;
         }
 
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysGet.length; i++) {
+        for (int i = 0; i < randomKeysGet.length; i++) {
             separateChainingHashTable.get(randomKeysGet[i]);
         }
         double timeSpentOnGetSequentialSearch = stopwatch.elapsedTime();
 
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysGet.length; i++) {
+        for (int i = 0; i < randomKeysGet.length; i++) {
             separateChainingHashTableWithRedBlackBST.get(randomKeysGet[i]);
         }
         double timeSpentOnGetRedBlackBST = stopwatch.elapsedTime();
 
         printResults("Get", timeSpentOnGetSequentialSearch, timeSpentOnGetRedBlackBST);
 
-        //Delete tests
+        // Delete tests
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysPut.length / 2; i++) {
+        for (int i = 0; i < randomKeysPut.length / 2; i++) {
             separateChainingHashTable.delete(randomKeysPut[i]);
         }
         double timeSpentOnDeleteSequentialSearch = stopwatch.elapsedTime();
 
         stopwatch = new Stopwatch();
-        for(int i = 0; i < randomKeysPut.length / 2; i++) {
+        for (int i = 0; i < randomKeysPut.length / 2; i++) {
             separateChainingHashTableWithRedBlackBST.delete(randomKeysPut[i]);
         }
         double timeSpentOnDeleteRedBlackBST = stopwatch.elapsedTime();
-
         printResults("Delete", timeSpentOnDeleteSequentialSearch, timeSpentOnDeleteRedBlackBST);
     }
 
@@ -192,5 +189,4 @@ public class Exercise37_Hybrid {
     private void printResults(String operation, double sequentialSearchTime, double redBlackBSTTime) {
         StdOut.printf("%9s %25.2f %21.2f\n", operation, sequentialSearchTime, redBlackBSTTime);
     }
-
 }

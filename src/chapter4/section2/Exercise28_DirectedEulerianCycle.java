@@ -22,7 +22,7 @@ public class Exercise28_DirectedEulerianCycle {
 
             // Check if all vertices have indegree equal to their outdegree
             // If any vertex does not, the algorithm may return an Eulerian path instead
-            for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
                 if (digraph.indegree(vertex) != digraph.outdegree(vertex)) {
                     return null;
                 }
@@ -30,11 +30,11 @@ public class Exercise28_DirectedEulerianCycle {
 
             // Create local view of adjacency lists, to iterate one vertex at a time
             Iterator<Integer>[] adjacent = (Iterator<Integer>[]) new Iterator[digraph.vertices()];
-            for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
                 adjacent[vertex] = digraph.adjacent(vertex).iterator();
             }
 
-            //Start the cycle with a non-isolated vertex
+            // Start the cycle with a non-isolated vertex
             int nonIsolatedVertex = nonIsolatedVertex(digraph);
             Stack<Integer> dfsStack = new Stack<>();
             dfsStack.push(nonIsolatedVertex);
@@ -64,7 +64,7 @@ public class Exercise28_DirectedEulerianCycle {
         private int nonIsolatedVertex(Digraph digraph) {
             int nonIsolatedVertex = -1;
 
-            for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
                 if (digraph.outdegree(vertex) > 0) {
                     nonIsolatedVertex = vertex;
                 }
@@ -162,5 +162,4 @@ public class Exercise28_DirectedEulerianCycle {
         }
         StdOut.println();
     }
-
 }

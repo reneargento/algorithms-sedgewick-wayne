@@ -23,7 +23,7 @@ public class Exercise7 {
 
         StdOut.printf("%13s %17s %17s %17s\n", "Array Size | ", "SubArrays Size 0 | ", "SubArrays Size 1 | ", "SubArrays Size 2");
 
-        for(int i = 0; i < allInputArrays.size(); i++) {
+        for (int i = 0; i < allInputArrays.size(); i++) {
             Comparable[] array = allInputArrays.get(i);
 
             quickSort(array);
@@ -75,14 +75,14 @@ public class Exercise7 {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (ArrayUtil.less(array[++i], pivot)) {
                 if (i == high) {
                     break;
                 }
             }
 
-            while(ArrayUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if (j == low) {
                     break;
                 }
@@ -103,5 +103,4 @@ public class Exercise7 {
     private static void printResults(int arraySize) {
         StdOut.printf("%10d %19d %19d %20d\n", arraySize, subArraysOfSize0, subArraysOfSize1, subArraysOfSize2);
     }
-
 }

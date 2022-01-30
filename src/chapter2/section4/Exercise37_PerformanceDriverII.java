@@ -23,17 +23,16 @@ public class Exercise37_PerformanceDriverII {
     }
 
     private static void doExperiment(int numberOfExperiments, Map<Integer, Comparable[]> allInputArrays) {
-
         StdOut.printf("%13s %12s\n", "Array Size | ", "Average Number of Remove Max");
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] array = allInputArrays.get(i);
             PriorityQueue<Double> priorityQueue = new PriorityQueue<>(array.length, PriorityQueue.Orientation.MAX);
 
             int totalNumberOfRemoveMax = 0;
 
-            for(int trial = 0; trial < 5; trial++) {
+            for (int trial = 0; trial < 5; trial++) {
 
                 int numberOfRemoveMaxIn1Second = insertsAndRemovesIn1Second(priorityQueue, array);
                 totalNumberOfRemoveMax += numberOfRemoveMaxIn1Second;
@@ -45,8 +44,8 @@ public class Exercise37_PerformanceDriverII {
     }
 
     private static int insertsAndRemovesIn1Second(PriorityQueue<Double> priorityQueue, Comparable[] keys) {
-        //Fill the priority queue
-        for(int i = 0; i < keys.length; i++) {
+        // Fill the priority queue
+        for (int i = 0; i < keys.length; i++) {
             priorityQueue.insert((double) keys[i]);
         }
 

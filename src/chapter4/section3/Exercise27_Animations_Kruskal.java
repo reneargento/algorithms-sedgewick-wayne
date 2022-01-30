@@ -47,7 +47,7 @@ public class Exercise27_Animations_Kruskal {
             drawVertices(randomCoordinates, -1, unionFind);
             drawInitialEdges(edgeWeightedGraph, randomCoordinates);
 
-            for(Edge edge : edgeWeightedGraph.edges()) {
+            for (Edge edge : edgeWeightedGraph.edges()) {
                 priorityQueue.insert(edge);
             }
 
@@ -81,7 +81,7 @@ public class Exercise27_Animations_Kruskal {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
 
@@ -103,7 +103,7 @@ public class Exercise27_Animations_Kruskal {
         private Coordinate[] getRandomCoordinates(EdgeWeightedGraph edgeWeightedGraph) {
             Coordinate[] vertexCoordinates = new Coordinate[edgeWeightedGraph.vertices()];
 
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                 // tinyEWG coordinates
 //                double randomXCoordinate = StdRandom.uniform();
 //                double randomYCoordinate = StdRandom.uniform();
@@ -126,7 +126,7 @@ public class Exercise27_Animations_Kruskal {
 
             StdDraw.setPenRadius(0.002D);
 
-            for(int vertexId = 0; vertexId < coordinates.length; vertexId++) {
+            for (int vertexId = 0; vertexId < coordinates.length; vertexId++) {
 
                 if (unionFind.find(vertexId) == cutSet1Id) {
                     StdDraw.setPenColor(Color.LIGHT_GRAY);
@@ -150,8 +150,8 @@ public class Exercise27_Animations_Kruskal {
             StdDraw.setPenRadius(0.003D);
             StdDraw.setPenColor(Color.LIGHT_GRAY);
 
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
-                for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+                for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                     int otherVertex = edge.other(vertex);
 
                     if (vertex > otherVertex) {
@@ -160,7 +160,6 @@ public class Exercise27_Animations_Kruskal {
                     }
                 }
             }
-
             sleep();
         }
 
@@ -201,5 +200,4 @@ public class Exercise27_Animations_Kruskal {
         new Exercise27_Animations_Kruskal().new KruskalMSTAnimations(edgeWeightedGraph, -1, 1001,
                 -1, 1001, 15);
     }
-
 }

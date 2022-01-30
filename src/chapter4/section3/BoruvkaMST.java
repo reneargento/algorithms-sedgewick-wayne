@@ -17,7 +17,7 @@ public class BoruvkaMST {
         UnionFind unionFind = new UnionFind(edgeWeightedGraph.vertices());
 
         // Repeats at most lg(V) times or until minimum spanning tree is complete
-        for(int stage = 0; stage < edgeWeightedGraph.vertices(); stage = stage + stage) {
+        for (int stage = 0; stage < edgeWeightedGraph.vertices(); stage = stage + stage) {
             if (minimumSpanningTree.size() == edgeWeightedGraph.vertices() - 1) {
                 break;
             }
@@ -26,7 +26,7 @@ public class BoruvkaMST {
             // If edge weights are equal, ties are broken in favor of the first edge in EdgeWeightedGraph.edges()
             Edge[] closestEdges = new Edge[edgeWeightedGraph.vertices()];
 
-            for(Edge edge : edgeWeightedGraph.edges()) {
+            for (Edge edge : edgeWeightedGraph.edges()) {
                 int vertex1 = edge.either();
                 int vertex2 = edge.other(vertex1);
 
@@ -47,7 +47,7 @@ public class BoruvkaMST {
             }
 
             // Add newly discovered edges to the MST
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                 Edge closestEdge = closestEdges[vertex];
 
                 if (closestEdge != null) {
@@ -71,5 +71,4 @@ public class BoruvkaMST {
     public double weight() {
         return weight;
     }
-
 }

@@ -98,9 +98,9 @@ public class Exercise32_8Puzzle {
         StdRandom.shuffle(values);
         int valuesIndex = 0;
 
-        for(int i = 0; i < grid.length; i++) {
-            for(int j = 0; j < grid[0].length; j++) {
-                //Leave the first cell empty
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                // Leave the first cell empty
                 if (i == 0 && j == 0) {
                     continue;
                 }
@@ -113,7 +113,6 @@ public class Exercise32_8Puzzle {
     }
 
     private List<String> solve8Puzzle(int[][] grid, Heuristic heuristic) {
-
         long totalStatesEvaluated = 1;
         String initialState = getState(grid);
 
@@ -132,13 +131,10 @@ public class Exercise32_8Puzzle {
         Node current = openSet.poll();
 
         while (current != null && !current.state.equals(END_STATE)) {
-
             totalStatesEvaluated++;
-
             closedSet.add(current);
 
-            for(Node neighbor : getNeighbors(current)) {
-
+            for (Node neighbor : getNeighbors(current)) {
                 if (closedSet.contains(neighbor)) {
                     continue;
                 }
@@ -152,7 +148,6 @@ public class Exercise32_8Puzzle {
 
                 openSet.add(neighbor);
             }
-
             current = openSet.poll();
         }
 
@@ -168,12 +163,11 @@ public class Exercise32_8Puzzle {
     private String getState(int[][] grid) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int i = 0; i < grid.length; i++) {
-            for(int j = 0; j < grid[0].length; j++) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
                 stringBuilder.append(grid[i][j]);
             }
         }
-
         return stringBuilder.toString();
     }
 
@@ -282,7 +276,7 @@ public class Exercise32_8Puzzle {
         return neighbors;
     }
 
-    //Heuristcs
+    // Heuristcs
     private int getHeuristicValue(Heuristic heuristic, String state) {
 
         switch (heuristic) {
@@ -300,7 +294,7 @@ public class Exercise32_8Puzzle {
     private int getNumberOfTilesInWrongPosition(String state) {
         int numberOfTilesInWrongPosition = 0;
 
-        for(int i = 0; i < state.length(); i++) {
+        for (int i = 0; i < state.length(); i++) {
             if (state.charAt(i) != END_STATE.charAt(i)) {
                 numberOfTilesInWrongPosition++;
             }
@@ -315,21 +309,21 @@ public class Exercise32_8Puzzle {
         int[][] grid = new int[3][3];
         int stateStringIndex = 0;
 
-        for(int i = 0; i < grid.length; i++) {
-            for(int j = 0; j < grid[0].length; j++) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
                 grid[i][j] = state.charAt(stateStringIndex++) - '0';
             }
         }
 
-        //A number correct position in the grid is given by:
-        //If number % 3 != 0
-        //  correct position row = number / 3
-        //  correct position column = number % 3 - 1
-        //else
-        //  correct position row = number / 3 - 1
-        //  correct position column = 2
-        for(int i = 0; i < grid.length; i++) {
-            for(int j = 0; j < grid[0].length; j++) {
+        // A number correct position in the grid is given by:
+        // If number % 3 != 0
+        //   correct position row = number / 3
+        //   correct position column = number % 3 - 1
+        // else
+        //   correct position row = number / 3 - 1
+        //   correct position column = 2
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == 0) {
                     manhattanDistance += Math.abs(2 - i) + Math.abs(2 - j);;
                     continue;
@@ -350,7 +344,6 @@ public class Exercise32_8Puzzle {
                 manhattanDistance += distance;
             }
         }
-
         return manhattanDistance;
     }
 
@@ -368,19 +361,18 @@ public class Exercise32_8Puzzle {
 
         List<String> orderedSolution = new ArrayList<>();
 
-        for(int i = solution.size() - 1; i >= 0; i--) {
+        for (int i = solution.size() - 1; i >= 0; i--) {
             orderedSolution.add(solution.get(i));
         }
-
         return orderedSolution;
     }
 
     private void printSolution(List<String> states) {
-        for(String state : states) {
+        for (String state : states) {
             int index = 0;
 
-            for(int i = 0; i < 3; i++) {
-                for(int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
                     StdOut.print(state.charAt(index++));
                 }
                 StdOut.println();

@@ -14,7 +14,6 @@ import java.util.Set;
  */
 @SuppressWarnings("unchecked")
 public class Exercise34_All23Trees {
-
     private static Map<Integer, Integer> differentTreeStructures = new HashMap<>();
 
     private Set<RedBlackBST<Integer, Integer>> generateTrees(int height, Set<RedBlackBST<Integer, Integer>> heightMinus1Trees,
@@ -25,14 +24,13 @@ public class Exercise34_All23Trees {
         int structuresToGenerate = differentTreeStructures.get(height);
 
         int nodesToAdd;
-        //Used to change the insertion order and generate different tree structures
+        // Used to change the insertion order and generate different tree structures
         int insertionsBeforeSwitchToLeftSide = 1; //always 1
         int insertionsBeforeSwitchToRightSide = 1; //starts at 1
         int insertions;
 
         while (structuresToGenerate > 0) {
-
-            for(RedBlackBST<Integer, Integer> previousTree : heightMinus1Trees) {
+            for (RedBlackBST<Integer, Integer> previousTree : heightMinus1Trees) {
 
                 RedBlackBST<Integer, Integer> currentTree = copyTree(previousTree);
 
@@ -61,7 +59,6 @@ public class Exercise34_All23Trees {
                 insertionsBeforeSwitchToRightSide++;
             }
         }
-
         return generatedTrees;
     }
 
@@ -135,7 +132,7 @@ public class Exercise34_All23Trees {
 
         Set<RedBlackBST<Integer, Integer>> treesOfHeight1 = new HashSet<>();
         RedBlackBST<Integer, Integer> height1Tree = new RedBlackBST<>();
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             height1Tree.put(randomKey, randomKey);
             keysInTree.add(randomKey);
@@ -145,23 +142,22 @@ public class Exercise34_All23Trees {
 
         differentTreeStructures.put(2, 2);
         differentTreeStructures.put(3, 7);
-        //According to http://algs4.cs.princeton.edu/errata/errata-printing8.php
+        // According to http://algs4.cs.princeton.edu/errata/errata-printing8.php
         // there are 112 structurally different 2-3 trees of height 4
         differentTreeStructures.put(4, 112);
 
-        //Height = 2
+        // Height = 2
         Set<RedBlackBST<Integer, Integer>> treesOfHeight2 = all23Trees.generateTrees(2, treesOfHeight1, keysInTree);
         generatedTrees.addAll(treesOfHeight2);
 
-        //Height = 3
+        // Height = 3
         Set<RedBlackBST<Integer, Integer>> treesOfHeight3 = all23Trees.generateTrees(3, treesOfHeight2, keysInTree);
         generatedTrees.addAll(treesOfHeight3);
 
-        //Height = 4
+        // Height = 4
         Set<RedBlackBST<Integer, Integer>> treesOfHeight4 = all23Trees.generateTrees(4, treesOfHeight3, keysInTree);
         generatedTrees.addAll(treesOfHeight4);
 
         StdOut.println("Number of trees generated: " + generatedTrees.size());
     }
-
 }

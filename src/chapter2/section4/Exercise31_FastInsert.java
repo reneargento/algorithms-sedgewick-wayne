@@ -144,7 +144,7 @@ public class Exercise31_FastInsert {
                 new Exercise31_FastInsert().new PriorityQueueFastInsert<>();
 
         // Insert many items and later insert smaller items to check the number of compares
-        for(int i = 10; i <= 42; i++) {
+        for (int i = 10; i <= 42; i++) {
             priorityQueueFastInsert.insert(i);
         }
 
@@ -156,5 +156,4 @@ public class Exercise31_FastInsert {
         StdOut.println("Delete Min: " + priorityQueueFastInsert.deleteMin() + " Expected: 2");
         StdOut.println("Delete Min: " + priorityQueueFastInsert.deleteMin() + " Expected: 10");
     }
-
 }

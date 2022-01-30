@@ -31,14 +31,14 @@ public class Exercise21_BinarySearchDistinct {
         Set<Integer> elementsSet = new HashSet<>();
 
         // Fill set
-        for(int i = 0; i < keys.length; i++) {
+        for (int i = 0; i < keys.length; i++) {
             elementsSet.add(keys[i]);
         }
 
         array = new int[elementsSet.size()];
         int arrayIndex = 0;
 
-        for(int key : elementsSet) {
+        for (int key : elementsSet) {
             array[arrayIndex] = key;
             arrayIndex++;
         }
@@ -68,5 +68,4 @@ public class Exercise21_BinarySearchDistinct {
 
         return -1;
     }
-
 }

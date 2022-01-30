@@ -18,7 +18,7 @@ public class Exercise6 {
 
         StdOut.printf("%13s %12s %17s\n", "Array Size | ", "Compares | ", "Expected Compares");
 
-        for(int i = 0; i < arraySizes.length; i++) {
+        for (int i = 0; i < arraySizes.length; i++) {
 
             int arraySize = arraySizes[i];
 
@@ -57,7 +57,7 @@ public class Exercise6 {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             numberOfCompares++;
 
             while (ArrayUtil.less(array[++i], pivot)) {
@@ -68,7 +68,7 @@ public class Exercise6 {
             }
 
             numberOfCompares++;
-            while(ArrayUtil.less(pivot, array[--j])) {
+            while (ArrayUtil.less(pivot, array[--j])) {
                 if (j == low) {
                     break;
                 }
@@ -82,7 +82,7 @@ public class Exercise6 {
             ArrayUtil.exchange(array, i, j);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, j);
         return j;
     }
@@ -90,5 +90,4 @@ public class Exercise6 {
     private static void printResults(int arraySize, int numberOfCompares, double numberOfExpectedCompares) {
         StdOut.printf("%10d %12d %20.0f\n", arraySize, numberOfCompares, numberOfExpectedCompares);
     }
-
 }

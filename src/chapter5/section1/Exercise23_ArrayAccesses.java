@@ -14,17 +14,16 @@ public class Exercise23_ArrayAccesses {
         private long numberOfArrayAccesses = 0;
 
         public void lsdSort(String[] array, int stringsLength) {
-
             int alphabetSize = 256; // Extended ASCII characters
 
             String[] auxArray = new String[array.length];
 
-            for(int digit = stringsLength - 1; digit >= 0; digit--) {
+            for (int digit = stringsLength - 1; digit >= 0; digit--) {
                 // Sort by key-indexed counting on digitTh char
 
                 // Compute frequency counts
                 int count[] = new int[alphabetSize + 1];
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     int digitIndex = array[i].charAt(digit);
                     numberOfArrayAccesses++;
 
@@ -32,12 +31,12 @@ public class Exercise23_ArrayAccesses {
                 }
 
                 // Transform counts to indices
-                for(int r = 0; r < alphabetSize; r++) {
+                for (int r = 0; r < alphabetSize; r++) {
                     count[r + 1] += count[r];
                 }
 
                 // Distribute
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     int digitIndex = array[i].charAt(digit);
                     numberOfArrayAccesses++;
 
@@ -47,7 +46,7 @@ public class Exercise23_ArrayAccesses {
                 }
 
                 // Copy back
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     array[i] = auxArray[i];
                     numberOfArrayAccesses++;
                 }
@@ -60,7 +59,6 @@ public class Exercise23_ArrayAccesses {
     }
 
     public class MostSignificantDigitArrayAccesses {
-
         private int alphabetSize = 256; // Extended ASCII characters; radix
         private final int CUTOFF_FOR_SMALL_SUBARRAYS = 15;
         private String[] auxArray;
@@ -83,7 +81,7 @@ public class Exercise23_ArrayAccesses {
 
             // Compute frequency counts
             int[] count = new int[alphabetSize + 2];
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 int digitIndex = charAt(array[i], digit) + 2;
                 numberOfArrayAccesses++;
 
@@ -91,12 +89,12 @@ public class Exercise23_ArrayAccesses {
             }
 
             // Transform counts to indices
-            for(int r = 0; r < alphabetSize + 1; r++) {
+            for (int r = 0; r < alphabetSize + 1; r++) {
                 count[r + 1] += count[r];
             }
 
             // Distribute
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 int digitIndex = charAt(array[i], digit) + 1;
                 numberOfArrayAccesses++;
 
@@ -106,13 +104,13 @@ public class Exercise23_ArrayAccesses {
             }
 
             // Copy back
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 array[i] = auxArray[i - low];
                 numberOfArrayAccesses++;
             }
 
             // Recursively sort for each character value
-            for(int r = 0; r < alphabetSize; r++) {
+            for (int r = 0; r < alphabetSize; r++) {
                 sort(array, low + count[r], low + count[r + 1] - 1,digit + 1);
             }
         }
@@ -134,8 +132,8 @@ public class Exercise23_ArrayAccesses {
 
             public void sort(String[] array, int low, int high, int digit) {
                 // Sort from array[low] to array[high], starting at the digitTh character
-                for(int i = low; i <= high; i++) {
-                    for(int j = i; j > low; j--) {
+                for (int i = low; i <= high; i++) {
+                    for (int j = i; j > low; j--) {
 
                         numberOfArrayAccesses += 2;
                         if (!less(array[j], array[j - 1], digit)) {
@@ -149,21 +147,19 @@ public class Exercise23_ArrayAccesses {
             }
 
             private boolean less(String string1, String string2, int digit) {
-                for(int i = digit; i < Math.min(string1.length(), string2.length()); i++) {
+                for (int i = digit; i < Math.min(string1.length(), string2.length()); i++) {
                     if (string1.charAt(i) < string2.charAt(i)) {
                         return true;
                     } else if (string1.charAt(i) > string2.charAt(i)) {
                         return false;
                     }
                 }
-
                 return string1.length() < string2.length();
             }
         }
     }
 
     public class ThreeWayStringQuickSortArrayAccesses {
-
         // Number of times that the original array was accessed
         private long numberOfArrayAccesses = 0;
 
@@ -237,7 +233,7 @@ public class Exercise23_ArrayAccesses {
         // Key generator 1: Random decimal keys
         String randomStringType = "Decimal keys";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             String[] randomStringsLSD = Exercise18_RandomDecimalKeys.randomDecimalKeys(numberOfStrings, numberOfCharacters);
 
             String[] randomStringsMSD = new String[randomStringsLSD.length];
@@ -262,7 +258,7 @@ public class Exercise23_ArrayAccesses {
         // Key generator 2: Random CA license plates
         randomStringType = "CA license plates";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             String[] randomStringsLSD = Exercise19_RandomCALicensePlates.randomPlatesCA(numberOfStrings);
 
             String[] randomStringsMSD = new String[randomStringsLSD.length];
@@ -287,7 +283,7 @@ public class Exercise23_ArrayAccesses {
         // Key generator 3: Random fixed-length words
         randomStringType = "Fixed length words";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             String[] randomStringsLSD =  Exercise20_RandomFixedLengthWords.randomFixedLengthWords(numberOfStrings,
                     numberOfCharacters);
 
@@ -313,7 +309,7 @@ public class Exercise23_ArrayAccesses {
         // Key generator 4: Random variable length items
         randomStringType = "Variable length items";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             // LSD algorithm cannot be used here
             String[] randomStringsMSD =  Exercise21_RandomItems.randomItems(numberOfStrings, randomItemsGivenValues);
 
@@ -387,5 +383,4 @@ public class Exercise23_ArrayAccesses {
         new Exercise23_ArrayAccesses().generateStringsAndDoExperiments(experiments, numberOfStrings, numberOfCharacters,
                 randomItemsGivenValues);
     }
-
 }

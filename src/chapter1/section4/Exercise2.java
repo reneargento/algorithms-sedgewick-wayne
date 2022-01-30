@@ -19,7 +19,7 @@ public class Exercise2 {
 
         for (int i = 0; i < length; i++) {
             for (int j = i + 1; j < length; j++) {
-                for(int k = j + 1; k < length; k++) {
+                for (int k = j + 1; k < length; k++) {
                     bigInteger = BigInteger.valueOf(array[i]);
                     bigInteger = bigInteger.add(BigInteger.valueOf(array[j]));
                     bigInteger = bigInteger.add(BigInteger.valueOf(array[k]));
@@ -38,5 +38,4 @@ public class Exercise2 {
         int[] array = in.readAllInts();
         StdOut.println(count(array));
     }
-
 }

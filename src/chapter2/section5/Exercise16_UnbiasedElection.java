@@ -19,7 +19,7 @@ public class Exercise16_UnbiasedElection {
         public int compare(String name1, String name2) {
             int minimumLength = Math.min(name1.length(), name2.length());
 
-            for(int i = 0; i < minimumLength; i++) {
+            for (int i = 0; i < minimumLength; i++) {
                 char currentChar1 = name1.charAt(i);
                 char currentChar2 = name2.charAt(i);
 
@@ -39,7 +39,6 @@ public class Exercise16_UnbiasedElection {
     }
 
     private void california() {
-
         String candidate1 = "RENE";
         String candidate2 = "LAST CANDIDATE";
         String candidate3 = "VIP";
@@ -52,7 +51,7 @@ public class Exercise16_UnbiasedElection {
         String[] candidates = {candidate1, candidate2, candidate3, candidate4, candidate5, candidate6, candidate7, candidate8};
         Arrays.sort(candidates, new CandidateOrder());
 
-        for(String candidate : candidates) {
+        for (String candidate : candidates) {
             StdOut.println(candidate);
         }
 

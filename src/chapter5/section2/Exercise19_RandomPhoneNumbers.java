@@ -115,7 +115,7 @@ public class Exercise19_RandomPhoneNumbers {
 
         boolean headerLine = true;
 
-        for(String areaCodeInformation : areaCodesInformation) {
+        for (String areaCodeInformation : areaCodesInformation) {
             if (headerLine) {
                 headerLine = false;
                 continue;
@@ -129,12 +129,10 @@ public class Exercise19_RandomPhoneNumbers {
     }
 
     private LinkedList<String> generateRandomPhones(int numberOfPhones, HashSet<String> areaCodes) {
-
         LinkedList<String> randomPhones = new LinkedList<>();
         TrieDigitAlphabet<Integer> trie = new TrieDigitAlphabet<>();
 
-        for(int i = 0; i < numberOfPhones; i++) {
-
+        for (int i = 0; i < numberOfPhones; i++) {
             StringBuilder areaCode = new StringBuilder();
             boolean areaCodeGenerated = false;
 
@@ -180,7 +178,7 @@ public class Exercise19_RandomPhoneNumbers {
     private void printPhones(LinkedList<String> randomPhones) {
         StdOut.println("Random phone numbers");
 
-        for(String phone : randomPhones) {
+        for (String phone : randomPhones) {
             StdOut.println(phone);
         }
     }
@@ -198,5 +196,4 @@ public class Exercise19_RandomPhoneNumbers {
         LinkedList<String> randomPhones = randomPhoneNumbers.generateRandomPhones(numberOfPhones, areaCodes);
         randomPhoneNumbers.printPhones(randomPhones);
     }
-
 }

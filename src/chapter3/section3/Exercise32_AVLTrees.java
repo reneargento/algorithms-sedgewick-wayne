@@ -542,81 +542,81 @@ public class Exercise32_AVLTrees {
 
         StdOut.println("Keys() test");
 
-        for(Integer key : avlTree.keys()) {
+        for (Integer key : avlTree.keys()) {
             StdOut.println("Key " + key + ": " + avlTree.get(key));
         }
         StdOut.println("Expected: -5 -2 -1 0 1 2 3 5 9 99\n");
 
-        //Test min()
+        // Test min()
         StdOut.println("Min key: " + avlTree.min() + " Expected: -5");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + avlTree.max() + " Expected: 99");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + avlTree.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + avlTree.floor(15) + " Expected: 9");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + avlTree.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + avlTree.ceiling(15) + " Expected: 99");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + avlTree.select(4) + " Expected: 1");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key 9: " + avlTree.rank(9) + " Expected: 8");
         StdOut.println("Rank of key 10: " + avlTree.rank(10) + " Expected: 9");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         avlTree.delete(2);
 
-        for(Integer key : avlTree.keys()) {
+        for (Integer key : avlTree.keys()) {
             StdOut.println("Key " + key + ": " + avlTree.get(key));
         }
         StdOut.println("Is AVL: " + avlTree.isAVL() + " Expected: true");
         StdOut.println("Size consistent: " + avlTree.isSubtreeCountConsistent() + " Expected: true");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key -5)");
         avlTree.deleteMin();
 
-        for(Integer key : avlTree.keys()) {
+        for (Integer key : avlTree.keys()) {
             StdOut.println("Key " + key + ": " + avlTree.get(key));
         }
         StdOut.println("Is AVL: " + avlTree.isAVL() + " Expected: true");
         StdOut.println("Size consistent: " + avlTree.isSubtreeCountConsistent() + " Expected: true");
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 99)");
         avlTree.deleteMax();
 
-        for(Integer key : avlTree.keys()) {
+        for (Integer key : avlTree.keys()) {
             StdOut.println("Key " + key + ": " + avlTree.get(key));
         }
         StdOut.println("Is AVL: " + avlTree.isAVL() + " Expected: true");
         StdOut.println("Size consistent: " + avlTree.isSubtreeCountConsistent() + " Expected: true");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
-        for(Integer key : avlTree.keys(2, 10)) {
+        for (Integer key : avlTree.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + avlTree.get(key));
         }
 
         StdOut.println("\nKeys in range [-4, -1]");
-        for(Integer key : avlTree.keys(-4, -1)) {
+        for (Integer key : avlTree.keys(-4, -1)) {
             StdOut.println("Key " + key + ": " + avlTree.get(key));
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\nDelete all");
         while (avlTree.size() > 0) {
-            for(Integer key : avlTree.keys()) {
+            for (Integer key : avlTree.keys()) {
                 StdOut.println("Key " + key + ": " + avlTree.get(key));
             }
 
-            //avlTree.delete(avlTree.select(0));
+            // avlTree.delete(avlTree.select(0));
             avlTree.delete(avlTree.select(avlTree.size() - 1));
             StdOut.println("Is AVL: " + avlTree.isAVL() + " Expected: true");
             StdOut.println("Size consistent: " + avlTree.isSubtreeCountConsistent() + " Expected: true");

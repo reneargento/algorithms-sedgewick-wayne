@@ -31,16 +31,14 @@ public class Exercise44_RandomGridGraphs {
 
         List<Exercise37_EuclideanGraphs.EuclideanGraph> randomGridGraphs = new ArrayList<>();
 
-        for(int graph = 0; graph < numberOfGraphs; graph++) {
+        for (int graph = 0; graph < numberOfGraphs; graph++) {
             Exercise37_EuclideanGraphs.EuclideanGraph randomGridGraph = randomGridGraph(vertices, extraEdges);
             randomGridGraphs.add(randomGridGraph);
         }
-
         return randomGridGraphs;
     }
 
     public Exercise37_EuclideanGraphs.EuclideanGraph randomGridGraph(int vertices, int extraEdges) {
-
         if (Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
             throw new IllegalArgumentException("Vertex number must have an integer square root");
         }
@@ -58,7 +56,7 @@ public class Exercise44_RandomGridGraphs {
         Exercise37_EuclideanGraphs.EuclideanGraph.Vertex[] allVertices =
                 new Exercise37_EuclideanGraphs.EuclideanGraph.Vertex[vertices];
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             double randomXCoordinate = StdRandom.uniform();
             double randomYCoordinate = StdRandom.uniform();
 
@@ -87,7 +85,7 @@ public class Exercise44_RandomGridGraphs {
         Exercise37_EuclideanGraphs.EuclideanGraph randomEuclideanGridGraph =
                 new Exercise37_EuclideanGraphs().new EuclideanGraph(vertices);
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             int[] cellRowAndColumn = getCellRowAndColumn(vertexId, vertexNumberSqrt);
             Exercise37_EuclideanGraphs.EuclideanGraph.Vertex vertex = verticesGrid[cellRowAndColumn[0]][cellRowAndColumn[1]];
 
@@ -107,7 +105,7 @@ public class Exercise44_RandomGridGraphs {
                                            Exercise37_EuclideanGraphs.EuclideanGraph.Vertex[] allVertices) {
         List<Edge> extraEdgesList = new ArrayList<>();
 
-        while(extraEdges > 0) {
+        while (extraEdges > 0) {
             int randomVertexId1 = StdRandom.uniform(vertices);
             int randomVertexId2 = StdRandom.uniform(vertices);
 
@@ -158,7 +156,7 @@ public class Exercise44_RandomGridGraphs {
                 int row = 0;
 
                 // Remove right column
-                for(int i = 0; i < vertexNumberSqrt; i++) {
+                for (int i = 0; i < vertexNumberSqrt; i++) {
                     row++;
                     int removedVertexId = (row * originalVertexNumberSqrt) - shrinkTimes;
                     removedVertices.add(removedVertexId);
@@ -167,13 +165,13 @@ public class Exercise44_RandomGridGraphs {
                 int nextVertexRemoved = row * originalVertexNumberSqrt;
 
                 // Remove last row
-                for(int i = 0; i < vertexNumberSqrt + 1; i++) {
+                for (int i = 0; i < vertexNumberSqrt + 1; i++) {
                     removedVertices.add(nextVertexRemoved);
                     nextVertexRemoved++;
                 }
 
                 List<Edge> extraEdgesToRemoveAfterShrinking = new ArrayList<>();
-                for(Edge extraEdge : extraEdgesList) {
+                for (Edge extraEdge : extraEdgesList) {
                     if (removedVertices.contains(extraEdge.vertex1) || removedVertices.contains(extraEdge.vertex2)) {
                         extraEdgesToRemoveAfterShrinking.add(extraEdge);
                     }
@@ -198,7 +196,7 @@ public class Exercise44_RandomGridGraphs {
                                    Exercise37_EuclideanGraphs.EuclideanGraph.Vertex[][] verticesGrid) {
         int currentVertexId = 0;
 
-        for(int row = 0; row < vertexNumberSqrt; row++) {
+        for (int row = 0; row < vertexNumberSqrt; row++) {
             for (int column = 0; column < vertexNumberSqrt; column++) {
                 allVertices[verticesGrid[row][column].id].id = currentVertexId;
                 verticesGrid[row][column].id = currentVertexId;
@@ -214,9 +212,9 @@ public class Exercise44_RandomGridGraphs {
         int[] neighborRows = {-1, 1, 0 ,0};
         int[] neighborColumns = {0, 0, -1 ,1};
 
-        for(int row = 0; row < vertexNumberSqrt; row++) {
-            for(int column = 0; column < vertexNumberSqrt; column++) {
-                for(int i = 0; i < 4; i++) {
+        for (int row = 0; row < vertexNumberSqrt; row++) {
+            for (int column = 0; column < vertexNumberSqrt; column++) {
+                for (int i = 0; i < 4; i++) {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
@@ -224,7 +222,7 @@ public class Exercise44_RandomGridGraphs {
                         int vertexId1 = getVertexId(row, column, vertexNumberSqrt);
                         int vertexId2 = getVertexId(neighborRow, neighborColumn, vertexNumberSqrt);
 
-                        //Used to avoid connecting vertices more than once
+                        // Used to avoid connecting vertices more than once
                         if (vertexId1 < vertexId2) {
                             randomEuclideanGridGraph.addEdge(vertexId1, vertexId2);
                         }
@@ -237,7 +235,7 @@ public class Exercise44_RandomGridGraphs {
     private void addExtraEdges(Exercise37_EuclideanGraphs.EuclideanGraph randomEuclideanGridGraph,
                                List<Edge> extraEdgesList,
                                Exercise37_EuclideanGraphs.EuclideanGraph.Vertex[] allVertices) {
-        for(Edge extraEdge : extraEdgesList) {
+        for (Edge extraEdge : extraEdgesList) {
             // We have to access allVertices[] here because it has the updated vertex ids (in the cases where graph
             // shrinking occurred).
             randomEuclideanGridGraph.addEdge(allVertices[extraEdge.vertex1].id, allVertices[extraEdge.vertex2].id);
@@ -260,8 +258,8 @@ public class Exercise44_RandomGridGraphs {
         return cellRowAndColumn;
     }
 
-    //Parameters example: 9 5 100
-    //                    16 40 100
+    // Parameters example: 9 5 100
+    //                     16 40 100
     public static void main(String[] args) {
         int vertices = Integer.parseInt(args[0]);
         int extraEdges = Integer.parseInt(args[1]);
@@ -274,5 +272,4 @@ public class Exercise44_RandomGridGraphs {
 
         StdOut.println(firstRandomGridGraph);
     }
-
 }

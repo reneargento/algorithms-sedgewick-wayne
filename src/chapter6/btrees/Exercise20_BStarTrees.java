@@ -169,7 +169,7 @@ public class Exercise20_BStarTrees {
             List<PageValue> valuesToReallocate = new ArrayList<>();
 
             // O(M^2)
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 pageKeys.add(key);
 
                 BStarTreePage<Key> childPage = binarySearchSymbolTable.get(key).childPage;
@@ -201,7 +201,7 @@ public class Exercise20_BStarTrees {
         }
 
         private void deleteAllKeys(List<Key> pageKeys) {
-            for( Key key : pageKeys) {
+            for ( Key key : pageKeys) {
                 binarySearchSymbolTable.delete(key);
             }
         }
@@ -242,7 +242,6 @@ public class Exercise20_BStarTrees {
     }
 
     public class BStarTree<Key extends Comparable<Key>> {
-
         private static final int DEFAULT_MAX_NUMBER_OF_NODES_PER_INTERNAL_PAGE = 6;
         private static final boolean DEFAULT_VERBOSE = false;
 
@@ -342,5 +341,4 @@ public class Exercise20_BStarTrees {
         StdOut.println("Contains Binary tre: " + bStarTree.contains("Binary tre") + " Expected: false");
         StdOut.println("Contains Binary : " + bStarTree.contains("Binary ") + " Expected: false");
     }
-
 }

@@ -57,14 +57,13 @@ public class Exercise25_SoftwareCaching {
 
             StdOut.println("Cache miss");
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (key.equals(node.key)) {
 
                     cacheItem = node;
                     return node.value;
                 }
             }
-
             return null;
         }
 
@@ -87,7 +86,7 @@ public class Exercise25_SoftwareCaching {
                 StdOut.println("Cache miss");
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (key.equals(node.key)) {
                     node.value = value;
                     return;
@@ -117,7 +116,7 @@ public class Exercise25_SoftwareCaching {
                 return;
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
@@ -129,7 +128,7 @@ public class Exercise25_SoftwareCaching {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 keys.enqueue(node.key);
             }
 
@@ -142,7 +141,6 @@ public class Exercise25_SoftwareCaching {
     }
 
     private class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
-
         private Key[] keys;
         private Value[] values;
         private int size;
@@ -247,7 +245,7 @@ public class Exercise25_SoftwareCaching {
                 resize(keys.length * 2);
             }
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
                 values[i] = values[i - 1];
             }
@@ -278,7 +276,7 @@ public class Exercise25_SoftwareCaching {
                 invalidateCache();
             }
 
-            for(int i = rank; i < size - 1; i++) {
+            for (int i = rank; i < size - 1; i++) {
                 keys[i] = keys[i + 1];
                 values[i] = values[i + 1];
             }
@@ -344,7 +342,6 @@ public class Exercise25_SoftwareCaching {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(min());
         }
 
@@ -352,7 +349,6 @@ public class Exercise25_SoftwareCaching {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(max());
         }
 
@@ -377,14 +373,13 @@ public class Exercise25_SoftwareCaching {
 
             Queue<Key> queue = new Queue<>();
 
-            for(int i = rank(low); i < rank(high); i++) {
+            for (int i = rank(low); i < rank(high); i++) {
                 queue.enqueue(keys[i]);
             }
 
             if (contains(high)) {
                 queue.enqueue(keys[rank(high)]);
             }
-
             return queue;
         }
 
@@ -404,7 +399,6 @@ public class Exercise25_SoftwareCaching {
         }
 
         private int getRankFromCacheOrCompute(Key key) {
-
             int rank;
 
             if (cacheKey != null && cacheKey.compareTo(key) == 0) {
@@ -414,7 +408,6 @@ public class Exercise25_SoftwareCaching {
                 StdOut.println("Cache miss");
                 rank = rank(key);
             }
-
             return rank;
         }
 
@@ -426,17 +419,16 @@ public class Exercise25_SoftwareCaching {
 
 
     public static void main(String[] args) {
-
         Exercise25_SoftwareCaching softwareCaching = new Exercise25_SoftwareCaching();
 
         StdOut.println("Sequential Search Symbol Table tests");
         SequentialSearchSymbolTable<Integer, String> sequentialSearchSymbolTable = softwareCaching.new SequentialSearchSymbolTable<>();
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             sequentialSearchSymbolTable.put(i, "Value " + i);
         }
 
-        //Cache on get operation
+        // Cache on get operation
         StdOut.println("\nGet key 2:");
         sequentialSearchSymbolTable.get(2);
         StdOut.println("Expected: cache miss");
@@ -445,7 +437,7 @@ public class Exercise25_SoftwareCaching {
         sequentialSearchSymbolTable.get(2);
         StdOut.println("Expected: cache hit");
 
-        //Cache on delete operation
+        // Cache on delete operation
         StdOut.println("\nDelete key 2:");
         sequentialSearchSymbolTable.delete(2);
 
@@ -453,7 +445,7 @@ public class Exercise25_SoftwareCaching {
         StdOut.println("Expected: cache miss");
 
         sequentialSearchSymbolTable.get(9);
-        //Cache with put operation
+        // Cache with put operation
         StdOut.println("\nPut (update) key 9:");
         sequentialSearchSymbolTable.put(9, "Value 99");
         StdOut.println("Expected: cache hit");
@@ -466,11 +458,11 @@ public class Exercise25_SoftwareCaching {
         StdOut.println("\nBinary Search Symbol Table tests");
         BinarySearchSymbolTable<Integer, String> binarySearchSymbolTable = softwareCaching.new BinarySearchSymbolTable<>();
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             binarySearchSymbolTable.put(i, "Value " + i);
         }
 
-        //Cache on get operation
+        // Cache on get operation
         StdOut.println("\nGet key 2:");
         binarySearchSymbolTable.get(2);
         StdOut.println("Expected: cache miss");
@@ -479,7 +471,7 @@ public class Exercise25_SoftwareCaching {
         binarySearchSymbolTable.get(2);
         StdOut.println("Expected: cache hit");
 
-        //Cache on delete operation
+        // Cache on delete operation
         StdOut.println("\nDelete key 4:");
         binarySearchSymbolTable.delete(4);
         StdOut.println("Expected: cache miss and hit");
@@ -491,7 +483,7 @@ public class Exercise25_SoftwareCaching {
         StdOut.println("Expected: cache hit and hit");
 
         binarySearchSymbolTable.get(9);
-        //Cache with put operation
+        // Cache with put operation
         StdOut.println("\nPut higher value than cache:");
         binarySearchSymbolTable.put(11, "Value 11");
 
@@ -503,5 +495,4 @@ public class Exercise25_SoftwareCaching {
         binarySearchSymbolTable.get(9);
         StdOut.println("Expected: cache miss");
     }
-
 }

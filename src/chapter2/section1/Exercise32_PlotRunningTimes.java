@@ -38,11 +38,11 @@ public class Exercise32_PlotRunningTimes {
         List<Double> runningTimes = new ArrayList<>();
         int arrayLength = initialLength;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Comparable[] array = new Comparable[arrayLength];
 
-            for(int i = 0; i < arrayLength; i++) {
+            for (int i = 0; i < arrayLength; i++) {
                 array[i] = StdRandom.uniform();
             }
 
@@ -71,5 +71,4 @@ public class Exercise32_PlotRunningTimes {
 
         return timer.elapsedTime();
     }
-
 }

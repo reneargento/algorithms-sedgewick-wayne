@@ -10,7 +10,6 @@ import java.util.Arrays;
 public class Exercise9 {
 
     class VolumesPerDay implements Comparable<VolumesPerDay>{
-
         private String date;
         private long volume;
 
@@ -49,7 +48,7 @@ public class Exercise9 {
 
         Arrays.sort(volumesPerDays);
 
-        for(VolumesPerDay volumesPerDay : volumesPerDays) {
+        for (VolumesPerDay volumesPerDay : volumesPerDays) {
             StdOut.println(volumesPerDay);
         }
 
@@ -58,5 +57,4 @@ public class Exercise9 {
                 "3-Oct-28   1000\n" +
                 "1-Oct-28   2775559936");
     }
-
 }

@@ -15,13 +15,13 @@ public class SymbolDigraph {
     public SymbolDigraph(String stream, String separator) {
         vertexNameToIdMap = new SeparateChainingHashTable<>();
 
-        //First pass
+        // First pass
         In in = new In(stream);
 
         while (in.hasNextLine()) {
             String[] vertices = in.readLine().split(separator);
 
-            for(int i = 0; i < vertices.length; i++) {
+            for (int i = 0; i < vertices.length; i++) {
                 if (!vertexNameToIdMap.contains(vertices[i])) {
                     vertexNameToIdMap.put(vertices[i], vertexNameToIdMap.size());
                 }
@@ -30,19 +30,19 @@ public class SymbolDigraph {
 
         keys = new String[vertexNameToIdMap.size()];
 
-        for(String vertexName : vertexNameToIdMap.keys()) {
+        for (String vertexName : vertexNameToIdMap.keys()) {
             keys[vertexNameToIdMap.get(vertexName)] = vertexName;
         }
 
         digraph = new Digraph(vertexNameToIdMap.size());
-        //Seconds pass
+        // Seconds pass
         in = new In(stream);
 
         while (in.hasNextLine()) {
             String[] vertices = in.readLine().split(separator);
 
             int vertex = vertexNameToIdMap.get(vertices[0]);
-            for(int i = 1; i < vertices.length; i++) {
+            for (int i = 1; i < vertices.length; i++) {
                 digraph.addEdge(vertex, vertexNameToIdMap.get(vertices[i]));
             }
         }
@@ -63,5 +63,4 @@ public class SymbolDigraph {
     public Digraph digraph() {
         return digraph;
     }
-
 }

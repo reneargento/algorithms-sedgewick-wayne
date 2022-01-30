@@ -61,7 +61,7 @@ public class Exercise44_CostPlots {
                 xAxisLabel, yAxisLabel);
         BinarySearchTreeCostPlots<String, Integer> binarySearchTree = new BinarySearchTreeCostPlots<>();
 
-        for(String word : words) {
+        for (String word : words) {
 
             if (word.length() < minLength) {
                 continue;
@@ -80,7 +80,7 @@ public class Exercise44_CostPlots {
         int cost = binarySearchTree.putAndComputeCost(max, 0);
         visualAccumulator.addDataValue(cost, true);
 
-        for(String word : binarySearchTree.keys()) {
+        for (String word : binarySearchTree.keys()) {
             if (binarySearchTree.get(word) > binarySearchTree.get(max)) {
                 max = word;
             }
@@ -90,5 +90,4 @@ public class Exercise44_CostPlots {
 
         return max + " " + binarySearchTree.get(max);
     }
-
 }

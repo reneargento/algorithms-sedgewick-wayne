@@ -13,7 +13,6 @@ import java.util.NoSuchElementException;
 public class Exercise12 {
 
     private class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> {
-
         private class Item implements Comparable<Item> {
             private Key key;
             private Value value;
@@ -125,7 +124,7 @@ public class Exercise12 {
                 resize(items.length * 2);
             }
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 items[i] = items[i - 1];
             }
             items[rank] = new Item(key, value);
@@ -149,7 +148,7 @@ public class Exercise12 {
             }
 
             int rank = rank(key);
-            for(int i = rank; i < size - 1; i++) {
+            for (int i = rank; i < size - 1; i++) {
                 items[i] = items[i + 1];
             }
 
@@ -246,7 +245,7 @@ public class Exercise12 {
 
             Queue<Key> queue = new Queue<>();
 
-            for(int i = rank(low); i < rank(high); i++) {
+            for (int i = rank(low); i < rank(high); i++) {
                 queue.enqueue(items[i].key);
             }
 
@@ -282,82 +281,80 @@ public class Exercise12 {
 
         BinarySearchSymbolTable<Integer, String> binarySearchSymbolTable = exercise12.new BinarySearchSymbolTable<>(items);
 
-        //Test put() and get() and keys()
+        // Test put() and get() and keys()
         binarySearchSymbolTable.put(99, "Value 99");
 
         StdOut.println();
 
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         binarySearchSymbolTable.delete(2);
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
 
         StdOut.println();
 
-        //Test contains()
+        // Test contains()
         StdOut.println("Contains key 98: " + binarySearchSymbolTable.contains(98) + " Expected: false");
         StdOut.println("Contains key 99: " + binarySearchSymbolTable.contains(99) + " Expected: true");
 
-        //Test isEmpty()
+        // Test isEmpty()
         StdOut.println("Is empty: " + binarySearchSymbolTable.isEmpty() + " Expected: false");
 
-        //Test size()
+        // Test size()
         StdOut.println("Size: " + binarySearchSymbolTable.size() + " Expected: 5");
 
-        //Test min()
+        // Test min()
         StdOut.println("Min key: " + binarySearchSymbolTable.min() + " Expected: 0");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + binarySearchSymbolTable.max() + " Expected: 99");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + binarySearchSymbolTable.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + binarySearchSymbolTable.floor(15) + " Expected: 9");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + binarySearchSymbolTable.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + binarySearchSymbolTable.ceiling(15) + " Expected: 99");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key 9: " + binarySearchSymbolTable.rank(9) + " Expected: 3");
         StdOut.println("Rank of key 10: " + binarySearchSymbolTable.rank(10) + " Expected: 4");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + binarySearchSymbolTable.select(4) + " Expected: 99");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key 0)");
 
         binarySearchSymbolTable.deleteMin();
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 99)");
 
         binarySearchSymbolTable.deleteMax();
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
 
         StdOut.println();
 
-        //Test size()
+        // Test size()
         StdOut.println("Size of keys between 2 and 10: " + binarySearchSymbolTable.size(2, 10) + " Expected: 2");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println();
-        for(Integer key : binarySearchSymbolTable.keys(2, 10)) {
+        for (Integer key : binarySearchSymbolTable.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
-
     }
-
 }

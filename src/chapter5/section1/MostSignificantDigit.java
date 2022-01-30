@@ -27,30 +27,30 @@ public class MostSignificantDigit {
 
         // Compute frequency counts
         int[] count = new int[alphabetSize + 2];
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             int digitIndex = charAt(array[i], digit) + 2;
             count[digitIndex]++;
         }
 
         // Transform counts to indices
-        for(int r = 0; r < alphabetSize + 1; r++) {
+        for (int r = 0; r < alphabetSize + 1; r++) {
             count[r + 1] += count[r];
         }
 
         // Distribute
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             int digitIndex = charAt(array[i], digit) + 1;
             int indexInAuxArray = count[digitIndex]++;
             auxArray[indexInAuxArray] = array[i];
         }
 
         // Copy back
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             array[i] = auxArray[i - low];
         }
 
         // Recursively sort for each character value
-        for(int r = 0; r < alphabetSize; r++) {
+        for (int r = 0; r < alphabetSize; r++) {
             sort(array, low + count[r], low + count[r + 1] - 1,digit + 1);
         }
     }
@@ -68,15 +68,15 @@ public class MostSignificantDigit {
 
         public static void sort(String[] array, int low, int high, int digit) {
             // Sort from array[low] to array[high], starting at the digitTh character
-            for(int i = low; i <= high; i++) {
-                for(int j = i; j > low && less(array[j], array[j - 1], digit); j--) {
+            for (int i = low; i <= high; i++) {
+                for (int j = i; j > low && less(array[j], array[j - 1], digit); j--) {
                     ArrayUtil.exchange(array, j, j - 1);
                 }
             }
         }
 
         private static boolean less(String string1, String string2, int digit) {
-            for(int i = digit; i < Math.min(string1.length(), string2.length()); i++) {
+            for (int i = digit; i < Math.min(string1.length(), string2.length()); i++) {
                 if (string1.charAt(i) < string2.charAt(i)) {
                     return true;
                 } else if (string1.charAt(i) > string2.charAt(i)) {
@@ -87,5 +87,4 @@ public class MostSignificantDigit {
             return string1.length() < string2.length();
         }
     }
-
 }

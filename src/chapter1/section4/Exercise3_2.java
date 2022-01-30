@@ -24,7 +24,7 @@ public class Exercise3_2 {
         logLogPlotPoints = new ArrayList<>(5);
 
         // Print table of running times
-        for(int n = 250; true; n += n) {
+        for (int n = 250; true; n += n) {
             //Print time for problem size n
             double time = timeTrial(n);
 
@@ -41,7 +41,7 @@ public class Exercise3_2 {
         int MAX = 1000000;
         int[] array = new int[n];
 
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             array[i] = StdRandom.uniform(-MAX, MAX);
         }
         Stopwatch timer = new Stopwatch();
@@ -59,7 +59,6 @@ public class Exercise3_2 {
     }
 
     private static void drawPointAndLine(double x, double y, List<Point2D> pointList, boolean isRescale) {
-
         if (y == Double.NEGATIVE_INFINITY) {
             y = 0;
         }
@@ -101,7 +100,7 @@ public class Exercise3_2 {
         StdDraw.setYscale(-10, currentYMaxScale);
 
         //Redraw plot points and lines
-        for(int i = 0; i < logLogPlotPoints.size(); i++) {
+        for (int i = 0; i < logLogPlotPoints.size(); i++) {
             drawPointAndLine(logLogPlotPoints.get(i).x(), logLogPlotPoints.get(i).y(), logLogPlotPoints, true);
         }
     }

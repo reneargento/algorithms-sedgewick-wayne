@@ -38,7 +38,7 @@ public class Exercise22_SelfOrganizingSearch {
                 return;
             }
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
                     values[i] = value;
                     return;
@@ -59,17 +59,17 @@ public class Exercise22_SelfOrganizingSearch {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
                     if (i == 0) {
                         return values[i];
                     }
 
-                    //Move-to-front heuristic
+                    // Move-to-front heuristic
                     Key tempKey = keys[i];
                     Value tempValue = values[i];
 
-                    for(int j = i; j > 0; j--) {
+                    for (int j = i; j > 0; j--) {
                         keys[j] = keys[j - 1];
                         values[j] = values[j - 1];
                     }
@@ -80,7 +80,6 @@ public class Exercise22_SelfOrganizingSearch {
                     return values[0];
                 }
             }
-
             return null;
         }
 
@@ -89,7 +88,7 @@ public class Exercise22_SelfOrganizingSearch {
                 throw new IllegalArgumentException("Argument to delete() cannot be null");
             }
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
                     keys[i] = keys[size - 1];
                     values[i] = values[size - 1];
@@ -98,7 +97,6 @@ public class Exercise22_SelfOrganizingSearch {
                     values[size - 1] = null;
 
                     size--;
-
                     break;
                 }
             }
@@ -109,7 +107,7 @@ public class Exercise22_SelfOrganizingSearch {
         }
 
         public boolean contains(Key key) {
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
                     return true;
                 }
@@ -121,10 +119,9 @@ public class Exercise22_SelfOrganizingSearch {
         public Iterable<Key> keys() {
             Queue<Key> queue = new Queue<>();
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 queue.enqueue(keys[i]);
             }
-
             return queue;
         }
 
@@ -138,51 +135,47 @@ public class Exercise22_SelfOrganizingSearch {
             keys = tempKeys;
             values = tempValues;
         }
-
     }
 
     public static void main(String[] args) {
         Exercise22_SelfOrganizingSearch selfOrganizingSearch = new Exercise22_SelfOrganizingSearch();
         ArraySTSelfOrganizing<Integer, String> arraySTSelfOrganizing = selfOrganizingSearch.new ArraySTSelfOrganizing<>(2);
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             arraySTSelfOrganizing.put(i, "Value " + i);
         }
 
         StdOut.println("Initial key order:");
-
-        for(Integer key : arraySTSelfOrganizing.keys()) {
+        for (Integer key : arraySTSelfOrganizing.keys()) {
             StdOut.println("Key " + key);
         }
 
         StdOut.println("\nAfter searching for key 4:");
         arraySTSelfOrganizing.get(4);
 
-        for(Integer key : arraySTSelfOrganizing.keys()) {
+        for (Integer key : arraySTSelfOrganizing.keys()) {
             StdOut.println("Key " + key);
         }
 
         StdOut.println("\nAfter searching for key 7:");
         arraySTSelfOrganizing.get(7);
 
-        for(Integer key : arraySTSelfOrganizing.keys()) {
+        for (Integer key : arraySTSelfOrganizing.keys()) {
             StdOut.println("Key " + key);
         }
 
         StdOut.println("\nAfter searching again for key 7:");
         arraySTSelfOrganizing.get(7);
 
-        for(Integer key : arraySTSelfOrganizing.keys()) {
+        for (Integer key : arraySTSelfOrganizing.keys()) {
             StdOut.println("Key " + key);
         }
 
         StdOut.println("\nAfter searching for key 9:");
         arraySTSelfOrganizing.get(9);
 
-        for(Integer key : arraySTSelfOrganizing.keys()) {
+        for (Integer key : arraySTSelfOrganizing.keys()) {
             StdOut.println("Key " + key);
         }
-
     }
-
 }

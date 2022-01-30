@@ -14,17 +14,16 @@ public class Exercise20_RandomFixedLengthWords {
         int initialCharInASCIITable = 40;
         int finalCharInASCIITable = 126;
 
-        for(int string = 0; string < numberOfStrings; string++) {
+        for (int string = 0; string < numberOfStrings; string++) {
             StringBuilder currentString = new StringBuilder();
 
-            for(int character = 0; character < numberOfCharacters; character++) {
+            for (int character = 0; character < numberOfCharacters; character++) {
                 char characterValue = (char) StdRandom.uniform(initialCharInASCIITable, finalCharInASCIITable + 1);
                 currentString.append(characterValue);
             }
 
             strings[string] = currentString.toString();
         }
-
         return strings;
     }
 
@@ -36,9 +35,8 @@ public class Exercise20_RandomFixedLengthWords {
                 numberOfCharacters);
         StdOut.println("Random strings generated:");
 
-        for(String randomString : randomStrings) {
+        for (String randomString : randomStrings) {
             StdOut.println(randomString);
         }
     }
-
 }

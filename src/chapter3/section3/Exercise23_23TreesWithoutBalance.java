@@ -618,7 +618,7 @@ public class Exercise23_23TreesWithoutBalance {
     }
 
     private void testAPI() {
-        //Expected tree
+        // Expected tree
         //            (B)5
         //       (R)1      (B)9
         //    (B)0  (B)2     (R)99
@@ -637,75 +637,74 @@ public class Exercise23_23TreesWithoutBalance {
 
         StdOut.println("Keys() test");
 
-        for(Integer key : twoThreeTreeNonBalanced.keys()) {
+        for (Integer key : twoThreeTreeNonBalanced.keys()) {
             StdOut.println("Key " + key + ": " + twoThreeTreeNonBalanced.get(key));
         }
         StdOut.println("Expected: -2 -1 0 1 2 5 9 99\n");
 
-        //Test min()
+        // Test min()
         StdOut.println("Min key: " + twoThreeTreeNonBalanced.min() + " Expected: -2");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + twoThreeTreeNonBalanced.max() + " Expected: 99");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + twoThreeTreeNonBalanced.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + twoThreeTreeNonBalanced.floor(15) + " Expected: 9");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + twoThreeTreeNonBalanced.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + twoThreeTreeNonBalanced.ceiling(15) + " Expected: 99");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + twoThreeTreeNonBalanced.select(4) + " Expected: 2");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key 9: " + twoThreeTreeNonBalanced.rank(9) + " Expected: 6");
         StdOut.println("Rank of key 10: " + twoThreeTreeNonBalanced.rank(10) + " Expected: 7");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         twoThreeTreeNonBalanced.delete(2);
 
-        for(Integer key : twoThreeTreeNonBalanced.keys()) {
+        for (Integer key : twoThreeTreeNonBalanced.keys()) {
             StdOut.println("Key " + key + ": " + twoThreeTreeNonBalanced.get(key));
         }
         StdOut.println("Is 2-3 three: " + twoThreeTreeNonBalanced.isTwoThreeTree() + " Expected: true");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key -2)");
         twoThreeTreeNonBalanced.deleteMin();
 
-        for(Integer key : twoThreeTreeNonBalanced.keys()) {
+        for (Integer key : twoThreeTreeNonBalanced.keys()) {
             StdOut.println("Key " + key + ": " + twoThreeTreeNonBalanced.get(key));
         }
         StdOut.println("Is 2-3 three: " + twoThreeTreeNonBalanced.isTwoThreeTree() + " Expected: true");
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 99)");
         twoThreeTreeNonBalanced.deleteMax();
 
-        for(Integer key : twoThreeTreeNonBalanced.keys()) {
+        for (Integer key : twoThreeTreeNonBalanced.keys()) {
             StdOut.println("Key " + key + ": " + twoThreeTreeNonBalanced.get(key));
         }
         StdOut.println("Is 2-3 three: " + twoThreeTreeNonBalanced.isTwoThreeTree() + " Expected: true");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
-        for(Integer key : twoThreeTreeNonBalanced.keys(2, 10)) {
+        for (Integer key : twoThreeTreeNonBalanced.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + twoThreeTreeNonBalanced.get(key));
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\nDelete all");
         while (twoThreeTreeNonBalanced.size() > 0) {
-            for(Integer key : twoThreeTreeNonBalanced.keys()) {
+            for (Integer key : twoThreeTreeNonBalanced.keys()) {
                 StdOut.println("Key " + key + ": " + twoThreeTreeNonBalanced.get(key));
             }
             StdOut.println("Is 2-3 three: " + twoThreeTreeNonBalanced.isTwoThreeTree() + " Expected: true");
 
             twoThreeTreeNonBalanced.delete(twoThreeTreeNonBalanced.select(twoThreeTreeNonBalanced.size() - 1));
-
             StdOut.println();
         }
     }
@@ -713,10 +712,10 @@ public class Exercise23_23TreesWithoutBalance {
     private void doExperiment() {
         int redBlackTreeSize = 100;
 
-        for(int experiment = 0; experiment < 6; experiment++) {
+        for (int experiment = 0; experiment < 6; experiment++) {
             TwoThreeTreeNonBalanced<Integer, Integer> twoThreeTreeNonBalanced = new TwoThreeTreeNonBalanced<>();
 
-            for(int i = 0; i < redBlackTreeSize; i++) {
+            for (int i = 0; i < redBlackTreeSize; i++) {
                 int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
                 twoThreeTreeNonBalanced.put(randomKey, randomKey);
             }
@@ -726,5 +725,4 @@ public class Exercise23_23TreesWithoutBalance {
             redBlackTreeSize *= 10;
         }
     }
-
 }

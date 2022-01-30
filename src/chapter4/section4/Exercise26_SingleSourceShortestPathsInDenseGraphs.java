@@ -18,7 +18,7 @@ public class Exercise26_SingleSourceShortestPathsInDenseGraphs {
             edgeTo = new DirectedEdge[edgeWeightedDigraph.vertices()];
             distTo = new double[edgeWeightedDigraph.vertices()];
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             distTo[source] = 0;
@@ -26,7 +26,7 @@ public class Exercise26_SingleSourceShortestPathsInDenseGraphs {
             boolean[] visited = new boolean[edgeWeightedDigraph.vertices()];
             int nextVertexToRelax = source;
 
-            for(int relaxedVertices = 0; relaxedVertices < edgeWeightedDigraph.vertices(); relaxedVertices++) {
+            for (int relaxedVertices = 0; relaxedVertices < edgeWeightedDigraph.vertices(); relaxedVertices++) {
                 nextVertexToRelax = relax(edgeWeightedDigraph, nextVertexToRelax, visited);
             }
         }
@@ -34,7 +34,7 @@ public class Exercise26_SingleSourceShortestPathsInDenseGraphs {
         private int relax(Exercise3.EdgeWeightedDigraphAdjacencyMatrix edgeWeightedDigraph, int vertex, boolean[] visited) {
             visited[vertex] = true;
 
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -46,7 +46,7 @@ public class Exercise26_SingleSourceShortestPathsInDenseGraphs {
             int nextVertexToRelax = -1;
             double minimumWeight = Double.POSITIVE_INFINITY;
 
-            for(int vertexToCheck = 0; vertexToCheck < edgeWeightedDigraph.vertices(); vertexToCheck++) {
+            for (int vertexToCheck = 0; vertexToCheck < edgeWeightedDigraph.vertices(); vertexToCheck++) {
                 if (!visited[vertexToCheck] && distTo[vertexToCheck] < minimumWeight) {
                     nextVertexToRelax = vertexToCheck;
                     minimumWeight = distTo[vertexToCheck];
@@ -70,7 +70,7 @@ public class Exercise26_SingleSourceShortestPathsInDenseGraphs {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
 
@@ -108,16 +108,15 @@ public class Exercise26_SingleSourceShortestPathsInDenseGraphs {
         StdOut.println("Shortest-paths-tree\n");
         StdOut.printf("%13s %10s\n", "edgeTo[]",  "distTo[]");
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             StdOut.printf("%d %11s %9.2f\n", vertex, dijkstraSPDenseGraph.edgeTo(vertex), dijkstraSPDenseGraph.distTo(vertex));
         }
 
         StdOut.print("\nPath from 0 to 6: ");
 
-        for(DirectedEdge edge : dijkstraSPDenseGraph.pathTo(6)) {
+        for (DirectedEdge edge : dijkstraSPDenseGraph.pathTo(6)) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
         StdOut.println("\nExpected: 0->2 2->7 7->3 3->6");
     }
-
 }

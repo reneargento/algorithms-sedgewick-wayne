@@ -21,7 +21,7 @@ public class BellmanFordSP {
         onQueue = new boolean[edgeWeightedDigraph.vertices()];
         queue = new Queue<>();
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             distTo[vertex] = Double.POSITIVE_INFINITY;
         }
 
@@ -38,7 +38,7 @@ public class BellmanFordSP {
 
     private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex) {
 
-        for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
             int neighbor = edge.to();
 
             if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -71,7 +71,7 @@ public class BellmanFordSP {
         }
 
         Stack<DirectedEdge> path = new Stack<>();
-        for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+        for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
             path.push(edge);
         }
 
@@ -82,7 +82,7 @@ public class BellmanFordSP {
         int vertices = edgeTo.length;
         EdgeWeightedDigraph shortestPathsTree = new EdgeWeightedDigraph(vertices);
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
             if (edgeTo[vertex] != null) {
                 shortestPathsTree.addEdge(edgeTo[vertex]);
             }
@@ -99,5 +99,4 @@ public class BellmanFordSP {
     public Iterable<DirectedEdge> negativeCycle() {
         return cycle;
     }
-
 }

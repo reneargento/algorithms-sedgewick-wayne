@@ -19,7 +19,7 @@ public class Exercise28_SortFilesByName {
             return;
         }
 
-        for(String fileName : sortedFiles) {
+        for (String fileName : sortedFiles) {
             StdOut.println(fileName);
         }
     }
@@ -40,12 +40,11 @@ public class Exercise28_SortFilesByName {
         }
 
         String[] fileNames = new String[allFiles.length];
-        for(int i = 0; i < fileNames.length; i++) {
+        for (int i = 0; i < fileNames.length; i++) {
             fileNames[i] = allFiles[i].getName();
         }
 
         Arrays.sort(fileNames);
         return fileNames;
     }
-
 }

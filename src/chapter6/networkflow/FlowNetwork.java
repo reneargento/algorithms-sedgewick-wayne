@@ -24,7 +24,7 @@ public class FlowNetwork {
         edges = 0;
         adjacent = (Bag<FlowEdge>[]) new Bag[vertices];
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
             adjacent[vertex] = new Bag<>();
         }
     }
@@ -37,7 +37,7 @@ public class FlowNetwork {
             throw new IllegalArgumentException("Number of edges must be nonnegative");
         }
 
-        for(int i = 0; i < edges; i++) {
+        for (int i = 0; i < edges; i++) {
             int vertex1 = in.readInt();
             int vertex2 = in.readInt();
             double capacity = in.readDouble();
@@ -71,33 +71,30 @@ public class FlowNetwork {
     public Iterable<FlowEdge> edges() {
         Bag<FlowEdge> edges = new Bag<>();
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
-            for(FlowEdge edge : adjacent[vertex]) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
+            for (FlowEdge edge : adjacent[vertex]) {
                 if (edge.to() != vertex) {
                     edges.add(edge);
                 }
             }
         }
-
         return edges;
     }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int vertex = 0; vertex < vertices(); vertex++) {
+        for (int vertex = 0; vertex < vertices(); vertex++) {
             stringBuilder.append(vertex).append(": ");
 
             StringJoiner neighbors = new StringJoiner(" ");
-            for(FlowEdge edge : adjacent(vertex)) {
+            for (FlowEdge edge : adjacent(vertex)) {
                 if (edge.from() == vertex) {
                     neighbors.add(edge.toString());
                 }
             }
             stringBuilder.append(neighbors.toString()).append("\n");
         }
-
         return stringBuilder.toString();
     }
-
 }

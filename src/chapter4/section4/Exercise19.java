@@ -39,10 +39,10 @@ public class Exercise19 {
 
         double[][] adjacencyMatrix = new double[vertices][vertices];
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
             name[vertex] = allValues[valueId++];
 
-            for(int neighbor = 0; neighbor < vertices; neighbor++) {
+            for (int neighbor = 0; neighbor < vertices; neighbor++) {
                 double rate = Double.parseDouble(allValues[valueId++]);
                 adjacencyMatrix[vertex][neighbor] = -Math.log(rate);
             }
@@ -67,11 +67,11 @@ public class Exercise19 {
         double bestArbitrageOpportunity = Double.POSITIVE_INFINITY;
         String currenciesForBestArbitrage = "";
 
-        for(String cycle : allCycles) {
+        for (String cycle : allCycles) {
             char[] currentCycle = cycle.toCharArray();
             double sum = 0;
 
-            for(char vertex = 0; vertex < currentCycle.length - 1; vertex++) {
+            for (char vertex = 0; vertex < currentCycle.length - 1; vertex++) {
                 int vertexFrom = Character.getNumericValue((currentCycle[vertex]));
                 int vertexTo = Character.getNumericValue((currentCycle[vertex + 1]));
 
@@ -86,7 +86,7 @@ public class Exercise19 {
 
         StringBuilder bestArbitrage = new StringBuilder();
 
-        for(int i = 0; i < currenciesForBestArbitrage.length() - 1; i++) {
+        for (int i = 0; i < currenciesForBestArbitrage.length() - 1; i++) {
             int currencyId = Character.getNumericValue(currenciesForBestArbitrage.charAt(i));
             int nextCurrencyId = Character.getNumericValue(currenciesForBestArbitrage.charAt(i + 1));
 
@@ -96,7 +96,6 @@ public class Exercise19 {
             bestArbitrage.append(name[currencyId]).append(" ").append(rate).append(" -> ").append(name[nextCurrencyId])
                     .append("\n");
         }
-
         return bestArbitrage.toString();
     }
 
@@ -120,9 +119,9 @@ public class Exercise19 {
                 combinations.add(cycleCopy.toString());
             }
         } else {
-            for(int vertex = 0; vertex <= maxValue; vertex++) {
+            for (int vertex = 0; vertex <= maxValue; vertex++) {
                 HashSet<Integer> copyHashSet = new HashSet<>();
-                for(int vertexInCycle : verticesInCycle.keys()) {
+                for (int vertexInCycle : verticesInCycle.keys()) {
                     copyHashSet.add(vertexInCycle);
                 }
 
@@ -137,5 +136,4 @@ public class Exercise19 {
     public static void main(String[] args) {
         StdOut.println(new Exercise19().getLowestWeightCycle());
     }
-
 }

@@ -17,7 +17,7 @@ public class ShellSortDraw {
         int arraySize = 20;
         Comparable[] array = new Comparable[arraySize];
 
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             double value = StdRandom.uniform();
             array[i] = value;
         }
@@ -48,17 +48,16 @@ public class ShellSortDraw {
     public static void shellSort(Comparable[] array) {
         int incrementSequence = 1;
 
-        while(incrementSequence * 3 + 1 < array.length) {
+        while (incrementSequence * 3 + 1 < array.length) {
             incrementSequence *= 3;
             incrementSequence++;
         }
 
         while (incrementSequence > 0) {
-
-            for(int i = incrementSequence; i < array.length; i++) {
+            for (int i = incrementSequence; i < array.length; i++) {
                 int j;
 
-                for(j = i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0; j -= incrementSequence) {
+                for (j = i; j >= incrementSequence && array[j].compareTo(array[j - incrementSequence]) < 0; j -= incrementSequence) {
                     Comparable temp = array[j];
                     array[j] = array[j - incrementSequence];
                     array[j - incrementSequence] = temp;
@@ -121,5 +120,4 @@ public class ShellSortDraw {
             StdDraw.text(i, line, String.format("%.1f", Double.parseDouble(String.valueOf(array[i]))));
         }
     }
-
 }

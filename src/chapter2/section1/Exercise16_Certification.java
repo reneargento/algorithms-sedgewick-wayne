@@ -19,11 +19,10 @@ public class Exercise16_Certification {
 
     @SuppressWarnings("unchecked")
     private static boolean check(Comparable[] array) {
-
-        //Insert all values in the map
+        // Insert all values in the map
         Map<Comparable, Integer> valuesMap = new HashMap<>();
 
-        for(Comparable value : array) {
+        for (Comparable value : array) {
             int count = 0;
 
             if (valuesMap.containsKey(value)) {
@@ -36,15 +35,15 @@ public class Exercise16_Certification {
 
         Arrays.sort(array);
 
-        //Check if array is sorted
-        for(int i = 0; i < array.length - 1; i++) {
+        // Check if array is sorted
+        for (int i = 0; i < array.length - 1; i++) {
             if (array[i].compareTo(array[i + 1]) > 0) {
                 return false;
             }
         }
 
-        //Check if the initial set of objects is still in the array
-        for(Comparable value : array) {
+        // Check if the initial set of objects is still in the array
+        for (Comparable value : array) {
             if (valuesMap.containsKey(value)) {
                 int count = valuesMap.get(value);
                 count--;
@@ -59,11 +58,6 @@ public class Exercise16_Certification {
             }
         }
 
-        if (valuesMap.size() > 0) {
-            return false;
-        }
-
-        return true;
+        return valuesMap.size() <= 0;
     }
-
 }

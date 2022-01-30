@@ -31,7 +31,7 @@ public class Exercise25 {
             while (!StdIn.isEmpty()) {
                 String sink = StdIn.readLine();
 
-                //All movie names in the graph end with "(YYYY)"
+                // All movie names in the graph end with "(YYYY)"
                 int movieYear = Integer.parseInt(sink.substring(sink.length() - 5, sink.length() - 1));
 
                 if (currentYear - movieYear > yearsOldToConsider) {
@@ -43,7 +43,7 @@ public class Exercise25 {
                     int destinationVertex = movieSymbolGraph.index(sink);
 
                     if (breadthFirstPaths.hasPathTo(destinationVertex)) {
-                        for(int vertexInPath : breadthFirstPaths.pathTo(destinationVertex)) {
+                        for (int vertexInPath : breadthFirstPaths.pathTo(destinationVertex)) {
                             StdOut.println("    " + movieSymbolGraph.name(vertexInPath));
                         }
                     } else {
@@ -61,10 +61,9 @@ public class Exercise25 {
     // args[1] - The lines separator
     // args[2] - The source movie
     // args[3] - Years - Ignore movies that are more than Years years old
-    //Arguments example: movies.txt / "Altered States (1980)" 15
+    // Arguments example: movies.txt / "Altered States (1980)" 15
     public static void main(String[] args) {
         String filePath = Constants.FILES_PATH + args[0];
         new Exercise25().new DegreesOfSeparationRecentMovies().buildGraphAndGetInput(filePath, args[1], args[2], args[3]);
     }
-
 }

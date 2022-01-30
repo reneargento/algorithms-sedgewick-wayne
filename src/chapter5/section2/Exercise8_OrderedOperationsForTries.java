@@ -623,7 +623,7 @@ public class Exercise8_OrderedOperationsForTries {
         StdOut.println("\nKeys after deleteMin():");
         trieOrdered.deleteMin();
 
-        for(String key : trieOrdered.keys()) {
+        for (String key : trieOrdered.keys()) {
             StdOut.println(key);
         }
 
@@ -640,7 +640,7 @@ public class Exercise8_OrderedOperationsForTries {
         StdOut.println("\nKeys after deleteMax():");
         trieOrdered.deleteMax();
 
-        for(String key : trieOrdered.keys()) {
+        for (String key : trieOrdered.keys()) {
             StdOut.println(key);
         }
 
@@ -737,7 +737,7 @@ public class Exercise8_OrderedOperationsForTries {
         StdOut.println("\nKeys after deleteMin():");
         ternarySearchTrieOrdered.deleteMin();
 
-        for(String key : ternarySearchTrieOrdered.keys()) {
+        for (String key : ternarySearchTrieOrdered.keys()) {
             StdOut.println(key);
         }
 
@@ -754,7 +754,7 @@ public class Exercise8_OrderedOperationsForTries {
         StdOut.println("\nKeys after deleteMax():");
         ternarySearchTrieOrdered.deleteMax();
 
-        for(String key : ternarySearchTrieOrdered.keys()) {
+        for (String key : ternarySearchTrieOrdered.keys()) {
             StdOut.println(key);
         }
 
@@ -767,5 +767,4 @@ public class Exercise8_OrderedOperationsForTries {
                 "Tree\n" +
                 "Trie");
     }
-
 }

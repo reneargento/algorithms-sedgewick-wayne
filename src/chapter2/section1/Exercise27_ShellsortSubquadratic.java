@@ -31,10 +31,10 @@ public class Exercise27_ShellsortSubquadratic {
         double total = 0;
         int length = initialLength;
 
-        for(int experiment = 0; experiment < numberOfExperiments; experiment++) {
+        for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
             Comparable[] array = new Comparable[length];
 
-            for(int i = 0; i < length; i++) {
+            for (int i = 0; i < length; i++) {
                 array[i] = StdRandom.uniform();
             }
 
@@ -59,5 +59,4 @@ public class Exercise27_ShellsortSubquadratic {
 
         return timer.elapsedTime();
     }
-
 }

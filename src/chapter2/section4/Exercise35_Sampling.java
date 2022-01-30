@@ -37,7 +37,7 @@ public class Exercise35_Sampling {
     }
 
     private void computeCumulativeWeights() {
-        for(int i = nodes.length - 1; i >= 2; i--) {
+        for (int i = nodes.length - 1; i >= 2; i--) {
             nodes[i / 2].cumulativeWeight += nodes[i].cumulativeWeight + nodes[i].weight;
         }
     }
@@ -92,5 +92,4 @@ public class Exercise35_Sampling {
                     ") count = " + entry.getValue());
         }
     }
-
 }

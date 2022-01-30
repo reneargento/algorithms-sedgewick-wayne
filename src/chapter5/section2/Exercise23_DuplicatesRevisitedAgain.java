@@ -18,7 +18,7 @@ public class Exercise23_DuplicatesRevisitedAgain {
             // and every optimization counts
             java.util.Set<Integer> hashSet = new java.util.HashSet<>();
 
-            for(int i = 0; i < numberOfValues; i++) {
+            for (int i = 0; i < numberOfValues; i++) {
                 int key = StdRandom.uniform(maxValue);
 
                 if (!hashSet.contains(key)) {
@@ -34,7 +34,7 @@ public class Exercise23_DuplicatesRevisitedAgain {
             // and every optimization counts
             java.util.Set<Long> hashSet = new java.util.HashSet<>();
 
-            for(int i = 0; i < numberOfValues; i++) {
+            for (int i = 0; i < numberOfValues; i++) {
                 long key = ThreadLocalRandom.current().nextLong(maxValue);
 
                 if (!hashSet.contains(key)) {
@@ -48,7 +48,7 @@ public class Exercise23_DuplicatesRevisitedAgain {
         public int deDupWithIntegerValuesAndStringSet(int numberOfValues, int maxValue) {
             StringSet stringSet = new StringSet();
 
-            for(int i = 0; i < numberOfValues; i++) {
+            for (int i = 0; i < numberOfValues; i++) {
                 int key = StdRandom.uniform(maxValue);
                 String stringKey = String.valueOf(key);
 
@@ -63,7 +63,7 @@ public class Exercise23_DuplicatesRevisitedAgain {
         public long deDupWithLongValuesAndStringSet(int numberOfValues, long maxValue) {
             StringSet stringSet = new StringSet();
 
-            for(int i = 0; i < numberOfValues; i++) {
+            for (int i = 0; i < numberOfValues; i++) {
                 long key = ThreadLocalRandom.current().nextLong(maxValue);
                 String stringKey = String.valueOf(key);
 
@@ -78,7 +78,7 @@ public class Exercise23_DuplicatesRevisitedAgain {
         private int countDistinctIntegerValuesUsingIndex(int numberOfValues, int maxValue) {
             int[] values = new int[maxValue];
 
-            for(int i = 0; i < numberOfValues; i++) {
+            for (int i = 0; i < numberOfValues; i++) {
                 int generatedValue = StdRandom.uniform(maxValue);
                 values[generatedValue]++;
             }
@@ -170,8 +170,8 @@ public class Exercise23_DuplicatesRevisitedAgain {
 
         DistinctCounter distinctCounter = new DistinctCounter();
 
-        for(int n = 0; n < values.length; n++) {
-            for(int m = 0; m < 3; m++) {
+        for (int n = 0; n < values.length; n++) {
+            for (int m = 0; m < 3; m++) {
                 int numberOfValues = values[n];
 
                 int maxValue = 0;
@@ -185,7 +185,7 @@ public class Exercise23_DuplicatesRevisitedAgain {
 
                 Stopwatch stopwatch = new Stopwatch();
 
-                for(int trial = 0; trial < numberOfTrials; trial++) {
+                for (int trial = 0; trial < numberOfTrials; trial++) {
 
                     // Count the distinct values, but will not be used in this exercise since we are interested
                     // only in the running time
@@ -229,5 +229,4 @@ public class Exercise23_DuplicatesRevisitedAgain {
         StdOut.printf("%18s %18s %15s %19d %15d %13.2f\n", method, dataStructure, valuesType, numberOfValues,
                 maxValue, timeSpent);
     }
-
 }

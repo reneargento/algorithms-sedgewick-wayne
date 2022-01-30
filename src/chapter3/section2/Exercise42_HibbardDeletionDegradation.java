@@ -259,13 +259,12 @@ public class Exercise42_HibbardDeletionDegradation {
     }
 
     private void doExperiment(int size) {
-
         int[] sizes = {100, 1000, 10000};
 
         StdOut.printf("%10s %20s %30s %30s\n", "Tree Size | ", "Square Root of Size | ","AVG Path Length W/ Standard Delete | ",
                 "AVG Path Length W/ Delete Random Promotion");
 
-        for(int i = 0; i < sizes.length; i++) {
+        for (int i = 0; i < sizes.length; i++) {
             double[] averagePathLengths = computeAVGPathLengthOfRandomKeys(sizes[i]);
             printResults(sizes[i], Math.sqrt(sizes[i]), averagePathLengths[0], averagePathLengths[1]);
         }
@@ -277,20 +276,20 @@ public class Exercise42_HibbardDeletionDegradation {
         BinarySearchTreeInternalPathLength<Integer, Integer> binarySearchTreeRandomPromotionDelete =
                 new BinarySearchTreeInternalPathLength<>();
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             int random = StdRandom.uniform(Integer.MAX_VALUE);
             binarySearchTreeStandardDelete.put(random, random);
             binarySearchTreeRandomPromotionDelete.put(random, random);
         }
 
-        for(int i = 0; i < size * size; i++) {
-            //Delete random key
+        for (int i = 0; i < size * size; i++) {
+            // Delete random key
             int randomIndexKeyToDelete = StdRandom.uniform(binarySearchTreeStandardDelete.size());
             binarySearchTreeStandardDelete.delete(binarySearchTreeStandardDelete.select(randomIndexKeyToDelete));
             binarySearchTreeRandomPromotionDelete.
                     deleteWithRandomNodePromotion(binarySearchTreeRandomPromotionDelete.select(randomIndexKeyToDelete));
 
-            //Insert random key
+            // Insert random key
             int random = StdRandom.uniform(Integer.MAX_VALUE);
             binarySearchTreeStandardDelete.put(random, random);
             binarySearchTreeRandomPromotionDelete.put(random, random);
@@ -344,5 +343,4 @@ public class Exercise42_HibbardDeletionDegradation {
         binarySearchTreeInternalPathLength.put(99, "Value 99");
         StdOut.println("Internal path length: " + binarySearchTreeInternalPathLength.internalPathLength() + " Expected: 10\n");
     }
-
 }

@@ -37,10 +37,9 @@ public class Exercise20_DynamicGrowth {
                 throw new RuntimeException("Site does not exist");
             }
 
-            while(site != leaders[site]) {
+            while (site != leaders[site]) {
                 site = leaders[site];
             }
-
             return site;
         }
 
@@ -63,7 +62,6 @@ public class Exercise20_DynamicGrowth {
                 leaders[leader2] = leader1;
                 size[leader1] += size[leader2];
             }
-
             count--;
         }
 
@@ -91,7 +89,7 @@ public class Exercise20_DynamicGrowth {
             int[] newLeadersArray = new int[newSize];
             int[] newSizeArray = new int[newSize];
 
-            for(int i = 0; i < numberOfSites; i++) {
+            for (int i = 0; i < numberOfSites; i++) {
                 newLeadersArray[i] = leaders[i];
                 newSizeArray[i] = size[i];
             }
@@ -99,7 +97,6 @@ public class Exercise20_DynamicGrowth {
             leaders = newLeadersArray;
             size = newSizeArray;
         }
-
     }
 
     public static void main(String[] args) {
@@ -107,7 +104,7 @@ public class Exercise20_DynamicGrowth {
 
         DynamicWeightedQuickUnion dynamicWeightedQuickUnion = dynamicGrowth.new DynamicWeightedQuickUnion();
 
-        //Add five sites
+        // Add five sites
         dynamicWeightedQuickUnion.newSite();
         dynamicWeightedQuickUnion.newSite();
         dynamicWeightedQuickUnion.newSite();
@@ -115,8 +112,7 @@ public class Exercise20_DynamicGrowth {
         dynamicWeightedQuickUnion.newSite();
 
 
-        while(dynamicWeightedQuickUnion.count() != 1) {
-
+        while (dynamicWeightedQuickUnion.count() != 1) {
             int randomSite1 = StdRandom.uniform(dynamicWeightedQuickUnion.getNumberOfSites());
             int randomSite2 = StdRandom.uniform(dynamicWeightedQuickUnion.getNumberOfSites());
 
@@ -127,5 +123,4 @@ public class Exercise20_DynamicGrowth {
             }
         }
     }
-
 }

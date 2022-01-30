@@ -47,21 +47,20 @@ public class Exercise40_PlotsSeparateChaining {
             public Value get(Key key) {
                 costOfPutCompares++;
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     costOfPutCompares++;
 
                     if (key.equals(node.key)) {
                         return node.value;
                     }
                 }
-
                 return null;
             }
 
             public int putAndComputeCost(Key key, Value value) {
                 int costOfCompares = 1;
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     costOfCompares++;
 
                     if (key.equals(node.key)) {
@@ -82,7 +81,7 @@ public class Exercise40_PlotsSeparateChaining {
                     return;
                 }
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
@@ -94,13 +93,12 @@ public class Exercise40_PlotsSeparateChaining {
             public Iterable<Key> keys() {
                 Queue<Key> keys = new Queue<>();
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     keys.enqueue(node.key);
                 }
 
                 return keys;
             }
-
         }
 
         private int averageListSize;
@@ -114,9 +112,9 @@ public class Exercise40_PlotsSeparateChaining {
         private static final int DEFAULT_HASH_TABLE_SIZE = 997;
         private static final int DEFAULT_AVERAGE_LIST_SIZE = 5;
 
-        //The largest prime <= 2^i for i = 1 to 31
-        //Used to distribute keys uniformly in the hash table after resizes
-        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        // The largest prime <= 2^i for i = 1 to 31
+        // Used to distribute keys uniformly in the hash table after resizes
+        // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
                 1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -124,8 +122,8 @@ public class Exercise40_PlotsSeparateChaining {
                 536870909, 1073741789, 2147483647
         };
 
-        //The lg of the hash table size
-        //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+        // The lg of the hash table size
+        // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         protected int lgM;
 
         public SeparateChainingHashTableCost() {
@@ -137,10 +135,9 @@ public class Exercise40_PlotsSeparateChaining {
             this.averageListSize = averageListSize;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
-
             lgM = (int) (Math.log(size) / Math.log(2));
         }
 
@@ -158,7 +155,6 @@ public class Exercise40_PlotsSeparateChaining {
             if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
-
             return hash % size;
         }
 
@@ -170,7 +166,6 @@ public class Exercise40_PlotsSeparateChaining {
             if (key == null) {
                 throw new IllegalArgumentException("Argument to contains() cannot be null");
             }
-
             return get(key) != null;
         }
 
@@ -178,7 +173,7 @@ public class Exercise40_PlotsSeparateChaining {
             SeparateChainingHashTableCost<Key, Value> separateChainingHashTableTemp =
                     new SeparateChainingHashTableCost<>(newSize, averageListSize);
 
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 separateChainingHashTableTemp.putAndComputeCost(key, get(key), false);
             }
 
@@ -248,28 +243,26 @@ public class Exercise40_PlotsSeparateChaining {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
-                for(Key key : sequentialSearchST.keys()) {
+            for (SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
+                for (Key key : sequentialSearchST.keys()) {
                     keys.enqueue(key);
                 }
             }
 
             if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }
-
             return keys;
         }
-
     }
 
     private static final String TALE_FILE_PATH = Constants.FILES_PATH + Constants.TALE_OF_TWO_CITIES_FILE;
@@ -294,8 +287,7 @@ public class Exercise40_PlotsSeparateChaining {
         SeparateChainingHashTableCost<String, Integer> separateChainingHashTableCost =
                 new SeparateChainingHashTableCost<>(10, 10);
 
-        for(String word : words) {
-
+        for (String word : words) {
             if (word.length() < minLength) {
                 continue;
             }
@@ -314,15 +306,13 @@ public class Exercise40_PlotsSeparateChaining {
         int cost = separateChainingHashTableCost.putAndComputeCost(max, 0, true);
         visualAccumulator.addDataValue(cost, true);
 
-        for(String word : separateChainingHashTableCost.keys()) {
+        for (String word : separateChainingHashTableCost.keys()) {
             if (separateChainingHashTableCost.get(word) > separateChainingHashTableCost.get(max)) {
                 max = word;
             }
         }
 
         visualAccumulator.writeExactFinalMean();
-
         return max + " " + separateChainingHashTableCost.get(max);
     }
-
 }

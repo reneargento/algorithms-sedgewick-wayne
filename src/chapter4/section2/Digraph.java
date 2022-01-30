@@ -8,7 +8,6 @@ import edu.princeton.cs.algs4.In;
  */
 @SuppressWarnings("unchecked")
 public class Digraph implements DigraphInterface {
-
     private final int vertices;
     private int edges;
     private Bag<Integer>[] adjacent;
@@ -24,7 +23,7 @@ public class Digraph implements DigraphInterface {
 
         adjacent = (Bag<Integer>[]) new Bag[vertices];
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
             adjacent[vertex] = new Bag<>();
         }
     }
@@ -33,7 +32,7 @@ public class Digraph implements DigraphInterface {
         this(in.readInt());
         int edges = in.readInt();
 
-        for(int i = 0; i < edges; i++) {
+        for (int i = 0; i < edges; i++) {
             int vertex1 = in.readInt();
             int vertex2 = in.readInt();
             addEdge(vertex1, vertex2);
@@ -75,12 +74,11 @@ public class Digraph implements DigraphInterface {
     public Digraph reverse() {
         Digraph reverse = new Digraph(vertices);
 
-        for(int vertex = 0; vertex < vertices; vertex++) {
-            for(int neighbor : adjacent(vertex)) {
+        for (int vertex = 0; vertex < vertices; vertex++) {
+            for (int neighbor : adjacent(vertex)) {
                 reverse.addEdge(neighbor, vertex);
             }
         }
-
         return reverse;
     }
 
@@ -88,15 +86,14 @@ public class Digraph implements DigraphInterface {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int vertex = 0; vertex < vertices(); vertex++) {
+        for (int vertex = 0; vertex < vertices(); vertex++) {
             stringBuilder.append(vertex).append(": ");
 
-            for(int neighbor : adjacent(vertex)) {
+            for (int neighbor : adjacent(vertex)) {
                 stringBuilder.append(neighbor).append(" ");
             }
             stringBuilder.append("\n");
         }
-
         return stringBuilder.toString();
     }
 }

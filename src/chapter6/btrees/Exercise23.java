@@ -22,7 +22,7 @@ public class Exercise23 {
         for (int order : orderValues) {
             Exercise15.BTreeSETWithBinarySearchSTPage<Integer> bTreeSET = createBTree(keys, order);
 
-            for(int numberOfSearches : numberOfSearchValues) {
+            for (int numberOfSearches : numberOfSearchValues) {
                 double totalTimeSpent = 0;
 
                 for (int i = 0; i < numberOfSearches; i++) {
@@ -56,5 +56,4 @@ public class Exercise23 {
     public static void main(String[] args) {
         new Exercise23().doExperiment();
     }
-
 }

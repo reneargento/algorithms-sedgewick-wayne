@@ -40,7 +40,7 @@ public class Exercise26_CriticalEdges {
      * Therefore, edge e is critical.
      *
      */
-    //O(E lg E)
+    // O(E lg E)
     public Queue<Edge> findCriticalEdges(EdgeWeightedGraph edgeWeightedGraph) {
         Queue<Edge> criticalEdges = new Queue<>();
 
@@ -48,7 +48,7 @@ public class Exercise26_CriticalEdges {
         Queue<Edge> minimumSpanningTree = new Queue<>();
         PriorityQueueResize<Edge> priorityQueue = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
 
-        for(Edge edge : edgeWeightedGraph.edges()) {
+        for (Edge edge : edgeWeightedGraph.edges()) {
             priorityQueue.insert(edge);
         }
 
@@ -96,7 +96,7 @@ public class Exercise26_CriticalEdges {
             HashSet<Integer> verticesInSubGraph = new HashSet<>();
 
             // Generate subgraph with the current components
-            for(Edge edgeInCurrentBlock : equalWeightEdges.keys()) {
+            for (Edge edgeInCurrentBlock : equalWeightEdges.keys()) {
                 vertex1 = edgeInCurrentBlock.either();
                 vertex2 = edgeInCurrentBlock.other(vertex1);
 
@@ -111,7 +111,7 @@ public class Exercise26_CriticalEdges {
                 verticesInSubGraph.add(component2);
             }
 
-            for(Edge edgeToAddToComponentSubGraph : edgesToAddToComponentsSubGraph) {
+            for (Edge edgeToAddToComponentSubGraph : edgesToAddToComponentsSubGraph) {
                 componentsSubGraph.addEdge(edgeToAddToComponentSubGraph);
             }
 
@@ -122,7 +122,7 @@ public class Exercise26_CriticalEdges {
             // Use a different constructor for EdgeWeightedCycle to avoid O(E * V) runtime
             EdgeWeightedCycle edgeWeightedCycle = new EdgeWeightedCycle(componentsSubGraph, verticesInSubGraph);
             if (edgeWeightedCycle.hasCycle()) {
-                for(Edge edgeInCycle : edgeWeightedCycle.cycle()) {
+                for (Edge edgeInCycle : edgeWeightedCycle.cycle()) {
                     Edge edgeInGraph = subGraphToGraphEdgeMap.get(edgeInCycle);
 
                     nonCriticalEdges.add(edgeInGraph);
@@ -130,13 +130,13 @@ public class Exercise26_CriticalEdges {
             }
 
             // Clear components subgraph edges
-            for(Edge edgeToAddToComponentSubGraph : edgesToAddToComponentsSubGraph) {
+            for (Edge edgeToAddToComponentSubGraph : edgesToAddToComponentsSubGraph) {
                 componentsSubGraph.deleteEdge(edgeToAddToComponentSubGraph);
             }
 
             // Add all critical edges to the queue
             // Add all edges that belong to an MST to the MST
-            for(Edge edgeInCurrentBlock : equalWeightEdges.keys()) {
+            for (Edge edgeInCurrentBlock : equalWeightEdges.keys()) {
 
                 if (!nonCriticalEdges.contains(edgeInCurrentBlock)) {
                     criticalEdges.enqueue(edgeInCurrentBlock);
@@ -151,7 +151,6 @@ public class Exercise26_CriticalEdges {
                 }
             }
         }
-
         return criticalEdges;
     }
 
@@ -167,7 +166,7 @@ public class Exercise26_CriticalEdges {
         StdOut.println("Critical edges 1:");
 
         Queue<Edge> criticalEdges1 = criticalEdges.findCriticalEdges(edgeWeightedGraph1);
-        for(Edge edge : criticalEdges1) {
+        for (Edge edge : criticalEdges1) {
             StdOut.println(edge);
         }
 
@@ -184,12 +183,11 @@ public class Exercise26_CriticalEdges {
         StdOut.println("Critical edges 2:");
 
         Queue<Edge> criticalEdges2 = criticalEdges.findCriticalEdges(edgeWeightedGraph2);
-        for(Edge edge : criticalEdges2) {
+        for (Edge edge : criticalEdges2) {
             StdOut.println(edge);
         }
 
         StdOut.println("Expected:\n" +
                 "2-3 3.00000");
     }
-
 }

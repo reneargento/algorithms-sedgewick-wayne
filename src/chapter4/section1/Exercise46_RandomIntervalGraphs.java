@@ -80,11 +80,11 @@ public class Exercise46_RandomIntervalGraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 IntervalBinarySearchTree.Interval intervalVertex = keys[vertex];
                 stringBuilder.append("[").append(intervalVertex.min).append(" - ").append(intervalVertex.max).append("]: ");
 
-                for(int neighbor : graph.adjacent(vertex)) {
+                for (int neighbor : graph.adjacent(vertex)) {
                     IntervalBinarySearchTree.Interval neighborVertex = keys[neighbor];
                     stringBuilder.append("[").append(neighborVertex.min).append(" - ").append(neighborVertex.max).append("] ");
                 }
@@ -102,7 +102,7 @@ public class Exercise46_RandomIntervalGraphs {
 
         IntervalBinarySearchTree<Integer> intervalBinarySearchTree = new IntervalBinarySearchTree();
 
-        for(int randomVertex = 0; randomVertex < vertices; randomVertex++) {
+        for (int randomVertex = 0; randomVertex < vertices; randomVertex++) {
             double randomIntervalStart = StdRandom.uniform(0, 1 - length);
             double randomIntervalEnd = randomIntervalStart + length;
             IntervalBinarySearchTree.Interval intervalVertex =
@@ -113,13 +113,13 @@ public class Exercise46_RandomIntervalGraphs {
         // Generate interval graph
         IntervalGraph intervalGraph = new IntervalGraph(vertices);
 
-        for(int vertexId = 0; vertexId < randomIntervals.length; vertexId++) {
+        for (int vertexId = 0; vertexId < randomIntervals.length; vertexId++) {
             IntervalBinarySearchTree.Interval randomInterval = randomIntervals[vertexId];
 
             List<IntervalBinarySearchTree.Interval> intervalsThatIntersect =
                     intervalBinarySearchTree.getAllIntersections(randomInterval);
 
-            for(IntervalBinarySearchTree.Interval intervalIntersection : intervalsThatIntersect) {
+            for (IntervalBinarySearchTree.Interval intervalIntersection : intervalsThatIntersect) {
                 intervalGraph.addEdge(randomInterval, intervalIntersection);
             }
 
@@ -141,5 +141,4 @@ public class Exercise46_RandomIntervalGraphs {
         IntervalGraph intervalGraph = new Exercise46_RandomIntervalGraphs().generateIntervalGraph(vertices, length);
         StdOut.println(intervalGraph);
     }
-
 }

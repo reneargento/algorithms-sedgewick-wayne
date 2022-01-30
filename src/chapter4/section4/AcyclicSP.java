@@ -14,7 +14,7 @@ public class AcyclicSP {
         edgeTo = new DirectedEdge[edgeWeightedDigraph.vertices()];
         distTo = new double[edgeWeightedDigraph.vertices()];
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             distTo[vertex] = Double.POSITIVE_INFINITY;
         }
 
@@ -22,14 +22,14 @@ public class AcyclicSP {
 
         Topological topological = new Topological(edgeWeightedDigraph);
 
-        for(int vertex : topological.order()) {
+        for (int vertex : topological.order()) {
             relax(edgeWeightedDigraph, vertex);
         }
     }
 
     private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex) {
 
-        for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
             int neighbor = edge.to();
 
             if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -53,11 +53,9 @@ public class AcyclicSP {
         }
 
         Stack<DirectedEdge> path = new Stack<>();
-        for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+        for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
             path.push(edge);
         }
-
         return path;
     }
-
 }

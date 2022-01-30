@@ -26,10 +26,10 @@ public class Exercise12 {
 
         int maxArraySize = 10000000;
 
-        for(int i = 100; i <= maxArraySize; i *= 10) {
+        for (int i = 100; i <= maxArraySize; i *= 10) {
             double[] array = new double[i];
 
-            for(int j = 0; j < array.length; j++) {
+            for (int j = 0; j < array.length; j++) {
                 double value = StdRandom.uniform();
                 array[j] = value;
             }
@@ -46,7 +46,7 @@ public class Exercise12 {
 
         int incrementSequence = 1;
 
-        while(incrementSequence * 3 + 1 < array.length) {
+        while (incrementSequence * 3 + 1 < array.length) {
             incrementSequence *= 3;
             incrementSequence++;
         }
@@ -55,11 +55,11 @@ public class Exercise12 {
 
             numberOfCompares = 0;
 
-            for(int i = incrementSequence; i < array.length; i++) {
+            for (int i = incrementSequence; i < array.length; i++) {
 
                 numberOfCompares++;
 
-                for(int j = i; j >= incrementSequence && array[j] < array[j - incrementSequence]; j -= incrementSequence) {
+                for (int j = i; j >= incrementSequence && array[j] < array[j - incrementSequence]; j -= incrementSequence) {
                     double temp = array[j];
                     array[j] = array[j - incrementSequence];
                     array[j - incrementSequence] = temp;
@@ -81,10 +81,9 @@ public class Exercise12 {
     private static void printStatistics(List<ComparesByIncrement> comparesByIncrements) {
         StdOut.printf("%13s %22s\n", "Increment |", "Compares by Array Size");
 
-        for(ComparesByIncrement comparesByIncrement : comparesByIncrements) {
+        for (ComparesByIncrement comparesByIncrement : comparesByIncrements) {
             StdOut.printf("%11d %16.2f", comparesByIncrement.increment, comparesByIncrement.comparesByArraySize);
             StdOut.println();
         }
     }
-
 }

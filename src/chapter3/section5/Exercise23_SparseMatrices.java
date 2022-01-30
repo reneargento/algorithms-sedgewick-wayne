@@ -53,12 +53,12 @@ public class Exercise23_SparseMatrices {
 
             SparseVector result = new SparseVector(dimension);
 
-            //Copy values
-            for(int key : hashTable.keys()) {
+            // Copy values
+            for (int key : hashTable.keys()) {
                 result.put(key, get(key));
             }
-            //Sum values
-            for(int key : sparseVector.hashTable.keys()) {
+            // Sum values
+            for (int key : sparseVector.hashTable.keys()) {
                 double sum = get(key) + sparseVector.get(key);
 
                 if (sum != 0) {
@@ -78,15 +78,15 @@ public class Exercise23_SparseMatrices {
 
             double sum = 0;
 
-            //Iterate over the vector with the fewest nonzeros
+            // Iterate over the vector with the fewest nonzeros
             if (size() <= sparseVector.size()) {
-                for(int key : hashTable.keys()) {
+                for (int key : hashTable.keys()) {
                     if (sparseVector.hashTable.contains(key)) {
                         sum += get(key) * sparseVector.get(key);
                     }
                 }
             } else {
-                for(int key : sparseVector.hashTable.keys()) {
+                for (int key : sparseVector.hashTable.keys()) {
                     if (hashTable.contains(key)) {
                         sum += get(key) * sparseVector.get(key);
                     }
@@ -99,7 +99,7 @@ public class Exercise23_SparseMatrices {
         public double dot(double[] that) {
             double sum = 0.0;
 
-            for(int key : hashTable.keys()) {
+            for (int key : hashTable.keys()) {
                 sum += this.get(key) * that[key];
             }
 
@@ -137,12 +137,12 @@ public class Exercise23_SparseMatrices {
             this.columnSize = columnSize;
 
             rows = new SparseVector[rowSize];
-            for(int i = 0; i < rows.length; i++) {
+            for (int i = 0; i < rows.length; i++) {
                 rows[i] = new SparseVector(columnSize);
             }
 
             columns = new SparseVector[columnSize];
-            for(int i = 0; i < columns.length; i++) {
+            for (int i = 0; i < columns.length; i++) {
                 columns[i] = new SparseVector(rowSize);
             }
         }
@@ -199,7 +199,7 @@ public class Exercise23_SparseMatrices {
 
             SparseMatrix result = new SparseMatrix(rowSize, columnSize);
 
-            for(int i = 0; i < result.rowSize; i++) {
+            for (int i = 0; i < result.rowSize; i++) {
                 result.rows[i] = rows[i].plus(sparseMatrix.rows[i]);
             }
 
@@ -214,8 +214,8 @@ public class Exercise23_SparseMatrices {
 
             SparseMatrix result = new SparseMatrix(rowSize, sparseMatrix.columnSize);
 
-            for(int i = 0; i < rows.length; i++) {
-                for(int j = 0; j < sparseMatrix.columnSize; j++) {
+            for (int i = 0; i < rows.length; i++) {
+                for (int j = 0; j < sparseMatrix.columnSize; j++) {
                     double dot = rows[i].dot(sparseMatrix.columns[j]);
 
                     if (dot != 0) {
@@ -233,7 +233,6 @@ public class Exercise23_SparseMatrices {
             for (int row = 0; row < rowSize; row++) {
                 stringBuilder.append(row).append(": ").append(rows[row]).append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
@@ -351,5 +350,4 @@ public class Exercise23_SparseMatrices {
                 "0: (1, -10.0) \n" +
                 "1: (1, 2.0)");
     }
-
 }

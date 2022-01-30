@@ -14,7 +14,7 @@ public class Exercise16 {
 		In in = new In(fileName);
 		Queue<Date> queue = new Queue<>();
 
-		while(!in.isEmpty()) {
+		while (!in.isEmpty()) {
 			queue.enqueue(new Date(in.readString()));
 		}
 
@@ -36,5 +36,4 @@ public class Exercise16 {
 			StdOut.println(date);
 		}
 	}
-
 }

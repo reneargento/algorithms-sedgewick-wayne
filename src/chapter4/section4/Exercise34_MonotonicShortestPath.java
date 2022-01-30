@@ -75,7 +75,7 @@ public class Exercise34_MonotonicShortestPath {
             edgeToMonotonicDescending = new DirectedEdge[edgeWeightedDigraph.vertices()];
             edgeTo = new DirectedEdge[edgeWeightedDigraph.vertices()];
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
                 distToMonotonicAscending[vertex] = Double.POSITIVE_INFINITY;
                 distToMonotonicDescending[vertex] = Double.POSITIVE_INFINITY;
@@ -122,14 +122,13 @@ public class Exercise34_MonotonicShortestPath {
         private void relaxAllEdgesInSpecificOrder(EdgeWeightedDigraph edgeWeightedDigraph, int source,
                                                   Comparator<DirectedEdge> edgesComparator, double[] distToVertex,
                                                   DirectedEdge[] edgeToVertex, boolean isAscendingOrder) {
-
             // Create a map with vertices as keys and sorted outgoing edges as values
             SeparateChainingHashTable<Integer, VertexInformation> verticesInformation = new SeparateChainingHashTable<>();
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 DirectedEdge[] edges = new DirectedEdge[edgeWeightedDigraph.outdegree(vertex)];
 
                 int edgeIndex = 0;
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     edges[edgeIndex++] = edge;
                 }
 
@@ -198,7 +197,7 @@ public class Exercise34_MonotonicShortestPath {
         }
 
         private void compareMonotonicPathsAndComputeShortest() {
-            for(int vertex = 0; vertex < edgeTo.length; vertex++) {
+            for (int vertex = 0; vertex < edgeTo.length; vertex++) {
                 if (distToMonotonicAscending[vertex] <= distToMonotonicDescending[vertex]) {
                     distTo[vertex] = distToMonotonicAscending[vertex];
                     edgeTo[vertex] = edgeToMonotonicAscending[vertex];
@@ -223,10 +222,9 @@ public class Exercise34_MonotonicShortestPath {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
-
             return path;
         }
     }
@@ -249,11 +247,11 @@ public class Exercise34_MonotonicShortestPath {
 
         StdOut.print("Monotonic shortest paths 1: ");
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph1.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph1.vertices(); vertex++) {
             StdOut.print("\nPath from vertex 0 to vertex " + vertex + ": ");
 
             if (dijkstraMonotonicSP1.hasPathTo(vertex)) {
-                for(DirectedEdge edge : dijkstraMonotonicSP1.pathTo(vertex)) {
+                for (DirectedEdge edge : dijkstraMonotonicSP1.pathTo(vertex)) {
                     StdOut.print(edge.from() + "->" + edge.to() + " (" + edge.weight() + ") ");
                 }
             } else {
@@ -282,11 +280,11 @@ public class Exercise34_MonotonicShortestPath {
 
         StdOut.print("\nMonotonic shortest paths 2: ");
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph2.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph2.vertices(); vertex++) {
             StdOut.print("\nPath from vertex 0 to vertex " + vertex + ": ");
 
             if (dijkstraMonotonicSP2.hasPathTo(vertex)) {
-                for(DirectedEdge edge : dijkstraMonotonicSP2.pathTo(vertex)) {
+                for (DirectedEdge edge : dijkstraMonotonicSP2.pathTo(vertex)) {
                     StdOut.print(edge.from() + "->" + edge.to() + " (" + edge.weight() + ") ");
                 }
             } else {
@@ -299,5 +297,4 @@ public class Exercise34_MonotonicShortestPath {
         StdOut.println("Vertex 1: 0->1 (1.0)");
         StdOut.println("Vertex 2: 0->1 (1.0) 1->2 (3.0)");
     }
-
 }

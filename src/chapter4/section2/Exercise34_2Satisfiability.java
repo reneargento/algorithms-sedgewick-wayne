@@ -20,7 +20,7 @@ public class Exercise34_2Satisfiability {
             // First pass to find the number of variables in the formula
             HashSet<Character> variables = new HashSet<>();
             char[] charsInFormula = formula.toCharArray();
-            for(int i = 0; i < charsInFormula.length; i++) {
+            for (int i = 0; i < charsInFormula.length; i++) {
                 if (charsInFormula[i] != '('
                         && charsInFormula[i] != ')'
                         && charsInFormula[i] != 'V'
@@ -39,7 +39,7 @@ public class Exercise34_2Satisfiability {
             SeparateChainingHashTable<Integer, String> idToVariableMap = new SeparateChainingHashTable<>();
 
             // Second pass to get vertices
-            for(int i = 0; i < values.length; i += 2) {
+            for (int i = 0; i < values.length; i += 2) {
                 boolean isVariable1Negation;
                 boolean isVariable2Negation;
 
@@ -118,11 +118,11 @@ public class Exercise34_2Satisfiability {
             // Solve 2-SAT by assigning variables to true using the strongly connected components topological order
             List<Integer>[] stronglyConnectedComponents = (List<Integer>[]) new ArrayList[kosarajuSharirSCC.count()];
 
-            for(int scc = 0; scc < stronglyConnectedComponents.length; scc++) {
+            for (int scc = 0; scc < stronglyConnectedComponents.length; scc++) {
                 stronglyConnectedComponents[scc] = new ArrayList<>();
             }
 
-            for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
                 int stronglyConnectedComponentId = kosarajuSharirSCC.id(vertex);
                 stronglyConnectedComponents[stronglyConnectedComponentId].add(vertex);
             }
@@ -135,8 +135,8 @@ public class Exercise34_2Satisfiability {
             // This implementation uses a reverse approach of the approach described in the book, because it seems
             // more logical to iterate in topological order and assign a value of TRUE to variables X
             // and FALSE to variables !X found along the way.
-            for(int scc = stronglyConnectedComponents.length - 1; scc >= 0; scc--) {
-                for(int vertexId : stronglyConnectedComponents[scc]) {
+            for (int scc = stronglyConnectedComponents.length - 1; scc >= 0; scc--) {
+                for (int vertexId : stronglyConnectedComponents[scc]) {
                     String vertexVariable = idToVariableMap.get(vertexId);
 
                     char variable;
@@ -170,12 +170,11 @@ public class Exercise34_2Satisfiability {
         }
 
         private boolean isFormulaSatisfiable(Digraph digraph, KosarajuSharirSCC kosarajuSharirSCC) {
-            for(int vertex = 0; vertex < digraph.vertices(); vertex += 2) {
+            for (int vertex = 0; vertex < digraph.vertices(); vertex += 2) {
                 if (kosarajuSharirSCC.stronglyConnected(vertex, vertex + 1)) {
                     return false;
                 }
             }
-
             return true;
         }
     }
@@ -190,7 +189,7 @@ public class Exercise34_2Satisfiability {
         if (solution1 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
-            for(char variable : solution1.keys()) {
+            for (char variable : solution1.keys()) {
                 StdOut.print(variable + ": " + solution1.get(variable) + " ");
             }
         }
@@ -206,7 +205,7 @@ public class Exercise34_2Satisfiability {
         if (solution2 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
-            for(char variable : solution2.keys()) {
+            for (char variable : solution2.keys()) {
                 StdOut.print(variable + ": " + solution2.get(variable) + " ");
             }
         }
@@ -219,7 +218,7 @@ public class Exercise34_2Satisfiability {
         if (solution3 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
-            for(char variable : solution3.keys()) {
+            for (char variable : solution3.keys()) {
                 StdOut.print(variable + ": " + solution3.get(variable) + " ");
             }
         }
@@ -232,7 +231,7 @@ public class Exercise34_2Satisfiability {
         if (solution4 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
-            for(char variable : solution4.keys()) {
+            for (char variable : solution4.keys()) {
                 StdOut.print(variable + ": " + solution4.get(variable) + " ");
             }
         }
@@ -246,7 +245,7 @@ public class Exercise34_2Satisfiability {
         if (solution5 == null) {
             StdOut.print("The formula is not satisfiable");
         } else {
-            for(char variable : solution5.keys()) {
+            for (char variable : solution5.keys()) {
                 StdOut.print(variable + ": " + solution5.get(variable) + " ");
             }
         }
@@ -254,5 +253,4 @@ public class Exercise34_2Satisfiability {
         StdOut.println("OR A: false B: true C: false D: true E: true F: false G: true H: false");
         StdOut.println("OR A: false B: true C: false D: true E: true F: true G: true H: false");
     }
-
 }

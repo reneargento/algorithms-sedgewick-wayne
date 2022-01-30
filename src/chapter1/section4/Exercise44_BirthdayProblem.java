@@ -27,7 +27,7 @@ public class Exercise44_BirthdayProblem {
 
         List<Integer> numbersGeneratedBeforeFirstDuplicate = new LinkedList<>();
 
-        for(int n = INITIAL_NUMBER_SIZE; n <= FINAL_NUMBER_SIZE; n *= 2) {
+        for (int n = INITIAL_NUMBER_SIZE; n <= FINAL_NUMBER_SIZE; n *= 2) {
             int numbersGenerated = birthdayProblem(n);
             numbersGeneratedBeforeFirstDuplicate.add(numbersGenerated);
         }
@@ -41,7 +41,7 @@ public class Exercise44_BirthdayProblem {
         int numbersGeneratedCount = 0;
 
         //Repeat until we find a repeated value
-        while(true) {
+        while (true) {
             int number = StdRandom.uniform(0, n);
 
             numbersGeneratedCount++;
@@ -63,7 +63,7 @@ public class Exercise44_BirthdayProblem {
 
         int numberSize = INITIAL_NUMBER_SIZE;
 
-        for(int numbersGenerated : numbersGeneratedBeforeFirstDuplicate) {
+        for (int numbersGenerated : numbersGeneratedBeforeFirstDuplicate) {
             int resultExpectedByHypothesis = (int) Math.round(Math.sqrt(Math.PI * numberSize / 2));
 
             StdOut.printf("%10d %15d %29d", numberSize, numbersGenerated, resultExpectedByHypothesis);
@@ -73,5 +73,4 @@ public class Exercise44_BirthdayProblem {
             numberSize *= 2;
         }
     }
-
 }

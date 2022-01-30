@@ -18,7 +18,7 @@ public class Exercise39_ImprovedAccuracyDoubling {
         int max = 1000000;
         int[] values = new int[n];
 
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             values[i] = StdRandom.uniform(-max, max);
         }
 
@@ -32,9 +32,9 @@ public class Exercise39_ImprovedAccuracyDoubling {
         int n = values.length;
         int count = 0;
 
-        for(int i = 0; i < n; i++) {
-            for(int j = i + 1; j < n; j++) {
-                for(int k = j + 1; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
                     if (values[i] + values[j] + values[k] == 0) {
                         count++;
                     }
@@ -48,7 +48,7 @@ public class Exercise39_ImprovedAccuracyDoubling {
     private static double getMean(double[] values) {
         double sum = 0;
 
-        for(int i = 0; i < values.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             sum += values[i];
         }
 
@@ -58,7 +58,7 @@ public class Exercise39_ImprovedAccuracyDoubling {
     private static double getStandardDeviation(double[] values, double mean) {
         double sumOfSquareDifferences = 0;
 
-        for(int i = 0; i < values.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             sumOfSquareDifferences += Math.pow(values[i] - mean, 2);
         }
 
@@ -72,12 +72,12 @@ public class Exercise39_ImprovedAccuracyDoubling {
 
         StdOut.printf("%6s %7s %5s\n", "Items", "Mean", "StdDeviation");
 
-        for(int n = 125; n <= 1000; n += n) {
+        for (int n = 125; n <= 1000; n += n) {
 
             double[] times = new double[numberOfCalls];
             timeTrials.put(n, times);
 
-            for(int i = 0; i < numberOfCalls; i++) {
+            for (int i = 0; i < numberOfCalls; i++) {
                 double time = timeTrial(n);
                 times[i] = time;
             }
@@ -88,7 +88,7 @@ public class Exercise39_ImprovedAccuracyDoubling {
 
         Arrays.sort(timeTrialKeys);
 
-        for(int trial : timeTrialKeys) {
+        for (int trial : timeTrialKeys) {
 
             double[] times = timeTrials.get(trial);
             double mean = getMean(times);
@@ -98,5 +98,4 @@ public class Exercise39_ImprovedAccuracyDoubling {
         }
 
     }
-
 }

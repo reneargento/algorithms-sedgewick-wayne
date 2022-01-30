@@ -32,7 +32,7 @@ public class Exercise21_ErdosRenyiModel {
 
         int numberOfSites = 16;
 
-        for(int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
+        for (int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
             int pairsGenerated = Exercise17_RandomConnections.erdosRenyi(numberOfSites, false);
 
             Experiment experiment = new Experiment(numberOfSites, pairsGenerated);
@@ -44,14 +44,14 @@ public class Exercise21_ErdosRenyiModel {
         printResults(experiments);
     }
 
-    //For accuracy, the closer to 1, the better
+    // For accuracy, the closer to 1, the better
     private void printResults(List<Experiment> experiments) {
         StdOut.printf("%12s %17s %19s %10s %10s\n", "Experiment |", "Number of Sites |",
                 "Pairs Generated |", "Expected |", "Accuracy |");
 
         int experimentId = 1;
 
-        for(Experiment experiment : experiments) {
+        for (Experiment experiment : experiments) {
             double lnN = Math.log(experiment.numberOfSites);
             int expectedResult = (int) (0.5 * experiment.numberOfSites * lnN);// ~1/2N ln N
 
@@ -64,5 +64,4 @@ public class Exercise21_ErdosRenyiModel {
             experimentId++;
         }
     }
-
 }

@@ -23,7 +23,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
         List<Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph> randomGridEdgeWeightedGraphs =
                 new ArrayList<>();
 
-        for(int graph = 0; graph < numberOfGraphs; graph++) {
+        for (int graph = 0; graph < numberOfGraphs; graph++) {
             Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph randomGridEdgeWeightedGraph =
                     randomGridEdgeWeightedGraph(vertices, extraEdges);
             randomGridEdgeWeightedGraphs.add(randomGridEdgeWeightedGraph);
@@ -32,8 +32,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
         return randomGridEdgeWeightedGraphs;
     }
 
-    public Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph randomGridEdgeWeightedGraph(int vertices,
-                                                                                                     int extraEdges) {
+    public Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph randomGridEdgeWeightedGraph(int vertices, int extraEdges) {
         if (Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
             throw new IllegalArgumentException("Vertex number must have an integer square root");
         }
@@ -51,7 +50,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
         Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph.Vertex[] allVertices =
                 new Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph.Vertex[vertices];
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             double randomXCoordinate = StdRandom.uniform();
             double randomYCoordinate = StdRandom.uniform();
 
@@ -80,7 +79,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
         Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph randomEuclideanGridEdgeWeightedGraph =
                 new Exercise30_EuclideanWeightedGraphs().new EuclideanEdgeWeightedGraph(vertices);
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             int[] cellRowAndColumn = getCellRowAndColumn(vertexId, vertexNumberSqrt);
             Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph.Vertex vertex =
                     verticesGrid[cellRowAndColumn[0]][cellRowAndColumn[1]];
@@ -93,7 +92,6 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
 
         // Add extra edges to the graph
         addExtraEdges(randomEuclideanGridEdgeWeightedGraph, extraEdgesList, allVertices);
-
         return randomEuclideanGridEdgeWeightedGraph;
     }
 
@@ -101,7 +99,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
                                            Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph.Vertex[] allVertices) {
         List<Edge> extraEdgesList = new ArrayList<>();
 
-        while(extraEdges > 0) {
+        while (extraEdges > 0) {
             int randomVertexId1 = StdRandom.uniform(vertices);
             int randomVertexId2 = StdRandom.uniform(vertices);
 
@@ -154,7 +152,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
                 int row = 0;
 
                 // Remove right column
-                for(int i = 0; i < vertexNumberSqrt; i++) {
+                for (int i = 0; i < vertexNumberSqrt; i++) {
                     row++;
                     int removedVertexId = (row * originalVertexNumberSqrt) - shrinkTimes;
                     removedVertices.add(removedVertexId);
@@ -163,13 +161,13 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
                 int nextVertexRemoved = row * originalVertexNumberSqrt;
 
                 // Remove last row
-                for(int i = 0; i < vertexNumberSqrt + 1; i++) {
+                for (int i = 0; i < vertexNumberSqrt + 1; i++) {
                     removedVertices.add(nextVertexRemoved);
                     nextVertexRemoved++;
                 }
 
                 List<Edge> extraEdgesToRemoveAfterShrinking = new ArrayList<>();
-                for(Edge extraEdge : extraEdgesList) {
+                for (Edge extraEdge : extraEdgesList) {
                     int vertexId1 = extraEdge.either();
                     int vertexId2 = extraEdge.other(vertexId1);
 
@@ -197,7 +195,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
                                    Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph.Vertex[][] verticesGrid) {
         int currentVertexId = 0;
 
-        for(int row = 0; row < vertexNumberSqrt; row++) {
+        for (int row = 0; row < vertexNumberSqrt; row++) {
             for (int column = 0; column < vertexNumberSqrt; column++) {
                 allVertices[verticesGrid[row][column].id].id = currentVertexId;
                 verticesGrid[row][column].id = currentVertexId;
@@ -213,9 +211,9 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
         int[] neighborRows = {-1, 1, 0 ,0};
         int[] neighborColumns = {0, 0, -1 ,1};
 
-        for(int row = 0; row < vertexNumberSqrt; row++) {
-            for(int column = 0; column < vertexNumberSqrt; column++) {
-                for(int i = 0; i < 4; i++) {
+        for (int row = 0; row < vertexNumberSqrt; row++) {
+            for (int column = 0; column < vertexNumberSqrt; column++) {
+                for (int i = 0; i < 4; i++) {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
@@ -238,7 +236,7 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
     private void addExtraEdges(Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph randomEuclideanGridEdgeWeightedGraph,
                                List<Edge> extraEdgesList,
                                Exercise30_EuclideanWeightedGraphs.EuclideanEdgeWeightedGraph.Vertex[] allVertices) {
-        for(Edge extraEdge : extraEdgesList) {
+        for (Edge extraEdge : extraEdgesList) {
             int vertexId1 = extraEdge.either();
             int vertexId2 = extraEdge.other(vertexId1);
 
@@ -281,5 +279,4 @@ public class Exercise36_RandomGridEdgeWeightedGraphs {
 
         StdOut.println(firstRandomGridEdgeWeightedGraph);
     }
-
 }

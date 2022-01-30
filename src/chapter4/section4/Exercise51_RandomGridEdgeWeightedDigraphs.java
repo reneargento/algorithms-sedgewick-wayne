@@ -22,7 +22,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
 
         List<EdgeWeightedDigraphInterface> randomGridEdgeWeightedDigraphs = new ArrayList<>();
 
-        for(int digraph = 0; digraph < numberOfDigraphs; digraph++) {
+        for (int digraph = 0; digraph < numberOfDigraphs; digraph++) {
             EdgeWeightedDigraphInterface randomGridEdgeWeightedDigraph = randomGridEdgeWeightedDigraph(vertices,
                     extraEdges);
             randomGridEdgeWeightedDigraphs.add(randomGridEdgeWeightedDigraph);
@@ -32,7 +32,6 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
     }
 
     public EdgeWeightedDigraphInterface randomGridEdgeWeightedDigraph(int vertices, int extraEdges) {
-
         if (Math.sqrt(vertices) != (int) Math.sqrt(vertices)) {
             throw new IllegalArgumentException("Vertex number must have an integer square root");
         }
@@ -51,7 +50,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
         Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[] allVertices =
                 new Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[vertices];
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             double randomXCoordinate = StdRandom.uniform();
             double randomYCoordinate = StdRandom.uniform();
 
@@ -80,7 +79,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
         Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph randomEuclideanGridEdgeWeightedDigraph =
                 new Exercise27_ShortestPathsInEuclideanGraphs().new EuclideanEdgeWeightedDigraph(vertices);
 
-        for(int vertexId = 0; vertexId < vertices; vertexId++) {
+        for (int vertexId = 0; vertexId < vertices; vertexId++) {
             int[] cellRowAndColumn = getCellRowAndColumn(vertexId, vertexNumberSqrt);
             Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex vertex =
                     verticesGrid[cellRowAndColumn[0]][cellRowAndColumn[1]];
@@ -116,7 +115,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
                                                   Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[] allVertices) {
         List<DirectedEdge> extraEdgesList = new ArrayList<>();
 
-        while(extraEdges > 0) {
+        while (extraEdges > 0) {
             int randomVertexId1 = StdRandom.uniform(vertices);
             int randomVertexId2 = StdRandom.uniform(vertices);
 
@@ -169,7 +168,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
                 int row = 0;
 
                 // Remove right column
-                for(int i = 0; i < vertexNumberSqrt; i++) {
+                for (int i = 0; i < vertexNumberSqrt; i++) {
                     row++;
                     int removedVertexId = (row * originalVertexNumberSqrt) - shrinkTimes;
                     removedVertices.add(removedVertexId);
@@ -178,13 +177,13 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
                 int nextVertexRemoved = row * originalVertexNumberSqrt;
 
                 // Remove last row
-                for(int i = 0; i < vertexNumberSqrt + 1; i++) {
+                for (int i = 0; i < vertexNumberSqrt + 1; i++) {
                     removedVertices.add(nextVertexRemoved);
                     nextVertexRemoved++;
                 }
 
                 List<DirectedEdge> extraEdgesToRemoveAfterShrinking = new ArrayList<>();
-                for(DirectedEdge extraEdge : extraEdgesList) {
+                for (DirectedEdge extraEdge : extraEdgesList) {
                     int vertexId1 = extraEdge.from();
                     int vertexId2 = extraEdge.to();
 
@@ -212,7 +211,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
                                   Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[][] verticesGrid) {
         int currentVertexId = 0;
 
-        for(int row = 0; row < vertexNumberSqrt; row++) {
+        for (int row = 0; row < vertexNumberSqrt; row++) {
             for (int column = 0; column < vertexNumberSqrt; column++) {
                 allVertices[verticesGrid[row][column].id].id = currentVertexId;
                 verticesGrid[row][column].id = currentVertexId;
@@ -228,9 +227,9 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
         int[] neighborRows = {-1, 1, 0 ,0};
         int[] neighborColumns = {0, 0, -1 ,1};
 
-        for(int row = 0; row < vertexNumberSqrt; row++) {
-            for(int column = 0; column < vertexNumberSqrt; column++) {
-                for(int i = 0; i < 4; i++) {
+        for (int row = 0; row < vertexNumberSqrt; row++) {
+            for (int column = 0; column < vertexNumberSqrt; column++) {
+                for (int i = 0; i < 4; i++) {
                     int neighborRow = row + neighborRows[i];
                     int neighborColumn = column + neighborColumns[i];
 
@@ -252,7 +251,7 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
     private void addExtraEdges(EdgeWeightedDigraphInterface randomEuclideanGridEdgeWeightedDigraph,
                                List<DirectedEdge> extraEdgesList,
                                Exercise27_ShortestPathsInEuclideanGraphs.EuclideanEdgeWeightedDigraph.Vertex[] allVertices) {
-        for(DirectedEdge extraEdge : extraEdgesList) {
+        for (DirectedEdge extraEdge : extraEdgesList) {
             int vertexId1 = extraEdge.from();
             int vertexId2 = extraEdge.to();
 
@@ -279,8 +278,8 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
         return cellRowAndColumn;
     }
 
-    //Parameters example: 9 5 100
-    //                    16 40 100
+    // Parameters example: 9 5 100
+    //                     16 40 100
     public static void main(String[] args) {
         int vertices = Integer.parseInt(args[0]);
         int extraEdges = Integer.parseInt(args[1]);
@@ -296,5 +295,4 @@ public class Exercise51_RandomGridEdgeWeightedDigraphs {
         StdOut.println("Random grid edge-weighted digraph:\n");
         StdOut.println(firstRandomGridEdgeWeightedDigraph);
     }
-
 }

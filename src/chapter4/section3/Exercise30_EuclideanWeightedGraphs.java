@@ -47,7 +47,7 @@ public class Exercise30_EuclideanWeightedGraphs {
             allVertices = new Vertex[vertices];
             adjacent = (Bag<Edge>[]) new Bag[vertices];
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 adjacent[vertex] = new Bag<>();
             }
         }
@@ -85,8 +85,8 @@ public class Exercise30_EuclideanWeightedGraphs {
             StdDraw.setPenRadius(0.002D);
             StdDraw.setPenColor(Color.BLACK);
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                for(Edge edge : adjacent(vertexId)) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
+                for (Edge edge : adjacent(vertexId)) {
                     int otherVertexId = edge.other(vertexId);
                     Vertex otherVertex = allVertices[otherVertexId];
 
@@ -97,7 +97,7 @@ public class Exercise30_EuclideanWeightedGraphs {
                 }
             }
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 if (allVertices[vertexId] != null) {
 
                     StdDraw.setPenColor(Color.WHITE);
@@ -122,8 +122,8 @@ public class Exercise30_EuclideanWeightedGraphs {
         public Iterable<Edge> edges() {
             Bag<Edge> edges = new Bag<>();
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
-                for(Edge edge : adjacent[vertex]) {
+            for ( int vertex = 0; vertex < vertices; vertex++) {
+                for (Edge edge : adjacent[vertex]) {
                     int otherVertex = edge.other(vertex);
 
                     if (otherVertex > vertex) {
@@ -131,7 +131,6 @@ public class Exercise30_EuclideanWeightedGraphs {
                     }
                 }
             }
-
             return edges;
         }
 
@@ -139,10 +138,10 @@ public class Exercise30_EuclideanWeightedGraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(Edge neighbor : adjacent(vertex)) {
+                for (Edge neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
@@ -200,8 +199,6 @@ public class Exercise30_EuclideanWeightedGraphs {
                                               EuclideanEdgeWeightedGraph.Vertex vertex2) {
         double xDifference = vertex1.xCoordinate - vertex2.xCoordinate;
         double yDifference = vertex1.yCoordinate - vertex2.yCoordinate;
-
         return Math.sqrt((xDifference * xDifference) + (yDifference * yDifference));
     }
-
 }

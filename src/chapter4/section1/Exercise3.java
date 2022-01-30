@@ -21,7 +21,7 @@ public class Exercise3 {
             this.edges = 0;
             adjacent = (Bag<Integer>[]) new Bag[vertices];
 
-            for(int i = 0; i < vertices; i++) {
+            for (int i = 0; i < vertices; i++) {
                 adjacent[i] = new Bag<>();
             }
         }
@@ -30,7 +30,7 @@ public class Exercise3 {
             this(in.readInt());
             int edges = in.readInt();
 
-            for(int i = 0; i < edges; i++) {
+            for (int i = 0; i < edges; i++) {
                 int vertex1 = in.readInt();
                 int vertex2 = in.readInt();
                 addEdge(vertex1, vertex2);
@@ -45,11 +45,11 @@ public class Exercise3 {
                 this.edges = graph.edges();
                 adjacent = (Bag<Integer>[]) new Bag[vertices];
 
-                for(int i = 0; i < vertices; i++) {
+                for (int i = 0; i < vertices; i++) {
                     adjacent[i] = new Bag<>();
                 }
 
-                for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+                for (int vertex = 0; vertex < graph.vertices(); vertex++) {
                     // Reverse so that adjacency list is in the same order as original
                     Stack<Integer> stack = new Stack<>();
                     for (int neighbor : graph.getAdjacencyList()[vertex]) {
@@ -84,10 +84,10 @@ public class Exercise3 {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(int neighbor : adjacent(vertex)) {
+                for (int neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
@@ -122,5 +122,4 @@ public class Exercise3 {
         StdOut.println("Edges in original graph: " + graph.edges() + " Expected: 6");
         StdOut.println("Edges in copy graph: " + copyGraph.edges() + " Expected: 7");
     }
-
 }

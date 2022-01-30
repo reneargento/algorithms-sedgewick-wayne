@@ -34,7 +34,7 @@ public class Exercise10 {
 
             boolean areAllNeighborsMarked = true;
 
-            for(int neighbor : graph.adjacent(vertex)) {
+            for (int neighbor : graph.adjacent(vertex)) {
                 if (!visited[neighbor]) {
                     areAllNeighborsMarked = false;
                     dfs(graph, neighbor);
@@ -75,5 +75,4 @@ public class Exercise10 {
         DepthFirstSearchConnected depthFirstSearchConnected = exercise10.new DepthFirstSearchConnected(graph, 0);
         StdOut.println("Vertex that can be removed: " + depthFirstSearchConnected.findVertexThatCanBeRemoved() + " Expected: 1");
     }
-
 }

@@ -15,7 +15,7 @@ public class Exercise42_ProblemSizes {
         int max = 1000000;
         int[] numbers = new int[n];
 
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             numbers[i] = StdRandom.uniform(-max, max);
         }
 
@@ -33,8 +33,8 @@ public class Exercise42_ProblemSizes {
     private int twoSum(int[] numbers) {
         int count = 0;
 
-        for(int i = 0; i < numbers.length; i++) {
-            for(int j = i + 1; j < numbers.length; j++) {
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = i + 1; j < numbers.length; j++) {
                 if (numbers[i] + numbers[j] == 0) {
                     count++;
                 }
@@ -48,7 +48,7 @@ public class Exercise42_ProblemSizes {
         Arrays.sort(numbers);
         int count = 0;
 
-        for(int i = 0; i < numbers.length; i++) {
+        for (int i = 0; i < numbers.length; i++) {
             if (binarySearch(numbers, -numbers[i], 0, numbers.length - 1) > i) {
                 count++;
             }
@@ -60,16 +60,15 @@ public class Exercise42_ProblemSizes {
     private int threeSum(int[] numbers) {
         int count = 0;
 
-        for(int i = 0; i < numbers.length; i++) {
-            for(int j = i + 1; j < numbers.length; j++) {
-                for(int k = j + 1; k < numbers.length; k++) {
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = i + 1; j < numbers.length; j++) {
+                for (int k = j + 1; k < numbers.length; k++) {
                     if (numbers[i] + numbers[j] + numbers[k] == 0) {
                         count++;
                     }
                 }
             }
         }
-
         return count;
     }
 
@@ -77,14 +76,13 @@ public class Exercise42_ProblemSizes {
         Arrays.sort(numbers);
         int count = 0;
 
-        for(int i = 0; i < numbers.length; i++) {
-            for(int j = i + 1; j < numbers.length; j++) {
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = i + 1; j < numbers.length; j++) {
                 if (binarySearch(numbers, -numbers[i] - numbers[j], 0, numbers.length - 1) > j) {
                     count++;
                 }
             }
         }
-
         return count;
     }
 
@@ -105,19 +103,19 @@ public class Exercise42_ProblemSizes {
     }
 
     public static void main(String[] args) {
-        //TwoSum
+        // TwoSum
         StdOut.println("TwoSum");
         runExperiments(0);
 
-        //TwoSumFast
+        // TwoSumFast
         StdOut.println("TwoSumFast");
         runExperiments(1);
 
-        //ThreeSum
+        // ThreeSum
         StdOut.println("ThreeSum");
         runExperiments(2);
 
-        //ThreeSumFast
+        // ThreeSumFast
         StdOut.println("ThreeSumFast");
         runExperiments(3);
     }
@@ -125,7 +123,7 @@ public class Exercise42_ProblemSizes {
     private static void runExperiments(int sumMethod) {
         Exercise42_ProblemSizes problemSizes = new Exercise42_ProblemSizes();
 
-        //2^7 = 128
+        // 2^7 = 128
         double previousTime = problemSizes.timeTrial(128, sumMethod);
 
         StdOut.printf("%6s %7s %5s\n", "N", "Time", "Ratio");
@@ -133,12 +131,11 @@ public class Exercise42_ProblemSizes {
         // 2^13 = 8192 --For ThreeSum and ThreeSumFast to converge
         // 2^16 = 65536 --For TwoSum to converge
         // 2^22 = 4194304 --For TwoSumFast to converge
-        for(int n = 256; n <= 8192; n += n) {
+        for (int n = 256; n <= 8192; n += n) {
             double time = problemSizes.timeTrial(n, sumMethod);
             StdOut.printf("%6d %7.1f ", n, time);
             StdOut.printf("%5.1f\n", time / previousTime);
             previousTime = time;
         }
     }
-
 }

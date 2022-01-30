@@ -27,12 +27,12 @@ public class Exercise54_NegativeWeightsIII {
         Exercise53_NegativeWeightsII.RandomEdgeWeightedDigraphsGenerator randomEdgeWeightedDigraphsGenerator =
                 new Exercise53_NegativeWeightsII().new RandomEdgeWeightedDigraphsGenerator();
 
-        for(int vertexCountIndex = 0; vertexCountIndex < verticesCount.length; vertexCountIndex++) {
-            for(int edgesMultiplierIndex = 0; edgesMultiplierIndex < edgesMultiplier.length; edgesMultiplierIndex++) {
+        for (int vertexCountIndex = 0; vertexCountIndex < verticesCount.length; vertexCountIndex++) {
+            for (int edgesMultiplierIndex = 0; edgesMultiplierIndex < edgesMultiplier.length; edgesMultiplierIndex++) {
                 int vertices = verticesCount[vertexCountIndex];
                 int edges = (int) (vertices * edgesMultiplier[edgesMultiplierIndex]);
 
-                for(int digraph = 0; digraph < digraphsOfEachConfiguration; digraph++) {
+                for (int digraph = 0; digraph < digraphsOfEachConfiguration; digraph++) {
 
                     // Generate one random edge weighted digraph at a time
                     List<EdgeWeightedDigraphInterface> randomEdgeWeightedDigraphs =
@@ -66,10 +66,10 @@ public class Exercise54_NegativeWeightsIII {
 
         List<List<DirectedEdge>> allCyclesInDigraph = johnsonAllCycles.getAllCyclesByEdges();
 
-        for(List<DirectedEdge> cycle : allCyclesInDigraph) {
+        for (List<DirectedEdge> cycle : allCyclesInDigraph) {
             double totalWeight = 0;
 
-            for(DirectedEdge edge : cycle) {
+            for (DirectedEdge edge : cycle) {
                 totalWeight += edge.weight();
             }
 
@@ -77,7 +77,6 @@ public class Exercise54_NegativeWeightsIII {
                 negativeCycles++;
             }
         }
-
         return negativeCycles;
     }
 

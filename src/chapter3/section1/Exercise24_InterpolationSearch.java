@@ -120,7 +120,7 @@ public class Exercise24_InterpolationSearch {
                 resize(keys.length * 2);
             }
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
                 values[i] = values[i - 1];
             }
@@ -146,7 +146,7 @@ public class Exercise24_InterpolationSearch {
             }
 
             int rank = rank(key);
-            for(int i = rank; i < size - 1; i++) {
+            for (int i = rank; i < size - 1; i++) {
                 keys[i] = keys[i + 1];
                 values[i] = values[i + 1];
             }
@@ -172,7 +172,6 @@ public class Exercise24_InterpolationSearch {
             if (isEmpty()) {
                 throw new NoSuchElementException("Empty symbol table");
             }
-
             return keys[size - 1];
         }
 
@@ -180,7 +179,6 @@ public class Exercise24_InterpolationSearch {
             if (isEmpty() || k >= size) {
                 throw new IllegalArgumentException("Invalid argument: " + k);
             }
-
             return keys[k];
         }
 
@@ -190,7 +188,6 @@ public class Exercise24_InterpolationSearch {
             if (rank == size) {
                 return null;
             }
-
             return keys[rank];
         }
 
@@ -204,7 +201,6 @@ public class Exercise24_InterpolationSearch {
             if (rank == 0) {
                 return null;
             }
-
             return keys[rank - 1];
         }
 
@@ -212,7 +208,6 @@ public class Exercise24_InterpolationSearch {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(min());
         }
 
@@ -220,7 +215,6 @@ public class Exercise24_InterpolationSearch {
             if (isEmpty()) {
                 throw new NoSuchElementException("Symbol table underflow error");
             }
-
             delete(max());
         }
 
@@ -245,14 +239,13 @@ public class Exercise24_InterpolationSearch {
 
             Queue<Integer> queue = new Queue<>();
 
-            for(int i = rank(low); i < rank(high); i++) {
+            for (int i = rank(low); i < rank(high); i++) {
                 queue.enqueue(keys[i]);
             }
 
             if (contains(high)) {
                 queue.enqueue(keys[rank(high)]);
             }
-
             return queue;
         }
 
@@ -279,11 +272,9 @@ public class Exercise24_InterpolationSearch {
     }
 
     private String frequencyCounter(int[] values, int minLength) {
-
         BinarySearchSymbolTable<Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(int value : values) {
-
+        for (int value : values) {
             if (String.valueOf(value).length() < minLength) {
                 continue;
             }
@@ -298,12 +289,11 @@ public class Exercise24_InterpolationSearch {
         int max = -1;
         binarySearchSymbolTable.put(max, 0);
 
-        for(int value : binarySearchSymbolTable.keys()) {
+        for (int value : binarySearchSymbolTable.keys()) {
             if (binarySearchSymbolTable.get(value) > binarySearchSymbolTable.get(max)) {
                 max = value;
             }
         }
-
         return max + " " + binarySearchSymbolTable.get(max);
     }
 }

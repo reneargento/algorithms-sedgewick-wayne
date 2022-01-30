@@ -16,7 +16,6 @@ import java.util.Queue;
  * and delete(index) operations in O(lg n)
  */
 public class List<Item> implements Iterable<Item> {
-
     private RedBlackBST<Double, Item> itemsBST;
     private SeparateChainingHashTable<Item, Double> itemsPositions;
 
@@ -28,7 +27,7 @@ public class List<Item> implements Iterable<Item> {
         itemsPositions = new SeparateChainingHashTable<>();
     }
 
-    //O(lg n)
+    // O(lg n)
     public void addFront(Item item) {
         if (item == null) {
             throw new IllegalArgumentException("Item cannot be null");
@@ -52,7 +51,7 @@ public class List<Item> implements Iterable<Item> {
         itemsPositions.put(item, newMinKey);
     }
 
-    //O(lg n)
+    // O(lg n)
     public void addBack(Item item) {
         if (item == null) {
             throw new IllegalArgumentException("Item cannot be null");
@@ -76,7 +75,7 @@ public class List<Item> implements Iterable<Item> {
         itemsPositions.put(item, newMaxKey);
     }
 
-    //O(lg n)
+    // O(lg n)
     public Item deleteFront() {
         if (isEmpty()) {
             return null;
@@ -90,7 +89,7 @@ public class List<Item> implements Iterable<Item> {
         return firstItem;
     }
 
-    //O(lg n)
+    // O(lg n)
     public Item deleteBack() {
         if (isEmpty()) {
             return null;
@@ -104,7 +103,7 @@ public class List<Item> implements Iterable<Item> {
         return lastItem;
     }
 
-    //O(lg n)
+    // O(lg n)
     public void delete(Item item) {
         if (item == null) {
             throw new IllegalArgumentException("Item cannot be null");
@@ -119,7 +118,7 @@ public class List<Item> implements Iterable<Item> {
         itemsPositions.delete(item);
     }
 
-    //O(lg n)
+    // O(lg n)
     public void add(int index, Item item) {
         if (item == null) {
             throw new IllegalArgumentException("Item cannot be null");
@@ -155,7 +154,7 @@ public class List<Item> implements Iterable<Item> {
         itemsPositions.put(item, medianKey);
     }
 
-    //O(lg n)
+    // O(lg n)
     public Item delete(int index) {
         if (index < 0 || index >= size()) {
             throw new IllegalArgumentException("Invalid index");
@@ -166,17 +165,17 @@ public class List<Item> implements Iterable<Item> {
         return deletedItem;
     }
 
-    //O(1)
+    // O(1)
     public boolean contains(Item item) {
         return itemsPositions.contains(item);
     }
 
-    //O(1)
+    // O(1)
     public boolean isEmpty() {
         return size() == 0;
     }
 
-    //O(1)
+    // O(1)
     public int size() {
         return itemsPositions.size();
     }
@@ -186,7 +185,7 @@ public class List<Item> implements Iterable<Item> {
         return new ListIterator();
     }
 
-    //O(n)
+    // O(n)
     private class ListIterator implements Iterator<Item> {
 
         Queue<Double> keys;
@@ -194,7 +193,7 @@ public class List<Item> implements Iterable<Item> {
         ListIterator() {
             keys = new LinkedList<>();
 
-            for(Double key : itemsBST.keys()) {
+            for (Double key : itemsBST.keys()) {
                 keys.add(key);
             }
         }
@@ -209,5 +208,4 @@ public class List<Item> implements Iterable<Item> {
             return itemsBST.get(keys.poll());
         }
     }
-
 }

@@ -11,7 +11,6 @@ import java.util.NoSuchElementException;
 public class Exercise7 {
 
     private class SETint {
-
         private static final boolean RED = true;
         private static final boolean BLACK = false;
 
@@ -101,7 +100,7 @@ public class Exercise7 {
                 return;
             }
 
-            //The root must have opposite color of its two children
+            // The root must have opposite color of its two children
             if ((isRed(node) && !isRed(node.left) && !isRed(node.right))
                     || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
                 node.color = !node.color;
@@ -197,7 +196,7 @@ public class Exercise7 {
             return max(node.right);
         }
 
-        //Returns the highest key in the set smaller than or equal to key.
+        // Returns the highest key in the set smaller than or equal to key.
         public int floor(int key) {
             Node node = floor(root, key);
             if (node == null) {
@@ -226,7 +225,7 @@ public class Exercise7 {
             }
         }
 
-        //Returns the smallest key in the set greater than or equal to key.
+        // Returns the smallest key in the set greater than or equal to key.
         public int ceiling(int key) {
             Node node = ceiling(root, key);
             if (node == null) {
@@ -284,7 +283,7 @@ public class Exercise7 {
                 return 0;
             }
 
-            //Returns the number of keys less than node.key in the subtree rooted at node
+            // Returns the number of keys less than node.key in the subtree rooted at node
             if (key < node.key) {
                 return rank(node.left, key);
             } else if (key > node.key) {
@@ -413,7 +412,7 @@ public class Exercise7 {
         }
 
         private Node moveRedLeft(Node node) {
-            //Assuming that node is red and both node.left and node.left.left are black,
+            // Assuming that node is red and both node.left and node.left.left are black,
             // make node.left or one of its children red
             flipColors(node);
 
@@ -427,7 +426,7 @@ public class Exercise7 {
         }
 
         private Node moveRedRight(Node node) {
-            //Assuming that node is red and both node.right and node.right.left are black,
+            // Assuming that node is red and both node.right and node.right.left are black,
             // make node.right or one of its children red
             flipColors(node);
 
@@ -477,7 +476,7 @@ public class Exercise7 {
             keys(root, queue, low, high);
 
             int[] keys = new int[queue.size()];
-            for(int i = 0; i < keys.length; i++) {
+            for (int i = 0; i < keys.length; i++) {
                 keys[i] = queue.dequeue();
             }
 
@@ -544,7 +543,6 @@ public class Exercise7 {
     }
 
     private class SETdouble {
-
         private static final boolean RED = true;
         private static final boolean BLACK = false;
 
@@ -634,7 +632,7 @@ public class Exercise7 {
                 return;
             }
 
-            //The root must have opposite color of its two children
+            // The root must have opposite color of its two children
             if ((isRed(node) && !isRed(node.left) && !isRed(node.right))
                     || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
                 node.color = !node.color;
@@ -730,13 +728,12 @@ public class Exercise7 {
             return max(node.right);
         }
 
-        //Returns the highest key in the set smaller than or equal to key.
+        // Returns the highest key in the set smaller than or equal to key.
         public double floor(double key) {
             Node node = floor(root, key);
             if (node == null) {
                 return EMPTY_KEY;
             }
-
             return node.key;
         }
 
@@ -759,13 +756,12 @@ public class Exercise7 {
             }
         }
 
-        //Returns the smallest key in the set greater than or equal to key.
+        // Returns the smallest key in the set greater than or equal to key.
         public double ceiling(double key) {
             Node node = ceiling(root, key);
             if (node == null) {
                 return EMPTY_KEY;
             }
-
             return node.key;
         }
 
@@ -817,7 +813,7 @@ public class Exercise7 {
                 return 0;
             }
 
-            //Returns the number of keys less than node.key in the subtree rooted at node
+            // Returns the number of keys less than node.key in the subtree rooted at node
             if (key < node.key) {
                 return rank(node.left, key);
             } else if (key > node.key) {
@@ -946,7 +942,7 @@ public class Exercise7 {
         }
 
         private Node moveRedLeft(Node node) {
-            //Assuming that node is red and both node.left and node.left.left are black,
+            // Assuming that node is red and both node.left and node.left.left are black,
             // make node.left or one of its children red
             flipColors(node);
 
@@ -960,7 +956,7 @@ public class Exercise7 {
         }
 
         private Node moveRedRight(Node node) {
-            //Assuming that node is red and both node.right and node.right.left are black,
+            // Assuming that node is red and both node.right and node.right.left are black,
             // make node.right or one of its children red
             flipColors(node);
 
@@ -1010,10 +1006,9 @@ public class Exercise7 {
             keys(root, queue, low, high);
 
             double[] keys = new double[queue.size()];
-            for(int i = 0; i < keys.length; i++) {
+            for (int i = 0; i < keys.length; i++) {
                 keys[i] = queue.dequeue();
             }
-
             return keys;
         }
 
@@ -1073,7 +1068,6 @@ public class Exercise7 {
                 return rank(high) - rank(low);
             }
         }
-
     }
 
     public static void main(String[] args) {
@@ -1100,74 +1094,74 @@ public class Exercise7 {
 
         StdOut.println("\nKeys() test");
 
-        for(Integer key : setInt.keys()) {
+        for (Integer key : setInt.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99");
 
-        //Test min()
+        // Test min()
         StdOut.println("\nMin key: " + setInt.min() + " Expected: -5");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + setInt.max() + " Expected: 99");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + setInt.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + setInt.floor(15) + " Expected: 9");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + setInt.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + setInt.ceiling(15) + " Expected: 99");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + setInt.select(4) + " Expected: 1");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key 9: " + setInt.rank(9) + " Expected: 8");
         StdOut.println("Rank of key 10: " + setInt.rank(10) + " Expected: 9");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         setInt.delete(2);
 
-        for(Integer key : setInt.keys()) {
+        for (Integer key : setInt.keys()) {
             StdOut.print(key + " ");
         }
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\n\nDelete min (key -5)");
         setInt.deleteMin();
 
-        for(Integer key : setInt.keys()) {
+        for (Integer key : setInt.keys()) {
             StdOut.print(key + " ");
         }
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\n\nDelete max (key 99)");
         setInt.deleteMax();
 
-        for(Integer key : setInt.keys()) {
+        for (Integer key : setInt.keys()) {
             StdOut.print(key + " ");
         }
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\n\nKeys in range [2, 10]");
-        for(Integer key : setInt.keys(2, 10)) {
+        for (Integer key : setInt.keys(2, 10)) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\n\nKeys in range [-4, -1]");
-        for(Integer key : setInt.keys(-4, -1)) {
+        for (Integer key : setInt.keys(-4, -1)) {
             StdOut.print(key + " ");
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\n\nDelete all");
         while (setInt.size() > 0) {
-            for(Integer key : setInt.keys()) {
+            for (Integer key : setInt.keys()) {
                 StdOut.print(key + " ");
             }
-            //setInt.delete(setInt.select(0));
+            // setInt.delete(setInt.select(0));
             setInt.delete(setInt.select(setInt.size() - 1));
             StdOut.println();
         }
@@ -1191,77 +1185,76 @@ public class Exercise7 {
 
         StdOut.println("\nKeys() test");
 
-        for(Double key : setDouble.keys()) {
+        for (Double key : setDouble.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5.9 -2.2 -1.05 0.0 1.0 2.1 3.0 5.0 9.5 99.999");
 
-        //Test min()
+        // Test min()
         StdOut.println("\nMin key: " + setDouble.min() + " Expected: -5.9");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + setDouble.max() + " Expected: 99.999");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5.0: " + setDouble.floor(5.0) + " Expected: 5.0");
         StdOut.println("Floor of 15.0: " + setDouble.floor(15.0) + " Expected: 9.5");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5.0: " + setDouble.ceiling(5.0) + " Expected: 5.0");
         StdOut.println("Ceiling of 15.0: " + setDouble.ceiling(15.0) + " Expected: 99.999");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + setDouble.select(4) + " Expected: 1.0");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key 9: " + setDouble.rank(9.5) + " Expected: 8");
         StdOut.println("Rank of key 10: " + setDouble.rank(10.0) + " Expected: 9");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2.1");
         setDouble.delete(2.1);
 
-        for(Double key : setDouble.keys()) {
+        for (Double key : setDouble.keys()) {
             StdOut.print(key + " ");
         }
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\n\nDelete min (key -5.9)");
         setDouble.deleteMin();
 
-        for(Double key : setDouble.keys()) {
+        for (Double key : setDouble.keys()) {
             StdOut.print(key + " ");
         }
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\n\nDelete max (key 99.999)");
         setDouble.deleteMax();
 
-        for(Double key : setDouble.keys()) {
+        for (Double key : setDouble.keys()) {
             StdOut.print(key + " ");
         }
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\n\nKeys in range [2.0, 10.0]");
-        for(Double key : setDouble.keys(2.0, 10.0)) {
+        for (Double key : setDouble.keys(2.0, 10.0)) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\n\nKeys in range [-4.0, -1.0]");
-        for(Double key : setDouble.keys(-4.0, -1.0)) {
+        for (Double key : setDouble.keys(-4.0, -1.0)) {
             StdOut.print(key + " ");
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\n\nDelete all");
         while (setDouble.size() > 0) {
-            for(Double key : setDouble.keys()) {
+            for (Double key : setDouble.keys()) {
                 StdOut.print(key + " ");
             }
-            //setDouble.delete(setDouble.select(0));
+            // setDouble.delete(setDouble.select(0));
             setDouble.delete(setDouble.select(setDouble.size() - 1));
             StdOut.println();
         }
     }
-
 }

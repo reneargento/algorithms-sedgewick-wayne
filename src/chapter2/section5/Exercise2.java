@@ -32,7 +32,7 @@ public class Exercise2 {
         // Expected:
         // afterthought
         // beginend
-        while(scanner.hasNext()) {
+        while (scanner.hasNext()) {
             wordList.add(scanner.next());
         }
 
@@ -42,7 +42,7 @@ public class Exercise2 {
         if (compoundWords.size() > 0) {
             StdOut.println("Compound words:");
 
-            for(String compoundWord : compoundWords) {
+            for (String compoundWord : compoundWords) {
                 StdOut.println(compoundWord);
             }
         }
@@ -55,8 +55,8 @@ public class Exercise2 {
 
         List<String> compoundWords = new ArrayList<>();
 
-        for(int i = 0; i < wordList.size(); i++) {
-            for(int j = i + 1; j < wordList.size(); j++) {
+        for (int i = 0; i < wordList.size(); i++) {
+            for (int j = i + 1; j < wordList.size(); j++) {
                 if (wordList.get(j).startsWith(wordList.get(i))) {
 
                     String restOfTheWord = wordList.get(j).substring(wordList.get(i).length());
@@ -68,7 +68,6 @@ public class Exercise2 {
                 }
             }
         }
-
         return compoundWords;
     }
 }

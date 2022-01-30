@@ -16,31 +16,29 @@ public class Exercise19 {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(SeparateChainingHashTable.SequentialSearchSymbolTable sequentialSearchST : symbolTable) {
-                for(Object key : sequentialSearchST.keys()) {
+            for (SeparateChainingHashTable.SequentialSearchSymbolTable sequentialSearchST : symbolTable) {
+                for (Object key : sequentialSearchST.keys()) {
                     keys.enqueue((Key) key);
                 }
             }
 
             if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }
-
             return keys;
         }
     }
 
     private class LinearProbingHashTableWithKeys<Key, Value> extends LinearProbingHashTable<Key, Value> {
-
         LinearProbingHashTableWithKeys(int size) {
             super(size);
         }
@@ -48,7 +46,7 @@ public class Exercise19 {
         public Iterable<Key> keys() {
             Queue<Key> keySet = new Queue<>();
 
-            for(Object key : keys) {
+            for (Object key : keys) {
                 if (key != null) {
                     keySet.enqueue((Key) key);
                 }
@@ -56,17 +54,16 @@ public class Exercise19 {
 
             if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keySet.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keySet.enqueue(key);
                 }
             }
-
             return keySet;
         }
     }
@@ -86,7 +83,7 @@ public class Exercise19 {
         separateChainingHashTableWithKeys.put(1, 1);
         separateChainingHashTableWithKeys.put(9, 9);
 
-        for(Integer key : separateChainingHashTableWithKeys.keys()) {
+        for (Integer key : separateChainingHashTableWithKeys.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5 1 2 9 10 33 99");
@@ -99,7 +96,7 @@ public class Exercise19 {
         separateChainingHashTableWithKeys2.put(nonComparableKey1, nonComparableKey1);
         separateChainingHashTableWithKeys2.put(nonComparableKey2, nonComparableKey2);
 
-        for(Exercise19 key : separateChainingHashTableWithKeys2.keys()) {
+        for (Exercise19 key : separateChainingHashTableWithKeys2.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: chapter3.section4.Exercise19@XXX chapter3.section4.Exercise19@XXX");
@@ -116,7 +113,7 @@ public class Exercise19 {
         linearProbingHashTableWithKeys.put(1, 1);
         linearProbingHashTableWithKeys.put(9, 9);
 
-        for(Integer key : linearProbingHashTableWithKeys.keys()) {
+        for (Integer key : linearProbingHashTableWithKeys.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5 1 2 9 10 33 99");
@@ -129,10 +126,9 @@ public class Exercise19 {
         linearProbingHashTableWithKeys2.put(nonComparableKey3, nonComparableKey3);
         linearProbingHashTableWithKeys2.put(nonComparableKey4, nonComparableKey4);
 
-        for(Exercise19 key : linearProbingHashTableWithKeys2.keys()) {
+        for (Exercise19 key : linearProbingHashTableWithKeys2.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: chapter3.section4.Exercise19@XXX chapter3.section4.Exercise19@XXX");
     }
-
 }

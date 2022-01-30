@@ -64,12 +64,12 @@ public class DoubleHashingHashTable<Key, Value> {
     }
 
     protected void resize(int newSize) {
-        //Deleting tombstone items
+        // Deleting tombstone items
         tombstoneItemCount = 0;
 
         DoubleHashingHashTable<Key, Value> tempHashTable = new DoubleHashingHashTable<>(newSize);
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             if (values[i] != null) {
                 tempHashTable.put(keys[i], values[i]);
             }
@@ -93,7 +93,7 @@ public class DoubleHashingHashTable<Key, Value> {
             throw new IllegalArgumentException("Argument to get() cannot be null");
         }
 
-        for(int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
+        for (int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
             if (keys[tableIndex].equals(key)) {
                 return values[tableIndex];
             }
@@ -118,7 +118,7 @@ public class DoubleHashingHashTable<Key, Value> {
         }
 
         int tableIndex;
-        for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
+        for (tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
             if (keys[tableIndex].equals(key)) {
 
                 if (values[tableIndex] == null) {
@@ -164,7 +164,7 @@ public class DoubleHashingHashTable<Key, Value> {
     public Iterable<Key> keys() {
         Queue<Key> keySet = new Queue<>();
 
-        for(Object key : keys) {
+        for (Object key : keys) {
             if (key != null) {
                 keySet.enqueue((Key) key);
             }
@@ -172,18 +172,16 @@ public class DoubleHashingHashTable<Key, Value> {
 
         if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
             Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-            for(int i = 0; i < keysToBeSorted.length; i++) {
+            for (int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keySet.dequeue();
             }
 
             Arrays.sort(keysToBeSorted);
 
-            for(Key key : keysToBeSorted) {
+            for (Key key : keysToBeSorted) {
                 keySet.enqueue(key);
             }
         }
-
         return keySet;
     }
-
 }

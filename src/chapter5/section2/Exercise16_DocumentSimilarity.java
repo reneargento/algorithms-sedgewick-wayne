@@ -56,7 +56,7 @@ public class Exercise16_DocumentSimilarity {
                                               int k, int fileId) {
         int numberOfKGramsInFile = 0;
 
-        for(int word = 0; word <= wordsInFile.length() - k; word++) {
+        for (int word = 0; word <= wordsInFile.length() - k; word++) {
             StringBuilder kGram = new StringBuilder();
             numberOfKGramsInFile++;
 
@@ -112,7 +112,7 @@ public class Exercise16_DocumentSimilarity {
         int numberOfFiles = args.length - 1;
         String[] fileNames = new String[numberOfFiles];
 
-        for(int i = 1; i < args.length; i++) {
+        for (int i = 1; i < args.length; i++) {
             fileNames[i - 1] = args[i];
         }
 
@@ -135,7 +135,5 @@ public class Exercise16_DocumentSimilarity {
             }
             StdOut.println();
         }
-
     }
-
 }

@@ -377,11 +377,11 @@ public class Exercise30_SoftwareCaching {
         Exercise30_SoftwareCaching softwareCaching = new Exercise30_SoftwareCaching();
         RedBlackBSTWithCache<Integer, String> redBlackBSTWithCache = softwareCaching.new RedBlackBSTWithCache<>();
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             redBlackBSTWithCache.put(i, "Value " + i);
         }
 
-        //Cache on get operation
+        // Cache on get operation
         StdOut.println("\nGet key 2:");
         redBlackBSTWithCache.get(2);
         StdOut.println("Expected: cache miss");
@@ -424,5 +424,4 @@ public class Exercise30_SoftwareCaching {
         redBlackBSTWithCache.get(9);
         StdOut.println("Expected: cache hit");
     }
-
 }

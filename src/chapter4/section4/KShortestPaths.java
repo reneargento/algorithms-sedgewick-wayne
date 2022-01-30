@@ -16,7 +16,6 @@ import java.util.List;
 public class KShortestPaths {
 
     public class Path implements Comparable<Path> {
-
         private Path previousPath;
         private DirectedEdge directedEdge;
         private int lastVertexInPath;
@@ -72,7 +71,6 @@ public class KShortestPaths {
     }
 
     public List<Path> getKShortestPaths(EdgeWeightedDigraph edgeWeightedDigraph, int source, int target, int kPaths) {
-
         List<Path> paths = new ArrayList<>();
         SeparateChainingHashTable<Integer, Integer> countMap = new SeparateChainingHashTable<>();
         countMap.put(target, 0);
@@ -98,7 +96,7 @@ public class KShortestPaths {
             }
 
             if (pathsToCurrentVertex <= kPaths) {
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(lastVertexInPath)) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(lastVertexInPath)) {
                     // Do not repeat vertices - we are interested in paths and not walks
                     if (!currentPath.verticesInPath.contains(edge.to())) {
                         Path newPath = new Path(currentPath, edge);
@@ -107,8 +105,6 @@ public class KShortestPaths {
                 }
             }
         }
-
         return paths;
     }
-
 }

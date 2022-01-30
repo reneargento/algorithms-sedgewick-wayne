@@ -20,7 +20,7 @@ public class Exercise12 {
             edgeTo = new DirectedEdge[edgeWeightedDigraph.vertices()];
             visited = new boolean[edgeWeightedDigraph.vertices()];
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 if (!visited[vertex]) {
                     dfs(edgeWeightedDigraph, vertex);
                 }
@@ -31,7 +31,7 @@ public class Exercise12 {
             onStack[vertex] = true;
             visited[vertex] = true;
 
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (hasCycle()) {
@@ -53,7 +53,6 @@ public class Exercise12 {
                     return;
                 }
             }
-
             onStack[vertex] = false;
         }
 
@@ -109,17 +108,16 @@ public class Exercise12 {
         StdOut.println("Cycle:");
         EdgeWeightedDirectedCycle edgeWeightedDirectedCycle =
                 exercise12.new EdgeWeightedDirectedCycle(edgeWeightedDigraphWithCycle);
-        for(DirectedEdge edge : edgeWeightedDirectedCycle.cycle()) {
+        for (DirectedEdge edge : edgeWeightedDirectedCycle.cycle()) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
         StdOut.println("\nExpected: 1->2 2->3 3->4 4->1 ");
 
         Topological topological = exercise12.new Topological(edgeWeightedDAG);
         StdOut.println("\nTopological order:");
-        for(int vertex : topological.order()) {
+        for (int vertex : topological.order()) {
             StdOut.print(vertex + " ");
         }
         StdOut.println("\nExpected: 3 4 0 1 2");
     }
-
 }

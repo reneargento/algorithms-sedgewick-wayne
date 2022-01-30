@@ -31,7 +31,7 @@ public class Exercise45_CouponCollectorProblem {
 
         List<Integer> numbersGeneratedBeforeAllPossibleValues = new LinkedList<>();
 
-        for(int n = INITIAL_NUMBER_SIZE; n <= FINAL_NUMBER_SIZE; n *= 2) {
+        for (int n = INITIAL_NUMBER_SIZE; n <= FINAL_NUMBER_SIZE; n *= 2) {
             int numbersGenerated = couponCollectorProblem(n);
             numbersGeneratedBeforeAllPossibleValues.add(numbersGenerated);
         }
@@ -45,7 +45,7 @@ public class Exercise45_CouponCollectorProblem {
         int numbersGeneratedCount = 0;
 
         //Repeat until we generate all possible values
-        while(true) {
+        while (true) {
             int number = StdRandom.uniform(0, n);
             numbersGenerated.add(number);
 
@@ -66,7 +66,7 @@ public class Exercise45_CouponCollectorProblem {
 
         int numberSize = INITIAL_NUMBER_SIZE;
 
-        for(int numbersGenerated : numbersGeneratedBeforeAllPossibleValues) {
+        for (int numbersGenerated : numbersGeneratedBeforeAllPossibleValues) {
             int expectedResultByHypothesis = (int) Math.round(getExpectedResultByHypothesis(numberSize));
 
             StdOut.printf("%10d %19d %33d", numberSize, numbersGenerated, expectedResultByHypothesis);

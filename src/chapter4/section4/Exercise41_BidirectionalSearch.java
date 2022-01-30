@@ -39,15 +39,15 @@ public class Exercise41_BidirectionalSearch {
             // Reverse digraph will be used to create the shortest-path-tree from the target vertex
             EdgeWeightedDigraph reverseDigraph = new EdgeWeightedDigraph(edgeWeightedDigraph.vertices());
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     reverseDigraph.addEdge(new DirectedEdge(edge.to(), edge.from(), edge.weight()));
                 }
             }
 
             priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedDigraph.vertices() * 2);
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distToSource[vertex] = Double.POSITIVE_INFINITY;
                 distToTarget[vertex] = Double.POSITIVE_INFINITY;
             }
@@ -82,24 +82,23 @@ public class Exercise41_BidirectionalSearch {
             double shortestDistance = Double.POSITIVE_INFINITY;
             int intermediateVertex = -1;
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 if (distToSource[vertex] + distToTarget[vertex] < shortestDistance) {
                     shortestDistance = distToSource[vertex] + distToTarget[vertex];
                     intermediateVertex = vertex;
                 }
             }
 
-            for(DirectedEdge edge = edgeToTarget[intermediateVertex]; edge != null; edge = edgeToTarget[edge.from()]) {
+            for (DirectedEdge edge = edgeToTarget[intermediateVertex]; edge != null; edge = edgeToTarget[edge.from()]) {
                 distToSource[edge.from()] = distToSource[edge.to()] + edge.weight();
                 edgeToSource[edge.from()] = new DirectedEdge(edge.to(), edge.from(), edge.weight());
             }
         }
 
         private void relax(EdgeWeightedDigraph edgeWeightedDigraph, EdgeWeightedDigraph reverseDigraph, int vertex) {
-
             // Shortest-path-tree from source
             if (vertex < edgeWeightedDigraph.vertices()) {
-                for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+                for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                     int neighbor = edge.to();
 
                     if (distToSource[neighbor] > distToSource[vertex] + edge.weight()) {
@@ -119,7 +118,7 @@ public class Exercise41_BidirectionalSearch {
                 // Shortest-path-tree from target
                 int originalVertexId = vertex - edgeWeightedDigraph.vertices();
 
-                for(DirectedEdge edge : reverseDigraph.adjacent(originalVertexId)) {
+                for (DirectedEdge edge : reverseDigraph.adjacent(originalVertexId)) {
                     int neighbor = edge.to();
 
                     if (distToTarget[neighbor] > distToTarget[originalVertexId] + edge.weight()) {
@@ -157,7 +156,7 @@ public class Exercise41_BidirectionalSearch {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeToSource[vertex]; edge != null; edge = edgeToSource[edge.from()]) {
+            for (DirectedEdge edge = edgeToSource[vertex]; edge != null; edge = edgeToSource[edge.from()]) {
                 path.push(edge);
             }
 
@@ -272,5 +271,4 @@ public class Exercise41_BidirectionalSearch {
         StdOut.println("Expected:");
         StdOut.println("0 to 4 (9.00)  0->1 3.00   1->3 3.00   3->4 3.00");
     }
-
 }

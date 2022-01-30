@@ -45,7 +45,7 @@ public class Exercise5 {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (key.equals(node.key)) {
                     return node.value;
                 }
@@ -64,7 +64,7 @@ public class Exercise5 {
                 return;
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (key.equals(node.key)) {
                     node.value = value;
                     return;
@@ -90,7 +90,7 @@ public class Exercise5 {
                 return;
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
@@ -102,7 +102,7 @@ public class Exercise5 {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 keys.enqueue(node.key);
             }
 
@@ -115,13 +115,13 @@ public class Exercise5 {
         Exercise5 exercise5 = new Exercise5();
         SequentialSearchSymbolTable<Integer, String> sequentialSearchSymbolTable = exercise5.new SequentialSearchSymbolTable<>();
 
-        //Test isEmpty()
+        // Test isEmpty()
         StdOut.println("Is empty: " + sequentialSearchSymbolTable.isEmpty() + " Expected: true");
 
-        //Test size()
+        // Test size()
         StdOut.println("Size: " + sequentialSearchSymbolTable.size() + " Expected: 0");
 
-        //Test put() and get() and keys()
+        // Test put() and get() and keys()
         sequentialSearchSymbolTable.put(5, "Value 5");
         sequentialSearchSymbolTable.put(1, "Value 1");
         sequentialSearchSymbolTable.put(9, "Value 9");
@@ -131,24 +131,23 @@ public class Exercise5 {
 
         StdOut.println();
 
-        for(Integer key : sequentialSearchSymbolTable.keys()) {
+        for (Integer key : sequentialSearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + sequentialSearchSymbolTable.get(key));
         }
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         sequentialSearchSymbolTable.delete(2);
-        for(Integer key : sequentialSearchSymbolTable.keys()) {
+        for (Integer key : sequentialSearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + sequentialSearchSymbolTable.get(key));
         }
 
         StdOut.println();
 
-        //Test isEmpty()
+        // Test isEmpty()
         StdOut.println("Is empty: " + sequentialSearchSymbolTable.isEmpty() + " Expected: false");
 
-        //Test size()
+        // Test size()
         StdOut.println("Size: " + sequentialSearchSymbolTable.size() + " Expected: 5");
     }
-
 }

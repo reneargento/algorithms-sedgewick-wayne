@@ -23,7 +23,7 @@ public class Exercise41_HeaviestMSTEdge {
         double totalHeaviestEdgeWeight = 0;
         double totalNumberOfEdgesNotHeavierThanHeaviestEdge = 0;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraph randomEdgeWeightedGraphUniformWeights =
                     randomEdgeWeightedGraphs.erdosRenyiGraphUniformWeights(vertices, edges);
 
@@ -41,7 +41,7 @@ public class Exercise41_HeaviestMSTEdge {
         // Graph model 2: Random edge weighted graphs with gaussian weight distribution
         graphType = "Random graph w/ gaussian weight distribution";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraph randomEdgeWeightedGraphGaussianWeights =
                     randomEdgeWeightedGraphs.erdosRenyiGraphGaussianWeights(vertices, edges);
 
@@ -64,7 +64,7 @@ public class Exercise41_HeaviestMSTEdge {
         // Running the experiment on a complete graph
         double radius = 1;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraphInterface randomEdgeWeightedEuclideanGraph =
                     randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices, radius);
 
@@ -85,7 +85,7 @@ public class Exercise41_HeaviestMSTEdge {
         int numberOfEdgesInMST = 0;
 
         // First pass to compute the number of edges in the MST (it may be a minimum-spanning forest)
-        for(Edge edge : kruskalMST.edges()) {
+        for (Edge edge : kruskalMST.edges()) {
             numberOfEdgesInMST++;
         }
 
@@ -98,7 +98,7 @@ public class Exercise41_HeaviestMSTEdge {
         int edgesInMSTIndex = 0;
 
         // Second pass to put the edges in MST in an array to be sorted
-        for(Edge edge : kruskalMST.edges()) {
+        for (Edge edge : kruskalMST.edges()) {
             edgesInMST[edgesInMSTIndex++] = edge;
         }
 
@@ -109,7 +109,7 @@ public class Exercise41_HeaviestMSTEdge {
 
         int numberOfEdgesNotHeavierThanHeaviestEdge = 0;
 
-        for(Edge edge : edgeWeightedGraph.edges()) {
+        for (Edge edge : edgeWeightedGraph.edges()) {
             if (edge.weight() <= heaviestEdgeWeight && edge != heaviestEdge) {
                 numberOfEdgesNotHeavierThanHeaviestEdge++;
             }
@@ -143,5 +143,4 @@ public class Exercise41_HeaviestMSTEdge {
 
         new Exercise41_HeaviestMSTEdge().generateGraphsAndDoExperiments(experiments, vertices, edges, euclideanGraphVertices);
     }
-
 }

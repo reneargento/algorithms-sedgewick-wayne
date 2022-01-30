@@ -22,7 +22,7 @@ public class BreadthFirstDirectedPaths {
         distTo = new int[digraph.vertices()];
 
         distTo[source] = 0;
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             if (vertex == source) {
                 continue;
             }
@@ -41,7 +41,7 @@ public class BreadthFirstDirectedPaths {
         while (!queue.isEmpty()) {
             int currentVertex = queue.dequeue();
 
-            for(int neighbor : digraph.adjacent(currentVertex)) {
+            for (int neighbor : digraph.adjacent(currentVertex)) {
                 if (!visited[neighbor]) {
                     visited[neighbor] = true;
 
@@ -75,12 +75,11 @@ public class BreadthFirstDirectedPaths {
 
         Stack<Integer> path = new Stack<>();
 
-        for(int currentVertex = vertex; currentVertex != source; currentVertex = edgeTo[currentVertex]) {
+        for (int currentVertex = vertex; currentVertex != source; currentVertex = edgeTo[currentVertex]) {
             path.push(currentVertex);
         }
 
         path.push(source);
         return path;
     }
-
 }

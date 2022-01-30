@@ -19,7 +19,7 @@ public class Exercise26_AmortizedPlotErdosRenyi {
 
         private int components;
 
-        //Used for plotting amortized costs
+        // Used for plotting amortized costs
         int operation;
         int currentCost;
         int totalCost;
@@ -35,7 +35,7 @@ public class Exercise26_AmortizedPlotErdosRenyi {
             totalCost = 0;
             total = new ArrayList<>();
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 leaders[i]  = i;
                 ranks[i] = 0;
             }
@@ -56,7 +56,7 @@ public class Exercise26_AmortizedPlotErdosRenyi {
             return isConnected;
         }
 
-        //O(inverse Ackermann function)
+        // O(inverse Ackermann function)
         public int find(int site) {
             currentCost++;
 
@@ -65,13 +65,11 @@ public class Exercise26_AmortizedPlotErdosRenyi {
             }
 
             currentCost++;
-
             return leaders[site] = find(leaders[site]);
         }
 
-        //O(inverse Ackermann function)
+        // O(inverse Ackermann function)
         public void union(int site1, int site2) {
-
             int leader1 = find(site1);
             int leader2 = find(site2);
 
@@ -89,15 +87,12 @@ public class Exercise26_AmortizedPlotErdosRenyi {
             }
 
             components--;
-
             currentCost++;
             updateCostAnalysis();
         }
 
         private void updateCostAnalysis() {
-
             totalCost += currentCost;
-
             total.add(totalCost / operation);
 
             currentCost = 0;
@@ -116,8 +111,7 @@ public class Exercise26_AmortizedPlotErdosRenyi {
     }
 
     private void erdosRenyi(int numberOfSites, UF unionFind) {
-
-        while(unionFind.count() != 1) {
+        while (unionFind.count() != 1) {
 
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
@@ -137,5 +131,4 @@ public class Exercise26_AmortizedPlotErdosRenyi {
             }
         });
     }
-
 }

@@ -128,7 +128,7 @@ public class Exercise11_Pressure {
         public double pressure(double time) {
             double systemPressure = 0;
 
-            for(ParticleInterface particle : particles) {
+            for (ParticleInterface particle : particles) {
                 ParticleWithPressure particleWithPressure = (ParticleWithPressure) particle;
                 systemPressure += particleWithPressure.pressure();
             }
@@ -139,7 +139,7 @@ public class Exercise11_Pressure {
         public double volume() {
             double systemVolume = 0;
 
-            for(ParticleInterface particle : particles) {
+            for (ParticleInterface particle : particles) {
                 ParticleWithPressure particleWithPressure = (ParticleWithPressure) particle;
                 systemVolume += particleWithPressure.volume();
             }
@@ -167,7 +167,7 @@ public class Exercise11_Pressure {
         public double temperature() {
             double totalTemperature = 0;
 
-            for(ParticleInterface particle : particles) {
+            for (ParticleInterface particle : particles) {
                 ParticleWithPressure particleWithPressure = (ParticleWithPressure) particle;
                 totalTemperature += particleWithPressure.temperature();
             }
@@ -189,5 +189,4 @@ public class Exercise11_Pressure {
         CollisionSystem collisionSystem = pressure.new CollisionSystemWithPressure(particles);
         collisionSystem.simulate(10000, 0.5);
     }
-
 }

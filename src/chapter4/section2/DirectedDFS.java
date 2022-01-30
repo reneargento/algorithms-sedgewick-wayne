@@ -19,7 +19,7 @@ public class DirectedDFS {
     public DirectedDFS(Digraph digraph, Iterable<Integer> sources) {
         visited = new boolean[digraph.vertices()];
 
-        for(int source : sources) {
+        for (int source : sources) {
             if (!visited[source]) {
                 dfs(digraph, source);
             }
@@ -29,7 +29,7 @@ public class DirectedDFS {
     private void dfs(Digraph digraph, int source) {
         visited[source] = true;
 
-        for(int neighbor : digraph.adjacent(source)) {
+        for (int neighbor : digraph.adjacent(source)) {
             if (!visited[neighbor]) {
                 dfs(digraph, neighbor);
             }
@@ -44,13 +44,13 @@ public class DirectedDFS {
         Digraph digraph = new Digraph(new In(args[0]));
 
         Bag<Integer> sources = new Bag<>();
-        for(int i = 1; i < args.length; i++) {
+        for (int i = 1; i < args.length; i++) {
             sources.add(Integer.parseInt(args[i]));
         }
 
         DirectedDFS reachable = new DirectedDFS(digraph, sources);
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             if (reachable.visited[vertex]) {
                 StdOut.print(vertex + " ");
             }

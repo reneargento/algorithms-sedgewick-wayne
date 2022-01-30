@@ -20,13 +20,12 @@ public class Exercise35_NonuniformDistributions {
     }
 
     private static void runAllExperiments(int initialArrayLength, int experiments) {
-
         int arrayLength = initialArrayLength;
 
         StdOut.printf("%15s %17s %8s\n", "Sort Type", "Array Length", "Time");
         StdOut.println("GAUSSIAN DISTRIBUTION");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Comparable[] gaussianDistributionArray = generateGaussianDistributionArray(arrayLength);
             runExperiments(gaussianDistributionArray);
@@ -40,8 +39,7 @@ public class Exercise35_NonuniformDistributions {
 
         StdOut.println("POISSON DISTRIBUTION");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
-
+        for (int experiment = 0; experiment < experiments; experiment++) {
             Comparable[] poissonDistributionArray = generatePoissonDistributionArray(arrayLength);
             runExperiments(poissonDistributionArray);
             arrayLength *= 2;
@@ -54,7 +52,7 @@ public class Exercise35_NonuniformDistributions {
 
         StdOut.println("GEOMETRIC DISTRIBUTION");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Comparable[] geometricDistributionArray = generateGeometricDistributionArray(arrayLength);
             runExperiments(geometricDistributionArray);
@@ -68,8 +66,7 @@ public class Exercise35_NonuniformDistributions {
 
         StdOut.println("DISCRETE DISTRIBUTION");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
-
+        for (int experiment = 0; experiment < experiments; experiment++) {
             Comparable[] discreteDistributionArray = generateDiscreteDistributionArray(arrayLength);
             runExperiments(discreteDistributionArray);
             arrayLength *= 2;
@@ -91,46 +88,38 @@ public class Exercise35_NonuniformDistributions {
     }
 
     public static Comparable[] generateGaussianDistributionArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.gaussian();
         }
-
         return array;
     }
 
     public static Comparable[] generatePoissonDistributionArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.poisson(2);
         }
-
         return array;
     }
 
     public static Comparable[] generateGeometricDistributionArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.geometric(0.3);
         }
-
         return array;
     }
 
     public static Comparable[] generateDiscreteDistributionArray(int arrayLength) {
-
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = i % 2 == 0? 0 : 1;
         }
-
         return array;
     }
 
@@ -145,12 +134,10 @@ public class Exercise35_NonuniformDistributions {
             case SHELL: ShellSort.shellSort(array);
                 break;
         }
-
         return timer.elapsedTime();
     }
 
     private static void printExperiment(SortTypes sortType, int arrayLength, double time) {
         StdOut.printf("%15s %17d %8.2f\n", sortType, arrayLength, time);
     }
-
 }

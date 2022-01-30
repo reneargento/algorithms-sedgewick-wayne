@@ -15,7 +15,7 @@ public class MatrixUtil {
         double[][] transposedMatrix = new double[matrix[0].length][matrix.length];
 
         for (int row = 0; row < matrix.length; row++) {
-            for(int column = 0; column < matrix[0].length; column++) {
+            for (int column = 0; column < matrix[0].length; column++) {
                 transposedMatrix[column][row] = matrix[row][column];
             }
         }
@@ -113,5 +113,4 @@ public class MatrixUtil {
             }
         }
     }
-
 }

@@ -25,13 +25,13 @@ public class Exercise44_ImprovedBoruvka {
                     (DoublyLinkedListCircular<Integer>[]) new DoublyLinkedListCircular[edgeWeightedGraph.vertices()];
 
             // Initialize doubly linked list
-            for(int subtree = 0; subtree < edgeWeightedGraph.vertices(); subtree++) {
+            for (int subtree = 0; subtree < edgeWeightedGraph.vertices(); subtree++) {
                 doublyLinkedListCircular[subtree] = new DoublyLinkedListCircular<>();
                 doublyLinkedListCircular[subtree].insertAtTheBeginning(subtree); // Name / identifier
             }
 
             // Repeats at most lg(V) times or until minimum spanning tree is complete
-            for(int stage = 0; stage < edgeWeightedGraph.vertices(); stage = stage + stage) {
+            for (int stage = 0; stage < edgeWeightedGraph.vertices(); stage = stage + stage) {
                 if (minimumSpanningTree.size() == edgeWeightedGraph.vertices() - 1) {
                     break;
                 }
@@ -40,8 +40,8 @@ public class Exercise44_ImprovedBoruvka {
                 // If edge weights are equal, ties are broken in favor of the first edge in EdgeWeightedGraph.edges()
                 Edge[] closestEdges = new Edge[edgeWeightedGraph.vertices()];
 
-                //O(E)
-                for(Edge edge : edgeWeightedGraph.edges()) {
+                // O(E)
+                for (Edge edge : edgeWeightedGraph.edges()) {
                     int vertex1 = edge.either();
                     int vertex2 = edge.other(vertex1);
 
@@ -63,7 +63,7 @@ public class Exercise44_ImprovedBoruvka {
 
                 // Add newly discovered edges to the MST
                 // At most O(V) total subtree merges and renames per stage
-                for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+                for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                     Edge closestEdge = closestEdges[vertex];
 
                     if (closestEdge != null) {
@@ -86,23 +86,23 @@ public class Exercise44_ImprovedBoruvka {
                             HashSet<Integer> elementsToUpdate = new HashSet<>();
 
                             if (subsTree1Size <= subsTree2Size) {
-                                for(int element : doublyLinkedListCircular[vertex1]) {
+                                for (int element : doublyLinkedListCircular[vertex1]) {
                                     elementsToUpdate.add(element);
                                 }
 
                                 doublyLinkedListCircular[vertex2].insertLinkedListAtTheEnd(doublyLinkedListCircular[vertex1]);
 
-                                for(int element : elementsToUpdate.keys()) {
+                                for (int element : elementsToUpdate.keys()) {
                                     doublyLinkedListCircular[element] = doublyLinkedListCircular[vertex2];
                                 }
                             } else {
-                                for(int element : doublyLinkedListCircular[vertex2]) {
+                                for (int element : doublyLinkedListCircular[vertex2]) {
                                     elementsToUpdate.add(element);
                                 }
 
                                 doublyLinkedListCircular[vertex1].insertLinkedListAtTheEnd(doublyLinkedListCircular[vertex2]);
 
-                                for(int element : elementsToUpdate.keys()) {
+                                for (int element : elementsToUpdate.keys()) {
                                     doublyLinkedListCircular[element] = doublyLinkedListCircular[vertex1];
                                 }
                             }
@@ -136,7 +136,7 @@ public class Exercise44_ImprovedBoruvka {
         Exercise44_ImprovedBoruvka.BoruvkaMSTImproved boruvkaMSTImproved =
                 new Exercise44_ImprovedBoruvka().new BoruvkaMSTImproved(edgeWeightedGraph);
 
-        for(Edge edge : boruvkaMSTImproved.edges()) {
+        for (Edge edge : boruvkaMSTImproved.edges()) {
             StdOut.println(edge);
         }
 
@@ -146,5 +146,4 @@ public class Exercise44_ImprovedBoruvka {
                 "0-3 0.50000\n" +
                 "3-4 0.80000");
     }
-
 }

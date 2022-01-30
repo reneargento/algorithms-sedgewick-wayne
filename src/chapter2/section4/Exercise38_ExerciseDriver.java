@@ -27,14 +27,13 @@ public class Exercise38_ExerciseDriver {
     }
 
     private static void doExperiment(int numberOfExperiments, int initialArraySize) {
-
         StdOut.printf("%28s %13s %12s\n", "Input Type | ", "Array Size | ","Running Time");
         String[] inputType = {ORDERED_INPUT, REVERSE_ORDERED_INPUT, SAME_KEYS_INPUT, KEYS_WITH_ONLY_2_VALUES_INPUT};
 
-        for(int input = 0; input < 4; input++) {
+        for (int input = 0; input < 4; input++) {
             Map<Integer, Comparable[]> allInputArrays = generateAllArrays(inputType[input], numberOfExperiments, initialArraySize);
 
-            for(int i = 0; i < numberOfExperiments; i++) {
+            for (int i = 0; i < numberOfExperiments; i++) {
                 Comparable[] originalArray = allInputArrays.get(i);
                 Comparable[] array = new Comparable[originalArray.length];
                 System.arraycopy(originalArray, 0, array, 0, originalArray.length);
@@ -55,7 +54,7 @@ public class Exercise38_ExerciseDriver {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] array;
 
@@ -82,15 +81,15 @@ public class Exercise38_ExerciseDriver {
     }
 
     private static void testInput(PriorityQueue<Integer> priorityQueue, Comparable[] keys) {
-        //Fill the priority queue
-        for(int i = 0; i < keys.length; i++) {
+        // Fill the priority queue
+        for (int i = 0; i < keys.length; i++) {
             priorityQueue.insert((int) keys[i]);
         }
 
         priorityQueue.isEmpty();
         priorityQueue.size();
 
-        //Remove all keys
+        // Remove all keys
         while (priorityQueue.size() > 0) {
             priorityQueue.deleteTop();
         }

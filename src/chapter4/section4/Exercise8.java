@@ -10,16 +10,15 @@ public class Exercise8 {
     public double findDiameter(EdgeWeightedDigraph edgeWeightedDigraph) {
         double diameter = Double.NEGATIVE_INFINITY;
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             DijkstraSP dijkstraSP = new DijkstraSP(edgeWeightedDigraph, vertex);
 
-            for(int vertex2 = 0; vertex2 < edgeWeightedDigraph.vertices(); vertex2++) {
+            for (int vertex2 = 0; vertex2 < edgeWeightedDigraph.vertices(); vertex2++) {
                 if (dijkstraSP.distTo(vertex2) > diameter) {
                     diameter = dijkstraSP.distTo(vertex2);
                 }
             }
         }
-
         return diameter;
     }
 
@@ -42,8 +41,6 @@ public class Exercise8 {
         edgeWeightedDigraph.addEdge(new DirectedEdge(6, 4, 0.93));
 
         double diameter = new Exercise8().findDiameter(edgeWeightedDigraph);
-
         StdOut.println("Diameter: " + diameter + " Expected: 1.89");
     }
-
 }

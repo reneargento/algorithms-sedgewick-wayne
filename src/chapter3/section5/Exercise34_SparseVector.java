@@ -10,9 +10,7 @@ import edu.princeton.cs.algs4.Stopwatch;
 public class Exercise34_SparseVector {
 
     private void doExperiment() {
-
         int size = 10000;
-
         double[][] arrayMatrixManyNonZeroes = new double[size][size];
         double[][] arrayMatrixManyZeroes = new double[size][size];
 
@@ -25,13 +23,13 @@ public class Exercise34_SparseVector {
         SparseVector sparseVectorManyNonZeroes = new SparseVector(size);
         SparseVector sparseVectorManyZeroes = new SparseVector(size);
 
-        //**************** Populate matrices ****************
-        //Most values are nonzero
-        for(int row = 0; row < size; row++) {
-            for(int column = 0; column < size; column++) {
+        // **************** Populate matrices ****************
+        // Most values are nonzero
+        for (int row = 0; row < size; row++) {
+            for (int column = 0; column < size; column++) {
                 int isZero = StdRandom.uniform(100);
 
-                //95% chance of being nonzero
+                // 95% chance of being nonzero
                 boolean isNonzeroValue = isZero <= 94;
 
                 double value = 0;
@@ -45,12 +43,12 @@ public class Exercise34_SparseVector {
             }
         }
 
-        //Most values are zero
-        for(int row = 0; row < size; row++) {
-            for(int column = 0; column < size; column++) {
+        // Most values are zero
+        for (int row = 0; row < size; row++) {
+            for (int column = 0; column < size; column++) {
                 int isZero = StdRandom.uniform(100);
 
-                //5% chance of being nonzero
+                // 5% chance of being nonzero
                 boolean isNonzeroValue = isZero >= 95;
 
                 double value = 0;
@@ -64,12 +62,12 @@ public class Exercise34_SparseVector {
             }
         }
 
-        //**************** Populate vectors ****************
-        //Most values are nonzero
-        for(int column = 0; column < size; column++) {
+        // **************** Populate vectors ****************
+        // Most values are nonzero
+        for (int column = 0; column < size; column++) {
             int isZero = StdRandom.uniform(100);
 
-            //95% chance of being nonzero
+            // 95% chance of being nonzero
             boolean isNonzeroValue = isZero <= 94;
 
             double value = 0;
@@ -82,11 +80,11 @@ public class Exercise34_SparseVector {
             sparseVectorManyNonZeroes.put(column, value);
         }
 
-        //Most values are zero
-        for(int column = 0; column < size; column++) {
+        // Most values are zero
+        for (int column = 0; column < size; column++) {
             int isZero = StdRandom.uniform(100);
 
-            //5% chance of being nonzero
+            // 5% chance of being nonzero
             boolean isNonzeroValue = isZero >= 95;
 
             double value = 0;
@@ -103,49 +101,49 @@ public class Exercise34_SparseVector {
         String[] methods = {"Arrays", "Sparse Vectors"};
         String[] types = {"Many non-zeroes", "Many zeroes"};
 
-        //Array matrix many non-zeroes X array vector many non-zeroes
+        // Array matrix many non-zeroes X array vector many non-zeroes
         Stopwatch stopwatch = new Stopwatch();
         dot(arrayMatrixManyNonZeroes, arrayVectorManyNonZeroes);
         double timeSpent = stopwatch.elapsedTime();
         printResults(methods[0], types[0], types[0], timeSpent);
 
-        //Array matrix many non-zeroes X array vector many zeroes
+        // Array matrix many non-zeroes X array vector many zeroes
         stopwatch = new Stopwatch();
         dot(arrayMatrixManyNonZeroes, arrayVectorManyZeroes);
         timeSpent = stopwatch.elapsedTime();
         printResults(methods[0], types[0], types[1], timeSpent);
 
-        //Array matrix many zeroes X array vector many non-zeroes
+        // Array matrix many zeroes X array vector many non-zeroes
         stopwatch = new Stopwatch();
         dot(arrayMatrixManyZeroes, arrayVectorManyNonZeroes);
         timeSpent = stopwatch.elapsedTime();
         printResults(methods[0], types[1], types[0], timeSpent);
 
-        //Array matrix many zeroes X array vector many zeroes
+        // Array matrix many zeroes X array vector many zeroes
         stopwatch = new Stopwatch();
         dot(arrayMatrixManyZeroes, arrayVectorManyZeroes);
         timeSpent = stopwatch.elapsedTime();
         printResults(methods[0], types[1], types[1], timeSpent);
 
-        //Sparse matrix many non-zeroes X sparse vector many non-zeroes
+        // Sparse matrix many non-zeroes X sparse vector many non-zeroes
         stopwatch = new Stopwatch();
         sparseMatrixManyNonZeroes.dot(sparseVectorManyNonZeroes);
         timeSpent = stopwatch.elapsedTime();
         printResults(methods[1], types[0], types[0], timeSpent);
 
-        //Sparse matrix many non-zeroes X sparse vector many zeroes
+        // Sparse matrix many non-zeroes X sparse vector many zeroes
         stopwatch = new Stopwatch();
         sparseMatrixManyNonZeroes.dot(sparseVectorManyZeroes);
         timeSpent = stopwatch.elapsedTime();
         printResults(methods[1], types[0], types[1], timeSpent);
 
-        //Sparse matrix many zeroes X sparse vector many non-zeroes
+        // Sparse matrix many zeroes X sparse vector many non-zeroes
         stopwatch = new Stopwatch();
         sparseMatrixManyZeroes.dot(sparseVectorManyNonZeroes);
         timeSpent = stopwatch.elapsedTime();
         printResults(methods[1], types[1], types[0], timeSpent);
 
-        //Sparse matrix many zeroes X sparse vector many zeroes
+        // Sparse matrix many zeroes X sparse vector many zeroes
         stopwatch = new Stopwatch();
         sparseMatrixManyZeroes.dot(sparseVectorManyZeroes);
         timeSpent = stopwatch.elapsedTime();
@@ -159,16 +157,15 @@ public class Exercise34_SparseVector {
 
         double[] result = new double[matrix.length];
 
-        for(int row = 0; row < matrix.length; row++) {
+        for (int row = 0; row < matrix.length; row++) {
             double dot = 0;
 
-            for(int column = 0; column < matrix[0].length; column++) {
+            for (int column = 0; column < matrix[0].length; column++) {
                 dot += matrix[row][column] * array[column];
             }
 
             result[row] = dot;
         }
-
         return result;
     }
 
@@ -179,5 +176,4 @@ public class Exercise34_SparseVector {
     public static void main(String[] args) {
         new Exercise34_SparseVector().doExperiment();
     }
-
 }

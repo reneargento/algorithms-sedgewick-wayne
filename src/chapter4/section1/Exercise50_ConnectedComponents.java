@@ -18,7 +18,7 @@ public class Exercise50_ConnectedComponents {
 
         Exercise40_RandomGraphs exercise40_randomGraphs = new Exercise40_RandomGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomGraph = exercise40_randomGraphs.erdosRenyiGraph(vertices, edges);
             doExperiment(randomGraph, histogramRandomGraphs);
         }
@@ -35,7 +35,7 @@ public class Exercise50_ConnectedComponents {
 
         Exercise41_RandomSimpleGraphs exercise41_randomSimpleGraphs = new Exercise41_RandomSimpleGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomSimpleGraph = exercise41_randomSimpleGraphs.randomSimpleGraph(vertices, edges);
             doExperiment(randomSimpleGraph, histogramRandomSimpleGraphs);
         }
@@ -53,7 +53,7 @@ public class Exercise50_ConnectedComponents {
         Exercise46_RandomIntervalGraphs exercise46_randomIntervalGraphs = new Exercise46_RandomIntervalGraphs();
         double defaultLength = 0.3;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomIntervalGraph = exercise46_randomIntervalGraphs.generateIntervalGraph(vertices, defaultLength);
             doExperiment(randomIntervalGraph, histogramRandomIntervalGraphs);
         }
@@ -139,7 +139,7 @@ public class Exercise50_ConnectedComponents {
     }
 
     private void printResults(double[] histogram) {
-        for(int i = 1; i < histogram.length; i++) {
+        for (int i = 1; i < histogram.length; i++) {
             StdOut.printf("Components: %5d   Frequency: %5.0f\n", i, histogram[i]);
         }
     }
@@ -161,5 +161,4 @@ public class Exercise50_ConnectedComponents {
 
         new Exercise50_ConnectedComponents().generateGraphsAndDoExperiments(experiments, vertices, edges);
     }
-
 }

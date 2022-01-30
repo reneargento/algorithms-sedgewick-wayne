@@ -27,7 +27,7 @@ public class Exercise46_RandomSimpleDigraphs {
 
             adjacent = (HashSet<Integer>[]) new HashSet[vertices];
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 adjacent[vertex] = new HashSet<>();
             }
         }
@@ -67,12 +67,11 @@ public class Exercise46_RandomSimpleDigraphs {
         public DigraphInterface reverse() {
             Digraph reverse = new Digraph(vertices);
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
-                for(int neighbor : adjacent(vertex)) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
+                for (int neighbor : adjacent(vertex)) {
                     reverse.addEdge(neighbor, vertex);
                 }
             }
-
             return reverse;
         }
 
@@ -80,18 +79,16 @@ public class Exercise46_RandomSimpleDigraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(int neighbor : adjacent(vertex)) {
+                for (int neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
-
     }
 
     public Digraph randomDigraph(int vertices, int edges) {
@@ -124,5 +121,4 @@ public class Exercise46_RandomSimpleDigraphs {
         Digraph randomSimpleDigraph = new Exercise46_RandomSimpleDigraphs().randomDigraph(vertices, edges);
         StdOut.println(randomSimpleDigraph);
     }
-
 }

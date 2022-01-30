@@ -19,7 +19,7 @@ public class Exercise48_PathLengthsInDFS {
 
         Exercise40_RandomGraphs exercise40_randomGraphs = new Exercise40_RandomGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomGraph = exercise40_randomGraphs.erdosRenyiGraph(vertices, edges);
             int[] experimentResults = doExperiment(randomGraph);
 
@@ -37,7 +37,7 @@ public class Exercise48_PathLengthsInDFS {
 
         Exercise41_RandomSimpleGraphs exercise41_randomSimpleGraphs = new Exercise41_RandomSimpleGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomSimpleGraph = exercise41_randomSimpleGraphs.randomSimpleGraph(vertices, edges);
             int[] experimentResults = doExperiment(randomSimpleGraph);
 
@@ -56,7 +56,7 @@ public class Exercise48_PathLengthsInDFS {
         Exercise46_RandomIntervalGraphs exercise46_randomIntervalGraphs = new Exercise46_RandomIntervalGraphs();
         double defaultLength = 0.3;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomIntervalGraph = exercise46_randomIntervalGraphs.generateIntervalGraph(vertices, defaultLength);
             int[] experimentResults = doExperiment(randomIntervalGraph);
 
@@ -68,7 +68,6 @@ public class Exercise48_PathLengthsInDFS {
     }
 
     private int[] doExperiment(GraphInterface graph) {
-
         int[] experimentResult = new int[2];
         int totalPathLength = 0;
 
@@ -79,7 +78,7 @@ public class Exercise48_PathLengthsInDFS {
         boolean foundPath = depthFirstPaths.hasPathTo(randomDestinationVertex);
 
         if (foundPath) {
-            for(int vertexInPath : depthFirstPaths.pathTo(randomDestinationVertex)) {
+            for (int vertexInPath : depthFirstPaths.pathTo(randomDestinationVertex)) {
                 totalPathLength++;
             }
         }
@@ -108,5 +107,4 @@ public class Exercise48_PathLengthsInDFS {
 
         new Exercise48_PathLengthsInDFS().generateGraphsAndDoExperiments(experiments, vertices, edges);
     }
-
 }

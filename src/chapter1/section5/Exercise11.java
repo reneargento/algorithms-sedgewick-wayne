@@ -2,12 +2,14 @@ package chapter1.section5;
 
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.Arrays;
+
 /**
  * Created by Rene Argento on 04/12/16.
  */
 // The change in WeightedQuickFind will slightly improve performance.
-    // Find() will still be O(1) and union() operation will still be O(n), but there will be less parent updates in the
-    // union operation (at most n / 2).
+// Find() will still be O(1) and union() operation will still be O(n), but there will be less parent updates in the
+// union operation (at most n / 2).
 public class Exercise11 {
 
     private class WeightedQuickFind {
@@ -20,13 +22,10 @@ public class Exercise11 {
             this.size = new int[size];
             count = size;
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
-
-            for(int i = 0; i < this.size.length; i++) {
-                this.size[i] = 1;
-            }
+            Arrays.fill(this.size, 1);
         }
 
         public int count() {
@@ -62,17 +61,15 @@ public class Exercise11 {
                 newParentId = parentId1;
             }
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 if (id[i] == parentIdToUpdate) {
                     id[i] = newParentId;
                 }
             }
 
             size[newParentId] += size[parentIdToUpdate];
-
             count--;
         }
-
     }
 
     public static void main(String[] args) {
@@ -85,5 +82,4 @@ public class Exercise11 {
 
         StdOut.println("Components: " + weightedQuickFind.count + " Expected: 5");
     }
-
 }

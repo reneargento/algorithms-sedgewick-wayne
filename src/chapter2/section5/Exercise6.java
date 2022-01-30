@@ -58,7 +58,7 @@ public class Exercise6 {
         int j = high + 1;
 
         while (true) {
-            while(ArrayUtil.less(array[++i], pivot)) {
+            while (ArrayUtil.less(array[++i], pivot)) {
                 if (i == high) {
                     break;
                 }
@@ -80,5 +80,4 @@ public class Exercise6 {
         ArrayUtil.exchange(array, low, j);
         return j;
     }
-
 }

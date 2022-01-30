@@ -134,7 +134,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
 
         DoubleNode currentNode;
 
-        for(currentNode = first; currentNode != last; currentNode = currentNode.next) {
+        for (currentNode = first; currentNode != last; currentNode = currentNode.next) {
             if (currentNode.item.equals(beforeItem)) {
                 break;
             }
@@ -168,7 +168,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
 
         DoubleNode currentNode;
 
-        for(currentNode = first; currentNode != last; currentNode = currentNode.next) {
+        for (currentNode = first; currentNode != last; currentNode = currentNode.next) {
             if (currentNode.item.equals(afterNode)) {
                 break;
             }
@@ -367,5 +367,4 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
             return item;
         }
     }
-
 }

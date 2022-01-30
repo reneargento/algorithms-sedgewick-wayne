@@ -74,10 +74,9 @@ public class Exercise28_UniQueue {
         StdOut.println("Size: " + uniQueue.size() + " Expected: 5");
 
         StdOut.println("\nItems:");
-        for(int item : uniQueue) {
+        for (int item : uniQueue) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 1 2 4 8 16");
     }
-
 }

@@ -39,10 +39,10 @@ public class Exercise28_SpaceEfficientDataStructures {
             edges = 0;
             adjacent = new double[vertices][vertices];
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 adjacent[vertex] = new double[vertices];
 
-                for(int adjacentVertex = 0; adjacentVertex < vertices; adjacentVertex++) {
+                for (int adjacentVertex = 0; adjacentVertex < vertices; adjacentVertex++) {
                     adjacent[vertex][adjacentVertex] = NO_CONNECTION;
                 }
             }
@@ -56,7 +56,7 @@ public class Exercise28_SpaceEfficientDataStructures {
                 throw new IllegalArgumentException("Number of edges must be nonnegative");
             }
 
-            for(int i = 0; i < edges; i++) {
+            for (int i = 0; i < edges; i++) {
                 int vertex1 = in.readInt();
                 int vertex2 = in.readInt();
                 double weight = in.readDouble();
@@ -97,14 +97,13 @@ public class Exercise28_SpaceEfficientDataStructures {
         public Iterable<Edge> edges() {
             Bag<Edge> edges = new Bag<>();
 
-            for(int vertex1 = 0; vertex1 < vertices; vertex1++) {
-                for(int vertex2 = vertex1 + 1; vertex2 < vertices; vertex2++) {
+            for (int vertex1 = 0; vertex1 < vertices; vertex1++) {
+                for (int vertex2 = vertex1 + 1; vertex2 < vertices; vertex2++) {
                     if (adjacent[vertex1][vertex2] != NO_CONNECTION) {
                         edges.add(new Edge(vertex1, vertex2, adjacent[vertex1][vertex2]));
                     }
                 }
             }
-
             return edges;
         }
 
@@ -112,10 +111,10 @@ public class Exercise28_SpaceEfficientDataStructures {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex1 = 0; vertex1 < vertices; vertex1++) {
+            for (int vertex1 = 0; vertex1 < vertices; vertex1++) {
                 stringBuilder.append(vertex1).append(": ");
 
-                for(int vertex2 = 0; vertex2 < vertices; vertex2++) {
+                for (int vertex2 = 0; vertex2 < vertices; vertex2++) {
                     if (adjacent[vertex1][vertex2] != NO_CONNECTION) {
                         String formattedEdge = String.format("%d-%d %.5f", vertex1, vertex2, adjacent[vertex1][vertex2]);
                         stringBuilder.append(formattedEdge).append(" ");
@@ -123,7 +122,6 @@ public class Exercise28_SpaceEfficientDataStructures {
                 }
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
@@ -131,7 +129,6 @@ public class Exercise28_SpaceEfficientDataStructures {
     // Space efficient version of lazy Prim's algorithm
     // Trade-off: it has runtime complexity of O(E * V^2)
     public class LazyPrimMSTSpaceEfficient {
-
         private boolean[] marked; // minimum spanning tree vertices
         private Queue<Edge> minimumSpanningTree;
         private PriorityQueueResize<Double> priorityQueue; // crossing (and ineligible) edge weights
@@ -152,10 +149,10 @@ public class Exercise28_SpaceEfficientDataStructures {
 
                 Edge edgeToAddInMST = null;
 
-                for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+                for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                     double[] adjacentEdges = edgeWeightedGraph.adjacent(vertex);
 
-                    for(int otherVertex = 0; otherVertex < adjacentEdges.length; otherVertex++) {
+                    for (int otherVertex = 0; otherVertex < adjacentEdges.length; otherVertex++) {
                         double edgeWeight = adjacentEdges[otherVertex];
 
                         if (edgeWeight == NO_CONNECTION) {
@@ -219,10 +216,9 @@ public class Exercise28_SpaceEfficientDataStructures {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
@@ -248,7 +244,7 @@ public class Exercise28_SpaceEfficientDataStructures {
         LazyPrimMSTSpaceEfficient lazyPrimMSTSpaceEfficient =
                 spaceEfficientDataStructures.new LazyPrimMSTSpaceEfficient(edgeWeightedGraphSpaceEfficient);
 
-        for(Edge edge : lazyPrimMSTSpaceEfficient.edges()) {
+        for (Edge edge : lazyPrimMSTSpaceEfficient.edges()) {
             StdOut.println(edge);
         }
 
@@ -258,5 +254,4 @@ public class Exercise28_SpaceEfficientDataStructures {
                 "0-3 0.50000\n" +
                 "3-4 0.80000");
     }
-
 }

@@ -54,10 +54,10 @@ public class Exercise18_LocalMinimum {
             }
         }
 
-        while(low <= high) {
+        while (low <= high) {
             int middle = low + (high - low) / 2;
 
-            //Corner case
+            // Corner case
             if (middle == 0) {
                 if (array[middle] < array[middle+1]) {
                     return array[middle];
@@ -66,7 +66,7 @@ public class Exercise18_LocalMinimum {
                 }
             }
 
-            //Corner case
+            // Corner case
             if (middle == array.length - 1) {
                 if (array[middle] < array[middle - 1]) {
                     return array[middle];
@@ -83,8 +83,6 @@ public class Exercise18_LocalMinimum {
                 low = middle + 1;
             }
         }
-
         return NOT_FOUND;
     }
-
 }

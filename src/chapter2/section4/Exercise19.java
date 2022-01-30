@@ -19,19 +19,18 @@ public class Exercise19 {
         MaxPQ(Comparable[] array) {
             priorityQueue = array;
 
-            //Heapify - O(N)
+            // Heapify - O(N)
             int startPosition = (array.length - 1) / 2; //Position 0 is not used
 
-            for(int i = startPosition; i >= 1; i--) {
+            for (int i = startPosition; i >= 1; i--) {
                 sink(i);
             }
         }
 
         private void sink(int index) {
-
             int indexOfBiggestChild;
 
-            while(index * 2 < priorityQueue.length) {
+            while (index * 2 < priorityQueue.length) {
 
                 indexOfBiggestChild = index * 2;
 
@@ -69,10 +68,9 @@ public class Exercise19 {
 
         StringJoiner maxHeapArray = new StringJoiner(" ");
 
-        for(int i = 1; i < priorityQueue.length; i++) {
+        for (int i = 1; i < priorityQueue.length; i++) {
             maxHeapArray.add(String.valueOf(priorityQueue[i]));
         }
         StdOut.println("Max heap array: " + maxHeapArray);
     }
-
 }

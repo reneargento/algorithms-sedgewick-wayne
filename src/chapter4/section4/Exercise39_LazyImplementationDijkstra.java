@@ -38,7 +38,7 @@ public class Exercise39_LazyImplementationDijkstra {
 
             checkPresenceOfNegativeEdges(edgeWeightedDigraph);
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             distTo[source] = 0;
@@ -58,7 +58,7 @@ public class Exercise39_LazyImplementationDijkstra {
         private void relax(EdgeWeightedDigraphInterface edgeWeightedDigraph, int vertex) {
             marked[vertex] = true;
 
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -96,7 +96,7 @@ public class Exercise39_LazyImplementationDijkstra {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
 
@@ -153,5 +153,4 @@ public class Exercise39_LazyImplementationDijkstra {
                 "0 to 6 (1.51)  0->2 0.26   2->7 0.34   7->3 0.39   3->6 0.52   \n" +
                 "0 to 7 (0.60)  0->2 0.26   2->7 0.34 ");
     }
-
 }

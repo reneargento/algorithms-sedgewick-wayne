@@ -21,14 +21,14 @@ public class Exercise33_UniqueTopologicalOrdering {
         int[] topologicalOrder = new int[digraph.vertices()];
         int arrayIndex = 0;
 
-        for(int vertex : topological.order()) {
+        for (int vertex : topological.order()) {
             topologicalOrder[arrayIndex++] = vertex;
         }
 
-        for(int i = 0; i < topologicalOrder.length - 1; i++) {
+        for (int i = 0; i < topologicalOrder.length - 1; i++) {
             boolean hasEdgeToNextVertex = false;
 
-            for(int neighbor : digraph.adjacent(topologicalOrder[i])) {
+            for (int neighbor : digraph.adjacent(topologicalOrder[i])) {
                 if (neighbor == topologicalOrder[i + 1]) {
                     hasEdgeToNextVertex = true;
                     break;
@@ -86,5 +86,4 @@ public class Exercise33_UniqueTopologicalOrdering {
         StdOut.println("Has unique topological ordering: " +
                 uniqueTopologicalOrdering.hasUniqueTopologicalOrdering(digraph4) + " Expected: false");
     }
-
 }

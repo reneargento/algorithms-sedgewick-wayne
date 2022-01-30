@@ -40,7 +40,7 @@ public class DoubleProbingHashTable<Key, Value> {
         }
 
         public Value get(Key key) {
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (key.equals(node.key)) {
                     return node.value;
                 }
@@ -50,7 +50,7 @@ public class DoubleProbingHashTable<Key, Value> {
         }
 
         public void put(Key key, Value value) {
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (key.equals(node.key)) {
                     node.value = value;
                     return;
@@ -68,7 +68,7 @@ public class DoubleProbingHashTable<Key, Value> {
                 return;
             }
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 if (node.next != null && node.next.key.equals(key)) {
                     node.next = node.next.next;
                     size--;
@@ -80,7 +80,7 @@ public class DoubleProbingHashTable<Key, Value> {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(Node node = first; node != null; node = node.next) {
+            for (Node node = first; node != null; node = node.next) {
                 keys.enqueue(node.key);
             }
 
@@ -107,7 +107,7 @@ public class DoubleProbingHashTable<Key, Value> {
         this.averageListSize = averageListSize;
         symbolTable = new SequentialSearchSymbolTable[size];
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             symbolTable[i] = new SequentialSearchSymbolTable();
         }
     }
@@ -148,7 +148,7 @@ public class DoubleProbingHashTable<Key, Value> {
         DoubleProbingHashTable<Key, Value> separateChainingHashTableDoubleProbing =
                 new DoubleProbingHashTable<>(newSize, averageListSize);
 
-        for(Key key : keys()) {
+        for (Key key : keys()) {
             separateChainingHashTableDoubleProbing.put(key, get(key));
         }
 
@@ -209,7 +209,7 @@ public class DoubleProbingHashTable<Key, Value> {
         } else {
             boolean isInList1 = false;
 
-            for(Object keyInList1 : symbolTable[hash1].keys()) {
+            for (Object keyInList1 : symbolTable[hash1].keys()) {
                 if (keyInList1.equals(key)) {
                     isInList1 = true;
                     break;
@@ -269,26 +269,24 @@ public class DoubleProbingHashTable<Key, Value> {
     public Iterable<Key> keys() {
         Queue<Key> keys = new Queue<>();
 
-        for(SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
-            for(Key key : sequentialSearchST.keys()) {
+        for (SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
+            for (Key key : sequentialSearchST.keys()) {
                 keys.enqueue(key);
             }
         }
 
         if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
             Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-            for(int i = 0; i < keysToBeSorted.length; i++) {
+            for (int i = 0; i < keysToBeSorted.length; i++) {
                 keysToBeSorted[i] = keys.dequeue();
             }
 
             Arrays.sort(keysToBeSorted);
 
-            for(Key key : keysToBeSorted) {
+            for (Key key : keysToBeSorted) {
                 keys.enqueue(key);
             }
         }
-
         return keys;
     }
-
 }

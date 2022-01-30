@@ -37,7 +37,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 			first.item = item;
 		} else {	
 			Node current;
-			for(current = first; current.next != null; current = current.next);
+			for (current = first; current.next != null; current = current.next);
 			
 			Node newNode = new Node();
 			newNode.item = item;
@@ -73,7 +73,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 			Node current;
 			int count = 1;
 			
-			for(current = first; current != null; current = current.next) {
+			for (current = first; current != null; current = current.next) {
 				if (count == k - 1 && current.next != null) {
 					current.next = current.next.next;
 					break;
@@ -89,14 +89,14 @@ public class Exercise27<Item> implements Iterable<Item> {
 			return;
 		}
 		
-		while(first != null && first.item.equals(key)) {
+		while (first != null && first.item.equals(key)) {
 			first = first.next;
             size--;
 		}
 		
 		Node current;
 		
-		for(current = first; current != null; current = current.next) {
+		for (current = first; current != null; current = current.next) {
 			if (current.next != null && current.next.item.equals(key)) {
 				current.next = current.next.next;
                 size--;
@@ -127,7 +127,7 @@ public class Exercise27<Item> implements Iterable<Item> {
 		
 		Node current;
 		
-		for(current = first; current != null; current = current.next) {
+		for (current = first; current != null; current = current.next) {
 			if (current.item.equals(node.item)) {
 				if (current.next != null) {
 					current.next = current.next.next;
@@ -207,5 +207,4 @@ public class Exercise27<Item> implements Iterable<Item> {
 		StdOut.println("Max value: " + maxValue);
 		StdOut.println("Expected: 91");
 	}
-
 }

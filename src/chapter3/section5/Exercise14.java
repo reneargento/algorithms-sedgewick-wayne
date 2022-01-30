@@ -12,10 +12,10 @@ public class Exercise14 {
     private static RedBlackBST<String, Bag<String>> invert(RedBlackBST<String, Bag<String>> symbolTable) {
         RedBlackBST<String, Bag<String>> inverseSymbolTable = new RedBlackBST<>();
 
-        for(String key : symbolTable.keys()) {
+        for (String key : symbolTable.keys()) {
             Bag<String> values = symbolTable.get(key);
 
-            for(String newKey : values) {
+            for (String newKey : values) {
                 if (!inverseSymbolTable.contains(newKey)) {
                     inverseSymbolTable.put(newKey, new Bag<>());
                 }
@@ -47,39 +47,38 @@ public class Exercise14 {
         redBlackBST.put("Mixed Bag", mixedBag);
 
         RedBlackBST<String, Bag<String>> inverseSymbolTable = Exercise14.invert(redBlackBST);
-        for(String key : inverseSymbolTable.keys()) {
+        for (String key : inverseSymbolTable.keys()) {
             StdOut.println(key);
 
-            for(String value : inverseSymbolTable.get(key)) {
+            for (String value : inverseSymbolTable.get(key)) {
                 StdOut.println("  " + value);
             }
         }
 
-        //Test
+        // Test
         StdOut.println("\nTests");
         StdOut.println("\nred key");
-        for(String value : inverseSymbolTable.get("red")) {
+        for (String value : inverseSymbolTable.get("red")) {
             StdOut.println(value);
         }
         StdOut.println("Expected: \nColors");
 
         StdOut.println("\nblue key");
-        for(String value : inverseSymbolTable.get("blue")) {
+        for (String value : inverseSymbolTable.get("blue")) {
             StdOut.println(value);
         }
         StdOut.println("Expected: \nMixed Bag\nColors");
 
         StdOut.println("\nquicksort key");
-        for(String value : inverseSymbolTable.get("quicksort")) {
+        for (String value : inverseSymbolTable.get("quicksort")) {
             StdOut.println(value);
         }
         StdOut.println("Expected: \nSorts");
 
         StdOut.println("\nmergesort key");
-        for(String value : inverseSymbolTable.get("mergesort")) {
+        for (String value : inverseSymbolTable.get("mergesort")) {
             StdOut.println(value);
         }
         StdOut.println("Expected: \nSorts\nMixed Bag");
     }
-
 }

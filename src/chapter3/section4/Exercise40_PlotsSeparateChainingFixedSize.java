@@ -45,7 +45,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
             }
 
             public Value get(Key key) {
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (key.equals(node.key)) {
                         return node.value;
                     }
@@ -57,7 +57,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
             public int putAndComputeCost(Key key, Value value) {
                 int costOfPutCompares = 1;
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     costOfPutCompares++;
 
                     if (key.equals(node.key)) {
@@ -78,7 +78,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
                     return;
                 }
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     if (node.next != null && node.next.key.equals(key)) {
                         node.next = node.next.next;
                         size--;
@@ -90,7 +90,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
             public Iterable<Key> keys() {
                 Queue<Key> keys = new Queue<>();
 
-                for(Node node = first; node != null; node = node.next) {
+                for (Node node = first; node != null; node = node.next) {
                     keys.enqueue(node.key);
                 }
 
@@ -112,7 +112,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
             this.size = size;
             symbolTable = new SequentialSearchSymbolTable[size];
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 symbolTable[i] = new SequentialSearchSymbolTable<>();
             }
         }
@@ -184,21 +184,21 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
         public Iterable<Key> keys() {
             Queue<Key> keys = new Queue<>();
 
-            for(SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
-                for(Key key : sequentialSearchST.keys()) {
+            for (SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
+                for (Key key : sequentialSearchST.keys()) {
                     keys.enqueue(key);
                 }
             }
 
             if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keys.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }
@@ -230,7 +230,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
         SeparateChainingHashTableFixedSizeCost<String, Integer> separateChainingHashTableFixedSizeCost =
                 new SeparateChainingHashTableFixedSizeCost<>(997);
 
-        for(String word : words) {
+        for (String word : words) {
 
             if (word.length() < minLength) {
                 continue;
@@ -250,7 +250,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
         int cost = separateChainingHashTableFixedSizeCost.putAndComputeCost(max, 0);
         visualAccumulator.addDataValue(cost, true);
 
-        for(String word : separateChainingHashTableFixedSizeCost.keys()) {
+        for (String word : separateChainingHashTableFixedSizeCost.keys()) {
             if (separateChainingHashTableFixedSizeCost.get(word) > separateChainingHashTableFixedSizeCost.get(max)) {
                 max = word;
             }

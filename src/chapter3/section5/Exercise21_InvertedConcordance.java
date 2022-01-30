@@ -27,7 +27,7 @@ public class Exercise21_InvertedConcordance {
                 String key = concordanceInformation[0];
                 concordanceMap.put(key, new ArrayList<>());
 
-                for(int i = 1; i < concordanceInformation.length; i++) {
+                for (int i = 1; i < concordanceInformation.length; i++) {
                     String noCommaValue = concordanceInformation[i];
 
                     if (noCommaValue.charAt(noCommaValue.length() - 1) == ',') {
@@ -49,8 +49,8 @@ public class Exercise21_InvertedConcordance {
         private String buildTextFromConcordance(Map<String, List<Integer>> concordance) {
             String[] wordsInText = new String[numberOfWords + 1];
 
-            for(String word : concordance.keySet()) {
-                for(int position : concordance.get(word)) {
+            for (String word : concordance.keySet()) {
+                for (int position : concordance.get(word)) {
                     wordsInText[position] = word;
                 }
             }
@@ -58,7 +58,7 @@ public class Exercise21_InvertedConcordance {
             StringBuilder text = new StringBuilder();
             boolean isFirstWord = true;
 
-            for(String word : wordsInText) {
+            for (String word : wordsInText) {
                 if (isFirstWord) {
                     isFirstWord = false;
                 } else {
@@ -74,7 +74,7 @@ public class Exercise21_InvertedConcordance {
     }
 
     public static void main(String[] args) {
-        //Test
+        // Test
         // This 0, 13
         // is 1, 14
         // a 2, 6, 15
@@ -89,7 +89,7 @@ public class Exercise21_InvertedConcordance {
         // good 16
         // test. 17
         //
-        //Expected output
+        // Expected output
         //  This is a text to test a concordance. The text has many words. This is a good test.
 
         Exercise21_InvertedConcordance exercise21_invertedConcordance = new Exercise21_InvertedConcordance();
@@ -99,5 +99,4 @@ public class Exercise21_InvertedConcordance {
         String text = invertedConcordance.buildTextFromConcordance(concordance);
         StdOut.println(text);
     }
-
 }

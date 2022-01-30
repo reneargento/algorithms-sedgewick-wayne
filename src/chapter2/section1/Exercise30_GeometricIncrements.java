@@ -20,7 +20,7 @@ public class Exercise30_GeometricIncrements {
         int arrayLength = 1000000;
         int numberOfExperiments = 10;
 
-        for(int i = 0; i < minimumTimes.length; i++) {
+        for (int i = 0; i < minimumTimes.length; i++) {
             minimumTimes[i] = Double.MAX_VALUE;
             bestIncrementSequences.add(new Integer[]{});
         }
@@ -31,14 +31,13 @@ public class Exercise30_GeometricIncrements {
     }
 
     private static void timeRandomInput(int arrayLength, int numberOfExperiments) {
-
         int tValue = 2;
 
-        for(int experiment = 0; experiment < numberOfExperiments; experiment++) {
+        for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
 
             Comparable[] array = new Comparable[arrayLength];
 
-            for(int i = 0; i < arrayLength; i++) {
+            for (int i = 0; i < arrayLength; i++) {
                 array[i] = StdRandom.uniform();
             }
 
@@ -56,7 +55,7 @@ public class Exercise30_GeometricIncrements {
 
         int timeToReplace = -1;
 
-        for(int i = 0; i < minimumTimes.length; i++) {
+        for (int i = 0; i < minimumTimes.length; i++) {
             if (currentTime < minimumTimes[i]) {
                 timeToReplace = i;
                 break;
@@ -85,7 +84,7 @@ public class Exercise30_GeometricIncrements {
         int numberOfIncrements = 1;
         int value = tValue;
 
-        while(value < arrayLength) {
+        while (value < arrayLength) {
             maxIncrement = value;
             value *= tValue;
 
@@ -95,7 +94,7 @@ public class Exercise30_GeometricIncrements {
         Integer[] incrementSequence = new Integer[numberOfIncrements];
 
         int index = 0;
-        while(maxIncrement > 0) {
+        while (maxIncrement > 0) {
             incrementSequence[index] = maxIncrement;
 
             maxIncrement = maxIncrement / tValue;
@@ -108,13 +107,13 @@ public class Exercise30_GeometricIncrements {
     @SuppressWarnings("unchecked")
     private static void shellsort(Comparable[] array, Integer[] incrementSequence) {
 
-        for(int increment : incrementSequence) {
+        for (int increment : incrementSequence) {
 
-            //h-sort the array
-            for(int j = increment; j < array.length; j++) {
+            // h-sort the array
+            for (int j = increment; j < array.length; j++) {
                 int currentIndex = j;
 
-                while(currentIndex >= increment && array[currentIndex].compareTo(array[currentIndex - increment]) < 0) {
+                while (currentIndex >= increment && array[currentIndex].compareTo(array[currentIndex - increment]) < 0) {
                     Comparable temp = array[currentIndex];
                     array[currentIndex] = array[currentIndex - increment];
                     array[currentIndex - increment] = temp;
@@ -127,19 +126,17 @@ public class Exercise30_GeometricIncrements {
 
     private static void showBestTValueAndIncrementSequence() {
 
-        for(int i = 0; i < bestTValues.length; i++) {
+        for (int i = 0; i < bestTValues.length; i++) {
             StdOut.printf("Best %d tValue: %d \n", i + 1, bestTValues[i]);
             StdOut.printf("Best %d sequence:\n", i + 1);
 
             Integer[] incrementSequence = bestIncrementSequences.get(i);
-            for(int j = 0; j < incrementSequence.length; j++) {
+            for (int j = 0; j < incrementSequence.length; j++) {
                 StdOut.print(incrementSequence[j] + " ");
             }
 
             StdOut.println();
             StdOut.println();
         }
-
     }
-
 }

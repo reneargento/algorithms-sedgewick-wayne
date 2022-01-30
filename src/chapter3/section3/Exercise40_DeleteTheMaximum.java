@@ -106,7 +106,7 @@ public class Exercise40_DeleteTheMaximum {
 
         while (!redBlackBST.isEmpty()) {
 
-            for(Integer key : redBlackBST.keys()) {
+            for (Integer key : redBlackBST.keys()) {
                 StdOut.println(key);
             }
 

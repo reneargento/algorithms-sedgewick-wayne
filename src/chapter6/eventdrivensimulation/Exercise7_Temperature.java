@@ -107,14 +107,13 @@ public class Exercise7_Temperature {
         public double temperature() {
             double totalTemperature = 0;
 
-            for(ParticleInterface particle : particles) {
+            for (ParticleInterface particle : particles) {
                 ParticleWithTemperature particleWithTemperature = (ParticleWithTemperature) particle;
                 totalTemperature += particleWithTemperature.temperature();
             }
 
             return totalTemperature / numberOfParticles;
         }
-
     }
 
     public static void main(String[] args) {
@@ -130,5 +129,4 @@ public class Exercise7_Temperature {
         CollisionSystem collisionSystem = temperature.new CollisionSystemWithTemperature(particles);
         collisionSystem.simulate(10000, 0.5);
     }
-
 }

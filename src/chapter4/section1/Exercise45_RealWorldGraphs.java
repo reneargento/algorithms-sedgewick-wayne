@@ -70,11 +70,11 @@ public class Exercise45_RealWorldGraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
                 if (adjacent(vertex) != null) {
-                    for(Integer neighbor : adjacent(vertex)) {
+                    for (Integer neighbor : adjacent(vertex)) {
                         stringBuilder.append(neighbor).append(" ");
                     }
                 }
@@ -106,7 +106,7 @@ public class Exercise45_RealWorldGraphs {
 
         Graph fullGraph = new Graph();
 
-        for(int edge = 0; edge < edges; edge++) {
+        for (int edge = 0; edge < edges; edge++) {
             String[] connection = in.readLine().split(separator);
 
             int city1 = Integer.parseInt(connection[0]);
@@ -134,7 +134,7 @@ public class Exercise45_RealWorldGraphs {
 
             randomSubGraph.addVertex(subGraphVertexId1);
 
-            for(Integer neighbor : fullGraph.adjacent(randomVertexId)) {
+            for (Integer neighbor : fullGraph.adjacent(randomVertexId)) {
                 if (graphToSubGraphMap.contains(neighbor)) {
                     int subGraphVertexId2 = graphToSubGraphMap.get(neighbor);
                     allSubGraphEdges.add(new Edge(subGraphVertexId1, subGraphVertexId2));
@@ -148,7 +148,7 @@ public class Exercise45_RealWorldGraphs {
         }
 
         // Randomly choose edges
-        for(int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
+        for (int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
             int randomEdgeId = StdRandom.uniform(edgeIndex, allSubGraphEdges.size());
 
             Edge randomEdge = allSubGraphEdges.get(randomEdgeId);
@@ -171,5 +171,4 @@ public class Exercise45_RealWorldGraphs {
 
         StdOut.println(randomRealGraph);
     }
-
 }

@@ -40,12 +40,12 @@ public class Exercise58_ArbitrageModel {
         double[][] conversionRates = new double[numberOfCurrencies][numberOfCurrencies];
         String[] currencyNames = new String[numberOfCurrencies];
 
-        for(int currency1 = 0; currency1 < numberOfCurrencies; currency1++) {
+        for (int currency1 = 0; currency1 < numberOfCurrencies; currency1++) {
             currencyNames[currency1] = generateRandomCurrencyName(currencyNamesLength);
 
             conversionRates[currency1][currency1] = 1;
 
-            for(int currency2 = currency1 + 1; currency2 < numberOfCurrencies; currency2++) {
+            for (int currency2 = currency1 + 1; currency2 < numberOfCurrencies; currency2++) {
                 double randomConversionRate = StdRandom.uniform(minConversionRate, maxConversionRate);
                 conversionRates[currency1][currency2] = randomConversionRate;
 
@@ -53,19 +53,17 @@ public class Exercise58_ArbitrageModel {
                 conversionRates[currency2][currency1] = inverseConversionRate;
             }
         }
-
         return new ArbitrageProblem(conversionRates, currencyNames);
     }
 
     private String generateRandomCurrencyName(int currencyNameLength) {
         StringBuilder currencyName = new StringBuilder();
 
-        for(int letter = 0; letter < currencyNameLength; letter++) {
+        for (int letter = 0; letter < currencyNameLength; letter++) {
             char randomChar = (char) StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                     Constants.ASC_II_UPPERCASE_LETTERS_FINAL_INDEX + 1);
             currencyName.append(randomChar);
         }
-
         return currencyName.toString();
     }
 
@@ -121,15 +119,13 @@ public class Exercise58_ArbitrageModel {
 
         List<DirectedEdge> arbitrageOpportunity = new ArrayList<>();
 
-        for(DirectedEdge edge : bellmanFordSP.negativeCycle()) {
+        for (DirectedEdge edge : bellmanFordSP.negativeCycle()) {
             arbitrageOpportunity.add(edge);
         }
-
         return arbitrageOpportunity;
     }
 
     public List<DirectedEdge> findTheBestArbitrageOpportunity(ArbitrageProblem arbitrageProblem) {
-
         double[][] conversionRates = arbitrageProblem.getConversionRates();
 
         EdgeWeightedDigraph edgeWeightedDigraph = getDigraphFromConversionRatesTable(conversionRates);
@@ -142,10 +138,10 @@ public class Exercise58_ArbitrageModel {
         List<DirectedEdge> bestArbitrageOpportunity = new ArrayList<>();
         double smallestWeightInAnyCycle = 0;
 
-        for(List<DirectedEdge> cycle : allCyclesInDigraph) {
+        for (List<DirectedEdge> cycle : allCyclesInDigraph) {
             double totalWeight = 0;
 
-            for(DirectedEdge edge : cycle) {
+            for (DirectedEdge edge : cycle) {
                 totalWeight += edge.weight();
             }
 
@@ -164,9 +160,8 @@ public class Exercise58_ArbitrageModel {
     private EdgeWeightedDigraph getDigraphFromConversionRatesTable(double[][] conversionRates) {
         EdgeWeightedDigraph edgeWeightedDigraph = new EdgeWeightedDigraph(conversionRates.length);
 
-        for(int currency1 = 0; currency1 < conversionRates.length; currency1++) {
-
-            for(int currency2 = 0; currency2 < conversionRates.length; currency2++) {
+        for (int currency1 = 0; currency1 < conversionRates.length; currency1++) {
+            for (int currency2 = 0; currency2 < conversionRates.length; currency2++) {
                 double conversionRate = conversionRates[currency1][currency2];
 
                 double negativeLn = -Math.log(conversionRate);
@@ -179,7 +174,6 @@ public class Exercise58_ArbitrageModel {
                 edgeWeightedDigraph.addEdge(edge);
             }
         }
-
         return edgeWeightedDigraph;
     }
 
@@ -195,7 +189,7 @@ public class Exercise58_ArbitrageModel {
         double initialInvestment = Double.parseDouble(args[4]);
         int numberOfProblemsToGenerate = Integer.parseInt(args[5]);
 
-        for(int problem = 1; problem <= numberOfProblemsToGenerate; problem++) {
+        for (int problem = 1; problem <= numberOfProblemsToGenerate; problem++) {
             StdOut.println("Arbitrage problem " + problem + ":\n");
 
             ArbitrageProblem arbitrageProblem = arbitrageModel.generateArbitrageProblem(numberOfCurrencies,
@@ -223,7 +217,7 @@ public class Exercise58_ArbitrageModel {
 
             double totalMoney = initialInvestment;
 
-            for(DirectedEdge edge : arbitrageOpportunity) {
+            for (DirectedEdge edge : arbitrageOpportunity) {
                 String currencies = currencyNames[edge.from()] + "->" + currencyNames[edge.to()];
                 stringJoiner.add(currencies);
 
@@ -242,5 +236,4 @@ public class Exercise58_ArbitrageModel {
     private double roundValuePrecisionDigits(double value) {
         return (double) Math.round(value * INTEGER_VALUE_TO_MULTIPLY) / INTEGER_VALUE_TO_MULTIPLY;
     }
-
 }

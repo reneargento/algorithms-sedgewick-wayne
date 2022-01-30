@@ -47,7 +47,7 @@ public class Exercise37_EuclideanGraphs {
             allVertices = new Vertex[vertices];
             adjacent = (Bag<Integer>[]) new Bag[vertices];
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 adjacent[vertex] = new Bag<>();
             }
         }
@@ -82,8 +82,8 @@ public class Exercise37_EuclideanGraphs {
             StdDraw.setPenRadius(0.002D);
             StdDraw.setPenColor(Color.BLACK);
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                for(int neighbor : adjacent(vertexId)) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
+                for (int neighbor : adjacent(vertexId)) {
                     Vertex neighborVertex = allVertices[neighbor];
 
                     if (neighbor >= vertexId) {
@@ -93,9 +93,8 @@ public class Exercise37_EuclideanGraphs {
                 }
             }
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 if (allVertices[vertexId] != null) {
-
                     StdDraw.setPenColor(Color.WHITE);
                     StdDraw.filledCircle(allVertices[vertexId].xCoordinate, allVertices[vertexId].yCoordinate,
                             radiusOfCircleAroundVertex);
@@ -123,15 +122,14 @@ public class Exercise37_EuclideanGraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(int neighbor : adjacent(vertex)) {
+                for (int neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
@@ -169,5 +167,4 @@ public class Exercise37_EuclideanGraphs {
         euclideanGraph.show(0, 15, -2, 18, 0.5);
         StdOut.println(euclideanGraph);
     }
-
 }

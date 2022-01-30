@@ -20,7 +20,6 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
 
     @SuppressWarnings("unchecked")
     public class EuclideanEdgeWeightedDigraph implements EdgeWeightedDigraphInterface {
-
         public class Vertex {
             protected int id;
             private String name;
@@ -52,7 +51,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
             allVertices = new Vertex[vertices];
             adjacent = (Bag<DirectedEdge>[]) new Bag[vertices];
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 adjacent[vertex] = new Bag<>();
             }
         }
@@ -97,7 +96,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
 
             StdDraw.setPenRadius(0.002D);
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 if (allVertices[vertexId] != null) {
                     double xCoordinate = allVertices[vertexId].coordinates.getXCoordinate();
                     double yCoordinate = allVertices[vertexId].coordinates.getYCoordinate();
@@ -115,8 +114,8 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
 
             StdDraw.setPenColor(Color.BLACK);
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                for(DirectedEdge edge : adjacent(vertexId)) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
+                for (DirectedEdge edge : adjacent(vertexId)) {
                     int otherVertexId = edge.to();
                     Vertex neighborVertex = allVertices[otherVertexId];
 
@@ -133,25 +132,23 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
         public Iterable<DirectedEdge> edges() {
             Bag<DirectedEdge> edges = new Bag<>();
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
-                for(DirectedEdge edge : adjacent[vertex]) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
+                for (DirectedEdge edge : adjacent[vertex]) {
                     edges.add(edge);
                 }
             }
-
             return edges;
         }
 
         public EuclideanEdgeWeightedDigraph reverse() {
             EuclideanEdgeWeightedDigraph reverse = new EuclideanEdgeWeightedDigraph(vertices);
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
-                for(DirectedEdge edge : adjacent(vertex)) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
+                for (DirectedEdge edge : adjacent(vertex)) {
                     int neighbor = edge.to();
                     reverse.addEdge(new DirectedEdge(neighbor, vertex, edge.weight()));
                 }
             }
-
             return reverse;
         }
 
@@ -159,21 +156,19 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(DirectedEdge neighbor : adjacent(vertex)) {
+                for (DirectedEdge neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
 
     public class DijkstraSPEuclideanGraph {
-
         private DirectedEdge[] edgeTo;  // last edge on path to vertex
         private double[] distTo;        // length of path to vertex
         private IndexMinPriorityQueue<Double> priorityQueue;
@@ -194,11 +189,10 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
 
         // O(V) due to the use of the Euclidean Heuristic
         private void computeSourceSinkShortestPath(int target) {
-
             edgeTo = new DirectedEdge[euclideanEdgeWeightedDigraph.vertices()];
 
             distTo = new double[euclideanEdgeWeightedDigraph.vertices()];
-            for(int vertex = 0; vertex < euclideanEdgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < euclideanEdgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
 
@@ -222,13 +216,12 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
 
         // O(degree(V))
         private void relax(EuclideanEdgeWeightedDigraph euclideanEdgeWeightedDigraph, int vertex, int target) {
-
             double distanceFromVertexToTarget = getDistanceBetweenVertices(vertex, target);
 
-            for(DirectedEdge edge : euclideanEdgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : euclideanEdgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
-                //Euclidean heuristic
+                // Euclidean heuristic
                 double distanceFromNeighborToTarget = getDistanceBetweenVertices(neighbor, target);
 
                 double distanceToTargetPassingThroughNeighbor = distTo[vertex] + edge.weight()
@@ -261,7 +254,6 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
                 computeSourceSinkShortestPath(vertex);
                 shortestDistanceComputed[vertex] = true;
             }
-
             return finalDistanceTo[vertex];
         }
 
@@ -271,7 +263,6 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
                 computeSourceSinkShortestPath(vertex);
                 shortestDistanceComputed[vertex] = true;
             }
-
             return finalDistanceTo[vertex] < Double.POSITIVE_INFINITY;
         }
 
@@ -281,16 +272,14 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
                 computeSourceSinkShortestPath(vertex);
                 shortestDistanceComputed[vertex] = true;
             }
-
             if (!hasPathTo(vertex)) {
                 return null;
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
-
             return path;
         }
     }
@@ -348,7 +337,7 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
         euclideanEdgeWeightedDigraph.show(0, 15, 0, 20,
                 0.5, 0.08, 0.5);
 
-        for(int vertex = 0; vertex < euclideanEdgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < euclideanEdgeWeightedDigraph.vertices(); vertex++) {
             StdOut.printf("Distance to vertex %d: %.2f\n", vertex, dijkstraSPEuclideanGraph.distTo(vertex));
         }
 
@@ -361,11 +350,11 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
         StdOut.println("Vertex 5: 4.33");
         StdOut.println("Vertex 6: 7.53");
 
-        for(int vertex = 0; vertex < euclideanEdgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < euclideanEdgeWeightedDigraph.vertices(); vertex++) {
             StdOut.print("\nPath from vertex 0 to vertex " + vertex + ": ");
 
             if (dijkstraSPEuclideanGraph.hasPathTo(vertex)) {
-                for(DirectedEdge edge : dijkstraSPEuclideanGraph.pathTo(vertex)) {
+                for (DirectedEdge edge : dijkstraSPEuclideanGraph.pathTo(vertex)) {
                     StdOut.print(edge.from() + "->" + edge.to() + " ");
                 }
             } else {
@@ -382,5 +371,4 @@ public class Exercise27_ShortestPathsInEuclideanGraphs {
         StdOut.println("Vertex 5: 0->1 1->5");
         StdOut.println("Vertex 6: 0->1 1->5 5->6");
     }
-
 }

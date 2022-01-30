@@ -198,16 +198,16 @@ public class Exercise44_AverageSearchTime {
         double lastComputedAveragePathLength = 0;
         double lastExpectedAveragePathLength = -1;
 
-        for(int size = originValue; size <= maxNumberOfOperations; size++) {
+        for (int size = originValue; size <= maxNumberOfOperations; size++) {
             int numberOfTrials = 1000;
 
             long totalAvgPathLengths = 0;
 
-            for(int t=0; t < numberOfTrials; t++) {
+            for (int t=0; t < numberOfTrials; t++) {
                 RedBlackBSTInternalPathLength<Integer, Integer> redBlackBSTInternalPathLength =
                         new RedBlackBSTInternalPathLength<>();
 
-                for(int i = 0; i < size; i++) {
+                for (int i = 0; i < size; i++) {
                     Integer randomKey = StdRandom.uniform(Integer.MAX_VALUE);
                     redBlackBSTInternalPathLength.put(randomKey, randomKey);
                 }
@@ -225,7 +225,7 @@ public class Exercise44_AverageSearchTime {
             if (size % 200 == 0) {
                 visualAccumulator.drawDataValue(size, averageOfAveragesPathLength, StdDraw.RED);
 
-                //Draw the expected average path length -> lg N - .5
+                // Draw the expected average path length -> lg N - .5
                 double expectedAveragePathLength = (Math.log(size) / Math.log(2)) - 0.5;
                 visualAccumulator.drawDataValue(size, expectedAveragePathLength, StdDraw.BLACK);
 
@@ -247,5 +247,4 @@ public class Exercise44_AverageSearchTime {
     public static void main(String[] args) {
         new Exercise44_AverageSearchTime().doExperiment();
     }
-
 }

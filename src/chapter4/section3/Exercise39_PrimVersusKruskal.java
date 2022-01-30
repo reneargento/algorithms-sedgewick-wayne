@@ -29,12 +29,11 @@ public class Exercise39_PrimVersusKruskal {
         Exercise34_RandomSparseEdgeWeightedGraphs.RandomEdgeWeightedGraphs randomEdgeWeightedGraphs =
                 new Exercise34_RandomSparseEdgeWeightedGraphs().new RandomEdgeWeightedGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraph randomEdgeWeightedGraphUniformWeights =
                     randomEdgeWeightedGraphs.erdosRenyiGraphUniformWeights(vertices, edges);
 
-            for(int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
-
+            for (int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
                 double timeSpent = doExperiment(randomEdgeWeightedGraphUniformWeights, mstAlgorithmType);
 
                 switch (mstAlgorithmType) {
@@ -61,11 +60,11 @@ public class Exercise39_PrimVersusKruskal {
         // Graph model 2: Random edge weighted graphs with gaussian weight distribution
         graphType = "Random graph w/ gaussian weight distribution";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraph randomEdgeWeightedGraphGaussianWeights =
                     randomEdgeWeightedGraphs.erdosRenyiGraphGaussianWeights(vertices, edges);
 
-            for(int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
+            for (int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
 
                 double timeSpent = doExperiment(randomEdgeWeightedGraphGaussianWeights, mstAlgorithmType);
 
@@ -98,13 +97,13 @@ public class Exercise39_PrimVersusKruskal {
         // Running the experiment on a complete graph
         double radius = 1;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraphInterface randomEdgeWeightedEuclideanGraph =
                     randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices, radius);
 
             edges = randomEdgeWeightedEuclideanGraph.edgesCount();
 
-            for(int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
+            for (int mstAlgorithmType = 0; mstAlgorithmType < 3; mstAlgorithmType++) {
 
                 double timeSpent = doExperiment(randomEdgeWeightedEuclideanGraph, mstAlgorithmType);
 
@@ -121,7 +120,6 @@ public class Exercise39_PrimVersusKruskal {
                 }
             }
         }
-
         computeAndPrintResults(graphType, mstAlgorithms, experiments, euclideanGraphVertices, edges, totalTimeSpentLazyPrim,
                 totalTimeSpentEagerPrim, totalTimeSpentKruskal);
     }
@@ -137,7 +135,6 @@ public class Exercise39_PrimVersusKruskal {
             case KRUSKAL_ID: new KruskalMST(edgeWeightedGraph);
                 break;
         }
-
         return stopwatch.elapsedTime();
     }
 
@@ -169,5 +166,4 @@ public class Exercise39_PrimVersusKruskal {
 
         new Exercise39_PrimVersusKruskal().generateGraphsAndDoExperiments(experiments, vertices, edges, euclideanGraphVertices);
     }
-
 }

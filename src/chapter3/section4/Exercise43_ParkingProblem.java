@@ -28,7 +28,7 @@ public class Exercise43_ParkingProblem {
             totalNumberOfCompares++;
 
             int tableIndex;
-            for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
+            for (tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 totalNumberOfCompares++;
 
                 if (keys[tableIndex].equals(key)) {
@@ -47,16 +47,15 @@ public class Exercise43_ParkingProblem {
         StdOut.printf("%12s %20s %20s\n", "Hash table size | ","Number of compares | ", "Expected number of compares");
 
         int[] hashTableSizes = {1000, 10000, 100000, 1000000};
-        for(int hashTableSize : hashTableSizes) {
+        for (int hashTableSize : hashTableSizes) {
             putKeysAndPrintResults(hashTableSize);
         }
     }
 
     private void putKeysAndPrintResults(int hashTableSize) {
-
         LinearProbingHashTableFixedSize<Integer, Integer> linearProbingHashTable = new LinearProbingHashTableFixedSize<>(hashTableSize);
 
-        for(int i = 0; i < hashTableSize; i++) {
+        for (int i = 0; i < hashTableSize; i++) {
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             linearProbingHashTable.put(randomKey, randomKey);
         }
@@ -76,5 +75,4 @@ public class Exercise43_ParkingProblem {
     public static void main(String[] args) {
         new Exercise43_ParkingProblem().doExperiment();
     }
-
 }

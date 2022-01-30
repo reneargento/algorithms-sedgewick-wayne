@@ -17,7 +17,7 @@ public class CriticalPathMethod {
         int source = 2 * jobs;
         int target = 2 * jobs + 1;
 
-        for(int job = 0; job < jobs; job++) {
+        for (int job = 0; job < jobs; job++) {
             String[] jobInformation = StdIn.readLine().split("\\s+");
             double duration = Double.parseDouble(jobInformation[0]);
 
@@ -25,7 +25,7 @@ public class CriticalPathMethod {
             edgeWeightedDigraph.addEdge(new DirectedEdge(source, job, 0));
             edgeWeightedDigraph.addEdge(new DirectedEdge(job + jobs, target, 0));
 
-            for(int successors = 1; successors < jobInformation.length; successors++) {
+            for (int successors = 1; successors < jobInformation.length; successors++) {
                 int successor = Integer.parseInt(jobInformation[successors]);
                 edgeWeightedDigraph.addEdge(new DirectedEdge(job + jobs, successor, 0));
             }
@@ -34,10 +34,9 @@ public class CriticalPathMethod {
         AcyclicLP acyclicLP = new AcyclicLP(edgeWeightedDigraph, source);
 
         StdOut.println("Start times:");
-        for(int job = 0; job < jobs; job++) {
+        for (int job = 0; job < jobs; job++) {
             StdOut.printf("%4d: %5.1f\n", job, acyclicLP.distTo(job));
         }
         StdOut.printf("Finish time: %5.1f\n", acyclicLP.distTo(target));
     }
-
 }

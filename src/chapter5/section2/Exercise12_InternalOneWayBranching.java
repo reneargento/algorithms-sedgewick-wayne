@@ -551,7 +551,7 @@ public class Exercise12_InternalOneWayBranching {
 
         // Keys() test
         StdOut.println("\nAll keys");
-        for(String key : trieNoInternalOneWayBranching.keys()) {
+        for (String key : trieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -559,7 +559,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys with prefix Alg");
         StringJoiner keysWithPrefix1 = new StringJoiner(" ");
 
-        for(String key : trieNoInternalOneWayBranching.keysWithPrefix("Alg")) {
+        for (String key : trieNoInternalOneWayBranching.keysWithPrefix("Alg")) {
             keysWithPrefix1.add(key);
         }
         StdOut.println(keysWithPrefix1.toString());
@@ -568,7 +568,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys with prefix T");
         StringJoiner keysWithPrefix2 = new StringJoiner(" ");
 
-        for(String key : trieNoInternalOneWayBranching.keysWithPrefix("T")) {
+        for (String key : trieNoInternalOneWayBranching.keysWithPrefix("T")) {
             keysWithPrefix2.add(key);
         }
         StdOut.println(keysWithPrefix2.toString());
@@ -577,7 +577,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys with prefix R");
         StringJoiner keysWithPrefix3 = new StringJoiner(" ");
 
-        for(String key : trieNoInternalOneWayBranching.keysWithPrefix("R")) {
+        for (String key : trieNoInternalOneWayBranching.keysWithPrefix("R")) {
             keysWithPrefix3.add(key);
         }
         StdOut.println(keysWithPrefix3.toString());
@@ -586,7 +586,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys with prefix ZZZ");
         StringJoiner keysWithPrefix4 = new StringJoiner(" ");
 
-        for(String key : trieNoInternalOneWayBranching.keysWithPrefix("ZZZ")) {
+        for (String key : trieNoInternalOneWayBranching.keysWithPrefix("ZZZ")) {
             keysWithPrefix4.add(key);
         }
         StdOut.println(keysWithPrefix4.toString());
@@ -596,7 +596,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys that match Alg..");
         StringJoiner keysThatMatch1 = new StringJoiner("Alg..");
 
-        for(String key : trieNoInternalOneWayBranching.keysThatMatch("Alg..")) {
+        for (String key : trieNoInternalOneWayBranching.keysThatMatch("Alg..")) {
             keysThatMatch1.add(key);
         }
         StdOut.println(keysThatMatch1.toString());
@@ -605,7 +605,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys that match Re");
         StringJoiner keysThatMatch2 = new StringJoiner(" ");
 
-        for(String key : trieNoInternalOneWayBranching.keysThatMatch("Re")) {
+        for (String key : trieNoInternalOneWayBranching.keysThatMatch("Re")) {
             keysThatMatch2.add(key);
         }
         StdOut.println(keysThatMatch2.toString());
@@ -614,7 +614,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys that match Tr.e");
         StringJoiner keysThatMatch3 = new StringJoiner(" ");
 
-        for(String key : trieNoInternalOneWayBranching.keysThatMatch("Tr.e")) {
+        for (String key : trieNoInternalOneWayBranching.keysThatMatch("Tr.e")) {
             keysThatMatch3.add(key);
         }
         StdOut.println(keysThatMatch3.toString());
@@ -649,14 +649,14 @@ public class Exercise12_InternalOneWayBranching {
         trieNoInternalOneWayBranching.put("ZKey", 12);
 
         StdOut.println("\nKeys after ABCKey and ZKey insert: ");
-        for(String key : trieNoInternalOneWayBranching.keys()) {
+        for (String key : trieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
         trieNoInternalOneWayBranching.deleteMin();
 
         StdOut.println("\nKeys after deleteMin: ");
-        for(String key : trieNoInternalOneWayBranching.keys()) {
+        for (String key : trieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -665,7 +665,7 @@ public class Exercise12_InternalOneWayBranching {
         trieNoInternalOneWayBranching.deleteMax();
 
         StdOut.println("\nKeys after deleteMax: ");
-        for(String key : trieNoInternalOneWayBranching.keys()) {
+        for (String key : trieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -743,14 +743,14 @@ public class Exercise12_InternalOneWayBranching {
         trieNoInternalOneWayBranching.delete("Z-Function");
 
         StdOut.println("\nKeys() after deleting Z-Function key");
-        for(String key : trieNoInternalOneWayBranching.keys()) {
+        for (String key : trieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
         trieNoInternalOneWayBranching.delete("Rene");
 
         StdOut.println("\nKeys() after deleting Rene key");
-        for(String key : trieNoInternalOneWayBranching.keys()) {
+        for (String key : trieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -759,7 +759,7 @@ public class Exercise12_InternalOneWayBranching {
         trieNoInternalOneWayBranching.delete("Re");
 
         StdOut.println("\nKeys() after deleting Re key");
-        for(String key : trieNoInternalOneWayBranching.keys()) {
+        for (String key : trieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
     }
@@ -796,7 +796,7 @@ public class Exercise12_InternalOneWayBranching {
 
         // Keys() test
         StdOut.println("\nAll keys");
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -804,7 +804,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys with prefix Alg");
         StringJoiner keysWithPrefix1 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keysWithPrefix("Alg")) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keysWithPrefix("Alg")) {
             keysWithPrefix1.add(key);
         }
         StdOut.println(keysWithPrefix1.toString());
@@ -813,7 +813,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys with prefix T");
         StringJoiner keysWithPrefix2 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keysWithPrefix("T")) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keysWithPrefix("T")) {
             keysWithPrefix2.add(key);
         }
         StdOut.println(keysWithPrefix2.toString());
@@ -822,7 +822,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys with prefix R");
         StringJoiner keysWithPrefix3 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keysWithPrefix("R")) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keysWithPrefix("R")) {
             keysWithPrefix3.add(key);
         }
         StdOut.println(keysWithPrefix3.toString());
@@ -831,7 +831,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys with prefix ZZZ");
         StringJoiner keysWithPrefix4 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keysWithPrefix("ZZZ")) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keysWithPrefix("ZZZ")) {
             keysWithPrefix4.add(key);
         }
         StdOut.println(keysWithPrefix4.toString());
@@ -841,7 +841,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys that match Alg..");
         StringJoiner keysThatMatch1 = new StringJoiner("Alg..");
 
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keysThatMatch("Alg..")) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keysThatMatch("Alg..")) {
             keysThatMatch1.add(key);
         }
         StdOut.println(keysThatMatch1.toString());
@@ -850,7 +850,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys that match Re");
         StringJoiner keysThatMatch2 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keysThatMatch("Re")) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keysThatMatch("Re")) {
             keysThatMatch2.add(key);
         }
         StdOut.println(keysThatMatch2.toString());
@@ -859,7 +859,7 @@ public class Exercise12_InternalOneWayBranching {
         StdOut.println("\nKeys that match Tr.e");
         StringJoiner keysThatMatch3 = new StringJoiner(" ");
 
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keysThatMatch("Tr.e")) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keysThatMatch("Tr.e")) {
             keysThatMatch3.add(key);
         }
         StdOut.println(keysThatMatch3.toString());
@@ -894,14 +894,14 @@ public class Exercise12_InternalOneWayBranching {
         ternarySearchTrieNoInternalOneWayBranching.put("ZKey", 12);
 
         StdOut.println("\nKeys after ABCKey and ZKey insert: ");
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
         ternarySearchTrieNoInternalOneWayBranching.deleteMin();
 
         StdOut.println("\nKeys after deleteMin: ");
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -910,7 +910,7 @@ public class Exercise12_InternalOneWayBranching {
         ternarySearchTrieNoInternalOneWayBranching.deleteMax();
 
         StdOut.println("\nKeys after deleteMax: ");
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -988,14 +988,14 @@ public class Exercise12_InternalOneWayBranching {
         ternarySearchTrieNoInternalOneWayBranching.delete("Z-Function");
 
         StdOut.println("\nKeys() after deleting Z-Function key");
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
         ternarySearchTrieNoInternalOneWayBranching.delete("Rene");
 
         StdOut.println("\nKeys() after deleting Rene key");
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
 
@@ -1004,9 +1004,8 @@ public class Exercise12_InternalOneWayBranching {
         ternarySearchTrieNoInternalOneWayBranching.delete("Re");
 
         StdOut.println("\nKeys() after deleting Re key");
-        for(String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
+        for (String key : ternarySearchTrieNoInternalOneWayBranching.keys()) {
             StdOut.println(key);
         }
     }
-
 }

@@ -101,8 +101,7 @@ public class Exercise39_DeleteTheMinimum {
         redBlackBST.put(12, 12);
 
         while (!redBlackBST.isEmpty()) {
-
-            for(Integer key : redBlackBST.keys()) {
+            for (Integer key : redBlackBST.keys()) {
                 StdOut.println(key);
             }
 

@@ -17,7 +17,6 @@ public class Exercise38_VariousTypesOfItems {
     }
 
     public static void main(String[] args) {
-
         int arrayLength = Integer.parseInt(args[0]);
         int experiments = Integer.parseInt(args[1]);
 
@@ -25,13 +24,12 @@ public class Exercise38_VariousTypesOfItems {
     }
 
     private static void runAllExperiments(int initialArrayLength, int experiments) {
-
         int arrayLength = initialArrayLength;
 
         StdOut.printf("%15s %17s %8s\n", "Sort Type", "Array Length", "Time");
         StdOut.println("String key, one double value");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
 
             Map[] stringKeyDoubleValueArray = generateStringKeyDoubleValueArray(arrayLength);
             runExperiments(stringKeyDoubleValueArray, KeyType.String);
@@ -45,8 +43,7 @@ public class Exercise38_VariousTypesOfItems {
 
         StdOut.println("Double key, ten String values");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
-
+        for (int experiment = 0; experiment < experiments; experiment++) {
             Map[] doubleKeyStringValuesArray = generateDoubleKeyStringValuesArray(arrayLength);
             runExperiments(doubleKeyStringValuesArray, KeyType.Double);
             arrayLength *= 2;
@@ -59,8 +56,7 @@ public class Exercise38_VariousTypesOfItems {
 
         StdOut.println("Int key, int array value");
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
-
+        for (int experiment = 0; experiment < experiments; experiment++) {
             Map[] intKeyIntArrayValuesArray = generateIntKeyIntArrayValuesArray(arrayLength);
             runExperiments(intKeyIntArrayValuesArray, KeyType.Integer);
             arrayLength *= 2;
@@ -82,10 +78,9 @@ public class Exercise38_VariousTypesOfItems {
     }
 
     private static Map[] generateStringKeyDoubleValueArray(int arrayLength) {
-
         Map[] array = new HashMap[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             Map<String, Double> keyValues = new HashMap<>();
 
             String randomKey = generate10CharRandomString();
@@ -95,64 +90,56 @@ public class Exercise38_VariousTypesOfItems {
 
             array[i] = keyValues;
         }
-
         return array;
     }
 
     private static Map[] generateDoubleKeyStringValuesArray(int arrayLength) {
-
         Map[] array = new HashMap[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             Map<Double, String[]> keyValues = new HashMap<>();
 
             double randomKey = StdRandom.uniform();
             String[] randomValue = new String[10];
 
-            for(int j = 0; j < randomValue.length; j++) {
+            for (int j = 0; j < randomValue.length; j++) {
                 randomValue[j] = generate10CharRandomString();
             }
 
             keyValues.put(randomKey, randomValue);
-
             array[i] = keyValues;
         }
-
         return array;
     }
 
     private static Map[] generateIntKeyIntArrayValuesArray(int arrayLength) {
-
         Map[] array = new HashMap[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             Map<Integer, Integer[]> keyValues = new HashMap<>();
 
             int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
             Integer[] randomValue = new Integer[20];
 
-            for(int j = 0; j < randomValue.length; j++) {
+            for (int j = 0; j < randomValue.length; j++) {
                 randomValue[j] = StdRandom.uniform(Integer.MAX_VALUE);
             }
 
             keyValues.put(randomKey, randomValue);
-
             array[i] = keyValues;
         }
-
         return array;
     }
 
     private static String generate10CharRandomString() {
         char[] chars = new char[10];
 
-        for(int i = 0; i < chars.length; i++) {
-
+        for (int i = 0; i < chars.length; i++) {
             int randomCharIntValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                     Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
 
-            //Not valid characters
-            while(randomCharIntValue >= 91 && randomCharIntValue <= 96) {
+            // Not valid characters
+            while (randomCharIntValue >= 91 && randomCharIntValue <= 96) {
                 randomCharIntValue = StdRandom.uniform(Constants.ASC_II_UPPERCASE_LETTERS_INITIAL_INDEX,
                         Constants.ASC_II_LOWERCASE_LETTERS_FINAL_INDEX + 1);
             }
@@ -175,28 +162,25 @@ public class Exercise38_VariousTypesOfItems {
             case SHELL: shellSort(array, keyType);
                 break;
         }
-
         return timer.elapsedTime();
     }
 
     private static void selectionSort(Map[] array, KeyType keyType) {
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             int minIndex = i;
 
-            for(int j = i + 1; j < array.length; j++) {
+            for (int j = i + 1; j < array.length; j++) {
                 if (isLower(array, j, minIndex, keyType)) {
                     minIndex = j;
                 }
             }
-
             swapElements(array, i, minIndex);
         }
     }
 
     private static void insertionSort(Map[] array, KeyType keyType) {
-
-        for(int i = 0; i < array.length; i++) {
-            for(int j = i; j > 0 && isLower(array, j - 1, j, keyType); j--) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i; j > 0 && isLower(array, j - 1, j, keyType); j--) {
                 swapElements(array, j, j - 1);
             }
         }
@@ -205,19 +189,17 @@ public class Exercise38_VariousTypesOfItems {
     private static void shellSort(Map[] array, KeyType keyType) {
         int incrementSequence = 1;
 
-        while(incrementSequence * 3 + 1 < array.length) {
+        while (incrementSequence * 3 + 1 < array.length) {
             incrementSequence *= 3;
             incrementSequence++;
         }
 
         while (incrementSequence > 0) {
-
-            for(int i = incrementSequence; i < array.length; i++) {
-                for(int j = i; j >= incrementSequence && isLower(array, j, j - incrementSequence, keyType); j -= incrementSequence) {
+            for (int i = incrementSequence; i < array.length; i++) {
+                for (int j = i; j >= incrementSequence && isLower(array, j, j - incrementSequence, keyType); j -= incrementSequence) {
                     swapElements(array, j, j - incrementSequence);
                 }
             }
-
             incrementSequence /= 3;
         }
     }
@@ -229,19 +211,18 @@ public class Exercise38_VariousTypesOfItems {
     }
 
     private static boolean isLower(Map[] array, int index1, int index2, KeyType keyType) {
-
         switch (keyType) {
             case String:
-                //Get keys
+                // Get keys
                 String stringKeyObject1 = null;
 
-                for(Object key : array[index1].keySet()) {
+                for (Object key : array[index1].keySet()) {
                     stringKeyObject1 = (String) key;
                 }
 
                 String stringKeyObject2 = null;
 
-                for(Object key : array[index2].keySet()) {
+                for (Object key : array[index2].keySet()) {
                     stringKeyObject2 = (String) key;
                 }
 
@@ -249,8 +230,8 @@ public class Exercise38_VariousTypesOfItems {
                     return false;
                 }
 
-                //Compare both Strings
-                for(int c = 0; c < stringKeyObject2.toCharArray().length; c++) {
+                // Compare both Strings
+                for (int c = 0; c < stringKeyObject2.toCharArray().length; c++) {
                     if (stringKeyObject1.length() == c) {
                         return true;
                     }
@@ -265,13 +246,13 @@ public class Exercise38_VariousTypesOfItems {
             case Double:
                 Double doubleKeyObject1 = null;
 
-                for(Object key : array[index1].keySet()) {
+                for (Object key : array[index1].keySet()) {
                     doubleKeyObject1 = (double) key;
                 }
 
                 Double doubleKeyObject2 = null;
 
-                for(Object key : array[index2].keySet()) {
+                for (Object key : array[index2].keySet()) {
                     doubleKeyObject2 = (double) key;
                 }
 
@@ -286,13 +267,13 @@ public class Exercise38_VariousTypesOfItems {
             case Integer:
                 Integer integerKeyObject1 = null;
 
-                for(Object key : array[index1].keySet()) {
+                for (Object key : array[index1].keySet()) {
                     integerKeyObject1 = (int) key;
                 }
 
                 Integer integerKeyObject2 = null;
 
-                for(Object key : array[index2].keySet()) {
+                for (Object key : array[index2].keySet()) {
                     integerKeyObject2 = (int) key;
                 }
 
@@ -305,12 +286,10 @@ public class Exercise38_VariousTypesOfItems {
                 }
                 break;
         }
-
         return false;
     }
 
     private static void printExperiment(SortTypes sortType, int arrayLength, double time) {
         StdOut.printf("%15s %17d %8.2f\n", sortType, arrayLength, time);
     }
-
 }

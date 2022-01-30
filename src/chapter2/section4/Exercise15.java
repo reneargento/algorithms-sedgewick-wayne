@@ -17,20 +17,17 @@ public class Exercise15 {
     }
 
     private static boolean certification(Comparable[] pq) {
-
-        for(int i = 1; i < pq.length / 2; i++) {
-            //Check left child
+        for (int i = 1; i < pq.length / 2; i++) {
+            // Check left child
             if (!ArrayUtil.less(pq[i], pq[i * 2])) {
                 return false;
             }
 
-            //Check right child
+            // Check right child
             if (i * 2 + 1 < pq.length && !ArrayUtil.less(pq[i], pq[i * 2 + 1])) {
                 return false;
             }
         }
-
         return true;
     }
-
 }

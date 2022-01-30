@@ -108,7 +108,7 @@ public class Exercise10 {
                 return;
             }
 
-            //The root must have opposite color of its two children
+            // The root must have opposite color of its two children
             if ((isRed(node) && !isRed(node.left) && !isRed(node.right))
                     || (!isRed(node) && isRed(node.left) && isRed(node.right))) {
                 node.color = !node.color;
@@ -138,8 +138,8 @@ public class Exercise10 {
 
             int compare = key.compareTo(node.key);
 
-            //If it is a duplicate key, put it on the left subtree
-            //It is important to notice that since we have rotations,
+            // If it is a duplicate key, put it on the left subtree
+            // It is important to notice that since we have rotations,
             // the duplicate keys may be on the left or right subtrees later
             if (compare <= 0) {
                 node.left = put(node.left, key, value);
@@ -223,7 +223,7 @@ public class Exercise10 {
             return max(node.right);
         }
 
-        //Returns the highest key in the symbol table smaller than or equal to key.
+        // Returns the highest key in the symbol table smaller than or equal to key.
         public Key floor(Key key) {
             Node node = floor(root, key);
             if (node == null) {
@@ -254,7 +254,7 @@ public class Exercise10 {
             }
         }
 
-        //Returns the smallest key in the symbol table greater than or equal to key.
+        // Returns the smallest key in the symbol table greater than or equal to key.
         public Key ceiling(Key key) {
             Node node = ceiling(root, key);
             if (node == null) {
@@ -314,7 +314,7 @@ public class Exercise10 {
                 return 0;
             }
 
-            //Returns the number of keys less than node.key in the subtree rooted at node
+            // Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
             if (compare < 0) {
                 return rankFirst(node.left, key);
@@ -344,7 +344,7 @@ public class Exercise10 {
                 return 0;
             }
 
-            //Returns the number of keys less than node.key in the subtree rooted at node
+            // Returns the number of keys less than node.key in the subtree rooted at node
             int compare = key.compareTo(node.key);
             if (compare < 0) {
                 return rankLast(node.left, key);
@@ -365,12 +365,12 @@ public class Exercise10 {
             }
         }
 
-        //In the case of duplicates, return the rank of the rightmost key
+        // In the case of duplicates, return the rank of the rightmost key
         public int rank(Key key) {
             return rankLast(key);
         }
 
-        //O(n lg n) since we are removing all duplicate min keys
+        // O(n lg n) since we are removing all duplicate min keys
         public void deleteMin() {
             if (isEmpty()) {
                 return;
@@ -404,7 +404,7 @@ public class Exercise10 {
             return balance(node);
         }
 
-        //O(n lg n) since we are removing all duplicate max keys
+        // O(n lg n) since we are removing all duplicate max keys
         public void deleteMax() {
             if (isEmpty()) {
                 return;
@@ -442,7 +442,7 @@ public class Exercise10 {
             return balance(node);
         }
 
-        //O(n lg n) since we are removing all duplicate keys
+        // O(n lg n) since we are removing all duplicate keys
         public void delete(Key key) {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
@@ -503,7 +503,7 @@ public class Exercise10 {
         }
 
         private Node moveRedLeft(Node node) {
-            //Assuming that node is red and both node.left and node.left.left are black,
+            // Assuming that node is red and both node.left and node.left.left are black,
             // make node.left or one of its children red
             flipColors(node);
 
@@ -517,7 +517,7 @@ public class Exercise10 {
         }
 
         private Node moveRedRight(Node node) {
-            //Assuming that node is red and both node.right and node.right.left are black,
+            // Assuming that node is red and both node.right and node.right.left are black,
             // make node.right or one of its children red
             flipColors(node);
 
@@ -613,7 +613,7 @@ public class Exercise10 {
         Exercise10 exercise10 = new Exercise10();
         RedBlackBSTDuplicateKeys<Integer, Integer> redBlackBSTDuplicateKeys = exercise10.new RedBlackBSTDuplicateKeys<>();
 
-        //Test put()
+        // Test put()
         redBlackBSTDuplicateKeys.put(0, 0);
         redBlackBSTDuplicateKeys.put(0, 1);
         redBlackBSTDuplicateKeys.put(0, 2);
@@ -636,7 +636,7 @@ public class Exercise10 {
         redBlackBSTDuplicateKeys.put(24, 18);
 
         StdOut.println("Keys() test");
-        for(Integer key : redBlackBSTDuplicateKeys.keys()) {
+        for (Integer key : redBlackBSTDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + redBlackBSTDuplicateKeys.get(key));
         }
         StdOut.println("\nExpected:");
@@ -657,45 +657,45 @@ public class Exercise10 {
         StdOut.println("Key 23: 17");
         StdOut.println("Key 24: 18");
 
-        //Test size()
+        // Test size()
         StdOut.println("Keys size: " + redBlackBSTDuplicateKeys.size() + " Expected: 16");
 
-        //Test size() with range
+        // Test size() with range
         StdOut.println("Keys size [0, 20]: " + redBlackBSTDuplicateKeys.size(0, 20) + " Expected: 12");
 
-        //Test contains()
+        // Test contains()
         StdOut.println("\nContains 8: " + redBlackBSTDuplicateKeys.contains(8) + " Expected: true");
         StdOut.println("Contains 9: " + redBlackBSTDuplicateKeys.contains(9) + " Expected: false");
 
-        //Test min()
+        // Test min()
         StdOut.println("\nMin key: " + redBlackBSTDuplicateKeys.min() + " Expected: 0");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + redBlackBSTDuplicateKeys.max() + " Expected: 24");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + redBlackBSTDuplicateKeys.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + redBlackBSTDuplicateKeys.floor(15) + " Expected: 8");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + redBlackBSTDuplicateKeys.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + redBlackBSTDuplicateKeys.ceiling(15) + " Expected: 20");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 3: " + redBlackBSTDuplicateKeys.select(3) + " Expected: 0");
         StdOut.println("Select key of rank 4: " + redBlackBSTDuplicateKeys.select(4) + " Expected: 5");
 
-        //Test rank()
-        //Note that the expected rank of key 8 is 7 and not 6, because we are assuming that rank returns the index
+        // Test rank()
+        // Note that the expected rank of key 8 is 7 and not 6, because we are assuming that rank returns the index
         // of the rightmost key when there are duplicates
         StdOut.println("Rank of key 8: " + redBlackBSTDuplicateKeys.rank(8) + " Expected: 7");
         StdOut.println("Rank of key 9: " + redBlackBSTDuplicateKeys.rank(9) + " Expected: 8");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 20");
         redBlackBSTDuplicateKeys.delete(20);
 
-        for(Integer key : redBlackBSTDuplicateKeys.keys()) {
+        for (Integer key : redBlackBSTDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + redBlackBSTDuplicateKeys.get(key));
         }
         StdOut.println("Keys size: " + redBlackBSTDuplicateKeys.size() + " Expected: 12");
@@ -703,50 +703,49 @@ public class Exercise10 {
         StdOut.println("\nDelete key 5");
         redBlackBSTDuplicateKeys.delete(5);
 
-        for(Integer key : redBlackBSTDuplicateKeys.keys()) {
+        for (Integer key : redBlackBSTDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + redBlackBSTDuplicateKeys.get(key));
         }
         StdOut.println("Keys size: " + redBlackBSTDuplicateKeys.size() + " Expected: 10");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key 0)");
         redBlackBSTDuplicateKeys.deleteMin();
 
-        for(Integer key : redBlackBSTDuplicateKeys.keys()) {
+        for (Integer key : redBlackBSTDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + redBlackBSTDuplicateKeys.get(key));
         }
         StdOut.println("Keys size: " + redBlackBSTDuplicateKeys.size() + " Expected: 6");
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 24)");
         redBlackBSTDuplicateKeys.deleteMax();
 
-        for(Integer key : redBlackBSTDuplicateKeys.keys()) {
+        for (Integer key : redBlackBSTDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + redBlackBSTDuplicateKeys.get(key));
         }
         StdOut.println("Keys size: " + redBlackBSTDuplicateKeys.size() + " Expected: 5");
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\nKeys in range [2, 10]");
-        for(Integer key : redBlackBSTDuplicateKeys.keys(2, 10)) {
+        for (Integer key : redBlackBSTDuplicateKeys.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + redBlackBSTDuplicateKeys.get(key));
         }
 
         StdOut.println("\nKeys in range [20, 22]");
-        for(Integer key : redBlackBSTDuplicateKeys.keys(20, 22)) {
+        for (Integer key : redBlackBSTDuplicateKeys.keys(20, 22)) {
             StdOut.println("Key " + key + ": " + redBlackBSTDuplicateKeys.get(key));
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\nDelete all");
         while (redBlackBSTDuplicateKeys.size() > 0) {
-            for(Integer key : redBlackBSTDuplicateKeys.keys()) {
+            for (Integer key : redBlackBSTDuplicateKeys.keys()) {
                 StdOut.println("Key " + key + ": " + redBlackBSTDuplicateKeys.get(key));
             }
-            //redBlackBSTDuplicateKeys.delete(redBlackBSTDuplicateKeys.select(0));
+            // redBlackBSTDuplicateKeys.delete(redBlackBSTDuplicateKeys.select(0));
             redBlackBSTDuplicateKeys.delete(redBlackBSTDuplicateKeys.select(redBlackBSTDuplicateKeys.size() - 1));
             StdOut.println();
         }
     }
-
 }

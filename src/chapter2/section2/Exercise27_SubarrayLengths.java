@@ -30,7 +30,7 @@ public class Exercise27_SubarrayLengths {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
             totalNumberOfSubArrays = 0;
             totalSubArrayProportions = 0;
 
@@ -51,7 +51,6 @@ public class Exercise27_SubarrayLengths {
     }
 
     private void mergesort(Comparable[] array, Comparable[] aux, int low, int high) {
-
         if (low >= high) {
             return;
         }
@@ -68,7 +67,7 @@ public class Exercise27_SubarrayLengths {
     private void merge(Comparable[] array, Comparable[] aux, int low, int middle, int high) {
         totalNumberOfSubArrays++;
 
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
             aux[i] = array[i];
         }
 
@@ -77,7 +76,7 @@ public class Exercise27_SubarrayLengths {
 
         boolean exhausted = false;
 
-        for(int i = low; i <= high; i++) {
+        for (int i = low; i <= high; i++) {
 
             if (leftIndex > middle) {
                 array[i] = aux[rightIndex];

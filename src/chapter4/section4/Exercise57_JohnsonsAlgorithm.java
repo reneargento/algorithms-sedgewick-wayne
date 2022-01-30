@@ -12,7 +12,6 @@ import edu.princeton.cs.algs4.Stopwatch;
 public class Exercise57_JohnsonsAlgorithm {
 
     public class DijkstraSPDWayHeap {
-
         private DirectedEdge[] edgeTo;  // last edge on path to vertex
         private double[] distTo;        // length of path to vertex
         private IndexMinDWayPriorityQueue<Double> priorityQueue;
@@ -23,7 +22,7 @@ public class Exercise57_JohnsonsAlgorithm {
             distTo = new double[edgeWeightedDigraph.vertices()];
             priorityQueue = new IndexMinDWayPriorityQueue<>(edgeWeightedDigraph.vertices(), numberOfChildrenPerNodeInHeap);
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             distTo[source] = 0;
@@ -35,7 +34,7 @@ public class Exercise57_JohnsonsAlgorithm {
         }
 
         private void relax(EdgeWeightedDigraphInterface edgeWeightedDigraph, int vertex) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -69,7 +68,7 @@ public class Exercise57_JohnsonsAlgorithm {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[vertex]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
 
@@ -93,12 +92,12 @@ public class Exercise57_JohnsonsAlgorithm {
         Exercise49_RandomSparseEdgeWeightedDigraphs.RandomEdgeWeightedDigraphs randomEdgeWeightedDigraphs =
                 new Exercise49_RandomSparseEdgeWeightedDigraphs().new RandomEdgeWeightedDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedDigraphInterface randomEdgeWeightedDigraphUniformWeights =
                     randomEdgeWeightedDigraphs.erdosRenyiDigraphUniformWeights(uniformWeightDigraphVertices, edges);
             int randomSource = StdRandom.uniform(uniformWeightDigraphVertices);
 
-            for(int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
+            for (int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
                 int dWayHeapChildrenNumber = dWayHeapType + 2;
 
                 double timeSpent = doExperiment(randomEdgeWeightedDigraphUniformWeights, randomSource, dWayHeapChildrenNumber);
@@ -118,14 +117,14 @@ public class Exercise57_JohnsonsAlgorithm {
         Exercise50_RandomEuclideanEdgeWeightedDigraphs randomEuclideanEdgeWeightedDigraphs =
                 new Exercise50_RandomEuclideanEdgeWeightedDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedDigraphInterface euclideanEdgeWeightedDigraph =
                     randomEuclideanEdgeWeightedDigraphs.randomEuclideanEdgeWeightedDigraph(euclideanDigraphVertices, radius);
 
             edges = euclideanEdgeWeightedDigraph.edgesCount();
             int randomSource = StdRandom.uniform(euclideanDigraphVertices);
 
-            for(int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
+            for (int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
                 int dWayHeapChildrenNumber = dWayHeapType + 2;
 
                 double timeSpent = doExperiment(euclideanEdgeWeightedDigraph, randomSource, dWayHeapChildrenNumber);
@@ -145,13 +144,13 @@ public class Exercise57_JohnsonsAlgorithm {
         // shrinking may occur. So fix the source node as 0, since vertex 0 will always be present.
         int sourceNode = 0;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedDigraphInterface gridEdgeWeightedDigraph =
                     randomGridEdgeWeightedDigraphs.randomGridEdgeWeightedDigraph(gridDigraphVertices, gridDigraphExtraEdges);
 
             edges = gridEdgeWeightedDigraph.edgesCount();
 
-            for(int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
+            for (int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
                 int dWayHeapChildrenNumber = dWayHeapType + 2;
 
                 double timeSpent = doExperiment(gridEdgeWeightedDigraph, sourceNode, dWayHeapChildrenNumber);
@@ -171,8 +170,7 @@ public class Exercise57_JohnsonsAlgorithm {
 
     private void computeAndPrintResults(double[] totalTimeSpent, String digraphType, String[] dWayHeaps,
                                         int experiments, int vertices, int edges) {
-
-        for(int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
+        for (int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
             String dWayHeap = dWayHeaps[dWayHeapType];
 
             double averageTimeSpent = totalTimeSpent[dWayHeapType] / experiments;
@@ -202,5 +200,4 @@ public class Exercise57_JohnsonsAlgorithm {
         new Exercise57_JohnsonsAlgorithm().generateDigraphsAndDoExperiments(experiments, uniformWeightDigraphVertices,
                 uniformWeightDigraphEdges, euclideanDigraphVertices, gridDigraphVertices, gridDigraphExtraEdges);
     }
-
 }

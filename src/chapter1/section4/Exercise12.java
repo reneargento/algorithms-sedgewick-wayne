@@ -29,7 +29,7 @@ public class Exercise12 {
             } else if (array2[array2Index] < array1[array1Index]) {
                 array2Index++;
             } else {
-                if(recentMatchedValue == null || recentMatchedValue != array1[array1Index]) {
+                if (recentMatchedValue == null || recentMatchedValue != array1[array1Index]) {
                     StdOut.print(array1[array1Index] + " ");
                     recentMatchedValue = array1[array1Index];
                 }

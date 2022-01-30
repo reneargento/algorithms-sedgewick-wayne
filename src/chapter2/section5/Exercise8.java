@@ -48,13 +48,13 @@ public class Exercise8 {
          test
          end
          */
-        while(scanner.hasNext()) {
+        while (scanner.hasNext()) {
             stringList.add(scanner.next());
         }
 
         Exercise8 exercise8 = new Exercise8();
         StringFrequency[] frequencies = exercise8.frequency2(stringList);
-        for(StringFrequency frequency : frequencies) {
+        for (StringFrequency frequency : frequencies) {
             StdOut.println(frequency.string + " " + frequency.frequency + " occurrence(s)");
         }
 
@@ -69,7 +69,7 @@ public class Exercise8 {
     private StringFrequency[] frequency(List<String> strings) {
         Map<String, Integer> occurrenciesMap = new HashMap<>();
 
-        for(String string : strings) {
+        for (String string : strings) {
             int frequency = 0;
 
             if (occurrenciesMap.containsKey(string)) {
@@ -83,7 +83,7 @@ public class Exercise8 {
         StringFrequency[] stringFrequencies = new StringFrequency[occurrenciesMap.size()];
         int stringFrequenciesIndex = 0;
 
-        for(String key : occurrenciesMap.keySet()) {
+        for (String key : occurrenciesMap.keySet()) {
             int frequency = occurrenciesMap.get(key);
 
             StringFrequency stringFrequency = new StringFrequency(key, frequency);
@@ -105,7 +105,7 @@ public class Exercise8 {
         String currentString = strings.get(0);
         int frequency = 1;
 
-        for(int i = 1; i < strings.size(); i++) {
+        for (int i = 1; i < strings.size(); i++) {
             if (!currentString.equals(strings.get(i))) {
                 stringFrequencies[stringFrequenciesIndex++] = new StringFrequency(currentString, frequency);
                 currentString = strings.get(i);
@@ -123,5 +123,4 @@ public class Exercise8 {
 
         return stringFrequenciesOutput;
     }
-
 }

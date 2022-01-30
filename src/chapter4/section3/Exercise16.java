@@ -14,7 +14,7 @@ public class Exercise16 {
     public double[] getWeightRangeToBeInMST(Queue<Edge> minimumSpanningTree, Edge newEdge) {
         EdgeWeightedGraph edgeWeightedGraph = new EdgeWeightedGraph(minimumSpanningTree.size() + 1);
 
-        for(Edge edgeInMST : minimumSpanningTree) {
+        for (Edge edgeInMST : minimumSpanningTree) {
             edgeWeightedGraph.addEdge(edgeInMST);
         }
 
@@ -28,7 +28,7 @@ public class Exercise16 {
         Edge[] edgesInCycle = new Edge[cycle.size()];
         int edgesInCycleIndex = 0;
 
-        for(Edge edgeInCycle : cycle) {
+        for (Edge edgeInCycle : cycle) {
             edgesInCycle[edgesInCycleIndex++] = edgeInCycle;
         }
 
@@ -82,5 +82,4 @@ public class Exercise16 {
         double[] weightRange3 = exercise16.getWeightRangeToBeInMST(minimumSpanningTree3, edge3);
         StdOut.println("Weight range 3: " + weightRange3[0] + " to " + weightRange3[1] + " Expected: -Infinity to 3.999999");
     }
-
 }

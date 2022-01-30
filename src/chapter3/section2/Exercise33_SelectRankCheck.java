@@ -11,19 +11,18 @@ public class Exercise33_SelectRankCheck {
         int size = binarySearchTree.size();
 
         //Check rank
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             if (i != binarySearchTree.rank(binarySearchTree.select(i))) {
                 return false;
             }
         }
 
         //Check select
-        for(Integer key : binarySearchTree.keys()) {
+        for (Integer key : binarySearchTree.keys()) {
             if (key.compareTo(binarySearchTree.select(binarySearchTree.rank(key))) != 0) {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -41,5 +40,4 @@ public class Exercise33_SelectRankCheck {
         Exercise33_SelectRankCheck selectRankCheck = new Exercise33_SelectRankCheck();
         StdOut.println(selectRankCheck.checkRankAndSelect(binarySearchTree) + " Expected: true");
     }
-
 }

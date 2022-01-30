@@ -21,7 +21,7 @@ public class DepthFirstDirectedPaths {
     private void dfs(DigraphInterface graph, int vertex) {
         visited[vertex] = true;
 
-        for(int neighbor : graph.adjacent(vertex)) {
+        for (int neighbor : graph.adjacent(vertex)) {
             if (!visited[neighbor]) {
                 edgeTo[neighbor] = vertex;
                 dfs(graph, neighbor);
@@ -40,12 +40,11 @@ public class DepthFirstDirectedPaths {
 
         Stack<Integer> path = new Stack<>();
 
-        for(int currentVertex = vertex; currentVertex != source; currentVertex = edgeTo[currentVertex]) {
+        for (int currentVertex = vertex; currentVertex != source; currentVertex = edgeTo[currentVertex]) {
             path.push(currentVertex);
         }
 
         path.push(source);
         return path;
     }
-
 }

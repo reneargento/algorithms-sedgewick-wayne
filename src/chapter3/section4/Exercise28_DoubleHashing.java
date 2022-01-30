@@ -74,7 +74,7 @@ public class Exercise28_DoubleHashing {
 
             DoubleHashingHashTable<Key, Value> tempHashTable = new DoubleHashingHashTable<>(newSize);
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (values[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
@@ -98,7 +98,7 @@ public class Exercise28_DoubleHashing {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            for(int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
+            for (int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
                 if (keys[tableIndex].equals(key)) {
                     return values[tableIndex];
                 }
@@ -123,7 +123,7 @@ public class Exercise28_DoubleHashing {
             }
 
             int tableIndex;
-            for(tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
+            for (tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + secondaryHash(key)) % size) {
                 if (keys[tableIndex].equals(key)) {
 
                     if (values[tableIndex] == null) {
@@ -169,7 +169,7 @@ public class Exercise28_DoubleHashing {
         public Iterable<Key> keys() {
             Queue<Key> keySet = new Queue<>();
 
-            for(Object key : keys) {
+            for (Object key : keys) {
                 if (key != null) {
                     keySet.enqueue((Key) key);
                 }
@@ -177,13 +177,13 @@ public class Exercise28_DoubleHashing {
 
             if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keySet.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keySet.enqueue(key);
                 }
             }
@@ -218,7 +218,7 @@ public class Exercise28_DoubleHashing {
         Exercise28_DoubleHashing doubleHashing = new Exercise28_DoubleHashing();
 
         DoubleHashingHashTable<TestClass, Integer> doubleHashingHashTable = doubleHashing.new DoubleHashingHashTable<>(7);
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             doubleHashingHashTable.put(new TestClass(i), i);
         }
 
@@ -228,7 +228,7 @@ public class Exercise28_DoubleHashing {
         doubleHashingHashTable.delete(new TestClass(0));
         StdOut.println("Size: " + doubleHashingHashTable.size() + " Expected: 2");
 
-        for(int i = 4; i < 100; i++) {
+        for (int i = 4; i < 100; i++) {
             doubleHashingHashTable.put(new TestClass(i), i);
         }
 
@@ -241,5 +241,4 @@ public class Exercise28_DoubleHashing {
         doubleHashingHashTable.delete(new TestClass(7));
         StdOut.println("Size: " + doubleHashingHashTable.size() + " Expected: 94");
     }
-
 }

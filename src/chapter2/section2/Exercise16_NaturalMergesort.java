@@ -48,7 +48,7 @@ public class Exercise16_NaturalMergesort {
     }
 
     private static int findSortedSubArray(Comparable[] array, int start) {
-        for(int i = start + 1; i < array.length; i++) {
+        for (int i = start + 1; i < array.length; i++) {
             if (array[i].compareTo(array[i - 1]) < 0) {
                 return i - 1;
             }

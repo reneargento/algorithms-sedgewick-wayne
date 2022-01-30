@@ -22,7 +22,7 @@ public class Exercise54_PathLengthsInBFS {
 
         Exercise45_RandomDigraphs exercise45_randomDigraphs = new Exercise45_RandomDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             DigraphInterface randomDigraph = exercise45_randomDigraphs.erdosRenyiDigraph(vertices, edges);
             int[] experimentResults = doExperiment(randomDigraph);
 
@@ -40,7 +40,7 @@ public class Exercise54_PathLengthsInBFS {
 
         Exercise46_RandomSimpleDigraphs exercise46_randomSimpleDigraphs = new Exercise46_RandomSimpleDigraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             DigraphInterface randomSimpleDigraph = exercise46_randomSimpleDigraphs.randomDigraph(vertices, edges);
             int[] experimentResults = doExperiment(randomSimpleDigraph);
 
@@ -60,7 +60,7 @@ public class Exercise54_PathLengthsInBFS {
 
         List<DigraphInterface> randomSparseDigraphs = exercise47_randomSparseDigraphs.randomSparseDigraph(experiments, vertices);
 
-        for(DigraphInterface randomSparseDigraph : randomSparseDigraphs) {
+        for (DigraphInterface randomSparseDigraph : randomSparseDigraphs) {
             int[] experimentResults = doExperiment(randomSparseDigraph);
 
             totalPathsFound += experimentResults[0];
@@ -73,7 +73,6 @@ public class Exercise54_PathLengthsInBFS {
     }
 
     private int[] doExperiment(DigraphInterface digraph) {
-
         int[] experimentResult = new int[2];
         int totalPathLength = 0;
 
@@ -84,7 +83,7 @@ public class Exercise54_PathLengthsInBFS {
         boolean foundPath = breadthFirstDirectedPaths.hasPathTo(randomDestinationVertex);
 
         if (foundPath) {
-            for(int vertexInPath : breadthFirstDirectedPaths.pathTo(randomDestinationVertex)) {
+            for (int vertexInPath : breadthFirstDirectedPaths.pathTo(randomDestinationVertex)) {
                 totalPathLength++;
             }
         }
@@ -116,5 +115,4 @@ public class Exercise54_PathLengthsInBFS {
 
         new Exercise54_PathLengthsInBFS().generateDigraphsAndDoExperiments(experiments, vertices, edges);
     }
-
 }

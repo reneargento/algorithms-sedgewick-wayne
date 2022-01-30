@@ -22,7 +22,7 @@ public class KosarajuSharirSCCWeighted {
 
         DepthFirstOrder depthFirstOrder = new DepthFirstOrder(edgeWeightedDigraph.reverse());
 
-        for(int vertex : depthFirstOrder.reversePostOrder()) {
+        for (int vertex : depthFirstOrder.reversePostOrder()) {
             if (!visited[vertex]) {
                 dfs(edgeWeightedDigraph, vertex);
                 count++;
@@ -34,7 +34,7 @@ public class KosarajuSharirSCCWeighted {
         visited[vertex] = true;
         id[vertex] = count;
 
-        for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
             int neighbor = edge.to();
 
             if (!visited[neighbor]) {
@@ -46,11 +46,11 @@ public class KosarajuSharirSCCWeighted {
     public List<Integer>[] getSCCs() {
         List<Integer>[] stronglyConnectedComponents = (List<Integer>[]) new ArrayList[count];
 
-        for(int scc = 0; scc < count; scc++) {
+        for (int scc = 0; scc < count; scc++) {
             stronglyConnectedComponents[scc] = new ArrayList<>();
         }
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             stronglyConnectedComponents[id(vertex)].add(vertex);
         }
 
@@ -60,8 +60,8 @@ public class KosarajuSharirSCCWeighted {
     public EdgeWeightedDigraphInterface getKernelDAG() {
         EdgeWeightedDigraphInterface kernelDAG = new EdgeWeightedDigraph(count());
 
-        for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (id(vertex) != id(neighbor)) {
@@ -69,7 +69,6 @@ public class KosarajuSharirSCCWeighted {
                 }
             }
         }
-
         return kernelDAG;
     }
 
@@ -84,5 +83,4 @@ public class KosarajuSharirSCCWeighted {
     public int count() {
         return count;
     }
-
 }

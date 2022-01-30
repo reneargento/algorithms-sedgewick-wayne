@@ -20,7 +20,7 @@ public class DepthFirstOrder {
         reversePostOrder = new Stack<>();
         visited = new boolean[digraph.vertices()];
 
-        for(int vertex = 0; vertex < digraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
             if (!visited[vertex]) {
                 dfs(digraph, vertex);
             }
@@ -29,10 +29,9 @@ public class DepthFirstOrder {
 
     private void dfs(DigraphInterface digraph, int vertex) {
         preOrder.enqueue(vertex);
-
         visited[vertex] = true;
 
-        for(int neighbor : digraph.adjacent(vertex)) {
+        for (int neighbor : digraph.adjacent(vertex)) {
             if (!visited[neighbor]) {
                 dfs(digraph, neighbor);
             }
@@ -53,5 +52,4 @@ public class DepthFirstOrder {
     public Iterable<Integer> reversePostOrder() {
         return reversePostOrder;
     }
-
 }

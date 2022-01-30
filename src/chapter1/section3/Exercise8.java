@@ -24,7 +24,7 @@ public class Exercise8 implements Iterable<String> {
 	private void resize(int max) {
 		String[] temp = new String[max];
 		
-		for(int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			temp[i] = items[i];
 		}
 		
@@ -61,7 +61,6 @@ public class Exercise8 implements Iterable<String> {
 	}
 	
 	private class ReverseArrayIterator implements Iterator<String>{
-		
 		int index = n;
 		
 		public boolean hasNext() {
@@ -91,5 +90,4 @@ public class Exercise8 implements Iterable<String> {
 		}
 		StdOut.println("(" + resizingArrayStackOfStrings.size() + " left on stack)");
 	}
-	
 }

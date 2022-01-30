@@ -12,7 +12,7 @@ public class QuickFind implements UF {
         id = new int[size];
         count = size;
 
-        for(int i = 0; i < id.length; i++) {
+        for (int i = 0; i < id.length; i++) {
             id[i] = i;
         }
     }
@@ -21,17 +21,17 @@ public class QuickFind implements UF {
         return count;
     }
 
-    //O(1)
+    // O(1)
     public int find(int site) {
         return id[site];
     }
 
-    //O(1)
+    // O(1)
     public boolean connected(int site1, int site2) {
         return find(site1) == find(site2);
     }
 
-    //O(n)
+    // O(n)
     public void union(int site1, int site2) {
         int leaderId1 = find(site1);
         int leaderId2 = find(site2);
@@ -40,12 +40,11 @@ public class QuickFind implements UF {
             return;
         }
 
-        for(int i = 0; i < id.length; i++) {
+        for (int i = 0; i < id.length; i++) {
             if (id[i] == leaderId1) {
                 id[i] = leaderId2;
             }
         }
-
         count--;
     }
 }

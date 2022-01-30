@@ -58,7 +58,7 @@ public class Exercise46_JohnsonsAlgorithm {
             // Mark vertex and add to priority queue all edges from vertex to unmarked vertices
             marked[vertex] = true;
 
-            for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+            for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                 if (!marked[edge.other(vertex)]) {
                     dWayPriorityQueue.insert(edge);
                 }
@@ -75,7 +75,6 @@ public class Exercise46_JohnsonsAlgorithm {
     }
 
     public class KruskalMSTDWayHeap {
-
         private Queue<Edge> minimumSpanningTree;
         private double weight;
 
@@ -84,7 +83,7 @@ public class Exercise46_JohnsonsAlgorithm {
             DWayPriorityQueue<Edge> dWayPriorityQueue = new DWayPriorityQueue<>(DWayPriorityQueue.Orientation.MIN,
                     numberOfChildrenPerNodeInHeap);
 
-            for(Edge edge : edgeWeightedGraph.edges()) {
+            for (Edge edge : edgeWeightedGraph.edges()) {
                 dWayPriorityQueue.insert(edge);
             }
 
@@ -114,21 +113,18 @@ public class Exercise46_JohnsonsAlgorithm {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
         public double eagerWeight() {
             return weight;
         }
-
     }
 
     private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges, int euclideanGraphVertices) {
-
         StdOut.printf("%47s %18s %12s %10s %15s %12s\n", "Edge Weighted Graph type | ", "MST Algorithm | ", "Vertices | ",
                 "Edges | ", "D-way heap | ", "Average time spent");
 
@@ -136,7 +132,7 @@ public class Exercise46_JohnsonsAlgorithm {
         String[] dWayHeaps = {"2-Way Heap", "3-Way Heap", "4-Way Heap", "5-Way Heap"};
 
         double[][] totalTimeSpent = new double[mstAlgorithms.length][dWayHeaps.length];
-        for(int timeArray = 0; timeArray < totalTimeSpent.length; timeArray++) {
+        for (int timeArray = 0; timeArray < totalTimeSpent.length; timeArray++) {
             totalTimeSpent[timeArray] = new double[dWayHeaps.length];
         }
 
@@ -146,13 +142,12 @@ public class Exercise46_JohnsonsAlgorithm {
         Exercise34_RandomSparseEdgeWeightedGraphs.RandomEdgeWeightedGraphs randomEdgeWeightedGraphs =
                 new Exercise34_RandomSparseEdgeWeightedGraphs().new RandomEdgeWeightedGraphs();
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraph randomEdgeWeightedGraphUniformWeights =
                     randomEdgeWeightedGraphs.erdosRenyiGraphUniformWeights(vertices, edges);
 
-            for(int mstAlgorithmType = 0; mstAlgorithmType < mstAlgorithms.length; mstAlgorithmType++) {
-
-                for(int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
+            for (int mstAlgorithmType = 0; mstAlgorithmType < mstAlgorithms.length; mstAlgorithmType++) {
+                for (int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
                     int dWayHeapChildrenNumber = dWayHeapType + 2;
 
                     double timeSpent = doExperiment(randomEdgeWeightedGraphUniformWeights, mstAlgorithmType, dWayHeapChildrenNumber);
@@ -166,13 +161,13 @@ public class Exercise46_JohnsonsAlgorithm {
         // Graph model 2: Random edge weighted graphs with gaussian weight distribution
         graphType = "Random graph w/ gaussian weight distribution";
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraph randomEdgeWeightedGraphGaussianWeights =
                     randomEdgeWeightedGraphs.erdosRenyiGraphGaussianWeights(vertices, edges);
 
-            for(int mstAlgorithmType = 0; mstAlgorithmType < mstAlgorithms.length; mstAlgorithmType++) {
+            for (int mstAlgorithmType = 0; mstAlgorithmType < mstAlgorithms.length; mstAlgorithmType++) {
 
-                for(int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
+                for (int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
                     int dWayHeapChildrenNumber = dWayHeapType + 2;
 
                     double timeSpent = doExperiment(randomEdgeWeightedGraphGaussianWeights, mstAlgorithmType, dWayHeapChildrenNumber);
@@ -191,15 +186,15 @@ public class Exercise46_JohnsonsAlgorithm {
         // Running the experiment on a complete graph
         double radius = 1;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             EdgeWeightedGraphInterface randomEdgeWeightedEuclideanGraph =
                     randomEuclideanEdgeWeightedGraphs.randomEuclideanEdgeWeightedGraph(euclideanGraphVertices, radius);
 
             edges = randomEdgeWeightedEuclideanGraph.edgesCount();
 
-            for(int mstAlgorithmType = 0; mstAlgorithmType < mstAlgorithms.length; mstAlgorithmType++) {
+            for (int mstAlgorithmType = 0; mstAlgorithmType < mstAlgorithms.length; mstAlgorithmType++) {
 
-                for(int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
+                for (int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
                     int dWayHeapChildrenNumber = dWayHeapType + 2;
 
                     double timeSpent = doExperiment(randomEdgeWeightedEuclideanGraph, mstAlgorithmType, dWayHeapChildrenNumber);
@@ -221,16 +216,15 @@ public class Exercise46_JohnsonsAlgorithm {
             case KRUSKAL_ID: new KruskalMSTDWayHeap(edgeWeightedGraph, dWayHeapChildrenNumber);
                 break;
         }
-
         return stopwatch.elapsedTime();
     }
 
     private void printResultsAndResetTimer(double[][] totalTimeSpent, String graphType, String[] mstAlgorithms,
                                            String[] dWayHeaps, int experiments, int vertices, int edges) {
-        for(int mstAlgorithmType = 0; mstAlgorithmType < mstAlgorithms.length; mstAlgorithmType++) {
+        for (int mstAlgorithmType = 0; mstAlgorithmType < mstAlgorithms.length; mstAlgorithmType++) {
             String mstAlgorithm = mstAlgorithms[mstAlgorithmType];
 
-            for(int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
+            for (int dWayHeapType = 0; dWayHeapType < dWayHeaps.length; dWayHeapType++) {
                 String dWayHeap = dWayHeaps[dWayHeapType];
 
                 double averageTimeSpent = totalTimeSpent[mstAlgorithmType][dWayHeapType] / experiments;
@@ -238,7 +232,7 @@ public class Exercise46_JohnsonsAlgorithm {
             }
         }
 
-        for(int timeArray = 0; timeArray < totalTimeSpent.length; timeArray++) {
+        for (int timeArray = 0; timeArray < totalTimeSpent.length; timeArray++) {
             totalTimeSpent[timeArray] = new double[dWayHeaps.length];
         }
     }
@@ -260,5 +254,4 @@ public class Exercise46_JohnsonsAlgorithm {
 
         new Exercise46_JohnsonsAlgorithm().generateGraphsAndDoExperiments(experiments, vertices, edges, euclideanGraphVertices);
     }
-
 }

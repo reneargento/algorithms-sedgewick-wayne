@@ -16,7 +16,7 @@ public class Exercise33_Certification {
 
         // Check that it is acyclic
         // O(V)
-        for(Edge edge : proposedMinimumSpanningTree) {
+        for (Edge edge : proposedMinimumSpanningTree) {
             int vertex1 = edge.either();
             int vertex2 = edge.other(vertex1);
 
@@ -34,11 +34,11 @@ public class Exercise33_Certification {
 
         // 2- Check that every edge is a minimum-weight edge in the cut defined by removing that edge from the tree
         // O(V * E)
-        for(Edge edgeInMST : proposedMinimumSpanningTree) {
+        for (Edge edgeInMST : proposedMinimumSpanningTree) {
             unionFind = new UnionFind(edgeWeightedGraph.vertices());
 
             // Add all edges in the MST except edgeInMST
-            for(Edge edge : proposedMinimumSpanningTree) {
+            for (Edge edge : proposedMinimumSpanningTree) {
                 if (edge != edgeInMST) {
                     int vertex1 = edge.either();
                     int vertex2 = edge.other(vertex1);
@@ -48,7 +48,7 @@ public class Exercise33_Certification {
             }
 
             // Check that edgeInMST is the minimum-weight edge in the crossing cut
-            for(Edge edge : edgeWeightedGraph.edges()) {
+            for (Edge edge : edgeWeightedGraph.edges()) {
                 int vertex1 = edge.either();
                 int vertex2 = edge.other(vertex1);
 
@@ -59,7 +59,6 @@ public class Exercise33_Certification {
                 }
             }
         }
-
         return true;
     }
 
@@ -104,5 +103,4 @@ public class Exercise33_Certification {
         boolean check3 = exercise33_certification.check(edgeWeightedGraph, proposal3);
         StdOut.println("Check 3: " + check3 + " Expected: false");
     }
-
 }

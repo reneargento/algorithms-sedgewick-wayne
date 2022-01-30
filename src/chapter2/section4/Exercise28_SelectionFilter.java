@@ -92,10 +92,9 @@ public class Exercise28_SelectionFilter {
     }
 
     private static void doExperimentToEstimateRunningTime(int arraySize, int numberOfExperiments) {
-
         int m = 10000; //10^4
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             PriorityQueue<Point> priorityQueue = new PriorityQueue<>(m + 1, PriorityQueue.Orientation.MAX);
 
@@ -103,7 +102,7 @@ public class Exercise28_SelectionFilter {
 
             Stopwatch timer = new Stopwatch();
 
-            for(Point point : pointArray) {
+            for (Point point : pointArray) {
                 priorityQueue.insert(point);
 
                 if (priorityQueue.size() > m) {
@@ -124,7 +123,7 @@ public class Exercise28_SelectionFilter {
     private static Point[] generateRandomPointsArray(int length) {
         Point[] array = new Point[length];
 
-        for(int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
             double x = StdRandom.uniform();
             double y = StdRandom.uniform();
             double z = StdRandom.uniform();
@@ -132,8 +131,6 @@ public class Exercise28_SelectionFilter {
             Point point = new Exercise28_SelectionFilter().new Point(x, y, z);
             array[i] = point;
         }
-
         return array;
     }
-
 }

@@ -19,7 +19,7 @@ public class Exercise13_WeightedQUPathCompression {
             this.size = new int[size];
             count = size;
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 id[i] = i;
                 this.size[i] = 1;
             }
@@ -111,5 +111,4 @@ public class Exercise13_WeightedQUPathCompression {
 
         StdOut.println("Components: " + weightedQuickUnionPathCompression.count() + " Expected: 3");
     }
-
 }

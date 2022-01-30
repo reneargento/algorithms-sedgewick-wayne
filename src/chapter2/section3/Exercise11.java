@@ -24,7 +24,7 @@ public class Exercise11 {
 
         double previousRunningTime = initialTimer.elapsedTime();
 
-        for(int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {
 
             Comparable[] array = ArrayGenerator.generateRandomArrayWith3Values(arraySize);
 
@@ -66,14 +66,14 @@ public class Exercise11 {
         int i = low;
         int j = high + 1;
 
-        while(true) {
+        while (true) {
             while (array[++i].compareTo(pivot) <= 0) {
                 if (i == high) {
                     break;
                 }
             }
 
-            while(pivot.compareTo(array[--j]) <= 0) {
+            while (pivot.compareTo(array[--j]) <= 0) {
                 if (j == low) {
                     break;
                 }
@@ -86,7 +86,7 @@ public class Exercise11 {
             ArrayUtil.exchange(array, i, j);
         }
 
-        //Place pivot in the right place
+        // Place pivot in the right place
         ArrayUtil.exchange(array, low, j);
         return j;
     }
@@ -94,5 +94,4 @@ public class Exercise11 {
     private static void printResults(int arraySize, double runningTime, double runningTimeRatio) {
         StdOut.printf("%10d %15.1f %9.1f\n", arraySize, runningTime, runningTimeRatio);
     }
-
 }

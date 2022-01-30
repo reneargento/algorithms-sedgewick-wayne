@@ -39,7 +39,7 @@ public class Exercise50_RealWorldDigraphs {
             this();
             int edges = in.readInt();
 
-            for(int i = 0; i < edges; i++) {
+            for (int i = 0; i < edges; i++) {
                 int vertex1 = in.readInt();
                 int vertex2 = in.readInt();
                 addEdge(vertex1, vertex2);
@@ -104,8 +104,8 @@ public class Exercise50_RealWorldDigraphs {
         public Digraph reverse() {
             Digraph reverse = new Digraph();
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
-                for(int neighbor : adjacent(vertex)) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
+                for (int neighbor : adjacent(vertex)) {
                     reverse.addEdge(neighbor, vertex);
                 }
             }
@@ -116,11 +116,11 @@ public class Exercise50_RealWorldDigraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
                 if (adjacent(vertex) != null) {
-                    for(int neighbor : adjacent(vertex)) {
+                    for (int neighbor : adjacent(vertex)) {
                         stringBuilder.append(neighbor).append(" ");
                     }
                 }
@@ -152,7 +152,7 @@ public class Exercise50_RealWorldDigraphs {
 
         Digraph fullDigraph = new Digraph();
 
-        for(int edge = 0; edge < edges; edge++) {
+        for (int edge = 0; edge < edges; edge++) {
             String[] connection = in.readLine().split(separator);
 
             int website1 = Integer.parseInt(connection[0]);
@@ -184,17 +184,17 @@ public class Exercise50_RealWorldDigraphs {
             randomSubDigraph.addVertex(subDigraphVertexId1);
 
             // Outward edges
-            for(int neighbor : fullDigraph.adjacent(randomVertexId)) {
+            for (int neighbor : fullDigraph.adjacent(randomVertexId)) {
                 if (digraphToSubDigraphMap.contains(neighbor)) {
                     int subDigraphVertexId2 = digraphToSubDigraphMap.get(neighbor);
                     allSubDigraphEdges.add(new DirectedEdge(subDigraphVertexId1, subDigraphVertexId2));
                 }
             }
             // Inward edges
-            for(int subDigraphVertexId = 0; subDigraphVertexId < randomSubDigraph.vertices(); subDigraphVertexId++) {
+            for (int subDigraphVertexId = 0; subDigraphVertexId < randomSubDigraph.vertices(); subDigraphVertexId++) {
                 int fullDigraphVertexId = subDigraphToDigraphMap.get(subDigraphVertexId);
 
-                for(int neighbor : fullDigraph.adjacent(fullDigraphVertexId)) {
+                for (int neighbor : fullDigraph.adjacent(fullDigraphVertexId)) {
                     if (neighbor == randomVertexId) {
                         allSubDigraphEdges.add(new DirectedEdge(subDigraphVertexId, subDigraphVertexId1));
                     }
@@ -208,7 +208,7 @@ public class Exercise50_RealWorldDigraphs {
         }
 
         // Randomly choose edges
-        for(int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
+        for (int edgeIndex = 0; edgeIndex < randomEdgesToChoose; edgeIndex++) {
             int randomEdgeId = StdRandom.uniform(edgeIndex, allSubDigraphEdges.size());
 
             DirectedEdge randomEdge = allSubDigraphEdges.get(randomEdgeId);
@@ -228,8 +228,6 @@ public class Exercise50_RealWorldDigraphs {
 
         Digraph randomRealDigraph = new Exercise50_RealWorldDigraphs().
                 randomRealDigraph(randomVerticesToChoose, randomEdgesToChoose);
-
         StdOut.println(randomRealDigraph);
     }
-
 }

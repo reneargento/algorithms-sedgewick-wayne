@@ -14,11 +14,10 @@ import java.util.List;
 public class Exercise16_AmortizedCostsPlotsQU {
 
     private class QuickUnion {
-
         int[] id;
         int count;
 
-        //Used for plotting amortized costs
+        // Used for plotting amortized costs
         int operation;
         int currentCost;
         int totalCost;
@@ -33,7 +32,7 @@ public class Exercise16_AmortizedCostsPlotsQU {
             totalCost = 0;
             total = new ArrayList<>();
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
         }
@@ -42,11 +41,11 @@ public class Exercise16_AmortizedCostsPlotsQU {
             return count;
         }
 
-        //O(1)
+        // O(1)
         public int find(int site) {
             currentCost++;
 
-            while(site != id[site]) {
+            while (site != id[site]) {
                 currentCost++;
 
                 site = id[site];
@@ -55,7 +54,7 @@ public class Exercise16_AmortizedCostsPlotsQU {
             return site;
         }
 
-        //O(1)
+        // O(1)
         public boolean connected(int site1, int site2) {
             boolean isConnected = find(site1) == find(site2);
 
@@ -66,7 +65,7 @@ public class Exercise16_AmortizedCostsPlotsQU {
             return isConnected;
         }
 
-        //O(n)
+        // O(n)
         public void union(int site1, int site2) {
             int leaderId1 = find(site1);
             int leaderId2 = find(site2);
@@ -84,7 +83,6 @@ public class Exercise16_AmortizedCostsPlotsQU {
         }
 
         private void updateCostAnalysis() {
-
             totalCost += currentCost;
 
             total.add(totalCost / operation);
@@ -95,13 +93,12 @@ public class Exercise16_AmortizedCostsPlotsQU {
     }
 
     public static void main(String[] args) {
-
         int numberOfSites = 100;
 
         Exercise16_AmortizedCostsPlotsQU amortizedCostsPlots = new Exercise16_AmortizedCostsPlotsQU();
         QuickUnion quickUnion = amortizedCostsPlots.new QuickUnion(numberOfSites);
 
-        for(int i = 0; i < 150; i++) {
+        for (int i = 0; i < 150; i++) {
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
 
@@ -126,5 +123,4 @@ public class Exercise16_AmortizedCostsPlotsQU {
             }
         });
     }
-
 }

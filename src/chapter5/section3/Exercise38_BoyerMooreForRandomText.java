@@ -49,10 +49,9 @@ public class Exercise38_BoyerMooreForRandomText {
     }
 
     private void doExperiment(int patternLength, int textLength, int experiments) {
-
         long totalNumberOfCompares = 0;
 
-        for(int experiment = 0; experiment < experiments; experiment++) {
+        for (int experiment = 0; experiment < experiments; experiment++) {
             String randomPattern = ArrayGenerator.generateRandomStringOfSpecifiedLength(patternLength);
             String randomText = ArrayGenerator.generateRandomStringOfSpecifiedLength(textLength);
 
@@ -74,5 +73,4 @@ public class Exercise38_BoyerMooreForRandomText {
 
         new Exercise38_BoyerMooreForRandomText().doExperiment(patternLength, textLength, experiments);
     }
-
 }

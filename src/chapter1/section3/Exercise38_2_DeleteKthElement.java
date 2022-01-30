@@ -60,12 +60,12 @@ public class Exercise38_2_DeleteKthElement<Item> implements Iterable<Item>{
 
         if (startFromBeginning) {
             count = 1;
-            for(current = first; count < k; current = current.next) {
+            for (current = first; count < k; current = current.next) {
                 count++;
             }
         } else {
             count = size;
-            for(current = last; count > k; current = current.previous) {
+            for (current = last; count > k; current = current.previous) {
                 count--;
             }
         }
@@ -130,5 +130,4 @@ public class Exercise38_2_DeleteKthElement<Item> implements Iterable<Item>{
         StdOut.println("Generalized queue items: " + generalizedQueueItems.toString());
         StdOut.println("Expected: 1 2 3 99");
     }
-
 }

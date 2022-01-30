@@ -17,7 +17,7 @@ public class Exercise38_Naive3Sum {
         int max = 1000000;
         int[] values = new int[n];
 
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             values[i] = StdRandom.uniform(-max, max);
         }
 
@@ -33,20 +33,19 @@ public class Exercise38_Naive3Sum {
     }
 
     private static int threeSumCount(int[] values) {
-        //Count triples that sum to 0
+        // Count triples that sum to 0
         int n = values.length;
         int count = 0;
 
-        for(int i = 0; i < n; i++) {
-            for(int j = i + 1; j < n; j++) {
-                for(int k = j + 1; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
                     if (values[i] + values[j] + values[k] == 0) {
                         count++;
                     }
                 }
             }
         }
-
         return count;
     }
 
@@ -55,9 +54,9 @@ public class Exercise38_Naive3Sum {
         int n = values.length;
         int count = 0;
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
-                for(int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < n; k++) {
                     if (i < j && j < k) {
                         if (values[i] + values[j] + values[k] == 0) {
                             count++;
@@ -66,7 +65,6 @@ public class Exercise38_Naive3Sum {
                 }
             }
         }
-
         return count;
     }
 
@@ -78,19 +76,19 @@ public class Exercise38_Naive3Sum {
 
         StdOut.println("Number of items and ratio");
 
-        //Compute running times of naive 3-Sum
-        for(int n = 250; n <= maxTrials; n += n) {
+        // Compute running times of naive 3-Sum
+        for (int n = 250; n <= maxTrials; n += n) {
             double time = timeTrial(n, false);
             timesOfNaiveThreeSum.put(n, time);
         }
 
-        //Compute running times of even naiver 3-Sum
-        for(int n = 250; n <= maxTrials; n += n) {
+        // Compute running times of even naiver 3-Sum
+        for (int n = 250; n <= maxTrials; n += n) {
             double time = timeTrial(n, true);
             timesOfEvenNaiverThreeSum.put(n, time);
         }
 
-        for(int n = 250; n <= maxTrials; n += n) {
+        for (int n = 250; n <= maxTrials; n += n) {
             double timeOfNaiveThreeSum = timesOfNaiveThreeSum.get(n);
             double timeOfEvenNaiverThreeSum = timesOfEvenNaiverThreeSum.get(n);
 
@@ -99,5 +97,4 @@ public class Exercise38_Naive3Sum {
             StdOut.printf("%7d %5.1f\n", n, ratio);
         }
     }
-
 }

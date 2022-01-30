@@ -19,7 +19,7 @@ public class Exercise25_CutoffToInsertionSort {
 
         int arraySize = 1000;
 
-        for(int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
+        for (int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
             Comparable[] array = ArrayGenerator.generateRandomArray(arraySize);
             allInputArrays.put(i, array);
 
@@ -33,10 +33,10 @@ public class Exercise25_CutoffToInsertionSort {
 
         StdOut.printf("%13s %23s\n", "Cutoff Size | ", "Average Running Time");
 
-        for(int cutoffSize = 0; cutoffSize <= 30; cutoffSize++) {
+        for (int cutoffSize = 0; cutoffSize <= 30; cutoffSize++) {
             double totalRunningTime = 0;
 
-            for(int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
+            for (int i = 0; i < NUMBER_OF_EXPERIMENTS; i++) {
 
                 Comparable[] originalArray = allInputArrays.get(i);
                 Comparable[] array = new Comparable[originalArray.length];
@@ -56,5 +56,4 @@ public class Exercise25_CutoffToInsertionSort {
     private static void printResults(int cutoffSize, double averageRunningTime) {
         StdOut.printf("%11d %26.5f\n", cutoffSize, averageRunningTime);
     }
-
 }

@@ -22,7 +22,7 @@ public class Exercise42_RandomSparseGraphs {
         List<Graph> randomSparseGraphs = new ArrayList<>();
         int[] graphVerticesCount = {10, 100, 1000, 10000};
 
-        for(int graph = 0; graph < numberOfGraphs; graph++) {
+        for (int graph = 0; graph < numberOfGraphs; graph++) {
             int vertices = graphVerticesCount[graph % 4];
             int edges = vertices * 3;
 
@@ -40,5 +40,4 @@ public class Exercise42_RandomSparseGraphs {
         List<Graph> randomSparseGraphs = new Exercise42_RandomSparseGraphs().randomSparseGraph(numberOfGraphs);
         StdOut.println("Random sparse graphs generated: " + (randomSparseGraphs.size() == numberOfGraphs));
     }
-
 }

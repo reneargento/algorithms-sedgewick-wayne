@@ -53,7 +53,7 @@ public class Exercise38_EuclideanDigraphs {
             indegrees = new int[vertices];
             outdegrees = new int[vertices];
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
                 adjacent[vertex] = new Bag<>();
             }
         }
@@ -91,7 +91,7 @@ public class Exercise38_EuclideanDigraphs {
             StdDraw.setPenRadius(0.002D);
             StdDraw.setPenColor(Color.BLUE);
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
                 if (allVertices[vertexId] != null) {
                     double xCoordinate = allVertices[vertexId].coordinates.getXCoordinate();
                     double yCoordinate = allVertices[vertexId].coordinates.getYCoordinate();
@@ -109,8 +109,8 @@ public class Exercise38_EuclideanDigraphs {
 
             StdDraw.setPenColor(Color.BLACK);
 
-            for(int vertexId = 0; vertexId < vertices; vertexId++) {
-                for(Integer neighbor : adjacent(vertexId)) {
+            for (int vertexId = 0; vertexId < vertices; vertexId++) {
+                for (Integer neighbor : adjacent(vertexId)) {
                     Vertex neighborVertex = allVertices[neighbor];
 
                     DrawUtilities.drawArrow(allVertices[vertexId].coordinates, neighborVertex.coordinates,
@@ -134,12 +134,11 @@ public class Exercise38_EuclideanDigraphs {
         public EuclideanDigraph reverse() {
             EuclideanDigraph reverse = new EuclideanDigraph(vertices);
 
-            for(int vertex = 0; vertex < vertices; vertex++) {
-                for(Integer neighbor : adjacent(vertex)) {
+            for (int vertex = 0; vertex < vertices; vertex++) {
+                for (Integer neighbor : adjacent(vertex)) {
                     reverse.addEdge(neighbor, vertex);
                 }
             }
-
             return reverse;
         }
 
@@ -147,15 +146,14 @@ public class Exercise38_EuclideanDigraphs {
         public String toString() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int vertex = 0; vertex < vertices(); vertex++) {
+            for (int vertex = 0; vertex < vertices(); vertex++) {
                 stringBuilder.append(vertex).append(": ");
 
-                for(Integer neighbor : adjacent(vertex)) {
+                for (Integer neighbor : adjacent(vertex)) {
                     stringBuilder.append(neighbor).append(" ");
                 }
                 stringBuilder.append("\n");
             }
-
             return stringBuilder.toString();
         }
     }
@@ -194,5 +192,4 @@ public class Exercise38_EuclideanDigraphs {
                 0.08, 0.4);
         StdOut.println(euclideanDigraph);
     }
-
 }

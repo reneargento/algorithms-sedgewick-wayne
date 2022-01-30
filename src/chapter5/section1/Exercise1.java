@@ -25,8 +25,8 @@ public class Exercise1 {
 
             HashSet<Character> uniqueKeys = new HashSet<>();
 
-            for(String string : array) {
-                for(char charValue : string.toCharArray()) {
+            for (String string : array) {
+                for (char charValue : string.toCharArray()) {
                     if (!uniqueKeys.contains(charValue)) {
                         uniqueKeys.add(charValue);
                     }
@@ -35,7 +35,7 @@ public class Exercise1 {
 
             char[] allKeys = new char[uniqueKeys.size()];
             int allKeysIndex = 0;
-            for(char key : uniqueKeys.keys()) {
+            for (char key : uniqueKeys.keys()) {
                 allKeys[allKeysIndex++] = key;
             }
 
@@ -44,7 +44,7 @@ public class Exercise1 {
 
             keysIndex = new SeparateChainingHashTable<>();
 
-            for(int keyIndex = 0; keyIndex < allKeys.length; keyIndex++) {
+            for (int keyIndex = 0; keyIndex < allKeys.length; keyIndex++) {
                 keysIndex.put(allKeys[keyIndex], keyIndex);
             }
 
@@ -64,30 +64,30 @@ public class Exercise1 {
             // Compute frequency count
             int[] count = new int[alphabetSize + 2];
 
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 int keyIndex = charAt(array[i], digit) + 2;
                 count[keyIndex]++;
             }
 
             // Transform counts to indices
-            for(int r = 0; r < alphabetSize + 1; r++) {
+            for (int r = 0; r < alphabetSize + 1; r++) {
                 count[r + 1] += count[r];
             }
 
             // Distribute
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 int keyIndex = charAt(array[i], digit) + 1;
                 int indexInAuxArray = count[keyIndex]++;
                 auxArray[indexInAuxArray] = array[i];
             }
 
             // Copy back
-            for(int i = low; i <= high; i++) {
+            for (int i = low; i <= high; i++) {
                 array[i] = auxArray[i - low];
             }
 
             // Recursively sort for each character value
-            for(int r = 0; r < alphabetSize; r++) {
+            for (int r = 0; r < alphabetSize; r++) {
                 sortStringArray(array, low + count[r], low + count[r + 1] - 1, digit + 1);
             }
         }
@@ -110,7 +110,7 @@ public class Exercise1 {
 
         StringJoiner sortedArray1 = new StringJoiner(" ");
 
-        for(String string : array1) {
+        for (String string : array1) {
             sortedArray1.add(string);
         }
         StdOut.println("Sorted array 1");
@@ -123,12 +123,11 @@ public class Exercise1 {
 
         StringJoiner sortedArray2 = new StringJoiner(" ");
 
-        for(String string : array2) {
+        for (String string : array2) {
             sortedArray2.add(string);
         }
         StdOut.println("Sorted array 2");
         StdOut.println(sortedArray2);
         StdOut.println("Expected: \nBubbleSort InsertionSort MergeSort QuickSort SelectionSort ShellSort");
     }
-
 }

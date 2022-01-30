@@ -22,11 +22,11 @@ public class Exercise42_CountRedNodes {
             int totalNodesCount = treeSizes[size] * numberOfExperiments;
             int totalRedNodesCount = 0;
 
-            for(int trial=0; trial < numberOfExperiments; trial++) {
+            for (int trial=0; trial < numberOfExperiments; trial++) {
                 int treeSize = treeSizes[size];
 
                 RedBlackBST<Integer, Integer> redBlackBST = new RedBlackBST<>();
-                for(int i = 0; i < treeSize; i++) {
+                for (int i = 0; i < treeSize; i++) {
                     int randomKey = StdRandom.uniform(Integer.MAX_VALUE);
                     redBlackBST.put(randomKey, randomKey);
                 }
@@ -60,5 +60,4 @@ public class Exercise42_CountRedNodes {
     private void printResults(int treeSize, double percentageOfRedNodes) {
         StdOut.printf("%9d %15.2f\n", treeSize, percentageOfRedNodes);
     }
-
 }

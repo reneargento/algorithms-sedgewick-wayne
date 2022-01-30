@@ -66,7 +66,7 @@ public class Exercise8 {
         private void resize(int newSize) {
             LinearProbingHashTableDuplicateKeys<Key, Value> tempHashTable = new LinearProbingHashTableDuplicateKeys<>(newSize);
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 if (keys[i] != null) {
                     tempHashTable.put(keys[i], values[i]);
                 }
@@ -90,7 +90,7 @@ public class Exercise8 {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            for(int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
+            for (int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 if (keys[tableIndex].equals(key)) {
                     return values[tableIndex];
                 }
@@ -115,7 +115,7 @@ public class Exercise8 {
             }
 
             int tableIndex = hash(key);
-            while(keys[tableIndex] != null) {
+            while (keys[tableIndex] != null) {
                 tableIndex = (tableIndex + 1) % size;
             }
 
@@ -169,7 +169,7 @@ public class Exercise8 {
         public Iterable<Key> keys() {
             Queue<Key> keySet = new Queue<>();
 
-            for(Object key : keys) {
+            for (Object key : keys) {
                 if (key != null) {
                     keySet.enqueue((Key) key);
                 }
@@ -177,17 +177,16 @@ public class Exercise8 {
 
             if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
                 Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-                for(int i = 0; i < keysToBeSorted.length; i++) {
+                for (int i = 0; i < keysToBeSorted.length; i++) {
                     keysToBeSorted[i] = keySet.dequeue();
                 }
 
                 Arrays.sort(keysToBeSorted);
 
-                for(Key key : keysToBeSorted) {
+                for (Key key : keysToBeSorted) {
                     keySet.enqueue(key);
                 }
             }
-
             return keySet;
         }
     }
@@ -197,7 +196,7 @@ public class Exercise8 {
         LinearProbingHashTableDuplicateKeys<Integer, Integer> linearProbingHashTableDuplicateKeys =
                 exercise8.new LinearProbingHashTableDuplicateKeys<>(10);
 
-        //Test put()
+        // Test put()
         linearProbingHashTableDuplicateKeys.put(0, 0);
         linearProbingHashTableDuplicateKeys.put(0, 1);
         linearProbingHashTableDuplicateKeys.put(0, 2);
@@ -214,13 +213,13 @@ public class Exercise8 {
         linearProbingHashTableDuplicateKeys.put(20, 13);
         linearProbingHashTableDuplicateKeys.put(20, 14);
 
-        //Test resize()
+        // Test resize()
         linearProbingHashTableDuplicateKeys.put(21, 15);
         linearProbingHashTableDuplicateKeys.put(22, 16);
         linearProbingHashTableDuplicateKeys.put(23, 17);
         linearProbingHashTableDuplicateKeys.put(24, 18);
 
-        for(Integer key : linearProbingHashTableDuplicateKeys.keys()) {
+        for (Integer key : linearProbingHashTableDuplicateKeys.keys()) {
             StdOut.println("Key " + key + ": " + linearProbingHashTableDuplicateKeys.get(key));
         }
 
@@ -242,14 +241,14 @@ public class Exercise8 {
         StdOut.println("Key 23: 17");
         StdOut.println("Key 24: 18");
 
-        //Test size()
+        // Test size()
         StdOut.println("Keys size: " + linearProbingHashTableDuplicateKeys.size() + " Expected: 16");
 
-        //Test contains()
+        // Test contains()
         StdOut.println("\nContains 8: " + linearProbingHashTableDuplicateKeys.contains(8) + " Expected: true");
         StdOut.println("Contains 9: " + linearProbingHashTableDuplicateKeys.contains(9) + " Expected: false");
 
-        //Test delete
+        // Test delete
         StdOut.println("\nDelete key 20");
         linearProbingHashTableDuplicateKeys.delete(20);
         StdOut.println("Keys size: " + linearProbingHashTableDuplicateKeys.size() + " Expected: 12");

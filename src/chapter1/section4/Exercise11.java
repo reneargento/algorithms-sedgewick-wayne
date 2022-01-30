@@ -24,7 +24,7 @@ public class Exercise11 {
     public Exercise11(int[] keys) {
         array = new int[keys.length];
 
-        for(int i = 0; i < keys.length; i++) {
+        for (int i = 0; i < keys.length; i++) {
             array[i] = keys[i]; //defensive copy
         }
         Arrays.sort(array);
@@ -35,12 +35,12 @@ public class Exercise11 {
     }
 
     private int rank(int key) {
-        //Binary search
+        // Binary search
         int low = 0;
         int high = array.length - 1;
 
-        while(low <= high) {
-            //Key is in a[low..high] or not present
+        while (low <= high) {
+            // Key is in a[low..high] or not present
             int mid = low + (high - low) / 2;
 
             if (key < array[mid]) {
@@ -71,7 +71,7 @@ public class Exercise11 {
         }
     }
 
-    //O(log n)
+    // (log n)
     private int howMany(int key) {
         int indexFromRank = rank(key);
 
@@ -85,8 +85,8 @@ public class Exercise11 {
         int nextIndex = indexFromRank;
         int currentNextIndex = nextIndex;
 
-        //Find the smallest index of an element
-        while(currentPreviousIndex != -1) {
+        // Find the smallest index of an element
+        while (currentPreviousIndex != -1) {
             currentPreviousIndex = recursiveRank(key, 0, currentPreviousIndex-1);
 
             if (currentPreviousIndex != -1) {
@@ -94,8 +94,8 @@ public class Exercise11 {
             }
         }
 
-        //Find the highest index of an element
-        while(currentNextIndex != -1) {
+        // Find the highest index of an element
+        while (currentNextIndex != -1) {
             currentNextIndex = recursiveRank(key, currentNextIndex+1, array.length-1);
 
             if (currentNextIndex != -1) {
@@ -105,18 +105,17 @@ public class Exercise11 {
 
         count = nextIndex - previousIndex + 1;
 
-        //O(n)
-        //count would have been initialized to 1
-//        while(previousIndex - 1 >= 0 && a[previousIndex - 1] == key) {
+        // O(n)
+        // count would have been initialized to 1
+//        while (previousIndex - 1 >= 0 && a[previousIndex - 1] == key) {
 //            count++;
 //            previousIndex--;
 //        }
 //
-//        while(nextIndex + 1 < a.length && a[nextIndex + 1] == key) {
+//        while (nextIndex + 1 < a.length && a[nextIndex + 1] == key) {
 //            count++;
 //            nextIndex++;
 //        }
-
         return count;
     }
 }

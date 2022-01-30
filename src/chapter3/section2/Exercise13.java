@@ -84,7 +84,7 @@ public class Exercise13 {
         Exercise13 exercise13 = new Exercise13();
         BinarySearchTree<Integer, String> binarySearchTree = exercise13.new BinarySearchTree<>();
 
-        //Test put()
+        // Test put()
         binarySearchTree.put(5, "Value 5");
         binarySearchTree.put(1, "Value 1");
         binarySearchTree.put(9, "Value 9");
@@ -94,67 +94,67 @@ public class Exercise13 {
 
         StdOut.println();
 
-        //Test size()
+        // Test size()
         StdOut.println("Size: " + binarySearchTree.size() + " Expected: 6");
 
-        //Test get() and keys()
-        for(Integer key : binarySearchTree.keys()) {
+        // Test get() and keys()
+        for (Integer key : binarySearchTree.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         binarySearchTree.delete(2);
-        for(Integer key : binarySearchTree.keys()) {
+        for (Integer key : binarySearchTree.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 
         StdOut.println();
 
-        //Test size()
+        // Test size()
         StdOut.println("Size: " + binarySearchTree.size() + " Expected: 5");
 
-        //Test min()
+        // Test min()
         StdOut.println("Min key: " + binarySearchTree.min() + " Expected: 0");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + binarySearchTree.max() + " Expected: 99");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + binarySearchTree.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + binarySearchTree.floor(15) + " Expected: 9");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + binarySearchTree.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + binarySearchTree.ceiling(15) + " Expected: 99");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + binarySearchTree.select(4) + " Expected: 99");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key 9: " + binarySearchTree.rank(9) + " Expected: 3");
         StdOut.println("Rank of key 10: " + binarySearchTree.rank(10) + " Expected: 4");
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\nDelete min (key 0)");
 
         binarySearchTree.deleteMin();
-        for(Integer key : binarySearchTree.keys()) {
+        for (Integer key : binarySearchTree.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\nDelete max (key 99)");
 
         binarySearchTree.deleteMax();
-        for(Integer key : binarySearchTree.keys()) {
+        for (Integer key : binarySearchTree.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println();
         StdOut.println("Keys in range [2, 10]");
-        for(Integer key : binarySearchTree.keys(2, 10)) {
+        for (Integer key : binarySearchTree.keys(2, 10)) {
             StdOut.println("Key " + key + ": " + binarySearchTree.get(key));
         }
 

@@ -89,10 +89,10 @@ public class Exercise14_ArraySort {
 
         StringJoiner sortedArrays = new StringJoiner("\n");
 
-        for(int[] array : arrays) {
+        for (int[] array : arrays) {
             StringJoiner sortedArray = new StringJoiner(", ");
 
-            for(int value : array) {
+            for (int value : array) {
                 sortedArray.add(String.valueOf(value));
             }
             sortedArrays.add(sortedArray.toString());
@@ -112,5 +112,4 @@ public class Exercise14_ArraySort {
                 "20, 10, 0\n" +
                 "20, 10, 1");
     }
-
 }

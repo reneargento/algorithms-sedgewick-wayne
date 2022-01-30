@@ -17,7 +17,7 @@ public class Exercise7 {
     private void doExperiment() {
         int[] arraySizes = {10, 100, 1000, 10000, 100000, 1000000};
 
-        for(int i = 0; i < arraySizes.length; i++) {
+        for (int i = 0; i < arraySizes.length; i++) {
             int[] randomArray = ArrayGenerator.generateRandomIntegerArray(arraySizes[i], UPPER_BOUND_EXCLUSIVE);
             int distinctKeys = frequencyCounter(randomArray);
 
@@ -30,7 +30,7 @@ public class Exercise7 {
 
         BinarySearchSymbolTable<Integer, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
 
-        for(int integer : integers) {
+        for (int integer : integers) {
             if (!binarySearchSymbolTable.contains(integer)) {
                 binarySearchSymbolTable.put(integer, 1);
             } else {
@@ -40,5 +40,4 @@ public class Exercise7 {
 
         return binarySearchSymbolTable.size();
     }
-
 }

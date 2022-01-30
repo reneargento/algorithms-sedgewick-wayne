@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class Exercise24 {
 
-    //A graph that allows directed edges
+    // A graph that allows directed edges
     private class ExtendedGraph extends Graph {
         public ExtendedGraph(int vertices) {
             super(vertices);
@@ -33,7 +33,7 @@ public class Exercise24 {
         String kevinBaconName = "Bacon, Kevin";
         int kevinBaconId = movieSymbolGraph.index(kevinBaconName);
 
-        //Used for tests: tinyGex2 graph from the book
+        // Used for tests: tinyGex2 graph from the book
 
 //        Graph graph = new Graph(12);
 //        graph.addEdge(8 ,4);
@@ -62,7 +62,7 @@ public class Exercise24 {
         ConnectedComponents connectedComponents = new ConnectedComponentsIterativeDFS(graph);
         int[] componentSizes = new int[connectedComponents.count()];
 
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             componentSizes[connectedComponents.id(vertex)]++;
         }
 
@@ -70,7 +70,7 @@ public class Exercise24 {
         int largestComponentSize = 0;
         int numberOfComponentsOfSizeLessThan10 = 0;
 
-        for(int componentId = 0; componentId < componentSizes.length; componentId++) {
+        for (int componentId = 0; componentId < componentSizes.length; componentId++) {
             int currentComponentSize = componentSizes[componentId];
 
             if (currentComponentSize > largestComponentSize) {
@@ -110,13 +110,13 @@ public class Exercise24 {
         int[] verticesFurthestFromTheCenter = getVerticesFurthestFromTheCenter(largestComponentSubGraph, kevinBaconIdInSubGraph);
         int[] verticesToComputeProperties = Arrays.copyOf(verticesFurthestFromTheCenter, verticesFurthestFromTheCenter.length + 1);
 
-        //Get the eccentricities of the vertices furthest from the center and of Kevin Bacon
+        // Get the eccentricities of the vertices furthest from the center and of Kevin Bacon
         verticesToComputeProperties[verticesToComputeProperties.length - 1] = kevinBaconIdInSubGraph;
 
         graphProperties.computeProperties(verticesToComputeProperties);
 
         StdOut.println("\nEccentricities of Kevin Bacon and of vertices furthest from the center in the largest component:");
-        for(int vertex = 0; vertex < verticesToComputeProperties.length; vertex++) {
+        for (int vertex = 0; vertex < verticesToComputeProperties.length; vertex++) {
             int originalVertexId = subGraphToGraphVertexMap.get(verticesToComputeProperties[vertex]);
             StdOut.println("Eccentricity of vertex " + originalVertexId + ": " +
                     graphProperties.eccentricity(verticesToComputeProperties[vertex]));
@@ -126,7 +126,7 @@ public class Exercise24 {
         StdOut.println("Radius of largest component: " + graphProperties.radius());
         StdOut.println("Center of largest component: " + subGraphToGraphVertexMap.get(graphProperties.center()));
 
-        //Girth - the smallest possible cycle has size 4:
+        // Girth - the smallest possible cycle has size 4:
         // Actor -- Movie -- Actor
         //     \         /
         //      \ Movie /
@@ -152,7 +152,7 @@ public class Exercise24 {
         // Create subGraph with the largest component
         ExtendedGraph largestComponentSubGraph = new ExtendedGraph(largestComponentSize);
 
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             if (connectedComponents.id(vertex) == largestComponentId) {
                 if (!graphToSubGraphVertexMap.contains(vertex)) {
                     int subGraphVertexId = graphToSubGraphVertexMap.size();
@@ -163,12 +163,12 @@ public class Exercise24 {
             }
         }
 
-        //Create subGraph
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        // Create subGraph
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             if (connectedComponents.id(vertex) == largestComponentId) {
                 int subGraphVertexId = graphToSubGraphVertexMap.get(vertex);
 
-                for(int adjacentVertex : graph.adjacent(vertex)) {
+                for (int adjacentVertex : graph.adjacent(vertex)) {
                     int subGraphNeighborVertexId = graphToSubGraphVertexMap.get(adjacentVertex);
                     largestComponentSubGraph.addDirectedEdge(subGraphVertexId, subGraphNeighborVertexId);
                 }
@@ -189,7 +189,7 @@ public class Exercise24 {
         int[] kevinBaconNumbers = new int[MAX_BACON + 1];
         int maxDistance = 0;
 
-        for(int vertex = 0; vertex < largestComponentSubGraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < largestComponentSubGraph.vertices(); vertex++) {
             int kevinBaconNumber = breadthFirstPaths.distTo(vertex);
 
             //The subGraph is connected, so this should never happen
@@ -205,7 +205,7 @@ public class Exercise24 {
 
         int[] verticesFurthestFromTheCenter = new int[kevinBaconNumbers[maxDistance]];
         int farAwayVerticesIndex = 0;
-        for(int vertex = 0; vertex < largestComponentSubGraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < largestComponentSubGraph.vertices(); vertex++) {
             if (breadthFirstPaths.distTo(vertex) == maxDistance) {
                 verticesFurthestFromTheCenter[farAwayVerticesIndex++] = vertex;
             }
@@ -214,7 +214,7 @@ public class Exercise24 {
         return verticesFurthestFromTheCenter;
     }
 
-    //This is the method that would be used if we did not have domain knowledge, or if the largest component were small
+    // This is the method that would be used if we did not have domain knowledge, or if the largest component were small
     private void getLargestComponentInformation(Graph graph, ConnectedComponents connectedComponents,
                                                 int largestComponentSize, int largestComponentId, int kevinBaconId) {
         // Create subGraph with the largest component
@@ -228,7 +228,7 @@ public class Exercise24 {
 
         GraphProperties graphProperties = new GraphProperties(largestComponentSubGraph, true);
         StdOut.println("Eccentricities of largest component:");
-        for(int vertex = 0; vertex < largestComponentSubGraph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < largestComponentSubGraph.vertices(); vertex++) {
             int originalVertexId = subGraphToGraphVertexMap.get(vertex);
             StdOut.println("Eccentricity of vertex " + originalVertexId + ": " + graphProperties.eccentricity(vertex));
         }
@@ -246,5 +246,4 @@ public class Exercise24 {
             StdOut.println("No");
         }
     }
-
 }

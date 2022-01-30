@@ -114,7 +114,7 @@ public class Exercise1 {
             StringBuilder stringBuilder = new StringBuilder("{");
 
             boolean isFirstKey = true;
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 if (isFirstKey) {
                     isFirstKey = false;
                 } else {
@@ -130,7 +130,6 @@ public class Exercise1 {
     }
 
     private class HashSet<Key> {
-
         private SeparateChainingHashTable<Key, Boolean> hashTable;
 
         HashSet() {
@@ -170,7 +169,7 @@ public class Exercise1 {
             StringBuilder stringBuilder = new StringBuilder("{");
 
             boolean isFirstKey = true;
-            for(Key key : keys()) {
+            for (Key key : keys()) {
                 if (isFirstKey) {
                     isFirstKey = false;
                 } else {
@@ -208,77 +207,77 @@ public class Exercise1 {
 
         StdOut.println("Keys() test");
 
-        for(Integer key : set.keys()) {
+        for (Integer key : set.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99");
 
         StdOut.println("\ntoString() test: " + set);
 
-        //Test min()
+        // Test min()
         StdOut.println("\nMin key: " + set.min() + " Expected: -5");
 
-        //Test max()
+        // Test max()
         StdOut.println("Max key: " + set.max() + " Expected: 99");
 
-        //Test floor()
+        // Test floor()
         StdOut.println("Floor of 5: " + set.floor(5) + " Expected: 5");
         StdOut.println("Floor of 15: " + set.floor(15) + " Expected: 9");
 
-        //Test ceiling()
+        // Test ceiling()
         StdOut.println("Ceiling of 5: " + set.ceiling(5) + " Expected: 5");
         StdOut.println("Ceiling of 15: " + set.ceiling(15) + " Expected: 99");
 
-        //Test select()
+        // Test select()
         StdOut.println("Select key of rank 4: " + set.select(4) + " Expected: 1");
 
-        //Test rank()
+        // Test rank()
         StdOut.println("Rank of key 9: " + set.rank(9) + " Expected: 8");
         StdOut.println("Rank of key 10: " + set.rank(10) + " Expected: 9");
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         set.delete(2);
 
-        for(Integer key : set.keys()) {
+        for (Integer key : set.keys()) {
             StdOut.print(key + " ");
         }
 
-        //Test deleteMin()
+        // Test deleteMin()
         StdOut.println("\n\nDelete min (key -5)");
         set.deleteMin();
 
-        for(Integer key : set.keys()) {
+        for (Integer key : set.keys()) {
             StdOut.print(key + " ");
         }
 
-        //Test deleteMax()
+        // Test deleteMax()
         StdOut.println("\n\nDelete max (key 99)");
         set.deleteMax();
 
-        for(Integer key : set.keys()) {
+        for (Integer key : set.keys()) {
             StdOut.print(key + " ");
         }
 
-        //Test keys() with range
+        // Test keys() with range
         StdOut.println("\n\nKeys in range [2, 10]");
-        for(Integer key : set.keys(2, 10)) {
+        for (Integer key : set.keys(2, 10)) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\n\nKeys in range [-4, -1]");
-        for(Integer key : set.keys(-4, -1)) {
+        for (Integer key : set.keys(-4, -1)) {
             StdOut.print(key + " ");
         }
 
-        //Delete all
+        // Delete all
         StdOut.println("\n\nDelete all");
         while (set.size() > 0) {
-            for(Integer key : set.keys()) {
+            for (Integer key : set.keys()) {
                 StdOut.print(key + " ");
             }
 
-            //set.delete(set.select(0));
+            // set.delete(set.select(0));
             set.delete(set.select(set.size() - 1));
             StdOut.println();
         }
@@ -301,34 +300,33 @@ public class Exercise1 {
 
         StdOut.println("Keys() test");
 
-        for(Integer key : hashSet.keys()) {
+        for (Integer key : hashSet.keys()) {
             StdOut.print(key + " ");
         }
         StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99");
 
         StdOut.println("\ntoString() test: " + hashSet);
 
-        //Test delete()
+        // Test delete()
         StdOut.println("\nDelete key 2");
         hashSet.delete(2);
 
-        for(Integer key : hashSet.keys()) {
+        for (Integer key : hashSet.keys()) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\nDelete key 99");
         hashSet.delete(99);
 
-        for(Integer key : hashSet.keys()) {
+        for (Integer key : hashSet.keys()) {
             StdOut.print(key + " ");
         }
 
         StdOut.println("\nDelete key -5");
         hashSet.delete(-5);
 
-        for(Integer key : hashSet.keys()) {
+        for (Integer key : hashSet.keys()) {
             StdOut.print(key + " ");
         }
     }
-
 }

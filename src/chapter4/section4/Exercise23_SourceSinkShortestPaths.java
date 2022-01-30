@@ -28,7 +28,7 @@ public class Exercise23_SourceSinkShortestPaths {
             priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedDigraph.vertices());
             this.target = target;
 
-            for(int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             distTo[source] = 0;
@@ -45,7 +45,7 @@ public class Exercise23_SourceSinkShortestPaths {
         }
 
         private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int vertex) {
-            for(DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
+            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(vertex)) {
                 int neighbor = edge.to();
 
                 if (distTo[neighbor] > distTo[vertex] + edge.weight()) {
@@ -78,17 +78,14 @@ public class Exercise23_SourceSinkShortestPaths {
             }
 
             Stack<DirectedEdge> path = new Stack<>();
-            for(DirectedEdge edge = edgeTo[target]; edge != null; edge = edgeTo[edge.from()]) {
+            for (DirectedEdge edge = edgeTo[target]; edge != null; edge = edgeTo[edge.from()]) {
                 path.push(edge);
             }
-
             return path;
         }
-
     }
 
     public static void main(String[] args) {
-
         EdgeWeightedDigraph edgeWeightedDigraph = new EdgeWeightedDigraph(8);
         edgeWeightedDigraph.addEdge(new DirectedEdge(4, 5, 0.35));
         edgeWeightedDigraph.addEdge(new DirectedEdge(5, 4, 0.35));
@@ -114,7 +111,7 @@ public class Exercise23_SourceSinkShortestPaths {
 
         StdOut.print("Path to target 2: ");
 
-        for(DirectedEdge edge : dijkstraSPSourceSink1.pathToTarget()) {
+        for (DirectedEdge edge : dijkstraSPSourceSink1.pathToTarget()) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
         StdOut.println("\nExpected: 0->2");
@@ -127,11 +124,9 @@ public class Exercise23_SourceSinkShortestPaths {
 
         StdOut.print("Path to target 6: ");
 
-        for(DirectedEdge edge : dijkstraSPSourceSink2.pathToTarget()) {
+        for (DirectedEdge edge : dijkstraSPSourceSink2.pathToTarget()) {
             StdOut.print(edge.from() + "->" + edge.to() + " ");
         }
         StdOut.println("\nExpected: 4->7 7->3 3->6");
-
     }
-
 }

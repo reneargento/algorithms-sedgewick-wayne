@@ -35,7 +35,7 @@ public class Exercise28_StackWithAQueue<Item> {
         }
 
         int currentSize = size();
-        for(int i = 0; i < currentSize - 1; i++) {
+        for (int i = 0; i < currentSize - 1; i++) {
             queue.enqueue(queue.dequeue());
         }
 
@@ -66,7 +66,4 @@ public class Exercise28_StackWithAQueue<Item> {
 
         StdOut.println("Expected output from pop(): 3 2 5 4");
     }
-
-
-
 }

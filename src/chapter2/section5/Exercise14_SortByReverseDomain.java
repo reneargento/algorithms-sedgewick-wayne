@@ -20,7 +20,7 @@ public class Exercise14_SortByReverseDomain {
 
             String[] reverseDomain = domainName.split("\\.");
             StringBuilder reverseDomainConcatenation = new StringBuilder();
-            for(int i = reverseDomain.length - 1; i >= 0; i--) {
+            for (int i = reverseDomain.length - 1; i >= 0; i--) {
                 reverseDomainConcatenation.append(reverseDomain[i]);
 
                 if (i != 0) {
@@ -51,14 +51,14 @@ public class Exercise14_SortByReverseDomain {
         String[] domainNames = StdIn.readAllLines();
         Domain[] domains = new Domain[domainNames.length];
 
-        for(int i = 0; i < domainNames.length; i++) {
+        for (int i = 0; i < domainNames.length; i++) {
             Domain domain = sortByReverseDomain.new Domain(domainNames[i]);
             domains[i] = domain;
         }
 
         Arrays.sort(domains);
 
-        for(Domain domain : domains) {
+        for (Domain domain : domains) {
             StdOut.println(domain.reverseDomainName);
         }
 
@@ -70,5 +70,4 @@ public class Exercise14_SortByReverseDomain {
                 "edu.princeton.cs\n" +
                 "gov.somewebsite.www");
     }
-
 }

@@ -30,7 +30,7 @@ public class Exercise32_Histogram {
 		}
 
 		double[] numbersArray = new double[numbers.size()];
-		for(int i = 0; i < numbers.size(); i++) {
+		for (int i = 0; i < numbers.size(); i++) {
 			numbersArray[i] = numbers.get(i);
 		}
 
@@ -64,7 +64,7 @@ public class Exercise32_Histogram {
 		StdDraw.text(middleX, -1.2, "Intervals");
 
 		// X labels
-		for(int x = 0; x < numberOfIntervals; x++) {
+		for (int x = 0; x < numberOfIntervals; x++) {
 			double minValue = left + (intervalSize * x);
 			double maxValue = minValue + intervalSize - 0.01;
 			String intervalDescription = String.format("[%.2f - %.2f]", minValue, maxValue);
@@ -72,7 +72,7 @@ public class Exercise32_Histogram {
 		}
 
 		// Y labels
-		for(int y = 0; y < maxY; y++) {
+		for (int y = 0; y < maxY; y++) {
 			StdDraw.text(minX + 0.7, y, String.valueOf(y));
 		}
 
@@ -106,5 +106,4 @@ public class Exercise32_Histogram {
 			}
 		}
 	}
-
 }

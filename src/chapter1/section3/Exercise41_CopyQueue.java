@@ -11,7 +11,7 @@ import java.util.StringJoiner;
 public class Exercise41_CopyQueue<Item> extends Queue<Item>{
 
     public Exercise41_CopyQueue(Queue<Item> queue) {
-        for(Item item : queue) {
+        for (Item item : queue) {
             enqueue(item);
         }
     }
@@ -50,5 +50,4 @@ public class Exercise41_CopyQueue<Item> extends Queue<Item>{
         StdOut.println("Queue Copy: " + copyQueueItems.toString());
         StdOut.println("Expected: 3 4 5 99");
     }
-
 }

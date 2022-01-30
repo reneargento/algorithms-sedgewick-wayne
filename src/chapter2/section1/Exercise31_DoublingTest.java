@@ -30,7 +30,7 @@ public class Exercise31_DoublingTest {
     }
 
     private static void doExperiments(SortTypes sortType, int arrayLength, int numberOfExperiments) {
-        //Previous time
+        // Previous time
         Comparable[] array = generateRandomArray(arrayLength);
 
         Stopwatch initialTimer = new Stopwatch();
@@ -39,7 +39,7 @@ public class Exercise31_DoublingTest {
 
         double previousRunningTime = initialTimer.elapsedTime();
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             arrayLength *= 2;
             array = generateRandomArray(arrayLength);
@@ -76,7 +76,7 @@ public class Exercise31_DoublingTest {
     private static Comparable[] generateRandomArray(int arrayLength) {
         Comparable[] array = new Comparable[arrayLength];
 
-        for(int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < arrayLength; i++) {
             array[i] = StdRandom.uniform();
         }
 

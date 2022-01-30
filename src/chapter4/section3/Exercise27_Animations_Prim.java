@@ -50,7 +50,7 @@ public class Exercise27_Animations_Prim {
             drawInitialVertices(randomCoordinates);
             drawInitialEdges(edgeWeightedGraph, randomCoordinates);
 
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedGraph.vertices());
@@ -91,7 +91,7 @@ public class Exercise27_Animations_Prim {
         private Coordinate[] getRandomCoordinates(EdgeWeightedGraph edgeWeightedGraph) {
             Coordinate[] vertexCoordinates = new Coordinate[edgeWeightedGraph.vertices()];
 
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                 // tinyEWG coordinates
 //                double randomXCoordinate = StdRandom.uniform();
 //                double randomYCoordinate = StdRandom.uniform();
@@ -106,7 +106,7 @@ public class Exercise27_Animations_Prim {
         }
 
         private void drawInitialVertices(Coordinate[] coordinates) {
-            for(int vertexId = 0; vertexId < coordinates.length; vertexId++) {
+            for (int vertexId = 0; vertexId < coordinates.length; vertexId++) {
 
                 StdDraw.setPenColor(Color.LIGHT_GRAY);
                 StdDraw.filledCircle(coordinates[vertexId].xCoordinate, coordinates[vertexId].yCoordinate,
@@ -125,7 +125,7 @@ public class Exercise27_Animations_Prim {
         private void drawVerticesInMST(Coordinate[] coordinates) {
             StdDraw.setPenRadius(0.002D);
 
-            for(int vertexId : verticesInMST.keys()) {
+            for (int vertexId : verticesInMST.keys()) {
                 StdDraw.setPenColor(Color.WHITE);
                 StdDraw.filledCircle(coordinates[vertexId].xCoordinate, coordinates[vertexId].yCoordinate,
                         radiusOfCircleAroundVertex);
@@ -144,7 +144,7 @@ public class Exercise27_Animations_Prim {
             // Add vertex to the minimum spanning tree; update data structures
             marked[vertex] = true;
 
-            for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+            for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                 int otherVertex = edge.other(vertex);
                 if (marked[otherVertex]) {
                     // Only draw an ineligible edge if this edge is not part of the MST
@@ -185,7 +185,7 @@ public class Exercise27_Animations_Prim {
         public Iterable<Edge> edges() {
             Queue<Edge> minimumSpanningTree = new Queue<>();
 
-            for(int vertex = 1; vertex < edgeTo.length; vertex++) {
+            for (int vertex = 1; vertex < edgeTo.length; vertex++) {
                 minimumSpanningTree.enqueue(edgeTo[vertex]);
             }
 
@@ -195,10 +195,9 @@ public class Exercise27_Animations_Prim {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
@@ -210,8 +209,8 @@ public class Exercise27_Animations_Prim {
             StdDraw.setPenRadius(0.002D);
             StdDraw.setPenColor(Color.BLACK);
 
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
-                for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+                for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                     int otherVertex = edge.other(vertex);
 
                     if (vertex > otherVertex) {
@@ -220,12 +219,11 @@ public class Exercise27_Animations_Prim {
                     }
                 }
             }
-
             sleep();
         }
 
         private void drawCandidateEdgesToMST(Edge[] edgeTo, Coordinate[] coordinates, int nextVertexInMST) {
-            for(Edge edge : edgeTo) {
+            for (Edge edge : edgeTo) {
                 if (edge == null) {
                     continue;
                 }
@@ -248,7 +246,6 @@ public class Exercise27_Animations_Prim {
             }
 
             drawVerticesInMST(coordinates);
-
             sleep();
         }
 
@@ -258,14 +255,12 @@ public class Exercise27_Animations_Prim {
 
             StdDraw.line(coordinates[vertex1].xCoordinate, coordinates[vertex1].yCoordinate,
                     coordinates[vertex2].xCoordinate, coordinates[vertex2].yCoordinate);
-
             sleep();
 
             StdDraw.setPenColor(Color.BLACK);
             StdDraw.line(coordinates[vertex1].xCoordinate, coordinates[vertex1].yCoordinate,
                     coordinates[vertex2].xCoordinate, coordinates[vertex2].yCoordinate);
             drawVerticesInMST(coordinates);
-
             sleep();
         }
 
@@ -297,5 +292,4 @@ public class Exercise27_Animations_Prim {
         new Exercise27_Animations_Prim().new PrimMSTAnimations(edgeWeightedGraph, -1, 1001,
                 -1, 1001, 15);
     }
-
 }

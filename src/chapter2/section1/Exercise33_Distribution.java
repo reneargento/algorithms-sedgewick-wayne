@@ -38,11 +38,10 @@ public class Exercise33_Distribution {
 
         int experiment = 0;
 
-        while(true) {
-
+        while (true) {
             Comparable[] array = new Comparable[arrayLength];
 
-            for(int i = 0; i < arrayLength; i++) {
+            for (int i = 0; i < arrayLength; i++) {
                 array[i] = StdRandom.uniform();
             }
 
@@ -72,8 +71,6 @@ public class Exercise33_Distribution {
             case SHELL: ShellSort.shellSort(array);
                 break;
         }
-
         return timer.elapsedTime();
     }
-
 }

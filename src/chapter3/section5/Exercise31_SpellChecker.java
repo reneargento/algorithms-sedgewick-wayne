@@ -33,12 +33,11 @@ public class Exercise31_SpellChecker {
                 return filteredWords;
             }
 
-            for(String word : allWords) {
+            for (String word : allWords) {
                 if (!redBlackBST.contains(word)) {
                     filteredWords.add(word);
                 }
             }
-
             return filteredWords;
         }
 
@@ -59,12 +58,11 @@ public class Exercise31_SpellChecker {
                 return filteredWords;
             }
 
-            for(String word : allWords) {
+            for (String word : allWords) {
                 if (!separateChainingHashTable.contains(word)) {
                     filteredWords.add(word);
                 }
             }
-
             return filteredWords;
         }
 
@@ -85,15 +83,13 @@ public class Exercise31_SpellChecker {
                 return filteredWords;
             }
 
-            for(String word : allWords) {
+            for (String word : allWords) {
                 if (!linearProbingHashTable.contains(word)) {
                     filteredWords.add(word);
                 }
             }
-
             return filteredWords;
         }
-
     }
 
     // There was no dictionary.txt file on the booksite, so I suspect it has been renamed to commonwords.txt
@@ -131,5 +127,4 @@ public class Exercise31_SpellChecker {
     public static void main(String[] args) {
         new Exercise31_SpellChecker().doExperiment(args);
     }
-
 }

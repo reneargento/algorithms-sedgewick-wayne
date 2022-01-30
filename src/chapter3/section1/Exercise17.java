@@ -99,7 +99,7 @@ public class Exercise17 {
                 resize(keys.length * 2);
             }
 
-            for(int i = size; i > rank; i--) {
+            for (int i = size; i > rank; i--) {
                 keys[i] = keys[i - 1];
                 values[i] = values[i - 1];
             }
@@ -125,7 +125,7 @@ public class Exercise17 {
             }
 
             int rank = rank(key);
-            for(int i = rank; i < size - 1; i++) {
+            for (int i = rank; i < size - 1; i++) {
                 keys[i] = keys[i + 1];
                 values[i] = values[i + 1];
             }
@@ -224,7 +224,7 @@ public class Exercise17 {
 
             Queue<Key> queue = new Queue<>();
 
-            for(int i = rank(low); i < rank(high); i++) {
+            for (int i = rank(low); i < rank(high); i++) {
                 queue.enqueue(keys[i]);
             }
 
@@ -263,7 +263,7 @@ public class Exercise17 {
         binarySearchSymbolTable.put(99, "Value 99");
 
         StdOut.println("All values:");
-        for(Integer key : binarySearchSymbolTable.keys()) {
+        for (Integer key : binarySearchSymbolTable.keys()) {
             StdOut.println("Key " + key + ": " + binarySearchSymbolTable.get(key));
         }
 
@@ -274,5 +274,4 @@ public class Exercise17 {
         StdOut.println("Floor of key 99: " + binarySearchSymbolTable.floor(99) + " Expected: 99");
         StdOut.println("Floor of key 200: " + binarySearchSymbolTable.floor(200) + " Expected: 99");
     }
-
 }

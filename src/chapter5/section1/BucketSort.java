@@ -14,18 +14,18 @@ public class BucketSort {
         int alphabetSize = 256;
         Queue<String>[] buckets = new Queue[alphabetSize + 1];
 
-        for(int bucket = 0; bucket < buckets.length; bucket++) {
+        for (int bucket = 0; bucket < buckets.length; bucket++) {
             buckets[bucket] = new Queue();
         }
 
         // 1- Put strings in buckets
-        for(int i = 0; i < strings.length; i++) {
+        for (int i = 0; i < strings.length; i++) {
             int leadingDigitIndex = strings[i].charAt(0);
             buckets[leadingDigitIndex].enqueue(strings[i]);
         }
 
         // 2- Sort the sublists
-        for(int bucket = 0; bucket < buckets.length; bucket++) {
+        for (int bucket = 0; bucket < buckets.length; bucket++) {
             if (!buckets[bucket].isEmpty()) {
                 sortBucket(buckets[bucket]);
             }
@@ -34,7 +34,7 @@ public class BucketSort {
         // 3- Stitch together all the buckets
         int arrayIndex = 0;
 
-        for(int r = 0; r <= alphabetSize; r++) {
+        for (int r = 0; r <= alphabetSize; r++) {
             while (!buckets[r].isEmpty()) {
                 String currentString = buckets[r].dequeue();
                 strings[arrayIndex++] = currentString;
@@ -52,7 +52,7 @@ public class BucketSort {
 
         InsertionSort.insertionSort(strings);
 
-        for(String string : strings) {
+        for (String string : strings) {
             bucket.enqueue(string);
         }
     }

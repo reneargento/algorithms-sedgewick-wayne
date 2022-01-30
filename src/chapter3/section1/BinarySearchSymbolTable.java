@@ -96,7 +96,7 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> impleme
             resize(keys.length * 2);
         }
 
-        for(int i = size; i > rank; i--) {
+        for (int i = size; i > rank; i--) {
             keys[i] = keys[i - 1];
             values[i] = values[i - 1];
         }
@@ -122,7 +122,7 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> impleme
         }
 
         int rank = rank(key);
-        for(int i = rank; i < size - 1; i++) {
+        for (int i = rank; i < size - 1; i++) {
             keys[i] = keys[i + 1];
             values[i] = values[i + 1];
         }
@@ -221,7 +221,7 @@ public class BinarySearchSymbolTable<Key extends Comparable<Key>, Value> impleme
 
         Queue<Key> queue = new Queue<>();
 
-        for(int i = rank(low); i < rank(high); i++) {
+        for (int i = rank(low); i < rank(high); i++) {
             queue.enqueue(keys[i]);
         }
 

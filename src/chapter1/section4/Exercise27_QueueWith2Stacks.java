@@ -8,7 +8,6 @@ import java.util.Stack;
  * Created by Rene Argento on 20/11/16.
  */
 public class Exercise27_QueueWith2Stacks<Item> {
-
     private Stack<Item> tailStack;
     private Stack<Item> headStack;
 
@@ -17,41 +16,36 @@ public class Exercise27_QueueWith2Stacks<Item> {
         headStack = new Stack<>();
     }
 
-    //O(1)
+    // O(1)
     public int size() {
         return headStack.size() + tailStack.size();
     }
 
-    //O(1)
+    // O(1)
     public boolean isEmpty() {
         return headStack.isEmpty() && tailStack.isEmpty();
     }
 
-    //O(1)
+    // O(1)
     public void enqueue(Item item) {
         tailStack.push(item);
     }
 
-    //Amortized O(1)
+    // Amortized O(1)
     public Item dequeue() {
-
         if (headStack.isEmpty()) {
             moveAllItemsFromTailToHead();
         }
-
         return headStack.pop();
     }
 
     private void moveAllItemsFromTailToHead() {
-
-        while(!tailStack.isEmpty()) {
+        while (!tailStack.isEmpty()) {
             headStack.push(tailStack.pop());
         }
-
     }
 
     public static void main(String[] args) {
-
         Exercise27_QueueWith2Stacks<String> exercise27_queueWith2Stacks = new Exercise27_QueueWith2Stacks<>();
 
         StdOut.println("IsEmpty: " + exercise27_queueWith2Stacks.isEmpty() + " Expected: true");
@@ -77,5 +71,4 @@ public class Exercise27_QueueWith2Stacks<Item> {
         StdOut.println("IsEmpty: " + exercise27_queueWith2Stacks.isEmpty() + " Expected: false");
         StdOut.println("Size: " + exercise27_queueWith2Stacks.size() + " Expected: 2");
     }
-
 }

@@ -18,7 +18,7 @@ public class Exercise16_AmortizedCostsPlotsQF {
         int[] id;
         int count;
 
-        //Used for plotting amortized costs
+        // Used for plotting amortized costs
         int operation;
         int currentCost;
         int totalCost;
@@ -33,7 +33,7 @@ public class Exercise16_AmortizedCostsPlotsQF {
             totalCost = 0;
             total = new ArrayList<>();
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 id[i] = i;
             }
         }
@@ -42,25 +42,23 @@ public class Exercise16_AmortizedCostsPlotsQF {
             return count;
         }
 
-        //O(1)
+        // O(1)
         public int find(int site) {
             currentCost++;
-
             return id[site];
         }
 
-        //O(1)
+        // O(1)
         public boolean connected(int site1, int site2) {
             boolean isConnected = find(site1) == find(site2);
 
             if (isConnected) {
                 updateCostAnalysis();
             }
-
             return isConnected;
         }
 
-        //O(n)
+        // O(n)
         public void union(int site1, int site2) {
             int leaderId1 = find(site1);
             int leaderId2 = find(site2);
@@ -69,7 +67,7 @@ public class Exercise16_AmortizedCostsPlotsQF {
                 return;
             }
 
-            for(int i = 0; i < id.length; i++) {
+            for (int i = 0; i < id.length; i++) {
                 currentCost++; // 1 access for every site
 
                 if (id[i] == leaderId1) {
@@ -80,12 +78,10 @@ public class Exercise16_AmortizedCostsPlotsQF {
             }
 
             count--;
-
             updateCostAnalysis();
         }
 
         private void updateCostAnalysis() {
-
             totalCost += currentCost;
 
             total.add(totalCost / operation);
@@ -96,13 +92,12 @@ public class Exercise16_AmortizedCostsPlotsQF {
     }
 
     public static void main(String[] args) {
-
         int numberOfSites = 100;
 
         Exercise16_AmortizedCostsPlotsQF amortizedCostsPlots = new Exercise16_AmortizedCostsPlotsQF();
         QuickFind quickFind = amortizedCostsPlots.new QuickFind(numberOfSites);
 
-        for(int i = 0; i < 150; i++) {
+        for (int i = 0; i < 150; i++) {
             int randomSite1 = StdRandom.uniform(numberOfSites);
             int randomSite2 = StdRandom.uniform(numberOfSites);
 
@@ -127,5 +122,4 @@ public class Exercise16_AmortizedCostsPlotsQF {
             }
         });
     }
-
 }

@@ -82,7 +82,7 @@ public class Exercise22_ArrayResizing {
         }
 
         private void swim(int index) {
-            while(index / 2 >= 1) {
+            while (index / 2 >= 1) {
 
                 totalArrayAccesses += 2;
                 totalArrayAccessesForInsert += 2;

@@ -21,18 +21,18 @@ public class Exercise11_QueueSort {
         public void bucketSort(String[] strings) {
             buckets = new Queue[alphabetSize + 1];
 
-            for(int bucket = 0; bucket < buckets.length; bucket++) {
+            for (int bucket = 0; bucket < buckets.length; bucket++) {
                 buckets[bucket] = new Queue();
             }
 
             // 1- Put strings in bins
-            for(int i = 0; i < strings.length; i++) {
+            for (int i = 0; i < strings.length; i++) {
                 int leadingDigitIndex = strings[i].charAt(0);
                 buckets[leadingDigitIndex].enqueue(strings[i]);
             }
 
             // 2- Sort the sublists
-            for(int bucket = 0; bucket < buckets.length; bucket++) {
+            for (int bucket = 0; bucket < buckets.length; bucket++) {
                 if (!buckets[bucket].isEmpty()) {
                     sortBucket(buckets[bucket]);
                 }
@@ -41,7 +41,7 @@ public class Exercise11_QueueSort {
             // 3- Stitch together all the buckets
             int arrayIndex = 0;
 
-            for(int r = 0; r <= alphabetSize; r++) {
+            for (int r = 0; r <= alphabetSize; r++) {
                 while (!buckets[r].isEmpty()) {
                     String currentString = buckets[r].dequeue();
                     strings[arrayIndex++] = currentString;
@@ -59,7 +59,7 @@ public class Exercise11_QueueSort {
 
             InsertionSort.insertionSort(strings);
 
-            for(String string : strings) {
+            for (String string : strings) {
                 bucket.enqueue(string);
             }
         }
@@ -74,7 +74,7 @@ public class Exercise11_QueueSort {
 
         StringJoiner sortedArray1 = new StringJoiner(" ");
 
-        for(String string : array1) {
+        for (String string : array1) {
             sortedArray1.add(string);
         }
         StdOut.println("Sorted array 1");
@@ -87,12 +87,11 @@ public class Exercise11_QueueSort {
 
         StringJoiner sortedArray2 = new StringJoiner(" ");
 
-        for(String string : array2) {
+        for (String string : array2) {
             sortedArray2.add(string);
         }
         StdOut.println("Sorted array 2");
         StdOut.println(sortedArray2);
         StdOut.println("Expected: \nBubbleSort InsertionSort MergeSort QuickSort SelectionSort ShellSort");
     }
-
 }

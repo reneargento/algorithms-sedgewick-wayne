@@ -21,10 +21,10 @@ public class Exercise31_AllPairsShortestPathsOnALine {
             int sourceVertex = -1;
 
             // Find one of the two sources
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                 int outdegree = 0;
 
-                for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+                for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                     if (edge.weight() < 0) {
                         throw new IllegalArgumentException("Edge weights cannot be negative");
                     }
@@ -55,7 +55,7 @@ public class Exercise31_AllPairsShortestPathsOnALine {
             distanceFromSource = new double[edgeWeightedGraph.vertices()];
             boolean[] visited = new boolean[edgeWeightedGraph.vertices()];
 
-            for(int vertex = 0; vertex < distanceFromSource.length; vertex++) {
+            for (int vertex = 0; vertex < distanceFromSource.length; vertex++) {
                 distanceFromSource[vertex] = Double.POSITIVE_INFINITY;
             }
 
@@ -69,7 +69,7 @@ public class Exercise31_AllPairsShortestPathsOnALine {
             while (!queue.isEmpty()) {
                 int currentVertex = queue.dequeue();
 
-                for(Edge edge : edgeWeightedGraph.adjacent(currentVertex)) {
+                for (Edge edge : edgeWeightedGraph.adjacent(currentVertex)) {
                     int neighbor = edge.other(currentVertex);
 
                     if (!visited[neighbor]) {
@@ -104,13 +104,12 @@ public class Exercise31_AllPairsShortestPathsOnALine {
                 {10, 8, 5, 1, 0}
         };
 
-        for(int source = 0; source < edgeWeightedGraph.vertices(); source++) {
-            for(int target = 0; target < edgeWeightedGraph.vertices(); target++) {
+        for (int source = 0; source < edgeWeightedGraph.vertices(); source++) {
+            for (int target = 0; target < edgeWeightedGraph.vertices(); target++) {
                 StdOut.println("Distance from " + source + " to " + target + ": " +
                         allPairsShortestPathsOnALine.dist(source, target)
                         + " Expected: " + expectedDistances[source][target]);
             }
         }
     }
-
 }

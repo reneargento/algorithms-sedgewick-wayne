@@ -192,7 +192,7 @@ public class Exercise27_List {
             ListIterator() {
                 keys = new LinkedList<>();
 
-                for(Double key : itemsBST.keys()) {
+                for (Double key : itemsBST.keys()) {
                     keys.add(key);
                 }
             }
@@ -231,7 +231,7 @@ public class Exercise27_List {
         StdOut.println("isEmpty: " + list.isEmpty() + " Expected: false\n");
 
         //Test iterator
-        for(int item : list) {
+        for (int item : list) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 0 1 10 11");
@@ -240,7 +240,7 @@ public class Exercise27_List {
         StdOut.println("\nAdd item 9 on index 2");
         list.add(2, 9);
 
-        for(int item : list) {
+        for (int item : list) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 0 1 9 10 11");
@@ -248,7 +248,7 @@ public class Exercise27_List {
         StdOut.println("\nAdd item -1 on index 0");
         list.add(0, -1);
 
-        for(int item : list) {
+        for (int item : list) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: -1 0 1 9 10 11");
@@ -257,7 +257,7 @@ public class Exercise27_List {
         StdOut.println("\nDelete front");
         list.deleteFront();
 
-        for(int item : list) {
+        for (int item : list) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 0 1 9 10 11");
@@ -266,7 +266,7 @@ public class Exercise27_List {
         StdOut.println("\nDelete back");
         list.deleteBack();
 
-        for(int item : list) {
+        for (int item : list) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 0 1 9 10");
@@ -275,7 +275,7 @@ public class Exercise27_List {
         StdOut.println("\nDelete item on index 2");
         list.delete(2);
 
-        for(int item : list) {
+        for (int item : list) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 0 1 10");
@@ -283,7 +283,7 @@ public class Exercise27_List {
         StdOut.println("\nDelete item on index 0");
         list.delete(0);
 
-        for(int item : list) {
+        for (int item : list) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 1 10");
@@ -292,7 +292,7 @@ public class Exercise27_List {
         StdOut.println("\nDelete item 5");
         list.delete(new Integer(5));
 
-        for(int item : list) {
+        for (int item : list) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 1 10");
@@ -300,7 +300,7 @@ public class Exercise27_List {
         StdOut.println("\nDelete item 10");
         list.delete(new Integer(10));
 
-        for(int item : list) {
+        for (int item : list) {
             StdOut.print(item + " ");
         }
         StdOut.println("\nExpected: 1");
@@ -309,5 +309,4 @@ public class Exercise27_List {
         list.deleteFront();
         StdOut.println("isEmpty: " + list.isEmpty() + " Expected: true");
     }
-
 }

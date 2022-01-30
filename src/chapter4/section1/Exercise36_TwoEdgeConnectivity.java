@@ -32,17 +32,16 @@ public class Exercise36_TwoEdgeConnectivity {
 
         List<Edge> bridges = new ArrayList<>();
 
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             low[vertex] = -1;
             time[vertex] = -1;
         }
 
-        for(int vertex = 0; vertex < graph.vertices(); vertex++) {
+        for (int vertex = 0; vertex < graph.vertices(); vertex++) {
             if (time[vertex] == -1) {
                 dfs(graph, vertex, vertex, bridges);
             }
         }
-
         return bridges;
     }
 
@@ -51,7 +50,7 @@ public class Exercise36_TwoEdgeConnectivity {
         low[currentVertex] = count;
         count++;
 
-        for(int neighbor : graph.adjacent(currentVertex)) {
+        for (int neighbor : graph.adjacent(currentVertex)) {
             if (time[neighbor] == -1) {
                 dfs(graph, neighbor, currentVertex, bridges);
 
@@ -83,7 +82,7 @@ public class Exercise36_TwoEdgeConnectivity {
         } else {
             StdOut.println("Bridges");
 
-            for(Edge edge : bridges1) {
+            for (Edge edge : bridges1) {
                 StdOut.println(edge.vertex1 + "-" + edge.vertex2);
             }
         }
@@ -105,7 +104,7 @@ public class Exercise36_TwoEdgeConnectivity {
         } else {
             StdOut.println("Bridges");
 
-            for(Edge edge : bridges2) {
+            for (Edge edge : bridges2) {
                 StdOut.println(edge.vertex1 + "-" + edge.vertex2);
             }
         }
@@ -128,12 +127,11 @@ public class Exercise36_TwoEdgeConnectivity {
         } else {
             StdOut.println("Bridges");
 
-            for(Edge edge : bridges3) {
+            for (Edge edge : bridges3) {
                 StdOut.println(edge.vertex1 + "-" + edge.vertex2);
             }
         }
         StdOut.println("Expected: 5-6");
         StdOut.println("Expected: 1-5");
     }
-
 }

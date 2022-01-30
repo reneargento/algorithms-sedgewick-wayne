@@ -22,7 +22,7 @@ public class Exercise43_BoruvkasAlgorithm {
             UnionFind unionFind = new UnionFind(edgeWeightedGraph.vertices());
 
             // Repeats at most lg(V) times or until minimum spanning tree is complete
-            for(int stage = 0; stage < edgeWeightedGraph.vertices(); stage = stage + stage) {
+            for (int stage = 0; stage < edgeWeightedGraph.vertices(); stage = stage + stage) {
                 if (minimumSpanningTree.size() == edgeWeightedGraph.vertices() - 1) {
                     break;
                 }
@@ -31,7 +31,7 @@ public class Exercise43_BoruvkasAlgorithm {
                 // If edge weights are equal, ties are broken in favor of the first edge in EdgeWeightedGraph.edges()
                 Edge[] closestEdges = new Edge[edgeWeightedGraph.vertices()];
 
-                for(Edge edge : edgeWeightedGraph.edges()) {
+                for (Edge edge : edgeWeightedGraph.edges()) {
                     int vertex1 = edge.either();
                     int vertex2 = edge.other(vertex1);
 
@@ -52,7 +52,7 @@ public class Exercise43_BoruvkasAlgorithm {
                 }
 
                 // Add newly discovered edges to the MST
-                for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+                for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                     Edge closestEdge = closestEdges[vertex];
 
                     if (closestEdge != null) {
@@ -76,7 +76,6 @@ public class Exercise43_BoruvkasAlgorithm {
         public double weight() {
             return weight;
         }
-
     }
 
     public static void main(String[] args) {
@@ -93,7 +92,7 @@ public class Exercise43_BoruvkasAlgorithm {
         Exercise43_BoruvkasAlgorithm.BoruvkaMST boruvkaMST =
                 new Exercise43_BoruvkasAlgorithm().new BoruvkaMST(edgeWeightedGraph);
 
-        for(Edge edge : boruvkaMST.edges()) {
+        for (Edge edge : boruvkaMST.edges()) {
             StdOut.println(edge);
         }
 
@@ -103,5 +102,4 @@ public class Exercise43_BoruvkasAlgorithm {
                 "0-3 0.50000\n" +
                 "3-4 0.80000");
     }
-
 }

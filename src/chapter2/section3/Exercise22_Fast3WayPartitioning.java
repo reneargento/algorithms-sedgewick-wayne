@@ -24,7 +24,7 @@ public class Exercise22_Fast3WayPartitioning {
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
             Comparable[] array = ArrayGenerator.generateRandomArrayWith3Values(arraySize);
             allInputArrays.put(i, array);
 
@@ -35,12 +35,11 @@ public class Exercise22_Fast3WayPartitioning {
     }
 
     private static void doExperiment(int numberOfExperiments, int initialArraySize, Map<Integer, Comparable[]> allInputArrays) {
-
         StdOut.printf("%13s %16s %38s\n", "Array Size | ", "QuickSort 3-Way |", "QuickSort with fast 3-way partitioning");
 
         int arraySize = initialArraySize;
 
-        for(int i = 0; i < numberOfExperiments; i++) {
+        for (int i = 0; i < numberOfExperiments; i++) {
 
             Comparable[] originalArray = allInputArrays.get(i);
             Comparable[] array = new Comparable[originalArray.length];
@@ -73,7 +72,6 @@ public class Exercise22_Fast3WayPartitioning {
 
     @SuppressWarnings("unchecked")
     private static void quickSort(Comparable[] array, int low, int high) {
-
         if (low >= high) {
             return;
         }
@@ -126,10 +124,10 @@ public class Exercise22_Fast3WayPartitioning {
 
         i = j + 1;
 
-        for(int k = low; k <= p; k++) {
+        for (int k = low; k <= p; k++) {
             ArrayUtil.exchange(array, k, j--);
         }
-        for(int k = high; k >= q; k--) {
+        for (int k = high; k >= q; k--) {
             ArrayUtil.exchange(array, k, i++);
         }
 
@@ -145,5 +143,4 @@ public class Exercise22_Fast3WayPartitioning {
     private static void printResults(int arraySize, double quickSort3WayRunningTime, double quickSortWithFast3WayPartitioningRunningTime) {
         StdOut.printf("%10d %18.1f %40.1f\n", arraySize, quickSort3WayRunningTime, quickSortWithFast3WayPartitioningRunningTime);
     }
-
 }

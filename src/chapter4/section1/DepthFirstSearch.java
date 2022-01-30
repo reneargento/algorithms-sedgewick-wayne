@@ -4,7 +4,6 @@ package chapter4.section1;
  * Created by Rene Argento on 12/09/17.
  */
 public class DepthFirstSearch {
-
     private boolean[] visited;
     private int count;
 
@@ -17,7 +16,7 @@ public class DepthFirstSearch {
         visited[vertex] = true;
         count++;
 
-        for(int neighbor : graph.adjacent(vertex)) {
+        for (int neighbor : graph.adjacent(vertex)) {
             if (!visited[neighbor]) {
                 dfs(graph, neighbor);
             }
@@ -31,5 +30,4 @@ public class DepthFirstSearch {
     public int count() {
         return count;
     }
-
 }

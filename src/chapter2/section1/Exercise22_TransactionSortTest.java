@@ -16,7 +16,7 @@ public class Exercise22_TransactionSortTest {
         In in = new In(fileName);
         Queue<Transaction> queue = new Queue<>();
 
-        while(!in.isEmpty()) {
+        while (!in.isEmpty()) {
             queue.enqueue(new Transaction(in.readLine()));
         }
 
@@ -26,7 +26,6 @@ public class Exercise22_TransactionSortTest {
         for (int i = 0; i < queueSize; i++) {
             transactions[i] = queue.dequeue();
         }
-
         return transactions;
     }
 
@@ -40,5 +39,4 @@ public class Exercise22_TransactionSortTest {
             StdOut.println(transaction);
         }
     }
-
 }

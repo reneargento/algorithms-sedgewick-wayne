@@ -54,7 +54,7 @@ public class Exercise31_MSTWeights {
             // Mark vertex and add to priority queue all edges from vertex to unmarked vertices
             marked[vertex] = true;
 
-            for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+            for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                 if (!marked[edge.other(vertex)]) {
                     priorityQueue.insert(edge);
                 }
@@ -68,10 +68,9 @@ public class Exercise31_MSTWeights {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
@@ -81,7 +80,6 @@ public class Exercise31_MSTWeights {
     }
 
     public class PrimMSTWeight {
-
         private Edge[] edgeTo; // shortest edge from tree vertex
         private double[] distTo; // distTo[vertex] = edgeTo[vertex].weight()
         private boolean[] marked; // true if vertex is on the minimum spanning tree
@@ -94,7 +92,7 @@ public class Exercise31_MSTWeights {
             distTo = new double[edgeWeightedGraph.vertices()];
             marked = new boolean[edgeWeightedGraph.vertices()];
 
-            for(int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
+            for (int vertex = 0; vertex < edgeWeightedGraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
             }
             priorityQueue = new IndexMinPriorityQueue<>(edgeWeightedGraph.vertices());
@@ -112,7 +110,7 @@ public class Exercise31_MSTWeights {
             // Add vertex to the minimum spanning tree; update data structures
             marked[vertex] = true;
 
-            for(Edge edge : edgeWeightedGraph.adjacent(vertex)) {
+            for (Edge edge : edgeWeightedGraph.adjacent(vertex)) {
                 int otherVertex = edge.other(vertex);
                 if (marked[otherVertex]) {
                     continue; // vertex-otherVertex is ineligible
@@ -140,20 +138,18 @@ public class Exercise31_MSTWeights {
         public Iterable<Edge> edges() {
             Queue<Edge> minimumSpanningTree = new Queue<>();
 
-            for(int vertex = 1; vertex < edgeTo.length; vertex++) {
+            for (int vertex = 1; vertex < edgeTo.length; vertex++) {
                 minimumSpanningTree.enqueue(edgeTo[vertex]);
             }
-
             return minimumSpanningTree;
         }
 
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
@@ -163,7 +159,6 @@ public class Exercise31_MSTWeights {
     }
 
     public class KruskalMSTWeight {
-
         private Queue<Edge> minimumSpanningTree;
         private double weight;
 
@@ -171,7 +166,7 @@ public class Exercise31_MSTWeights {
             minimumSpanningTree = new Queue<>();
             PriorityQueueResize<Edge> priorityQueue = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
 
-            for(Edge edge : edgeWeightedGraph.edges()) {
+            for (Edge edge : edgeWeightedGraph.edges()) {
                 priorityQueue.insert(edge);
             }
 
@@ -201,17 +196,15 @@ public class Exercise31_MSTWeights {
         public double lazyWeight() {
             double weight = 0;
 
-            for(Edge edge : edges()) {
+            for (Edge edge : edges()) {
                 weight += edge.weight();
             }
-
             return weight;
         }
 
         public double eagerWeight() {
             return weight;
         }
-
     }
 
     public static void main(String[] args) {
@@ -246,5 +239,4 @@ public class Exercise31_MSTWeights {
         StdOut.println("Kruskal MST lazy weight: " + kruskalMSTWeight.lazyWeight());
         StdOut.println("Kruskal MST eager weight: " + kruskalMSTWeight.eagerWeight());
     }
-
 }

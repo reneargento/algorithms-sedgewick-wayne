@@ -75,14 +75,14 @@ public class Exercise33_RandomPrimes {
             boolean[] isPrime = new boolean[arraySize + 1];
 
             // 1- Mark all numbers as prime
-            for(int i = 2; i < isPrime.length; i++) {
+            for (int i = 2; i < isPrime.length; i++) {
                 isPrime[i] = true;
             }
 
             // 2- Remove numbers multiple of the current element
             // 3- Repeat until we finish verifying all numbers
 
-            for(long i = 2; i <= arraySize; i++) {
+            for (long i = 2; i <= arraySize; i++) {
 
                 if (isPrime[(int) i]) {
                     for (long j = i * i; j < isPrime.length; j += i) {
@@ -92,7 +92,6 @@ public class Exercise33_RandomPrimes {
                     primeNumbers.add((int) i);
                 }
             }
-
             return primeNumbers;
         }
     }
@@ -127,5 +126,4 @@ public class Exercise33_RandomPrimes {
         int index5 = rabinKarpWithLongRandomPrime5.search(text);
         StdOut.println("Index 5: " + index5 + " Expected: 0");
     }
-
 }

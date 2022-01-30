@@ -17,7 +17,7 @@ public class KruskalMST {
         minimumSpanningTree = new Queue<>();
         PriorityQueueResize<Edge> priorityQueue = new PriorityQueueResize<>(PriorityQueueResize.Orientation.MIN);
 
-        for(Edge edge : edgeWeightedGraph.edges()) {
+        for (Edge edge : edgeWeightedGraph.edges()) {
             priorityQueue.insert(edge);
         }
 
@@ -47,7 +47,7 @@ public class KruskalMST {
     public double lazyWeight() {
         double weight = 0;
 
-        for(Edge edge : edges()) {
+        for (Edge edge : edges()) {
             weight += edge.weight();
         }
 
@@ -57,5 +57,4 @@ public class KruskalMST {
     public double eagerWeight() {
         return weight;
     }
-
 }

@@ -18,7 +18,7 @@ public class Exercise8 {
         StdOut.println("Test 16: " + optCompares(16) + " Expected: 4");
     }
 
-    //O(h)
+    // O(h)
     private static int optCompares(int n) {
         if (n == 0) {
             return 0;
@@ -29,21 +29,20 @@ public class Exercise8 {
         int heightMinus1 = (int) (Math.log(n) / Math.log(2));
         int numberOfNodesBeforeLastLevel = 0;
 
-        //Compute the compares in all levels, except the last (because the last level may not be complete)
-        for(int i = 1; i <= heightMinus1; i++) {
+        // Compute the compares in all levels, except the last (because the last level may not be complete)
+        for (int i = 1; i <= heightMinus1; i++) {
             totalCompares += i * Math.pow(2, i - 1);
 
             numberOfNodesBeforeLastLevel += Math.pow(2, i - 1);
         }
 
-        //Add compares required to reach the nodes in the last level
+        // Add compares required to reach the nodes in the last level
         int nodesInLastLevel = n - numberOfNodesBeforeLastLevel;
         totalCompares += nodesInLastLevel * (heightMinus1 + 1);
 
-        //Total compares is the internal path length
+        // Total compares is the internal path length
         int numberOfComparesRequiredByRandomSearchHit = (totalCompares / n) + 1;
 
         return numberOfComparesRequiredByRandomSearchHit;
     }
-
 }
