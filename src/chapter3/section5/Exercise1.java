@@ -303,7 +303,7 @@ public class Exercise1 {
         for (Integer key : hashSet.keys()) {
             StdOut.print(key + " ");
         }
-        StdOut.println("\nExpected: -5 -2 -1 0 1 2 3 5 9 99");
+        StdOut.println("\nExpected (there is no guarantee on the order): 0 1 2 3 5 9 -5 -2 -1 99");
 
         StdOut.println("\ntoString() test: " + hashSet);
 

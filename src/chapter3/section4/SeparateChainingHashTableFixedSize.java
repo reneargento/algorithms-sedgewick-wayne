@@ -2,8 +2,6 @@ package chapter3.section4;
 
 import edu.princeton.cs.algs4.Queue;
 
-import java.util.Arrays;
-
 /**
  * Created by Rene Argento on 28/07/17.
  */
@@ -83,10 +81,8 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
             for (Node node = first; node != null; node = node.next) {
                 keys.enqueue(node.key);
             }
-
             return keys;
         }
-
     }
 
     private int size;
@@ -178,20 +174,6 @@ public class SeparateChainingHashTableFixedSize<Key, Value> {
                 keys.enqueue(key);
             }
         }
-
-        if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
-            Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-            for (int i = 0; i < keysToBeSorted.length; i++) {
-                keysToBeSorted[i] = keys.dequeue();
-            }
-
-            Arrays.sort(keysToBeSorted);
-
-            for (Key key : keysToBeSorted) {
-                keys.enqueue(key);
-            }
-        }
-
         return keys;
     }
 }

@@ -2,8 +2,6 @@ package chapter3.section4;
 
 import edu.princeton.cs.algs4.Queue;
 
-import java.util.Arrays;
-
 /**
  * Created by Rene Argento on 17/07/17.
  */
@@ -15,9 +13,9 @@ public class LinearProbingHashTable<Key, Value> {
     protected Key[] keys;
     protected Value[] values;
 
-    //The largest prime <= 2^i for i = 1 to 31
-    //Used to distribute keys uniformly in the hash table after resizes
-    //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+    // The largest prime <= 2^i for i = 1 to 31
+    // Used to distribute keys uniformly in the hash table after resizes
+    // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
     private static final int[] PRIMES = {
             1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
             32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -25,8 +23,8 @@ public class LinearProbingHashTable<Key, Value> {
             536870909, 1073741789, 2147483647
     };
 
-    //The lg of the hash table size
-    //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+    // The lg of the hash table size
+    // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
     protected int lgM;
 
     public LinearProbingHashTable(int size) {
@@ -167,19 +165,6 @@ public class LinearProbingHashTable<Key, Value> {
         for (Object key : keys) {
             if (key != null) {
                 keySet.enqueue((Key) key);
-            }
-        }
-
-        if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
-            Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-            for (int i = 0; i < keysToBeSorted.length; i++) {
-                keysToBeSorted[i] = keySet.dequeue();
-            }
-
-            Arrays.sort(keysToBeSorted);
-
-            for (Key key : keysToBeSorted) {
-                keySet.enqueue(key);
             }
         }
         return keySet;
