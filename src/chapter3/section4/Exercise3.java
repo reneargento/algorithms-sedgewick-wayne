@@ -4,7 +4,6 @@ import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,9 +34,9 @@ public class Exercise3 {
 
         private int averageListSize;
 
-        //The largest prime <= 2^i for i = 1 to 31
-        //Used to distribute keys uniformly in the hash table after resizes
-        //PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
+        // The largest prime <= 2^i for i = 1 to 31
+        // Used to distribute keys uniformly in the hash table after resizes
+        // PRIMES[n] = 2^k - Ak where k is the power of 2 and Ak is the value to subtract to reach the previous prime number
         private final int[] PRIMES = {
                 1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
                 32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,
@@ -45,8 +44,8 @@ public class Exercise3 {
                 536870909, 1073741789, 2147483647
         };
 
-        //The lg of the hash table size
-        //Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
+        // The lg of the hash table size
+        // Used in combination with PRIMES[] to distribute keys uniformly in the hash function after resizes
         private int lgM;
 
         SeparateChainingHashTableLinkedListWithDeleteK(int numberOfBuckets, int averageListSize) {
@@ -69,7 +68,6 @@ public class Exercise3 {
             if (lgM < 26) {
                 hash = hash % PRIMES[lgM + 5];
             }
-
             return hash % numberOfBuckets;
         }
 
@@ -94,7 +92,6 @@ public class Exercise3 {
         }
 
         private void resize(int newBucketSize) {
-
             List<Node> tempBuckets = buckets;
             buckets = new ArrayList<>(newBucketSize);
 
@@ -118,7 +115,7 @@ public class Exercise3 {
                 throw new IllegalArgumentException("Argument to get() cannot be null");
             }
 
-            //Get node at the head of the bucket
+            // Get node at the head of the bucket
             Node node = buckets.get(hash(key));
 
             while (node != null) {
@@ -127,7 +124,6 @@ public class Exercise3 {
                 }
                 node = node.next;
             }
-
             return null;
         }
 
@@ -145,11 +141,11 @@ public class Exercise3 {
                 return;
             }
 
-            //Get node at the head of the bucket
+            // Get node at the head of the bucket
             int bucketIndex = hash(key);
             Node node = buckets.get(bucketIndex);
 
-            //Update key value if it already exists
+            // Update key value if it already exists
             while (node != null) {
                 if (node.key.equals(key)) {
                     node.value = value;
@@ -164,7 +160,7 @@ public class Exercise3 {
             Node newNode;
 
             if (numberOfKeysAtTimeOfInsert != -1) {
-                //this is a resize operation
+                // This is a resize operation
                 newNode = new Node(key, value, node, numberOfKeysAtTimeOfInsert);
             } else {
                 newNode = new Node(key, value, node, keysSize);
@@ -259,19 +255,6 @@ public class Exercise3 {
                     }
                 }
             }
-
-            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
-                Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for (int i = 0; i < keysToBeSorted.length; i++) {
-                    keysToBeSorted[i] = keys.dequeue();
-                }
-
-                Arrays.sort(keysToBeSorted);
-
-                for (Key key : keysToBeSorted) {
-                    keys.enqueue(key);
-                }
-            }
             return keys;
         }
     }
@@ -289,12 +272,12 @@ public class Exercise3 {
         separateChainingHashTableLinkedListWithDeleteK.put(6, 6);
         separateChainingHashTableLinkedListWithDeleteK.put(7, 7);
 
-        StdOut.println("\nKeys");
+        StdOut.println("Keys");
         for (Integer key : separateChainingHashTableLinkedListWithDeleteK.keys()) {
             StdOut.print(key + " ");
         }
 
-        int[] kValuesToTest = {8, 7, 6, 4, 3, 2, 0};
+        int[] kValuesToTest = { 8, 7, 6, 4, 3, 2, 0 };
         for (int k : kValuesToTest) {
             StdOut.println("\nDelete K = " + k);
             separateChainingHashTableLinkedListWithDeleteK.deleteNewestNodes(k);

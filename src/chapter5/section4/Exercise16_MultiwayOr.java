@@ -99,5 +99,4 @@ public class Exercise16_MultiwayOr {
         boolean matches8 = regularExpressionMatcherMultiwayOr3.recognizes(text8);
         StdOut.println("Text 8 check: " + matches8 + " Expected: false");
     }
-
 }

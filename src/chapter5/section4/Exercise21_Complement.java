@@ -318,5 +318,4 @@ public class Exercise21_Complement {
         boolean matches16 = regularExpressionMatcherComplement5.recognizes(text16);
         StdOut.println("Text 16 check: " + matches16 + " Expected: false");
     }
-
 }

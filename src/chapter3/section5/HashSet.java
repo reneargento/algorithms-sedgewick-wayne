@@ -2,8 +2,6 @@ package chapter3.section5;
 
 import edu.princeton.cs.algs4.Queue;
 
-import java.util.Arrays;
-
 /**
  * Created by Rene Argento on 02/08/17.
  */
@@ -13,7 +11,6 @@ public class HashSet<Key> {
     private class SeparateChainingHashTable<Key> {
 
         private class SequentialSearchSymbolTable<Key> {
-
             private class Node {
                 Key key;
                 Node next;
@@ -41,7 +38,6 @@ public class HashSet<Key> {
                         return true;
                     }
                 }
-
                 return false;
             }
 
@@ -195,19 +191,6 @@ public class HashSet<Key> {
 
             for (SequentialSearchSymbolTable<Key> sequentialSearchST : symbolTable) {
                 for (Key key : sequentialSearchST.keys()) {
-                    keys.enqueue(key);
-                }
-            }
-
-            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
-                Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for (int i = 0; i < keysToBeSorted.length; i++) {
-                    keysToBeSorted[i] = keys.dequeue();
-                }
-
-                Arrays.sort(keysToBeSorted);
-
-                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }

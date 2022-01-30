@@ -223,5 +223,4 @@ public class Exercise19_SpecifiedSet {
         boolean matches19 = regularExpressionMatcherSpecifiedSet5.recognizes(text19);
         StdOut.println("Text 19 check: " + matches19 + " Expected: true");
     }
-
 }

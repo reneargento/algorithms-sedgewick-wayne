@@ -105,5 +105,4 @@ public class Exercise25_FixedLengthCode {
             RLE.expand();
         }
     }
-
 }

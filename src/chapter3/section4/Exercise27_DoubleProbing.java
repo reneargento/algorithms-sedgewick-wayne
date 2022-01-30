@@ -3,8 +3,6 @@ package chapter3.section4;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.Arrays;
-
 /**
  * Created by Rene Argento on 22/07/17.
  */
@@ -14,7 +12,6 @@ public class Exercise27_DoubleProbing {
     private class SeparateChainingHashTableDoubleProbing<Key, Value> {
 
         private class SequentialSearchSymbolTable<Key, Value> {
-
             private class Node {
                 Key key;
                 Value value;
@@ -286,19 +283,6 @@ public class Exercise27_DoubleProbing {
 
             for (SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
                 for (Key key : sequentialSearchST.keys()) {
-                    keys.enqueue(key);
-                }
-            }
-
-            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
-                Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for (int i = 0; i < keysToBeSorted.length; i++) {
-                    keysToBeSorted[i] = keys.dequeue();
-                }
-
-                Arrays.sort(keysToBeSorted);
-
-                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }

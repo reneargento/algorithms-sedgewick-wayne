@@ -230,5 +230,4 @@ public class RegularExpressionMatcher {
 
         return false;
     }
-
 }

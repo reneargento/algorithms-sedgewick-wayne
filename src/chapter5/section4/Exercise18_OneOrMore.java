@@ -94,5 +94,4 @@ public class Exercise18_OneOrMore {
         boolean matches6 = regularExpressionMatcherOneOrMore2.recognizes(text6);
         StdOut.println("Text 6 check: " + matches6 + " Expected: false");
     }
-
 }

@@ -6,7 +6,6 @@ import edu.princeton.cs.algs4.StdRandom;
 import util.VisualAccumulator;
 
 import java.awt.*;
-import java.util.Arrays;
 
 /**
  * Created by Rene Argento on 29/07/17.
@@ -174,19 +173,6 @@ public class Exercise38_SeparateChainingDistribution {
 
             for (SequentialSearchSymbolTable<Key, Value> sequentialSearchST : symbolTable) {
                 for (Key key : sequentialSearchST.keys()) {
-                    keys.enqueue(key);
-                }
-            }
-
-            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
-                Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for (int i = 0; i < keysToBeSorted.length; i++) {
-                    keysToBeSorted[i] = keys.dequeue();
-                }
-
-                Arrays.sort(keysToBeSorted);
-
-                for (Key key : keysToBeSorted) {
                     keys.enqueue(key);
                 }
             }

@@ -34,7 +34,6 @@ public class Exercise4 {
     public class CollisionSystem {
 
         private class Event implements Comparable<Event> {
-
             private final double time;
             private final Particle particleA;
             private final Particle particleB;
@@ -469,5 +468,4 @@ public class Exercise4 {
         CollisionSystem collisionSystem = exercise4.new CollisionSystem(particles, rows, columns);
         collisionSystem.simulate(10000, 0.5);
     }
-
 }

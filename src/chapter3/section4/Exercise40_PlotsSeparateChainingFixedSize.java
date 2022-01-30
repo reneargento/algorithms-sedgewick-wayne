@@ -5,8 +5,6 @@ import util.Constants;
 import util.FileUtil;
 import util.VisualAccumulator;
 
-import java.util.Arrays;
-
 /**
  * Created by Rene Argento on 29/07/17.
  */
@@ -189,23 +187,8 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
                     keys.enqueue(key);
                 }
             }
-
-            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
-                Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for (int i = 0; i < keysToBeSorted.length; i++) {
-                    keysToBeSorted[i] = keys.dequeue();
-                }
-
-                Arrays.sort(keysToBeSorted);
-
-                for (Key key : keysToBeSorted) {
-                    keys.enqueue(key);
-                }
-            }
-
             return keys;
         }
-
     }
 
     private static final String TALE_FILE_PATH = Constants.FILES_PATH + Constants.TALE_OF_TWO_CITIES_FILE;
@@ -217,7 +200,6 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
     }
 
     private String frequencyCounter(String[] words, int minLength) {
-
         String title = "Separate-chaining hash table (fixed size) costs using put() in FrequencyCounter";
         String xAxisLabel = "operations";
         String yAxisLabel = "equality tests";
@@ -231,7 +213,6 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
                 new SeparateChainingHashTableFixedSizeCost<>(997);
 
         for (String word : words) {
-
             if (word.length() < minLength) {
                 continue;
             }
@@ -255,10 +236,7 @@ public class Exercise40_PlotsSeparateChainingFixedSize {
                 max = word;
             }
         }
-
         visualAccumulator.writeExactFinalMean();
-
         return max + " " + separateChainingHashTableFixedSizeCost.get(max);
     }
-
 }

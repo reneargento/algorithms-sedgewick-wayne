@@ -41,11 +41,9 @@ public class Exercise23_VyssotskyAlgorithm {
             }
 
             Queue<Edge> minimumSpanningTree = new Queue<>();
-
             for (Edge edge : putativeTree.edges()) {
                 minimumSpanningTree.enqueue(edge);
             }
-
             return minimumSpanningTree;
         }
     }

@@ -5,8 +5,6 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import util.Constants;
 
-import java.util.Arrays;
-
 /**
  * Created by Rene Argento on 27/07/17.
  */
@@ -25,7 +23,6 @@ public class Exercise34_HashCost {
     private class SeparateChainingHashTableHashCost<Key, Value> implements HashTable<Key, Value> {
 
         class SequentialSearchSymbolTable<Key, Value> {
-
             private class Node {
                 Key key;
                 Value value;
@@ -286,19 +283,6 @@ public class Exercise34_HashCost {
                     keys.enqueue(key);
                 }
             }
-
-            if (!keys.isEmpty() && keys.peek() instanceof Comparable) {
-                Key[] keysToBeSorted = (Key[]) new Comparable[keys.size()];
-                for (int i = 0; i < keysToBeSorted.length; i++) {
-                    keysToBeSorted[i] = keys.dequeue();
-                }
-
-                Arrays.sort(keysToBeSorted);
-
-                for (Key key : keysToBeSorted) {
-                    keys.enqueue(key);
-                }
-            }
             return keys;
         }
     }
@@ -487,19 +471,6 @@ public class Exercise34_HashCost {
             for (Object key : keys) {
                 if (key != null) {
                     keySet.enqueue((Key) key);
-                }
-            }
-
-            if (!keySet.isEmpty() && keySet.peek() instanceof Comparable) {
-                Key[] keysToBeSorted = (Key[]) new Comparable[keySet.size()];
-                for (int i = 0; i < keysToBeSorted.length; i++) {
-                    keysToBeSorted[i] = keySet.dequeue();
-                }
-
-                Arrays.sort(keysToBeSorted);
-
-                for (Key key : keysToBeSorted) {
-                    keySet.enqueue(key);
                 }
             }
             return keySet;
