@@ -5,6 +5,8 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 21/07/17.
  */
+// Thanks to faame (https://github.com/faame) for fixing a bug in the compare count in this exercise.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/236
 public class Exercise20 {
 
     private class LinearProbingHashTableAvgSearchHitCost<Key, Value> extends LinearProbingHashTable<Key, Value> {
@@ -13,9 +15,9 @@ public class Exercise20 {
             super(size);
         }
 
-        private long totalNumberOfComparesForSearchHit;
+        private double totalNumberOfComparesForSearchHit;
 
-        public long getAverageCostOfSearchHit() {
+        public double getAverageCostOfSearchHit() {
             return totalNumberOfComparesForSearchHit / keysSize;
         }
 
@@ -35,6 +37,23 @@ public class Exercise20 {
             totalNumberOfComparesForSearchHit = tempHashTable.totalNumberOfComparesForSearchHit;
         }
 
+        public Value get(Key key) {
+            if (key == null) {
+                throw new IllegalArgumentException("Argument to get() cannot be null");
+            }
+            int numberOfComparesBeforeFindingKey = 0;
+
+            for (int tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
+                numberOfComparesBeforeFindingKey++;
+
+                if (keys[tableIndex].equals(key)) {
+                    totalNumberOfComparesForSearchHit += numberOfComparesBeforeFindingKey;
+                    return values[tableIndex];
+                }
+            }
+            return null;
+        }
+
         public void put(Key key, Value value) {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
@@ -50,19 +69,18 @@ public class Exercise20 {
                 lgM++;
             }
 
-            int numberOfComparesBeforeFindingKey = 1;
+            int numberOfComparesBeforeFindingKey = 0;
 
             int tableIndex;
             for (tableIndex = hash(key); keys[tableIndex] != null; tableIndex = (tableIndex + 1) % size) {
                 numberOfComparesBeforeFindingKey++;
 
                 if (keys[tableIndex].equals(key)) {
+                    totalNumberOfComparesForSearchHit += numberOfComparesBeforeFindingKey;
                     values[tableIndex] = value;
                     return;
                 }
             }
-
-            totalNumberOfComparesForSearchHit += numberOfComparesBeforeFindingKey;
 
             keys[tableIndex] = key;
             values[tableIndex] = value;
@@ -70,39 +88,24 @@ public class Exercise20 {
         }
     }
 
-    // Class to enable hash collisions test
-    private class TestKey {
-        int key;
-
-        TestKey(int key) {
-            this.key = key;
-        }
-
-        @Override
-        public int hashCode() {
-            return key % 4;
-        }
-    }
-
     public static void main(String[] args) {
         Exercise20 exercise20 = new Exercise20();
-        LinearProbingHashTableAvgSearchHitCost<TestKey, Integer> linearProbingHashTableAvgSearchHitCost =
+        LinearProbingHashTableAvgSearchHitCost<Integer, Integer> linearProbingHashTableAvgSearchHitCost =
                 exercise20.new LinearProbingHashTableAvgSearchHitCost<>(20);
 
-        // Hash code 1
-        linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(5), 5);
-        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 1");
+        linearProbingHashTableAvgSearchHitCost.put(5, 5);
+        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 0.0");
 
-        // Hash code 0
-        linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(8), 8);
-        // Hash code 2
-        linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(2), 2);
-        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 1");
+        linearProbingHashTableAvgSearchHitCost.get(5);
+        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 1.0");
 
-        // Hash code 1 -> hash collision and is sent to index 3
-        linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(1), 1);
-        // Hash code 1 -> hash collision and is sent to index 4
-        linearProbingHashTableAvgSearchHitCost.put(exercise20.new TestKey(9), 9);
-        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 2");
+        linearProbingHashTableAvgSearchHitCost.get(5);
+        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 2.0");
+
+        linearProbingHashTableAvgSearchHitCost.put(5, 5);
+        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 3.0");
+
+        linearProbingHashTableAvgSearchHitCost.put(7, 7);
+        StdOut.println(linearProbingHashTableAvgSearchHitCost.getAverageCostOfSearchHit() + " Expected: 1.5");
     }
 }
