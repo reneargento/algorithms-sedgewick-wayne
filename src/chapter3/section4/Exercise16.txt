@@ -1,6 +1,8 @@
 3.4.16
 
-The probability can be computed using hypergeometric distribution. The distribution describes the probability of k successes in n draws, without replacement, from a finite population of size N that contains exactly K successes, wherein each draw is either a success or a failure. The probability is equal to
+The probability can be computed using hypergeometric distribution.
+The distribution describes the probability of k successes in n draws, without replacement, from a finite population of size N that contains exactly K successes, wherein each draw is either a success or a failure.
+The probability is equal to
 
 P(k successes) = (K) (N - K)
                  (k) (n - k)
@@ -20,6 +22,33 @@ P(all indices divisible by 100 occupied) = (10000) (10^6  -  10000)
                                                   ( 10^6 )
                                                   (500000)
 
+Replacing 1000 for K to simplify the formula:
+P(all indices divisible by 100 occupied) = (10K) (1000K - 10K)
+                                           (10K) (500K - 10K)
+                                           ________________________
+                                                  (1000K)
+                                                  (500K)
+
+P(all indices divisible by 100 occupied) = (10K) (990K)
+                                           (10K) (490K)
+                                           ___________
+                                             (1000K)
+                                             (500K)
+
+P(all indices divisible by 100 occupied) = (990K! / (490K! * 500K!)) / ((1000K! / (500K! * 500K!))
+P(all indices divisible by 100 occupied) = (990K! * 500K!) / (490K! * 1000K!)
+P(all indices divisible by 100 occupied) = 490001     490002             500000
+                                           ______  x  ______  x  ...  x  _______
+                                           990001     990002             1000000
+
+We can see each item is approximately 0.5, and there are 10K items, therefore:
+P(all indices divisible by 100 occupied) ~= 0.5 x 0.5 x 0.5 ... x 0.5 = 0.5^(10000)
+P(all indices divisible by 100 occupied) is approximately (0.5^10000) which is close to 0 (practically impossible).
+
+Reference:
 Hypergeometric distribution: https://en.wikipedia.org/wiki/Hypergeometric_distribution
 Discussion on Stack Exchange: 
 https://cs.stackexchange.com/questions/78174/probability-that-all-indices-divisible-by-100-in-a-hash-table-with-linear-probin
+
+Thanks to faame (https://github.com/faame) for solving the last steps in the formula.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/234
