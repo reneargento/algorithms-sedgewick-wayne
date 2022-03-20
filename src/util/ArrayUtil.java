@@ -34,8 +34,6 @@ public class ArrayUtil {
                 return false;
             }
         }
-
         return true;
     }
-
 }
