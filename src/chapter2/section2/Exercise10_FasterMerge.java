@@ -64,7 +64,7 @@ public class Exercise10_FasterMerge {
         int indexRight = high;
         int arrayIndex = low;
 
-        while (indexLeft <= middle) {
+        while (indexLeft <= indexRight) {
             if (aux[indexLeft].compareTo(aux[indexRight]) <= 0) {
                 array[arrayIndex] = aux[indexLeft];
                 indexLeft++;
