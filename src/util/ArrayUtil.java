@@ -3,23 +3,15 @@ package util;
 /**
  * Created by Rene Argento on 04/03/17.
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class ArrayUtil {
 
     public static boolean less(Comparable value1, Comparable value2) {
-        if (value1.compareTo(value2) < 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return value1.compareTo(value2) < 0;
     }
 
     public static boolean more(Comparable value1, Comparable value2) {
-        if (value1.compareTo(value2) > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return value1.compareTo(value2) > 0;
     }
 
     public static void exchange(Comparable[] array, int position1, int position2) {
