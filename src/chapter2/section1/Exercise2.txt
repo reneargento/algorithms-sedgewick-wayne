@@ -1,4 +1,7 @@
 2.1.2
-The maximum number of exchanges involving any particular item during selection sort is N (which happens when the
-first item has the highest value in the unsorted array).
-The average number of exchanges involving an item is 1, because there are exactly N exchanges and N items.
+The maximum number of exchanges involving any particular item during selection sort is N - 1.
+This happens when the first item has the highest value in the unsorted array and the other values are sorted.
+For example, in the array 4 1 2 3, the element 4 will be swapped N - 1 times.
+The average number of exchanges involving an item is exactly 2, because there are exactly N exchanges and N items (and each exchange involves two items).
+
+Reference: https://algs4.cs.princeton.edu/21elementary/
