@@ -1,8 +1,44 @@
 5.1.10
 
-In the worst case there are N unique strings of length 1 in reverse order.
-For example: {"e", "d", "c", "b", "a"}.
-The algorithm will examine N + (N - 1) + (N - 2) + ... + 2 characters, which has a complexity of O(N^2) characters.
+The total number of characters examined by 3-way string quicksort when sorting N fixed-length strings (all of length W) in the worst case is O(N * W * R).
+
+This can be seen with a recurrence relation T(W).
+
+The base case T(1) is when all the strings have length 1.
+An example with R = 3 is { "a", "b", "c" }.
+In the worst case they are in reverse order.
+For example: { "c", "b", "a" }.
+In this case we only remove one string from the list in each pass.
+If we consider N = R^W (in this case, W = 1), the number of comparisons is equal to:
+Characters examined = Sum[i=0..R] i
+Characters examined = R * (R + 1) / 2
+
+To build the worst case for strings of length 2 (T(2)), we take each string from T(1) and append it to the end of each character in R.
+So for single character strings "a", "b", "c", with R = 3, the two character list is: "aa", "ab", "ac", "ba", "bb", "bc", "ca", "cb", "cc".
+The list can then be split into R groups: one for each character in R that is a prefix to every string of length W - 1.
+During the partitioning phase all strings that start with "a" will be in the same partition and the algorithm will do the same process as in T(1) because removing the first character 'a' will lead to the same 1-length strings { "c", "b", "a" } as before.
+The same thing happens for strings starting with "b" and "c".
+So, for R = 3, the algorithm will check 3 * R + 2 * R + R characters in the first position of the strings (which is 3 + 2 + 1 characters times R groups).
+Then it will check the second characters in the strings in each of the R groups.
+
+For T(W), where W > 2, the list will then again be split into R groups: one for each character in R that is a prefix to every string of length W - 2.
+Quicksort will then remove R strings from the list in each partition.
+It will then check R * T(W - 1) more characters for each of those groups.
+This gives the recurrence T(W) = (R^(W - 1) * Sum[i=0..R] R - i) + R * T(W - 1), which simplifies to:
+T(W) = R^(W + 1) + R^W  + R * T(W - 1)
+      -----------------
+              2
+Solving the recurrence gives us:
+T(W) = W * (R^W) * (R + 1)
+      ---------------------
+                2
+Substituting N = R^W:
+T(W) = W * N * (R + 1)
+      -----------------
+              2
+Which is O(N * W * R).
 
 Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for finding a more accurate worst case.
 https://github.com/reneargento/algorithms-sedgewick-wayne/issues/153
+Thanks to GenevaS (https://github.com/GenevaS) for finding a more accurate worst case.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/245
