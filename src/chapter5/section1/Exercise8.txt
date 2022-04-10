@@ -2,7 +2,7 @@
 
 Both MSD string sort and 3-way string quicksort examine all characters in the N keys.
 That number is equal to 1 + 2 + ... + N = (N^2 + N) / 2 characters.
-MSD string sort, however, generates (R - 1) * N empty subarrays (an empty subarray for all digits in R other than 'a', in every pass) while 3-way string quicksort generates 2N empty subarrays (empty subarrays for digits smaller than 'a' and for digits higher than 'a', in every pass).
+MSD string sort, however, generates (R - 1) * N empty subarrays (an empty subarray for all digits in R other than 'a', in every pass) while 3-way string quicksort generates 2N empty subarrays (empty subarrays for digits smaller than 'a' and for digits higher than 'a', or empty subarrays for digits smaller than '-1' and for digits equal to '-1', in every pass).
 
 MSD string sort trace (no cutoff for small subarrays, subarrays of size 0 and 1 omitted):
 
