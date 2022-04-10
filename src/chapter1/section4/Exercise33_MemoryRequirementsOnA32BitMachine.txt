@@ -36,7 +36,7 @@ Amount of memory needed: 8 + 4 + 8N = 8N + 12 bytes
    M double[] references -> 4M bytes
    M double[] overheads -> 12M bytes (objects overhead + int values for length)
    MN double values (for N double values in each of the M rows) -> 8MN
-Amount of memory needed: 8 + 4 + 4M + 12 + 8MN = 8MN + 4M + 24 bytes
+Amount of memory needed: 8 + 4 + 4M + 12M + 8MN = 8MN + 16M + 12 bytes
 
 * String (Java 7 and later)
    object overhead -> 8 bytes
@@ -70,3 +70,6 @@ Amount of memory needed: 8 + 4 + 4 + 4 = 20 bytes
    N Nodes -> 20N bytes
    N Integers -> 12N bytes
 Amount of memory needed: 8 + 4 + 4 + 20N + 12N = 32N + 16 bytes
+
+Thanks to GorgeousAsYou (https://github.com/GorgeousAsYou) for suggesting a correction for the amount of memory in double[][].
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/247
