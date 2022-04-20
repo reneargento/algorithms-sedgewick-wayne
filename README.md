@@ -1,6 +1,9 @@
 # Algorithms
 Solutions to the exercises of the Algorithms book by Robert Sedgewick and Kevin Wayne (4th editon).
 
+- [English](README.md)
+- [简体中文](README.ch.md)
+
 <a href="url"><img src="resources/book_cover.png" align="right" height="280" width="200" ></a>
 
 I found the book to be an excellent resource to learning algorithms and data structures. Since there are not many (almost none) solutions of the exercises on the Internet and the only ones available are incomplete, I decided to share my work on the exercises. Hopefully this will help students and professionals to validate their exercise solutions and learn more about the book content.
