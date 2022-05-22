@@ -7,3 +7,18 @@ When a 2-3 tree has all its nodes as 3-nodes, the maximum number of compares bet
 When a 2-3 tree has all its nodes as 2-nodes, the maximum number of compares between the root and a leaf node will be ~lg N because after each compare only 1/2 of the remaining nodes are considered for further comparisons.
 So the height of a 2-3 tree with N keys will be between ~log3 N and ~lg N. 
 
+Accurately Speaking, The height of a 2-3 tree with N keys is between ceil(log3(N+1)) and floor(lg(N+1)). (contains ceil(log3(N+1)) and floor(lg(N+1))) (Defining an one-node tree's height is 1) (lg means log2.)
+From exercise 3.3.5, We can know when n = 1 ~ 10, the conclusion is right.
+
+| N    | Height |
+| ---- | ------ |
+| 1    | 1 - 1  |
+| 2    | 1 - 1  |
+| 3    | 2 - 2  |
+| 4    | 2 - 2  |
+| 5    | 2 - 2  |
+| 6    | 2 - 2  |
+| 7    | 2 - 3  |
+| 8    | 2 - 3  |
+| 9    | 3 - 3  |
+| 10   | 3 - 3  |
