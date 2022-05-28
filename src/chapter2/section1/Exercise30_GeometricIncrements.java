@@ -1,114 +1,85 @@
 package chapter2.section1;
 
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
+import util.ArrayGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by Rene Argento on 04/02/17.
  */
+// Thanks to suyj-git (https://github.com/suyj-git) for suggesting the use of non-integer values for t.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/249
 public class Exercise30_GeometricIncrements {
 
-    private static double[] minimumTimes = new double[3];
-    private static int[] bestTValues = new int[3];
-    private static List<Integer[]> bestIncrementSequences = new ArrayList<>();
+    private static class Result implements Comparable<Result> {
+        double tValue;
+        double time;
+        int[] incrementSequence;
+
+        public Result(double tValue, double time, int[] incrementSequence) {
+            this.tValue = tValue;
+            this.time = time;
+            this.incrementSequence = incrementSequence;
+        }
+
+        @Override
+        public int compareTo(Result other) {
+            return Double.compare(time, other.time);
+        }
+    }
+
+    private static final int ARRAY_LENGTH = 1000000;
 
     public static void main(String[] args) {
-        int arrayLength = 1000000;
-        int numberOfExperiments = 10;
-
-        for (int i = 0; i < minimumTimes.length; i++) {
-            minimumTimes[i] = Double.MAX_VALUE;
-            bestIncrementSequences.add(new Integer[]{});
-        }
-
-        timeRandomInput(arrayLength, numberOfExperiments);
-
-        showBestTValueAndIncrementSequence();
+        Comparable[] array = ArrayGenerator.generateRandomArray(ARRAY_LENGTH);
+        List<Result> results = new ArrayList<>();
+        timeRandomInput(array, results);
+        printBestTValues(results);
     }
 
-    private static void timeRandomInput(int arrayLength, int numberOfExperiments) {
-        int tValue = 2;
+    private static void timeRandomInput(Comparable[] array, List<Result> results) {
+        for (double tValue = 2; tValue <= 16; tValue += 0.1) {
+            Comparable[] arrayCopy = new Comparable[ARRAY_LENGTH];
+            System.arraycopy(array, 0, arrayCopy, 0, ARRAY_LENGTH);
 
-        for (int experiment = 0; experiment < numberOfExperiments; experiment++) {
-
-            Comparable[] array = new Comparable[arrayLength];
-
-            for (int i = 0; i < arrayLength; i++) {
-                array[i] = StdRandom.uniform();
-            }
-
-            Integer[] incrementSequence = generateIncrementSequence(tValue, arrayLength);
-
-            double time = time(array, incrementSequence);
-
-            updateMinimumTimes(time, tValue, incrementSequence);
-
-            tValue++;
+            int[] incrementSequence = generateIncrementSequence(tValue);
+            double time = time(arrayCopy, incrementSequence);
+            results.add(new Result(tValue, time, incrementSequence));
         }
     }
 
-    private static void updateMinimumTimes(double currentTime, int tValue, Integer[] incrementSequence) {
-
-        int timeToReplace = -1;
-
-        for (int i = 0; i < minimumTimes.length; i++) {
-            if (currentTime < minimumTimes[i]) {
-                timeToReplace = i;
-                break;
-            }
-        }
-
-        if (timeToReplace == -1) {
-            return;
-        }
-
-        minimumTimes[timeToReplace] = currentTime;
-        bestTValues[timeToReplace] = tValue;
-        bestIncrementSequences.set(timeToReplace, incrementSequence);
-    }
-
-    public static double time(Comparable[] array, Integer[] incrementSequence) {
+    public static double time(Comparable[] array, int[] incrementSequence) {
         Stopwatch timer = new Stopwatch();
-
         shellsort(array, incrementSequence);
-
         return timer.elapsedTime();
     }
 
-    private static Integer[] generateIncrementSequence(int tValue, int arrayLength) {
-        int maxIncrement = 1;
+    private static int[] generateIncrementSequence(double tValue) {
+        double maxIncrement = 1;
         int numberOfIncrements = 1;
-        int value = tValue;
+        double value = tValue;
 
-        while (value < arrayLength) {
+        while (value < ARRAY_LENGTH) {
             maxIncrement = value;
             value *= tValue;
-
             numberOfIncrements++;
         }
 
-        Integer[] incrementSequence = new Integer[numberOfIncrements];
-
-        int index = 0;
-        while (maxIncrement > 0) {
-            incrementSequence[index] = maxIncrement;
-
+        int[] incrementSequence = new int[numberOfIncrements];
+        for (int i = 0; i < numberOfIncrements; i++) {
+            incrementSequence[i] = (int) Math.max(maxIncrement, 1);
             maxIncrement = maxIncrement / tValue;
-            index++;
         }
-
         return incrementSequence;
     }
 
     @SuppressWarnings("unchecked")
-    private static void shellsort(Comparable[] array, Integer[] incrementSequence) {
-
+    private static void shellsort(Comparable[] array, int[] incrementSequence) {
         for (int increment : incrementSequence) {
-
             // h-sort the array
             for (int j = increment; j < array.length; j++) {
                 int currentIndex = j;
@@ -124,17 +95,20 @@ public class Exercise30_GeometricIncrements {
         }
     }
 
-    private static void showBestTValueAndIncrementSequence() {
+    private static void printBestTValues(List<Result> results) {
+        Collections.sort(results);
 
-        for (int i = 0; i < bestTValues.length; i++) {
-            StdOut.printf("Best %d tValue: %d \n", i + 1, bestTValues[i]);
+        for (int i = 0; i < 3; i++) {
+            Result result = results.get(i);
+            StdOut.printf("Best %d tValue: %.2f \n", i + 1, result.tValue);
             StdOut.printf("Best %d sequence:\n", i + 1);
 
-            Integer[] incrementSequence = bestIncrementSequences.get(i);
-            for (int j = 0; j < incrementSequence.length; j++) {
-                StdOut.print(incrementSequence[j] + " ");
+            for (int j = result.incrementSequence.length - 1; j >= 0; j--) {
+                StdOut.print(result.incrementSequence[j]);
+                if (j != 0) {
+                    StdOut.print(" ");
+                }
             }
-
             StdOut.println();
             StdOut.println();
         }
