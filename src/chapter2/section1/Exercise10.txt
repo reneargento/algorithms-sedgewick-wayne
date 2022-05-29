@@ -1,3 +1,9 @@
 2.1.10
 Insertion sort is faster than selection sort for h-sorting because as "h" decreases, the array becomes partially sorted.
 Insertion sort makes less comparisons in partially sorted arrays than selection sort.
+Also, when h-sorting, eventually h will have an increment value of 1.
+Using selection sort with an increment value of 1 would be the same as using the standard selection sort algorithm from the beginning.
+This would make the steps with the previous increments to be unnecessary work.
+
+Thanks to jaeheonshim (https://github.com/jaeheonshim) for adding an extra reason not to use selection sort.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/254
