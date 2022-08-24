@@ -16,6 +16,7 @@ Amount of memory needed: 16 + 8 + 8 + 8 = 40 bytes
 
 c. FixedCapacityStackOfStrings with capacity C and N entries (page 133)
 * object overhead -> 16 bytes
+* String[] reference (a) -> 8 bytes
 * String[] (a)
    object overhead -> 16 bytes
    int value (length) -> 4 bytes
@@ -24,7 +25,7 @@ c. FixedCapacityStackOfStrings with capacity C and N entries (page 133)
    N Strings -> (32 bytes (a Java 7+ String size) + 24 + 2Ch bytes (for the char array)) * N = (56 + 2Ch) * N bytes
 * int value (n) -> 4 bytes
 * padding -> 4 bytes
-Amount of memory needed: 16 + 16 + 4 + 4 + 8C + 56N + (2Ch * N) + 4 + 4 = (2Ch * N) + 8C + 56N + 48 bytes
+Amount of memory needed: 16 + 8 + 16 + 4 + 4 + 8C + 56N + (2Ch * N) + 4 + 4 = (2Ch * N) + 8C + 56N + 56 bytes
 
 d. Point2D (page 77)
 * object overhead -> 16 bytes
@@ -48,3 +49,6 @@ g. Double (page 34)
 * object overhead -> 16 bytes
 * double value (x) -> 8 bytes
 Amount of memory needed: 16 + 8 = 24 bytes
+
+Thanks to ckwastra (https://github.com/ckwastra) for pointing a missing reference on section c.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/256
