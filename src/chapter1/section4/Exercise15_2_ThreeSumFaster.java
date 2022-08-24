@@ -10,6 +10,8 @@ import java.util.Map;
 /**
  * Created by Rene Argento on 9/30/16.
  */
+// Thanks to davisrain (https://github.com/davisrain) for fixing a bug in threeSumFaster2.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/258
 public class Exercise15_2_ThreeSumFaster {
 
     public static void main(String[] args) {
@@ -18,6 +20,7 @@ public class Exercise15_2_ThreeSumFaster {
         int[] arrayTest2 = {-10, -10, -10, 10};
         int[] arrayTest3 = {0, 0, 0, 0, 0, 0, 0};
         int[] arrayTest4 = {-2, -1, 0, 0, 0, 0, 0, 0, 3};
+        int[] arrayTest5 = {-2, 0, 1, 1, 1, 1, 2};
 
         StdOut.println("Method 1");
         StdOut.println("ThreeSumFaster: " + threeSumFaster(array) + " Expected: 8");
@@ -25,6 +28,7 @@ public class Exercise15_2_ThreeSumFaster {
         StdOut.println("ThreeSumFaster: " + threeSumFaster(arrayTest2) + " Expected: 0");
         StdOut.println("ThreeSumFaster: " + threeSumFaster(arrayTest3) + " Expected: 35");
         StdOut.println("ThreeSumFaster: " + threeSumFaster(arrayTest4) + " Expected: 21");
+        StdOut.println("ThreeSumFaster: " + threeSumFaster(arrayTest5) + " Expected: 7");
 
         StdOut.println("\nMethod 2");
         StdOut.println("ThreeSumFaster: " + threeSumFaster2(array) + " Expected: 8");
@@ -32,12 +36,12 @@ public class Exercise15_2_ThreeSumFaster {
         StdOut.println("ThreeSumFaster: " + threeSumFaster2(arrayTest2) + " Expected: 0");
         StdOut.println("ThreeSumFaster: " + threeSumFaster2(arrayTest3) + " Expected: 35");
         StdOut.println("ThreeSumFaster: " + threeSumFaster2(arrayTest4) + " Expected: 21");
+        StdOut.println("ThreeSumFaster: " + threeSumFaster2(arrayTest5) + " Expected: 7");
     }
 
     // Runs in O(n^2) when there are no duplicate keys and in O(n^3) when there are duplicate keys.
     private static int threeSumFaster(int[] array) {
         Map<Integer, List<Integer>> elementIndexes = new HashMap<>();
-
         for (int i = 0; i < array.length; i++) {
             if (!elementIndexes.containsKey(array[i])) {
                 elementIndexes.put(array[i], new ArrayList<>());
@@ -92,6 +96,11 @@ public class Exercise15_2_ThreeSumFaster {
                         end--;
                         continue;
                     }
+                    if (array[start] == array[end]) {
+                        int equalElements = end - start + 1;
+                        count += equalElements * (equalElements - 1) / 2;
+                        break;
+                    }
 
                     int startElement = array[start];
                     int equalStartElements = 1;
@@ -136,5 +145,4 @@ public class Exercise15_2_ThreeSumFaster {
     private static int handleZerosEdgeCase(int numberOfZeros) {
         return ((numberOfZeros - 2) * (numberOfZeros - 1) * numberOfZeros) / 6;
     }
-
 }
