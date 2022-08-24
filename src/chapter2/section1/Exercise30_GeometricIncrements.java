@@ -13,6 +13,8 @@ import java.util.List;
  */
 // Thanks to suyj-git (https://github.com/suyj-git) for suggesting the use of non-integer values for t.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/249
+// Thanks to ckwastra (https://github.com/ckwastra) for noticing that floating-point errors could occur and suggesting a fix.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/259
 public class Exercise30_GeometricIncrements {
 
     private static class Result implements Comparable<Result> {
@@ -42,7 +44,9 @@ public class Exercise30_GeometricIncrements {
     }
 
     private static void timeRandomInput(Comparable[] array, List<Result> results) {
-        for (double tValue = 2; tValue <= 16; tValue += 0.1) {
+        for (double number = 20; number <= 160; number++) {
+            // Using division to compute tValue instead of incrementing by 0.1 to avoid floating-point precision errors
+            double tValue = number / 10.0;
             Comparable[] arrayCopy = new Comparable[ARRAY_LENGTH];
             System.arraycopy(array, 0, arrayCopy, 0, ARRAY_LENGTH);
 
