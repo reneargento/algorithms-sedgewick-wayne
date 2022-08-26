@@ -1,10 +1,10 @@
 2.2.29 - Natural mergesort
 
 Experiments:
-Number of passes needed for an array of 1000 random Long keys: 8.08
-Number of passes needed for an array of 10000 random Long keys: 12.00
-Number of passes needed for an array of 100000 random Long keys: 15.00
-Number of passes needed for an array of 1000000 random Long keys: 18.00
+Number of passes needed for an array of 1000 random Long keys: 9.09
+Number of passes needed for an array of 10000 random Long keys: 13.00
+Number of passes needed for an array of 100000 random Long keys: 16.00
+Number of passes needed for an array of 1000000 random Long keys: 19.00
 
 According to the experiments:
 It is possible to see in the experiment results that the number of passes is approximately the floor of lg(N).

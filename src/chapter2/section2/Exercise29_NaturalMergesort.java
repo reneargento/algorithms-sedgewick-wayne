@@ -29,7 +29,7 @@ public class Exercise29_NaturalMergesort {
             totalNumberOfPasses += countNumberOfPasses(array);
         }
         double averageNumberOfPasses = totalNumberOfPasses / 100.0;
-        StdOut.printf("Number of passes needed for an array of %d random Long keys: %.2f \n", arrayLength,
+        StdOut.printf("Number of passes needed for an array of %d random Long keys: %.2f\n", arrayLength,
                 averageNumberOfPasses);
     }
 
@@ -55,7 +55,7 @@ public class Exercise29_NaturalMergesort {
         if (subArrays == 1) {
             return 1;
         }
-        return (int) (Math.log(subArrays) / Math.log(2));
+        return (int) Math.ceil(Math.log(subArrays) / Math.log(2));
     }
 
     private static int findSortedSubArray(Long[] array, int startIndex) {
