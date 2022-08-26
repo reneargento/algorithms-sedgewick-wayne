@@ -12,76 +12,127 @@ import java.util.Map;
 /**
  * Created by Rene Argento on 10/03/17.
  */
+// Thanks to ckwastra (https://github.com/ckwastra) for the samplesort implementation.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/263
+@SuppressWarnings("unchecked")
 public class Exercise24_Samplesort {
 
-    // Parameters example: 8 131072 5
+    private static final int INSERTION_SORT_CUTOFF = 2;
+
+    // Parameters example: 8 131072
     public static void main(String[] args) {
         int numberOfExperiments = Integer.parseInt(args[0]);
         int initialArraySize = Integer.parseInt(args[1]);
 
-        int k = Integer.parseInt(args[2]);
-        int sampleSize = (int) Math.pow(2, k) - 1;
-
         Map<Integer, Comparable[]> allInputArrays = ArrayGenerator.generateAllArrays(numberOfExperiments, initialArraySize, 2);
-
-        doExperiment(numberOfExperiments, initialArraySize, sampleSize, allInputArrays);
+        doExperiment(numberOfExperiments, initialArraySize, allInputArrays);
     }
 
-    private static void doExperiment(int numberOfExperiments, int initialArraySize, int sampleSize,
+    private static <T extends Comparable<T>> void doExperiment(int numberOfExperiments, int initialArraySize,
                                      Map<Integer, Comparable[]> allInputArrays) {
-
         StdOut.printf("%13s %23s %25s\n", "Array Size | ", "QuickSort Running Time |", "SampleSort Running Time");
 
         int arraySize = initialArraySize;
 
         for (int i = 0; i < numberOfExperiments; i++) {
-            Comparable[] originalArray = allInputArrays.get(i);
-            Comparable[] array = new Comparable[originalArray.length];
+            Comparable<T>[] originalArray = allInputArrays.get(i);
+            Comparable<T>[] array = new Comparable[originalArray.length];
             System.arraycopy(originalArray, 0, array, 0, originalArray.length);
 
             // Default QuickSort
             Stopwatch quickSortTimer = new Stopwatch();
-
             QuickSort.quickSort(originalArray);
-
             double quickSortRunningTime = quickSortTimer.elapsedTime();
 
             // SampleSort
             Stopwatch sampleSortTimer = new Stopwatch();
-
-            sampleSort(array, sampleSize);
-
+            sampleSort(array);
             double sampleSortRunningTime = sampleSortTimer.elapsedTime();
 
             printResults(arraySize, quickSortRunningTime, sampleSortRunningTime);
-
             arraySize *= 2;
         }
     }
 
-    private static void sampleSort(Comparable[] array, int sampleSize) {
-        StdRandom.shuffle(array);
-        sampleSort(array, 0, array.length - 1, sampleSize);
+    private static <T extends Comparable<T>> void sampleSort(Comparable<T>[] array) {
+        sampleSort(array, array.length);
     }
 
-    private static void sampleSort(Comparable[] array, int low, int high, int sampleSize) {
-        if (low >= high) {
+    private static <T extends Comparable<T>> void sampleSort(Comparable<T>[] array, int size) {
+        if (size <= INSERTION_SORT_CUTOFF) {
+            InsertionSort.insertionSort(array, 0, size);
             return;
         }
 
-        int partition = partition(array, low, high, sampleSize);
-        sampleSort(array, low, partition - 1, sampleSize);
-        sampleSort(array, partition + 1, high, sampleSize);
-    }
+        // Based on Python's (2.23) version of Samplesort
+        // numberOfPivots ~= lg(n / ln(n))
+        double sizeByLogSize = size / Math.log(size);
+        int k = (int) Math.round(Math.log(sizeByLogSize) / Math.log(2));
+        int numberOfPivots = (int) Math.pow(2, k) - 1;
 
-    private static int partition(Comparable[] array, int low, int high, int sampleSize) {
-        if (sampleSize <= high - low + 1) {
-            InsertionSort.insertionSort(array, low, low + sampleSize - 1);
-            int pivotIndex = low + sampleSize / 2; // Median of the sample
-            ArrayUtil.exchange(array, low, pivotIndex);
+        // Pick random samples
+        for (int i = 0; i < numberOfPivots; i++) {
+            int randomIndex = StdRandom.uniform(size);
+            ArrayUtil.exchange(array, i, randomIndex);
         }
 
-        Comparable pivot = array[low];
+        // Recursively sort the sample
+        sampleSort(array, numberOfPivots);
+
+        // | 0 1 ... numberOfPivots-1 | numberOfPivots ... n-1 |
+        // | <-   sorted sample  ->   | <-    unknown    ->    |
+        //                            | lo                  hi |
+        sampleSort(array, numberOfPivots, size - 1, numberOfPivots);
+    }
+
+    private static <T extends Comparable<T>> void sampleSort(Comparable<T>[] array, int low, int high,
+                                                             int numberOfPivots) {
+        if (low > high) {
+            return;
+        }
+        if (numberOfPivots == 0) {
+            InsertionSort.insertionSort(array, low, high);
+            return;
+        }
+
+        // Move pivots in-place to always have them on both partitions.
+        if (numberOfPivots > 0) {
+            // The pivots are to the left of low. Move half to the right end.
+            int halfPivots = numberOfPivots / 2;
+            for (int i = 0; i < halfPivots; i++) {
+                low--;
+                ArrayUtil.exchange(array, low, high);
+                high--;
+            }
+        } else {
+            // The pivots are to the right of high. Move half to the left end.
+            numberOfPivots = -numberOfPivots;
+            int halfPivots = (numberOfPivots + 1) / 2;
+            for (int i = 0; i < halfPivots; i++) {
+                high++;
+                ArrayUtil.exchange(array, low, high);
+                low++;
+            }
+        }
+
+        low--;
+        int partition = partition(array, low, high);
+
+        int halfPivots;
+        int halfPivotsOnLeftPartition;
+        if (numberOfPivots % 2 == 0) {
+            halfPivots = numberOfPivots / 2;
+            halfPivotsOnLeftPartition = halfPivots - 1;
+        } else {
+            halfPivots = numberOfPivots / 2;
+            halfPivotsOnLeftPartition = halfPivots;
+        }
+        sampleSort(array, low, partition - 1, halfPivotsOnLeftPartition);
+        sampleSort(array, partition + 1, high, -halfPivots);
+    }
+
+    private static <T extends Comparable<T>> int partition(Comparable<T>[] array, int low, int high) {
+        Comparable<T> pivot = array[low];
 
         int i = low;
         int j = high + 1;
