@@ -2,30 +2,35 @@ package chapter2.section2;
 
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
  * Created by Rene Argento on 21/02/17.
  */
+// Thanks to ckwastra (https://github.com/ckwastra) for fixing the count of the number of passes:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/262
 public class Exercise29_NaturalMergesort {
 
     public static void main(String[] args) {
+        // Using smaller array lengths to identify the pattern
+        int[] arrayLengths = { 1000, 10000, 100000, 1000000 };
 
-        List<Long[]> arrays = new ArrayList<>(4);
-        Long[] array1 = generateLongArray(1000);
-        Long[] array2 = generateLongArray(2000);
-        Long[] array3 = generateLongArray(3000);
+        for (int arrayLength : arrayLengths) {
+            doExperiment(arrayLength);
+        }
+    }
 
-      //  Long[] array2 = generateLongArray(1000000); Very slow - using the other experiments to estimate
-       // Long[] array3 = generateLongArray(1000000000); Not enough heap memory - using the other experiments to estimate
+    private static void doExperiment(int arrayLength) {
+        int numberOfExperiments = 100;
+        long totalNumberOfPasses = 0;
 
-        arrays.add(array1);
-        arrays.add(array2);
-        arrays.add(array3);
-
-        doExperiment(arrays);
+        for (int i = 0; i < numberOfExperiments; i++) {
+            Long[] array = generateLongArray(arrayLength);
+            totalNumberOfPasses += countNumberOfPasses(array);
+        }
+        double averageNumberOfPasses = totalNumberOfPasses / 100.0;
+        StdOut.printf("Number of passes needed for an array of %d random Long keys: %.2f \n", arrayLength,
+                averageNumberOfPasses);
     }
 
     private static Long[] generateLongArray(int length) {
@@ -35,65 +40,30 @@ public class Exercise29_NaturalMergesort {
         for (int i = 0; i < length; i++) {
             array[i] = random.nextLong();
         }
-
         return array;
     }
 
-    private static void doExperiment(List<Long[]> arrays) {
+    private static int countNumberOfPasses(Long[] array) {
+        int subArrays = 1;
+        int lastSubArrayIndex = findSortedSubArray(array, 0);
 
-        int numberOfExperiments = arrays.size();
-
-        for (int i = 0; i < numberOfExperiments; i++) {
-            Long[] currentArray = arrays.get(i);
-
-            long numberOfPasses = naturalMergesort(currentArray);
-
-            StdOut.printf("Number of passes needed for an array of %d random Long keys: %d \n", currentArray.length,
-                    numberOfPasses);
+        while (lastSubArrayIndex != array.length - 1) {
+            subArrays++;
+            lastSubArrayIndex = findSortedSubArray(array, lastSubArrayIndex + 1);
         }
+
+        if (subArrays == 1) {
+            return 1;
+        }
+        return (int) (Math.log(subArrays) / Math.log(2));
     }
 
-    private static int naturalMergesort(Long[] array) {
-        int numberOfPasses = 1;
-
-        if (array == null || array.length == 1) {
-            return numberOfPasses;
-        }
-
-        Comparable[] aux = new Comparable[array.length];
-
-        int low = 0;
-        int middle = 0;
-        int high = 0;
-
-        boolean secondSubArray = false;
-
-        for (int i = 1; i < array.length; i++) {
-
-            if (array[i].compareTo(array[i - 1]) < 0) {
-                if (!secondSubArray) {
-                    middle = i - 1;
-
-                    secondSubArray = true;
-
-                    numberOfPasses++;
-                } else {
-                    high = i - 1;
-
-                    BottomUpMergeSort.merge(array, aux, low, middle, high);
-
-                    middle = high;
-
-                    numberOfPasses++;
-                }
+    private static int findSortedSubArray(Long[] array, int startIndex) {
+        for (int i = startIndex; i < array.length - 1; i++) {
+            if (array[i] > array[i + 1]) {
+                return i;
             }
         }
-
-        if (high != array.length - 1) {
-            BottomUpMergeSort.merge(array, aux, low, middle, array.length - 1);
-            numberOfPasses++;
-        }
-
-        return numberOfPasses;
+        return array.length - 1;
     }
 }
