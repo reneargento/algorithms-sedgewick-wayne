@@ -1,3 +1,5 @@
 2.3.9
 
 On both cases (when Quick.sort() is run on arrays having items with just two or three distinct keys) there is a high occurrence of subarrays consisting solely of items with equal keys. To improve performance when sorting such arrays (from linearithmic to linear) quicksort with 3-way partitioning should be used.
+在这两种情况下（当 Quick.sort() 在具有两个或三个不同键的项目的数组上运行时），子数组的出现率很高，仅由具有相同键的项目组成。
+为了在对此类数组进行排序（从线性到线性）时提高性能，应使用具有 3 路分区的快速排序。

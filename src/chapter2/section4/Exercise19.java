@@ -19,7 +19,7 @@ public class Exercise19 {
         MaxPQ(Comparable[] array) {
             priorityQueue = array;
 
-            // Heapify - O(N)
+            // Heapify 堆放 - O(N)
             int startPosition = (array.length - 1) / 2; //Position 0 is not used
 
             for (int i = startPosition; i >= 1; i--) {

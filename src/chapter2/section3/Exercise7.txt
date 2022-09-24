@@ -9,6 +9,7 @@ Array Size |  SubArrays Size 0 |  SubArrays Size 1 |   SubArrays Size 2
 
 Hypothesis: 
 The expected number of subarrays of size 0, 1 and 2 when quicksort is used to sort an array of N items with distinct keys is:
+使用快速排序对具有不同键的 N 项数组进行排序时，大小为 0、1 和 2 的子数组的预期数量为：
 Subarray size 0: 1/3 N
 Subarray size 1: 1/3 N
 Subarray size 2: 1/6 N

@@ -1,6 +1,7 @@
 2.4.18
 
 In MaxPQ, inserting an item that is larger than all items in the queue and then immediately calling delMax() results in a heap identical to the heap as it was before these operations.
+在 MaxPQ 中，插入一个大于队列中所有项目的项目，然后立即调用 delMax() 会产生一个与这些操作之前的堆相同的堆。
 
 Example:
 

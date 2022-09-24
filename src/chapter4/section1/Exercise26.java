@@ -1,7 +1,6 @@
 package chapter4.section1;
 
 import chapter1.section3.Stack;
-import com.sun.tools.internal.jxc.ap.Const;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import util.Constants;
