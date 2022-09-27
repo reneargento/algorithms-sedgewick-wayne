@@ -3,3 +3,5 @@
 Yes. The merge phase uses two pointers that move comparing both subarray values.
 Once it finds that one value is smaller than the other, it selects this value for the output without checking the other elements.
 If one or more of the input subarrays are not sorted then some values would be considered in the wrong position during this comparison, leading to an incorrect output.
+合并阶段使用移动比较两个子数组值的两个指针。一旦它发现一个值小于另一个值，它就会选择这个值作为输出而不检查其他元素。
+如果一个或多个输入子数组未排序，则在此比较期间某些值将被认为位于错误的位置，从而导致不正确的输出。

@@ -1,19 +1,14 @@
-package algorithm;
+package algorithm.chapter2;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * 算法2.2
- * 插入排序
+ * 排序算法类的模板
  */
-public class Insertion {
+public class Example {
     public static void sort(Comparable[] a) {
-        int N = a.length;
-        for (int i = 1; i < N; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--)
-                exch(a, j, j - 1);
-        }
+
     }
 
     public static boolean less(Comparable v, Comparable w) {

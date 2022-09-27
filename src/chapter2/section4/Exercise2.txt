@@ -1,3 +1,4 @@
 2.4.2
 
 This idea would not work because it only keeps track of the current maximum. After a remove-the-maximum operation it would not be possible to know which is the next maximum in constant time, requiring a linear operation to find the new maximum.
+这个想法是行不通的，因为它只跟踪当前的最大值。在移除最大值操作之后，不可能知道在恒定时间内哪个是下一个最大值，需要线性运算来找到新的最大值。

@@ -75,7 +75,7 @@ public class Exercise13_LoadBalancing {
     }
 
     public static void main(String[] args) {
-        int numberOfProcessors = Integer.parseInt(args[0]); //testcase: numberOfProcessors = 3
+        int numberOfProcessors = 3; //testcase: numberOfProcessors = 3
 
         new Exercise13_LoadBalancing().lpt(numberOfProcessors);
     }

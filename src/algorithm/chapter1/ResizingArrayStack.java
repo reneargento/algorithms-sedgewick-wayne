@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.chapter1;
 
 import java.util.Iterator;
 

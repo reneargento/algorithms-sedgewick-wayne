@@ -1,6 +1,7 @@
 2.1.14
 
 The minimum number of items that must be exchanged during a remove the maximum operation in a heap of size N with no duplicate keys is 2.
+在没有重复键的大小为 N 的堆中，在删除最大操作期间必须交换的最小项目数为 2。
 
 Heap:
                   100
@@ -17,6 +18,7 @@ Heap:
      5 6     7  8   90  91    93  92
 
 For three successive remove the maximum operations the minimum number of exchanges is 8.
+对于三个连续删除最大操作，最小交换次数为 8。
 
 Heap:
                   100

@@ -1,13 +1,13 @@
 2.5.3
 
-The compareTo() is a flawed implementation of the Comparable interface because it violates the Comparable contract.
+The compareTo() is a flawed(有缺陷的) implementation of the Comparable interface because it violates(违反) the Comparable contract.
 The contract says that if x.compareTo(y) == 0 then the sign of x.compareTo(z) must be equal to the sign of y.compareTo(z), for all z.
 In the implementation described in the exercise, if x = 0.001, y = 0.005 and z = 0.007, the rule will be violated:
 x.compareTo(y) will be equal to 0, x.compareTo(z) will have a negative sign and y.compareTo(z) will be equal to zero.
 
 In other words, it is possible that x.compareTo(y) and y.compareTo(z) are both 0, but x.compareTo(z) is negative (or positive).
 
-Another issue is that floating point numbers cannot be represented with exact precision in binary with java's double primitive data type.
+Another issue is that floating point numbers cannot be represented(代表) with exact precision in binary with java's double primitive(原始的) data type.
 Critical information such as account balances should be stored in BigDecimal objects instead.
 This will also allow direct comparison between both values to work correctly:
 

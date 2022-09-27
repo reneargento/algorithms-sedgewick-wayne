@@ -1,20 +1,18 @@
-package algorithm;
+package algorithm.chapter2;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * 算法2.1
- * 选择排序
+ * 算法2.2
+ * 插入排序
  */
-public class Selection {
-    private static void sort(Comparable[] a) {
+public class Insertion {
+    public static void sort(Comparable[] a) {
         int N = a.length;
-        for (int i = 0; i < N; i++) {
-            int min = i;
-            for (int j = i + 1; j < N; j++)
-                if (less(a[j], a[min])) min = j;
-            exch(a, i, min);
+        for (int i = 1; i < N; i++) {
+            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--)
+                exch(a, j, j - 1);
         }
     }
 
