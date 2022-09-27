@@ -1,41 +1,59 @@
-package algorithm;
+package algorithm.chapter1;
 
 import java.util.Iterator;
 
 /**
- * 算法1.2
- * 下压堆栈(链表实现)
+ * Created by Rene Argento on 19/08/17.
  */
 public class Stack<Item> implements Iterable<Item> {
-    private Node first;
-    private int N;
 
     private class Node {
         Item item;
         Node next;
     }
 
+    private Node first;
+    private int size;
+
     public boolean isEmpty() {
-        return first == null;
+        return size == 0;
     }
 
     public int size() {
-        return N;
+        return size;
     }
 
     public void push(Item item) {
-        Node oldfirst = first;
-        first = new Node();
-        first.item = item;
-        first.next = oldfirst;
-        N++;
+        if (item == null) {
+            throw new IllegalArgumentException("Item cannot be null");
+        }
+
+        Node newNode = new Node();
+        newNode.item = item;
+        newNode.next = first;
+
+        first = newNode;
+        size++;
     }
 
     public Item pop() {
+        if (isEmpty()) {
+            throw new RuntimeException("Stack underflow");
+        }
+
         Item item = first.item;
         first = first.next;
-        N--;
+        size--;
+
         return item;
+    }
+
+    public Item peek() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        return first.item;
     }
 
     public Iterator<Item> iterator() {
@@ -43,19 +61,20 @@ public class Stack<Item> implements Iterable<Item> {
     }
 
     private class StackIterator implements Iterator<Item> {
+
         private Node current = first;
 
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
-        public void remove() {
-        }
-
+        @Override
         public Item next() {
             Item item = current.item;
             current = current.next;
             return item;
         }
     }
+
 }

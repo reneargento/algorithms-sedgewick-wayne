@@ -1,41 +1,73 @@
-package algorithm;
+package algorithm.chapter1;
 
 import java.util.Iterator;
 
+/**
+ * Created by Rene Argento on 19/08/17.
+ */
+@SuppressWarnings("unchecked")
 public class Queue<Item> implements Iterable<Item> {
-    private Node first;
-    private Node last;
-    private int N;
 
     private class Node {
         Item item;
         Node next;
     }
 
+    private Node first;
+    private Node last;
+    private int size;
+
     public boolean isEmpty() {
-        return first == null;
+        return size == 0;
     }
 
     public int size() {
-        return N;
+        return size;
     }
 
     public void enqueue(Item item) {
-        Node oldlast = last;
+        if (item == null) {
+            throw new IllegalArgumentException("Item cannot be null");
+        }
+
+        Node oldLast = last;
+
         last = new Node();
         last.item = item;
         last.next = null;
-        if (isEmpty()) first = last;
-        else oldlast.next = last;
-        N++;
+
+        if (isEmpty()) {
+            first = last;
+        } else {
+            oldLast.next = last;
+        }
+
+        size++;
     }
 
     public Item dequeue() {
+        if (isEmpty()) {
+            throw new RuntimeException("Queue underflow");
+        }
+
         Item item = first.item;
         first = first.next;
-        if (isEmpty()) last = null;
-        N--;
+
+        size--;
+
+        if (isEmpty()) {
+            last = null;
+        }
+
         return item;
+    }
+
+    public Item peek() {
+        if (isEmpty()) {
+            throw new RuntimeException("Queue underflow");
+        }
+
+        return first.item;
     }
 
     public Iterator<Item> iterator() {
@@ -43,19 +75,20 @@ public class Queue<Item> implements Iterable<Item> {
     }
 
     private class QueueIterator implements Iterator<Item> {
+
         private Node current = first;
 
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
-        public void remove() {
-        }
-
+        @Override
         public Item next() {
             Item item = current.item;
             current = current.next;
             return item;
         }
     }
+
 }

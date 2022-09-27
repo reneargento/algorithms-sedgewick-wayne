@@ -1,24 +1,31 @@
-package algorithm;
+package algorithm.chapter1;
 
 import java.util.Iterator;
 
 /**
- * 算法1.4
- * 背包
+ * Created by Rene Argento on 06/08/17.
  */
 public class Bag<Item> implements Iterable<Item> {
-    private Node first;
 
     private class Node {
         Item item;
         Node next;
     }
 
+    private Node first;
+    private int size;
+
+    public int size() {
+        return size;
+    }
+
     public void add(Item item) {
-        Node oldfirst = first;
+        Node oldFirst = first;
         first = new Node();
         first.item = item;
-        first.next = oldfirst;
+        first.next = oldFirst;
+
+        size++;
     }
 
     public Iterator<Item> iterator() {
@@ -33,6 +40,7 @@ public class Bag<Item> implements Iterable<Item> {
         }
 
         public void remove() {
+            //Not used in Bag
         }
 
         public Item next() {
@@ -41,4 +49,5 @@ public class Bag<Item> implements Iterable<Item> {
             return item;
         }
     }
+
 }

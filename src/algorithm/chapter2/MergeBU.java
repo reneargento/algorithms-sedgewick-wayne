@@ -1,6 +1,6 @@
-package algorithm;
+package algorithm.chapter2;
 
-import static algorithm.Merge.merge;
+import static algorithm.chapter2.Merge.merge;
 
 /**
  * 算法2.4

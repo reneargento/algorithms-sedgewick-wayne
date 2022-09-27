@@ -1,23 +1,20 @@
-package algorithm;
+package algorithm.chapter2;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * 算法2.3
- * 希尔排序
+ * 算法2.1
+ * 选择排序
  */
-public class Shell {
-    public static void sort(Comparable[] a) {
+public class Selection {
+    private static void sort(Comparable[] a) {
         int N = a.length;
-        int h = 1;
-        while (h < N / 3) h = 3 * h + 1;
-        while (h >= 1) {
-            for (int i = h; i < N; i++) {
-                for (int j = i; j >= h && less(a[j], a[j - h]); j -= h)
-                    exch(a, j, j - h);
-            }
-            h = h / 3;
+        for (int i = 0; i < N; i++) {
+            int min = i;
+            for (int j = i + 1; j < N; j++)
+                if (less(a[j], a[min])) min = j;
+            exch(a, i, min);
         }
     }
 

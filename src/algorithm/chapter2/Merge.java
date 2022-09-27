@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.chapter2;
 
 /**
  * 算法2.4
