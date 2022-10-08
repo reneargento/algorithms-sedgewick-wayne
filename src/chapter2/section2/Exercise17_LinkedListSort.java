@@ -13,6 +13,8 @@ import java.util.StringJoiner;
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/42
 // Thanks to ckwastra (https://github.com/ckwastra) for noticing that the subarray selection was not being done optimally.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/261
+// Thanks to davisrain (https://github.com/davisrain) for fixing a bug on the "beforeLow" value update.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/264
 public class Exercise17_LinkedListSort  {
 
     private static class LinkedList<Item> implements Iterable<Item> {
@@ -118,9 +120,9 @@ public class Exercise17_LinkedListSort  {
         while (true) {
             middle = findSortedSubArray(low);
             if (middle.next == null) {
-                if (low.equals(sourceNode)) // Array is sorted
+                if (low.equals(sourceNode)) { // Array is sorted
                     break;
-                else {
+                } else {
                     low = sourceNode;
                     beforeLow = null;
                     continue;
@@ -134,8 +136,6 @@ public class Exercise17_LinkedListSort  {
 
             if (beforeLow != null) {
                 beforeLow.next = mergeResult.newLow;
-            } else {
-                beforeLow = mergeResult.newHigh;
             }
 
             if (mergeResult.afterLastNode == null) {
@@ -143,6 +143,7 @@ public class Exercise17_LinkedListSort  {
                 beforeLow = null;
             } else {
                 low = mergeResult.afterLastNode;
+                beforeLow = mergeResult.newHigh;
             }
         }
         return low;
