@@ -25,7 +25,6 @@ public class Exercise24_ReverseDeleteAlgorithm {
 
         Edge[] edges = new Edge[edgesList.size()];
         int edgesArrayIndex = 0;
-
         for (Edge edge : edgeWeightedGraph.edges()) {
             edges[edgesArrayIndex++] = edge;
         }
@@ -44,11 +43,9 @@ public class Exercise24_ReverseDeleteAlgorithm {
         }
 
         Queue<Edge> minimumSpanningTree = new Queue<>();
-
         for (Edge edge : edgeWeightedGraph.edges()) {
             minimumSpanningTree.enqueue(edge);
         }
-
         return minimumSpanningTree;
     }
 
