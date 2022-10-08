@@ -15,23 +15,13 @@ public class Exercise24_ReverseDeleteAlgorithm {
 
     // O(E * (V + E)) = O(E^2)
     public Queue<Edge> minimumSpanningTreeWithReverseDelete(EdgeWeightedGraphWithDelete edgeWeightedGraph) {
-
-        // edgeWeightedGraph.edgesCount() counts self-loops so we need to compute the count in some other way
-        // In this case the list edgesList is used, just to compute the count of edges that are not self-loops
         List<Edge> edgesList = new ArrayList<>();
         for (Edge edge : edgeWeightedGraph.edges()) {
             edgesList.add(edge);
         }
+        edgesList.sort(Collections.reverseOrder());
 
-        Edge[] edges = new Edge[edgesList.size()];
-        int edgesArrayIndex = 0;
-        for (Edge edge : edgeWeightedGraph.edges()) {
-            edges[edgesArrayIndex++] = edge;
-        }
-
-        Arrays.sort(edges, Collections.reverseOrder());
-
-        for (Edge edge : edges) {
+        for (Edge edge : edgesList) {
             edgeWeightedGraph.deleteEdge(edge);
 
             ConnectedComponentsEdgeWeightedGraph connectedComponentsEdgeWeightedGraph =
@@ -101,8 +91,8 @@ public class Exercise24_ReverseDeleteAlgorithm {
                 "7-8 0.20000\n" +
                 "6-7 0.77000\n" +
                 "5-6 0.33000\n" +
-                "3-4 0.25000\n" +
                 "5-3 0.11000\n" +
+                "3-4 0.25000\n" +
                 "2-5 0.20000\n" +
                 "1-2 0.41000\n" +
                 "0-1 0.30000");
