@@ -10,21 +10,18 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise28_RemoveDuplicates {
 
 	public static void main(String[] args) {
-		
-		int[] whitelist = {1, 2, 3, 4, 5, 6, 6, 7, 7, 8};
-		int[] keys = {1, 4 , 5, 9, 10};
-		
+		int[] whitelist = { 1, 2, 3, 4, 5, 6, 6, 7, 7, 8 };
+		int[] keys = { 1, 4 , 5, 9, 10 };
+
 		Arrays.sort(whitelist);
-		
+
 		int[] compactWhitelist = removeDuplicates(whitelist);
-				
 		binarySearch(compactWhitelist, keys);
 		StdOut.println("\nExpected (numbers not found): 9, 10");
 	}
 
 	private static int[] removeDuplicates(int[] whitelist) {
 		int[] newWhitelist = new int[whitelist.length];
-		
 		newWhitelist[0] = whitelist[0];
 		int count = 0;
 		
@@ -39,33 +36,25 @@ public class Exercise28_RemoveDuplicates {
 		
 		int[] compactNewWhitelist = new int[count];
 		System.arraycopy(newWhitelist, 0, compactNewWhitelist, 0, count);
-		
 		return compactNewWhitelist;
 	}
 	
 	private static void binarySearch(int[] whitelist, int[] keys) {
-		
 		int numbersCount = 0;
 		
 		for (int i = 0; i < keys.length; i++) {
-			
-			int index = rank(keys[i], whitelist, 0, whitelist.length-1);
-
+			int index = rank(keys[i], whitelist, 0, whitelist.length - 1);
 			if (index == -1) {
 				if (numbersCount != 0) {
 					StdOut.print(", ");
 				}
-				
 				StdOut.print(keys[i]);
-				
 				numbersCount++;
 			}
 		}
-		
 	}
 	
 	private static int rank(int key, int[] arr, int lo, int hi) {
-		
 		if (lo <= hi) {
 			int mid = lo + (hi - lo) / 2;
 			
@@ -79,7 +68,5 @@ public class Exercise28_RemoveDuplicates {
 		} else {
 			return -1;
 		}
-		
 	}
-	
 }
