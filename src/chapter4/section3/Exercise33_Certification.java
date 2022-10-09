@@ -12,7 +12,7 @@ import edu.princeton.cs.algs4.StdOut;
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/272
 public class Exercise33_Certification {
 
-    // The order of growth of the running time of this method is O(V^2 * α),
+    // The order of growth of the running time of this method is O(V^2 * α(n)),
     // where α is the inverse Ackermann function.
     public boolean check(EdgeWeightedGraph edgeWeightedGraph, Queue<Edge> proposedMinimumSpanningTree) {
         // 1- Check if it is a spanning tree
@@ -37,7 +37,7 @@ public class Exercise33_Certification {
         }
 
         // 2- Check that every edge is a minimum-weight edge in the cut defined by removing that edge from the tree
-        // O(V^2 * α)
+        // O(V^2 * α(n))
         for (Edge edgeInMST : proposedMinimumSpanningTree) {
             unionFind = new UnionFind(edgeWeightedGraph.vertices());
 
