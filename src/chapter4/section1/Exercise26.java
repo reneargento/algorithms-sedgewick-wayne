@@ -1,7 +1,6 @@
 package chapter4.section1;
 
 import chapter1.section3.Stack;
-import com.sun.tools.internal.jxc.ap.Const;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import util.Constants;
@@ -11,6 +10,8 @@ import java.util.Iterator;
 /**
  * Created by Rene Argento on 19/09/17.
  */
+// Thanks to WhiteNight123 (https://github.com/WhiteNight123) for suggesting the removal of an unused import:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/pull/267
 @SuppressWarnings("unchecked")
 public class Exercise26 {
 
