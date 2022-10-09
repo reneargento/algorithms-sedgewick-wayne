@@ -11,14 +11,15 @@ import java.util.Map;
 /**
  * Created by Rene Argento on 28/04/17.
  */
+@SuppressWarnings("unchecked")
 public class Exercise33_DriverSelfOrganizingSearch {
 
     public static void main(String[] args) {
         int[] arraySizes = {1000, 10000, 100000, 1000000};
 
-        Map<Integer, Comparable[]> allInputArrays = new HashMap<>();
+        Map<Integer, Comparable<Integer>[]> allInputArrays = new HashMap<>();
         for (int i = 0; i < arraySizes.length; i++) {
-            Comparable[] array = ArrayGenerator.generateOrderedArray(arraySizes[i]);
+            Comparable<Integer>[] array = ArrayGenerator.generateOrderedArray(arraySizes[i]);
             allInputArrays.put(i, array);
         }
 
@@ -26,16 +27,15 @@ public class Exercise33_DriverSelfOrganizingSearch {
         driverSelfOrganizingSearch.doExperiment(allInputArrays);
     }
 
-    private void doExperiment(Map<Integer, Comparable[]> allInputArrays) {
+    private void doExperiment(Map<Integer, Comparable<Integer>[]> allInputArrays) {
         StdOut.printf("%10s %25s %25s\n", "Array Size | ", "Self-Organizing Search Time | ", "Default Binary Search Time");
 
         for (int i = 0; i < allInputArrays.size(); i++) {
             BinarySearchSymbolTable<Integer, Integer> binarySearchSymbolTable = new BinarySearchSymbolTable<>();
-            Exercise22_SelfOrganizingSearch selfOrganizingSearch = new Exercise22_SelfOrganizingSearch();
             Exercise22_SelfOrganizingSearch.ArraySTSelfOrganizing<Integer, Integer> arraySTSelfOrganizing =
-                    selfOrganizingSearch.new ArraySTSelfOrganizing<>(2);
+                    new Exercise22_SelfOrganizingSearch.ArraySTSelfOrganizing<>(2);
 
-            Comparable[] array = allInputArrays.get(i);
+            Comparable<Integer>[] array = allInputArrays.get(i);
 
             double[] probabilityDistribution = new double[array.length];
             for (int p = 0; p < array.length; p++) {
@@ -45,7 +45,7 @@ public class Exercise33_DriverSelfOrganizingSearch {
             // Self-Organizing Search Symbol Table
             Stopwatch selfOrganizingSearchTimer = new Stopwatch();
 
-            for (Comparable key : array) {
+            for (Comparable<Integer> key : array) {
                 int randomValue = StdRandom.uniform(0, 2);
                 arraySTSelfOrganizing.put((int) key, randomValue);
             }
@@ -69,7 +69,7 @@ public class Exercise33_DriverSelfOrganizingSearch {
             // Binary Search Symbol Table
             Stopwatch binarySearchTimer = new Stopwatch();
 
-            for (Comparable key : array) {
+            for (Comparable<Integer> key : array) {
                 int randomValue = StdRandom.uniform(0, 2);
                 binarySearchSymbolTable.put((int) key, randomValue);
             }
@@ -87,7 +87,6 @@ public class Exercise33_DriverSelfOrganizingSearch {
                     }
                 }
             }
-
             double binarySearchRunningTime = binarySearchTimer.elapsedTime();
             printResults(array.length, selfOrganizingSearchRunningTime, binarySearchRunningTime);
         }

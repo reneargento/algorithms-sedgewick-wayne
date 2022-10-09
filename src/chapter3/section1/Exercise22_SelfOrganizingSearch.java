@@ -11,8 +11,7 @@ import edu.princeton.cs.algs4.StdOut;
 @SuppressWarnings("unchecked")
 public class Exercise22_SelfOrganizingSearch {
 
-    public class ArraySTSelfOrganizing<Key, Value> {
-
+    public static class ArraySTSelfOrganizing<Key, Value> {
         public Key[] keys;
         public Value[] values;
         private int size;
@@ -140,8 +139,7 @@ public class Exercise22_SelfOrganizingSearch {
     }
 
     public static void main(String[] args) {
-        Exercise22_SelfOrganizingSearch selfOrganizingSearch = new Exercise22_SelfOrganizingSearch();
-        ArraySTSelfOrganizing<Integer, String> arraySTSelfOrganizing = selfOrganizingSearch.new ArraySTSelfOrganizing<>(2);
+        ArraySTSelfOrganizing<Integer, String> arraySTSelfOrganizing = new ArraySTSelfOrganizing<>(2);
 
         for (int i = 0; i < 10; i++) {
             arraySTSelfOrganizing.put(i, "Value " + i);
