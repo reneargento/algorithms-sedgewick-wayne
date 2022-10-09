@@ -6,6 +6,8 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 24/04/17.
  */
+// Thanks to ckwastra (https://github.com/ckwastra) for suggesting adding the moveToFront() method on put() operations.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/273
 @SuppressWarnings("unchecked")
 public class Exercise22_SelfOrganizingSearch {
 
@@ -41,6 +43,7 @@ public class Exercise22_SelfOrganizingSearch {
             for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
                     values[i] = value;
+                    moveToFront(i);
                     return;
                 }
             }
@@ -48,7 +51,6 @@ public class Exercise22_SelfOrganizingSearch {
             if (size == keys.length) {
                 resize(keys.length * 2);
             }
-
             keys[size] = key;
             values[size] = value;
             size++;
@@ -64,19 +66,7 @@ public class Exercise22_SelfOrganizingSearch {
                     if (i == 0) {
                         return values[i];
                     }
-
-                    // Move-to-front heuristic
-                    Key tempKey = keys[i];
-                    Value tempValue = values[i];
-
-                    for (int j = i; j > 0; j--) {
-                        keys[j] = keys[j - 1];
-                        values[j] = values[j - 1];
-                    }
-
-                    keys[0] = tempKey;
-                    values[0] = tempValue;
-
+                    moveToFront(i);
                     return values[0];
                 }
             }
@@ -109,10 +99,10 @@ public class Exercise22_SelfOrganizingSearch {
         public boolean contains(Key key) {
             for (int i = 0; i < size; i++) {
                 if (keys[i].equals(key)) {
+                    moveToFront(i);
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -123,6 +113,18 @@ public class Exercise22_SelfOrganizingSearch {
                 queue.enqueue(keys[i]);
             }
             return queue;
+        }
+
+        private void moveToFront(int index) {
+            Key tempKey = keys[index];
+            Value tempValue = values[index];
+
+            for (int j = index; j > 0; j--) {
+                keys[j] = keys[j - 1];
+                values[j] = values[j - 1];
+            }
+            keys[0] = tempKey;
+            values[0] = tempValue;
         }
 
         private void resize(int newSize) {
