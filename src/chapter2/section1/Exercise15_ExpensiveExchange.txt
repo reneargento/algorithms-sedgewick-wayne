@@ -1,4 +1,8 @@
 2.1.15 - Expensive exchange
 
+If we do not take into account condition "The warehouse is nearly full: there is extra space sufficient to hold any one of the crates, but not two. Which sorting method should the clerk use?" then answer is:
+
 The clerk should use selection sort. Since the cost of compares is low, the N^2 complexity won't be a problem.
 And it guarantees a cost of at most N exchanges.
+
+If we take this suggestion into account then we can not exchange any 2 elements as we need to do for the selection sort (as we have no space for exchange). Then we need extract smallest element and move all other elements one position to the right to provide the space for a new element, but this way we will use almost the same number of movements as for insertion sort. So there is no benefits in using selection sort in this case.
