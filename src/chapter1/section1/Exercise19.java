@@ -1,47 +1,19 @@
-package chapter1.section1;
+import java.math.BigInteger;
 
-import edu.princeton.cs.algs4.StdOut;
+public static BigInteger improvedFibonacci(int N, BigInteger[] resultArray) {
+        if (N == 0) return BigInteger.ZERO;
+        if (N == 1) return BigInteger.ONE;
 
-/**
- * Created by Rene Argento
- */
-public class Exercise19 {
+        BigInteger tempResult = resultArray[N - 2].add(resultArray[N - 1]);
+        resultArray[N] = tempResult;
+        return resultArray[N];
+    }
 
-	public static void main(String[] args) {
-//		for (int n = 0; n < 90; n++) {
-//			StdOut.println(n + " - " + F(n));
-//		}
-		
-		for (int n = 0; n < 90; n++) {
-			int[] arr;
-			
-			if (n == 0 || n == 1) {
-				arr = new int[2];
-			} else {
-				arr = new int[n+1];
-			}
-			
-			arr[0] = 0;
-			arr[1] = 1;
-			
-			StdOut.println(n + " - " + enhancedF(n, arr));
-		}
-	}
-	
-	private static int F(int n) {
-		if (n == 0) return 0;
-		if (n == 1) return 1;
-		return F(n-1) + F(n-2);
-	}
-	
-	private static int enhancedF(int n, int[] arr) {
-		if (n == 0) return arr[0];
-		if (n == 1) return arr[1];
-		
-		for (int i = 2; i <= n; i++) {
-			arr[i] = arr[i-2] + arr[i-1];
-		}
-		
-		return arr[n];
-	}
-}
+ public static void main(String[] args) {
+        BigInteger[] resultArray = new BigInteger[100];
+        resultArray[0] = BigInteger.ZERO;
+        resultArray[1] = BigInteger.ONE;
+
+        for (int N = 0; N < 100; N++)
+            StdOut.println(N + " " + improvedFibonacci(N, resultArray));
+    }
