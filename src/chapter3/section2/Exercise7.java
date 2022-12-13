@@ -8,6 +8,8 @@ import java.util.NoSuchElementException;
 /**
  * Created by Rene Argento on 16/05/17.
  */
+// Thanks to ckwastra (https://github.com/ckwastra) for fixing the internal path length computation.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/276
 public class Exercise7 {
 
     private class BinarySearchTree<Key extends Comparable<Key>, Value>{
@@ -21,14 +23,11 @@ public class Exercise7 {
 
             private int size; //# of nodes in subtree rooted here
             private int totalNumberOfComparesRequired; //number of compares required to reach all nodes in the subtree rooted here
-            private int numberOfComparesRequired; //number of compares required to reach this node
 
-            public Node(Key key, Value value, int size, int numberOfComparesRequired) {
+            public Node(Key key, Value value, int size) {
                 this.key = key;
                 this.value = value;
                 this.size = size;
-                this.numberOfComparesRequired = numberOfComparesRequired;
-                this.totalNumberOfComparesRequired = numberOfComparesRequired;
             }
         }
 
@@ -42,7 +41,6 @@ public class Exercise7 {
             if (node == null) {
                 return 0;
             }
-
             return node.size;
         }
 
@@ -50,30 +48,23 @@ public class Exercise7 {
             if (root == null) {
                 return 0;
             }
-
-            int internalPathLength = avgComparesRecursive(root, 1);
-
+            int internalPathLength = avgComparesRecursive(root);
             return internalPathLength / (double) size() + 1;
         }
 
-        private int avgComparesRecursive(Node node, int numberOfCompares) {
+        private int avgComparesRecursive(Node node) {
             if (node == null) {
                 return 0;
             }
-
-            int internalPathLength = numberOfCompares;
-
-            internalPathLength += avgComparesRecursive(node.left, numberOfCompares + 1);
-            internalPathLength += avgComparesRecursive(node.right, numberOfCompares + 1);
-
-            return internalPathLength;
+            return node.size - 1 +
+                    avgComparesRecursive(node.left) +
+                    avgComparesRecursive(node.right);
         }
 
         public double avgComparesConstant() {
             if (root == null) {
                 return 0;
             }
-
             return totalNumberOfComparesRequired(root) / (double) size() + 1;
         }
 
@@ -81,7 +72,6 @@ public class Exercise7 {
             if (node == null) {
                 return 0;
             }
-
             return node.totalNumberOfComparesRequired;
         }
 
@@ -105,29 +95,28 @@ public class Exercise7 {
         }
 
         public void put(Key key, Value value) {
-            root = put(root, key, value, 1);
+            root = put(root, key, value);
         }
 
-        private Node put(Node node, Key key, Value value, int numberOfComparesRequiredToReachNode) {
+        private Node put(Node node, Key key, Value value) {
             if (node == null) {
-                return new Node(key, value, 1, numberOfComparesRequiredToReachNode);
+                return new Node(key, value, 1);
             }
 
             int compare = key.compareTo(node.key);
 
             if (compare < 0) {
-                node.left = put(node.left, key, value, numberOfComparesRequiredToReachNode + 1);
+                node.left = put(node.left, key, value);
             } else if (compare > 0) {
-                node.right = put(node.right, key, value, numberOfComparesRequiredToReachNode + 1);
+                node.right = put(node.right, key, value);
             } else {
                 node.value = value;
             }
 
             node.size = size(node.left) + 1 + size(node.right);
-            node.totalNumberOfComparesRequired = totalNumberOfComparesRequired(node.left)
-                    + node.numberOfComparesRequired
-                    + totalNumberOfComparesRequired(node.right);
-
+            node.totalNumberOfComparesRequired = node.size - 1 +
+                    totalNumberOfComparesRequired(node.left) +
+                    totalNumberOfComparesRequired(node.right);
             return node;
         }
 
@@ -135,7 +124,6 @@ public class Exercise7 {
             if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
-
             return min(root).key;
         }
 
@@ -143,7 +131,6 @@ public class Exercise7 {
             if (node.left == null) {
                 return node;
             }
-
             return min(node.left);
         }
 
@@ -151,7 +138,6 @@ public class Exercise7 {
             if (root == null) {
                 throw new NoSuchElementException("Empty binary search tree");
             }
-
             return max(root).key;
         }
 
@@ -159,7 +145,6 @@ public class Exercise7 {
             if (node.right == null) {
                 return node;
             }
-
             return max(node.right);
         }
 
@@ -168,7 +153,6 @@ public class Exercise7 {
             if (node == null) {
                 return null;
             }
-
             return node.key;
         }
 
@@ -176,7 +160,6 @@ public class Exercise7 {
             if (node == null) {
                 return null;
             }
-
             int compare = key.compareTo(node.key);
 
             if (compare == 0) {
@@ -198,7 +181,6 @@ public class Exercise7 {
             if (node == null) {
                 return null;
             }
-
             return node.key;
         }
 
@@ -206,7 +188,6 @@ public class Exercise7 {
             if (node == null) {
                 return null;
             }
-
             int compare = key.compareTo(node.key);
 
             if (compare == 0) {
@@ -227,7 +208,6 @@ public class Exercise7 {
             if (index >= size()) {
                 throw new IllegalArgumentException("Index is higher than tree size");
             }
-
             return select(root, index).key;
         }
 
@@ -271,18 +251,15 @@ public class Exercise7 {
             if (node == null) {
                 return null;
             }
-
             if (node.left == null) {
                 return node.right;
             }
-
             node.left = deleteMin(node.left);
 
             node.size = size(node.left) + 1 + size(node.right);
-            node.totalNumberOfComparesRequired = totalNumberOfComparesRequired(node.left)
-                    + node.numberOfComparesRequired
-                    + totalNumberOfComparesRequired(node.right);
-
+            node.totalNumberOfComparesRequired = node.size - 1 +
+                    totalNumberOfComparesRequired(node.left) +
+                    totalNumberOfComparesRequired(node.right);
             return node;
         }
 
@@ -294,7 +271,6 @@ public class Exercise7 {
             if (node == null) {
                 return null;
             }
-
             if (node.right == null) {
                 return node.left;
             }
@@ -302,10 +278,9 @@ public class Exercise7 {
             node.right = deleteMax(node.right);
 
             node.size = size(node.left) + 1 + size(node.right);
-            node.totalNumberOfComparesRequired = totalNumberOfComparesRequired(node.left)
-                    + node.numberOfComparesRequired
-                    + totalNumberOfComparesRequired(node.right);
-
+            node.totalNumberOfComparesRequired = node.size - 1 +
+                    totalNumberOfComparesRequired(node.left) +
+                    totalNumberOfComparesRequired(node.right);
             return node;
         }
 
@@ -337,10 +312,9 @@ public class Exercise7 {
             }
 
             node.size = size(node.left) + 1 + size(node.right);
-            node.totalNumberOfComparesRequired = totalNumberOfComparesRequired(node.left)
-                    + node.numberOfComparesRequired
-                    + totalNumberOfComparesRequired(node.right);
-
+            node.totalNumberOfComparesRequired = node.size - 1 +
+                    totalNumberOfComparesRequired(node.left) +
+                    totalNumberOfComparesRequired(node.right);
             return node;
         }
 
@@ -374,7 +348,6 @@ public class Exercise7 {
                 keys(node.right, queue, low, high);
             }
         }
-
     }
 
     public static void main(String[] args) {
@@ -388,62 +361,61 @@ public class Exercise7 {
         BinarySearchTree<Integer, Integer> binarySearchTree = new BinarySearchTree<>();
 
         StdOut.println("Recursive average number of compares method tests");
-        StdOut.printf("AVG Compares 1: %.1f Expected: 0.0", binarySearchTree.avgComparesRecursive());
+        StdOut.printf("AVG Compares 1: %.1f Expected: 0.0\n", binarySearchTree.avgComparesRecursive());
 
         binarySearchTree.put(0, 0);
         binarySearchTree.put(1, 1);
         binarySearchTree.put(2, 2);
         binarySearchTree.put(3, 3);
 
-        StdOut.printf("\nAVG Compares 2: %.1f Expected: 3.5", binarySearchTree.avgComparesRecursive());
+        StdOut.printf("AVG Compares 2: %.1f Expected: 2.5\n", binarySearchTree.avgComparesRecursive());
 
         binarySearchTree.put(-1, -1);
         binarySearchTree.put(-2, -2);
 
-        StdOut.printf("\nAVG Compares 3: %.1f Expected: 3.5", binarySearchTree.avgComparesRecursive());
+        StdOut.printf("AVG Compares 3: %.1f Expected: 2.5\n", binarySearchTree.avgComparesRecursive());
 
         binarySearchTree.put(-10, -10);
         binarySearchTree.put(-7, -7);
 
-        StdOut.printf("\nAVG Compares 4: %.1f Expected: 4.0", binarySearchTree.avgComparesRecursive());
+        StdOut.printf("AVG Compares 4: %.1f Expected: 3.0\n", binarySearchTree.avgComparesRecursive());
 
         binarySearchTree.delete(-7);
-        StdOut.printf("\nAVG Compares 5: %.1f Expected: 3.7", binarySearchTree.avgComparesRecursive());
+        StdOut.printf("AVG Compares 5: %.1f Expected: 2.7\n", binarySearchTree.avgComparesRecursive());
 
         binarySearchTree.deleteMin();
         binarySearchTree.deleteMax();
-        StdOut.printf("\nAVG Compares 6: %.1f Expected: 3.2", binarySearchTree.avgComparesRecursive());
+        StdOut.printf("AVG Compares 6: %.1f Expected: 2.2\n", binarySearchTree.avgComparesRecursive());
     }
 
     private void testAvgComparesNonRecursive() {
         BinarySearchTree<Integer, Integer> binarySearchTree = new BinarySearchTree<>();
 
         StdOut.println("\nAdded-field average number of compares method tests");
-        StdOut.printf("AVG Compares 1: %.1f Expected: 0.0", binarySearchTree.avgComparesConstant());
+        StdOut.printf("AVG Compares 1: %.1f Expected: 0.0\n", binarySearchTree.avgComparesConstant());
 
         binarySearchTree.put(0, 0);
         binarySearchTree.put(1, 1);
         binarySearchTree.put(2, 2);
         binarySearchTree.put(3, 3);
 
-        StdOut.printf("\nAVG Compares 2: %.1f Expected: 3.5", binarySearchTree.avgComparesConstant());
+        StdOut.printf("AVG Compares 2: %.1f Expected: 2.5\n", binarySearchTree.avgComparesConstant());
 
         binarySearchTree.put(-1, -1);
         binarySearchTree.put(-2, -2);
 
-        StdOut.printf("\nAVG Compares 3: %.1f Expected: 3.5", binarySearchTree.avgComparesConstant());
+        StdOut.printf("AVG Compares 3: %.1f Expected: 2.5\n", binarySearchTree.avgComparesConstant());
 
         binarySearchTree.put(-10, -10);
         binarySearchTree.put(-7, -7);
 
-        StdOut.printf("\nAVG Compares 4: %.1f Expected: 4.0", binarySearchTree.avgComparesConstant());
+        StdOut.printf("AVG Compares 4: %.1f Expected: 3.0\n", binarySearchTree.avgComparesConstant());
 
         binarySearchTree.delete(-7);
-        StdOut.printf("\nAVG Compares 5: %.1f Expected: 3.7", binarySearchTree.avgComparesConstant());
+        StdOut.printf("AVG Compares 5: %.1f Expected: 2.7\n", binarySearchTree.avgComparesConstant());
 
         binarySearchTree.deleteMin();
         binarySearchTree.deleteMax();
-        StdOut.printf("\nAVG Compares 6: %.1f Expected: 3.2", binarySearchTree.avgComparesConstant());
+        StdOut.printf("AVG Compares 6: %.1f Expected: 2.2\n", binarySearchTree.avgComparesConstant());
     }
-
 }
