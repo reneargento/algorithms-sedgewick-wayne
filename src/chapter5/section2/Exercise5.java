@@ -9,11 +9,12 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 26/01/18.
  */
+// Thanks to joe63 (https://github.com/joe63) for reporting a bug on the longestPrefixOf() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/279
 public class Exercise5 {
 
     @SuppressWarnings("unchecked")
     public static class TrieIterative<Value> {
-
         private static final int R = 256; // radix
         private Node root = new Node();
 
@@ -50,7 +51,6 @@ public class Exercise5 {
             if (node == null) {
                 return 0;
             }
-
             return node.size;
         }
 
@@ -62,7 +62,6 @@ public class Exercise5 {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             return get(key) != null;
         }
 
@@ -70,13 +69,11 @@ public class Exercise5 {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             if (key.length() == 0) {
                 throw new IllegalArgumentException("Key must have a positive length");
             }
 
             Node node = getNode(key);
-
             if (node == null) {
                 return null;
             }
@@ -91,12 +88,10 @@ public class Exercise5 {
                 if (digit == key.length()) {
                     break;
                 }
-
                 char nextChar = key.charAt(digit); // Use digitTh key char to identify subtrie.
                 currentNode = currentNode.next[nextChar];
                 digit++;
             }
-
             return currentNode;
         }
 
@@ -111,30 +106,25 @@ public class Exercise5 {
             }
 
             boolean isNewKey = !contains(key);
-
             Node parent = root;
             Node currentNode = root;
             int digit = 0;
             char nextChar = key.charAt(0);
 
             while (digit <= key.length()) {
-
                 if (currentNode == null) {
                     currentNode = new Node();
                     parent.next[nextChar] = currentNode;
                 }
-
                 parent = currentNode;
 
                 if (isNewKey) {
                     currentNode.size = currentNode.size + 1;
                 }
-
                 if (digit == key.length()) {
                     currentNode.value = value;
                     return;
                 }
-
                 nextChar = key.charAt(digit); // Use digitTh key char to identify subtrie.
                 currentNode = currentNode.next[nextChar];
                 digit++;
@@ -145,11 +135,9 @@ public class Exercise5 {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             if (!contains(key)) {
                 return;
             }
-
             Node parent;
             Node currentNode = root;
             int digit = 0;
@@ -169,7 +157,6 @@ public class Exercise5 {
                         parent.next[nextChar] = null;
                         return;
                     }
-
                     digit++;
                 }
             }
@@ -210,14 +197,12 @@ public class Exercise5 {
                         stack.push(new NodeWithInformation(currentNode.next[nextChar],
                                 new StringBuilder(currentPrefix).append(nextChar)));
                     }
-
                     // nextChar value never becomes less than zero in the for loop, so we need this extra validation
                     if (nextChar == 0) {
                         break;
                     }
                 }
             }
-
             return keysWithPrefix;
         }
 
@@ -225,7 +210,6 @@ public class Exercise5 {
             if (pattern == null) {
                 throw new IllegalArgumentException("Pattern cannot be null");
             }
-
             Queue<String> keysThatMatch = new Queue<>();
 
             Stack<NodeWithInformation> stack = new Stack<>();
@@ -244,7 +228,6 @@ public class Exercise5 {
                 if (digit == pattern.length()) {
                     continue;
                 }
-
                 char nextCharInPattern = pattern.charAt(digit);
 
                 for (char nextChar = R - 1; true; nextChar--) {
@@ -261,7 +244,6 @@ public class Exercise5 {
                     }
                 }
             }
-
             return keysThatMatch;
         }
 
@@ -279,7 +261,6 @@ public class Exercise5 {
             int digit = 0;
 
             while (currentNode != null) {
-
                 if (currentNode.value != null) {
                     length = digit;
                 }
@@ -287,7 +268,6 @@ public class Exercise5 {
                 if (digit == query.length()) {
                     break;
                 }
-
                 char nextChar = query.charAt(digit);
 
                 if (currentNode.next[nextChar] != null) {
@@ -297,7 +277,6 @@ public class Exercise5 {
                     break;
                 }
             }
-
             return query.substring(0, length);
         }
 
@@ -308,7 +287,6 @@ public class Exercise5 {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             if (isEmpty()) {
                 return null;
             }
@@ -327,7 +305,6 @@ public class Exercise5 {
                 if (currentDigit == 0) {
                     currentNodeWithInformation.mustBeEqualDigit = true;
                 }
-
                 boolean mustBeEqualDigit = currentNodeWithInformation.mustBeEqualDigit;
 
                 // Highest keys will be on the top of the stack
@@ -337,7 +314,6 @@ public class Exercise5 {
                     if (lastKeyFound != null && currentKey.compareTo(lastKeyFound) < 0) {
                         return lastKeyFound;
                     }
-
                     lastKeyFound = currentPrefix.toString();
                 }
 
@@ -361,13 +337,11 @@ public class Exercise5 {
                         if (currentKey.compareTo(key) > 0) {
                             continue;
                         }
-
                         stack.push(new NodeWithInformation(currentNode.next[nextChar],
                                 new StringBuilder(currentPrefix).append(nextChar), currentDigit + 1, mustBeEqualDigit));
                     }
                 }
             }
-
             return lastKeyFound;
         }
 
@@ -376,11 +350,9 @@ public class Exercise5 {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             if (isEmpty()) {
                 return null;
             }
-
             Stack<NodeWithInformation> stack = new Stack<>();
             stack.push(new NodeWithInformation(root, new StringBuilder()));
 
@@ -400,7 +372,6 @@ public class Exercise5 {
                 if (currentNode.value != null && currentPrefix.toString().compareTo(key) >= 0) {
                     return currentPrefix.toString();
                 }
-
                 char leftChar;
 
                 if (mustBeEqualDigit && currentDigit < key.length()) {
@@ -416,7 +387,6 @@ public class Exercise5 {
                         } else if (currentNodeWithInformation.mustBeEqualDigit && nextChar == leftChar) {
                             mustBeEqualDigit = true;
                         }
-
                         stack.push(new NodeWithInformation(currentNode.next[nextChar],
                                 new StringBuilder(currentPrefix).append(nextChar), currentDigit + 1, mustBeEqualDigit));
                     }
@@ -426,7 +396,6 @@ public class Exercise5 {
                     }
                 }
             }
-
             return null;
         }
 
@@ -434,12 +403,10 @@ public class Exercise5 {
             if (index < 0 || index >= size()) {
                 throw new IllegalArgumentException("Index cannot be negative and must be lower than trie size");
             }
-
             Node currentNode = root;
             StringBuilder prefix = new StringBuilder();
 
             while (currentNode != null) {
-
                 if (currentNode.value != null) {
                     index--;
 
@@ -461,9 +428,7 @@ public class Exercise5 {
                         }
                     }
                 }
-
             }
-
             return null;
         }
 
@@ -489,7 +454,6 @@ public class Exercise5 {
                         return size;
                     }
                 }
-
                 char currentChar = key.charAt(digit);
 
                 for (char nextChar = 0; nextChar < currentChar; nextChar++) {
@@ -499,7 +463,6 @@ public class Exercise5 {
                 currentNode = currentNode.next[currentChar];
                 digit++;
             }
-
             return size;
         }
 
@@ -523,13 +486,11 @@ public class Exercise5 {
                         if (currentNode.value != null) {
                             return prefix.toString();
                         }
-
                         hasNextCharacter = true;
                         break;
                     }
                 }
             }
-
             return null;
         }
 
@@ -558,14 +519,12 @@ public class Exercise5 {
                         hasNextCharacter = true;
                         break;
                     }
-
                     // nextChar value never becomes less than zero in the for loop, so we need this extra validation
                     if (nextChar == 0) {
                         break;
                     }
                 }
             }
-
             return maxKey;
         }
 
@@ -573,7 +532,6 @@ public class Exercise5 {
             if (isEmpty()) {
                 return;
             }
-
             String minKey = min();
             delete(minKey);
         }
@@ -582,14 +540,12 @@ public class Exercise5 {
             if (isEmpty()) {
                 return;
             }
-
             String maxKey = max();
             delete(maxKey);
         }
     }
 
     public static class TernarySearchTrieIterative<Value> {
-
         private int size;
         private Node root;
 
@@ -641,7 +597,6 @@ public class Exercise5 {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             return get(key) != null;
         }
 
@@ -649,17 +604,14 @@ public class Exercise5 {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             if (key.length() == 0) {
                 throw new IllegalArgumentException("Key must have a positive length");
             }
 
             Node node = getNode(key);
-
             if (node == null) {
                 return null;
             }
-
             return node.value;
         }
 
@@ -671,7 +623,6 @@ public class Exercise5 {
                 if (currentNode == null) {
                     return null;
                 }
-
                 char currentChar = key.charAt(digit);
 
                 if (currentChar < currentNode.character) {
@@ -685,7 +636,6 @@ public class Exercise5 {
                     return currentNode;
                 }
             }
-
             return null;
         }
 
@@ -693,12 +643,10 @@ public class Exercise5 {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             if (value == null) {
                 delete(key);
                 return;
             }
-
             boolean isNewKey = !contains(key);
             int digit = 0;
 
@@ -727,7 +675,6 @@ public class Exercise5 {
 
                     updateParentReference(parent, currentNode, direction);
                 }
-
                 parent = currentNode;
 
                 if (currentChar < currentNode.character) {
@@ -740,7 +687,6 @@ public class Exercise5 {
                     if (isNewKey) {
                         currentNode.size = currentNode.size + 1;
                     }
-
                     currentNode = currentNode.middle;
                     digit++;
                     direction = Direction.MIDDLE;
@@ -776,7 +722,6 @@ public class Exercise5 {
             if (!contains(key)) {
                 return;
             }
-
             int digit = 0;
 
             // Special case: deleting root
@@ -794,7 +739,6 @@ public class Exercise5 {
                     root.right = deleteMin(aux.right);
                     root.left = aux.left;
                 }
-
                 return;
             }
 
@@ -818,10 +762,8 @@ public class Exercise5 {
                         currentNode.right = deleteMin(aux.right);
                         currentNode.left = aux.left;
                     }
-
                     break;
                 }
-
                 parent = currentNode;
 
                 if (currentChar < currentNode.character) {
@@ -842,7 +784,6 @@ public class Exercise5 {
                     direction = Direction.MIDDLE;
                 }
             }
-
             size--;
         }
 
@@ -854,7 +795,6 @@ public class Exercise5 {
             if (prefix == null) {
                 throw new IllegalArgumentException("Prefix cannot be null");
             }
-
             Queue<String> keysWithPrefix = new Queue<>();
 
             Node nodeWithPrefix = getNode(prefix);
@@ -862,17 +802,14 @@ public class Exercise5 {
             if (nodeWithPrefix == null) {
                 return keysWithPrefix;
             }
-
             if (nodeWithPrefix.value != null) {
                 keysWithPrefix.enqueue(prefix);
             }
-
             Queue<String> otherKeys = collect(nodeWithPrefix.middle, new StringBuilder(prefix));
 
             for (String key : otherKeys) {
                 keysWithPrefix.enqueue(key);
             }
-
             return keysWithPrefix;
         }
 
@@ -892,15 +829,12 @@ public class Exercise5 {
                 if (currentNode.value != null) {
                     queue.enqueue(prefixWithCharacter.toString());
                 }
-
                 if (currentNode.right != null) {
                    stack.push(new NodeWithInformation(currentNode.right, currentPrefix));
                 }
-
                 if (currentNode.middle != null) {
                     stack.push(new NodeWithInformation(currentNode.middle, prefixWithCharacter));
                 }
-
                 if (currentNode.left != null) {
                     stack.push(new NodeWithInformation(currentNode.left, currentPrefix));
                 }
@@ -916,7 +850,6 @@ public class Exercise5 {
             if (isEmpty()) {
                 return new Queue<>();
             }
-
             Queue<String> keysThatMatch = new Queue<>();
 
             Stack<NodeWithInformation> stack = new Stack<>();
@@ -945,14 +878,12 @@ public class Exercise5 {
                         stack.push(new NodeWithInformation(currentNode.middle, prefixWithCharacter));
                     }
                 }
-
                 if (nextCharInPattern == '.' || nextCharInPattern < currentNode.character) {
                     if (currentNode.left != null) {
                         stack.push(new NodeWithInformation(currentNode.left, currentPrefix));
                     }
                 }
             }
-
             return keysThatMatch;
         }
 
@@ -960,13 +891,11 @@ public class Exercise5 {
             if (query == null) {
                 throw new IllegalArgumentException("Query cannot be null");
             }
-
             int length = search(query);
             return query.substring(0, length);
         }
 
         private int search(String query) {
-
             Stack<NodeWithInformation> stack = new Stack<>();
             stack.push(new NodeWithInformation(root, 0));
             int length = 0;
@@ -978,7 +907,7 @@ public class Exercise5 {
 
                 char nextChar = query.charAt(currentDigit);
 
-                if (currentNode.value != null) {
+                if (currentNode.value != null && currentNode.character == query.charAt(currentDigit)) {
                     length = currentDigit + 1;
                 }
 
@@ -996,7 +925,6 @@ public class Exercise5 {
                     }
                 }
             }
-
             return length;
         }
 
@@ -1058,7 +986,6 @@ public class Exercise5 {
                     }
                 }
             }
-
             return lastKeyFound;
         }
 
@@ -1144,7 +1071,6 @@ public class Exercise5 {
                         }
                         index--;
                     }
-
                     prefix.append(currentNode.character);
 
                     if (currentNode.middle != null) {
@@ -1159,7 +1085,6 @@ public class Exercise5 {
             if (key == null) {
                 throw new IllegalArgumentException("Key cannot be null");
             }
-
             int rank = 0;
             int digit = 0;
             int size = 0;
@@ -1176,7 +1101,6 @@ public class Exercise5 {
                         if (currentNode.value != null) {
                             size++;
                         }
-
                         rank += getTreeSize(currentNode.left) + getTreeSize(currentNode.middle);
 
                         currentNode = currentNode.right;
@@ -1185,7 +1109,6 @@ public class Exercise5 {
                         if (digit < key.length() - 1 && currentNode.value != null) {
                             size++;
                         }
-
                         rank += getTreeSize(currentNode.left);
 
                         currentNode = currentNode.middle;
@@ -1203,7 +1126,6 @@ public class Exercise5 {
             if (node == null) {
                 return 0;
             }
-
             int size = 0;
 
             Stack<Node> stack = new Stack<>();
@@ -1226,7 +1148,6 @@ public class Exercise5 {
 
         public String min() {
             Node minNode = min(root);
-
             if (minNode == null) {
                 return null;
             }
@@ -1249,7 +1170,6 @@ public class Exercise5 {
             if (node == null) {
                 return null;
             }
-
             Node currentNode = node;
 
             while (currentNode.left != null) {
@@ -1260,7 +1180,6 @@ public class Exercise5 {
 
         public String max() {
             Node maxNode = max(root);
-
             if (maxNode == null) {
                 return null;
             }
@@ -1283,7 +1202,6 @@ public class Exercise5 {
             if (node == null) {
                 return null;
             }
-
             Node currentNode = node;
 
             while (currentNode.right != null) {
@@ -1296,7 +1214,6 @@ public class Exercise5 {
             if (isEmpty()) {
                 return;
             }
-
             String minKey = min();
             delete(minKey);
         }
@@ -1304,7 +1221,6 @@ public class Exercise5 {
         // Used only in delete()
         private Node deleteMin(Node node) {
             Node currentNode = node;
-
             while (currentNode.left != null) {
                 currentNode = currentNode.left;
             }
@@ -1315,7 +1231,6 @@ public class Exercise5 {
             if (isEmpty()) {
                 return;
             }
-
             String maxKey = max();
             delete(maxKey);
         }
@@ -1457,7 +1372,6 @@ public class Exercise5 {
         for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
-
         StdOut.println("Expected: ABCKey deleted");
 
         trieIterative.deleteMax();
@@ -1466,7 +1380,6 @@ public class Exercise5 {
         for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
-
         StdOut.println("Expected: ZKey deleted");
 
         // Floor tests
@@ -1539,21 +1452,18 @@ public class Exercise5 {
 
         // Delete tests
         trieIterative.delete("Z-Function");
-
         StdOut.println("\nKeys() after deleting Z-Function key");
         for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
 
         trieIterative.delete("Re");
-
         StdOut.println("\nKeys() after deleting Re key");
         for (String key : trieIterative.keys()) {
             StdOut.println(key);
         }
 
         trieIterative.delete("Rene");
-
         StdOut.println("\nKeys() after deleting Rene key");
         for (String key : trieIterative.keys()) {
             StdOut.println(key);
@@ -1685,21 +1595,17 @@ public class Exercise5 {
         }
 
         ternarySearchTrieIterative.deleteMin();
-
         StdOut.println("\nKeys after deleteMin: ");
         for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
-
         StdOut.println("Expected: ABCKey deleted");
 
         ternarySearchTrieIterative.deleteMax();
-
         StdOut.println("\nKeys after deleteMax: ");
         for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
-
         StdOut.println("Expected: ZKey deleted");
 
         // Floor tests
@@ -1772,21 +1678,18 @@ public class Exercise5 {
 
         // Delete tests
         ternarySearchTrieIterative.delete("Z-Function");
-
         StdOut.println("\nKeys() after deleting Z-Function key");
         for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
 
         ternarySearchTrieIterative.delete("Re");
-
         StdOut.println("\nKeys() after deleting Re key");
         for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);
         }
 
         ternarySearchTrieIterative.delete("Rene");
-
         StdOut.println("\nKeys() after deleting Rene key");
         for (String key : ternarySearchTrieIterative.keys()) {
             StdOut.println(key);

@@ -263,7 +263,7 @@ public class TernarySearchTrie<Value> implements TrieInterface<Value> {
             return length;
         }
 
-        if (node.value != null) {
+        if (node.value != null && node.character == query.charAt(digit)) {
             length = digit + 1;
         }
 

@@ -29,11 +29,9 @@ public class Exercise9_ExtendedOperationsForTSTs {
             if (nodeWithPrefix == null) {
                 return keysWithPrefix;
             }
-
             if (nodeWithPrefix.value != null) {
                 keysWithPrefix.enqueue(prefix);
             }
-
             collect(nodeWithPrefix.middle, new StringBuilder(prefix), keysWithPrefix);
             return keysWithPrefix;
         }
@@ -42,13 +40,11 @@ public class Exercise9_ExtendedOperationsForTSTs {
             if (node == null) {
                 return;
             }
-
             collect(node.left, prefix, queue);
 
             if (node.value != null) {
                 queue.enqueue(prefix.toString() + node.character);
             }
-
             collect(node.middle, prefix.append(node.character), queue);
             prefix.deleteCharAt(prefix.length() - 1);
             collect(node.right, prefix, queue);
@@ -58,7 +54,6 @@ public class Exercise9_ExtendedOperationsForTSTs {
             if (pattern == null) {
                 throw new IllegalArgumentException("Pattern cannot be null");
             }
-
             Queue<String> keysThatMatch = new Queue<>();
             collect(root, new StringBuilder(), pattern, keysThatMatch);
             return keysThatMatch;
@@ -68,7 +63,6 @@ public class Exercise9_ExtendedOperationsForTSTs {
             if (node == null) {
                 return;
             }
-
             int digit = prefix.length();
             char nextCharInPattern = pattern.charAt(digit);
 
@@ -92,7 +86,6 @@ public class Exercise9_ExtendedOperationsForTSTs {
             if (query == null) {
                 throw new IllegalArgumentException("Query cannot be null");
             }
-
             int length = search(root, query, 0, 0);
             return query.substring(0, length);
         }
@@ -101,11 +94,9 @@ public class Exercise9_ExtendedOperationsForTSTs {
             if (node == null) {
                 return length;
             }
-
-            if (node.value != null) {
+            if (node.value != null && node.character == query.charAt(digit)) {
                 length = digit + 1;
             }
-
             char nextChar = query.charAt(digit);
 
             if (nextChar < node.character) {
@@ -135,7 +126,6 @@ public class Exercise9_ExtendedOperationsForTSTs {
         tstExtended.put("TST", 7);
 
         // keys() test
-
         StringJoiner initialKeys = new StringJoiner(" ");
         for (String key : tstExtended.keys()) {
             initialKeys.add(key);
@@ -144,7 +134,6 @@ public class Exercise9_ExtendedOperationsForTSTs {
         StdOut.println("Expected:     Algo Algor Algorithms Re Rene TST Tree Trie");
 
         // keysWithPrefix() test
-
         StringJoiner keysWithPrefix1 = new StringJoiner(" ");
         for (String key : tstExtended.keysWithPrefix("A")) {
             keysWithPrefix1.add(key);
@@ -167,7 +156,6 @@ public class Exercise9_ExtendedOperationsForTSTs {
         StdOut.println("Expected: ");
 
         // keysThatMatch() test
-
         StringJoiner keysThatMatch1 = new StringJoiner(" ");
         for (String key : tstExtended.keysThatMatch("Tr.e")) {
             keysThatMatch1.add(key);
@@ -183,7 +171,6 @@ public class Exercise9_ExtendedOperationsForTSTs {
         StdOut.println("Expected:                   Re");
 
         // longestPrefixOf() test
-
         String longestPrefixOf1 = tstExtended.longestPrefixOf("Ren");
         StdOut.println("\nLongest prefix of Ren: " + longestPrefixOf1);
         StdOut.println("Expected: Re");
