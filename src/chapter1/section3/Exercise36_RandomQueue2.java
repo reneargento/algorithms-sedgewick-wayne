@@ -3,6 +3,7 @@ package chapter1.section3;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -10,10 +11,12 @@ import java.util.Iterator;
  */
 // Thanks to Oreshnik (https://github.com/Oreshnik) for fixing a bug in the shuffleItems() method.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/40
+// Thanks to sienic (https://github.com/sienic) for suggesting a RandomQueueIterator that uses less memory.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/281
 @SuppressWarnings("unchecked")
 public class Exercise36_RandomQueue2 {
 
-    public class RandomQueue2<Item> implements Iterable<Item> {
+    public static class RandomQueue2<Item> implements Iterable<Item> {
         private Item[] items;
         private int size;
 
@@ -30,7 +33,6 @@ public class Exercise36_RandomQueue2 {
             if (size == items.length) {
                 resize(items.length * 2);
             }
-
             items[size] = item;
             size++;
         }
@@ -39,19 +41,15 @@ public class Exercise36_RandomQueue2 {
             if (isEmpty()) {
                 throw new RuntimeException("Queue underflow");
             }
-
             int randomIndex = StdRandom.uniform(0, size);
-
             Item randomItem = items[randomIndex];
 
             items[randomIndex] = items[size - 1];
             items[size - 1] = null;
             size--;
-
             if (size > 0 && size == items.length / 4) {
                 resize(items.length / 2);
             }
-
             return randomItem;
         }
 
@@ -59,19 +57,15 @@ public class Exercise36_RandomQueue2 {
             if (isEmpty()) {
                 throw new RuntimeException("Queue underflow");
             }
-
             int randomIndex = StdRandom.uniform(0, size);
-
             return items[randomIndex];
         }
 
         private void resize(int capacity) {
             Item[] temp = (Item[]) new Object[capacity];
-
             for (int i = 0; i < size; i++) {
                 temp[i] = items[i];
             }
-
             items = temp;
         }
 
@@ -81,15 +75,13 @@ public class Exercise36_RandomQueue2 {
         }
 
         private class RandomQueueIterator implements Iterator<Item> {
-
             int index;
-            Item[] arrayCopy;
+            int[] indices;
 
             public RandomQueueIterator() {
                 index = 0;
-                arrayCopy = (Item[]) new Object[items.length];
-
-                copyArray();
+                indices = new int[items.length];
+                Arrays.setAll(indices, i -> i);
                 shuffleItems();
             }
 
@@ -98,59 +90,52 @@ public class Exercise36_RandomQueue2 {
             }
 
             public Item next() {
-                Item item = arrayCopy[index];
+                int nextItemIndex = indices[index];
+                Item item = items[nextItemIndex];
                 index++;
                 return item;
             }
 
-            private void copyArray() {
-                for (int i = 0; i < size; i++) {
-                    arrayCopy[i] = items[i];
-                }
-            }
-
             private void shuffleItems() {
-                for (int i = 0; i < size; i++) {
-                    int randomIndex = StdRandom.uniform(0, i + 1);
+                for (int i = 0; i < size - 1; i++) {
+                    int randomIndex = StdRandom.uniform(i + 1, size);
 
                     //Swap
-                    Item temp = arrayCopy[i];
-                    arrayCopy[i] = arrayCopy[randomIndex];
-                    arrayCopy[randomIndex] = temp;
+                    int temp = indices[i];
+                    indices[i] = indices[randomIndex];
+                    indices[randomIndex] = temp;
                 }
             }
         }
     }
 
     public static void main(String[] args) {
-        Exercise36_RandomQueue2 exercise36_randomQueue2 = new Exercise36_RandomQueue2();
-        RandomQueue2<Card> randomQueue = exercise36_randomQueue2.new RandomQueue2<>();
+        RandomQueue2<Card> randomQueue = new RandomQueue2<>();
         fillQueueWithBridgeHandsCards(randomQueue);
 
         StdOut.println("Cards:\n");
-
         for (Card card : randomQueue) {
             StdOut.println(card);
         }
     }
 
-    private static void fillQueueWithBridgeHandsCards(RandomQueue2 randomQueue) {
+    private static void fillQueueWithBridgeHandsCards(RandomQueue2<Card> randomQueue) {
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
 
-        for (int i = 0; i < suits.length; i++) {
-            randomQueue.enqueue(new Card("A", suits[i]));
-            randomQueue.enqueue(new Card("2", suits[i]));
-            randomQueue.enqueue(new Card("3", suits[i]));
-            randomQueue.enqueue(new Card("4", suits[i]));
-            randomQueue.enqueue(new Card("5", suits[i]));
-            randomQueue.enqueue(new Card("6", suits[i]));
-            randomQueue.enqueue(new Card("7", suits[i]));
-            randomQueue.enqueue(new Card("8", suits[i]));
-            randomQueue.enqueue(new Card("9", suits[i]));
-            randomQueue.enqueue(new Card("10", suits[i]));
-            randomQueue.enqueue(new Card("J", suits[i]));
-            randomQueue.enqueue(new Card("Q", suits[i]));
-            randomQueue.enqueue(new Card("K", suits[i]));
+        for (String suit : suits) {
+            randomQueue.enqueue(new Card("A", suit));
+            randomQueue.enqueue(new Card("2", suit));
+            randomQueue.enqueue(new Card("3", suit));
+            randomQueue.enqueue(new Card("4", suit));
+            randomQueue.enqueue(new Card("5", suit));
+            randomQueue.enqueue(new Card("6", suit));
+            randomQueue.enqueue(new Card("7", suit));
+            randomQueue.enqueue(new Card("8", suit));
+            randomQueue.enqueue(new Card("9", suit));
+            randomQueue.enqueue(new Card("10", suit));
+            randomQueue.enqueue(new Card("J", suit));
+            randomQueue.enqueue(new Card("Q", suit));
+            randomQueue.enqueue(new Card("K", suit));
         }
     }
 
@@ -168,5 +153,4 @@ public class Exercise36_RandomQueue2 {
             return value + "-" + suit;
         }
     }
-
 }
