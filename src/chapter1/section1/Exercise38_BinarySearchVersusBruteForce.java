@@ -10,71 +10,69 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise38_BinarySearchVersusBruteForce {
 
-	public static void main(String[] args) {
-		int key = 760788;
+    public static void main(String[] args) {
+        int key = 760788;
 
-		// Read the integers from a file
-		In in = new In(args[0]);
-		int[] array = in.readAllInts();
+        // Read the integers from a file
+        In in = new In(args[0]);
+        int[] array = in.readAllInts();
 
-		// Sort the array
-		Arrays.sort(array);
+        // Sort the array
+        Arrays.sort(array);
 
-		// BRUTEFORCE
-		long startTime = System.nanoTime();
+        // BRUTEFORCE
+        long startTime = System.nanoTime();
 
-		StdOut.println("Bruteforce: " + bruteForceSearch(key, array));
+        StdOut.println("Bruteforce: " + bruteForceSearch(key, array));
 
-		long endTime = System.nanoTime();
-		long duration = (endTime - startTime);
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
 
-		StdOut.println("Duration: " + duration + " nanoseconds.");
+        StdOut.println("Duration: " + duration + " nanoseconds.");
 
-		// BINARY SEARCH
-		startTime = System.nanoTime();
+        // BINARY SEARCH
+        startTime = System.nanoTime();
 
-		StdOut.println("BinarySearch: " + binarySearch(key, array, 0, array.length - 1));
+        StdOut.println("BinarySearch: " + binarySearch(key, array, 0, array.length - 1));
 
-		endTime = System.nanoTime();
-		duration = (endTime - startTime);
+        endTime = System.nanoTime();
+        duration = (endTime - startTime);
 
-		StdOut.println("Duration: " + duration + " nanoseconds.");
-	}
+        StdOut.println("Duration: " + duration + " nanoseconds.");
+    }
 
-	private static int bruteForceSearch(int key, int[] array) {
-		if (array == null) {
-			throw new IllegalArgumentException();
-		}
+    private static int bruteForceSearch(int key, int[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException();
+        }
 
-		int result = -1;
+        int result = -1;
 
-		for (int i = 0; i < array.length; i++) {
-			if (key == array[i]) {
-				result = i;
-			}
-		}
+        for (int i = 0; i < array.length; i++) {
+            if (key == array[i]) {
+                result = i;
+            }
+        }
+        return result;
+    }
 
-		return result;
-	}
+    private static int binarySearch(int key, int[] array, int low, int high) {
+        if (array == null) {
+            throw new IllegalArgumentException();
+        }
 
-	private static int binarySearch(int key, int[] array, int low, int high) {
-		if (array == null) {
-			throw new IllegalArgumentException();
-		}
+        if (low <= high) {
+            int middle = low + (high - low) / 2;
 
-		if (low <= high) {
-			int middle = low + (high - low) / 2;
-
-			if (key < array[middle]) {
-				return binarySearch(key, array, low, middle - 1);
-			} else if (key > array[middle]) {
-				return binarySearch(key, array, middle + 1, high);
-			} else {
-				return middle;
-			}
-		} else {
-			return -1;
-		}
-	}
-
+            if (key < array[middle]) {
+                return binarySearch(key, array, low, middle - 1);
+            } else if (key > array[middle]) {
+                return binarySearch(key, array, middle + 1, high);
+            } else {
+                return middle;
+            }
+        } else {
+            return -1;
+        }
+    }
 }

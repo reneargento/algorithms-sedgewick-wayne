@@ -9,7 +9,7 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 8/16/16.
  */
-public class Exercise34_RandomBag<Item> implements Iterable<Item>{
+public class Exercise34_RandomBag<Item> implements Iterable<Item> {
 
     private Item[] array;
     private int size;
