@@ -4,7 +4,7 @@ With an algorithm that takes as input N distinct points in the plane and can ret
 fall on the same line it is possible to solve the 3-SUM problem in the following way:
 
 For each number x in the list of numbers, create the point (x, x^3) (for now we assume that the elements are distinct).
-Then, check whether there exists three collinear points from among the created points.
+Then, the number of triples that fall on the same line will also be the quantity of three numbers that sum to zero.
 
 To see that this works, note that if x + y + z = 0 then the slope of the line from x to y is:
 (y^3 - x^3) / (y - x) = y^2 + yx + x^2
