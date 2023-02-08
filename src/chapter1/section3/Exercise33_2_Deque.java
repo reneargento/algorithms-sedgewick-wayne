@@ -8,7 +8,7 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento on 8/15/16.
  */
-public class Exercise33_2_Deque<Item> implements Iterable<Item>{
+public class Exercise33_2_Deque<Item> implements Iterable<Item> {
 
     private Item[] array;
     private int size;

@@ -20,5 +20,4 @@ public class Exercise12 {
 			System.out.println(a[i]);
 		}
 	}
-	
 }

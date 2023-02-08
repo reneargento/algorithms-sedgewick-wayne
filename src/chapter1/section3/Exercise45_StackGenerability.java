@@ -33,7 +33,7 @@ public class Exercise45_StackGenerability {
         Stack<Integer> stack = new Stack<>();
         int current = 0;
 
-        for (String value: permutation) {
+        for (String value : permutation) {
             int integerValue = Integer.parseInt(value);
 
             if (stack.isEmpty() || integerValue > stack.peek()) {

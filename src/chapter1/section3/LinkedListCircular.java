@@ -18,9 +18,8 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
         }
     }
 
-    private int size;
-    private Node first;
-    private Node last;
+    int size;
+    Node last;
 
     public boolean isEmpty() {
         return size == 0;
@@ -31,79 +30,95 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
     }
 
     public Node getFirstNode() {
-        return first;
+        if (isEmpty()) {
+            return null;
+        }
+        return last.next;
     }
 
     public Item get(int index) {
         if (isEmpty()) {
             return null;
         }
-
         if (index < 0 || index >= size()) {
             throw new IllegalArgumentException("Index must be between 0 and " + (size() - 1));
         }
 
-        Node current = first;
+        Node current = last.next;
         int currentIndex = 0;
 
         while (currentIndex < index) {
             currentIndex++;
             current = current.next;
         }
-
         return current.item;
     }
 
-    public void insert(Item item) {
+    public void insertLast(Item item) {
         Node oldLast = last;
-
         last = new Node(item);
-        last.item = item;
 
-        if (!isEmpty()) {
+        if (isEmpty()) {
+            last.next = last;
+        } else {
             last.next = oldLast.next;
             oldLast.next = last;
-        } else {
-            first = last;
-            last.next = first;
         }
-
         size++;
     }
 
-    public void remove(int index) {
-        if (isEmpty()) {
-            return;
-        }
+    public void insertFirst(Item item) {
+        Node newFirst = new Node(item);
 
+        if (isEmpty()) {
+            last = newFirst;
+            last.next = last;
+        } else {
+            Node oldFirst = last.next;
+            last.next = newFirst;
+            newFirst.next = oldFirst;
+        }
+        size++;
+    }
+
+    public Item removeFirst() {
+        return remove(0);
+    }
+
+    public Item remove(int index) {
+        if (isEmpty()) {
+            return null;
+        }
         if (index < 0 || index >= size()) {
             throw new IllegalArgumentException("Index must be between 0 and " + (size() - 1));
         }
+        Item item;
 
         if (index == 0) {
+            item = last.next.item;
+
             if (size() > 1) {
-                first = first.next;
-                last.next = first;
+                last.next = last.next.next;
             } else {
-                first = null;
                 last = null;
             }
         } else {
-            Node current = first;
+            Node current = last.next;
             int currentIndex = 0;
 
             while (currentIndex < index - 1) {
                 currentIndex++;
                 current = current.next;
             }
+            item = current.next.item;
 
             if (current.next == last) {
                 last = current;
             }
-
             current.next = current.next.next;
         }
         size--;
+        return item;
     }
 
     public void remove(Item item) {
@@ -111,19 +126,15 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
             return;
         }
 
-        if (item.equals(first.item)) {
+        if (item.equals(last.next.item)) {
             if (size() > 1) {
-                first = first.next;
-                last.next = first;
+                last.next = last.next.next;
             } else {
-                first = null;
                 last = null;
             }
-
             size--;
         } else {
-            Node current = first;
-
+            Node current = last.next;
             while (current != last && !current.next.item.equals(item)) {
                 current = current.next;
             }
@@ -132,7 +143,6 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
                 if (current.next == last) {
                     last = current;
                 }
-
                 current.next = current.next.next;
                 size--;
             }
@@ -146,7 +156,7 @@ public class LinkedListCircular<Item> implements Iterable<Item> {
 
     private class LinkedListIterator implements Iterator<Item> {
         int index = 0;
-        Node currentNode = first;
+        Node currentNode = last.next;
 
         @Override
         public boolean hasNext() {

@@ -10,30 +10,29 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Exercise17 {
 
-	public static Transaction[] readAllTransactions(String fileName) {
-		In in = new In(fileName);
-		Queue<Transaction> queue = new Queue<>();
+    public static Transaction[] readAllTransactions(String fileName) {
+        In in = new In(fileName);
+        Queue<Transaction> queue = new Queue<>();
 
-		while (!in.isEmpty()) {
-			queue.enqueue(new Transaction(in.readLine()));
-		}
+        while (!in.isEmpty()) {
+            queue.enqueue(new Transaction(in.readLine()));
+        }
 
-		int queueSize = queue.size();
-		Transaction[] transactions = new Transaction[queueSize];
-		
-		for (int i = 0; i < queueSize; i++) {
-			transactions[i] = queue.dequeue();
-		}
+        int queueSize = queue.size();
+        Transaction[] transactions = new Transaction[queueSize];
 
-		return transactions;
-	}
-	
-	public static void main(String[] args) {
-		String transactionFilePath = args[0];
-		Transaction[] transactions = readAllTransactions(transactionFilePath);
-		
-		for (Transaction transaction : transactions) {
-			StdOut.println(transaction);
-		}
-	}
+        for (int i = 0; i < queueSize; i++) {
+            transactions[i] = queue.dequeue();
+        }
+        return transactions;
+    }
+
+    public static void main(String[] args) {
+        String transactionFilePath = args[0];
+        Transaction[] transactions = readAllTransactions(transactionFilePath);
+
+        for (Transaction transaction : transactions) {
+            StdOut.println(transaction);
+        }
+    }
 }

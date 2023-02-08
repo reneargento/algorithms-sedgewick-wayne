@@ -80,7 +80,7 @@ public class Exercise32_Steque<Item> implements Iterable<Item> {
         return new StequeIterator();
     }
 
-    private class StequeIterator implements Iterator<Item>{
+    private class StequeIterator implements Iterator<Item> {
 
         Node current = first;
         int index = 0;
@@ -118,5 +118,4 @@ public class Exercise32_Steque<Item> implements Iterable<Item> {
         StdOut.println("Steque items: " + stequeItems.toString());
         StdOut.println("Expected: 2 1 5 6");
     }
-
 }
