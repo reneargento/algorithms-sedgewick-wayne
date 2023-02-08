@@ -1,0 +1,38 @@
+1.4.26
+
+With an algorithm that takes as input N distinct points in the plane and can return the number of triples that
+fall on the same line it is possible to solve the 3-SUM problem in the following way:
+
+For each number x in the list of numbers, create the point (x, x^3) (for now we assume that the elements are distinct).
+Then, check whether there exists three collinear points from among the created points.
+
+To see that this works, note that if x + y + z = 0 then the slope of the line from x to y is:
+(y^3 - x^3) / (y - x) = y^2 + yx + x^2
+
+And the slope of the line from x to z is
+(z^3 - x^3) / (z - x) = z^2 + zx + x^2
+
+Replacing z with (- x - y) in the equation above:
+(-(x + y))^2 - (x + y)x + x^2
+x^2 + 2xy + y^2 - x^2 - xy + x^2
+y^2 + yx + x^2
+
+Conversely, if the slope from x to y equals the slope from x to z (since collinear points have the same slope
+among themselves), then:
+y^2 + yx + x^2 = z^2 + zx + x^2,
+which implies that
+(y - z) (x + y + z) = 0,
+so either y = z or z = - x - y which suffices to prove that the reduction is valid.
+
+If there are duplicates in the list of numbers, first check whether x + 2y = 0 for any x and duplicate element y
+(in linear time using hashing or O(n lg n) time using sorting), and then remove the duplicates before reducing
+to the collinear point-finding problem.
+
+Based on:
+https://stackoverflow.com/questions/4179581/what-is-the-most-efficient-algorithm-to-find-a-straight-line-that-goes-through-m
+https://www.cs.mcgill.ca/~jking/papers/3sumhard.pdf (Page 3)
+
+Thanks to shftdlt (https://github.com/shftdlt) for reporting a bug on a previous version of this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/48
+Thanks to amwsffkhtd (https://github.com/amwsffkhtd) for also reporting a bug on a previous version of this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/286
