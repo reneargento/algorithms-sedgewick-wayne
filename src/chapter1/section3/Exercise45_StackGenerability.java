@@ -32,7 +32,7 @@ public class Exercise45_StackGenerability {
     private static boolean canAPermutationBeGenerated(String[] permutation) {
         int highest = -1;
         int limit = -1;
-
+        
         for(String s : permutation) {
             int i = Integer.parseInt(s);
             if(i > highest) {

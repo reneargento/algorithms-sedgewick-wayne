@@ -8,248 +8,248 @@ import java.util.StringJoiner;
 /**
  * Created by Rene Argento
  */
-public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
-	
-	private class DoubleNode {
-		Item item;
-		DoubleNode previous;
-		DoubleNode next;
-	}
-	
-	private int size;
-	private DoubleNode first;
-	private DoubleNode last;
-	
-	public boolean isEmpty() {
-		return size == 0;
-	}
-	
-	public int size() {
-		return size;
-	}
+public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item> {
 
-	public void insertAtTheBeginning(Item item) {
-		DoubleNode oldFirst = first;
-		
-		first = new DoubleNode();
-		first.item = item;
-		first.next = oldFirst;
-		
-		if (oldFirst != null) {
-			oldFirst.previous = first;
-		}
-		
-		// If the list was empty before adding the new item:
-		if (isEmpty()) {
-			last = first;
-		}
+    private class DoubleNode {
+        Item item;
+        DoubleNode previous;
+        DoubleNode next;
+    }
 
-		size++;
-	}
-	
-	public void insertAtTheEnd(Item item) {
-		DoubleNode oldLast = last;
-		
-		last = new DoubleNode();
-		last.item = item;
-		last.previous = oldLast;
-		
-		if (oldLast != null) {
-			oldLast.next = last;
-		}
+    private int size;
+    private DoubleNode first;
+    private DoubleNode last;
 
-		// If the list was empty before adding the new item:
-		if (isEmpty()) {
-			first = last;
-		}
+    public boolean isEmpty() {
+        return size == 0;
+    }
 
-		size++;
-	}
+    public int size() {
+        return size;
+    }
 
-	public void insertBeforeNode(Item beforeItem, Item item) {
-		if (isEmpty()) {
-			return;
-		}
+    public void insertAtTheBeginning(Item item) {
+        DoubleNode oldFirst = first;
 
-		DoubleNode currentNode;
+        first = new DoubleNode();
+        first.item = item;
+        first.next = oldFirst;
 
-		for (currentNode = first; currentNode != null; currentNode = currentNode.next) {
-			if (currentNode.item.equals(beforeItem)) {
-				break;
-			}
-		}
+        if (oldFirst != null) {
+            oldFirst.previous = first;
+        }
 
-		if (currentNode != null) {
-			DoubleNode newNode = new DoubleNode();
-			newNode.item = item;
+        // If the list was empty before adding the new item:
+        if (isEmpty()) {
+            last = first;
+        }
 
-			DoubleNode previousNode = currentNode.previous;
-			currentNode.previous = newNode;
-			newNode.next = currentNode;
-			newNode.previous = previousNode;
+        size++;
+    }
 
-			if (newNode.previous == null) {
-				// This is the first node
-				first = newNode;
-			} else {
-				newNode.previous.next = newNode;
-			}
+    public void insertAtTheEnd(Item item) {
+        DoubleNode oldLast = last;
 
-			size++;
-		}
-	}
+        last = new DoubleNode();
+        last.item = item;
+        last.previous = oldLast;
 
-	public void insertAfterNode(Item afterNode, Item item) {
-		if (isEmpty()) {
-			return;
-		}
+        if (oldLast != null) {
+            oldLast.next = last;
+        }
 
-		DoubleNode currentNode;
+        // If the list was empty before adding the new item:
+        if (isEmpty()) {
+            first = last;
+        }
 
-		for (currentNode = first; currentNode != null; currentNode = currentNode.next) {
-			if (currentNode.item.equals(afterNode)) {
-				break;
-			}
-		}
+        size++;
+    }
 
-		if (currentNode != null) {
-			DoubleNode newNode = new DoubleNode();
-			newNode.item = item;
+    public void insertBeforeNode(Item beforeItem, Item item) {
+        if (isEmpty()) {
+            return;
+        }
 
-			DoubleNode nextNode = currentNode.next;
-			currentNode.next = newNode;
-			newNode.previous = currentNode;
-			newNode.next = nextNode;
+        DoubleNode currentNode;
 
-			if (newNode.next == null) {
-				// This is the last node
-				last = newNode;
-			} else {
-				newNode.next.previous = newNode;
-			}
+        for (currentNode = first; currentNode != null; currentNode = currentNode.next) {
+            if (currentNode.item.equals(beforeItem)) {
+                break;
+            }
+        }
 
-			size++;
-		}
-	}
-	
-	public Item removeFromTheBeginning() {
-		if (isEmpty()) {
-			return null;
-		}
-		
-		Item item = first.item;
-		
-		if (first.next != null) {
-			first.next.previous = null;
-		} else { // There is only 1 element in the list
-			last = null;
-		}
-		
-		first = first.next;
+        if (currentNode != null) {
+            DoubleNode newNode = new DoubleNode();
+            newNode.item = item;
 
-		size--;
-		
-		return item;
-	}
-	
-	public Item removeFromTheEnd() {
-		if (isEmpty()) {
-			return null;
-		}
+            DoubleNode previousNode = currentNode.previous;
+            currentNode.previous = newNode;
+            newNode.next = currentNode;
+            newNode.previous = previousNode;
 
-		Item item = last.item;
+            if (newNode.previous == null) {
+                // This is the first node
+                first = newNode;
+            } else {
+                newNode.previous.next = newNode;
+            }
 
-		if (last.previous != null) {
-			last.previous.next = null;
-		} else { // There is only 1 element in the list
-			first = null;
-		}
+            size++;
+        }
+    }
 
-		last = last.previous;
+    public void insertAfterNode(Item afterNode, Item item) {
+        if (isEmpty()) {
+            return;
+        }
 
-		size--;
-		return item;
-	}
+        DoubleNode currentNode;
 
-	public Item removeItemWithIndex(int nodeIndex) {
-		if (isEmpty() || nodeIndex <= 0 || nodeIndex > size()) {
-			return null;
-		}
+        for (currentNode = first; currentNode != null; currentNode = currentNode.next) {
+            if (currentNode.item.equals(afterNode)) {
+                break;
+            }
+        }
 
-		boolean startFromTheBeginning = nodeIndex <= size() / 2;
+        if (currentNode != null) {
+            DoubleNode newNode = new DoubleNode();
+            newNode.item = item;
 
-		int index = startFromTheBeginning ? 1 : size();
+            DoubleNode nextNode = currentNode.next;
+            currentNode.next = newNode;
+            newNode.previous = currentNode;
+            newNode.next = nextNode;
 
-		DoubleNode currentNode = startFromTheBeginning? first : last;
+            if (newNode.next == null) {
+                // This is the last node
+                last = newNode;
+            } else {
+                newNode.next.previous = newNode;
+            }
 
-		while (currentNode != null) {
-			if (nodeIndex == index) {
-				break;
-			}
+            size++;
+        }
+    }
 
-			if (startFromTheBeginning) {
-				index++;
-			} else {
-				index--;
-			}
+    public Item removeFromTheBeginning() {
+        if (isEmpty()) {
+            return null;
+        }
 
-			currentNode = startFromTheBeginning ? currentNode.next : currentNode.previous;
-		}
+        Item item = first.item;
 
-		@SuppressWarnings("ConstantConditions") // If we got here, the node exists
-		Item item = currentNode.item;
+        if (first.next != null) {
+            first.next.previous = null;
+        } else { // There is only 1 element in the list
+            last = null;
+        }
 
-		DoubleNode previousNode = currentNode.previous;
-		DoubleNode nextNode = currentNode.next;
+        first = first.next;
 
-		if (previousNode != null) {
-			previousNode.next = nextNode;
-		}
-		if (nextNode != null) {
-			nextNode.previous = previousNode;
-		}
+        size--;
 
-		if (currentNode == first) {
-			first = nextNode;
-		}
-		if (currentNode == last) {
-			last = previousNode;
-		}
+        return item;
+    }
 
-		size--;
-		return item;
-	}
+    public Item removeFromTheEnd() {
+        if (isEmpty()) {
+            return null;
+        }
 
-	@Override
-	public Iterator<Item> iterator() {
-		return new DoublyLinkedListIterator();
-	}
+        Item item = last.item;
 
-	private class DoublyLinkedListIterator implements Iterator<Item> {
+        if (last.previous != null) {
+            last.previous.next = null;
+        } else { // There is only 1 element in the list
+            first = null;
+        }
 
-		int index = 0;
-		DoubleNode currentNode = first;
+        last = last.previous;
 
-		@Override
-		public boolean hasNext() {
-			return index < size();
-		}
+        size--;
+        return item;
+    }
 
-		@Override
-		public Item next() {
-			Item item = currentNode.item;
-			currentNode = currentNode.next;
+    public Item removeItemWithIndex(int nodeIndex) {
+        if (isEmpty() || nodeIndex <= 0 || nodeIndex > size()) {
+            return null;
+        }
 
-			index++;
-			return item;
-		}
-	}
+        boolean startFromTheBeginning = nodeIndex <= size() / 2;
 
-	public static void main(String[] args) {
-		Exercise31_DoublyLinkedList<Integer> doublyLinkedList = new Exercise31_DoublyLinkedList<>();
-		doublyLinkedList.insertAtTheBeginning(10);
-		doublyLinkedList.insertAtTheBeginning(30);
-		doublyLinkedList.insertAtTheEnd(999);
+        int index = startFromTheBeginning ? 1 : size();
+
+        DoubleNode currentNode = startFromTheBeginning ? first : last;
+
+        while (currentNode != null) {
+            if (nodeIndex == index) {
+                break;
+            }
+
+            if (startFromTheBeginning) {
+                index++;
+            } else {
+                index--;
+            }
+
+            currentNode = startFromTheBeginning ? currentNode.next : currentNode.previous;
+        }
+
+        @SuppressWarnings("ConstantConditions") // If we got here, the node exists
+        Item item = currentNode.item;
+
+        DoubleNode previousNode = currentNode.previous;
+        DoubleNode nextNode = currentNode.next;
+
+        if (previousNode != null) {
+            previousNode.next = nextNode;
+        }
+        if (nextNode != null) {
+            nextNode.previous = previousNode;
+        }
+
+        if (currentNode == first) {
+            first = nextNode;
+        }
+        if (currentNode == last) {
+            last = previousNode;
+        }
+
+        size--;
+        return item;
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new DoublyLinkedListIterator();
+    }
+
+    private class DoublyLinkedListIterator implements Iterator<Item> {
+
+        int index = 0;
+        DoubleNode currentNode = first;
+
+        @Override
+        public boolean hasNext() {
+            return index < size();
+        }
+
+        @Override
+        public Item next() {
+            Item item = currentNode.item;
+            currentNode = currentNode.next;
+
+            index++;
+            return item;
+        }
+    }
+
+    public static void main(String[] args) {
+        Exercise31_DoublyLinkedList<Integer> doublyLinkedList = new Exercise31_DoublyLinkedList<>();
+        doublyLinkedList.insertAtTheBeginning(10);
+        doublyLinkedList.insertAtTheBeginning(30);
+        doublyLinkedList.insertAtTheEnd(999);
 
         StringJoiner doublyLinkedListItems = new StringJoiner(" ");
         for (int item : doublyLinkedList) {
@@ -259,8 +259,8 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
         StdOut.println("Doubly linked list items after initial insert: " + doublyLinkedListItems.toString());
         StdOut.println("Expected: 30 10 999");
 
-		doublyLinkedList.insertBeforeNode(9999, 998);
-		doublyLinkedList.insertBeforeNode(999, 997);
+        doublyLinkedList.insertBeforeNode(9999, 998);
+        doublyLinkedList.insertBeforeNode(999, 997);
 
         doublyLinkedListItems = new StringJoiner(" ");
         for (int item : doublyLinkedList) {
@@ -270,7 +270,7 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
         StdOut.println("\nDoubly linked list items after insert before 999: " + doublyLinkedListItems.toString());
         StdOut.println("Expected: 30 10 997 999");
 
-		doublyLinkedList.insertAfterNode(10, 11);
+        doublyLinkedList.insertAfterNode(10, 11);
 
         doublyLinkedListItems = new StringJoiner(" ");
         for (int item : doublyLinkedList) {
@@ -280,10 +280,10 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
         StdOut.println("\nDoubly linked list items after insert after 10: " + doublyLinkedListItems.toString());
         StdOut.println("Expected: 30 10 11 997 999");
 
-		doublyLinkedList.removeFromTheBeginning();
-		doublyLinkedList.removeFromTheEnd();
+        doublyLinkedList.removeFromTheBeginning();
+        doublyLinkedList.removeFromTheEnd();
 
-		doublyLinkedList.removeItemWithIndex(2);
+        doublyLinkedList.removeItemWithIndex(2);
 
         doublyLinkedListItems = new StringJoiner(" ");
         for (int item : doublyLinkedList) {
@@ -292,5 +292,5 @@ public class Exercise31_DoublyLinkedList<Item> implements Iterable<Item>{
 
         StdOut.println("\nDoubly linked list items after deletions: " + doublyLinkedListItems.toString());
         StdOut.println("Expected: 10 997");
-	}
+    }
 }

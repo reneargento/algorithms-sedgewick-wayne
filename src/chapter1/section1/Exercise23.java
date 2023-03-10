@@ -38,7 +38,7 @@ public class Exercise23 {
             }
         }
     }
-    
+
     private static int binarySearch(int key, int[] numbers) {
         return rank(key, numbers, 0, numbers.length - 1);
     }
@@ -48,9 +48,9 @@ public class Exercise23 {
             int mid = lo + (hi - lo) / 2;
 
             if (key < arr[mid]) {
-                return rank(key, arr, lo, mid-1);
+                return rank(key, arr, lo, mid - 1);
             } else if (key > arr[mid]) {
-                return rank(key, arr, mid+1, hi);
+                return rank(key, arr, mid + 1, hi);
             } else {
                 return mid;
             }

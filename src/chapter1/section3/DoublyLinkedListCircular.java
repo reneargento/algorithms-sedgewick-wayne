@@ -320,7 +320,7 @@ public class DoublyLinkedListCircular<Item> implements Iterable<Item> {
 
         int index = startFromTheBeginning ? 0 : size() - 1;
 
-        DoubleNode currentNode = startFromTheBeginning? first : last;
+        DoubleNode currentNode = startFromTheBeginning ? first : last;
 
         while (true) {
             if (nodeIndex == index) {
