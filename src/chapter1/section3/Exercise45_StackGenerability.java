@@ -30,23 +30,16 @@ public class Exercise45_StackGenerability {
     }
 
     private static boolean canAPermutationBeGenerated(String[] permutation) {
-        Stack<Integer> stack = new Stack<>();
-        int current = 0;
-
-        for (String value : permutation) {
-            int integerValue = Integer.parseInt(value);
-
-            if (stack.isEmpty() || integerValue > stack.peek()) {
-                while (current < integerValue) {
-                    stack.push(current);
-                    current++;
-                }
-
-                current++;
-            } else if (integerValue == stack.peek()) {
-                stack.pop();
+        int highest = -1;
+        int limit = -1;
+        
+        for(String s : permutation) {
+            int i = Integer.parseInt(s);
+            if(i > highest) {
+                highest = limit = i;
             } else {
-                return false;
+                if(i >= limit) return false;
+                else limit = i;
             }
         }
 
