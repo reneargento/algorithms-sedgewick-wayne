@@ -1,8 +1,12 @@
 2.3.1
-                             a[]                 
-   i   j   0  1  2  3  4  5  6  7  8  9  10  11     
-           E  A  S  Y  Q  U  E  S  T  I   O   N    
-   2   6   E  A  S  Y  Q  U  E  S  T  I   O   N    
-   2   6   E  A  E  Y  Q  U  S  S  T  I   O   N 
-   3   2   E  A  E  Y  Q  U  S  S  T  I   O   N                                           
-       2   E  A  E  Y  Q  U  S  S  T  I   O   N
+                                             a[]
+                         i   j   0  1  2  3  4  5  6  7  8  9  10  11
+initial values           0  12   E  A  S  Y  Q  U  E  S  T  I   O   N
+scan left, scan right    2   6   E  A  S  Y  Q  U  E  S  T  I   O   N
+exchange                 2   6   E  A  E  Y  Q  U  S  S  T  I   O   N
+scan left, scan right    3   2   E  A  E  Y  Q  U  S  S  T  I   O   N
+final exchange               2   E  A  E  Y  Q  U  S  S  T  I   O   N
+result                       2   E  A  E  Y  Q  U  S  S  T  I   O   N
+
+Thanks to Forest-Lee (https://github.com/Forest-Lee) for mentioning that we should have the last line with the result.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/292
