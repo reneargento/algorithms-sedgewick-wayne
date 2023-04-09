@@ -1,7 +1,7 @@
 2.3.2
                              a[]                 
-lo  j  hi   0  1  2  3  4  5  6  7  8  9  10  11     
-            E  A  S  Y  Q  U  E  S  T  I   O   N    
+lo  j  hi   0  1  2  3  4  5  6  7  8  9  10  11
+            E  A  S  Y  Q  U  E  S  T  I   O   N
  0  2  11   E  A  E  Y  Q  U  S  S  T  I   O   N
  0  1   1   A  E  E  Y  Q  U  S  S  T  I   O   N
  0      0   A  E  E  Y  Q  U  S  S  T  I   O   N
