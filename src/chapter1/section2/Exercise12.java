@@ -3,8 +3,8 @@ package chapter1.section2;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by Rene Argento</br>
- * Domsday algorithm implemented by Junaid Ashraf (aka sickboy)
+ * Created by Rene Argento
+ * Doomsday algorithm implemented by Junaid Ashraf (aka sickboy)
  */
 public class Exercise12 {
     private final int month;
@@ -15,10 +15,12 @@ public class Exercise12 {
     private final int[] daysInMonths = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     public Exercise12(int month, int day, int year) {
-        if (year % 4 != 0) // not a leap year
+        if (year % 4 != 0) { // not a leap year
             daysInMonths[1] = 28;
-        if (!isDateValid(month, day, year))
+        }
+        if (!isDateValid(month, day, year)) {
             throw new RuntimeException("Invalid date!");
+        }
         this.month = month;
         this.day = day;
         this.year = year;
@@ -47,38 +49,44 @@ public class Exercise12 {
     }
 
     /**
-     * Returns doomsday for any year in 21st century
-     * More info: <link href="https://www.youtube.com/watch?v=z2x3SSBVGJU&t=339s&ab_channel=Numberphile">Doomsday algorithm: numberphile</link>
+     * Returns doomsday for any year in the 21st century
+     * More info: <link href="https://www.youtube.com/watch?v=z2x3SSBVGJU">Doomsday algorithm: numberphile</link>
      *
      * @return index of doomsday of current year
      */
     public int getDoomsday() {
-        if (year < 2000 || year > 2100)
-            throw new RuntimeException(new IllegalArgumentException("Year must be from 21st century"));
-        int yearsGone = year % 100;
-        // doomsday = (tuesday(3) + num of years from 2000 + number of leap years) % 7
-        int doomsday = 2 + yearsGone + (yearsGone / 4);
-        // if leap year then 4th of jan otherwise 3rd of jan is doomsday
-        // from here we can guess the weekday name of jan 1 for current year
-        if (year % 4 == 0)
+        if (year < 2000 || year > 2100) {
+            throw new IllegalArgumentException("Year must be from 21st century");
+        }
+        int numberOfYears = year % 100;
+        // On the year 2000 doomsday was a Tuesday. With this information, we can compute the doomsday of any
+        // other year.
+        // doomsday = (tuesday(3) + number of years from 2000 + number of leap years) % 7
+        int doomsday = 2 + numberOfYears + (numberOfYears / 4);
+
+        // If it is a leap year then doomsday will be on January 4th. Otherwise, it will be on January 3rd.
+        // From here we can compute the weekday name of January 1st for the current year.
+        if (year % 4 == 0) {
             return doomsday + 3;
-        return doomsday + 4;
+        } else {
+            return doomsday + 4;
+        }
     }
 
     /**
      * @return day of the week
      */
     public String dayOfTheWeek() {
-        int daysGone = day;
+        int numberOfDays = day;
         for (int i = 0; i < month - 1; i++) {
-            daysGone += daysInMonths[i];
+            numberOfDays += daysInMonths[i];
         }
-        int dayOfWeek = (daysGone + getDoomsday()) % 7;
+        int dayOfWeek = (numberOfDays + getDoomsday()) % 7;
         return daysOfWeek[dayOfWeek];
     }
 
     public static void main(String[] args) {
-        Exercise12 smartDate1 = new Exercise12(4, 4, 2020);
+        Exercise12 smartDate1 = new Exercise12(4, 18, 2020);
         StdOut.println(smartDate1.dayOfTheWeek() + " Expected: Saturday");
 
         Exercise12 smartDate2 = new Exercise12(6, 15, 2005);

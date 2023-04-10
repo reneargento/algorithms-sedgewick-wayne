@@ -8,9 +8,9 @@ import edu.princeton.cs.algs4.StdOut;
 public class Exercise7 {
 
     public static void main(String[] args) {
-        String s = "test";
+        String s = "abcde";
         StdOut.println(mystery(s));
-        StdOut.println("Expected: tset");
+        StdOut.println("Expected: edcba");
     }
 
     public static String mystery(String s) {

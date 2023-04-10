@@ -25,29 +25,31 @@ public class Exercise45_StackGenerability {
                 return true;
             }
         }
-
         return false;
     }
 
     private static boolean canAPermutationBeGenerated(String[] permutation) {
-        int highest = -1;
-        int limit = -1;
-        
-        for(String s : permutation) {
-            int i = Integer.parseInt(s);
-            if(i > highest) {
-                highest = limit = i;
+        int highestValue = -1;
+        int upperLimit = -1;
+
+        for (String valueString : permutation) {
+            int value = Integer.parseInt(valueString);
+            if (value > highestValue) {
+                highestValue = value;
+                upperLimit = value;
             } else {
-                if(i >= limit) return false;
-                else limit = i;
+                if (value >= upperLimit) {
+                    return false;
+                } else {
+                    upperLimit = value;
+                }
             }
         }
-
         return true;
     }
 
     public static void main(String[] args) {
-        //"Will the stack underflow?" tests
+        // "Will the stack underflow?" tests
         String input1Values = "0 1 2 - - -";
         String[] input1 = input1Values.split("\\s");
 
@@ -66,7 +68,7 @@ public class Exercise45_StackGenerability {
         StdOut.print("Input 3 - Will Underflow? ");
         StdOut.println(willTheStackUnderflow(input3) + " Expected: true");
 
-        //"Can permutation be generated?" tests
+        // "Can permutation be generated?" tests
         StdOut.println("\nCan a permutation be generated?");
         StdOut.print("Input: 4 3 2 1 0 9 8 7 6 5 - ");
         StdOut.println(canAPermutationBeGenerated("4 3 2 1 0 9 8 7 6 5".split(" ")) + " Expected: true");
