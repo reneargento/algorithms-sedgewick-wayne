@@ -12,7 +12,7 @@ import java.util.List;
 // Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting an improvement on the interval generation:
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/141
 @SuppressWarnings("unchecked")
-public class Exercise46_RandomIntervalGraphs {
+public class Exercise47_RandomIntervalGraphs {
 
     public class IntervalGraph implements GraphInterface {
         private IntervalBinarySearchTree.Interval[] keys;
@@ -138,7 +138,7 @@ public class Exercise46_RandomIntervalGraphs {
             throw new IllegalArgumentException("Intervals length must be higher than 0 and less than 1");
         }
 
-        IntervalGraph intervalGraph = new Exercise46_RandomIntervalGraphs().generateIntervalGraph(vertices, length);
+        IntervalGraph intervalGraph = new Exercise47_RandomIntervalGraphs().generateIntervalGraph(vertices, length);
         StdOut.println(intervalGraph);
     }
 }

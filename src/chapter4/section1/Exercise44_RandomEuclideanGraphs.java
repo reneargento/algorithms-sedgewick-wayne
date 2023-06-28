@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Rene Argento on 08/10/17.
  */
-public class Exercise43_RandomEuclideanGraphs {
+public class Exercise44_RandomEuclideanGraphs {
 
     public List<Exercise37_EuclideanGraphs.EuclideanGraph> generateRandomEuclideanGraphs(int numberOfGraphs, int vertices, double radius) {
         if (numberOfGraphs < 0) {
@@ -66,7 +66,7 @@ public class Exercise43_RandomEuclideanGraphs {
         int numberOfGraphs = Integer.parseInt(args[2]);
 
         List<Exercise37_EuclideanGraphs.EuclideanGraph> randomEuclideanGraphs =
-                new Exercise43_RandomEuclideanGraphs().generateRandomEuclideanGraphs(numberOfGraphs, vertices, radius);
+                new Exercise44_RandomEuclideanGraphs().generateRandomEuclideanGraphs(numberOfGraphs, vertices, radius);
 
         Exercise37_EuclideanGraphs.EuclideanGraph firstEuclideanGraph = randomEuclideanGraphs.get(0);
         firstEuclideanGraph.show(-0.1, 1.1, -0.1, 1.1, 0.03);

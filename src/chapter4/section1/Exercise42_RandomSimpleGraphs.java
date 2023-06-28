@@ -10,7 +10,7 @@ import edu.princeton.cs.algs4.StdRandom;
 // Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for fixing a bug on the random graph generation:
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/139
 @SuppressWarnings("unchecked")
-public class Exercise41_RandomSimpleGraphs {
+public class Exercise42_RandomSimpleGraphs {
 
     private class Graph implements GraphInterface {
 
@@ -98,7 +98,7 @@ public class Exercise41_RandomSimpleGraphs {
         int vertices = Integer.parseInt(args[0]);
         int edges = Integer.parseInt(args[1]);
 
-        Graph randomSimpleGraph = new Exercise41_RandomSimpleGraphs().randomSimpleGraph(vertices, edges);
+        Graph randomSimpleGraph = new Exercise42_RandomSimpleGraphs().randomSimpleGraph(vertices, edges);
         StdOut.println(randomSimpleGraph);
     }
 }

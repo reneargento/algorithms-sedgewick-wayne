@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 /**
  * Created by Rene Argento on 07/10/17.
  */
-public class Exercise40_RandomGraphs {
+public class Exercise41_RandomGraphs {
 
     public Graph erdosRenyiGraph(int vertices, int edges) {
         Graph randomGraph = new Graph(vertices);
@@ -25,7 +25,7 @@ public class Exercise40_RandomGraphs {
         int vertices = Integer.parseInt(args[0]);
         int edges = Integer.parseInt(args[1]);
 
-        Graph randomGraph = new Exercise40_RandomGraphs().erdosRenyiGraph(vertices, edges);
+        Graph randomGraph = new Exercise41_RandomGraphs().erdosRenyiGraph(vertices, edges);
         StdOut.println(randomGraph);
     }
 }

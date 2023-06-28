@@ -4,9 +4,9 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- * Created by Rene Argento on 13/10/17.
+ * Created by Rene Argento on 14/10/17.
  */
-public class Exercise48_PathLengthsInDFS {
+public class Exercise50_PathLengthsInBFS {
 
     private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges) {
         StdOut.printf("%25s %31s %15s\n", "Graph type | ", "Probability of finding path | ", "Average path length");
@@ -17,7 +17,7 @@ public class Exercise48_PathLengthsInDFS {
         // Graph model 1: Random graphs
         String graphType = "Random graph";
 
-        Exercise40_RandomGraphs exercise40_randomGraphs = new Exercise40_RandomGraphs();
+        Exercise41_RandomGraphs exercise40_randomGraphs = new Exercise41_RandomGraphs();
 
         for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomGraph = exercise40_randomGraphs.erdosRenyiGraph(vertices, edges);
@@ -35,7 +35,7 @@ public class Exercise48_PathLengthsInDFS {
         // Graph model 2: Random simple graphs
         graphType = "Random simple graph";
 
-        Exercise41_RandomSimpleGraphs exercise41_randomSimpleGraphs = new Exercise41_RandomSimpleGraphs();
+        Exercise42_RandomSimpleGraphs exercise41_randomSimpleGraphs = new Exercise42_RandomSimpleGraphs();
 
         for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomSimpleGraph = exercise41_randomSimpleGraphs.randomSimpleGraph(vertices, edges);
@@ -53,7 +53,7 @@ public class Exercise48_PathLengthsInDFS {
         // Graph model 3: Random interval graphs
         graphType = "Random interval graph";
 
-        Exercise46_RandomIntervalGraphs exercise46_randomIntervalGraphs = new Exercise46_RandomIntervalGraphs();
+        Exercise47_RandomIntervalGraphs exercise46_randomIntervalGraphs = new Exercise47_RandomIntervalGraphs();
         double defaultLength = 0.3;
 
         for (int experiment = 0; experiment < experiments; experiment++) {
@@ -74,15 +74,14 @@ public class Exercise48_PathLengthsInDFS {
         int randomSourceVertex = StdRandom.uniform(graph.vertices());
         int randomDestinationVertex = StdRandom.uniform(graph.vertices());
 
-        DepthFirstPaths depthFirstPaths = new DepthFirstPaths(graph, randomSourceVertex);
-        boolean foundPath = depthFirstPaths.hasPathTo(randomDestinationVertex);
+        BreadthFirstPaths breadthFirstPaths = new BreadthFirstPaths(graph, randomSourceVertex);
+        boolean foundPath = breadthFirstPaths.hasPathTo(randomDestinationVertex);
 
         if (foundPath) {
-            for (int vertexInPath : depthFirstPaths.pathTo(randomDestinationVertex)) {
+            for (int vertexInPath : breadthFirstPaths.pathTo(randomDestinationVertex)) {
                 totalPathLength++;
             }
         }
-
         experimentResult[0] = foundPath ? 1 : 0;
         experimentResult[1] = totalPathLength;
         return experimentResult;
@@ -105,6 +104,6 @@ public class Exercise48_PathLengthsInDFS {
         int vertices = Integer.parseInt(args[1]);
         int edges = Integer.parseInt(args[2]);
 
-        new Exercise48_PathLengthsInDFS().generateGraphsAndDoExperiments(experiments, vertices, edges);
+        new Exercise50_PathLengthsInBFS().generateGraphsAndDoExperiments(experiments, vertices, edges);
     }
 }

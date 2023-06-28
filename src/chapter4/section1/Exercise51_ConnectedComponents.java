@@ -9,14 +9,14 @@ import java.awt.*;
 /**
  * Created by Rene Argento on 14/10/17.
  */
-public class Exercise50_ConnectedComponents {
+public class Exercise51_ConnectedComponents {
 
     private void generateGraphsAndDoExperiments(int experiments, int vertices, int edges) {
         // Graph model 1: Random graphs
         double[] histogramRandomGraphs = new double[vertices + 1];
         String randomGraphType = "Random graph";
 
-        Exercise40_RandomGraphs exercise40_randomGraphs = new Exercise40_RandomGraphs();
+        Exercise41_RandomGraphs exercise40_randomGraphs = new Exercise41_RandomGraphs();
 
         for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomGraph = exercise40_randomGraphs.erdosRenyiGraph(vertices, edges);
@@ -33,7 +33,7 @@ public class Exercise50_ConnectedComponents {
         double[] histogramRandomSimpleGraphs = new double[vertices + 1];
         String randomSimpleGraphType = "Random simple graph";
 
-        Exercise41_RandomSimpleGraphs exercise41_randomSimpleGraphs = new Exercise41_RandomSimpleGraphs();
+        Exercise42_RandomSimpleGraphs exercise41_randomSimpleGraphs = new Exercise42_RandomSimpleGraphs();
 
         for (int experiment = 0; experiment < experiments; experiment++) {
             GraphInterface randomSimpleGraph = exercise41_randomSimpleGraphs.randomSimpleGraph(vertices, edges);
@@ -50,7 +50,7 @@ public class Exercise50_ConnectedComponents {
         double[] histogramRandomIntervalGraphs = new double[vertices + 1];
         String randomIntervalGraphType = "Random interval graph";
 
-        Exercise46_RandomIntervalGraphs exercise46_randomIntervalGraphs = new Exercise46_RandomIntervalGraphs();
+        Exercise47_RandomIntervalGraphs exercise46_randomIntervalGraphs = new Exercise47_RandomIntervalGraphs();
         double defaultLength = 0.3;
 
         for (int experiment = 0; experiment < experiments; experiment++) {
@@ -159,6 +159,6 @@ public class Exercise50_ConnectedComponents {
         int vertices = Integer.parseInt(args[1]);
         int edges = Integer.parseInt(args[2]);
 
-        new Exercise50_ConnectedComponents().generateGraphsAndDoExperiments(experiments, vertices, edges);
+        new Exercise51_ConnectedComponents().generateGraphsAndDoExperiments(experiments, vertices, edges);
     }
 }

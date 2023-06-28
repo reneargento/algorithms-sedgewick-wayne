@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Rene Argento on 08/10/17.
  */
-public class Exercise44_RandomGridGraphs {
+public class Exercise45_RandomGridGraphs {
 
     private class Edge {
         int vertex1;
@@ -266,7 +266,7 @@ public class Exercise44_RandomGridGraphs {
         int numberOfGraphs = Integer.parseInt(args[2]);
 
         List<Exercise37_EuclideanGraphs.EuclideanGraph> randomGridGraphs =
-                new Exercise44_RandomGridGraphs().generateRandomGridGraphs(numberOfGraphs, vertices, extraEdges);
+                new Exercise45_RandomGridGraphs().generateRandomGridGraphs(numberOfGraphs, vertices, extraEdges);
         Exercise37_EuclideanGraphs.EuclideanGraph firstRandomGridGraph = randomGridGraphs.get(0);
         firstRandomGridGraph.show(-0.1, 1.1, -0.1, 1.1, 0.03);
 

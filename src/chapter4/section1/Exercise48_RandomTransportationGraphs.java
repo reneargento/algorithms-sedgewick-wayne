@@ -7,7 +7,7 @@ import util.Constants;
 /**
  * Created by Rene Argento on 12/10/17.
  */
-public class Exercise47_RandomTransportationGraphs {
+public class Exercise48_RandomTransportationGraphs {
 
     public class TransportationGraph {
 
@@ -133,7 +133,7 @@ public class Exercise47_RandomTransportationGraphs {
 
     public static void main(String[] args) {
         Exercise37_EuclideanGraphs.EuclideanGraph euclideanGraph =
-                new Exercise47_RandomTransportationGraphs().randomTransportation();
+                new Exercise48_RandomTransportationGraphs().randomTransportation();
         euclideanGraph.show(-20, 120, 0, 120, 0.5);
     }
 }

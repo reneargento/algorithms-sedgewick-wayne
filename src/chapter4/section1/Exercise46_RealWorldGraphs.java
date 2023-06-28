@@ -19,7 +19,7 @@ import java.util.List;
 // Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for suggesting improvements to this exercise:
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/140
 @SuppressWarnings("unchecked")
-public class Exercise45_RealWorldGraphs {
+public class Exercise46_RealWorldGraphs {
 
     private class Graph {
         private int vertices;
@@ -166,7 +166,7 @@ public class Exercise45_RealWorldGraphs {
         int randomVerticesToChoose = Integer.parseInt(args[0]);
         int randomEdgesToChoose = Integer.parseInt(args[1]);
 
-        Graph randomRealGraph = new Exercise45_RealWorldGraphs().
+        Graph randomRealGraph = new Exercise46_RealWorldGraphs().
                 randomRealGraph(randomVerticesToChoose, randomEdgesToChoose);
 
         StdOut.println(randomRealGraph);

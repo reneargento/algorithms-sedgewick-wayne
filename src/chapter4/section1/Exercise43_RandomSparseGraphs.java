@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Rene Argento on 07/10/17.
  */
-public class Exercise42_RandomSparseGraphs {
+public class Exercise43_RandomSparseGraphs {
 
     //A graph is considered sparse if its number of different edges is within a small constant factor of V
     public List<Graph> randomSparseGraph(int numberOfGraphs) {
@@ -17,7 +17,7 @@ public class Exercise42_RandomSparseGraphs {
             throw new IllegalArgumentException("Number of graphs cannot be negative");
         }
 
-        Exercise40_RandomGraphs randomGraphs = new Exercise40_RandomGraphs();
+        Exercise41_RandomGraphs randomGraphs = new Exercise41_RandomGraphs();
 
         List<Graph> randomSparseGraphs = new ArrayList<>();
         int[] graphVerticesCount = {10, 100, 1000, 10000};
@@ -37,7 +37,7 @@ public class Exercise42_RandomSparseGraphs {
     public static void main(String[] args) {
         int numberOfGraphs = Integer.parseInt(args[0]);
 
-        List<Graph> randomSparseGraphs = new Exercise42_RandomSparseGraphs().randomSparseGraph(numberOfGraphs);
+        List<Graph> randomSparseGraphs = new Exercise43_RandomSparseGraphs().randomSparseGraph(numberOfGraphs);
         StdOut.println("Random sparse graphs generated: " + (randomSparseGraphs.size() == numberOfGraphs));
     }
 }
