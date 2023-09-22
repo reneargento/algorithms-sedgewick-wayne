@@ -3,13 +3,14 @@
 (The ratio of running time is based on quick-find / quick-union)
 
 Experiment | Number of Sites | Ratio of Running Time |
-      1           512                     0.3
-      2          1024                     0.3
-      3          2048                     0.7
-      4          4096                     0.9
-      5          8192                     0.9
-      6         16384                     1.0
-      7         32768                     1.0
-      8         65536                     1.0
+         1               512                     3.0
+         2              1024                     1.5
+         3              2048                     0.3
+         4              4096                     0.3
+         5              8192                     0.3
+         6             16384                     0.1
+         7             32768                     0.1
+         8             65536                     0.1
 
-The running times of quick-find and quick-union become more similar as the number of sites grows.
+For a smaller number of sites, quick-union has a faster running time.
+As the number of sites increases, quick-find becomes as better choice, with a faster running time.
