@@ -4,13 +4,18 @@ import chapter1.section3.Queue;
 import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.Arrays;
+
 /**
  * Created by Rene Argento on 24/10/17.
  */
+// Thanks to pharrukh (https://github.com/pharrukh) for suggesting to move part of the sources computing to the Digraph
+// class:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/302
 public class Exercise29_LCAInDAG {
 
-    private Digraph digraph;
-    private int[] maxDistances;
+    private final Digraph digraph;
+    private final int[] maxDistances;
 
     //Preprocess to
     // 1- Find all sources in the digraph
@@ -19,34 +24,14 @@ public class Exercise29_LCAInDAG {
     public Exercise29_LCAInDAG(Digraph digraph) {
         this.digraph = digraph;
         maxDistances = new int[digraph.vertices()];
-        HashSet<Integer> sources = new HashSet<>();
-
-        // 1- Find the sources in the graph
-        int[] indegrees = new int[digraph.vertices()];
-
-        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            for (int neighbor : digraph.adjacent(vertex)) {
-                indegrees[neighbor]++;
-            }
-        }
-
-        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            if (indegrees[vertex] == 0) {
-                sources.add(vertex);
-            }
-        }
+        HashSet<Integer> sources = computeSources(digraph);
 
         // 2- Find the height of all vertices (the length of the longest distance from a source)
-        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
-            maxDistances[vertex] = -1;
-        }
+        Arrays.fill(maxDistances, -1);
 
         for (int source : sources.keys()) {
             int[] distanceFromCurrentSource = new int[digraph.vertices()];
-
-            for (int vertex = 0; vertex < distanceFromCurrentSource.length; vertex++) {
-                distanceFromCurrentSource[vertex] = Integer.MAX_VALUE;
-            }
+            Arrays.fill(distanceFromCurrentSource, Integer.MAX_VALUE);
 
             Queue<Integer> sourceDistanceQueue = new Queue<>();
             sourceDistanceQueue.enqueue(source);
@@ -71,6 +56,17 @@ public class Exercise29_LCAInDAG {
         }
     }
 
+    private static HashSet<Integer> computeSources(Digraph digraph) {
+        HashSet<Integer> sources = new HashSet<>();
+
+        for (int vertex = 0; vertex < digraph.vertices(); vertex++) {
+            if (digraph.indegree(vertex) == 0) {
+                sources.add(vertex);
+            }
+        }
+        return sources;
+    }
+
     //O(V + E)
     public int getLCA(int vertex1, int vertex2) {
         DirectedCycle directedCycle = new DirectedCycle(digraph);
@@ -89,7 +85,6 @@ public class Exercise29_LCAInDAG {
 
         while (!queue.isEmpty()) {
             int currentVertex = queue.dequeue();
-
             vertex1Ancestors.add(currentVertex);
 
             for (int neighbor : reverseDigraph.adjacent(currentVertex)) {
@@ -125,7 +120,6 @@ public class Exercise29_LCAInDAG {
                 lowestCommonAncestor = commonAncestor;
             }
         }
-
         return lowestCommonAncestor;
     }
 
