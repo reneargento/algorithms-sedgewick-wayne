@@ -5,6 +5,8 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 27/09/18.
  */
+// Thanks to juliovr (https://github.com/juliovr) for reporting a bug on the max flow computation.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/304
 public class Exercise37 {
 
     // Runtime complexity: O(V + E)
@@ -13,21 +15,16 @@ public class Exercise37 {
         // No need for a visited[] array because intermediate vertices are not directly connected
 
         for (FlowEdge edge : flowNetwork.adjacent(source)) {
-            if (source == edge.from()) {
+            if (source == edge.from() && edge.to() != target) {
                 maxflow += depthFirstSearch(flowNetwork, edge.to(), target, edge.capacity());
             }
         }
-
         return maxflow;
     }
 
     private double depthFirstSearch(FlowNetwork flowNetwork, int vertex, int target, double currentMinCapacity) {
-        if (vertex == target) {
-            return currentMinCapacity;
-        }
-
         for (FlowEdge edge : flowNetwork.adjacent(vertex)) {
-            if (vertex == edge.from()) {
+            if (vertex == edge.from() && edge.to() != target) {
                 currentMinCapacity = Math.min(currentMinCapacity, edge.capacity());
                 return depthFirstSearch(flowNetwork, edge.to(), target, currentMinCapacity);
             }
@@ -57,7 +54,6 @@ public class Exercise37 {
         int target = 6;
         double maxflow = new Exercise37().getMaxFlow(flowNetwork, source, target);
         StdOut.println("Max flow: " + maxflow);
-        StdOut.println("Expected: 12.0");
+        StdOut.println("Expected: 14.0");
     }
-
 }
