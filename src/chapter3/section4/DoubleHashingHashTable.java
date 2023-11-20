@@ -54,7 +54,7 @@ public class DoubleHashingHashTable<Key, Value> {
     }
 
     protected int secondaryHash(Key key) {
-        int hash2 = (key.hashCode() % size) & 0x7fffffff;
+        int hash2 = (17 * key.hashCode() % size) & 0x7fffffff;
         hash2 = hash2 != 0 ? hash2 : size + 1;
         return hash2;
     }

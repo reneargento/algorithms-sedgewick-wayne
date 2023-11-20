@@ -10,6 +10,8 @@ import java.util.*;
  */
 // Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for fixing the resize and secondaryHash computation.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/128
+// Thanks to qiuhaha (https://github.com/qiuhaha) for suggesting an improvement in the secondaryHash computation.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/305
 @SuppressWarnings("unchecked")
 public class Exercise28_DoubleHashing {
 
@@ -59,7 +61,7 @@ public class Exercise28_DoubleHashing {
         }
 
         private int secondaryHash(Key key) {
-            int hash2 = (key.hashCode() % size) & 0x7fffffff;
+            int hash2 = (17 * key.hashCode() % size) & 0x7fffffff;
             hash2 = hash2 != 0 ? hash2 : size + 1;
             return hash2;
         }
