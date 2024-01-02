@@ -4,5 +4,12 @@ Given any cycle in an edge-weighted graph (all edge weights distinct), the edge 
 
 Proof:
 Consider by contradiction that the edge of maximum weight in the cycle C, edge e, belongs to the MST of the graph.
-Since MSTs do not contain cycles there is at least one edge in C that is not in the MST. Let's call one of these edges f.
-Now add f to the MST. There is now a cycle in the MST. Since e has the maximum weight in the cycle C and all edge weights are distinct, it means that weight(f) < weight(e). Removing the edge e after having added the edge f would generate a new MST' with total weight less than the total weight in MST, contradicting its minimality.
+Let's call this MST T1.
+If we delete edge e, T1 breaks into two subtrees, with the two ends of edge e in different subtrees.
+The remainder of C reconnects the subtrees, hence there is an edge f of C with ends in different subtrees, i.e., it reconnects the subtrees into a tree T2, with weight less than that of T1, because the weight of edge f is less than the weight of edge e, contradicting T1's minimality.
+
+Reference:
+https://en.wikipedia.org/wiki/Minimum_spanning_tree#Cycle_property
+
+Thanks to qiuhaha (https://github.com/qiuhaha) for reporting an issue with a previous version of the proof of this exercise.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/303
