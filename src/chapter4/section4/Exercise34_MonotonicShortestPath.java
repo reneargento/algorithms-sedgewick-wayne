@@ -11,18 +11,21 @@ import java.util.*;
 // Based on https://stackoverflow.com/questions/22876105/find-a-monotonic-shortest-path-in-a-graph-in-oe-logv
 // Thanks to hermantulleken (https://github.com/hermantulleken) for reporting an issue with paths in a previous implementation.
 // https://github.com/reneargento/algorithms-sedgewick-wayne/issues/306
-@SuppressWarnings("unchecked")
 public class Exercise34_MonotonicShortestPath {
 
     public static class Path {
         private final double weight;
         private final DirectedEdge lastEdge;
-        private final Queue<DirectedEdge> edgesInPath;
+        private Path previousPath;
 
-        Path(double weight, DirectedEdge lastEdge, Queue<DirectedEdge> edgesInPath) {
+        Path(double weight, DirectedEdge lastEdge) {
             this.weight = weight;
             this.lastEdge = lastEdge;
-            this.edgesInPath = edgesInPath;
+        }
+
+        Path(double weight, DirectedEdge directedEdge, Path previousPath) {
+            this(weight, directedEdge);
+            this.previousPath = previousPath;
         }
 
         public double weight() {
@@ -33,13 +36,20 @@ public class Exercise34_MonotonicShortestPath {
             return lastEdge;
         }
 
-        public Queue<DirectedEdge> edgesInPath() {
-            return edgesInPath;
+        public Iterable<DirectedEdge> getPath() {
+            LinkedList<DirectedEdge> path = new LinkedList<>();
+            Path iterator = previousPath;
+
+            while (iterator != null && iterator.lastEdge != null) {
+                path.addFirst(iterator.lastEdge);
+                iterator = iterator.previousPath;
+            }
+            path.add(lastEdge);
+            return path;
         }
     }
 
     public static class VertexInformation {
-
         private final DirectedEdge[] edges;
         private int currentEdgeIteratorPosition;
 
@@ -63,14 +73,14 @@ public class Exercise34_MonotonicShortestPath {
 
     public static class DijkstraMonotonicSP {
 
-        private final double[] distTo;                                 // length of path to vertex
-        private final Queue<DirectedEdge>[] pathTo;                    // paths to each vertex
+        private final double[] distTo;                      // length of path to vertex
+        private final Path[] pathTo;                        // paths to each vertex
 
-        private final double[] distToMonotonicAscending;               // length of monotonic ascending path to vertex
-        private final Queue<DirectedEdge>[] pathMonotonicAscending;    // monotonic ascending path to vertex
+        private final double[] distToMonotonicAscending;    // length of monotonic ascending path to vertex
+        private final Path[] pathMonotonicAscending;        // monotonic ascending path to vertex
 
-        private final double[] distToMonotonicDescending;              // length of monotonic descending path to vertex
-        private final Queue<DirectedEdge>[] pathMonotonicDescending;   // monotonic descending path to vertex
+        private final double[] distToMonotonicDescending;   // length of monotonic descending path to vertex
+        private final Path[] pathMonotonicDescending;       // monotonic descending path to vertex
 
         // O(E lg E)
         // If negative edge weights are present, still works but becomes O(2^V)
@@ -79,9 +89,9 @@ public class Exercise34_MonotonicShortestPath {
             distToMonotonicDescending = new double[edgeWeightedDigraph.vertices()];
             distTo = new double[edgeWeightedDigraph.vertices()];
 
-            pathMonotonicAscending = new Queue[edgeWeightedDigraph.vertices()];
-            pathMonotonicDescending = new Queue[edgeWeightedDigraph.vertices()];
-            pathTo = new Queue[edgeWeightedDigraph.vertices()];
+            pathMonotonicAscending = new Path[edgeWeightedDigraph.vertices()];
+            pathMonotonicDescending = new Path[edgeWeightedDigraph.vertices()];
+            pathTo = new Path[edgeWeightedDigraph.vertices()];
 
             for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
                 distTo[vertex] = Double.POSITIVE_INFINITY;
@@ -117,7 +127,7 @@ public class Exercise34_MonotonicShortestPath {
 
         private void relaxAllEdgesInSpecificOrder(EdgeWeightedDigraph edgeWeightedDigraph, int source,
                                                   Comparator<DirectedEdge> edgesComparator, double[] distToVertex,
-                                                  Queue<DirectedEdge>[] pathToVertex, boolean isAscendingOrder) {
+                                                  Path[] pathToVertex, boolean isAscendingOrder) {
             // Create a map with vertices as keys and sorted outgoing edges as values
             SeparateChainingHashTable<Integer, VertexInformation> verticesInformation = new SeparateChainingHashTable<>();
             for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
@@ -138,27 +148,29 @@ public class Exercise34_MonotonicShortestPath {
                     return Double.compare(path1.weight(), path2.weight());
                 }
             });
-
             distToVertex[source] = 0;
-            pathToVertex[source] = new LinkedList<>();
 
             VertexInformation sourceVertexInformation = verticesInformation.get(source);
             while (sourceVertexInformation.currentEdgeIteratorPosition < sourceVertexInformation.getEdges().length) {
                 DirectedEdge edge = sourceVertexInformation.getEdges()[sourceVertexInformation.getCurrentEdgeIteratorPosition()];
                 sourceVertexInformation.incrementEdgeIteratorPosition();
 
-                Path path = new Path(edge.weight(), edge, new LinkedList<>());
+                Path path = new Path(edge.weight(), edge);
                 priorityQueue.offer(path);
             }
 
             while (!priorityQueue.isEmpty()) {
                 Path currentShortestPath = priorityQueue.poll();
                 DirectedEdge currentEdge = currentShortestPath.lastEdge();
-                Queue<DirectedEdge> edgesInPath = currentShortestPath.edgesInPath();
-                edgesInPath.offer(currentEdge);
 
                 int nextVertexInPath = currentEdge.to();
                 VertexInformation nextVertexInformation = verticesInformation.get(nextVertexInPath);
+
+                if (pathToVertex[nextVertexInPath] == null
+                        || currentShortestPath.weight() < distToVertex[nextVertexInPath]) {
+                    distToVertex[nextVertexInPath] = currentShortestPath.weight();
+                    pathToVertex[nextVertexInPath] = currentShortestPath;
+                }
 
                 double weightInPreviousEdge = currentEdge.weight();
 
@@ -172,24 +184,8 @@ public class Exercise34_MonotonicShortestPath {
                     }
 
                     nextVertexInformation.incrementEdgeIteratorPosition();
-
-                    if (currentShortestPath.weight() < distToVertex[nextVertexInPath]) {
-                        distToVertex[nextVertexInPath] = currentShortestPath.weight();
-                        pathToVertex[nextVertexInPath] = new LinkedList<>(edgesInPath);
-                    }
-
-                    Queue<DirectedEdge> nextVerticesInPath = edgesInPath;
-                    // Optimization: check if we should split paths or if we are able to reuse the existing path
-                    if (nextVertexInformation.getEdges().length > 1) {
-                        nextVerticesInPath = new LinkedList<>(edgesInPath);
-                    }
-                    Path path = new Path(currentShortestPath.weight() + edge.weight(), edge, nextVerticesInPath);
+                    Path path = new Path(currentShortestPath.weight() + edge.weight(), edge, currentShortestPath);
                     priorityQueue.offer(path);
-                }
-
-                if (pathToVertex[nextVertexInPath] == null) {
-                    distToVertex[nextVertexInPath] = currentShortestPath.weight();
-                    pathToVertex[nextVertexInPath] = edgesInPath;
                 }
             }
         }
@@ -218,7 +214,7 @@ public class Exercise34_MonotonicShortestPath {
             if (!hasPathTo(vertex)) {
                 return null;
             }
-            return pathTo[vertex];
+            return pathTo[vertex].getPath();
         }
     }
 
@@ -239,7 +235,7 @@ public class Exercise34_MonotonicShortestPath {
                 new DijkstraMonotonicSP(edgeWeightedDigraph1, 0);
 
         StdOut.print("Monotonic shortest paths 1: ");
-        test(edgeWeightedDigraph1, dijkstraMonotonicSP1);
+        test(edgeWeightedDigraph1, dijkstraMonotonicSP1, 0);
 
         StdOut.println("\n\nExpected monotonic paths");
         StdOut.println("Vertex 0: ");
@@ -261,7 +257,7 @@ public class Exercise34_MonotonicShortestPath {
                 new DijkstraMonotonicSP(edgeWeightedDigraph2, 0);
 
         StdOut.print("\nMonotonic shortest paths 2: ");
-        test(edgeWeightedDigraph2, dijkstraMonotonicSP2);
+        test(edgeWeightedDigraph2, dijkstraMonotonicSP2, 0);
 
         StdOut.println("\n\nExpected monotonic paths");
         StdOut.println("Vertex 0: ");
@@ -280,7 +276,7 @@ public class Exercise34_MonotonicShortestPath {
                 new DijkstraMonotonicSP(edgeWeightedDigraph3, 0);
 
         StdOut.print("\nMonotonic shortest paths 3: ");
-        test(edgeWeightedDigraph3, dijkstraMonotonicSP3);
+        test(edgeWeightedDigraph3, dijkstraMonotonicSP3, 0);
 
         StdOut.println("\n\nExpected monotonic paths");
         StdOut.println("Vertex 0: ");
@@ -290,9 +286,13 @@ public class Exercise34_MonotonicShortestPath {
         StdOut.println("Vertex 4: 0->4 (4.0)");
     }
 
-    private static void test(EdgeWeightedDigraph edgeWeightedDigraph, DijkstraMonotonicSP dijkstraMonotonicSP) {
+    private static void test(EdgeWeightedDigraph edgeWeightedDigraph, DijkstraMonotonicSP dijkstraMonotonicSP,
+                             int source) {
         for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
             StdOut.print("\nPath from vertex 0 to vertex " + vertex + ": ");
+            if (vertex == source) {
+                continue;
+            }
 
             if (dijkstraMonotonicSP.hasPathTo(vertex)) {
                 for (DirectedEdge edge : dijkstraMonotonicSP.pathTo(vertex)) {
