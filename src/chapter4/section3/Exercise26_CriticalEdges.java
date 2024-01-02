@@ -1,20 +1,21 @@
 package chapter4.section3;
 
+import chapter1.section3.Bag;
 import chapter1.section3.Queue;
 import chapter1.section5.UnionFind;
 import chapter2.section4.PriorityQueueResize;
 import chapter3.section4.SeparateChainingHashTable;
-import chapter3.section5.HashSet;
 import edu.princeton.cs.algs4.StdOut;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Rene Argento on 09/11/17.
  */
 // Based on the nice answer given by j_random_hacker here:
-    // https://stackoverflow.com/questions/15720155/find-all-critical-edges-of-an-mst
+// https://stackoverflow.com/questions/15720155/find-all-critical-edges-of-an-mst
+
+// Thanks to qiuhaha (https://github.com/qiuhaha) for reporting issues with the previous implementation and
+// suggesting the use of GraphX and BridgeFinder classes.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/303
 public class Exercise26_CriticalEdges {
 
     /**
@@ -51,11 +52,7 @@ public class Exercise26_CriticalEdges {
         for (Edge edge : edgeWeightedGraph.edges()) {
             priorityQueue.insert(edge);
         }
-
         UnionFind unionFind = new UnionFind(edgeWeightedGraph.vertices());
-
-        // Subgraph with components
-        EdgeWeightedGraphWithDelete componentsSubGraph = new EdgeWeightedGraphWithDelete(unionFind.count());
 
         while (!priorityQueue.isEmpty() && minimumSpanningTree.size() < edgeWeightedGraph.vertices() - 1) {
             Edge edge = priorityQueue.deleteTop();
@@ -71,87 +68,138 @@ public class Exercise26_CriticalEdges {
             // Get next equal-weight edge block
             double currentWeight = edge.weight();
 
-            HashSet<Edge> equalWeightEdges = new HashSet<>();
-            equalWeightEdges.add(edge);
+            Queue<Edge> equalWeightEdgesBlock = new Queue<>();
+            equalWeightEdgesBlock.enqueue(edge);
 
             while (!priorityQueue.isEmpty() && priorityQueue.peek().weight() == currentWeight) {
-                equalWeightEdges.add(priorityQueue.deleteTop());
+                equalWeightEdgesBlock.enqueue(priorityQueue.deleteTop());
             }
 
-            if (equalWeightEdges.size() == 1) {
+            if (equalWeightEdgesBlock.size() == 1) {
                 criticalEdges.enqueue(edge); // There is no cycle, so this is a critical edge
 
                 unionFind.union(vertex1, vertex2);
                 minimumSpanningTree.enqueue(edge);
+            } else {
+                // Generate subgraph with the current components
+                GraphX subgraph = new GraphX();
 
-                continue;
-            }
+                for (Edge edgeInCurrentBlock : equalWeightEdgesBlock) {
+                    vertex1 = edgeInCurrentBlock.either();
+                    vertex2 = edgeInCurrentBlock.other(vertex1);
 
-            List<Edge> edgesToAddToComponentsSubGraph = new ArrayList<>();
+                    int component1 = unionFind.find(vertex1);
+                    int component2 = unionFind.find(vertex2);
+                    if (component1 == component2) {
+                        continue;
+                    }
 
-            // Map to make the mapping between edges in the components subgraph and the original graph
-            int averageMapListSize = Math.max(2, equalWeightEdges.size() / 20);
-            SeparateChainingHashTable<Edge, Edge> subGraphToGraphEdgeMap =
-                    new SeparateChainingHashTable<>(equalWeightEdges.size(), averageMapListSize);
-            HashSet<Integer> verticesInSubGraph = new HashSet<>();
-
-            // Generate subgraph with the current components
-            for (Edge edgeInCurrentBlock : equalWeightEdges.keys()) {
-                vertex1 = edgeInCurrentBlock.either();
-                vertex2 = edgeInCurrentBlock.other(vertex1);
-
-                int component1 = unionFind.find(vertex1);
-                int component2 = unionFind.find(vertex2);
-
-                Edge subGraphEdge = new Edge(component1, component2, currentWeight);
-                edgesToAddToComponentsSubGraph.add(subGraphEdge);
-
-                subGraphToGraphEdgeMap.put(subGraphEdge, edgeInCurrentBlock);
-                verticesInSubGraph.add(component1);
-                verticesInSubGraph.add(component2);
-            }
-
-            for (Edge edgeToAddToComponentSubGraph : edgesToAddToComponentsSubGraph) {
-                componentsSubGraph.addEdge(edgeToAddToComponentSubGraph);
-            }
-
-            // Run DFS to check if there is a cycle. Any edges in the cycle are non-critical.
-            // Every edge in the original graph will be visited by a DFS at most once.
-            HashSet<Edge> nonCriticalEdges = new HashSet<>();
-
-            // Use a different constructor for EdgeWeightedCycle to avoid O(E * V) runtime
-            EdgeWeightedCycle edgeWeightedCycle = new EdgeWeightedCycle(componentsSubGraph, verticesInSubGraph);
-            if (edgeWeightedCycle.hasCycle()) {
-                for (Edge edgeInCycle : edgeWeightedCycle.cycle()) {
-                    Edge edgeInGraph = subGraphToGraphEdgeMap.get(edgeInCycle);
-
-                    nonCriticalEdges.add(edgeInGraph);
-                }
-            }
-
-            // Clear components subgraph edges
-            for (Edge edgeToAddToComponentSubGraph : edgesToAddToComponentsSubGraph) {
-                componentsSubGraph.deleteEdge(edgeToAddToComponentSubGraph);
-            }
-
-            // Add all critical edges to the queue
-            // Add all edges that belong to an MST to the MST
-            for (Edge edgeInCurrentBlock : equalWeightEdges.keys()) {
-
-                if (!nonCriticalEdges.contains(edgeInCurrentBlock)) {
-                    criticalEdges.enqueue(edgeInCurrentBlock);
+                    MarkedEdge subGraphEdge = new MarkedEdge(component1, component2, currentWeight);
+                    subgraph.addEdge(subGraphEdge);
                 }
 
-                vertex1 = edgeInCurrentBlock.either();
-                vertex2 = edgeInCurrentBlock.other(vertex1);
+                BridgeFinder bridgeFinder = new BridgeFinder(subgraph);
+                // All bridges are critical edges
+                for (Edge bridgeEdge : bridgeFinder.bridges()) {
+                    criticalEdges.enqueue(bridgeEdge);
+                }
 
-                if (!unionFind.connected(vertex1, vertex2)) {
-                    unionFind.union(vertex1, vertex2);
-                    minimumSpanningTree.enqueue(edge); // Add edge to the minimum spanning tree
+                // Add all edges that belong to an MST to the MST
+                for (Edge edgeInCurrentBlock : equalWeightEdgesBlock) {
+                    vertex1 = edgeInCurrentBlock.either();
+                    vertex2 = edgeInCurrentBlock.other(vertex1);
+
+                    if (!unionFind.connected(vertex1, vertex2)) {
+                        unionFind.union(vertex1, vertex2);
+                        minimumSpanningTree.enqueue(edge); // Add edge to the minimum spanning tree
+                    }
                 }
             }
         }
         return criticalEdges;
+    }
+
+    private static class MarkedEdge extends Edge {
+        boolean marked;
+
+        public MarkedEdge(int vertex1, int vertex2, double weight) {
+            super(vertex1, vertex2, weight);
+        }
+    }
+
+    private static class GraphX {
+        private final SeparateChainingHashTable<Integer, Bag<MarkedEdge>> adjacent; // optimal for very sparse graphs
+
+        public GraphX() {
+            adjacent = new SeparateChainingHashTable<>();
+        }
+
+        public void addEdge(MarkedEdge edge) {
+            int vertex1 = edge.either();
+            int vertex2 = edge.other(vertex1);
+            int[] vertices = new int[] { vertex1, vertex2 };
+
+            for (int vertex : vertices) {
+                if (!adjacent.contains(vertex)) {
+                    adjacent.put(vertex, new Bag<>());
+                }
+                adjacent.get(vertex).add(edge);
+            }
+        }
+
+        public Iterable<MarkedEdge> adjacent(int vertex) {
+            return adjacent.get(vertex);
+        }
+
+        // Only include vertices with degree > 0
+        public Iterable<Integer> vertices() {
+            return adjacent.keys();
+        }
+    }
+
+    private static class BridgeFinder {
+        private final Queue<Edge> bridges = new Queue<>();
+        private int dfsCount;          // dfs invocation count
+        private final SeparateChainingHashTable<Integer, Integer> order;     // order[v] = order in which dfs examines v
+        private final SeparateChainingHashTable<Integer, Integer> low;       // low[v] = lowest preorder of any vertex connected to v
+
+        public BridgeFinder(GraphX graph) {
+            order = new SeparateChainingHashTable<>();
+            low = new SeparateChainingHashTable<>();
+
+            for (Integer vertex : graph.vertices())
+                if (order.get(vertex) == null) {
+                    dfs(graph, vertex, vertex);
+                }
+        }
+
+        private void dfs(GraphX graph, int from, int vertex) {
+            order.put(vertex, ++dfsCount);
+            low.put(vertex, dfsCount);
+
+            for (MarkedEdge edge : graph.adjacent(vertex)) {
+                if (edge.marked) {
+                    continue;
+                }
+                edge.marked = true;
+
+                int otherVertex = edge.other(vertex);
+                if (order.get(otherVertex) == null) { // new edges, otherVertex is a descendant of vertex
+                    dfs(graph, vertex, otherVertex);
+                    low.put(vertex, Math.min(low.get(vertex), low.get(otherVertex)));
+
+                    if (low.get(otherVertex).equals(order.get(otherVertex))) {
+                        bridges.enqueue(edge);
+                    }
+                } else { // back edges, otherVertex is an ancestor of vertex
+                    low.put(vertex, Math.min(low.get(vertex), order.get(otherVertex)));
+                }
+            }
+        }
+
+        public Iterable<Edge> bridges() {
+            return bridges;
+        }
     }
 
     public static void main(String[] args) {
