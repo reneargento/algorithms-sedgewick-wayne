@@ -8,7 +8,9 @@ import edu.princeton.cs.algs4.StdOut;
 /**
  * Created by Rene Argento on 18/12/17.
  */
-//Based on http://bababadalgharaghtakamminarronnkonnbro.blogspot.com.br/2012/06/interviewstreet-going-office.html
+// Based on http://bababadalgharaghtakamminarronnkonnbro.blogspot.com.br/2012/06/interviewstreet-going-office.html
+// Thanks to qiuhaha (https://github.com/qiuhaha) for reporting a bug on the getIslands() method.
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/303
 public class Exercise37_CriticalEdges {
 
     // O(E lg V)
@@ -25,7 +27,6 @@ public class Exercise37_CriticalEdges {
 
         // 2- Get shortest paths from source
         DijkstraSP dijkstraSP = new DijkstraSP(edgeWeightedDigraph, source);
-
         if (!dijkstraSP.hasPathTo(target)) {
             return null;
         }
@@ -36,7 +37,7 @@ public class Exercise37_CriticalEdges {
         // 4- Get the islands in the graph.
         // The i-th island is the set of all vertices v, such that there exists a shortest path
         // from source to v using no more than i shortest-path vertices.
-        int[] islands = getIslands(edgeWeightedDigraph, dijkstraSP, source, target);
+        int[] islands = getIslands(reverseDigraph, dijkstraSP, target);
 
         // 5- Compute bypass path lengths
         SegmentTree bypassPathLengths = computeBypassPathLengths(edgeWeightedDigraph, islands, dijkstraSP,
@@ -46,48 +47,47 @@ public class Exercise37_CriticalEdges {
         return getCriticalEdge(bypassPathLengths, dijkstraSP, target);
     }
 
-    private int[] getIslands(EdgeWeightedDigraph edgeWeightedDigraph, DijkstraSP dijkstraSP, int source, int target) {
-        int[] islands = new int[edgeWeightedDigraph.vertices()];
-
-        for (int vertex = 0; vertex < edgeWeightedDigraph.vertices(); vertex++) {
+    private int[] getIslands(EdgeWeightedDigraph reverseDigraph, DijkstraSP dijkstraSP, int target) {
+        int[] islands = new int[reverseDigraph.vertices()];
+        for (int vertex = 0; vertex < reverseDigraph.vertices(); vertex++) {
             islands[vertex] = -1;
         }
 
+        boolean[] isInShortestPath = new boolean[reverseDigraph.vertices()];
         int islandId = 0;
-
         for (DirectedEdge edge : dijkstraSP.pathTo(target)) {
             if (islands[edge.from()] == -1) {
                 islands[edge.from()] = islandId++;
             }
-
             islands[edge.to()] = islandId++;
+            isInShortestPath[edge.from()] = true;
+            isInShortestPath[edge.to()] = true;
         }
 
         // Do a breadth-first walk to find the island number of vertices that are not on the shortest path
         // from source to target.
         // These vertices are on a path from source to target that is not a shortest path.
-        boolean[] visited = new boolean[edgeWeightedDigraph.vertices()];
+        boolean[] visited = new boolean[reverseDigraph.vertices()];
         Queue<Integer> queue = new Queue<>();
-        queue.enqueue(source);
-        visited[source] = true;
+        queue.enqueue(target);
+        visited[target] = true;
 
         while (!queue.isEmpty()) {
             int currentVertex = queue.dequeue();
 
-            for (DirectedEdge edge : edgeWeightedDigraph.adjacent(currentVertex)) {
+            for (DirectedEdge edge : reverseDigraph.adjacent(currentVertex)) {
                 int neighbor = edge.to();
 
                 if (!visited[neighbor]) {
                     visited[neighbor] = true;
 
-                    if (islands[currentVertex] > islands[neighbor]) {
+                    if (!isInShortestPath[neighbor] && islands[currentVertex] > islands[neighbor]) {
                         islands[neighbor] = islands[currentVertex];
                     }
                     queue.enqueue(edge.to());
                 }
             }
         }
-
         return islands;
     }
 
@@ -126,13 +126,12 @@ public class Exercise37_CriticalEdges {
                 }
             }
         }
-
         return segmentTree;
     }
 
     private DirectedEdge getCriticalEdge(SegmentTree bypassPathLengths, DijkstraSP dijkstraSP, int target) {
-        // key = edge in shortest path from source to target
-        // value = id of edge in the path
+        // key = index of edge in the shortest path from source to target
+        // value = edge in the shortest path from source to target
         SeparateChainingHashTable<Integer, DirectedEdge> edgesInShortestPath = new SeparateChainingHashTable<>();
         int edgeIndex = 0;
 
@@ -144,12 +143,12 @@ public class Exercise37_CriticalEdges {
         double highestBypassPathLength = Double.NEGATIVE_INFINITY;
 
         for (int edgeId = 0; edgeId < edgeIndex; edgeId++) {
-            if (bypassPathLengths.rangeSumQuery(edgeId, edgeId) > highestBypassPathLength) {
-                highestBypassPathLength = bypassPathLengths.rangeSumQuery(edgeId, edgeId);
+            double lengthBypassingEdge = bypassPathLengths.rangeSumQuery(edgeId, edgeId);
+            if (lengthBypassingEdge > highestBypassPathLength) {
+                highestBypassPathLength = lengthBypassingEdge;
                 criticalEdgeId = edgeId;
             }
         }
-
         return edgesInShortestPath.get(criticalEdgeId);
     }
 
@@ -179,11 +178,7 @@ public class Exercise37_CriticalEdges {
 
         StdOut.print("Critical edge 1: ");
         DirectedEdge criticalEdge1 = criticalEdges.getCriticalEdge(edgeWeightedDigraph1, source1, target1);
-        if (criticalEdge1 == null) {
-            StdOut.println("There is no path from " + source1 + " to " + target1);
-        } else {
-            StdOut.println(criticalEdge1);
-        }
+        printResult(criticalEdge1, source1, target1);
         StdOut.println("Expected: 1->2 2.00");
 
         int source2 = 7;
@@ -191,11 +186,7 @@ public class Exercise37_CriticalEdges {
 
         StdOut.print("\nCritical edge 2: ");
         DirectedEdge criticalEdge2 = criticalEdges.getCriticalEdge(edgeWeightedDigraph1, source2, target2);
-        if (criticalEdge2 == null) {
-            StdOut.println("There is no path from " + source2 + " to " + target2);
-        } else {
-            StdOut.println(criticalEdge2);
-        }
+        printResult(criticalEdge2, source2, target2);
         StdOut.println("Expected: There is no path from 7 to 3");
 
         EdgeWeightedDigraph edgeWeightedDigraph2 = new EdgeWeightedDigraph(9);
@@ -223,11 +214,7 @@ public class Exercise37_CriticalEdges {
 
         StdOut.print("\nCritical edge 3: ");
         DirectedEdge criticalEdge3 = criticalEdges.getCriticalEdge(edgeWeightedDigraph2, source3, target3);
-        if (criticalEdge3 == null) {
-            StdOut.println("There is no path from " + source3 + " to " + target3);
-        } else {
-            StdOut.println(criticalEdge3);
-        }
+        printResult(criticalEdge3, source3, target3);
         StdOut.println("Expected: 0->1 1.00");
 
         // Digraph with a bridge: 2->3 is a bridge which disconnects source and target vertices when removed
@@ -249,11 +236,37 @@ public class Exercise37_CriticalEdges {
 
         StdOut.print("\nCritical edge 4: ");
         DirectedEdge criticalEdge4 = criticalEdges.getCriticalEdge(edgeWeightedDigraph3, source4, target4);
-        if (criticalEdge4 == null) {
-            StdOut.println("There is no path from " + source4 + " to " + target4);
-        } else {
-            StdOut.println(criticalEdge4);
-        }
+        printResult(criticalEdge4, source4, target4);
         StdOut.println("Expected: 2->3 3.00");
+
+        EdgeWeightedDigraph edgeWeightedDigraph4 = new EdgeWeightedDigraph(9);
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(0, 1, 10));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(1, 2, 10));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(2, 3, 10));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(3, 4, 10));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(4, 5, 10));
+        // Other path
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(3, 7, 1));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(7, 2, 1));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(2, 6, 10));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(6, 8, 1));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(8, 7, 1));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(0, 2, 30));
+        edgeWeightedDigraph4.addEdge(new DirectedEdge(3, 5, 30));
+        int source5 = 0;
+        int target5 = 5;
+
+        StdOut.print("\nCritical edge 5: ");
+        DirectedEdge criticalEdge5 = criticalEdges.getCriticalEdge(edgeWeightedDigraph4, source5, target5);
+        printResult(criticalEdge5, source5, target5);
+        StdOut.println("Expected: 2->3 10.00");
+    }
+
+    private static void printResult(DirectedEdge criticalEdge, int source, int target) {
+        if (criticalEdge == null) {
+            StdOut.println("There is no path from " + source + " to " + target);
+        } else {
+            StdOut.println(criticalEdge);
+        }
     }
 }
