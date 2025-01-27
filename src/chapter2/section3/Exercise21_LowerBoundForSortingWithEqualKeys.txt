@@ -62,5 +62,29 @@ Note: Proposition M describes an extra -N term in the formula: NH - N.
 It seems to be correct to include that term only in cases of applying Stirling's approximation to a relatively large N, because for a small N the approximation is not precise.
 In other sections of the book applying Stirling's approximation (such as Proposition I), this extra N term is not included.
 
+------
+Sedgewick's proof (available on https://sedgewick.io/wp-content/themes/sedgewick/talks/2002QuicksortIsOptimal.pdf - slide 11):
+
+Consider a decision tree that describes all possible sequence of comparisons.
+
+The number of leaves must exceed the number of possible files:
+(        N         )
+(f1 * f2 * ... * fn) = N! / (f1! * f2! * ... * fn!)
+
+The average number of compares C is minimized when the tree is balanced.
+C > log(N! / (f1! * f2! * ... * fn!)) = log(N!) - log(f1!) - log(f2!) - ... - log(fn!)
+
+By Stirling's approximation:
+C > N * log(N) - N - f1 * log(f1) - f2 * log(f2) - ... - fn * log(fn)
+
+Which is equal to:
+(f1 + ... + fn) * log(N) - N - f1 * log(f1) - f2 * log(f2) - ... - fn * log(fn)
+
+Which is equal to:
+N * H - N
+
 Thanks to dragon-dreamer (https://github.com/dragon-dreamer) for providing a correct proof for this exercise.
 https://github.com/reneargento/algorithms-sedgewick-wayne/issues/111
+
+Thanks to nihil-admirari (https://github.com/nihil-admirari) for providing a link to Sedgewick's proof.
+https://github.com/reneargento/algorithms-sedgewick-wayne/issues/111#issuecomment-2604405184
