@@ -1,6 +1,6 @@
 2.4.12
 
-The most effective implementations would be an ordered array or a heap.
-This is because the worst case bound for the find the maximum operation in an ordered array and in a heap is O(1).
+The most effective implementations would be a heap or an ordered array.
+This is because the worst case bound for the find the maximum operation in a heap and in an ordered array is O(1).
 In an unordered array it is O(n).
-
+Also, the heap would be slightly better than the ordered array because, even though there is a small number of insert operations, they have worst case bound of O(n) on the ordered array and O(log n) on the heap.
