@@ -1,19 +1,18 @@
 package chapter1.section1;
 
-import java.util.Arrays;
 
 import edu.princeton.cs.algs4.StdOut;
 
 /**
  * Created by Rene Argento
  */
+// Thanks to asimovc (https://github.com/asimovc) for suggesting that a line could be removed:
+// https://github.com/reneargento/algorithms-sedgewick-wayne/issues/312
 public class Exercise22 {
 
     public static void main(String[] args) {
         int arr[] = {1, 2, 3, 4, 5, 6, 7};
         int key = 2;
-
-        Arrays.sort(arr);
 
         int index = rank(key, arr, 0, arr.length - 1, 0);
 
